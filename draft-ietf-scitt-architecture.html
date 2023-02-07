@@ -1,0 +1,2383 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>An Architecture for Trustworthy and Transparent Digital Supply Chains</title>
+<meta content="Henk Birkholz" name="author">
+<meta content="Antoine Delignat-Lavaud" name="author">
+<meta content="Cedric Fournet" name="author">
+<meta content="Yogesh Deshpande" name="author">
+<meta content="
+       Traceability of physical and digital artifacts in supply chains is a long-standing, but increasingly serious security concern. The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases. 
+       This memo defines a generic and scalable architecture to enable transparency across any supply chain with minimum adoption barriers for producers (who can register their claims on any Transparency Service (TS), with the guarantee that all consumers will be able to verify them) and enough flexibility to allow different implementations of Transparency Services with various auditing and compliance requirements. 
+    " name="description">
+<meta content="xml2rfc 3.15.3" name="generator">
+<meta content="Internet-Draft" name="keyword">
+<meta content="draft-ietf-scitt-architecture-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.15.3
+    Python 3.10.9
+    appdirs 1.4.4
+    ConfigArgParse 1.5.3
+    google-i18n-address 2.5.2
+    html5lib 1.1
+    intervaltree 3.1.0
+    Jinja2 3.1.2
+    lxml 4.9.2
+    MarkupSafe 2.1.1
+    pycountry 22.3.5
+    PyYAML 6.0
+    requests 2.28.1
+    setuptools 65.6.0
+    six 1.16.0
+    wcwidth 0.2.5
+-->
+<link href="draft-ietf-scitt-architecture.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cabin Condensed", sans-serif;
+  font-weight: 600;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1#title {
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+}
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+}
+:is(ol, ul) :is(ol, ul) {
+  margin-left: 1em;
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+.ulCompact li {
+  margin: 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+}
+ul.empty li, .ulEmpty li {
+  margin-top: 0.5em;
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  line-height: 100%;
+  margin: 0 0 0 2em;
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+}
+dl > dt {
+  float: left;
+  margin-right: 1em;
+  min-width: 12ch;
+}
+dl.dlNewline > dt {
+  float: none;
+}
+dl > dd {
+  margin-bottom: .8em;
+  margin-left: var(--indent) !important; /* stupid element overrides */
+  min-height: 2ex;
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:first-child, .break:first-child + *) {
+  margin-top: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:last-child) {
+  margin-bottom: 0;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a, a[href].selfRef:hover {
+  text-decoration: none;
+}
+a[href].selfRef {
+  color: var(--text-color);
+}
+a[href] {
+  color: var(--link-color);
+}
+a[href]:hover {
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
+  pre, svg {
+    display: inline-block;
+    overflow-x: auto;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 0 3px 1em;
+}
+table p {
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+}
+a.pilcrow[href] { color: var(--pilcrow-weak); }
+a.pilcrow[href]:hover { text-decoration: none; }
+@media not print {
+  :hover > a.pilcrow {
+    opacity: 1;
+  }
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
+    background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: 14.5px;
+}
+.role {
+  font-variant: all-small-caps;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+}
+#identifiers dt {
+  width: var(--identifier-width);
+  min-width: var(--identifier-width);
+  clear: left;
+  float: left;
+  text-align: right;
+}
+#identifiers dd {
+  margin: 0;
+  margin-left: calc(1em + var(--identifier-width)) !important;
+  min-width: 5em;
+}
+#identifiers .authors .author {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+#identifiers .authors .org {
+  font-style: italic;
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: left;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+}
+#toc nav ul {
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+#toc nav li {
+  line-height: 1.3em;
+  margin: 0.75em 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}
+#toc a.xref {
+  white-space: normal;
+}
+/* references */
+.references dt {
+  text-align: right;
+  font-weight: bold;
+  min-width: 7em;
+}
+.references dt:target::before {
+  content: "⇒";
+  width: 15px;
+  margin: 0 10px 0 -25px;
+}
+.references dd {
+  margin-left: 8em !important;
+  overflow: auto;
+}
+
+.refInstance {
+  margin-bottom: 1.25em;
+}
+
+.references .ascii {
+  margin-bottom: 0.25em;
+}
+
+/* index */
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  margin: 1em 0;
+}
+address.vcard .nameRole {
+  font-weight: 700;
+  margin-left: 0;
+}
+address.vcard .label {
+  margin: 0.5em 0;
+}
+address.vcard .type {
+  display: none;
+}
+.alternative-contact {
+  margin: 1.5em 0 1em;
+}
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+/* alternative layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc.active {
+      opacity: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+  }
+  #toc h2::before { /* css hamburger */
+    float: right;
+    position: relative;
+    width: 1em;
+    height: 1px;
+    left: -164px;
+    margin: 8px 0 0 0;
+    background: white none repeat scroll 0 0;
+    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+    content: "";
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active nav {
+    display: block;
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:link,
+  #toc h2 a:focus,
+  #toc h2 a:hover,
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin-top: 2px;
+  }
+}
+
+/* alternative layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  #toc nav > ul  {
+    margin-bottom: 2em;
+  }
+  #toc ul {
+    margin: 0 0 0 4px;
+    font-size: var(--small-font-size);
+  }
+  #toc ul :is(p, li) {
+    margin: 2px 0;
+    line-height: 22px;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre {
+    page-break-inside: avoid;
+  }
+  figure {
+    overflow: scroll;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  h2+*, h3+*, h4+*, h5+*, h6+* {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Changes introduced to fix issues found during implementation */
+
+/* Separate body from document info even without intervening H1 */
+section {
+  clear: both;
+}
+
+/* Top align author divs, to avoid names without organization dropping level with org names */
+.author {
+  vertical-align: top;
+}
+
+/* Style section numbers with more space between number and title */
+.section-number {
+  padding-right: 0.5em;
+}
+
+/* Add styling for a link in the ToC that points to the top of the document */
+a.toplink {
+  float: right;
+  margin: 8px 0.5em 0;
+}
+
+/* Provide styling for table cell text alignment */
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
+/* Make the alternative author contact information look less like just another
+   author, and group it closer with the primary author contact information */
+.alternative-contact {
+  margin: 0.5em 0 0.25em 0;
+}
+address .non-ascii {
+  margin: 0 0 0 2em;
+}
+
+/* With it being possible to set tables with alignment
+  left, center, and right, { width: 100%; } does not make sense */
+table {
+  width: auto;
+}
+
+/* Avoid reference text that sits in a block with very wide left margin,
+   because of a long floating dt label.*/
+.references dd {
+  overflow: visible;
+}
+
+/* Control caption placement */
+caption {
+  caption-side: bottom;
+}
+
+/* Limit the width of the author address vcard, so names in right-to-left
+   script don't end up on the other side of the page. */
+
+address.vcard {
+  max-width: 20em;
+  margin-right: auto;
+}
+
+/* For address alignment dependent on LTR or RTL scripts */
+address div.left {
+  text-align: left;
+}
+address div.right {
+  text-align: right;
+}
+
+/* Give the table caption label the same styling as the figcaption */
+
+@media print {
+  .toplink {
+    display: none;
+  }
+
+  /* avoid overwriting the top border line with the ToC header */
+  #toc {
+    padding-top: 1px;
+  }
+
+  /* Avoid page breaks inside dl and author address entries */
+  dd {
+    page-break-before: avoid;
+  }
+  .vcard {
+    page-break-inside: avoid;
+  }
+
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
+  stroke: var(--text-color);
+}
+svg :is([stroke="white"], [stroke^="#fff"]) {
+  stroke: var(--background-color);
+}
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
+  fill: var(--text-color);
+}
+svg :is([fill="white"], [fill^="#fff"]) {
+  fill: var(--background-color);
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">SCITT Architecture</td>
+<td class="right">January 2023</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Birkholz, et al.</td>
+<td class="center">Expires 13 July 2023</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">TBD</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2023-01-09" class="published">9 January 2023</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Standards Track</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2023-07-13">13 July 2023</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">H. Birkholz</div>
+<div class="org">Fraunhofer SIT</div>
+</div>
+<div class="author">
+      <div class="author-name">A. Delignat-Lavaud</div>
+<div class="org">Microsoft Research</div>
+</div>
+<div class="author">
+      <div class="author-name">C. Fournet</div>
+<div class="org">Microsoft Research</div>
+</div>
+<div class="author">
+      <div class="author-name">Y. Deshpande</div>
+<div class="org">ARM</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">An Architecture for Trustworthy and Transparent Digital Supply Chains</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">Traceability of physical and digital artifacts in supply chains is a long-standing, but increasingly serious security concern. The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">This memo defines a generic and scalable architecture to enable transparency across any supply chain with minimum adoption barriers for producers (who can register their claims on any Transparency Service (TS), with the guarantee that all consumers will be able to verify them) and enough flexibility to allow different implementations of Transparency Services with various auditing and compliance requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-about-this-document">
+<a href="#name-about-this-document" class="section-name selfRef">About This Document</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">
+        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/">https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">
+        Discussion of this document takes place on the
+        SCITT Working Group mailing list (<span><a href="mailto:scitt@ietf.org">mailto:scitt@ietf.org</a></span>),
+        which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/scitt/">https://mailarchive.ietf.org/arch/browse/scitt/</a></span>.
+        Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/scitt/">https://www.ietf.org/mailman/listinfo/scitt/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+<p id="section-note.1-4">Source for this draft and an issue tracker can be found at
+        <span><a href="https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture">https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 13 July 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2023 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-requirements-notation" class="internal xref">Requirements Notation</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-use-cases" class="internal xref">Use Cases</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-software-bill-of-materials-" class="internal xref">Software Bill of Materials (SBOM)</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
+                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-confidential-computing" class="internal xref">Confidential Computing</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3">
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.  <a href="#name-cold-chains-for-seafood" class="internal xref">Cold Chains for Seafood</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-definition-of-transparency" class="internal xref">Definition of Transparency</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-architecture-overview" class="internal xref">Architecture Overview</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-claim-issuance-and-registra" class="internal xref">Claim Issuance and Registration</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.1">
+                    <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="auto internal xref">5.1.1</a>.  <a href="#name-issuer-identity" class="internal xref">Issuer Identity</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.2">
+                    <p id="section-toc.1-1.5.2.1.2.2.1"><a href="#section-5.1.2" class="auto internal xref">5.1.2</a>.  <a href="#name-naming-artifacts" class="internal xref">Naming Artifacts</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.3">
+                    <p id="section-toc.1-1.5.2.1.2.3.1"><a href="#section-5.1.3" class="auto internal xref">5.1.3</a>.  <a href="#name-claim-metadata" class="internal xref">Claim Metadata</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-transparency-service-ts" class="internal xref">Transparency Service (TS)</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.1">
+                    <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="auto internal xref">5.2.1</a>.  <a href="#name-service-identity-remote-att" class="internal xref">Service Identity, Remote Attestation, and Keying</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.2">
+                    <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="auto internal xref">5.2.2</a>.  <a href="#name-registration-policies" class="internal xref">Registration Policies</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.3">
+                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-registry-security-requireme" class="internal xref">Registry Security Requirements</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-verifying-transparent-claim" class="internal xref">Verifying Transparent Claims</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-claim-issuance-registration" class="internal xref">Claim Issuance, Registration, and Verification</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-envelope-and-claim-format" class="internal xref">Envelope and Claim Format</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-claim-issuance" class="internal xref">Claim Issuance</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-standard-registration-polic" class="internal xref">Standard registration policies</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.4">
+                <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="auto internal xref">6.4</a>.  <a href="#name-registering-signed-claims" class="internal xref">Registering Signed Claims</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.5">
+                <p id="section-toc.1-1.6.2.5.1"><a href="#section-6.5" class="auto internal xref">6.5</a>.  <a href="#name-validation-of-transparent-c" class="internal xref">Validation of Transparent Claims</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-federation" class="internal xref">Federation</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-transparency-service-api" class="internal xref">Transparency Service API</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-messages" class="internal xref">Messages</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.1">
+                    <p id="section-toc.1-1.8.2.1.2.1.1"><a href="#section-8.1.1" class="auto internal xref">8.1.1</a>.  <a href="#name-register-signed-claims" class="internal xref">Register Signed Claims</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2">
+                    <p id="section-toc.1-1.8.2.1.2.2.1"><a href="#section-8.1.2" class="auto internal xref">8.1.2</a>.  <a href="#name-retrieve-registration-recei" class="internal xref">Retrieve Registration Receipt</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-privacy-considerations" class="internal xref">Privacy Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-threat-model" class="internal xref">Threat Model</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1.2.1">
+                    <p id="section-toc.1-1.10.2.1.2.1.1"><a href="#section-10.1.1" class="auto internal xref">10.1.1</a>.  <a href="#name-claim-authentication-and-tr" class="internal xref">Claim authentication and transparency.</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1.2.2">
+                    <p id="section-toc.1-1.10.2.1.2.2.1"><a href="#section-10.1.2" class="auto internal xref">10.1.2</a>.  <a href="#name-confidentiality-and-privacy" class="internal xref">Confidentiality and privacy.</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1.2.3">
+                    <p id="section-toc.1-1.10.2.1.2.3.1"><a href="#section-10.1.3" class="auto internal xref">10.1.3</a>.  <a href="#name-cryptographic-assumptions" class="internal xref">Cryptographic Assumptions</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1.2.4">
+                    <p id="section-toc.1-1.10.2.1.2.4.1"><a href="#section-10.1.4" class="auto internal xref">10.1.4</a>.  <a href="#name-ts-clients" class="internal xref">TS Clients</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1.2.5">
+                    <p id="section-toc.1-1.10.2.1.2.5.1"><a href="#section-10.1.5" class="auto internal xref">10.1.5</a>.  <a href="#name-identity" class="internal xref">Identity</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-12" class="auto internal xref">12</a>. <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.1">
+                <p id="section-toc.1-1.12.2.1.1"><a href="#section-12.1" class="auto internal xref">12.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.2">
+                <p id="section-toc.1-1.12.2.2.1"><a href="#section-12.2" class="auto internal xref">12.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-attic" class="internal xref">Attic</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="sec-introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">This document describes a scalable and flexible decentralized architecture to enhance auditability and accountability in various existing and emerging supply chains.
+It achieves this goal by enforcing the following complementary security guarantees:<a href="#section-1-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-1-2">
+<li id="section-1-2.1">statements made by issuers about supply chain artifacts must be identifiable, authentic, and non-repudiable;<a href="#section-1-2.1" class="pilcrow">¶</a>
+</li>
+        <li id="section-1-2.2">such statements must be registered on a secure append-only Registry so that their provenance and history can be independently and consistently audited;<a href="#section-1-2.2" class="pilcrow">¶</a>
+</li>
+        <li id="section-1-2.3">issuers can efficiently prove to any other party the registration of their claims; verifying this proof ensures that the issuer is consistent and non-equivocal when making claims.<a href="#section-1-2.3" class="pilcrow">¶</a>
+</li>
+      </ol>
+<p id="section-1-3">The first guarantee is achieved by requiring issuers to sign their statements and associated metadata using a distributed public key infrastructure. The second guarantee is achieved by storing the signed statement in an immutable, append-only, transparent Registry. The last guarantee is achieved by implementing the Registry using a verifiable data structure (such as a Merkle Tree), and by requiring a TS that operates the Registry to endorse its state at the time of registration.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">The guarantees and techniques used in this document generalize those of Certificate Transparency <span>[<a href="#RFC9162" class="cite xref">RFC9162</a>]</span>, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates. However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each TS implements and operates its Registry. Each service may enforce its own policy for authorizing entities to register their claims on the TS. Some TS may also enforce access control policies to limit who can audit the full Registry, or keep some information on the Registry encrypted. Nevertheless, it is critical to provide global interoperability for all TS instances as the composition and configuration of involved supply chain entities and their system components is ever changing and always in flux.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">A TS provides visibility into claims issued by supply chain entities and their sub-systems. These claims are called Digital Supply Chain Artifacts (DSCA).
+A TS vouches for specific and well-defined metadata about these DSCAs. Some metadata is selected (and signed) by the issuer, indicating, e.g., "who issued the DSCA" or "what type of DSCA is described" or "what is the DSCA version"; whereas additional metadata is selected (and countersigned) by the TS, indicating, e.g., "when was the DSCA registered in the Registry". The DSCA contents can be opaque to the TS, if so desired: it is the metadata that must always be transparent in order to warrant trust.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">Transparent claims provide a common basis for holding issuers accountable for the DSCA they release and (more generally) principals accountable for auxiliary claims they make about DSCAs. Hence, issuers may register new claims about their artifacts, but they cannot delete or alter earlier claims, or hide their claims from third parties such as auditors.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">Trust in the TS itself is supported both by protecting their implementation (using, for instance, replication, trusted hardware, and remote attestation of systems) and by enabling independent audits of the correctness and consistency of its Registry, thereby holding the organization accountable that operates it. Unlike CT, where independent auditors are responsible for enforcing the consistency of multiple independent instances of the same global Registry, we require each TS to guarantee the consistency of its own Registry (for instance, through the use of a consensus algorithm between replicas of the Registry), but assume no consistency between different transparency services.<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-1-8">The TS specified in this architecture caters to two types of audiences:<a href="#section-1-8" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-1-9">
+<li id="section-1-9.1">DSCA Issuers: entities, stakeholders, and users involved in supply chain interactions that need to release DSCAs to a definable set of peers; and<a href="#section-1-9.1" class="pilcrow">¶</a>
+</li>
+        <li id="section-1-9.2">DSCA Consumers: entities, stakeholders, and users involved in supply chain interactions that need to access, validate, and trust DSCAs.<a href="#section-1-9.2" class="pilcrow">¶</a>
+</li>
+      </ol>
+<p id="section-1-10">DSCA Issuers rely on being discoverable and represented as the responsible parties for released DSCAs by the TS in a believable manner.
+Analogously, DSCA Consumers rely on verifiable trustworthiness assertions associated with DSCAs and their processing in a believable manner.
+If trust can be put into the operations that record DSCAs in a secure, append-only Registry via an online operation, the same trust can be put into a corresponding receipt that is the result of these online operations issued by the TS and that can be validated in offline operations.<a href="#section-1-10" class="pilcrow">¶</a></p>
+<p id="section-1-11">The TS specified in this architecture can be implemented by various different types of services in various types of languages provided via various variants of API layouts.<a href="#section-1-11" class="pilcrow">¶</a></p>
+<p id="section-1-12">The global interoperability enabled and guaranteed by the TS is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs). The core components are based on the Concise Signing and Encryption standard specified in <span>[<a href="#RFC8152" class="cite xref">RFC8152</a>]</span>, which is used to sign released DSCAs and to build and maintain a Merkle tree that functions as the append-only Registry for DSCAs.
+The format and verification process for Registry-based transparency receipts are described in <span>[<a href="#I-D.birkholz-scitt-receipts" class="cite xref">I-D.birkholz-scitt-receipts</a>]</span>.<a href="#section-1-12" class="pilcrow">¶</a></p>
+<div id="sec-requirements-notation">
+<section id="section-1.1">
+        <h3 id="name-requirements-notation">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-requirements-notation" class="section-name selfRef">Requirements Notation</a>
+        </h3>
+<p id="section-1.1-1">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
+"<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
+described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
+appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="sec-use-cases">
+<section id="section-2">
+      <h2 id="name-use-cases">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-use-cases" class="section-name selfRef">Use Cases</a>
+      </h2>
+<p id="section-2-1">This section presents representative and solution-agnostic use cases to illustrate the scope of SCITT and the processing of Digital Supply Chain Artifacts.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<div id="sec-software-bill-of-materials-sbom">
+<section id="section-2.1">
+        <h3 id="name-software-bill-of-materials-">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-software-bill-of-materials-" class="section-name selfRef">Software Bill of Materials (SBOM)</a>
+        </h3>
+<p id="section-2.1-1">As the ever increasing complexity of large software projects requires more modularity and abstractions to manage them, keeping track of their full Trusted Computing Base (TCB) is becoming increasingly difficult. Each component may have its own set of dependencies and libraries. Some of these dependencies are binaries, which means their TCB depends not only on their source, but also on their build environment (compilers and tool-chains). Besides, many source and binary packages are distributed through various channels and repositories that may not be trustworthy.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">Software Bills of Materials (SBOM) help the authors, packagers, distributors, auditors and users of software understand its provenance and who may have the ability to introduce a vulnerability that can affect the supply chain downstream. However, the usefulness of SBOM in protecting end users is limited if supply chain actors cannot be held accountable for their contents. For instance, consider a package repository for an open source operating system distribution. The operator of this repository may decide to provide a malicious version of a package only to users who live in a specific country. They can write two equivocal SBOMs for the honest and backdoored versions of the package, so that nobody outside the affected country can discover the malicious version, but victims are not aware they are being targeted.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-confidential-computing">
+<section id="section-2.2">
+        <h3 id="name-confidential-computing">
+<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-confidential-computing" class="section-name selfRef">Confidential Computing</a>
+        </h3>
+<p id="section-2.2-1">Confidential Computing can leverage hardware-protected trusted execution environments (TEEs) to operate cloud services that protect the confidentiality of data that they process. It relies on remote attestation, which allows the service to prove to remote users what is the hash of its software, as measured and signed by the hardware.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.2-2">For instance, consider a speech recognition service that implements machine learning inference using a deep neural network model. The operator of the service wants to prove to its users that the service preserves the user's privacy, that is, the submitted recordings can only be used to detect voice commands but no other purpose (such as storing the recordings or detecting mentions of brand names for advertisement purposes).
+When the user connects to the TEE implementing the service, the TEE presents attestation evidence that includes a hardware certificate and a software measurement for their task; the user verifies this evidence before sending its recording.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
+<p id="section-2.2-3">But how can users verify the software measurement for their task? And how can operators update their service, e.g., to mitigate security vulnerabilities or improve accuracy,
+without first convincing all users to update the measurements they trust?<a href="#section-2.2-3" class="pilcrow">¶</a></p>
+<p id="section-2.2-4">A supply chain that maintains a transparent record of the successive software releases for machine-learning models and runtimes, recording both their software measurements
+and their provenance (source code, build reports, audit reports,...) can provide users with the information they need to authorize these tasks, while holding the service operator accountable for the software they release for them.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-cold-chains-for-seafood">
+<section id="section-2.3">
+        <h3 id="name-cold-chains-for-seafood">
+<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-cold-chains-for-seafood" class="section-name selfRef">Cold Chains for Seafood</a>
+        </h3>
+<p id="section-2.3-1">Once seafood is caught, its quality is determined -- amongst other criteria -- via the integrity of a cold chain that ensures a regulatory perspective freshness mandating a continuous storing temperature between 1 <span class="contact-name">°</span>C and 0 <span class="contact-name">°</span>C (or -18 <span class="contact-name">°</span>C and lower for frozen seafood). The temperature is recorded by cooling units adhering to certain compliance standards automatically. Batches of seafood can be split or aggregated before arriving in a shelf so that each unit can potentially have a potentially unique cold chain record whose transparency impacts the accuracy of the shelf-life associated with it. Especially in early links of the supply chain, Internet connection or sophisticated IT equipment are typically not available and sometimes temperature measurements are recorded manually and digital records are created in hindsight.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="sec-terminology">
+<section id="section-3">
+      <h2 id="name-terminology">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
+      </h2>
+<p id="section-3-1">The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust throughout this document. When used in text, the corresponding terms are capitalized. To ensure readability, only a core set of terms is included in this section.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-3-2">
+        <dt id="section-3-2.1">Artifact:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.2">
+          <p id="section-3-2.2.1">a physical or non-physical item that is moving along the supply chain.<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.3">Statement:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.4">
+          <p id="section-3-2.4.1">any serializable information about an Artifact. To help interpretation of Statements, they must be tagged with a media type (as specified in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>).
+For example, a statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, or some endorsement or attestation about an Artifact.<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.5">Claim:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.6">
+          <p id="section-3-2.6.1">an identifiable and non-repudiable Statement about an Artifact made by an Issuer. In SCITT, Claims are encoded as COSE signed objects; the payload of the COSE structure contains the Statement.<a href="#section-3-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.7">Issuer:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.8">
+          <p id="section-3-2.8.1">an entity that makes Claims about Artifacts in the supply chain. The Issuer may be the owner or author of the Artifact, or an independent third party such as a reviewer or an endorser.<a href="#section-3-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.9">Envelope:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.10">
+          <p id="section-3-2.10.1">the metadata added to the Statement by the Issuer to make it a Claim.
+It contains the identity of the Issuer and other information to help Verifiers identify the Artifact referred in the Statement. A Claim binds the Envelope to the Statement. In COSE, the Envelope consists of protected headers.<a href="#section-3-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.11">Feed:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.12">
+          <p id="section-3-2.12.1">an identifier chosen by the Issuer for the Artifact. For every Issuer and Feed, the Registry on a Transparency Service contains a sequence of Claims about the same Artifact.
+In COSE, Feed is a dedicated header attribute in the protected header of the Envelope.<a href="#section-3-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.13">Registry:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.14">
+          <p id="section-3-2.14.1">the verifiable append-only data structure that stores Claims in a Transparency Service often referred to by the synonym log or ledger. SCITT supports multiple Registry and Receipt formats to accommodate different Transparency Service implementations, such as historical Merkle Trees and sparse Merkle Trees.<a href="#section-3-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.15">Transparency Service:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.16">
+          <p id="section-3-2.16.1">an entity that maintains and extends the Registry, and endorses its state. A Transparency Service is often referred to by its synonym Notary. A Transparency Service can be a complex distributed system, and SCITT requires the TS to provide many security guarantees about its Registry . The identity of a TS is captured by a public key that must be known by Verifiers in order to validate Receipts.<a href="#section-3-2.16.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.17">Receipt:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.18">
+          <p id="section-3-2.18.1">a Receipt is a special form of COSE countersignature for Claims that embeds cryptographic evidence that the Claim is recorded in the Registry . It consists of a Registry -specific inclusion proof, a signature by the Transparency Service of the state of the Registry , and additional metadata (contained in the countersignature protected headers) to assist in auditing.<a href="#section-3-2.18.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.19">Registration:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.20">
+          <p id="section-3-2.20.1">the process of submitting a Claim to a Transparency Service, applying its registration policy, storing it in the Registry, producing a Receipt, and returning it to the submitter.<a href="#section-3-2.20.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.21">Registration Policy:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.22">
+          <p id="section-3-2.22.1">the pre-condition enforced by the TS before registering a Claim,
+based on its Envelope (notably the identity of its Issuer)
+and on prior claims already in the Registry.<a href="#section-3-2.22.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.23">Transparent Claim:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.24">
+          <p id="section-3-2.24.1">a Claim that is augmented with a Receipt of its registration. A Transparent Claim remains a valid Claim (as the Receipt is carried in the countersignature), and may be registered again in a different TS.<a href="#section-3-2.24.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.25">Verifier:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.26">
+          <p id="section-3-2.26.1">an entity that consumes Transparent Claims (a specialization of Claim Consumer), verifying their proofs and inspecting their Statements, either before using their Artifacts, or later to audit their provenance on the supply chain.<a href="#section-3-2.26.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.27">Auditor:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.28">
+          <p id="section-3-2.28.1">an entity that checks the correctness and consistency of all Claim registered by a TS (a specialization of Claim Consumer).<a href="#section-3-2.28.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="mybody">
+<section id="section-4">
+      <h2 id="name-definition-of-transparency">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-definition-of-transparency" class="section-name selfRef">Definition of Transparency</a>
+      </h2>
+<p id="section-4-1">In this document, we use a definition of transparency built over abstract notions of Registry and Receipts. Existing transparency systems such as Certificate Transparency are instances of this definition.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">A Claim is an identifiable and non-repudiable Statement made by an Issuer. The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata. Claims can be made transparent by attaching a proof of Registration by a TS, in the form of a Receipt that countersigns the Claim and witnesses its inclusion in the Registry of a TS. By extension, we may say an Artifact (e.g. a firmware binary) is transparent if it comes with one or more Transparent Claims from its author or owner, though the context should make it clear what type of Claim is expected for a given Artifact.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">Transparency does not prevent dishonest or compromised Issuers, but it holds them accountable: any Artifact that may be used to target a particular user that checks for Receipts must have been recorded in the tamper-proof Registry, and will be subject to scrutiny and auditing by other parties.<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-4">Transparency is implemented by a Registry that provides a consistent, append-only, cryptographically verifiable, publicly available record of entries. Implementations of TS may protect their Registry using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence. A Receipt is an offline, universally-verifiable proof that an entry is recorded in the Registry. Receipts do not expire, but it is possible to append new entries that subsume older entries.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-5">Anyone with access to the Registry can independently verify its consistency and review the complete list of Claims registered by each Issuer. However, the Registry of separate Transparency Services are generally disjoint, though it is possible to take a Claim from one Registry and register it again on another (if its policy allows it), so the authorization of the Issuer and of the Registry by the Verifier of the Receipt are generally independent.<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-6">Reputable Issuers are thus incentivized to carefully review their Statements before signing them into Claims. Similarly, reputable TS are incentivized to secure their Registry, as any inconsistency can easily be pinpointed by any auditor with read access to the Registry. Some Registry formats may also support consistency auditing through Receipts, that is, given two valid Receipts the TS may be asked to produce a cryptographic proof that they are consistent. Failure to produce this proof can indicate that the TS operator misbehaved.<a href="#section-4-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-architecture-overview">
+<section id="section-5">
+      <h2 id="name-architecture-overview">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-architecture-overview" class="section-name selfRef">Architecture Overview</a>
+      </h2>
+<div id="section-5-1">
+        <div class="alignLeft art-svg artwork" id="section-5-1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="624" width="544" viewBox="0 0 544 624" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+            <path d="M 208,64 L 208,88" fill="none" stroke="black"></path>
+            <path d="M 208,128 L 208,144" fill="none" stroke="black"></path>
+            <path d="M 208,400 L 208,416" fill="none" stroke="black"></path>
+            <path d="M 232,288 L 232,320" fill="none" stroke="black"></path>
+            <path d="M 264,176 L 264,200" fill="none" stroke="black"></path>
+            <path d="M 264,240 L 264,256" fill="none" stroke="black"></path>
+            <path d="M 264,352 L 264,376" fill="none" stroke="black"></path>
+            <path d="M 264,432 L 264,568" fill="none" stroke="black"></path>
+            <path d="M 320,128 L 320,144" fill="none" stroke="black"></path>
+            <path d="M 320,400 L 320,416" fill="none" stroke="black"></path>
+            <path d="M 336,480 L 336,504" fill="none" stroke="black"></path>
+            <path d="M 368,256 L 368,320" fill="none" stroke="black"></path>
+            <path d="M 368,480 L 368,504" fill="none" stroke="black"></path>
+            <path d="M 384,144 L 384,192" fill="none" stroke="black"></path>
+            <path d="M 416,192 L 416,208" fill="none" stroke="black"></path>
+            <path d="M 432,320 L 432,456" fill="none" stroke="black"></path>
+            <path d="M 432,472 L 432,568" fill="none" stroke="black"></path>
+            <path d="M 488,256 L 488,320" fill="none" stroke="black"></path>
+            <path d="M 504,192 L 504,448" fill="none" stroke="black"></path>
+            <path d="M 536,144 L 536,192" fill="none" stroke="black"></path>
+            <path d="M 176,32 L 248,32" fill="none" stroke="black"></path>
+            <path d="M 176,64 L 248,64" fill="none" stroke="black"></path>
+            <path d="M 176,96 L 240,96" fill="none" stroke="black"></path>
+            <path d="M 280,96 L 352,96" fill="none" stroke="black"></path>
+            <path d="M 112,112 L 128,112" fill="none" stroke="black"></path>
+            <path d="M 176,128 L 240,128" fill="none" stroke="black"></path>
+            <path d="M 280,128 L 352,128" fill="none" stroke="black"></path>
+            <path d="M 384,144 L 536,144" fill="none" stroke="black"></path>
+            <path d="M 224,160 L 248,160" fill="none" stroke="black"></path>
+            <path d="M 280,160 L 304,160" fill="none" stroke="black"></path>
+            <path d="M 384,192 L 536,192" fill="none" stroke="black"></path>
+            <path d="M 248,208 L 280,208" fill="none" stroke="black"></path>
+            <path d="M 304,224 L 400,224" fill="none" stroke="black"></path>
+            <path d="M 248,240 L 280,240" fill="none" stroke="black"></path>
+            <path d="M 368,256 L 488,256" fill="none" stroke="black"></path>
+            <path d="M 280,272 L 360,272" fill="none" stroke="black"></path>
+            <path d="M 272,288 L 320,288" fill="none" stroke="black"></path>
+            <path d="M 112,304 L 128,304" fill="none" stroke="black"></path>
+            <path d="M 344,304 L 368,304" fill="none" stroke="black"></path>
+            <path d="M 272,320 L 320,320" fill="none" stroke="black"></path>
+            <path d="M 368,320 L 488,320" fill="none" stroke="black"></path>
+            <path d="M 224,384 L 304,384" fill="none" stroke="black"></path>
+            <path d="M 224,432 L 304,432" fill="none" stroke="black"></path>
+            <path d="M 280,464 L 320,464" fill="none" stroke="black"></path>
+            <path d="M 384,464 L 488,464" fill="none" stroke="black"></path>
+            <path d="M 296,512 L 416,512" fill="none" stroke="black"></path>
+            <path d="M 120,528 L 136,528" fill="none" stroke="black"></path>
+            <path d="M 280,544 L 400,544" fill="none" stroke="black"></path>
+            <path d="M 192,576 L 344,576" fill="none" stroke="black"></path>
+            <path d="M 368,576 L 512,576" fill="none" stroke="black"></path>
+            <path d="M 120,592 L 136,592" fill="none" stroke="black"></path>
+            <path d="M 176,608 L 328,608" fill="none" stroke="black"></path>
+            <path d="M 352,608 L 496,608" fill="none" stroke="black"></path>
+            <path d="M 176,608 L 192,576" fill="none" stroke="black"></path>
+            <path d="M 280,544 L 296,512" fill="none" stroke="black"></path>
+            <path d="M 328,608 L 344,576" fill="none" stroke="black"></path>
+            <path d="M 352,608 L 368,576" fill="none" stroke="black"></path>
+            <path d="M 400,544 L 416,512" fill="none" stroke="black"></path>
+            <path d="M 496,608 L 512,576" fill="none" stroke="black"></path>
+            <path d="M 176,32 C 167.16936,32 160,39.16936 160,48" fill="none" stroke="black"></path>
+            <path d="M 248,32 C 256.83064,32 264,39.16936 264,48" fill="none" stroke="black"></path>
+            <path d="M 176,64 C 167.16936,64 160,56.83064 160,48" fill="none" stroke="black"></path>
+            <path d="M 248,64 C 256.83064,64 264,56.83064 264,48" fill="none" stroke="black"></path>
+            <path d="M 176,96 C 167.16936,96 160,103.16936 160,112" fill="none" stroke="black"></path>
+            <path d="M 240,96 C 248.83064,96 256,103.16936 256,112" fill="none" stroke="black"></path>
+            <path d="M 280,96 C 271.16936,96 264,103.16936 264,112" fill="none" stroke="black"></path>
+            <path d="M 352,96 C 360.83064,96 368,103.16936 368,112" fill="none" stroke="black"></path>
+            <path d="M 176,128 C 167.16936,128 160,120.83064 160,112" fill="none" stroke="black"></path>
+            <path d="M 240,128 C 248.83064,128 256,120.83064 256,112" fill="none" stroke="black"></path>
+            <path d="M 280,128 C 271.16936,128 264,120.83064 264,112" fill="none" stroke="black"></path>
+            <path d="M 352,128 C 360.83064,128 368,120.83064 368,112" fill="none" stroke="black"></path>
+            <path d="M 224,160 C 215.16936,160 208,152.83064 208,144" fill="none" stroke="black"></path>
+            <path d="M 248,160 C 256.83064,160 264,167.16936 264,176" fill="none" stroke="black"></path>
+            <path d="M 280,160 C 271.16936,160 264,167.16936 264,176" fill="none" stroke="black"></path>
+            <path d="M 304,160 C 312.83064,160 320,152.83064 320,144" fill="none" stroke="black"></path>
+            <path d="M 248,208 C 239.16936,208 232,215.16936 232,224" fill="none" stroke="black"></path>
+            <path d="M 280,208 C 288.83064,208 296,215.16936 296,224" fill="none" stroke="black"></path>
+            <path d="M 400,224 C 408.83064,224 416,216.83064 416,208" fill="none" stroke="black"></path>
+            <path d="M 248,240 C 239.16936,240 232,232.83064 232,224" fill="none" stroke="black"></path>
+            <path d="M 280,240 C 288.83064,240 296,232.83064 296,224" fill="none" stroke="black"></path>
+            <path d="M 248,272 C 239.16936,272 232,279.16936 232,288" fill="none" stroke="black"></path>
+            <path d="M 248,272 C 256.83064,272 264,264.83064 264,256" fill="none" stroke="black"></path>
+            <path d="M 280,272 C 271.16936,272 264,264.83064 264,256" fill="none" stroke="black"></path>
+            <path d="M 272,288 C 263.16936,288 256,295.16936 256,304" fill="none" stroke="black"></path>
+            <path d="M 320,288 C 328.83064,288 336,295.16936 336,304" fill="none" stroke="black"></path>
+            <path d="M 272,320 C 263.16936,320 256,312.83064 256,304" fill="none" stroke="black"></path>
+            <path d="M 320,320 C 328.83064,320 336,312.83064 336,304" fill="none" stroke="black"></path>
+            <path d="M 248,336 C 239.16936,336 232,328.83064 232,320" fill="none" stroke="black"></path>
+            <path d="M 248,336 C 256.83064,336 264,343.16936 264,352" fill="none" stroke="black"></path>
+            <path d="M 280,336 C 271.16936,336 264,343.16936 264,352" fill="none" stroke="black"></path>
+            <path d="M 280,336 C 288.83064,336 296,328.83064 296,320" fill="none" stroke="black"></path>
+            <path d="M 224,384 C 215.16936,384 208,391.16936 208,400" fill="none" stroke="black"></path>
+            <path d="M 304,384 C 312.83064,384 320,391.16936 320,400" fill="none" stroke="black"></path>
+            <path d="M 224,432 C 215.16936,432 208,424.83064 208,416" fill="none" stroke="black"></path>
+            <path d="M 304,432 C 312.83064,432 320,424.83064 320,416" fill="none" stroke="black"></path>
+            <path d="M 280,464 C 271.16936,464 264,456.83064 264,448" fill="none" stroke="black"></path>
+            <path d="M 320,464 C 328.83064,464 336,471.16936 336,480" fill="none" stroke="black"></path>
+            <path d="M 384,464 C 375.16936,464 368,471.16936 368,480" fill="none" stroke="black"></path>
+            <path d="M 488,464 C 496.83064,464 504,456.83064 504,448" fill="none" stroke="black"></path>
+            <polygon class="arrowhead" points="440,568 428,562.4 428,573.6" fill="black" transform="rotate(90,432,568)"></polygon>
+            <path class="jump" d="M 432,472 C 438,472 438,456 432,456" fill="none" stroke="black"></path>
+            <polygon class="arrowhead" points="376,504 364,498.4 364,509.6" fill="black" transform="rotate(90,368,504)"></polygon>
+            <polygon class="arrowhead" points="368,272 356,266.4 356,277.6" fill="black" transform="rotate(0,360,272)"></polygon>
+            <polygon class="arrowhead" points="352,304 340,298.4 340,309.6" fill="black" transform="rotate(180,344,304)"></polygon>
+            <polygon class="arrowhead" points="344,504 332,498.4 332,509.6" fill="black" transform="rotate(90,336,504)"></polygon>
+            <polygon class="arrowhead" points="312,224 300,218.4 300,229.6" fill="black" transform="rotate(180,304,224)"></polygon>
+            <polygon class="arrowhead" points="272,568 260,562.4 260,573.6" fill="black" transform="rotate(90,264,568)"></polygon>
+            <polygon class="arrowhead" points="272,376 260,370.4 260,381.6" fill="black" transform="rotate(90,264,376)"></polygon>
+            <polygon class="arrowhead" points="272,200 260,194.4 260,205.6" fill="black" transform="rotate(90,264,200)"></polygon>
+            <polygon class="arrowhead" points="216,88 204,82.4 204,93.6" fill="black" transform="rotate(90,208,88)"></polygon>
+            <polygon class="arrowhead" points="144,592 132,586.4 132,597.6" fill="black" transform="rotate(0,136,592)"></polygon>
+            <polygon class="arrowhead" points="144,528 132,522.4 132,533.6" fill="black" transform="rotate(0,136,528)"></polygon>
+            <polygon class="arrowhead" points="136,304 124,298.4 124,309.6" fill="black" transform="rotate(0,128,304)"></polygon>
+            <polygon class="arrowhead" points="136,112 124,106.4 124,117.6" fill="black" transform="rotate(0,128,112)"></polygon>
+            <g class="text">
+              <text x="212" y="52">Artifact</text>
+              <text x="28" y="116">Issuer</text>
+              <text x="208" y="116">Statement</text>
+              <text x="316" y="116">Envelope</text>
+              <text x="408" y="164">DID</text>
+              <text x="440" y="164">Key</text>
+              <text x="492" y="164">Manifest</text>
+              <text x="456" y="180">(decentralized)</text>
+              <text x="332" y="212">Sign</text>
+              <text x="376" y="212">Claim</text>
+              <text x="264" y="228">Claim</text>
+              <text x="428" y="276">Transparency</text>
+              <text x="52" y="308">Transparency</text>
+              <text x="296" y="308">Receipt</text>
+              <text x="428" y="308">Registry</text>
+              <text x="72" y="324">Service</text>
+              <text x="264" y="404">Transparent</text>
+              <text x="264" y="420">Claim</text>
+              <text x="36" y="532">Verifier</text>
+              <text x="324" y="532">Verify</text>
+              <text x="376" y="532">Claim</text>
+              <text x="32" y="596">Auditor</text>
+              <text x="224" y="596">Collect</text>
+              <text x="292" y="596">Receipts</text>
+              <text x="396" y="596">Replay</text>
+              <text x="460" y="596">Registry</text>
+            </g>
+          </svg><a href="#section-5-1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<p id="section-5-2">The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing, registering and auditing Claims.
+In order to accommodate as many TS implementations as possible, this document only specifies the format of Claims (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the TS identity and the Registry algorithm. Most of the details of the Receipt's contents are specific to the Registry algorithm. The <span>[<a href="#I-D.birkholz-scitt-receipts" class="cite xref">I-D.birkholz-scitt-receipts</a>]</span> document defines two initial Registry algorithms (for historical and sparse Merkle Trees), but other Registry formats (such as blockchains, or hybrid historical and indexed Merkle Trees) may be proposed later.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">In this section, we describe at a high level the three main roles and associated processes in SCITT: Issuers and the Claim issuance process, transparency Registry and the Claim Registration process, and Verifiers and the Receipt validation process.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<div id="sec-claim-issuance-and-registration">
+<section id="section-5.1">
+        <h3 id="name-claim-issuance-and-registra">
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-claim-issuance-and-registra" class="section-name selfRef">Claim Issuance and Registration</a>
+        </h3>
+<div id="sec-issuer-identity">
+<section id="section-5.1.1">
+          <h4 id="name-issuer-identity">
+<a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-issuer-identity" class="section-name selfRef">Issuer Identity</a>
+          </h4>
+<p id="section-5.1.1-1">Before an Issuer is able to produce Claims, it must first create its <a href="https://www.w3.org/TR/did-core">decentralized identifier</a> (also known as a DID).
+A DID can be <em>resolved</em> into a <em>key manifest</em> (a list of public keys indexed by a <em>key identifier</em>) using many different DID methods.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-2">Issuers <span class="bcp14">MAY</span> choose the DID method they prefer, but with no guarantee that all TS will be able to register their Claim. To facilitate interoperability, all Transparency Service implementations <span class="bcp14">SHOULD</span> support the <code>did:web</code> method from [https://w3c-ccg.github.io/did-method-web/]. For instance, if the Issuer publishes its manifest at <code>https://sample.issuer/user/alice/did.json</code>, the DID of the Issuer is <code>did:web:sample.issuer:user:alice</code>.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-3">Issuers <span class="bcp14">SHOULD</span> use consistent decentralized identifiers for all their Artifacts, to simplify authorization by Verifiers and auditing. They <span class="bcp14">MAY</span> update their DID manifest, for instance to refresh their signing keys or algorithms, but they <span class="bcp14">SHOULD NOT</span> remove or change any prior keys unless they intend to revoke all Claims issued with those keys. This DID appears in the Issuer header of the Claim's Envelope, while the version of the key from the manifest used to sign the Claim is written in the <code>kid</code> header.<a href="#section-5.1.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-naming-artifacts">
+<section id="section-5.1.2">
+          <h4 id="name-naming-artifacts">
+<a href="#section-5.1.2" class="section-number selfRef">5.1.2. </a><a href="#name-naming-artifacts" class="section-name selfRef">Naming Artifacts</a>
+          </h4>
+<p id="section-5.1.2-1">Many Issuers issue Claims about different Artifacts under the same DID, so it is important for everyone to be able to immediately recognize by looking at the Envelope of a Claim what Artifact it is referring to. This information is stored in the Feed header of the Envelope. Issuers <span class="bcp14">MAY</span> use different signing keys (identified by <code>kid</code> in the resolved key manifest) for different Artifacts, or sign all Claims under the same key.<a href="#section-5.1.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-claim-metadata">
+<section id="section-5.1.3">
+          <h4 id="name-claim-metadata">
+<a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-claim-metadata" class="section-name selfRef">Claim Metadata</a>
+          </h4>
+<p id="section-5.1.3-1">Besides Issuer, Feed and kid, the only other mandatory metadata in the Claim is the type of the Payload, indicated in the <code>cty</code> Envelope header.
+However, this set of mandatory metadata is not sufficient to express many important Registration policies. For example, a Registry may only allow a Claim to be registered if it was signed recently. While the Issuer is free to add any information in the payload of the Claim, the TS (and most of its auditor) can only be expected to interpret information in the Envelope.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-2">Such metadata, meant to be interpreted by the TS during Registration policy evaluation, should be added to the <code>reg_info</code> header. While the header <span class="bcp14">MUST</span> be present in all Claims, its contents consist of a map of named attributes. Some attributes (such as the Issuer's timestamp) are standardized with a defined type, to help uniformize their semantics across TS. Others are completely customizable and may have arbitrary types. In any case, all attributes are optional so the map <span class="bcp14">MAY</span> be empty.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="sec-transparency-service-ts">
+<section id="section-5.2">
+        <h3 id="name-transparency-service-ts">
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-transparency-service-ts" class="section-name selfRef">Transparency Service (TS)</a>
+        </h3>
+<p id="section-5.2-1">The role of TS can be decomposed into several major functions. The most important is maintaining a Registry, the verifiable data structure that records Claims, and enforcing a Registration policy. It also maintains a service key, which is used to endorse the state of the Registry in Receipts. All TS <span class="bcp14">MUST</span> expose standard endpoints for Registration of Claims and Receipt issuance, which is described in <a href="#sec-messages" class="auto internal xref">Section 8.1</a>. Each TS also defines its Registration policy, which <span class="bcp14">MUST</span> apply to all entries in the Registry.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">The combination of Registry, identity, Registration policy evaluation, and Registration endpoint constitute the trusted part of the TS. Each of these components <span class="bcp14">SHOULD</span> be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the TS. For instance, the code for policy evaluation, Registry extension and endorsement may be protected by running in a TEE; the Registry may be replicated and a consensus algorithm such as Practical Byzantine Fault Tolerance (pBFT <span>[<a href="#PBFT" class="cite xref">PBFT</a>]</span>) may be used to protect against malicious or vulnerable replicas; threshold signatures may be use to protect the service key, etc.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">Beyond the trusted components, Transparency Services may operate additional endpoints for auditing, for instance to query for the history of Claims made by a given Issuer and Feed. Implementations of TS <span class="bcp14">SHOULD</span> avoid using the service identity and extending the Registry in auditing endpoints; as much as practical, the Registry <span class="bcp14">SHOULD</span> contain enough evidence to re-construct verifiable proofs that the results returned by the auditing endpoint are consistent with a given state of the Registry.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+<div id="sec-service-identity-remote-attestation-and-keying">
+<section id="section-5.2.1">
+          <h4 id="name-service-identity-remote-att">
+<a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-service-identity-remote-att" class="section-name selfRef">Service Identity, Remote Attestation, and Keying</a>
+          </h4>
+<p id="section-5.2.1-1">Every TS <span class="bcp14">MUST</span> have a public service identity,
+associated with public/private key pairs for signing on behalf of the service. In particular, this identity must be known by Verifiers when validating a Receipt<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-2">This identity should be stable for the lifetime of the service, so that all Receipts remain valid and consistent. The TS operator <span class="bcp14">MAY</span> use a distributed identifier as their public service identity if they wish to rotate their keys, if the Registry algorithm they use for their Receipt supports it. Other types of cryptographic identities, such as parameters for non-interactive zero-knowledge proof systems, may also be used in the future.<a href="#section-5.2.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-3">The TS <span class="bcp14">SHOULD</span> provide evidence that it is securely implemented and operated, enabling remote authentication of the hardware platforms and/or software TCB that run the TS. This additional evidence <span class="bcp14">SHOULD</span> be recorded in the Registry and presented on demand to Verifiers and auditors.<a href="#section-5.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-4">For example, consider a TS implemented using a set of replicas, each running within its own hardware-protected trusted execution environments (TEEs). Each replica <span class="bcp14">SHOULD</span> provide a recent attestation report for its TEE, binding their hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts. This attestation evidence <span class="bcp14">SHOULD</span> be supplemented with transparency Receipts for the software and configuration of the service, as measured in its attestation report.<a href="#section-5.2.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-registration-policies">
+<section id="section-5.2.2">
+          <h4 id="name-registration-policies">
+<a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-registration-policies" class="section-name selfRef">Registration Policies</a>
+          </h4>
+<p id="section-5.2.2-1">A TS that accepts to register any valid claim offered by an issuer would end up providing only limited value to verifiers. In consequence, a baseline transparency guarantee policing the registration of claims is required to ensure completeness of audit, which can help detect equivocation.
+Most advanced SCITT scenarios rely on the TS performing additional domain-specific checks before a claim is accepted: TS may only allow trusted authenticated users to register claims, TS may try to check that a new claim is consistent with previous claims from the same issuers or that claims are registered in the correct order and cannot be re-played; some TS may even interpret and validate the payload of claims.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-2">In general, registration policies are applied at the discretion of the TS, and verifiers use receipts as witnesses that confirm that the registration policy of the TS was satisfied at the time claim registration. TS implementations <span class="bcp14">SHOULD</span> make their full registration policy public and auditable, e.g. by recording stateful policy inputs at evaluation time in the registry to ensure that policy can be independently validated later.
+From an interoperability point of view, the policy that was applied by the TS is opaque to the verifier, who is forced to trust the associated registration policy. If the policy of the TS evolves over time, or is different across issuers, the guarantee derived from receipt validation may not be uniform across all claims over time.<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-3">To help verifiers interpret the semantics of claim registration, SCITT defines a standard mechanism for signalling in the claim itself which policies have been applied by the TS from a defined set
+of registration policies with standardized semantics. Each policy that is expected to be enforced by the TS is represented by an entry in the registration policy info map (<code>reg_info</code>) in the envelope. The key of the map corresponds to the name of the policy, while its value (including its type) is policy-specific. For instance, the <code>register_by</code> policy defines the maximum timestamp by which a claim can be registered, hence the associated value contains an unsigned integer.<a href="#section-5.2.2-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-4">While this design ensures that all verifiers get the same guarantee regardless of where a claim is registered, its main downside is that it requires the issuer to include the necessary policies in the envelope when the claim is signed. Furthermore, it makes it impossible to register the same claim on two different TS if their required registration policies are incompatible.<a href="#section-5.2.2-4" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-5.2.2-5.1">
+              <p id="section-5.2.2-5.1.1"><strong>Editor's note</strong><a href="#section-5.2.2-5.1.1" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-5.1.2">The technical design for signalling and verifying registration policies is a work in progress.
+An alternative design would be to include the registration policies in the receipt/countersignature rather than in the envelope. This improves the portability of claims but requires the verifier to be more aware of the particular policies at the TS where the claim is registered.<a href="#section-5.2.2-5.1.2" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="sec-registry-security-requirements">
+<section id="section-5.2.3">
+          <h4 id="name-registry-security-requireme">
+<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-registry-security-requireme" class="section-name selfRef">Registry Security Requirements</a>
+          </h4>
+<p id="section-5.2.3-1">There are many different candidate verifiable data structures that may be used to implement the Registry, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants. We only require the Registry to support concise Receipts (i.e. whose size grows at most logarithmically in the number of entries in the Registry). This does not necessarily rule out blockchains as a Registry, but may necessitate advanced Receipt schemes that use arguments of knowledge and other verifiable computing techniques.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-2">Since the details of how to verify a Receipt are specific to the data structure, we do not specify any particular Registry format in this document. Instead, we propose two initial formats for Registry in <span>[<a href="#I-D.birkholz-scitt-receipts" class="cite xref">I-D.birkholz-scitt-receipts</a>]</span> using historical and sparse Merkle Trees. Beyond the format of Receipts, we require generic properties that should be satisfied by the components in the TS that have the ability to write to the Registry.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
+<div id="sec-finality">
+<section id="section-5.2.3.1">
+            <h5 id="name-finality">
+<a href="#section-5.2.3.1" class="section-number selfRef">5.2.3.1. </a><a href="#name-finality" class="section-name selfRef">Finality</a>
+            </h5>
+<p id="section-5.2.3.1-1">The Registry is append-only: once a Claim is registered, it cannot be modified, deleted, or moved. In particular, once a Receipt is returned for a given Claim, the Claim and any preceding entry in the Registry become immutable, and the Receipt provides universally-verifiable evidence of this property.<a href="#section-5.2.3.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-consistency">
+<section id="section-5.2.3.2">
+            <h5 id="name-consistency">
+<a href="#section-5.2.3.2" class="section-number selfRef">5.2.3.2. </a><a href="#name-consistency" class="section-name selfRef">Consistency</a>
+            </h5>
+<p id="section-5.2.3.2-1">There is no fork in the Registry: everyone with access to its contents sees the same sequence of entries, and can check its consistency with any Receipts they have collected.
+TS implementations <span class="bcp14">SHOULD</span> provide a mechanism to verify that the state of the Registry encoded in an old Receipt is consistent with the current Registry state.<a href="#section-5.2.3.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-replayability-and-auditing">
+<section id="section-5.2.3.3">
+            <h5 id="name-replayability-and-auditing">
+<a href="#section-5.2.3.3" class="section-number selfRef">5.2.3.3. </a><a href="#name-replayability-and-auditing" class="section-name selfRef">Replayability and Auditing</a>
+            </h5>
+<p id="section-5.2.3.3-1">Everyone with access to the Registry can check the correctness of its contents. In particular,<a href="#section-5.2.3.3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.2.3.3-2.1">the TS defines and enforces deterministic Registration policies that can be re-evaluated based solely on the contents of the Registry at the time of registraton, and must then yield the same result.<a href="#section-5.2.3.3-2.1" class="pilcrow">¶</a>
+</li>
+              <li class="normal" id="section-5.2.3.3-2.2">The ordering of entries, their cryptographic contents, and the Registry governance may be non-deterministic, but they must be verifiable.<a href="#section-5.2.3.3-2.2" class="pilcrow">¶</a>
+</li>
+              <li class="normal" id="section-5.2.3.3-2.3">The TS <span class="bcp14">SHOULD</span> store evidence about the resolution of distributed identifiers into manifests.<a href="#section-5.2.3.3-2.3" class="pilcrow">¶</a>
+</li>
+              <li class="normal" id="section-5.2.3.3-2.4">The TS <span class="bcp14">MAY</span> additionally support verifiability of client authentication and access control.<a href="#section-5.2.3.3-2.4" class="pilcrow">¶</a>
+</li>
+            </ul>
+</section>
+</div>
+<div id="sec-governance-and-bootstrapping">
+<section id="section-5.2.3.4">
+            <h5 id="name-governance-and-bootstrappin">
+<a href="#section-5.2.3.4" class="section-number selfRef">5.2.3.4. </a><a href="#name-governance-and-bootstrappin" class="section-name selfRef">Governance and Bootstrapping</a>
+            </h5>
+<p id="section-5.2.3.4-1">The TS needs to support governance, with well-defined procedures for allocating resources to operate the Registry (e.g., for provisioning trusted hardware and registering their attestation materials in the Registry) and for updating its code (e.g., relying on Transparent Claims about code updates, secured on the Registry itself, or on some auxiliary TS).<a href="#section-5.2.3.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3.4-2">Governance procedures, their auditing, and their transparency are implementation specific. The TS <span class="bcp14">SHOULD</span> document them.<a href="#section-5.2.3.4-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.2.3.4-3.1">Governance may be based on a consortium of members that are jointly responsible for the TS, or automated based on the contents of an auxiliary governance TS.<a href="#section-5.2.3.4-3.1" class="pilcrow">¶</a>
+</li>
+              <li class="normal" id="section-5.2.3.4-3.2">Governance typically involves additional records in the Registry to enable its auditing. Hence, the Registry may contain both Transparent Claims and governance entries.<a href="#section-5.2.3.4-3.2" class="pilcrow">¶</a>
+</li>
+              <li class="normal" id="section-5.2.3.4-3.3">Issuers, Verifiers, and third-party auditors may review the TS governance before trusting the service, or on a regular basis.<a href="#section-5.2.3.4-3.3" class="pilcrow">¶</a>
+</li>
+            </ul>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="validation">
+<section id="section-5.3">
+        <h3 id="name-verifying-transparent-claim">
+<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-verifying-transparent-claim" class="section-name selfRef">Verifying Transparent Claims</a>
+        </h3>
+<p id="section-5.3-1">For a given Artifact, Verifiers take as trusted inputs:<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.3-2">
+<li id="section-5.3-2.1">the distributed identifier of the Issuer (or its resolved key manifest),<a href="#section-5.3-2.1" class="pilcrow">¶</a>
+</li>
+          <li id="section-5.3-2.2">the expected name of the Artifact (i.e. the Feed),<a href="#section-5.3-2.2" class="pilcrow">¶</a>
+</li>
+          <li id="section-5.3-2.3">the list of service identities of trusted TS.<a href="#section-5.3-2.3" class="pilcrow">¶</a>
+</li>
+        </ol>
+<p id="section-5.3-3">When presented with a Transparent Claim for the Artifact, they verify its Issuer identity, signature, and Receipt.
+They may additionally apply a validation policy based on the protected headers present both in the Envelope or in the countersignature and the Statement itself, which may include security-critical Artifact-specific details.<a href="#section-5.3-3" class="pilcrow">¶</a></p>
+<p id="section-5.3-4">Some Verifiers may systematically resolve the Issuer DID to fetch their latest DID document. This strictly enforces the revocation of compromised keys: once the Issuer has updated its document to remove a key identifier, all Claims signed with this <code>kid</code> will be rejected. However, others may delegate DID resolution to a trusted third party and/or cache its results.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
+<p id="section-5.3-5">Some Verifiers may decide to skip the DID-based signature verification, relying on the TS's Registration policy and the scrutiny of other Verifiers. Although this weakens their guarantees against key revocation, or against a corrupt TS, they can still keep the Receipt and blame the Issuer or the TS at a later point.<a href="#section-5.3-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="sec-claim-issuance-registration-and-verification">
+<section id="section-6">
+      <h2 id="name-claim-issuance-registration">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-claim-issuance-registration" class="section-name selfRef">Claim Issuance, Registration, and Verification</a>
+      </h2>
+<p id="section-6-1">This section details the interoperability requirements for implementers of Claim issuance and validation libraries, and of Transparency Services.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<div id="sec-envelope-and-claim-format">
+<section id="section-6.1">
+        <h3 id="name-envelope-and-claim-format">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-envelope-and-claim-format" class="section-name selfRef">Envelope and Claim Format</a>
+        </h3>
+<p id="section-6.1-1">The formats of Claims and Receipts are based on CBOR Object Signing and Encryption (COSE). The choice of CBOR is a trade-off between safety (in particular, non-malleability: each Claim has a unique serialization), ease of processing and availability of implementations.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1-2">At a high-level that is the context of this architecture, a Claim is a COSE single-signed object (i.e. <code>COSE_Sign1</code>) that contains the correct set of protected headers. Although Issuers and relays may attach unprotected headers to Claims, Transparency Services and Verifiers <span class="bcp14">MUST NOT</span> rely on the presence or value of additional unprotected headers in Claims during Registration and validation.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.1-3">All Claims <span class="bcp14">MUST</span> include the following protected headers:<a href="#section-6.1-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.1-4.1">algorithm (label: <code>1</code>): Asymmetric signature algorithm used by the Claim Issuer, as an integer, for example <code>-35</code> for ECDSA with SHA-384, see <a href="https://www.iana.org/assignments/cose/cose.xhtml">COSE Algorithms registry</a>;<a href="#section-6.1-4.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-6.1-4.2">Issuer (label: <code>TBD</code>, temporary: <code>391</code>): DID (Decentralized Identifier, see <a href="https://www.w3.org/TR/did-core/">W3C Candidate Recommendation</a>) of the signer, as a string, for example <code>did:web:example.com</code>;<a href="#section-6.1-4.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-6.1-4.3">Feed (label: <code>TBD</code>, temporary: <code>392</code>): the Issuer's name for the Artifact, as a string;<a href="#section-6.1-4.3" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-6.1-4.4">payload type (label: <code>3</code>): Media type of payload as a string, for example <code>application/spdx+json</code><a href="#section-6.1-4.4" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-6.1-4.5">Registration policy info (label: <code>TBD</code>, temporary: <code>393</code>): a map of additional attributes to help enforce Registration policies;<a href="#section-6.1-4.5" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-6.1-4.6">Key ID (label: <code>4</code>): Key ID, as a bytestring.<a href="#section-6.1-4.6" class="pilcrow">¶</a>
+</li>
+        </ul>
+<p id="section-6.1-5">Additionally, Claims <span class="bcp14">MAY</span> carry the following unprotected headers:<a href="#section-6.1-5" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.1-6.1">Receipts (label: <code>TBD</code>, temporary: <code>394</code>): Array of Receipts, defined in <span>[<a href="#I-D.birkholz-scitt-receipts" class="cite xref">I-D.birkholz-scitt-receipts</a>]</span><a href="#section-6.1-6.1" class="pilcrow">¶</a>
+</li>
+        </ul>
+<p id="section-6.1-7">In CDDL <span>[<a href="#RFC8610" class="cite xref">RFC8610</a>]</span> notation, the Envelope is defined as follows:<a href="#section-6.1-7" class="pilcrow">¶</a></p>
+<div class="lang-cddl sourcecode" id="section-6.1-8">
+<pre>
+SCITT_Envelope = COSE_Sign1_Tagged
+
+COSE_Sign1_Tagged = #6.18(COSE_Sign1)
+
+COSE_Sign1 = [
+  protected : bstr .cbor Protected_Header,
+  unprotected : Unprotected_Header,
+  payload : bstr,
+  signature : bstr
+]
+
+Reg_Info = {
+  ? "register_by": uint,
+  ? "sequence_no": uint,
+  ? "issuance_ts": uint,
+  * tstr =&gt; any
+}
+
+; All protected headers are mandatory, to protect against faulty implementations of COSE
+; that may accidentally read a missing protected header from the unprotected headers.
+Protected_Header = {
+  1 =&gt; int               ; algorithm identifier
+  3 =&gt; tstr              ; payload type
+  4 =&gt; bstr              ; Key ID
+  ; TBD, Labels are temporary
+  391 =&gt; tstr            ; DID of Issuer
+  392 =&gt; tstr            ; Feed
+  393 =&gt; Reg_Info        ; Registration policy info
+}
+
+Unprotected_Header = {
+  ; TBD, Labels are temporary
+  ? 394 =&gt; [+ SCITT_Receipt]
+}
+</pre><a href="#section-6.1-8" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="sec-claim-issuance">
+<section id="section-6.2">
+        <h3 id="name-claim-issuance">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-claim-issuance" class="section-name selfRef">Claim Issuance</a>
+        </h3>
+<p id="section-6.2-1">There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Claims. The Issuer must first decide on a suitable format to serialize the Statement, such as:<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.2-2.1">JSON-SPDX<a href="#section-6.2-2.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-6.2-2.2">CBOR-SPDX<a href="#section-6.2-2.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-6.2-2.3">SWID<a href="#section-6.2-2.3" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-6.2-2.4">CoSWID<a href="#section-6.2-2.4" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-6.2-2.5">CycloneDX<a href="#section-6.2-2.5" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-6.2-2.6">in-toto<a href="#section-6.2-2.6" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-6.2-2.7">SLSA<a href="#section-6.2-2.7" class="pilcrow">¶</a>
+</li>
+        </ul>
+<p id="section-6.2-3">Once the Statement is serialized with the correct content type, the Issuer should fill in the attributes for the Registration policy information header. From the Issuer's perspective, using attributes from named policies ensures that the Claim may only be registered on Transparency Services that implement the associated policy. For instance, if a Claim is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers <span class="bcp14">SHOULD</span> use the <code>sequence_no</code> or <code>issuer_ts</code> attributes.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
+<p id="section-6.2-4">Once all the Envelope headers are set, the Issuer <span class="bcp14">MAY</span> use a standard COSE implementation to produce the serialized Claim (the SCITT tag of <code>COSE_Sign1_Tagged</code> is outside the scope of COSE, and used to indicate that a signed object is a Claim).<a href="#section-6.2-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-standard-registration-policies">
+<section id="section-6.3">
+        <h3 id="name-standard-registration-polic">
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-standard-registration-polic" class="section-name selfRef">Standard registration policies</a>
+        </h3>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-6.3-1.1">
+            <p id="section-6.3-1.1.1"><strong>Editor's note</strong><a href="#section-6.3-1.1.1" class="pilcrow">¶</a></p>
+<p id="section-6.3-1.1.2">The technical design for signalling and verifying registration policies is a work in progress.
+We expect that once the formats and semantics of the registration policy headers are finalized, standardized policies may be moved to a separate draft.
+For now, we inline some significant policies to illustrate the most common use cases.<a href="#section-6.3-1.1.2" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-6.3-2">TS implementations <span class="bcp14">MUST</span> indicate their support for registration policies and <span class="bcp14">MUST</span> check that all the policies indicated as defined in the <code>reg_info</code> map are supported and are satisfied before a claim can be registered. Any unsupported claims <span class="bcp14">MUST</span> be indicated separately and corresponding unknown policy entries in the map of a claim <span class="bcp14">MUST</span> be rejected. This is to ensure that all verifiers get the same guarantee out of the registration policies regardless of where it is registered.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
+<span id="name-an-initial-set-of-named-pol"></span><div id="tbl-initial-named-policies">
+<table class="center" id="table-1">
+          <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-an-initial-set-of-named-pol" class="selfRef">An Initial Set of Named Policies</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Policy Name</th>
+              <th class="text-left" rowspan="1" colspan="1">Required  attributes</th>
+              <th class="text-left" rowspan="1" colspan="1">Implementation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">TimeLimited</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <code>register_by: uint</code>
+</td>
+              <td class="text-left" rowspan="1" colspan="1">Returns true if now () &lt; register_by at registration time. The ledger <span class="bcp14">MUST</span> store the ledger time at registration along with the claim, and <span class="bcp14">SHOULD</span> indicate it in receipts</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Sequential</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <code>sequence_no: uint</code>
+</td>
+              <td class="text-left" rowspan="1" colspan="1">First, lookup in the ledger for claims with the same issuer and feed. If at least one is found, returns true if and only if the <code>sequence_no</code> of the new claim is the highest <code>sequence_no</code> in the existing claims incremented by one. Otherwise, returns true if and only if <code>sequence_no = 0</code>.</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Temporal</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <code>issuance_ts: uint</code>
+</td>
+              <td class="text-left" rowspan="1" colspan="1">Returns true if and only if there is no claim in the ledger with the same issuer and feed with a greater <code>issuance_ts</code>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">NoReplay</td>
+              <td class="text-left" rowspan="1" colspan="1">None</td>
+              <td class="text-left" rowspan="1" colspan="1">Returns true if and only if the claim doesn't already appear in the ledger</td>
+            </tr>
+          </tbody>
+        </table>
+</div>
+</section>
+</div>
+<div id="sec-registering-signed-claims">
+<section id="section-6.4">
+        <h3 id="name-registering-signed-claims">
+<a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-registering-signed-claims" class="section-name selfRef">Registering Signed Claims</a>
+        </h3>
+<p id="section-6.4-1">The same Claim may be independently registered in multiple TS. To register a Claim, the service performs the following steps:<a href="#section-6.4-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-6.4-2">
+<li id="section-6.4-2.1">Client authentication. This is implementation-specific, and <span class="bcp14">MAY</span> be unrelated to the Issuer identity. Claims may be registered by a different party than their Issuer.<a href="#section-6.4-2.1" class="pilcrow">¶</a>
+</li>
+          <li id="section-6.4-2.2">Issuer identification. The TS <span class="bcp14">MUST</span> store evidence of the DID resolution for the Issuer protected header of the Envelope and the resolved key manifest at the time of Registration for auditing. This <span class="bcp14">MAY</span> require that the service resolve the Issuer DID and record the resulting document, or rely on a cache of recent resolutions.<a href="#section-6.4-2.2" class="pilcrow">¶</a>
+</li>
+          <li id="section-6.4-2.3">Envelope signature verification, as described in COSE signature, using the signature algorithm and verification key of the Issuer DID document.<a href="#section-6.4-2.3" class="pilcrow">¶</a>
+</li>
+          <li id="section-6.4-2.4">Envelope validation. The service <span class="bcp14">MUST</span> check that the Envelope has a payload and the protected headers listed above. The service <span class="bcp14">MAY</span> additionally verify the payload format and content.<a href="#section-6.4-2.4" class="pilcrow">¶</a>
+</li>
+          <li id="section-6.4-2.5">Apply Registration policy: for named policies, the TS should check that the required Registration info attributes are present in the Envelope and apply the check described in Table 1. A TS <span class="bcp14">MUST</span> reject Claims that contain an attribute used for a named policy that is not enforced by the service. Custom Claims are evaluated given the current Registry state and the entire Envelope, and <span class="bcp14">MAY</span> use information contained in the attributes of named policies.<a href="#section-6.4-2.5" class="pilcrow">¶</a>
+</li>
+          <li id="section-6.4-2.6">Commit the new Claim to the Registry<a href="#section-6.4-2.6" class="pilcrow">¶</a>
+</li>
+          <li id="section-6.4-2.7">Sign and return the Receipt.<a href="#section-6.4-2.7" class="pilcrow">¶</a>
+</li>
+        </ol>
+<p id="section-6.4-3">The last two steps <span class="bcp14">MAY</span> be shared between a batch of Claims recorded in the Registry.<a href="#section-6.4-3" class="pilcrow">¶</a></p>
+<p id="section-6.4-4">The service <span class="bcp14">MUST</span> ensure that the Claim is committed before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry in the Registry. Conversely, the service <span class="bcp14">MAY</span> re-issue Receipts for the Registry content, for instance after a transient fault during Claim Registration.<a href="#section-6.4-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-validation-of-transparent-claims">
+<section id="section-6.5">
+        <h3 id="name-validation-of-transparent-c">
+<a href="#section-6.5" class="section-number selfRef">6.5. </a><a href="#name-validation-of-transparent-c" class="section-name selfRef">Validation of Transparent Claims</a>
+        </h3>
+<p id="section-6.5-1">This section provides additional implementation considerations, the high-level validation algorithm is described in <a href="#validation" class="auto internal xref">Section 5.3</a>, with the Registry-specific details of checking Receipts are covered in <span>[<a href="#I-D.birkholz-scitt-receipts" class="cite xref">I-D.birkholz-scitt-receipts</a>]</span>.<a href="#section-6.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.5-2">Before checking a Claim, the Verifier must be configured with one or more identities of trusted Transparency Services. If more than one service is configured, the Verifier <span class="bcp14">MUST</span> return which service the Claim is registered on.<a href="#section-6.5-2" class="pilcrow">¶</a></p>
+<p id="section-6.5-3">In some scenarios, the Verifier already expects a specific Issuer and Feed for the Claim, while in other cases they are not known in advance and can be an output of validation. Verifiers <span class="bcp14">SHOULD</span> offer a configuration to decide if the Issuer's signature should be locally verified (which may require a DID resolution, and may fail if the manifest is not available or if the key is revoked), or if it should trust the validation done by the TS during Registration.<a href="#section-6.5-3" class="pilcrow">¶</a></p>
+<p id="section-6.5-4">Some Verifiers <span class="bcp14">MAY</span> decide to locally re-apply some or all of the Registration policies if they have limited trust in the TS. In addition, Verifiers <span class="bcp14">MAY</span> apply arbitrary validation policies after the signature and Receipt have been checked. Such policies may use as input all information in the Envelope, the Receipt, and the payload, as well as any local state.<a href="#section-6.5-4" class="pilcrow">¶</a></p>
+<p id="section-6.5-5">Verifiers <span class="bcp14">SHOULD</span> offer options to store or share Receipts in case they are needed to audit the TS in case of a dispute.<a href="#section-6.5-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="sec-federation">
+<section id="section-7">
+      <h2 id="name-federation">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-federation" class="section-name selfRef">Federation</a>
+      </h2>
+<p id="section-7-1">Editor's note: This section needs work.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">Multiple, independently-operated transparency services can help secure distributed supply chains, without the need for a single, centralized service trusted by all parties. For example, multiple SCITT instances may be governed and operated by different organizations that do not trust one another.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-3">This may involve registering the same Claims at different transparency services, each with their own purpose and registration policy.
+This may also involve attaching multiple Receipts to the same Claims, each Receipt endorsing the Issuer signature and a subset of prior Receipts, and each TS verifying prior Receipts as part of their registration policy.<a href="#section-7-3" class="pilcrow">¶</a></p>
+<p id="section-7-4">For example,
+a supplier TS may provide a complete, authoritative Registry for some kind of Claims, whereas a consumer TS may collect different kinds of Claims
+to ensure complete auditing for a specific use case, and possibly require additional reviews before registering some of these claims.<a href="#section-7-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-transparency-service-api">
+<section id="section-8">
+      <h2 id="name-transparency-service-api">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-transparency-service-api" class="section-name selfRef">Transparency Service API</a>
+      </h2>
+<p id="section-8-1">Editor's Note: This may be moved to appendix.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<div id="sec-messages">
+<section id="section-8.1">
+        <h3 id="name-messages">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-messages" class="section-name selfRef">Messages</a>
+        </h3>
+<div id="sec-register-signed-claims">
+<section id="section-8.1.1">
+          <h4 id="name-register-signed-claims">
+<a href="#section-8.1.1" class="section-number selfRef">8.1.1. </a><a href="#name-register-signed-claims" class="section-name selfRef">Register Signed Claims</a>
+          </h4>
+<div id="sec-request">
+<section id="section-8.1.1.1">
+            <h5 id="name-request">
+<a href="#section-8.1.1.1" class="section-number selfRef">8.1.1.1. </a><a href="#name-request" class="section-name selfRef">Request</a>
+            </h5>
+<div class="alignLeft art-text artwork" id="section-8.1.1.1-1">
+<pre>
+POST &lt;Base URL&gt;/entries
+</pre><a href="#section-8.1.1.1-1" class="pilcrow">¶</a>
+</div>
+<p id="section-8.1.1.1-2">Body: SCITT COSE_Sign1 message<a href="#section-8.1.1.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-response">
+<section id="section-8.1.1.2">
+            <h5 id="name-response">
+<a href="#section-8.1.1.2" class="section-number selfRef">8.1.1.2. </a><a href="#name-response" class="section-name selfRef">Response</a>
+            </h5>
+<p id="section-8.1.1.2-1">One of the following:<a href="#section-8.1.1.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.1.2-2.1">HTTP Status <code>201</code> - Registration was tentatively successful pending service consensus.<a href="#section-8.1.1.2-2.1" class="pilcrow">¶</a>
+</li>
+              <li class="normal" id="section-8.1.1.2-2.2">
+                <p id="section-8.1.1.2-2.2.1">HTTP Status <code>400</code> - Registration was unsuccessful.<a href="#section-8.1.1.2-2.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.1.2-2.2.2.1">Error code <code>AwaitingDIDResolutionTryLater</code><a href="#section-8.1.1.2-2.2.2.1" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.1.2-2.2.2.2">Error code <code>InvalidInput</code><a href="#section-8.1.1.2-2.2.2.2" class="pilcrow">¶</a>
+</li>
+                </ul>
+</li>
+            </ul>
+<p id="section-8.1.1.2-3">[TODO] Use 5xx for AwaitingDIDResolutionTryLater<a href="#section-8.1.1.2-3" class="pilcrow">¶</a></p>
+<p id="section-8.1.1.2-4">The <code>201</code> response contains the <code>x-ms-ccf-transaction-id</code> HTTP header which can be used to retrieve the Registration Receipt with the given transaction ID. [TODO] this has to be made generic<a href="#section-8.1.1.2-4" class="pilcrow">¶</a></p>
+<p id="section-8.1.1.2-5">[TODO] probably a bad idea to define a new header, or is it ok? can we register a new one? https://www.iana.org/assignments/http-fields/http-fields.xhtml<a href="#section-8.1.1.2-5" class="pilcrow">¶</a></p>
+<p id="section-8.1.1.2-6">The <code>400</code> response has a <code>Content-Type: application/json</code> header and a body containing details about the error:<a href="#section-8.1.1.2-6" class="pilcrow">¶</a></p>
+<p id="section-8.1.1.2-7"><code>json
+{
+  "error": {
+    "code": "&lt;error code&gt;",
+    "message": "&lt;message&gt;"
+  }
+}
+</code><a href="#section-8.1.1.2-7" class="pilcrow">¶</a></p>
+<p id="section-8.1.1.2-8"><code>AwaitingDIDResolutionTryLater</code> means the service does not have an up-to-date DID document of the DID referenced in the Signed Claims but is performing or will perform a DID resolution after which the client may retry the request. The response may contain the HTTP header <code>Retry-After</code> to inform the client about the expected wait time.<a href="#section-8.1.1.2-8" class="pilcrow">¶</a></p>
+<p id="section-8.1.1.2-9"><code>InvalidInput</code> means either the Signed Claims message is syntactically malformed, violates the signing profile (e.g. signing algorithm), or has an invalid signature relative to the currently resolved DID document.<a href="#section-8.1.1.2-9" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="sec-retrieve-registration-receipt">
+<section id="section-8.1.2">
+          <h4 id="name-retrieve-registration-recei">
+<a href="#section-8.1.2" class="section-number selfRef">8.1.2. </a><a href="#name-retrieve-registration-recei" class="section-name selfRef">Retrieve Registration Receipt</a>
+          </h4>
+<div id="sec-request-1">
+<section id="section-8.1.2.1">
+            <h5 id="name-request-2">
+<a href="#section-8.1.2.1" class="section-number selfRef">8.1.2.1. </a><a href="#name-request-2" class="section-name selfRef">Request</a>
+            </h5>
+<div class="alignLeft art-text artwork" id="section-8.1.2.1-1">
+<pre>
+GET &lt;Base URL&gt;/entries/&lt;Transaction ID&gt;/receipt
+</pre><a href="#section-8.1.2.1-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="sec-response-1">
+<section id="section-8.1.2.2">
+            <h5 id="name-response-2">
+<a href="#section-8.1.2.2" class="section-number selfRef">8.1.2.2. </a><a href="#name-response-2" class="section-name selfRef">Response</a>
+            </h5>
+<p id="section-8.1.2.2-1">One of the following:<a href="#section-8.1.2.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.2.2-2.1">HTTP Status <code>200</code> - Registration was successful and the Receipt is returned.<a href="#section-8.1.2.2-2.1" class="pilcrow">¶</a>
+</li>
+              <li class="normal" id="section-8.1.2.2-2.2">
+                <p id="section-8.1.2.2-2.2.1">HTTP Status <code>400</code> - Transaction exists but does not correspond to a Registration Request.<a href="#section-8.1.2.2-2.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.2.2-2.2.2.1">Error code <code>TransactionMismatch</code><a href="#section-8.1.2.2-2.2.2.1" class="pilcrow">¶</a>
+</li>
+                </ul>
+</li>
+              <li class="normal" id="section-8.1.2.2-2.3">
+                <p id="section-8.1.2.2-2.3.1">HTTP Status <code>404</code> - Transaction is pending, unknown, or invalid.<a href="#section-8.1.2.2-2.3.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.2.2-2.3.2.1">Error code <code>TransactionPendingOrUnknown</code><a href="#section-8.1.2.2-2.3.2.1" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.2.2-2.3.2.2">Error code <code>TransactionInvalid</code><a href="#section-8.1.2.2-2.3.2.2" class="pilcrow">¶</a>
+</li>
+                </ul>
+</li>
+            </ul>
+<p id="section-8.1.2.2-3">The <code>200</code> response contains the SCITT_Receipt in the body.<a href="#section-8.1.2.2-3" class="pilcrow">¶</a></p>
+<p id="section-8.1.2.2-4">The <code>400</code> and <code>404</code> responses return the error details as described earlier.<a href="#section-8.1.2.2-4" class="pilcrow">¶</a></p>
+<p id="section-8.1.2.2-5">The retrieved Receipt may be embedded in the corresponding COSE_Sign1 document in the unprotected header, see TBD.<a href="#section-8.1.2.2-5" class="pilcrow">¶</a></p>
+<p id="section-8.1.2.2-6">[TODO] There's also the <code>GET &lt;Base URL&gt;/entries/&lt;Transaction ID&gt;</code> endpoint which returns the submitted COSE_Sign1 with the Receipt already embedded. Is this useful?<a href="#section-8.1.2.2-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="sec-privacy-considerations">
+<section id="section-9">
+      <h2 id="name-privacy-considerations">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>
+      </h2>
+<p id="section-9-1">Unless advertised by the TS, every Issuer should treat its Claims as public. In particular, their Envelope and Statement should not carry any private information in plaintext.<a href="#section-9-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-security-considerations">
+<section id="section-10">
+      <h2 id="name-security-considerations">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-10-1">On its own, verifying a Transparent Claim does not guarantee that its Envelope or contents are trustworthy---just that they have been signed by the apparent Issuer and counter-signed by the
+TS. If the Verifier trusts the Issuer, it can infer that the Claim was issued with this Envelope and contents, which may be interpreted as the Issuer saying the Artifact is fit for its intended purpose. If the Verifier trusts the TS, it can independently infer that the Claim passed the TS Registration policy and that has been persisted in the Registry. Unless advertised in the TS Registration policy, the Verifier should not assume that the ordering of Transparent Claims in the Registry matches the ordering of their issuance.<a href="#section-10-1" class="pilcrow">¶</a></p>
+<p id="section-10-2">Similarly, the fact that an Issuer can be held accountable for its Transparent Claims does not on its own provide any mitigation or remediation mechanism in case one of these Claims turned out to be misleading or malicious---just that signed evidence will be available to support them.<a href="#section-10-2" class="pilcrow">¶</a></p>
+<p id="section-10-3">Issuers <span class="bcp14">SHOULD</span> ensure that the Statements in their Claims are correct and unambiguous, for example by avoiding ill-defined or ambiguous formats that may cause Verifiers to interpret the Claim as valid for some other purpose.<a href="#section-10-3" class="pilcrow">¶</a></p>
+<p id="section-10-4">Issuers and Transparency Services <span class="bcp14">SHOULD</span> carefully protect their private signing keys
+and avoid these keys for any purpose not described in this architecture. In case key re-use is unavoidable, they <span class="bcp14">MUST NOT</span> sign any other message that may be verified as an Envelope.<a href="#section-10-4" class="pilcrow">¶</a></p>
+<div id="sec-threat-model">
+<section id="section-10.1">
+        <h3 id="name-threat-model">
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-threat-model" class="section-name selfRef">Threat Model</a>
+        </h3>
+<p id="section-10.1-1">We provide a generic threat model for SCITT, describing its residual security properties when some of its actors (identity providers, Issuers, TS, and Auditors) are corrupt or compromised.<a href="#section-10.1-1" class="pilcrow">¶</a></p>
+<p id="section-10.1-2">This model may need to be refined to account for specific supply chains and use cases.<a href="#section-10.1-2" class="pilcrow">¶</a></p>
+<div id="sec-claim-authentication-and-transparency">
+<section id="section-10.1.1">
+          <h4 id="name-claim-authentication-and-tr">
+<a href="#section-10.1.1" class="section-number selfRef">10.1.1. </a><a href="#name-claim-authentication-and-tr" class="section-name selfRef">Claim authentication and transparency.</a>
+          </h4>
+<p id="section-10.1.1-1">SCITT primarily supports evidence of Claim integrity, both from the Issuer (authentication) and from the TS (transparency). These guarantees are meant to hold for the long term, possibly decades.<a href="#section-10.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-2">We conservatively suppose that some issuers and some TS will be corrupt.<a href="#section-10.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-3">SCITT entities explicitly trust one another on the basis of their long-term identity, which maps to shorter-lived cryptographic credentials. Hence, a Verifier would usually validate a transparent signed Claim from a given Issuer, registered at a given TS (both identified in the Verifier's local authorization policy) and would not depend on any other Issuer or TS.<a href="#section-10.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-4">We cannot stop authorized supply chain actors from making false claims (either by mistake or by corruption) but we can make them accountable by ensuring their Claims are systematically registered at a trustworthy TS.<a href="#section-10.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-5">Similarly, we aim to provide strong residual guarantees against a faulty/corrupt TS. We cannot stop a TS from registering Claims that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their append-only Registry, but we can hold it accountable and guarantee that it will be blamed by any Auditor that replays their Registry against any contested Receipt. Note that SCITT does not require trust in a single centralized TS: different actors may rely on different TS, each registering a subset of claims subject to their own policy.<a href="#section-10.1.1-5" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-6">In both cases, SCITT provides generic, universally-verifiable cryptographic evidence to individually blame the Issuer or the TS. This enables valid actors to detect and disambiguate malicious actors who make contradictory Claims to different entities (Verifiers, Auditors, Issuers). On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope for SCITT.<a href="#section-10.1.1-6" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-7">Verifiers and Auditors need not be trusted by other actors. In particular, they cannot "frame" an Issuer or a TS for claims they did not issue or register.<a href="#section-10.1.1-7" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-8"><strong>Append-only log</strong><a href="#section-10.1.1-8" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-9">If a TS is honest, then a transparent signed Claim with a correct Receipt of registration at a given position ensures that the signed claim passed its Registration Policy and was recorded at that position in its Registry.<a href="#section-10.1.1-9" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-10">Conversely, a corrupt TS may
+1. refuse or delay the registration of Claims;
+2. register Claims that do not pass its Registration Policy (e.g. Claims with Issuer identities and signatures that do not verify.)
+3. issue verifiable Receipts for Claims that do not match its Registry;
+4. refuse access to its Registry (e.g. to Auditors, possibly after storage loss)<a href="#section-10.1.1-10" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-11">An Auditor granted (partial) access to the Registry and to a collection of disputed Receipts will be able to replay it, detect any invalid Registration (2) or incorrect  receipt in this collection (3), and blame the TS for them. This ensures any Verifier that trust at least one such Auditor that (2,3) will be blamed to the TS.<a href="#section-10.1.1-11" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-12">Due to the operational challenge of maintaining a globally consistent append-only Registry,
+some TS may provide limited support for historical queries on the Claims they have registered,
+and accept the risk of being blamed for inconsistent Registration or Issuer equivocation.<a href="#section-10.1.1-12" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-13">Verifier and Auditors may also witness (1,4) but may not be able to collect verifiable evidence for it.<a href="#section-10.1.1-13" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-14"><strong>Availability of Transparent Signed Claims</strong><a href="#section-10.1.1-14" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-15">Networking and Storage are trusted only for availability.<a href="#section-10.1.1-15" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-16">Auditing may involve access to data beyond what is persisted in the TS log. For example, the registered TS may include only the hash of a detailed SBOM, which may limit the scope of auditing.<a href="#section-10.1.1-16" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-17">Resistance to denial-of-service is implementation specific.<a href="#section-10.1.1-17" class="pilcrow">¶</a></p>
+<p id="section-10.1.1-18">Actors should independently keep their own record of the Claims they issue, endorse, verify, or audit.<a href="#section-10.1.1-18" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-confidentiality-and-privacy">
+<section id="section-10.1.2">
+          <h4 id="name-confidentiality-and-privacy">
+<a href="#section-10.1.2" class="section-number selfRef">10.1.2. </a><a href="#name-confidentiality-and-privacy" class="section-name selfRef">Confidentiality and privacy.</a>
+          </h4>
+<p id="section-10.1.2-1">The network is untrusted. All contents exchanged between actors is protected using secure authenticated channels (TLS) but, as usual, this may not exclude network traffic analysis.<a href="#section-10.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-10.1.2-2"><strong>Claims and their registration</strong><a href="#section-10.1.2-2" class="pilcrow">¶</a></p>
+<p id="section-10.1.2-3">The TS is trusted with the confidentiality of the claims presented for registration. Some TS may publish every claim in their logs, to facilitate their dissemination and auditing. Others may just return receipts to the client that present claims for registration, and disclose the ledger only to auditors trusted with the confidentiality of its contents.<a href="#section-10.1.2-3" class="pilcrow">¶</a></p>
+<p id="section-10.1.2-4">A collection of transparent Claims leaks no information about the contents of other Claims registered at the TS.<a href="#section-10.1.2-4" class="pilcrow">¶</a></p>
+<p id="section-10.1.2-5">Nonetheless, Issuers should carefully review the inclusion of private/confidential materials in their Claims; they may for instance remove any PII, or include instead opaque cryptographic commitments, such as hashes.<a href="#section-10.1.2-5" class="pilcrow">¶</a></p>
+<p id="section-10.1.2-6"><strong>Queries to the Registry</strong><a href="#section-10.1.2-6" class="pilcrow">¶</a></p>
+<p id="section-10.1.2-7">The confidentiality of queries is implementation-specific, and generally not guaranteed. For example, while offline Claim verification is private, a TS may monitor which of its Claims are being verified from lookups to ensure their freshness.<a href="#section-10.1.2-7" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-cryptographic-assumptions">
+<section id="section-10.1.3">
+          <h4 id="name-cryptographic-assumptions">
+<a href="#section-10.1.3" class="section-number selfRef">10.1.3. </a><a href="#name-cryptographic-assumptions" class="section-name selfRef">Cryptographic Assumptions</a>
+          </h4>
+<p id="section-10.1.3-1">We rely on standard cryptographic security for signing schemes (EUF-CMA: for a given key, given the public key and any number of signed messages, the attacker cannot forge a valid signature for any other message) and for receipts schemes (log collision-resistance: for a given commitment such as a Merkle-tree root, there is a unique log such that any valid path authenticates a claim in this log.)<a href="#section-10.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-10.1.3-2">SCITT supports cryptographic agility: the actors depend only on the subset of signing and receipt schemes they trust. This enables the gradual transition to stronger algorithms, including e.g. post-quantum signature algorithms.<a href="#section-10.1.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-ts-clients">
+<section id="section-10.1.4">
+          <h4 id="name-ts-clients">
+<a href="#section-10.1.4" class="section-number selfRef">10.1.4. </a><a href="#name-ts-clients" class="section-name selfRef">TS Clients</a>
+          </h4>
+<p id="section-10.1.4-1">Trust in clients that submit Claims for registration is implementation-specific. Hence, an attacker may attempt to register any Claim it has obtained, at any TS that accepts them, possibly multiple times and out of order. This may be mitigated by a TS that enforces restrictive access control and registration policies.<a href="#section-10.1.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-identity">
+<section id="section-10.1.5">
+          <h4 id="name-identity">
+<a href="#section-10.1.5" class="section-number selfRef">10.1.5. </a><a href="#name-identity" class="section-name selfRef">Identity</a>
+          </h4>
+<p id="section-10.1.5-1">The identity resolution mechanism is trusted to associate long-term identifiers with their public signature-verification keys. (The TS and other parties may record identity-resolution evidence to facilitate its auditing.)<a href="#section-10.1.5-1" class="pilcrow">¶</a></p>
+<p id="section-10.1.5-2">If one of the credentials of an Issuer gets compromised, SCITT still guarantee the authenticity of all claims signed with this credential that have been registered on a TS before the compromise. It is up to the Issuer to notify TS of credential revocation to stop Verifiers from accepting Claims signed with compromised credentials. [See the thread of revocation for additional details.]<a href="#section-10.1.5-2" class="pilcrow">¶</a></p>
+<p id="section-10.1.5-3">The confidentiality of any identity lookup during Claim Registration or Claim Verification is out of scope.<a href="#section-10.1.5-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="sec-iana-considerations">
+<section id="section-11">
+      <h2 id="name-iana-considerations">
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-11-1">See Body <a href="#mybody" class="auto internal xref">Section 4</a>.<a href="#section-11-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<section id="section-12">
+      <h2 id="name-references">
+<a href="#section-12" class="section-number selfRef">12. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<section id="section-12.1">
+        <h3 id="name-normative-references">
+<a href="#section-12.1" class="section-number selfRef">12.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
+<dl class="references">
+<dt id="RFC2119">[RFC2119]</dt>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6838">[RFC6838]</dt>
+        <dd>
+<span class="refAuthor">Freed, N.</span>, <span class="refAuthor">Klensin, J.</span>, and <span class="refAuthor">T. Hansen</span>, <span class="refTitle">"Media Type Specifications and Registration Procedures"</span>, <span class="seriesInfo">BCP 13</span>, <span class="seriesInfo">RFC 6838</span>, <span class="seriesInfo">DOI 10.17487/RFC6838</span>, <time datetime="2013-01" class="refDate">January 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6838">https://www.rfc-editor.org/rfc/rfc6838</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8152">[RFC8152]</dt>
+        <dd>
+<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE)"</span>, <span class="seriesInfo">RFC 8152</span>, <span class="seriesInfo">DOI 10.17487/RFC8152</span>, <time datetime="2017-07" class="refDate">July 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8152">https://www.rfc-editor.org/rfc/rfc8152</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
+        <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8610">[RFC8610]</dt>
+        <dd>
+<span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Vigano, C.</span>, and <span class="refAuthor">C. Bormann</span>, <span class="refTitle">"Concise Data Definition Language (CDDL): A Notational Convention to Express Concise Binary Object Representation (CBOR) and JSON Data Structures"</span>, <span class="seriesInfo">RFC 8610</span>, <span class="seriesInfo">DOI 10.17487/RFC8610</span>, <time datetime="2019-06" class="refDate">June 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8610">https://www.rfc-editor.org/rfc/rfc8610</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9162">[RFC9162]</dt>
+      <dd>
+<span class="refAuthor">Laurie, B.</span>, <span class="refAuthor">Messeri, E.</span>, and <span class="refAuthor">R. Stradling</span>, <span class="refTitle">"Certificate Transparency Version 2.0"</span>, <span class="seriesInfo">RFC 9162</span>, <span class="seriesInfo">DOI 10.17487/RFC9162</span>, <time datetime="2021-12" class="refDate">December 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9162">https://www.rfc-editor.org/rfc/rfc9162</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+<section id="section-12.2">
+        <h3 id="name-informative-references">
+<a href="#section-12.2" class="section-number selfRef">12.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="I-D.birkholz-scitt-receipts">[I-D.birkholz-scitt-receipts]</dt>
+        <dd>
+<span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Riechert, M.</span>, <span class="refAuthor">Delignat-Lavaud, A.</span>, and <span class="refAuthor">C. Fournet</span>, <span class="refTitle">"Countersigning COSE Envelopes in Transparency Services"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-birkholz-scitt-receipts-02</span>, <time datetime="2022-10-24" class="refDate">24 October 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-birkholz-scitt-receipts-02">https://datatracker.ietf.org/doc/html/draft-birkholz-scitt-receipts-02</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="PBFT">[PBFT]</dt>
+      <dd>
+<span class="refAuthor">Castro, M.</span> and <span class="refAuthor">B. Liskov</span>, <span class="refTitle">"Practical byzantine fault tolerance and proactive recovery"</span>, <span class="seriesInfo">ACM Transactions on Computer Systems, Volume 20, Issue 4 </span>, <time datetime="2002-11" class="refDate">November 2002</time>, <span>&lt;<a href="https://doi:10.1145/571637.571640">https://doi:10.1145/571637.571640</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</section>
+<div id="sec-attic">
+<section id="appendix-A">
+      <h2 id="name-attic">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-attic" class="section-name selfRef">Attic</a>
+      </h2>
+<p id="appendix-A-1">Not ready to throw these texts into the trash bin yet.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-B">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Henk Birkholz</span></div>
+<div dir="auto" class="left"><span class="org">Fraunhofer SIT</span></div>
+<div dir="auto" class="left"><span class="street-address">Rheinstrasse 75</span></div>
+<div dir="auto" class="left">
+<span class="postal-code">64295</span> <span class="locality">Darmstadt</span>
+</div>
+<div dir="auto" class="left"><span class="country-name">Germany</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:henk.birkholz@sit.fraunhofer.de" class="email">henk.birkholz@sit.fraunhofer.de</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Antoine Delignat-Lavaud</span></div>
+<div dir="auto" class="left"><span class="org">Microsoft Research</span></div>
+<div dir="auto" class="left"><span class="street-address">21 Station Road</span></div>
+<div dir="auto" class="left"><span class="locality">Cambridge</span></div>
+<div dir="auto" class="left"><span class="postal-code">CB1 2FB</span></div>
+<div dir="auto" class="left"><span class="country-name">United Kingdom</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:antdl@microsoft.com" class="email">antdl@microsoft.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Cedric Fournet</span></div>
+<div dir="auto" class="left"><span class="org">Microsoft Research</span></div>
+<div dir="auto" class="left"><span class="street-address">21 Station Road</span></div>
+<div dir="auto" class="left"><span class="locality">Cambridge</span></div>
+<div dir="auto" class="left"><span class="postal-code">CB1 2FB</span></div>
+<div dir="auto" class="left"><span class="country-name">United Kingdom</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:fournet@microsoft.com" class="email">fournet@microsoft.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Yogesh Deshpande</span></div>
+<div dir="auto" class="left"><span class="org">ARM</span></div>
+<div dir="auto" class="left"><span class="street-address">110 Fulbourn Road</span></div>
+<div dir="auto" class="left"><span class="locality">Cambridge</span></div>
+<div dir="auto" class="left"><span class="postal-code">CB1 9NJ</span></div>
+<div dir="auto" class="left"><span class="country-name">United Kingdom</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:yogesh.deshpande@arm.com" class="email">yogesh.deshpande@arm.com</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
