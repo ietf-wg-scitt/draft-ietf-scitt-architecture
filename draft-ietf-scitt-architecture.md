@@ -59,6 +59,8 @@ normative:
   RFC7807:
   RFC7231:
   RFC6838:
+  RFC3553:
+  IANA.params:
 informative:
   I-D.birkholz-scitt-receipts: RECEIPTS
   PBFT:
@@ -547,7 +549,7 @@ Editor's Note: This may be moved to appendix.
 
 All messages are sent as HTTP GET or POST requests.
 
-If the transparency service cannot process a client's request, it MUST return an HTTP 4xx or 5xx status code, and the body SHOULD be a JSON problem details object ({{RFC6838}}) containing:
+If the transparency service cannot process a client's request, it MUST return an HTTP 4xx or 5xx status code, and the body SHOULD be a JSON problem details object ({{RFC7807}}) containing:
 
 - type: A URI reference identifying the problem. To facilitate automated response to errors, this document defines a set of standard tokens for use in the type field within the URN namespace of: "urn:ietf:params:scitt:error:".
 
@@ -601,7 +603,7 @@ One of the following:
 
 - Status 400 - Registration was unsuccessful due to invalid input.
   - Error code `badSignatureAlgorithm`
-  - Error code `TBD`
+  - [TODO]: more error codes to be defined
 
 If 202 is returned, then clients should wait until registration succeeded or failed by polling the registration status using the Operation ID returned in the response. Clients should always obtain a receipt as a proof that registration has succeeded.
 
@@ -631,7 +633,7 @@ One of the following:
     - Header `Content-Type: application/json`
     - Body: `{ "operationId": "<Operation ID>", "status": "failed", "error": { "type": "<type>", "detail": "<detail>" } }`
     - Error code: `badSignatureAlgorithm`
-    - Error code: `TBD`
+    - [TODO]: more error codes to be defined
 
 - Status 404 - Unknown Operation ID
     - Error code: `operationNotFound`
@@ -702,7 +704,7 @@ One of the following:
 - Status 404 - Entry not found.
   - Error code: `entryNotFound`
 
-The retrieved Receipt may be embedded in the corresponding COSE_Sign1 document in the unprotected header, see TBD.
+The retrieved Receipt may be embedded in the corresponding COSE_Sign1 document in the unprotected header, see draft-birkholz-scitt-receipts ([TODO]: replace with final reference).
 
 
 # Privacy Considerations
@@ -808,6 +810,20 @@ The confidentiality of any identity lookup during Claim Registration or Claim Ve
 # IANA Considerations
 
 See Body {{mybody}}.
+
+## URN Sub-namespace for SCITT (urn:ietf:params:scitt)
+
+IANA is requested to register the URN sub-namespace `urn:ietf:params:scitt`
+in the "IETF URN Sub-namespace for Registered Protocol Parameter Identifiers"
+registry {{!IANA.params}}, following the template in {{!RFC3553}}:
+
+   Registry name:  scitt
+
+   Specification:  [RFCthis]
+
+   Repository:  http://www.iana.org/assignments/scitt
+
+   Index value:  No transformation needed.
 
 --- back
 
