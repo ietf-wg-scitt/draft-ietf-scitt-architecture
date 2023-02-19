@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-02-16T00:41:15.574552+00:00",
+  "timestamp": "2023-02-19T00:41:56.732212+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -49,7 +49,40 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 4,
+      "id": "I_kwDOIvmHss5ev0gQ",
+      "title": "Add CODEOWNERS file for visibility of maintainership",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/4",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-02-17T16:09:43Z",
+      "updatedAt": "2023-02-17T16:09:43Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOIvmHss5ev4Yz",
+      "title": "Cull through previous draft issues",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/5",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Which issues from https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues should be carried forward?",
+      "createdAt": "2023-02-17T16:19:00Z",
+      "updatedAt": "2023-02-17T16:19:00Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
   "pulls": [
     {
       "number": 1,
@@ -102,6 +135,144 @@
       "mergeCommit": null,
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOIvmHss5KNOpx",
+      "title": "Cleanup of REST API",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/3",
+      "state": "OPEN",
+      "author": "letmaik",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR is a duplicate of what had already been reviewed in the old repository:\r\n\r\nhttps://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/44\r\n",
+      "createdAt": "2023-02-17T10:32:25Z",
+      "updatedAt": "2023-02-17T12:26:42Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "757b536c87c0425ce38e4bb034a5239f588e615a",
+      "headRepository": "letmaik/draft-ietf-scitt-architecture",
+      "headRefName": "letmaik/rest-api",
+      "headRefOid": "df115537c250c8903fae052666b42e5655b60324",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5NrBIb",
+          "commit": {
+            "abbreviatedOid": "b81183f"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "LGTM, thanks for addressing my API concerns from the previous round.\r\n\r\nI have left a couple of purely editorial comments.",
+          "createdAt": "2023-02-17T10:33:54Z",
+          "updatedAt": "2023-02-17T10:53:37Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "```suggestion\r\nIf the transparency service cannot process a client's request, it MUST return an HTTP 4xx or 5xx status code, and the body SHOULD be a JSON problem details object ({{RFC7807}}) containing:\r\n```",
+              "createdAt": "2023-02-17T10:33:54Z",
+              "updatedAt": "2023-02-17T10:53:37Z"
+            },
+            {
+              "originalPosition": 17,
+              "body": "the new URN namespace needs to be registered.  We need to a sub-section in the IANA considerations like this:\r\n```\r\n## URN Sub-namespace for SCITT (urn:ietf:params:scitt)\r\n\r\nIANA is requested to register the URN sub-namespace `urn:ietf:params:scitt`\r\nin the \"IETF URN Sub-namespace for Registered Protocol Parameter Identifiers\"\r\nregistry {{!IANA.params}}, following the template in {{!RFC3553}}:\r\n\r\n   Registry name:  scitt\r\n\r\n   Specification:  [RFCthis]\r\n\r\n   Repository:  http://www.iana.org/assignments/scitt\r\n\r\n   Index value:  No transformation needed.\r\n```",
+              "createdAt": "2023-02-17T10:47:26Z",
+              "updatedAt": "2023-02-17T10:53:37Z"
+            },
+            {
+              "originalPosition": 117,
+              "body": "looks like a leftover?",
+              "createdAt": "2023-02-17T10:49:00Z",
+              "updatedAt": "2023-02-17T10:53:37Z"
+            },
+            {
+              "originalPosition": 199,
+              "body": "_\"[...] see TBD\"_ ?",
+              "createdAt": "2023-02-17T10:51:37Z",
+              "updatedAt": "2023-02-17T10:53:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5Nrvb_",
+          "commit": {
+            "abbreviatedOid": "b81183f"
+          },
+          "author": "letmaik",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-17T12:07:22Z",
+          "updatedAt": "2023-02-17T12:07:23Z",
+          "comments": [
+            {
+              "originalPosition": 199,
+              "body": "I added the reference to the receipts I-D.",
+              "createdAt": "2023-02-17T12:07:22Z",
+              "updatedAt": "2023-02-17T12:07:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5Nrvou",
+          "commit": {
+            "abbreviatedOid": "b81183f"
+          },
+          "author": "letmaik",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-17T12:07:45Z",
+          "updatedAt": "2023-02-17T12:07:46Z",
+          "comments": [
+            {
+              "originalPosition": 117,
+              "body": "Not really, but I made it more clear: \"- [TODO]: more error codes to be defined\"",
+              "createdAt": "2023-02-17T12:07:45Z",
+              "updatedAt": "2023-02-17T12:07:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5NrvrM",
+          "commit": {
+            "abbreviatedOid": "b81183f"
+          },
+          "author": "letmaik",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-17T12:07:50Z",
+          "updatedAt": "2023-02-17T12:07:50Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "Added.",
+              "createdAt": "2023-02-17T12:07:50Z",
+              "updatedAt": "2023-02-17T12:07:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5Nr4m6",
+          "commit": {
+            "abbreviatedOid": "df11553"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "\ud83d\udea2 it\r\n\r\nI think eventually the API stuff should be moved into its own \"SCITT API\" document.",
+          "createdAt": "2023-02-17T12:26:42Z",
+          "updatedAt": "2023-02-17T12:26:42Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
