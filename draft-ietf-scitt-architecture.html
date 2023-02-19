@@ -13,12 +13,12 @@
        Traceability of physical and digital artifacts in supply chains is a long-standing, but increasingly serious security concern. The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases. 
        This memo defines a generic and scalable architecture to enable transparency across any supply chain with minimum adoption barriers for producers (who can register their claims on any Transparency Service (TS), with the guarantee that all consumers will be able to verify them) and enough flexibility to allow different implementations of Transparency Services with various auditing and compliance requirements. 
     " name="description">
-<meta content="xml2rfc 3.15.3" name="generator">
+<meta content="xml2rfc 3.16.0" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-scitt-architecture-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.15.3
-    Python 3.10.9
+  xml2rfc 3.16.0
+    Python 3.10.10
     appdirs 1.4.4
     ConfigArgParse 1.5.3
     google-i18n-address 2.5.2
@@ -32,7 +32,7 @@
     requests 2.28.1
     setuptools 65.6.0
     six 1.16.0
-    wcwidth 0.2.5
+    wcwidth 0.2.6
 -->
 <link href="draft-ietf-scitt-architecture.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -363,7 +363,7 @@ ul.empty li, .ulEmpty li {
   margin-top: 0.5em;
 }
 :is(ul, ol).compact, .ulCompact, .olCompact {
-  line-height: 100%;
+  line-height: 1;
   margin: 0 0 0 2em;
 }
 
@@ -376,7 +376,7 @@ dl {
 dl > dt {
   float: left;
   margin-right: 1em;
-  min-width: 12ch;
+  min-width: 8ch;
 }
 dl.dlNewline > dt {
   float: none;
@@ -407,11 +407,11 @@ dl > dd > dl {
 a, a[href].selfRef:hover {
   text-decoration: none;
 }
-a[href].selfRef {
-  color: var(--text-color);
-}
 a[href] {
   color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
 }
 a[href]:hover {
   text-decoration: underline;
@@ -585,10 +585,14 @@ hr {
 .bcp14 {
   font-variant: small-caps;
   font-weight: 600;
-  font-size: 14.5px;
+  font-size: var(--small-font-size);
 }
 .role {
   font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
 }
 
 /* info block */
@@ -1041,11 +1045,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SCITT Architecture</td>
-<td class="right">January 2023</td>
+<td class="right">February 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 13 July 2023</td>
+<td class="center">Expires 23 August 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1058,12 +1062,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-01-09" class="published">9 January 2023</time>
+<time datetime="2023-02-19" class="published">19 February 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-07-13">13 July 2023</time></dd>
+<dd class="expires"><time datetime="2023-08-23">23 August 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1129,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 July 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 23 August 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1859,9 +1863,10 @@ COSE_Sign1 = [
 ]
 
 Reg_Info = {
-  ? "register_by": uint,
+  ? "register_by": uint .within (~time),
   ? "sequence_no": uint,
-  ? "issuance_ts": uint,
+  ? "issuance_ts": uint .within (~time),
+  ? "no_replay": null,
   * tstr =&gt; any
 }
 
@@ -1934,7 +1939,7 @@ For now, we inline some significant policies to illustrate the most common use c
 <thead>
             <tr>
               <th class="text-left" rowspan="1" colspan="1">Policy Name</th>
-              <th class="text-left" rowspan="1" colspan="1">Required  attributes</th>
+              <th class="text-left" rowspan="1" colspan="1">Required reg_info attributes</th>
               <th class="text-left" rowspan="1" colspan="1">Implementation</th>
             </tr>
           </thead>
@@ -1942,9 +1947,9 @@ For now, we inline some significant policies to illustrate the most common use c
             <tr>
               <td class="text-left" rowspan="1" colspan="1">TimeLimited</td>
               <td class="text-left" rowspan="1" colspan="1">
-                <code>register_by: uint</code>
+                <code>register_by: uint .within (~time)</code>
 </td>
-              <td class="text-left" rowspan="1" colspan="1">Returns true if now () &lt; register_by at registration time. The ledger <span class="bcp14">MUST</span> store the ledger time at registration along with the claim, and <span class="bcp14">SHOULD</span> indicate it in receipts</td>
+              <td class="text-left" rowspan="1" colspan="1">Returns true if now () &lt; <code>register_by</code> at registration time. The ledger <span class="bcp14">MUST</span> store the ledger time at registration along with the claim, and <span class="bcp14">SHOULD</span> indicate it in receipts. The value provided for <code>register_by</code> <span class="bcp14">MUST</span> be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">Sequential</td>
@@ -1956,15 +1961,16 @@ For now, we inline some significant policies to illustrate the most common use c
             <tr>
               <td class="text-left" rowspan="1" colspan="1">Temporal</td>
               <td class="text-left" rowspan="1" colspan="1">
-                <code>issuance_ts: uint</code>
+                <code>issuance_ts: uint .within (~time)</code>
 </td>
-              <td class="text-left" rowspan="1" colspan="1">Returns true if and only if there is no claim in the ledger with the same issuer and feed with a greater <code>issuance_ts</code>
-</td>
+              <td class="text-left" rowspan="1" colspan="1">Returns true if and only if there is no claim in the ledger with the same issuer and feed with a greater <code>issuance_ts</code> and now () &gt; <code>issuance_ts</code> at registration time. The value provided for <code>issuance_ts</code> <span class="bcp14">MUST</span> be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">NoReplay</td>
-              <td class="text-left" rowspan="1" colspan="1">None</td>
-              <td class="text-left" rowspan="1" colspan="1">Returns true if and only if the claim doesn't already appear in the ledger</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <code>no_replay: null</code>
+</td>
+              <td class="text-left" rowspan="1" colspan="1">If the <code>no_replay</code> attribute is present then the policy returns true if and only if the claim doesn't already appear in the ledger. This policy has no required attributes.</td>
             </tr>
           </tbody>
         </table>

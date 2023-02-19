@@ -5,11 +5,11 @@
 TBD                                                          H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 13 July 2023                                         C. Fournet
+Expires: 23 August 2023                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
-                                                          9 January 2023
+                                                        19 February 2023
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 July 2023.
+   This Internet-Draft will expire on 23 August 2023.
 
 Copyright Notice
 
@@ -856,9 +856,10 @@ Table of Contents
    ]
 
    Reg_Info = {
-     ? "register_by": uint,
+     ? "register_by": uint .within (~time),
      ? "sequence_no": uint,
-     ? "issuance_ts": uint,
+     ? "issuance_ts": uint .within (~time),
+     ? "no_replay": null,
      * tstr => any
    }
 
@@ -934,36 +935,52 @@ Table of Contents
    guarantee out of the registration policies regardless of where it is
    registered.
 
-     +=============+==============+==================================+
-     | Policy Name | Required     | Implementation                   |
-     |             | attributes   |                                  |
-     +=============+==============+==================================+
-     | TimeLimited | register_by: | Returns true if now () <         |
-     |             | uint         | register_by at registration      |
-     |             |              | time.  The ledger MUST store the |
-     |             |              | ledger time at registration      |
-     |             |              | along with the claim, and SHOULD |
-     |             |              | indicate it in receipts          |
-     +-------------+--------------+----------------------------------+
-     | Sequential  | sequence_no: | First, lookup in the ledger for  |
-     |             | uint         | claims with the same issuer and  |
-     |             |              | feed.  If at least one is found, |
-     |             |              | returns true if and only if the  |
-     |             |              | sequence_no of the new claim is  |
-     |             |              | the highest sequence_no in the   |
-     |             |              | existing claims incremented by   |
-     |             |              | one.  Otherwise, returns true if |
-     |             |              | and only if sequence_no = 0.     |
-     +-------------+--------------+----------------------------------+
-     | Temporal    | issuance_ts: | Returns true if and only if      |
-     |             | uint         | there is no claim in the ledger  |
-     |             |              | with the same issuer and feed    |
-     |             |              | with a greater issuance_ts       |
-     +-------------+--------------+----------------------------------+
-     | NoReplay    | None         | Returns true if and only if the  |
-     |             |              | claim doesn't already appear in  |
-     |             |              | the ledger                       |
-     +-------------+--------------+----------------------------------+
+   +=============+==============+======================================+
+   | Policy Name | Required     | Implementation                       |
+   |             | reg_info     |                                      |
+   |             | attributes   |                                      |
+   +=============+==============+======================================+
+   | TimeLimited | register_by: | Returns true if now () <             |
+   |             | uint .within | register_by at registration time.    |
+   |             | (~time)      | The ledger MUST store the ledger     |
+   |             |              | time at registration along with      |
+   |             |              | the claim, and SHOULD indicate it    |
+   |             |              | in receipts.  The value provided     |
+   |             |              | for register_by MUST be an           |
+   |             |              | unsigned integer, interpreted        |
+   |             |              | according to POSIX time,             |
+   |             |              | representing the number of seconds   |
+   |             |              | since 1970-01-01T00:00Z UTC.         |
+   +-------------+--------------+--------------------------------------+
+   | Sequential  | sequence_no: | First, lookup in the ledger for      |
+   |             | uint         | claims with the same issuer and      |
+   |             |              | feed.  If at least one is found,     |
+   |             |              | returns true if and only if the      |
+   |             |              | sequence_no of the new claim is      |
+   |             |              | the highest sequence_no in the       |
+   |             |              | existing claims incremented by       |
+   |             |              | one.  Otherwise, returns true if     |
+   |             |              | and only if sequence_no = 0.         |
+   +-------------+--------------+--------------------------------------+
+   | Temporal    | issuance_ts: | Returns true if and only if there    |
+   |             | uint .within | is no claim in the ledger with the   |
+   |             | (~time)      | same issuer and feed with a          |
+   |             |              | greater issuance_ts and now () >     |
+   |             |              | issuance_ts at registration time.    |
+   |             |              | The value provided for issuance_ts   |
+   |             |              | MUST be an unsigned integer,         |
+   |             |              | interpreted according to POSIX       |
+   |             |              | time, representing the number of     |
+   |             |              | seconds since 1970-01-01T00:00Z      |
+   |             |              | UTC.                                 |
+   +-------------+--------------+--------------------------------------+
+   | NoReplay    | no_replay:   | If the no_replay attribute is        |
+   |             | null         | present then the policy returns      |
+   |             |              | true if and only if the claim        |
+   |             |              | doesn't already appear in the        |
+   |             |              | ledger.  This policy has no          |
+   |             |              | required attributes.                 |
+   +-------------+--------------+--------------------------------------+
 
                  Table 1: An Initial Set of Named Policies
 
