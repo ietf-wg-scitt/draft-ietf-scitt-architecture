@@ -1057,7 +1057,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <div id="internal-metadata" class="document-information">
 <dl id="identifiers">
 <dt class="label-workgroup">Workgroup:</dt>
-<dd class="workgroup">TBD</dd>
+<dd class="workgroup">SCITT</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
@@ -1104,7 +1104,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/">https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 <p id="section-note.1-3">
         Discussion of this document takes place on the
-        SCITT Working Group mailing list (<span><a href="mailto:scitt@ietf.org">mailto:scitt@ietf.org</a></span>),
+        scitt Working Group mailing list (<span><a href="mailto:scitt@ietf.org">mailto:scitt@ietf.org</a></span>),
         which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/scitt/">https://mailarchive.ietf.org/arch/browse/scitt/</a></span>.
         Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/scitt/">https://www.ietf.org/mailman/listinfo/scitt/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 <p id="section-note.1-4">Source for this draft and an issue tracker can be found at
@@ -1328,8 +1328,8 @@ It achieves this goal by enforcing the following complementary security guarante
         <li id="section-1-2.3">issuers can efficiently prove to any other party the registration of their claims; verifying this proof ensures that the issuer is consistent and non-equivocal when making claims.<a href="#section-1-2.3" class="pilcrow">¶</a>
 </li>
       </ol>
-<p id="section-1-3">The first guarantee is achieved by requiring issuers to sign their statements and associated metadata using a distributed public key infrastructure. The second guarantee is achieved by storing the signed statement in an immutable, append-only, transparent Registry. The last guarantee is achieved by implementing the Registry using a verifiable data structure (such as a Merkle Tree), and by requiring a TS that operates the Registry to endorse its state at the time of registration.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">The guarantees and techniques used in this document generalize those of Certificate Transparency <span>[<a href="#RFC9162" class="cite xref">RFC9162</a>]</span>, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates. However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each TS implements and operates its Registry. Each service may enforce its own policy for authorizing entities to register their claims on the TS. Some TS may also enforce access control policies to limit who can audit the full Registry, or keep some information on the Registry encrypted. Nevertheless, it is critical to provide global interoperability for all TS instances as the composition and configuration of involved supply chain entities and their system components is ever changing and always in flux.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-3">The first guarantee is achieved by requiring issuers to sign their statements and associated metadata using a distributed public key infrastructure. The second guarantee is achieved by storing the signed statement in an immutable, append-only, transparent Registry. The last guarantee is achieved by implementing the Registry using a verifiable data structure (such as a Merkle Tree <span>[<a href="#MERKLE" class="cite xref">MERKLE</a>]</span>), and by requiring a Transparency Service (TS) that operates the Registry to endorse its state at the time of registration.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">The guarantees and techniques used in this document generalize those of Certificate Transparency <span>[<a href="#RFC9162" class="cite xref">RFC9162</a>]</span>, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates. However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each TS implements and operates its Registry. Each service may enforce its own policy for authorizing entities to register their claims on the TS. Some TS may also enforce access control policies to limit who can audit the full Registry, or keep some information on the Registry encrypted. Nevertheless, it is critical to provide global interoperability for all TS instances as the composition and configuration of involved supply chain entities and their system components is ever-changing and always in flux.<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">A TS provides visibility into claims issued by supply chain entities and their sub-systems. These claims are called Digital Supply Chain Artifacts (DSCA).
 A TS vouches for specific and well-defined metadata about these DSCAs. Some metadata is selected (and signed) by the issuer, indicating, e.g., "who issued the DSCA" or "what type of DSCA is described" or "what is the DSCA version"; whereas additional metadata is selected (and countersigned) by the TS, indicating, e.g., "when was the DSCA registered in the Registry". The DSCA contents can be opaque to the TS, if so desired: it is the metadata that must always be transparent in order to warrant trust.<a href="#section-1-5" class="pilcrow">¶</a></p>
 <p id="section-1-6">Transparent claims provide a common basis for holding issuers accountable for the DSCA they release and (more generally) principals accountable for auxiliary claims they make about DSCAs. Hence, issuers may register new claims about their artifacts, but they cannot delete or alter earlier claims, or hide their claims from third parties such as auditors.<a href="#section-1-6" class="pilcrow">¶</a></p>
@@ -1345,7 +1345,7 @@ A TS vouches for specific and well-defined metadata about these DSCAs. Some meta
 Analogously, DSCA Consumers rely on verifiable trustworthiness assertions associated with DSCAs and their processing in a believable manner.
 If trust can be put into the operations that record DSCAs in a secure, append-only Registry via an online operation, the same trust can be put into a corresponding receipt that is the result of these online operations issued by the TS and that can be validated in offline operations.<a href="#section-1-10" class="pilcrow">¶</a></p>
 <p id="section-1-11">The TS specified in this architecture can be implemented by various different types of services in various types of languages provided via various variants of API layouts.<a href="#section-1-11" class="pilcrow">¶</a></p>
-<p id="section-1-12">The global interoperability enabled and guaranteed by the TS is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs). The core components are based on the Concise Signing and Encryption standard specified in <span>[<a href="#RFC8152" class="cite xref">RFC8152</a>]</span>, which is used to sign released DSCAs and to build and maintain a Merkle tree that functions as the append-only Registry for DSCAs.
+<p id="section-1-12">The global interoperability enabled and guaranteed by the TS is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs). The core components are based on the Concise Signing and Encryption standard specified in <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>, which is used to sign released DSCAs and to build and maintain a Merkle tree that functions as the append-only Registry for DSCAs.
 The format and verification process for Registry-based transparency receipts are described in <span>[<a href="#I-D.birkholz-scitt-receipts" class="cite xref">I-D.birkholz-scitt-receipts</a>]</span>.<a href="#section-1-12" class="pilcrow">¶</a></p>
 <div id="sec-requirements-notation">
 <section id="section-1.1">
@@ -1371,7 +1371,7 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
         <h3 id="name-software-bill-of-materials-">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-software-bill-of-materials-" class="section-name selfRef">Software Bill of Materials (SBOM)</a>
         </h3>
-<p id="section-2.1-1">As the ever increasing complexity of large software projects requires more modularity and abstractions to manage them, keeping track of their full Trusted Computing Base (TCB) is becoming increasingly difficult. Each component may have its own set of dependencies and libraries. Some of these dependencies are binaries, which means their TCB depends not only on their source, but also on their build environment (compilers and tool-chains). Besides, many source and binary packages are distributed through various channels and repositories that may not be trustworthy.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-1">As the ever-increasing complexity of large software projects requires more modularity and abstractions to manage them, keeping track of their full Trusted Computing Base (TCB) is becoming increasingly difficult. Each component may have its own set of dependencies and libraries. Some of these dependencies are binaries, which means their TCB depends not only on their source, but also on their build environment (compilers and tool-chains). Besides, many source and binary packages are distributed through various channels and repositories that may not be trustworthy.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.1-2">Software Bills of Materials (SBOM) help the authors, packagers, distributors, auditors and users of software understand its provenance and who may have the ability to introduce a vulnerability that can affect the supply chain downstream. However, the usefulness of SBOM in protecting end users is limited if supply chain actors cannot be held accountable for their contents. For instance, consider a package repository for an open source operating system distribution. The operator of this repository may decide to provide a malicious version of a package only to users who live in a specific country. They can write two equivocal SBOMs for the honest and backdoored versions of the package, so that nobody outside the affected country can discover the malicious version, but victims are not aware they are being targeted.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1386,7 +1386,7 @@ When the user connects to the TEE implementing the service, the TEE presents att
 <p id="section-2.2-3">But how can users verify the software measurement for their task? And how can operators update their service, e.g., to mitigate security vulnerabilities or improve accuracy,
 without first convincing all users to update the measurements they trust?<a href="#section-2.2-3" class="pilcrow">¶</a></p>
 <p id="section-2.2-4">A supply chain that maintains a transparent record of the successive software releases for machine-learning models and runtimes, recording both their software measurements
-and their provenance (source code, build reports, audit reports,...) can provide users with the information they need to authorize these tasks, while holding the service operator accountable for the software they release for them.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
+and their provenance (source code, build reports, audit reports, ...) can provide users with the information they need to authorize these tasks, while holding the service operator accountable for the software they release for them.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-cold-chains-for-seafood">
@@ -1394,7 +1394,7 @@ and their provenance (source code, build reports, audit reports,...) can provide
         <h3 id="name-cold-chains-for-seafood">
 <a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-cold-chains-for-seafood" class="section-name selfRef">Cold Chains for Seafood</a>
         </h3>
-<p id="section-2.3-1">Once seafood is caught, its quality is determined -- amongst other criteria -- via the integrity of a cold chain that ensures a regulatory perspective freshness mandating a continuous storing temperature between 1 <span class="contact-name">°</span>C and 0 <span class="contact-name">°</span>C (or -18 <span class="contact-name">°</span>C and lower for frozen seafood). The temperature is recorded by cooling units adhering to certain compliance standards automatically. Batches of seafood can be split or aggregated before arriving in a shelf so that each unit can potentially have a potentially unique cold chain record whose transparency impacts the accuracy of the shelf-life associated with it. Especially in early links of the supply chain, Internet connection or sophisticated IT equipment are typically not available and sometimes temperature measurements are recorded manually and digital records are created in hindsight.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.3-1">Once seafood is caught, its quality is determined -- amongst other criteria -- via the integrity of a cold chain that ensures a regulatory perspective freshness mandating a continuous storing temperature between 1 <span class="contact-name">°</span>C and 0 <span class="contact-name">°</span>C (or -18 <span class="contact-name">°</span>C and lower for frozen seafood). The temperature is recorded by cooling units adhering to certain compliance standards automatically. Batches of seafood can be split or aggregated before arriving in a shelf so that each unit can potentially have a potentially unique cold chain record whose transparency impacts the accuracy of the shelf-life associated with it. Especially in early links of the supply chain, Internet connection or sophisticated IT equipment are typically not available; sometimes temperature measurements are recorded manually; and digital records are created in hindsight.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1444,14 +1444,14 @@ In COSE, Feed is a dedicated header attribute in the protected header of the Env
           <p id="section-3-2.14.1">the verifiable append-only data structure that stores Claims in a Transparency Service often referred to by the synonym log or ledger. SCITT supports multiple Registry and Receipt formats to accommodate different Transparency Service implementations, such as historical Merkle Trees and sparse Merkle Trees.<a href="#section-3-2.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.15">Transparency Service:</dt>
+<dt id="section-3-2.15">Transparency Service (TS):</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.16">
-          <p id="section-3-2.16.1">an entity that maintains and extends the Registry, and endorses its state. A Transparency Service is often referred to by its synonym Notary. A Transparency Service can be a complex distributed system, and SCITT requires the TS to provide many security guarantees about its Registry . The identity of a TS is captured by a public key that must be known by Verifiers in order to validate Receipts.<a href="#section-3-2.16.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.16.1">an entity that maintains and extends the Registry, and endorses its state. A Transparency Service is often referred to by its synonym Notary. A Transparency Service can be a complex distributed system, and SCITT requires the TS to provide many security guarantees about its Registry. The identity of a TS is captured by a public key that must be known by Verifiers in order to validate Receipts.<a href="#section-3-2.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-2.17">Receipt:</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.18">
-          <p id="section-3-2.18.1">a Receipt is a special form of COSE countersignature for Claims that embeds cryptographic evidence that the Claim is recorded in the Registry . It consists of a Registry -specific inclusion proof, a signature by the Transparency Service of the state of the Registry , and additional metadata (contained in the countersignature protected headers) to assist in auditing.<a href="#section-3-2.18.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.18.1">a Receipt is a special form of COSE countersignature for Claims that embeds cryptographic evidence that the Claim is recorded in the Registry. It consists of a Registry-specific inclusion proof, a signature by the Transparency Service of the state of the Registry, and additional metadata (contained in the countersignature protected headers) to assist in auditing.<a href="#section-3-2.18.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-2.19">Registration:</dt>
@@ -1478,7 +1478,12 @@ and on prior claims already in the Registry.<a href="#section-3-2.22.1" class="p
         <dd class="break"></dd>
 <dt id="section-3-2.27">Auditor:</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.28">
-          <p id="section-3-2.28.1">an entity that checks the correctness and consistency of all Claim registered by a TS (a specialization of Claim Consumer).<a href="#section-3-2.28.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.28.1">an entity that checks the correctness and consistency of all Claims registered by a TS (a specialization of Claim Consumer).<a href="#section-3-2.28.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-2.29">Claim Consumer:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.30">
+          <p id="section-3-2.30.1"><span class="cref" id="definehere">Define here.</span><a href="#section-3-2.30.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -1490,11 +1495,11 @@ and on prior claims already in the Registry.<a href="#section-3-2.22.1" class="p
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-definition-of-transparency" class="section-name selfRef">Definition of Transparency</a>
       </h2>
 <p id="section-4-1">In this document, we use a definition of transparency built over abstract notions of Registry and Receipts. Existing transparency systems such as Certificate Transparency are instances of this definition.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">A Claim is an identifiable and non-repudiable Statement made by an Issuer. The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata. Claims can be made transparent by attaching a proof of Registration by a TS, in the form of a Receipt that countersigns the Claim and witnesses its inclusion in the Registry of a TS. By extension, we may say an Artifact (e.g. a firmware binary) is transparent if it comes with one or more Transparent Claims from its author or owner, though the context should make it clear what type of Claim is expected for a given Artifact.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-2">A Claim is an identifiable and non-repudiable Statement made by an Issuer. The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata. Claims can be made transparent by attaching a proof of Registration by a TS, in the form of a Receipt that countersigns the Claim and witnesses its inclusion in the Registry of a TS. By extension, we may say an Artifact (e.g., a firmware binary) is transparent if it comes with one or more Transparent Claims from its author or owner, though the context should make it clear what type of Claim is expected for a given Artifact.<a href="#section-4-2" class="pilcrow">¶</a></p>
 <p id="section-4-3">Transparency does not prevent dishonest or compromised Issuers, but it holds them accountable: any Artifact that may be used to target a particular user that checks for Receipts must have been recorded in the tamper-proof Registry, and will be subject to scrutiny and auditing by other parties.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <p id="section-4-4">Transparency is implemented by a Registry that provides a consistent, append-only, cryptographically verifiable, publicly available record of entries. Implementations of TS may protect their Registry using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence. A Receipt is an offline, universally-verifiable proof that an entry is recorded in the Registry. Receipts do not expire, but it is possible to append new entries that subsume older entries.<a href="#section-4-4" class="pilcrow">¶</a></p>
-<p id="section-4-5">Anyone with access to the Registry can independently verify its consistency and review the complete list of Claims registered by each Issuer. However, the Registry of separate Transparency Services are generally disjoint, though it is possible to take a Claim from one Registry and register it again on another (if its policy allows it), so the authorization of the Issuer and of the Registry by the Verifier of the Receipt are generally independent.<a href="#section-4-5" class="pilcrow">¶</a></p>
-<p id="section-4-6">Reputable Issuers are thus incentivized to carefully review their Statements before signing them into Claims. Similarly, reputable TS are incentivized to secure their Registry, as any inconsistency can easily be pinpointed by any auditor with read access to the Registry. Some Registry formats may also support consistency auditing through Receipts, that is, given two valid Receipts the TS may be asked to produce a cryptographic proof that they are consistent. Failure to produce this proof can indicate that the TS operator misbehaved.<a href="#section-4-6" class="pilcrow">¶</a></p>
+<p id="section-4-5">Anyone with access to the Registry can independently verify its consistency and review the complete list of Claims registered by each Issuer. However, the Registries of separate Transparency Services are generally disjoint, though it is possible to take a Claim from one Registry and register it again on another (if its policy allows it), so the authorization of the Issuer and of the Registry by the Verifier of the Receipt are generally independent.<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-6">Reputable Issuers are thus incentivized to carefully review their Statements before signing them into Claims. Similarly, reputable TS are incentivized to secure their Registry, as any inconsistency can easily be pinpointed by any auditor with read access to the Registry. Some Registry formats may also support consistency auditing (<a href="#sec-consistency" class="auto internal xref">Section 5.2.3.2</a>) through Receipts, that is, given two valid Receipts the TS may be asked to produce a cryptographic proof that they are consistent. Failure to produce this proof can indicate that the TS operator misbehaved.<a href="#section-4-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-architecture-overview">
@@ -1663,9 +1668,9 @@ In order to accommodate as many TS implementations as possible, this document on
           <h4 id="name-issuer-identity">
 <a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-issuer-identity" class="section-name selfRef">Issuer Identity</a>
           </h4>
-<p id="section-5.1.1-1">Before an Issuer is able to produce Claims, it must first create its <a href="https://www.w3.org/TR/did-core">decentralized identifier</a> (also known as a DID).
+<p id="section-5.1.1-1">Before an Issuer is able to produce Claims, it must first create its <span><a href="#DID-CORE" class="internal xref">decentralized identifier</a> [<a href="#DID-CORE" class="cite xref">DID-CORE</a>]</span> (also known as a DID).
 A DID can be <em>resolved</em> into a <em>key manifest</em> (a list of public keys indexed by a <em>key identifier</em>) using many different DID methods.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1.1-2">Issuers <span class="bcp14">MAY</span> choose the DID method they prefer, but with no guarantee that all TS will be able to register their Claim. To facilitate interoperability, all Transparency Service implementations <span class="bcp14">SHOULD</span> support the <code>did:web</code> method from [https://w3c-ccg.github.io/did-method-web/]. For instance, if the Issuer publishes its manifest at <code>https://sample.issuer/user/alice/did.json</code>, the DID of the Issuer is <code>did:web:sample.issuer:user:alice</code>.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-2">Issuers <span class="bcp14">MAY</span> choose the DID method they prefer, but with no guarantee that all TS will be able to register their Claim. To facilitate interoperability, all Transparency Service implementations <span class="bcp14">SHOULD</span> support the <code>did:web</code> method <span>[<a href="#DID-WEB" class="cite xref">DID-WEB</a>]</span>. For instance, if the Issuer publishes its manifest at <code>https://sample.issuer/user/alice/did.json</code>, the DID of the Issuer is <code>did:web:sample.issuer:user:alice</code>.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1.1-3">Issuers <span class="bcp14">SHOULD</span> use consistent decentralized identifiers for all their Artifacts, to simplify authorization by Verifiers and auditing. They <span class="bcp14">MAY</span> update their DID manifest, for instance to refresh their signing keys or algorithms, but they <span class="bcp14">SHOULD NOT</span> remove or change any prior keys unless they intend to revoke all Claims issued with those keys. This DID appears in the Issuer header of the Claim's Envelope, while the version of the key from the manifest used to sign the Claim is written in the <code>kid</code> header.<a href="#section-5.1.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1682,9 +1687,9 @@ A DID can be <em>resolved</em> into a <em>key manifest</em> (a list of public ke
           <h4 id="name-claim-metadata">
 <a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-claim-metadata" class="section-name selfRef">Claim Metadata</a>
           </h4>
-<p id="section-5.1.3-1">Besides Issuer, Feed and kid, the only other mandatory metadata in the Claim is the type of the Payload, indicated in the <code>cty</code> Envelope header.
-However, this set of mandatory metadata is not sufficient to express many important Registration policies. For example, a Registry may only allow a Claim to be registered if it was signed recently. While the Issuer is free to add any information in the payload of the Claim, the TS (and most of its auditor) can only be expected to interpret information in the Envelope.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.1.3-2">Such metadata, meant to be interpreted by the TS during Registration policy evaluation, should be added to the <code>reg_info</code> header. While the header <span class="bcp14">MUST</span> be present in all Claims, its contents consist of a map of named attributes. Some attributes (such as the Issuer's timestamp) are standardized with a defined type, to help uniformize their semantics across TS. Others are completely customizable and may have arbitrary types. In any case, all attributes are optional so the map <span class="bcp14">MAY</span> be empty.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-1">Besides Issuer, Feed and kid, the only other mandatory metadata in the Claim is the type of the Payload, indicated in the <code>cty</code> (content type) Envelope header.
+However, this set of mandatory metadata is not sufficient to express many important Registration policies. For example, a Registry may only allow a Claim to be registered if it was signed recently. While the Issuer is free to add any information in the payload of the Claim, the TS (and most of its auditors) can only be expected to interpret information in the Envelope.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-2">Such metadata, meant to be interpreted by the TS during Registration policy evaluation, should be added to the <code>reg_info</code> header. While the header <span class="bcp14">MUST</span> be present in all Claims, its contents consist of a map of named attributes. Some attributes (such as the Issuer's timestamp) are standardized with a defined type, to help uniformize their semantics across TS. Others are completely customizable and may have arbitrary types. In any case, all attributes are optional; so the map <span class="bcp14">MAY</span> be empty.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1703,7 +1708,7 @@ However, this set of mandatory metadata is not sufficient to express many import
 <a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-service-identity-remote-att" class="section-name selfRef">Service Identity, Remote Attestation, and Keying</a>
           </h4>
 <p id="section-5.2.1-1">Every TS <span class="bcp14">MUST</span> have a public service identity,
-associated with public/private key pairs for signing on behalf of the service. In particular, this identity must be known by Verifiers when validating a Receipt<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
+associated with public/private key pairs for signing on behalf of the service. In particular, this identity must be known by Verifiers when validating a Receipt.<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.1-2">This identity should be stable for the lifetime of the service, so that all Receipts remain valid and consistent. The TS operator <span class="bcp14">MAY</span> use a distributed identifier as their public service identity if they wish to rotate their keys, if the Registry algorithm they use for their Receipt supports it. Other types of cryptographic identities, such as parameters for non-interactive zero-knowledge proof systems, may also be used in the future.<a href="#section-5.2.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.2.1-3">The TS <span class="bcp14">SHOULD</span> provide evidence that it is securely implemented and operated, enabling remote authentication of the hardware platforms and/or software TCB that run the TS. This additional evidence <span class="bcp14">SHOULD</span> be recorded in the Registry and presented on demand to Verifiers and auditors.<a href="#section-5.2.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.2.1-4">For example, consider a TS implemented using a set of replicas, each running within its own hardware-protected trusted execution environments (TEEs). Each replica <span class="bcp14">SHOULD</span> provide a recent attestation report for its TEE, binding their hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts. This attestation evidence <span class="bcp14">SHOULD</span> be supplemented with transparency Receipts for the software and configuration of the service, as measured in its attestation report.<a href="#section-5.2.1-4" class="pilcrow">¶</a></p>
@@ -1718,16 +1723,14 @@ associated with public/private key pairs for signing on behalf of the service. I
 Most advanced SCITT scenarios rely on the TS performing additional domain-specific checks before a claim is accepted: TS may only allow trusted authenticated users to register claims, TS may try to check that a new claim is consistent with previous claims from the same issuers or that claims are registered in the correct order and cannot be re-played; some TS may even interpret and validate the payload of claims.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.2-2">In general, registration policies are applied at the discretion of the TS, and verifiers use receipts as witnesses that confirm that the registration policy of the TS was satisfied at the time claim registration. TS implementations <span class="bcp14">SHOULD</span> make their full registration policy public and auditable, e.g. by recording stateful policy inputs at evaluation time in the registry to ensure that policy can be independently validated later.
 From an interoperability point of view, the policy that was applied by the TS is opaque to the verifier, who is forced to trust the associated registration policy. If the policy of the TS evolves over time, or is different across issuers, the guarantee derived from receipt validation may not be uniform across all claims over time.<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-3">To help verifiers interpret the semantics of claim registration, SCITT defines a standard mechanism for signalling in the claim itself which policies have been applied by the TS from a defined set
-of registration policies with standardized semantics. Each policy that is expected to be enforced by the TS is represented by an entry in the registration policy info map (<code>reg_info</code>) in the envelope. The key of the map corresponds to the name of the policy, while its value (including its type) is policy-specific. For instance, the <code>register_by</code> policy defines the maximum timestamp by which a claim can be registered, hence the associated value contains an unsigned integer.<a href="#section-5.2.2-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-3">To help verifiers interpret the semantics of claim registration, SCITT defines a standard mechanism for signaling in the claim itself which policies have been applied by the TS from a defined set
+of registration policies with standardized semantics. Each policy that is expected to be enforced by the TS is represented by an entry in the registration policy info map (<code>reg_info</code>) in the envelope. The key of the map entry corresponds to the name of the policy, while its value (including its type) is policy-specific. For instance, the <code>register_by</code> policy defines the maximum timestamp by which a claim can be registered, hence the associated value contains an unsigned integer.<a href="#section-5.2.2-3" class="pilcrow">¶</a></p>
 <p id="section-5.2.2-4">While this design ensures that all verifiers get the same guarantee regardless of where a claim is registered, its main downside is that it requires the issuer to include the necessary policies in the envelope when the claim is signed. Furthermore, it makes it impossible to register the same claim on two different TS if their required registration policies are incompatible.<a href="#section-5.2.2-4" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-5.2.2-5.1">
-              <p id="section-5.2.2-5.1.1"><strong>Editor's note</strong><a href="#section-5.2.2-5.1.1" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-5.1.2">The technical design for signalling and verifying registration policies is a work in progress.
-An alternative design would be to include the registration policies in the receipt/countersignature rather than in the envelope. This improves the portability of claims but requires the verifier to be more aware of the particular policies at the TS where the claim is registered.<a href="#section-5.2.2-5.1.2" class="pilcrow">¶</a></p>
-</li>
-          </ul>
+<aside id="section-5.2.2-5">
+            <p id="section-5.2.2-5.1"><strong>Editor's note</strong><a href="#section-5.2.2-5.1" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-5.2">The technical design for signalling and verifying registration policies is a work in progress.
+An alternative design would be to include the registration policies in the receipt/countersignature rather than in the envelope. This improves the portability of claims but requires the verifier to be more aware of the particular policies at the TS where the claim is registered.<a href="#section-5.2.2-5.2" class="pilcrow">¶</a></p>
+</aside>
 </section>
 </div>
 <div id="sec-registry-security-requirements">
@@ -1735,7 +1738,7 @@ An alternative design would be to include the registration policies in the recei
           <h4 id="name-registry-security-requireme">
 <a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-registry-security-requireme" class="section-name selfRef">Registry Security Requirements</a>
           </h4>
-<p id="section-5.2.3-1">There are many different candidate verifiable data structures that may be used to implement the Registry, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants. We only require the Registry to support concise Receipts (i.e. whose size grows at most logarithmically in the number of entries in the Registry). This does not necessarily rule out blockchains as a Registry, but may necessitate advanced Receipt schemes that use arguments of knowledge and other verifiable computing techniques.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-1">There are many different candidate verifiable data structures that may be used to implement the Registry, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants. We only require the Registry to support concise Receipts (i.e., whose size grows at most logarithmically in the number of entries in the Registry). This does not necessarily rule out blockchains as a Registry, but may necessitate advanced Receipt schemes that use arguments of knowledge and other verifiable computing techniques.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.3-2">Since the details of how to verify a Receipt are specific to the data structure, we do not specify any particular Registry format in this document. Instead, we propose two initial formats for Registry in <span>[<a href="#I-D.birkholz-scitt-receipts" class="cite xref">I-D.birkholz-scitt-receipts</a>]</span> using historical and sparse Merkle Trees. Beyond the format of Receipts, we require generic properties that should be satisfied by the components in the TS that have the ability to write to the Registry.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
 <div id="sec-finality">
 <section id="section-5.2.3.1">
@@ -1761,7 +1764,7 @@ TS implementations <span class="bcp14">SHOULD</span> provide a mechanism to veri
             </h5>
 <p id="section-5.2.3.3-1">Everyone with access to the Registry can check the correctness of its contents. In particular,<a href="#section-5.2.3.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.2.3.3-2.1">the TS defines and enforces deterministic Registration policies that can be re-evaluated based solely on the contents of the Registry at the time of registraton, and must then yield the same result.<a href="#section-5.2.3.3-2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.2.3.3-2.1">the TS defines and enforces deterministic Registration policies that can be re-evaluated based solely on the contents of the Registry at the time of registration, and must then yield the same result.<a href="#section-5.2.3.3-2.1" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-5.2.3.3-2.2">The ordering of entries, their cryptographic contents, and the Registry governance may be non-deterministic, but they must be verifiable.<a href="#section-5.2.3.3-2.2" class="pilcrow">¶</a>
 </li>
@@ -1802,7 +1805,7 @@ TS implementations <span class="bcp14">SHOULD</span> provide a mechanism to veri
 <ol start="1" type="1" class="normal type-1" id="section-5.3-2">
 <li id="section-5.3-2.1">the distributed identifier of the Issuer (or its resolved key manifest),<a href="#section-5.3-2.1" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.3-2.2">the expected name of the Artifact (i.e. the Feed),<a href="#section-5.3-2.2" class="pilcrow">¶</a>
+          <li id="section-5.3-2.2">the expected name of the Artifact (i.e., the Feed),<a href="#section-5.3-2.2" class="pilcrow">¶</a>
 </li>
           <li id="section-5.3-2.3">the list of service identities of trusted TS.<a href="#section-5.3-2.3" class="pilcrow">¶</a>
 </li>
@@ -1827,12 +1830,12 @@ They may additionally apply a validation policy based on the protected headers p
 <a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-envelope-and-claim-format" class="section-name selfRef">Envelope and Claim Format</a>
         </h3>
 <p id="section-6.1-1">The formats of Claims and Receipts are based on CBOR Object Signing and Encryption (COSE). The choice of CBOR is a trade-off between safety (in particular, non-malleability: each Claim has a unique serialization), ease of processing and availability of implementations.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.1-2">At a high-level that is the context of this architecture, a Claim is a COSE single-signed object (i.e. <code>COSE_Sign1</code>) that contains the correct set of protected headers. Although Issuers and relays may attach unprotected headers to Claims, Transparency Services and Verifiers <span class="bcp14">MUST NOT</span> rely on the presence or value of additional unprotected headers in Claims during Registration and validation.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.1-2">At a high-level that is the context of this architecture, a Claim is a COSE single-signed object (i.e., <code>COSE_Sign1</code>) that contains the correct set of protected headers. Although Issuers and relays may attach unprotected headers to Claims, Transparency Services and Verifiers <span class="bcp14">MUST NOT</span> rely on the presence or value of additional unprotected headers in Claims during Registration and validation.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.1-3">All Claims <span class="bcp14">MUST</span> include the following protected headers:<a href="#section-6.1-3" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.1-4.1">algorithm (label: <code>1</code>): Asymmetric signature algorithm used by the Claim Issuer, as an integer, for example <code>-35</code> for ECDSA with SHA-384, see <a href="https://www.iana.org/assignments/cose/cose.xhtml">COSE Algorithms registry</a>;<a href="#section-6.1-4.1" class="pilcrow">¶</a>
+<li class="normal" id="section-6.1-4.1">algorithm (label: <code>1</code>): Asymmetric signature algorithm used by the Claim Issuer, as an integer, for example <code>-35</code> for ECDSA with SHA-384, see <span><a href="#IANA.cose" class="internal xref">COSE Algorithms registry</a> [<a href="#IANA.cose" class="cite xref">IANA.cose</a>]</span>;<a href="#section-6.1-4.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.1-4.2">Issuer (label: <code>TBD</code>, temporary: <code>391</code>): DID (Decentralized Identifier, see <a href="https://www.w3.org/TR/did-core/">W3C Candidate Recommendation</a>) of the signer, as a string, for example <code>did:web:example.com</code>;<a href="#section-6.1-4.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.1-4.2">Issuer (label: <code>TBD</code>, temporary: <code>391</code>): DID (Decentralized Identifier <span>[<a href="#DID-CORE" class="cite xref">DID-CORE</a>]</span>) of the signer, as a string, for example <code>did:web:example.com</code>;<a href="#section-6.1-4.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-6.1-4.3">Feed (label: <code>TBD</code>, temporary: <code>392</code>): the Issuer's name for the Artifact, as a string;<a href="#section-6.1-4.3" class="pilcrow">¶</a>
 </li>
@@ -1921,14 +1924,12 @@ Unprotected_Header = {
         <h3 id="name-standard-registration-polic">
 <a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-standard-registration-polic" class="section-name selfRef">Standard registration policies</a>
         </h3>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-6.3-1.1">
-            <p id="section-6.3-1.1.1"><strong>Editor's note</strong><a href="#section-6.3-1.1.1" class="pilcrow">¶</a></p>
-<p id="section-6.3-1.1.2">The technical design for signalling and verifying registration policies is a work in progress.
+<aside id="section-6.3-1">
+          <p id="section-6.3-1.1"><strong>Editor's note</strong><a href="#section-6.3-1.1" class="pilcrow">¶</a></p>
+<p id="section-6.3-1.2">The technical design for signaling and verifying registration policies is a work in progress.
 We expect that once the formats and semantics of the registration policy headers are finalized, standardized policies may be moved to a separate draft.
-For now, we inline some significant policies to illustrate the most common use cases.<a href="#section-6.3-1.1.2" class="pilcrow">¶</a></p>
-</li>
-        </ul>
+For now, we inline some significant policies to illustrate the most common use cases.<a href="#section-6.3-1.2" class="pilcrow">¶</a></p>
+</aside>
 <p id="section-6.3-2">TS implementations <span class="bcp14">MUST</span> indicate their support for registration policies and <span class="bcp14">MUST</span> check that all the policies indicated as defined in the <code>reg_info</code> map are supported and are satisfied before a claim can be registered. Any unsupported claims <span class="bcp14">MUST</span> be indicated separately and corresponding unknown policy entries in the map of a claim <span class="bcp14">MUST</span> be rejected. This is to ensure that all verifiers get the same guarantee out of the registration policies regardless of where it is registered.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
 <span id="name-an-initial-set-of-named-pol"></span><div id="tbl-initial-named-policies">
 <table class="center" id="table-1">
@@ -2008,7 +2009,7 @@ For now, we inline some significant policies to illustrate the most common use c
         <h3 id="name-validation-of-transparent-c">
 <a href="#section-6.5" class="section-number selfRef">6.5. </a><a href="#name-validation-of-transparent-c" class="section-name selfRef">Validation of Transparent Claims</a>
         </h3>
-<p id="section-6.5-1">This section provides additional implementation considerations, the high-level validation algorithm is described in <a href="#validation" class="auto internal xref">Section 5.3</a>, with the Registry-specific details of checking Receipts are covered in <span>[<a href="#I-D.birkholz-scitt-receipts" class="cite xref">I-D.birkholz-scitt-receipts</a>]</span>.<a href="#section-6.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.5-1">This section provides additional implementation considerations.  The high-level validation algorithm is described in <a href="#validation" class="auto internal xref">Section 5.3</a>; the Registry-specific details of checking Receipts are covered in <span>[<a href="#I-D.birkholz-scitt-receipts" class="cite xref">I-D.birkholz-scitt-receipts</a>]</span>.<a href="#section-6.5-1" class="pilcrow">¶</a></p>
 <p id="section-6.5-2">Before checking a Claim, the Verifier must be configured with one or more identities of trusted Transparency Services. If more than one service is configured, the Verifier <span class="bcp14">MUST</span> return which service the Claim is registered on.<a href="#section-6.5-2" class="pilcrow">¶</a></p>
 <p id="section-6.5-3">In some scenarios, the Verifier already expects a specific Issuer and Feed for the Claim, while in other cases they are not known in advance and can be an output of validation. Verifiers <span class="bcp14">SHOULD</span> offer a configuration to decide if the Issuer's signature should be locally verified (which may require a DID resolution, and may fail if the manifest is not available or if the key is revoked), or if it should trust the validation done by the TS during Registration.<a href="#section-6.5-3" class="pilcrow">¶</a></p>
 <p id="section-6.5-4">Some Verifiers <span class="bcp14">MAY</span> decide to locally re-apply some or all of the Registration policies if they have limited trust in the TS. In addition, Verifiers <span class="bcp14">MAY</span> apply arbitrary validation policies after the signature and Receipt have been checked. Such policies may use as input all information in the Envelope, the Receipt, and the payload, as well as any local state.<a href="#section-6.5-4" class="pilcrow">¶</a></p>
@@ -2259,7 +2260,7 @@ and accept the risk of being blamed for inconsistent Registration or Issuer equi
       <h2 id="name-iana-considerations">
 <a href="#section-11" class="section-number selfRef">11. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-11-1">See Body <a href="#mybody" class="auto internal xref">Section 4</a>.<a href="#section-11-1" class="pilcrow">¶</a></p>
+<p id="section-11-1">TBD; <a href="#mybody" class="auto internal xref">Section 4</a>.<a href="#section-11-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <section id="section-12">
@@ -2271,6 +2272,18 @@ and accept the risk of being blamed for inconsistent Registration or Issuer equi
 <a href="#section-12.1" class="section-number selfRef">12.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
+<dt id="DID-CORE">[DID-CORE]</dt>
+        <dd>
+<span class="refAuthor">W3C</span>, <span class="refTitle">"Decentralized Identifiers (DIDs) v1.0"</span>, <time datetime="2022-07-22" class="refDate">22 July 2022</time>, <span>&lt;<a href="https://www.w3.org/TR/did-core/">https://www.w3.org/TR/did-core/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="DID-WEB">[DID-WEB]</dt>
+        <dd>
+<span class="refTitle">"did:web Decentralized Identifiers Method Spec"</span>, <span>n.d.</span>, <span>&lt;<a href="https://w3c-ccg.github.io/did-method-web/">https://w3c-ccg.github.io/did-method-web/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IANA.cose">[IANA.cose]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE)"</span>, <span>&lt;<a href="https://www.iana.org/assignments/cose">https://www.iana.org/assignments/cose</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
@@ -2279,10 +2292,6 @@ and accept the risk of being blamed for inconsistent Registration or Issuer equi
         <dd>
 <span class="refAuthor">Freed, N.</span>, <span class="refAuthor">Klensin, J.</span>, and <span class="refAuthor">T. Hansen</span>, <span class="refTitle">"Media Type Specifications and Registration Procedures"</span>, <span class="seriesInfo">BCP 13</span>, <span class="seriesInfo">RFC 6838</span>, <span class="seriesInfo">DOI 10.17487/RFC6838</span>, <time datetime="2013-01" class="refDate">January 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6838">https://www.rfc-editor.org/rfc/rfc6838</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC8152">[RFC8152]</dt>
-        <dd>
-<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE)"</span>, <span class="seriesInfo">RFC 8152</span>, <span class="seriesInfo">DOI 10.17487/RFC8152</span>, <time datetime="2017-07" class="refDate">July 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8152">https://www.rfc-editor.org/rfc/rfc8152</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
@@ -2290,6 +2299,10 @@ and accept the risk of being blamed for inconsistent Registration or Issuer equi
 <dt id="RFC8610">[RFC8610]</dt>
         <dd>
 <span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Vigano, C.</span>, and <span class="refAuthor">C. Bormann</span>, <span class="refTitle">"Concise Data Definition Language (CDDL): A Notational Convention to Express Concise Binary Object Representation (CBOR) and JSON Data Structures"</span>, <span class="seriesInfo">RFC 8610</span>, <span class="seriesInfo">DOI 10.17487/RFC8610</span>, <time datetime="2019-06" class="refDate">June 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8610">https://www.rfc-editor.org/rfc/rfc8610</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9052">[RFC9052]</dt>
+        <dd>
+<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Structures and Process"</span>, <span class="seriesInfo">STD 96</span>, <span class="seriesInfo">RFC 9052</span>, <span class="seriesInfo">DOI 10.17487/RFC9052</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9052">https://www.rfc-editor.org/rfc/rfc9052</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9162">[RFC9162]</dt>
       <dd>
@@ -2306,9 +2319,13 @@ and accept the risk of being blamed for inconsistent Registration or Issuer equi
         <dd>
 <span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Riechert, M.</span>, <span class="refAuthor">Delignat-Lavaud, A.</span>, and <span class="refAuthor">C. Fournet</span>, <span class="refTitle">"Countersigning COSE Envelopes in Transparency Services"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-birkholz-scitt-receipts-02</span>, <time datetime="2022-10-24" class="refDate">24 October 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-birkholz-scitt-receipts-02">https://datatracker.ietf.org/doc/html/draft-birkholz-scitt-receipts-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="MERKLE">[MERKLE]</dt>
+        <dd>
+<span class="refAuthor">Merkle, R.</span>, <span class="refTitle">"A Digital Signature Based on a Conventional Encryption Function"</span>, <span class="seriesInfo">Advances in Cryptology - CRYPTO '87 pp. 369-378</span>, <span class="seriesInfo">DOI 10.1007/3-540-48184-2_32</span>, <time datetime="1988" class="refDate">1988</time>, <span>&lt;<a href="https://doi.org/10.1007/3-540-48184-2_32">https://doi.org/10.1007/3-540-48184-2_32</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="PBFT">[PBFT]</dt>
       <dd>
-<span class="refAuthor">Castro, M.</span> and <span class="refAuthor">B. Liskov</span>, <span class="refTitle">"Practical byzantine fault tolerance and proactive recovery"</span>, <span class="seriesInfo">ACM Transactions on Computer Systems, Volume 20, Issue 4 </span>, <time datetime="2002-11" class="refDate">November 2002</time>, <span>&lt;<a href="https://doi:10.1145/571637.571640">https://doi:10.1145/571637.571640</a>&gt;</span>. </dd>
+<span class="refAuthor">Castro, M.</span> and <span class="refAuthor">B. Liskov</span>, <span class="refTitle">"Practical byzantine fault tolerance and proactive recovery"</span>, <span class="seriesInfo">ACM Transactions on Computer Systems vol. 20, no. 4, pp. 398-461</span>, <span class="seriesInfo">DOI 10.1145/571637.571640</span>, <time datetime="2002-11" class="refDate">November 2002</time>, <span>&lt;<a href="https://doi.org/10.1145/571637.571640">https://doi.org/10.1145/571637.571640</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

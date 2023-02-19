@@ -2,7 +2,7 @@
 
 
 
-TBD                                                          H. Birkholz
+SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
 Expires: 23 August 2023                                       C. Fournet
@@ -40,7 +40,7 @@ About This Document
    Status information for this document may be found at
    https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/.
 
-   Discussion of this document takes place on the SCITT Working Group
+   Discussion of this document takes place on the scitt Working Group
    mailing list (mailto:scitt@ietf.org), which is archived at
    https://mailarchive.ietf.org/arch/browse/scitt/.  Subscribe at
    https://www.ietf.org/mailman/listinfo/scitt/.
@@ -148,9 +148,9 @@ Table of Contents
    infrastructure.  The second guarantee is achieved by storing the
    signed statement in an immutable, append-only, transparent Registry.
    The last guarantee is achieved by implementing the Registry using a
-   verifiable data structure (such as a Merkle Tree), and by requiring a
-   TS that operates the Registry to endorse its state at the time of
-   registration.
+   verifiable data structure (such as a Merkle Tree [MERKLE]), and by
+   requiring a Transparency Service (TS) that operates the Registry to
+   endorse its state at the time of registration.
 
    The guarantees and techniques used in this document generalize those
    of Certificate Transparency [RFC9162], which can be re-interpreted as
@@ -164,7 +164,7 @@ Table of Contents
    the Registry encrypted.  Nevertheless, it is critical to provide
    global interoperability for all TS instances as the composition and
    configuration of involved supply chain entities and their system
-   components is ever changing and always in flux.
+   components is ever-changing and always in flux.
 
    A TS provides visibility into claims issued by supply chain entities
    and their sub-systems.  These claims are called Digital Supply Chain
@@ -225,7 +225,7 @@ Table of Contents
    enabled via core components (architectural constituents) that come
    with prescriptive requirements (that are typically hidden away from
    the user audience via APIs).  The core components are based on the
-   Concise Signing and Encryption standard specified in [RFC8152], which
+   Concise Signing and Encryption standard specified in [RFC9052], which
    is used to sign released DSCAs and to build and maintain a Merkle
    tree that functions as the append-only Registry for DSCAs.  The
    format and verification process for Registry-based transparency
@@ -247,7 +247,7 @@ Table of Contents
 
 2.1.  Software Bill of Materials (SBOM)
 
-   As the ever increasing complexity of large software projects requires
+   As the ever-increasing complexity of large software projects requires
    more modularity and abstractions to manage them, keeping track of
    their full Trusted Computing Base (TCB) is becoming increasingly
    difficult.  Each component may have its own set of dependencies and
@@ -298,7 +298,7 @@ Table of Contents
    A supply chain that maintains a transparent record of the successive
    software releases for machine-learning models and runtimes, recording
    both their software measurements and their provenance (source code,
-   build reports, audit reports,...) can provide users with the
+   build reports, audit reports, ...) can provide users with the
    information they need to authorize these tasks, while holding the
    service operator accountable for the software they release for them.
 
@@ -314,9 +314,9 @@ Table of Contents
    can potentially have a potentially unique cold chain record whose
    transparency impacts the accuracy of the shelf-life associated with
    it.  Especially in early links of the supply chain, Internet
-   connection or sophisticated IT equipment are typically not available
-   and sometimes temperature measurements are recorded manually and
-   digital records are created in hindsight.
+   connection or sophisticated IT equipment are typically not available;
+   sometimes temperature measurements are recorded manually; and digital
+   records are created in hindsight.
 
 3.  Terminology
 
@@ -364,19 +364,19 @@ Table of Contents
       implementations, such as historical Merkle Trees and sparse Merkle
       Trees.
 
-   Transparency Service:  an entity that maintains and extends the
+   Transparency Service (TS):  an entity that maintains and extends the
       Registry, and endorses its state.  A Transparency Service is often
       referred to by its synonym Notary.  A Transparency Service can be
       a complex distributed system, and SCITT requires the TS to provide
-      many security guarantees about its Registry . The identity of a TS
+      many security guarantees about its Registry.  The identity of a TS
       is captured by a public key that must be known by Verifiers in
       order to validate Receipts.
 
    Receipt:  a Receipt is a special form of COSE countersignature for
       Claims that embeds cryptographic evidence that the Claim is
-      recorded in the Registry . It consists of a Registry -specific
+      recorded in the Registry.  It consists of a Registry-specific
       inclusion proof, a signature by the Transparency Service of the
-      state of the Registry , and additional metadata (contained in the
+      state of the Registry, and additional metadata (contained in the
       countersignature protected headers) to assist in auditing.
 
    Registration:  the process of submitting a Claim to a Transparency
@@ -398,7 +398,11 @@ Table of Contents
       or later to audit their provenance on the supply chain.
 
    Auditor:  an entity that checks the correctness and consistency of
-      all Claim registered by a TS (a specialization of Claim Consumer).
+      all Claims registered by a TS (a specialization of Claim
+      Consumer).
+
+   Claim Consumer:
+      // Define here.
 
 4.  Definition of Transparency
 
@@ -414,8 +418,8 @@ Table of Contents
    made transparent by attaching a proof of Registration by a TS, in the
    form of a Receipt that countersigns the Claim and witnesses its
    inclusion in the Registry of a TS.  By extension, we may say an
-   Artifact (e.g. a firmware binary) is transparent if it comes with one
-   or more Transparent Claims from its author or owner, though the
+   Artifact (e.g., a firmware binary) is transparent if it comes with
+   one or more Transparent Claims from its author or owner, though the
    context should make it clear what type of Claim is expected for a
    given Artifact.
 
@@ -436,20 +440,21 @@ Table of Contents
 
    Anyone with access to the Registry can independently verify its
    consistency and review the complete list of Claims registered by each
-   Issuer.  However, the Registry of separate Transparency Services are
-   generally disjoint, though it is possible to take a Claim from one
-   Registry and register it again on another (if its policy allows it),
-   so the authorization of the Issuer and of the Registry by the
+   Issuer.  However, the Registries of separate Transparency Services
+   are generally disjoint, though it is possible to take a Claim from
+   one Registry and register it again on another (if its policy allows
+   it), so the authorization of the Issuer and of the Registry by the
    Verifier of the Receipt are generally independent.
 
    Reputable Issuers are thus incentivized to carefully review their
    Statements before signing them into Claims.  Similarly, reputable TS
    are incentivized to secure their Registry, as any inconsistency can
    easily be pinpointed by any auditor with read access to the Registry.
-   Some Registry formats may also support consistency auditing through
-   Receipts, that is, given two valid Receipts the TS may be asked to
-   produce a cryptographic proof that they are consistent.  Failure to
-   produce this proof can indicate that the TS operator misbehaved.
+   Some Registry formats may also support consistency auditing
+   (Section 5.2.3.2) through Receipts, that is, given two valid Receipts
+   the TS may be asked to produce a cryptographic proof that they are
+   consistent.  Failure to produce this proof can indicate that the TS
+   operator misbehaved.
 
 5.  Architecture Overview
 
@@ -514,18 +519,16 @@ Table of Contents
 5.1.1.  Issuer Identity
 
    Before an Issuer is able to produce Claims, it must first create its
-   decentralized identifier (https://www.w3.org/TR/did-core) (also known
-   as a DID).  A DID can be _resolved_ into a _key manifest_ (a list of
-   public keys indexed by a _key identifier_) using many different DID
-   methods.
+   decentralized identifier [DID-CORE] (also known as a DID).  A DID can
+   be _resolved_ into a _key manifest_ (a list of public keys indexed by
+   a _key identifier_) using many different DID methods.
 
    Issuers MAY choose the DID method they prefer, but with no guarantee
    that all TS will be able to register their Claim.  To facilitate
    interoperability, all Transparency Service implementations SHOULD
-   support the did:web method from [https://w3c-ccg.github.io/did-
-   method-web/].  For instance, if the Issuer publishes its manifest at
-   https://sample.issuer/user/alice/did.json, the DID of the Issuer is
-   did:web:sample.issuer:user:alice.
+   support the did:web method [DID-WEB].  For instance, if the Issuer
+   publishes its manifest at https://sample.issuer/user/alice/did.json,
+   the DID of the Issuer is did:web:sample.issuer:user:alice.
 
    Issuers SHOULD use consistent decentralized identifiers for all their
    Artifacts, to simplify authorization by Verifiers and auditing.  They
@@ -549,13 +552,13 @@ Table of Contents
 5.1.3.  Claim Metadata
 
    Besides Issuer, Feed and kid, the only other mandatory metadata in
-   the Claim is the type of the Payload, indicated in the cty Envelope
-   header.  However, this set of mandatory metadata is not sufficient to
-   express many important Registration policies.  For example, a
-   Registry may only allow a Claim to be registered if it was signed
-   recently.  While the Issuer is free to add any information in the
-   payload of the Claim, the TS (and most of its auditor) can only be
-   expected to interpret information in the Envelope.
+   the Claim is the type of the Payload, indicated in the cty (content
+   type) Envelope header.  However, this set of mandatory metadata is
+   not sufficient to express many important Registration policies.  For
+   example, a Registry may only allow a Claim to be registered if it was
+   signed recently.  While the Issuer is free to add any information in
+   the payload of the Claim, the TS (and most of its auditors) can only
+   be expected to interpret information in the Envelope.
 
    Such metadata, meant to be interpreted by the TS during Registration
    policy evaluation, should be added to the reg_info header.  While the
@@ -563,7 +566,7 @@ Table of Contents
    of named attributes.  Some attributes (such as the Issuer's
    timestamp) are standardized with a defined type, to help uniformize
    their semantics across TS.  Others are completely customizable and
-   may have arbitrary types.  In any case, all attributes are optional
+   may have arbitrary types.  In any case, all attributes are optional;
    so the map MAY be empty.
 
 5.2.  Transparency Service (TS)
@@ -602,7 +605,7 @@ Table of Contents
    Every TS MUST have a public service identity, associated with public/
    private key pairs for signing on behalf of the service.  In
    particular, this identity must be known by Verifiers when validating
-   a Receipt
+   a Receipt.
 
    This identity should be stable for the lifetime of the service, so
    that all Receipts remain valid and consistent.  The TS operator MAY
@@ -656,13 +659,13 @@ Table of Contents
    uniform across all claims over time.
 
    To help verifiers interpret the semantics of claim registration,
-   SCITT defines a standard mechanism for signalling in the claim itself
+   SCITT defines a standard mechanism for signaling in the claim itself
    which policies have been applied by the TS from a defined set of
    registration policies with standardized semantics.  Each policy that
    is expected to be enforced by the TS is represented by an entry in
    the registration policy info map (reg_info) in the envelope.  The key
-   of the map corresponds to the name of the policy, while its value
-   (including its type) is policy-specific.  For instance, the
+   of the map entry corresponds to the name of the policy, while its
+   value (including its type) is policy-specific.  For instance, the
    register_by policy defines the maximum timestamp by which a claim can
    be registered, hence the associated value contains an unsigned
    integer.
@@ -674,14 +677,15 @@ Table of Contents
    impossible to register the same claim on two different TS if their
    required registration policies are incompatible.
 
-      *Editor's note*
-
-      The technical design for signalling and verifying registration
-      policies is a work in progress.  An alternative design would be to
-      include the registration policies in the receipt/countersignature
-      rather than in the envelope.  This improves the portability of
-      claims but requires the verifier to be more aware of the
-      particular policies at the TS where the claim is registered.
+      |  *Editor's note*
+      |  
+      |  The technical design for signalling and verifying registration
+      |  policies is a work in progress.  An alternative design would be
+      |  to include the registration policies in the receipt/
+      |  countersignature rather than in the envelope.  This improves
+      |  the portability of claims but requires the verifier to be more
+      |  aware of the particular policies at the TS where the claim is
+      |  registered.
 
 5.2.3.  Registry Security Requirements
 
@@ -689,7 +693,7 @@ Table of Contents
    may be used to implement the Registry, such as chronological Merkle
    Trees, sparse/indexed Merkle Trees, full blockchains, and many other
    variants.  We only require the Registry to support concise Receipts
-   (i.e. whose size grows at most logarithmically in the number of
+   (i.e., whose size grows at most logarithmically in the number of
    entries in the Registry).  This does not necessarily rule out
    blockchains as a Registry, but may necessitate advanced Receipt
    schemes that use arguments of knowledge and other verifiable
@@ -727,7 +731,7 @@ Table of Contents
 
    *  the TS defines and enforces deterministic Registration policies
       that can be re-evaluated based solely on the contents of the
-      Registry at the time of registraton, and must then yield the same
+      Registry at the time of registration, and must then yield the same
       result.
 
    *  The ordering of entries, their cryptographic contents, and the
@@ -770,7 +774,7 @@ Table of Contents
    1.  the distributed identifier of the Issuer (or its resolved key
        manifest),
 
-   2.  the expected name of the Artifact (i.e. the Feed),
+   2.  the expected name of the Artifact (i.e., the Feed),
 
    3.  the list of service identities of trusted TS.
 
@@ -808,7 +812,7 @@ Table of Contents
    implementations.
 
    At a high-level that is the context of this architecture, a Claim is
-   a COSE single-signed object (i.e.  COSE_Sign1) that contains the
+   a COSE single-signed object (i.e., COSE_Sign1) that contains the
    correct set of protected headers.  Although Issuers and relays may
    attach unprotected headers to Claims, Transparency Services and
    Verifiers MUST NOT rely on the presence or value of additional
@@ -818,13 +822,11 @@ Table of Contents
 
    *  algorithm (label: 1): Asymmetric signature algorithm used by the
       Claim Issuer, as an integer, for example -35 for ECDSA with SHA-
-      384, see COSE Algorithms registry
-      (https://www.iana.org/assignments/cose/cose.xhtml);
+      384, see COSE Algorithms registry [IANA.cose];
 
-   *  Issuer (label: TBD, temporary: 391): DID (Decentralized
-      Identifier, see W3C Candidate Recommendation
-      (https://www.w3.org/TR/did-core/)) of the signer, as a string, for
-      example did:web:example.com;
+   *  Issuer (label: TBD, temporary: 391): DID (Decentralized Identifier
+      [DID-CORE]) of the signer, as a string, for example
+      did:web:example.com;
 
    *  Feed (label: TBD, temporary: 392): the Issuer's name for the
       Artifact, as a string;
@@ -917,14 +919,14 @@ Table of Contents
 
 6.3.  Standard registration policies
 
-      *Editor's note*
-
-      The technical design for signalling and verifying registration
-      policies is a work in progress.  We expect that once the formats
-      and semantics of the registration policy headers are finalized,
-      standardized policies may be moved to a separate draft.  For now,
-      we inline some significant policies to illustrate the most common
-      use cases.
+      |  *Editor's note*
+      |  
+      |  The technical design for signaling and verifying registration
+      |  policies is a work in progress.  We expect that once the
+      |  formats and semantics of the registration policy headers are
+      |  finalized, standardized policies may be moved to a separate
+      |  draft.  For now, we inline some significant policies to
+      |  illustrate the most common use cases.
 
    TS implementations MUST indicate their support for registration
    policies and MUST check that all the policies indicated as defined in
@@ -1032,8 +1034,8 @@ Table of Contents
 
 6.5.  Validation of Transparent Claims
 
-   This section provides additional implementation considerations, the
-   high-level validation algorithm is described in Section 5.3, with the
+   This section provides additional implementation considerations.  The
+   high-level validation algorithm is described in Section 5.3; the
    Registry-specific details of checking Receipts are covered in
    [I-D.birkholz-scitt-receipts].
 
@@ -1374,11 +1376,21 @@ Table of Contents
 
 11.  IANA Considerations
 
-   See Body Section 4.
+   TBD; Section 4.
 
 12.  References
 
 12.1.  Normative References
+
+   [DID-CORE] W3C, "Decentralized Identifiers (DIDs) v1.0", 22 July
+              2022, <https://www.w3.org/TR/did-core/>.
+
+   [DID-WEB]  "did:web Decentralized Identifiers Method Spec", n.d.,
+              <https://w3c-ccg.github.io/did-method-web/>.
+
+   [IANA.cose]
+              IANA, "CBOR Object Signing and Encryption (COSE)",
+              <https://www.iana.org/assignments/cose>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -1390,10 +1402,6 @@ Table of Contents
               RFC 6838, DOI 10.17487/RFC6838, January 2013,
               <https://www.rfc-editor.org/rfc/rfc6838>.
 
-   [RFC8152]  Schaad, J., "CBOR Object Signing and Encryption (COSE)",
-              RFC 8152, DOI 10.17487/RFC8152, July 2017,
-              <https://www.rfc-editor.org/rfc/rfc8152>.
-
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
@@ -1403,6 +1411,11 @@ Table of Contents
               Express Concise Binary Object Representation (CBOR) and
               JSON Data Structures", RFC 8610, DOI 10.17487/RFC8610,
               June 2019, <https://www.rfc-editor.org/rfc/rfc8610>.
+
+   [RFC9052]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
+              Structures and Process", STD 96, RFC 9052,
+              DOI 10.17487/RFC9052, August 2022,
+              <https://www.rfc-editor.org/rfc/rfc9052>.
 
    [RFC9162]  Laurie, B., Messeri, E., and R. Stradling, "Certificate
               Transparency Version 2.0", RFC 9162, DOI 10.17487/RFC9162,
@@ -1418,10 +1431,16 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-birkholz-
               scitt-receipts-02>.
 
+   [MERKLE]   Merkle, R., "A Digital Signature Based on a Conventional
+              Encryption Function", Advances in Cryptology - CRYPTO
+              '87 pp. 369-378, DOI 10.1007/3-540-48184-2_32, 1988,
+              <https://doi.org/10.1007/3-540-48184-2_32>.
+
    [PBFT]     Castro, M. and B. Liskov, "Practical byzantine fault
               tolerance and proactive recovery", ACM Transactions on
-              Computer Systems, Volume 20, Issue 4 , November 2002,
-              <https://doi:10.1145/571637.571640>.
+              Computer Systems vol. 20, no. 4, pp. 398-461,
+              DOI 10.1145/571637.571640, November 2002,
+              <https://doi.org/10.1145/571637.571640>.
 
 Appendix A.  Attic
 
