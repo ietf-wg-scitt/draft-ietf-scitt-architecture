@@ -595,11 +595,11 @@ One of the following:
   - Header `Content-Type: application/json`
   - Body `{ "entryId": "<Entry ID"> }`
 
-- Status 202 - Registration is pending.
+- Status 202 - Registration is running.
   - Header `Location: <Base URL>/operations/<Operation ID>`
   - Header `Content-Type: application/json`
   - (Optional) Header: `Retry-After: <seconds>`
-  - Body `{ "operationId": "<Operation ID>", "status": "pending" }`
+  - Body `{ "operationId": "<Operation ID>", "status": "running" }`
 
 - Status 400 - Registration was unsuccessful due to invalid input.
   - Error code `badSignatureAlgorithm`
@@ -619,10 +619,10 @@ GET <Base URL>/operations/<Operation ID>
 
 One of the following:
 
-- Status 200 - Registration is pending
+- Status 200 - Registration is running
     - Header: `Content-Type: application/json`
     - (Optional) Header: `Retry-After: <seconds>`
-    - Body: `{ "operationId": "<Operation ID>", "status": "pending" }`
+    - Body: `{ "operationId": "<Operation ID>", "status": "running" }`
 
 - Status 200 - Registration was successful
     - Header: `Location: <Base URL>/entries/<Entry ID>`
@@ -641,7 +641,7 @@ One of the following:
 
 If an operation failed, then error details SHOULD be embedded as a JSON problem details object in the `"error"` field.
 
-If an operation ID is invalid (i.e., it does not correspond to any submit operation), a service may return either a 404 or a `pending` status. This is because differentiating between the two may not be possible in an eventually consistent system.
+If an operation ID is invalid (i.e., it does not correspond to any submit operation), a service may return either a 404 or a `running` status. This is because differentiating between the two may not be possible in an eventually consistent system.
 
 ### Retrieve Registration Entry
 
