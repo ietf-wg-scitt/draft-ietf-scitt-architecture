@@ -49,6 +49,7 @@ author:
 normative:
   RFC8610: CDDL
   RFC9052: COSE
+  RFC9849: CBOR
 #  RFC9053: COSE-ALGS
 #  RFC9054: COSE-HASH
   RFC9162: CT
@@ -67,6 +68,7 @@ informative:
   I-D.birkholz-scitt-receipts: RECEIPTS
   PBFT: DOI.10.1145/571637.571640
   MERKLE: DOI.10.1007/3-540-48184-2_32
+  RFC9334: rats-arch
 
 venue:
   mail: scitt@ietf.org
@@ -158,22 +160,22 @@ Statement:
 : any serializable information about an Artifact. To help interpretation of Statements, they must be tagged with a media type (as specified in {{RFC6838}}).
 For example, a statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, or some endorsement or attestation about an Artifact.
 
-Claim:
+Signed Statement:
 
-: an identifiable and non-repudiable Statement about an Artifact made by an Issuer. In SCITT, Claims are encoded as COSE signed objects; the payload of the COSE structure contains the Statement.
+: an identifiable and non-repudiable Statement about an Artifact made by an Issuer. In SCITT, Signed Statements are encoded as COSE signed objects; the payload of the COSE structure contains the issued Statement.
 
 Issuer:
 
-: an entity that makes Claims about Artifacts in the supply chain. The Issuer may be the owner or author of the Artifact, or an independent third party such as a reviewer or an endorser.
+: an entity that creates Signed Statements about software Artifacts in the supply chain. An Issuer may be the owner or author of software Artifacts, or an independent third party such as a reviewer or an endorser.
 
 Envelope:
 
-: the metadata added to the Statement by the Issuer to make it a Claim.
-It contains the identity of the Issuer and other information to help Verifiers identify the Artifact referred in the Statement. A Claim binds the Envelope to the Statement. In COSE, the Envelope consists of protected headers.
+: metadata and an Issuer's signature is added to a Statement via COSE envelope by the Issuer to produce a Signed Statement.
+An Envelope contains the identity of the Issuer and other information to help components responsible for validation that are part of a Transparency Services to identify the software Artifact referred to in a Signed Statement. In essence, a Signed Statement is a COSE Envelope wrapped around a Statement binding the metadata included in the Envelope to a Statement. In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).
 
 Feed:
 
-: an identifier chosen by the Issuer for the Artifact. For every Issuer and Feed, the Registry on a Transparency Service contains a sequence of Claims about the same Artifact.
+: an identifier chosen by the Issuer for the Artifact. For every Issuer and Feed, the Registry on a Transparency Service contains a sequence of Signed Statements about the same Artifact.
 In COSE, Feed is a dedicated header attribute in the protected header of the Envelope.
 
 Registry:
@@ -186,31 +188,31 @@ Transparency Service (TS):
 
 Receipt:
 
-: a Receipt is a special form of COSE countersignature for Claims that embeds cryptographic evidence that the Claim is recorded in the Registry. It consists of a Registry-specific inclusion proof, a signature by the Transparency Service of the state of the Registry, and additional metadata (contained in the countersignature protected headers) to assist in auditing.
+: a Receipt is a special form of COSE countersignature for Signed Statments that embeds cryptographic evidence that the Signed Statement is recorded in the Registry. A Receipt consists of a Registry-specific inclusion proof, a signature by the Transparency Service of the state of the Registry, and additional metadata (contained in the countersignature's protected headers) to assist in auditing.
 
 Registration:
 
-: the process of submitting a Claim to a Transparency Service, applying its registration policy, storing it in the Registry, producing a Receipt, and returning it to the submitter.
+: the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's registration policy, storing it in the Registry, producing a Receipt, and returning it to the submitting Issuer.
 
 Registration Policy:
 
-: the pre-condition enforced by the TS before registering a Claim,
-based on its Envelope (notably the identity of its Issuer)
-and on prior claims already in the Registry.
+: the pre-condition enforced by the Transparency Service before registering a Signed Claim,
+based on metadata contained in its COSE Envelope (notably the identity of its Issuer)
+and on prior Signed Statements already added to a Registry.
 
 Transparent Claim:
 
-: a Claim that is augmented with a Receipt of its registration. A Transparent Claim remains a valid Claim (as the Receipt is carried in the countersignature), and may be registered again in a different TS.
+: a Signed Statement that is augmented with a Receipt created via registration at a Transparency Services (stored in the unprotected header of COSE envelope of the Signed Statement). A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.
 
 Verifier:
 
-: an entity that consumes Transparent Claims (a specialization of Claim Consumer), verifying their proofs and inspecting their Statements, either before using their Artifacts, or later to audit their provenance on the supply chain.
+: an entity that consumes Transparent Claims (a specialization of Claim Consumer), verifying their proofs and inspecting their Statements, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.
 
 Auditor:
 
-: an entity that checks the correctness and consistency of all Claims registered by a TS (a specialization of Claim Consumer).
+: an entity that checks the correctness and consistency of all Transparent Claims registered by a Transparency Service (a specialization of Claim Consumer).
 
-Claim Consumer:
+Consumer of Signed Statements:
 
 : [^definehere]
 
@@ -222,15 +224,15 @@ Claim Consumer:
 
 In this document, we use a definition of transparency built over abstract notions of Registry and Receipts. Existing transparency systems such as Certificate Transparency are instances of this definition.
 
-A Claim is an identifiable and non-repudiable Statement made by an Issuer. The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata. Claims can be made transparent by attaching a proof of Registration by a TS, in the form of a Receipt that countersigns the Claim and witnesses its inclusion in the Registry of a TS. By extension, we may say an Artifact (e.g., a firmware binary) is transparent if it comes with one or more Transparent Claims from its author or owner, though the context should make it clear what type of Claim is expected for a given Artifact.
+A Signed Statement is an identifiable and non-repudiable Statement made by an Issuer. The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata. Signed Statements can be made transparent by attaching a proof of Registration by a TS, in the form of a Receipt that countersigns the Signed Statement and witnesses its inclusion in the Registry of a TS. By extension, we may say an Artifact (e.g., a firmware binary) is transparent if it comes with one or more Transparent Signed Statements from its author or owner, though the context should make it clear what type of Signed Statements is expected for a given Artifact.
 
 Transparency does not prevent dishonest or compromised Issuers, but it holds them accountable: any Artifact that may be used to target a particular user that checks for Receipts must have been recorded in the tamper-proof Registry, and will be subject to scrutiny and auditing by other parties.
 
-Transparency is implemented by a Registry that provides a consistent, append-only, cryptographically verifiable, publicly available record of entries. Implementations of TS may protect their Registry using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence. A Receipt is an offline, universally-verifiable proof that an entry is recorded in the Registry. Receipts do not expire, but it is possible to append new entries that subsume older entries.
+Transparency is implemented by a Registry that provides a consistent, append-only, cryptographically verifiable, publicly available record of entries. Implementations of Transparency Service may protect their Registry using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence. A Receipt is an offline, universally-verifiable proof that an entry is recorded in the Registry. Receipts do not expire, but it is possible to append new entries (more recent Signed Statements) that subsume older entries (less recent Signed Statements).
 
-Anyone with access to the Registry can independently verify its consistency and review the complete list of Claims registered by each Issuer. However, the Registries of separate Transparency Services are generally disjoint, though it is possible to take a Claim from one Registry and register it again on another (if its policy allows it), so the authorization of the Issuer and of the Registry by the Verifier of the Receipt are generally independent.
+Anyone with access to the Registry can independently verify its consistency and review the complete list of Transparent Statements registered by each Issuer. However, the Registries of separate Transparency Services are generally disjoint, though it is possible to take a Transparent Statement from one Registry and register it again on another (if its policy allows it), so the authorization of the Issuer and of the Registry by the Verifier of the Receipt are generally independent.
 
-Reputable Issuers are thus incentivized to carefully review their Statements before signing them into Claims. Similarly, reputable TS are incentivized to secure their Registry, as any inconsistency can easily be pinpointed by any auditor with read access to the Registry. Some Registry formats may also support consistency auditing ({{sec-consistency}}) through Receipts, that is, given two valid Receipts the TS may be asked to produce a cryptographic proof that they are consistent. Failure to produce this proof can indicate that the TS operator misbehaved.
+Reputable Issuers are thus incentivized to carefully review their Statements before signing them to produce Signed Statements. Similarly, reputable Transparency Services are incentivized to secure their Registry, as any inconsistency can easily be pinpointed by any auditor with read access to the Registry. Some Registry formats may also support consistency auditing ({{sec-consistency}}) through Receipts, that is, given two valid Receipts the Transparency Service may be asked to produce a cryptographic proof that they are consistent. Failure to produce this proof can indicate that the Transparency Services operator misbehaved.
 
 # Architecture Overview
 
@@ -274,64 +276,64 @@ Auditor       -->     / Collect Receipts /  / Replay Registry /
                      '------------------'  '-----------------'
 ~~~~
 
-The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing, registering and auditing Claims.
-In order to accommodate as many TS implementations as possible, this document only specifies the format of Claims (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the TS identity and the Registry algorithm. Most of the details of the Receipt's contents are specific to the Registry algorithm. The {{-RECEIPTS}} document defines two initial Registry algorithms (for historical and sparse Merkle Trees), but other Registry formats (such as blockchains, or hybrid historical and indexed Merkle Trees) may be proposed later.
+The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing, registering and auditing Transparent Statements.
+In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the Registry algorithm. Most of the details of the Receipt's contents are specific to the Registry algorithm. The {{-RECEIPTS}} document defines two initial Registry algorithms (for historical and sparse Merkle Trees), but other Registry formats (such as blockchains, or hybrid historical and indexed Merkle Trees) may be proposed later.
 
-In this section, we describe at a high level the three main roles and associated processes in SCITT: Issuers and the Claim issuance process, transparency Registry and the Claim Registration process, and Verifiers and the Receipt validation process.
+In this section, we describe at a high level the three main roles and associated processes in SCITT: Issuers and the Signed Statement issuance process, transparency Registry and the Transparent Claim Registration process, as well as  Verifiers and the Receipt validation process.
 
 ## Claim Issuance and Registration
 
 ### Issuer Identity
 
-Before an Issuer is able to produce Claims, it must first create its [decentralized identifier](#DID-CORE) (also known as a DID).
+Before an Issuer is able to produce Signed Statements, it must first create its [decentralized identifier](#DID-CORE) (also known as a DID).
 A DID can be *resolved* into a *key manifest* (a list of public keys indexed by a *key identifier*) using many different DID methods.
 
-Issuers MAY choose the DID method they prefer, but with no guarantee that all TS will be able to register their Claim. To facilitate interoperability, all Transparency Service implementations SHOULD support the `did:web` method {{DID-WEB}}. For instance, if the Issuer publishes its manifest at `https://sample.issuer/user/alice/did.json`, the DID of the Issuer is `did:web:sample.issuer:user:alice`.
+Issuers MAY choose the DID method they prefer, but with no guarantee that all Transparency Services will be able to register their Signed Statements. To facilitate interoperability, all Transparency Service implementations SHOULD support the `did:web` method {{DID-WEB}}. For instance, if the Issuer publishes its manifest at `https://sample.issuer/user/alice/did.json`, the DID of the Issuer is `did:web:sample.issuer:user:alice`.
 
-Issuers SHOULD use consistent decentralized identifiers for all their Artifacts, to simplify authorization by Verifiers and auditing. They MAY update their DID manifest, for instance to refresh their signing keys or algorithms, but they SHOULD NOT remove or change any prior keys unless they intend to revoke all Claims issued with those keys. This DID appears in the Issuer header of the Claim's Envelope, while the version of the key from the manifest used to sign the Claim is written in the `kid` header.
+Issuers SHOULD use consistent decentralized identifiers for all their Statements about Artifacts, to simplify authorization by Verifiers and auditing. They MAY update their DID manifest, for instance to refresh their signing keys or algorithms, but they SHOULD NOT remove or change any prior keys unless they intend to revoke all Signed Statements that are registered as Transparent Statements issued with those keys. This DID appears in the Issuer protected header of Signed Statements' Envelopes, while the version of the key from the manifest used to sign the Signed Statement is written in the `kid` header.
 
 ### Naming Artifacts
 
-Many Issuers issue Claims about different Artifacts under the same DID, so it is important for everyone to be able to immediately recognize by looking at the Envelope of a Claim what Artifact it is referring to. This information is stored in the Feed header of the Envelope. Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Claims under the same key.
+Many Issuers issue Signed Statements about different Artifacts under the same DID, so it is important for everyone to be able to immediately recognize by looking at the Envelope of a Signed Statments what Artifact it is referring to. This information is stored in the Feed header of the Envelope. Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
 
 ### Claim Metadata
 
-Besides Issuer, Feed and kid, the only other mandatory metadata in the Claim is the type of the Payload, indicated in the `cty` (content type) Envelope header.
-However, this set of mandatory metadata is not sufficient to express many important Registration policies. For example, a Registry may only allow a Claim to be registered if it was signed recently. While the Issuer is free to add any information in the payload of the Claim, the TS (and most of its auditors) can only be expected to interpret information in the Envelope.
+Besides Issuer, Feed and kid, the only other mandatory metadata in a Signed Statement is the type of the Payload, indicated in the `cty` (content type) Envelope header.
+However, this set of mandatory metadata is not sufficient to express many important Registration policies. For example, a Registry may only allow a Signed Statement to be registered, if it was signed recently. While the Issuer is free to add any information in the payload of the Signed Statements, the Transparency Services (and most of its auditors) can only be expected to interpret information in the Envelope.
 
-Such metadata, meant to be interpreted by the TS during Registration policy evaluation, should be added to the `reg_info` header. While the header MUST be present in all Claims, its contents consist of a map of named attributes. Some attributes (such as the Issuer's timestamp) are standardized with a defined type, to help uniformize their semantics across TS. Others are completely customizable and may have arbitrary types. In any case, all attributes are optional; so the map MAY be empty.
+Such metadata, meant to be interpreted by the Transparency Services during Registration policy evaluation, should be added to the `reg_info` header. While the header MUST be present in all Signed Statements, its contents consist of a map of named attributes. Some attributes (such as the Issuer's timestamp) are standardized with a defined type, to help uniformize their semantics across Transparency Services. Others are completely customizable and may have arbitrary types. In any case, all attributes are optional; so the map MAY be empty.
 
-## Transparency Service (TS)
+## Transparency Service
 
-The role of TS can be decomposed into several major functions. The most important is maintaining a Registry, the verifiable data structure that records Claims, and enforcing a Registration policy. It also maintains a service key, which is used to endorse the state of the Registry in Receipts. All TS MUST expose standard endpoints for Registration of Claims and Receipt issuance, which is described in {{sec-messages}}. Each TS also defines its Registration policy, which MUST apply to all entries in the Registry.
+The role of Transparency Service can be decomposed into several major functions. The most important is maintaining a Registry, the verifiable data structure that records Signed Statements, and enforcing a Registration policy. It also maintains a service key, which is used to endorse the state of the Registry in Receipts. All Transparency Services MUST expose standard endpoints for Registration of Signed Statements and Receipt issuance, which is described in {{sec-messages}}. Each Transparency Services also defines its Registration policy, which MUST apply to all entries in the Registry.
 
-The combination of Registry, identity, Registration policy evaluation, and Registration endpoint constitute the trusted part of the TS. Each of these components SHOULD be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the TS. For instance, the code for policy evaluation, Registry extension and endorsement may be protected by running in a TEE; the Registry may be replicated and a consensus algorithm such as Practical Byzantine Fault Tolerance (pBFT {{PBFT}}) may be used to protect against malicious or vulnerable replicas; threshold signatures may be use to protect the service key, etc.
+The combination of Registry, identity, Registration policy evaluation, and Registration endpoint constitute the trusted part of the Transparency Service. Each of these components SHOULD be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the Transparency Service. For instance, the code for policy evaluation, Registry extension and endorsement may be protected by running in a TEE; the Registry may be replicated and a consensus algorithm such as Practical Byzantine Fault Tolerance (pBFT {{PBFT}}) may be used to protect against malicious or vulnerable replicas; threshold signatures may be use to protect the service key, etc.
 
-Beyond the trusted components, Transparency Services may operate additional endpoints for auditing, for instance to query for the history of Claims made by a given Issuer and Feed. Implementations of TS SHOULD avoid using the service identity and extending the Registry in auditing endpoints; as much as practical, the Registry SHOULD contain enough evidence to re-construct verifiable proofs that the results returned by the auditing endpoint are consistent with a given state of the Registry.
+Beyond the trusted components, Transparency Services may operate additional endpoints for auditing, for instance to query for the history of Transparent Statements registered by a given Issuer via a certain Feed. Implementations of Transparency Services SHOULD avoid using the service identity and extending the Registry in auditing endpoints; as much as practical, the Registry SHOULD contain enough evidence to re-construct verifiable proofs that the results returned by the auditing endpoint are consistent with a given state of the Registry.
 
 ### Service Identity, Remote Attestation, and Keying
 
-Every TS MUST have a public service identity,
+Every Transparency Services MUST have a public service identity,
 associated with public/private key pairs for signing on behalf of the service. In particular, this identity must be known by Verifiers when validating a Receipt.
 
-This identity should be stable for the lifetime of the service, so that all Receipts remain valid and consistent. The TS operator MAY use a distributed identifier as their public service identity if they wish to rotate their keys, if the Registry algorithm they use for their Receipt supports it. Other types of cryptographic identities, such as parameters for non-interactive zero-knowledge proof systems, may also be used in the future.
+This identity should be stable for the lifetime of the service, so that all Receipts remain valid and consistent. The Transparency Service operator MAY use a distributed identifier as their public service identity if they wish to rotate their keys, if the Registry algorithm they use for their Receipt supports it. Other types of cryptographic identities, such as parameters for non-interactive zero-knowledge proof systems, may also be used in the future.
 
-The TS SHOULD provide evidence that it is securely implemented and operated, enabling remote authentication of the hardware platforms and/or software TCB that run the TS. This additional evidence SHOULD be recorded in the Registry and presented on demand to Verifiers and auditors.
+A Transparency Services SHOULD provide evidence that it is securely implemented and operated, enabling remote authentication of the hardware platforms and/or software TCB that run the Transparency Service. This additional evidence SHOULD be recorded in the Registry and presented on demand to Verifiers and auditors. Examples for Statements that can improve trustworthy assessments of Transparency Services are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see {{-rats-arch}}.
 
-For example, consider a TS implemented using a set of replicas, each running within its own hardware-protected trusted execution environments (TEEs). Each replica SHOULD provide a recent attestation report for its TEE, binding their hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts. This attestation evidence SHOULD be supplemented with transparency Receipts for the software and configuration of the service, as measured in its attestation report.
+For example, consider a Transparency Services implemented using a set of replicas, each running within its own hardware-protected trusted execution environments (TEEs). Each replica SHOULD provide a recent attestation report for its TEE, binding their hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts. This attestation evidence SHOULD be supplemented with transparency Receipts for the software and configuration of the service, as measured in its attestation report.
 
 ### Registration Policies
 
-A TS that accepts to register any valid claim offered by an issuer would end up providing only limited value to verifiers. In consequence, a baseline transparency guarantee policing the registration of claims is required to ensure completeness of audit, which can help detect equivocation.
-Most advanced SCITT scenarios rely on the TS performing additional domain-specific checks before a claim is accepted: TS may only allow trusted authenticated users to register claims, TS may try to check that a new claim is consistent with previous claims from the same issuers or that claims are registered in the correct order and cannot be re-played; some TS may even interpret and validate the payload of claims.
+A Transparency Services that accepts to register any valid Signed Statement offered by an Issuer would end up providing only limited value to verifiers. In consequence, a baseline transparency guarantee policing the registration of Signed Statements is required to ensure completeness of audit, which can help detect equivocation.
+Most advanced SCITT scenarios rely on the Transparency Service performing additional domain-specific checks before a Signed Statement is accepted: Transparency Services may only allow trusted authenticated users to register Signed Statements, Transparency Services may try to check that a new Signed Statement is consistent with previous Signed Statements from the same Issuers or that Signed Statements are registered in the correct order and cannot be re-played; some Transparency Services may even interpret and validate the payload of Signed Statements.
 
-In general, registration policies are applied at the discretion of the TS, and verifiers use receipts as witnesses that confirm that the registration policy of the TS was satisfied at the time claim registration. TS implementations SHOULD make their full registration policy public and auditable, e.g. by recording stateful policy inputs at evaluation time in the registry to ensure that policy can be independently validated later.
-From an interoperability point of view, the policy that was applied by the TS is opaque to the verifier, who is forced to trust the associated registration policy. If the policy of the TS evolves over time, or is different across issuers, the guarantee derived from receipt validation may not be uniform across all claims over time.
+In general, registration policies are applied at the discretion of the Transparency Services, and verifiers use Receipts as witnesses that confirm that the registration policy of the Transparency Services was satisfied at the time of creating a Transparent Claim via Signed Claim registration. Transparency Service implementations SHOULD make their full registration policy public and auditable, e.g. by recording stateful policy inputs at evaluation time in the registry to ensure that policy can be independently validated later.
+From an interoperability point of view, the policy that was applied by the Transparency Services is opaque to the verifier, which is forced to trust the associated registration policy. If the policy of the Transparency Services evolves over time, or is different across Issuers, the assurances  derived from Receipt validation may not be uniform across all Signed Statements over time.
 
-To help verifiers interpret the semantics of claim registration, SCITT defines a standard mechanism for signaling in the claim itself which policies have been applied by the TS from a defined set
-of registration policies with standardized semantics. Each policy that is expected to be enforced by the TS is represented by an entry in the registration policy info map (`reg_info`) in the envelope. The key of the map entry corresponds to the name of the policy, while its value (including its type) is policy-specific. For instance, the `register_by` policy defines the maximum timestamp by which a claim can be registered, hence the associated value contains an unsigned integer.
+To help verifiers interpret the semantics of Signed Statement registration, the SCITT Architecture defines a standard mechanism to include signals the Signed Statement itself which policies have been applied by the Transparency Service from a defined set
+of registration policies with standardized semantics. Each policy that is expected to be enforced by the Transparency Service is represented by an entry in the registration policy info map (`reg_info`) in the COSE Envelope of the Signed Statement. The key of the map entry corresponds to the name of the policy, while its value (including its type) is policy-specific. For instance, the `register_by` policy defines the maximum timestamp by which a Signed Statemnet can be registered, hence the associated value contains an unsigned integer.
 
-While this design ensures that all verifiers get the same guarantee regardless of where a claim is registered, its main downside is that it requires the issuer to include the necessary policies in the envelope when the claim is signed. Furthermore, it makes it impossible to register the same claim on two different TS if their required registration policies are incompatible.
+While this design ensures that all verifiers get the same guarantee regardless of where a Transparent Statement is registered, its main downside is that it requires the Issuer to include the necessary policies in the Envelope when the Signed Statement is produced. Furthermore, it makes it impossible to register the same Signed Statement on two different Transparency Services, if their required registration policies are incompatible.
 
 {:aside}
 > **Editor's note**
@@ -341,42 +343,42 @@ While this design ensures that all verifiers get the same guarantee regardless o
 
 ### Registry Security Requirements
 
-There are many different candidate verifiable data structures that may be used to implement the Registry, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants. We only require the Registry to support concise Receipts (i.e., whose size grows at most logarithmically in the number of entries in the Registry). This does not necessarily rule out blockchains as a Registry, but may necessitate advanced Receipt schemes that use arguments of knowledge and other verifiable computing techniques.
+There are many different candidate verifiable data structures that may be used to implement the Registry, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants. The Registry is only required to support concise Receipts (i.e., whose size grows at most logarithmically in the number of entries in the Registry). This does not necessarily rule out blockchains as a Registry, but may necessitate advanced Receipt schemes that use arguments of knowledge and other verifiable computing techniques.
 
-Since the details of how to verify a Receipt are specific to the data structure, we do not specify any particular Registry format in this document. Instead, we propose two initial formats for Registry in {{-RECEIPTS}} using historical and sparse Merkle Trees. Beyond the format of Receipts, we require generic properties that should be satisfied by the components in the TS that have the ability to write to the Registry.
+Since the details of how to verify a Receipt are specific to the data structure, no particular Registry format is specified in this document. Instead, two initial formats for Registry in {{-RECEIPTS}} using historical and sparse Merkle Trees are proposed. Beyond the format of Receipts, generic properties that should be satisfied by the components in the Transparency Services that have the ability to write to the Registry are required.
 
 #### Finality
 
-The Registry is append-only: once a Claim is registered, it cannot be modified, deleted, or moved. In particular, once a Receipt is returned for a given Claim, the Claim and any preceding entry in the Registry become immutable, and the Receipt provides universally-verifiable evidence of this property.
+A Registry is append-only: once a Signed Statement is registered and becomes a Transparent Claim, it cannot be modified, deleted, or moved. In particular, once a Receipt is returned for a given Signed Statement, the registered Signed Statement and any preceding entry in the Registry become immutable, and the Receipt provides universally-verifiable evidence of this property.
 
 #### Consistency
 
 There is no fork in the Registry: everyone with access to its contents sees the same sequence of entries, and can check its consistency with any Receipts they have collected.
-TS implementations SHOULD provide a mechanism to verify that the state of the Registry encoded in an old Receipt is consistent with the current Registry state.
+Transparency Service implementations SHOULD provide a mechanism to verify that the state of the Registry encoded in an old Receipt is consistent with the current Registry state.
 
 #### Replayability and Auditing
 
 Everyone with access to the Registry can check the correctness of its contents. In particular,
 
-- the TS defines and enforces deterministic Registration policies that can be re-evaluated based solely on the contents of the Registry at the time of registration, and must then yield the same result.
+- the Transparency Service defines and enforces deterministic Registration policies that can be re-evaluated based solely on the contents of the Registry at the time of registration, and must then yield the same result.
 
 - The ordering of entries, their cryptographic contents, and the Registry governance may be non-deterministic, but they must be verifiable.
 
-- The TS SHOULD store evidence about the resolution of distributed identifiers into manifests.
+- A Transparency Services SHOULD store evidence about the resolution of distributed identifiers into manifests.
 
-- The TS MAY additionally support verifiability of client authentication and access control.
+- A Transparency Service MAY additionally support verifiability of client authentication and access control.
 
 #### Governance and Bootstrapping
 
-The TS needs to support governance, with well-defined procedures for allocating resources to operate the Registry (e.g., for provisioning trusted hardware and registering their attestation materials in the Registry) and for updating its code (e.g., relying on Transparent Claims about code updates, secured on the Registry itself, or on some auxiliary TS).
+The Transparency Service needs to support governance, with well-defined procedures for allocating resources to operate the Registry (e.g., for provisioning trusted hardware and registering their attestation materials in the Registry) and for updating its code (e.g., relying on Transparent Claims about code updates, secured on the Registry itself, or on some auxiliary Transparency Service).
 
-Governance procedures, their auditing, and their transparency are implementation specific. The TS SHOULD document them.
+Governance procedures, their auditing, and their transparency are implementation specific. A Transparency Service SHOULD document them.
 
-- Governance may be based on a consortium of members that are jointly responsible for the TS, or automated based on the contents of an auxiliary governance TS.
+- Governance may be based on a consortium of members that are jointly responsible for the Transparency Services, or automated based on the contents of an auxiliary governance Transparency Service.
 
-- Governance typically involves additional records in the Registry to enable its auditing. Hence, the Registry may contain both Transparent Claims and governance entries.
+- Governance typically involves additional records in the Registry to enable its auditing. Hence, the Registry may contain both Transparent Statements and governance entries.
 
-- Issuers, Verifiers, and third-party auditors may review the TS governance before trusting the service, or on a regular basis.
+- Issuers, Verifiers, and third-party auditors may review the Transparency Service governance before trusting the service, or on a regular basis.
 
 ## Verifying Transparent Claims {#validation}
 
@@ -384,35 +386,35 @@ For a given Artifact, Verifiers take as trusted inputs:
 
 1. the distributed identifier of the Issuer (or its resolved key manifest),
 2. the expected name of the Artifact (i.e., the Feed),
-3. the list of service identities of trusted TS.
+3. the list of service identities of trusted Transparency Services.
 
-When presented with a Transparent Claim for the Artifact, they verify its Issuer identity, signature, and Receipt.
-They may additionally apply a validation policy based on the protected headers present both in the Envelope or in the countersignature and the Statement itself, which may include security-critical Artifact-specific details.
+When presented with a Transparent Statement for an Artifact, consumers verify its Issuer identity, signature, and Receipt.
+They may additionally apply a validation policy based on the protected headers present both in the Envelope, the Receipt, or the Statement itself, which may include security-critical or Artifact-specific details.
 
-Some Verifiers may systematically resolve the Issuer DID to fetch their latest DID document. This strictly enforces the revocation of compromised keys: once the Issuer has updated its document to remove a key identifier, all Claims signed with this `kid` will be rejected. However, others may delegate DID resolution to a trusted third party and/or cache its results.
+Some Verifiers may systematically resolve Issuer DIDs to fetch the latest corresponding DID documents. This behaviour strictly enforces the revocation of compromised keys: once the Issuer has updated its Statement to remove a key identifier, all Signed Statements include the corresponding `kid` will be rejected. However, others may delegate DID resolution to a trusted third party and/or cache its results.
 
-Some Verifiers may decide to skip the DID-based signature verification, relying on the TS's Registration policy and the scrutiny of other Verifiers. Although this weakens their guarantees against key revocation, or against a corrupt TS, they can still keep the Receipt and blame the Issuer or the TS at a later point.
+Some Verifiers may decide to skip the DID-based signature verification, relying on the Transparency Service's Registration policy and the scrutiny of other Verifiers. Although this weakens their guarantees against key revocation, or against a corrupt Transparency Services, they can still keep the Receipt and blame the Issuer or the Transparency Services at a later point.
 
 # Claim Issuance, Registration, and Verification
 
-This section details the interoperability requirements for implementers of Claim issuance and validation libraries, and of Transparency Services.
+This section details the interoperability requirements for implementers of Signed Statements issuance and validation libraries, and of Transparency Services.
 
 ##  Envelope and Claim Format
 
-The formats of Claims and Receipts are based on CBOR Object Signing and Encryption (COSE). The choice of CBOR is a trade-off between safety (in particular, non-malleability: each Claim has a unique serialization), ease of processing and availability of implementations.
+The formats of Signed Statements and Receipts are based on CBOR Object Signing and Encryption (COSE {{-COSE}}). The choice of CBOR {{-CBOR}} is a trade-off between safety (in particular, non-malleability: each Signed Statement has a unique serialization), ease of processing and availability of implementations.
 
-At a high-level that is the context of this architecture, a Claim is a COSE single-signed object (i.e., `COSE_Sign1`) that contains the correct set of protected headers. Although Issuers and relays may attach unprotected headers to Claims, Transparency Services and Verifiers MUST NOT rely on the presence or value of additional unprotected headers in Claims during Registration and validation.
+At a high-level that is the context of this architecture, a Signed Statement is a COSE single-signed object (i.e., a `COSE_Sign1`) that contains the correct set of protected headers. Although Issuers and relaying parties may attach unprotected headers to Signed Statements, Transparency Services and Verifiers MUST NOT rely on the presence or value of additional unprotected headers in Signed Statements during Registration and validation.
 
-All Claims MUST include the following protected headers:
+All Signed Statements MUST include the following protected headers:
 
-- algorithm (label: `1`): Asymmetric signature algorithm used by the Claim Issuer, as an integer, for example `-35` for ECDSA with SHA-384, see [COSE Algorithms registry](#IANA.cose);
+- algorithm (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer, for example `-35` for ECDSA with SHA-384, see [COSE Algorithms registry](#IANA.cose);
 - Issuer (label: `TBD`, temporary: `391`): DID (Decentralized Identifier {{DID-CORE}}) of the signer, as a string, for example `did:web:example.com`;
 - Feed (label: `TBD`, temporary: `392`): the Issuer's name for the Artifact, as a string;
-- payload type (label: `3`): Media type of payload as a string, for example `application/spdx+json`
+- payload type (label: `3`): media-type of Statement payload as a string, for example `application/spdx+json`
 - Registration policy info (label: `TBD`, temporary: `393`): a map of additional attributes to help enforce Registration policies;
 - Key ID (label: `4`): Key ID, as a bytestring.
 
-Additionally, Claims MAY carry the following unprotected headers:
+Additionally, Signed Statements MAY carry the following unprotected headers:
 
 - Receipts (label: `TBD`, temporary: `394`): Array of Receipts, defined in {{-RECEIPTS}}
 
@@ -456,9 +458,9 @@ Unprotected_Header = {
 }
 ~~~~
 
-## Claim Issuance
+## Signed Statement Issuance
 
-There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Claims. The Issuer must first decide on a suitable format to serialize the Statement, such as:
+There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements. An Issuer must first decide on a suitable format to serialize the Statement payload, such as:
 
 - JSON-SPDX
 - CBOR-SPDX
@@ -468,11 +470,11 @@ There are many types of Statements (such as SBOMs, malware scans, audit reports,
 - in-toto
 - SLSA
 
-Once the Statement is serialized with the correct content type, the Issuer should fill in the attributes for the Registration policy information header. From the Issuer's perspective, using attributes from named policies ensures that the Claim may only be registered on Transparency Services that implement the associated policy. For instance, if a Claim is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers SHOULD use the `sequence_no` or `issuer_ts` attributes.
+Once the Statement is serialized with the correct media-type/content-format, an Issuer should fill in the attributes for the Registration policy information header. From the Issuer's perspective, using attributes from named policies ensures that the Signed Statement may only be registered on Transparency Services that implement the associated policy. For instance, if a Signed Statement is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers SHOULD use the `sequence_no` or `issuer_ts` attributes.
 
-Once all the Envelope headers are set, the Issuer MAY use a standard COSE implementation to produce the serialized Claim (the SCITT tag of `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Claim).
+Once all the Envelope headers are set, an Issuer SHOULD use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).
 
-## Standard registration policies
+## Standard Registration Policies
 
 {:aside}
 > **Editor's note**
@@ -481,64 +483,71 @@ Once all the Envelope headers are set, the Issuer MAY use a standard COSE implem
 > We expect that once the formats and semantics of the registration policy headers are finalized, standardized policies may be moved to a separate draft.
 > For now, we inline some significant policies to illustrate the most common use cases.
 
-TS implementations MUST indicate their support for registration policies and MUST check that all the policies indicated as defined in the `reg_info` map are supported and are satisfied before a claim can be registered. Any unsupported claims MUST be indicated separately and corresponding unknown policy entries in the map of a claim MUST be rejected. This is to ensure that all verifiers get the same guarantee out of the registration policies regardless of where it is registered.
+Transparency Service implementations MUST indicate their support for registration policies and MUST check that all the policies indicated as defined in the `reg_info` map are supported and are satisfied before a Signed Statement can be registered. Any unsupported types of Signed Statements MUST be indicated separately and corresponding unknown policy entries in the map of a Signed Statement MUST be rejected. This is to ensure that all verifiers get the same guarantee out of the registration policies regardless of where it is registered.
 
 Policy Name | Required `reg_info` attributes | Implementation
 ---|---|---
-TimeLimited | `register_by: uint .within (~time)` | Returns true if now () < `register_by` at registration time. The ledger MUST store the ledger time at registration along with the claim, and SHOULD indicate it in receipts. The value provided for `register_by` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
-Sequential | `sequence_no: uint` | First, lookup in the ledger for claims with the same issuer and feed. If at least one is found, returns true if and only if the `sequence_no` of the new claim is the highest `sequence_no` in the existing claims incremented by one. Otherwise, returns true if and only if `sequence_no = 0`.
-Temporal | `issuance_ts: uint .within (~time)` | Returns true if and only if there is no claim in the ledger with the same issuer and feed with a greater `issuance_ts` and now () > `issuance_ts` at registration time. The value provided for `issuance_ts` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
-NoReplay | `no_replay: null` | If the `no_replay` attribute is present then the policy returns true if and only if the claim doesn't already appear in the ledger. This policy has no required attributes.
+TimeLimited | `register_by: uint .within (~time)` | Returns true if now () < `register_by` at registration time. The Transparency Service MUST store the time of registration along with the Signed Statement, and SHOULD indicate it in corresponding Receipts. The value provided for `register_by` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
+Sequential | `sequence_no: uint` | First, lookup of existing registered Transparent Statements with same Issuer and Feed. If at least one is found, returns true if and only if the `sequence_no` of the new Signed Statement to be registered would become the highest `sequence_no` in the set of existing Transparent Statements, incremented by one. Otherwise, returns true if and only if `sequence_no = 0`.
+
+Temporal | `issuance_ts: uint .within (~time)` | Returns true if and only if there is no existing already registered Transparent Claim in the ledger with the same Issuer and Feed with a greater `issuance_ts` and now () > `issuance_ts` at registration time. The value provided for `issuance_ts` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
+NoReplay | `no_replay: null` | If the `no_replay` attribute is present then the policy returns true if and only if the Signed Statement about to be registered doesn't already appear in the ledger. This policy has no required attributes.
 {: #tbl-initial-named-policies title="An Initial Set of Named Policies"}
 
-## Registering Signed Claims
+## Registering Signed Statements
 
-The same Claim may be independently registered in multiple TS. To register a Claim, the service performs the following steps:
+The same Signed Statement may be independently registered in multiple Transparency Services. To register a Signed Statement, the service performs the following steps:
 
-1. Client authentication. This is implementation-specific, and MAY be unrelated to the Issuer identity. Claims may be registered by a different party than their Issuer.
+1. Client authentication. This is implementation-specific and MAY be unrelated to the Issuer identity. Signed Statements may be registered by a different party than their Issuer.
 
-2. Issuer identification. The TS MUST store evidence of the DID resolution for the Issuer protected header of the Envelope and the resolved key manifest at the time of Registration for auditing. This MAY require that the service resolve the Issuer DID and record the resulting document, or rely on a cache of recent resolutions.
+2. Issuer identification. The Transparency Service MUST store evidence of the DID resolution for the Issuer protected header of the Envelope and the resolved key manifest at the time of Registration for auditing. This MAY require that the service resolves the Issuer DID and record the resulting document, or rely on a cache of recent resolutions.
 
 3. Envelope signature verification, as described in COSE signature, using the signature algorithm and verification key of the Issuer DID document.
 
-4. Envelope validation. The service MUST check that the Envelope has a payload and the protected headers listed above. The service MAY additionally verify the payload format and content.
+4. Envelope validation. The service MUST check that the Envelope includes a Statement payload and the protected headers listed above. The service MAY additionally verify the Statement payload format and content.
 
-5. Apply Registration policy: for named policies, the TS should check that the required Registration info attributes are present in the Envelope and apply the check described in Table 1. A TS MUST reject Claims that contain an attribute used for a named policy that is not enforced by the service. Custom Claims are evaluated given the current Registry state and the entire Envelope, and MAY use information contained in the attributes of named policies.
+5. Apply Registration policy: for named policies, the Transparency Service should check that the required Registration info attributes are present in the Envelope and apply the check described in Table 1. A Transparency Service MUST reject Signed Statements that contain an attribute used for a named policy that is not enforced by the service. Custom Signed Statements are evaluated given the current Registry state and the entire Envelope, and MAY use information contained in the attributes of named policies.
 
-6. Commit the new Claim to the Registry
+6. Commit (register) the new Signed Statement to the Registry
 
 7. Sign and return the Receipt.
 
-The last two steps MAY be shared between a batch of Claims recorded in the Registry.
+The last two steps MAY be shared between a batch of Signed Statements recorded in the Registry.
 
-The service MUST ensure that the Claim is committed before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry in the Registry. Conversely, the service MAY re-issue Receipts for the Registry content, for instance after a transient fault during Claim Registration.
+A Transparency Service MUST ensure that a Signed Statement is registered before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry (the now Transparent Claim) in the Registry. Conversely, the service MAY re-issue Receipts for the Registry content, for instance after a transient fault during Signed Statement Registration.
 
-## Validation of Transparent Claims
+## Validation of Transparent Statements
 
-This section provides additional implementation considerations.  The high-level validation algorithm is described in {{validation}}; the Registry-specific details of checking Receipts are covered in {{-RECEIPTS}}.
+This section provides additional implementation considerations. The high-level validation algorithm is described in {{validation}}; the Registry-specific details of checking Receipts are covered in {{-RECEIPTS}}.
 
-Before checking a Claim, the Verifier must be configured with one or more identities of trusted Transparency Services. If more than one service is configured, the Verifier MUST return which service the Claim is registered on.
+Before checking a Transparent Statement, the Verifier must be configured with one or more identities of trusted Transparency Services. If more than one service is configured, the Verifier MUST return which service the Transparent Statement is registered on.
 
-In some scenarios, the Verifier already expects a specific Issuer and Feed for the Claim, while in other cases they are not known in advance and can be an output of validation. Verifiers SHOULD offer a configuration to decide if the Issuer's signature should be locally verified (which may require a DID resolution, and may fail if the manifest is not available or if the key is revoked), or if it should trust the validation done by the TS during Registration.
+In some scenarios, the Verifier already expects a specific Issuer and Feed for the Transparent Statement, while in other cases they are not known in advance and can be an output of validation. Verifiers SHOULD offer a configuration to decide if the Issuer's signature should be locally verified (which may require a DID resolution, and may fail if the manifest is not available or if the key is revoked), or if it should trust the validation done by the Transparency Service during Registration.
 
-Some Verifiers MAY decide to locally re-apply some or all of the Registration policies if they have limited trust in the TS. In addition, Verifiers MAY apply arbitrary validation policies after the signature and Receipt have been checked. Such policies may use as input all information in the Envelope, the Receipt, and the payload, as well as any local state.
+Some Verifiers MAY decide to locally re-apply some or all of the Registration policies, if they have limited trust in the Transparency Services. In addition, Verifiers MAY apply arbitrary validation policies after the signature and Receipt have been checked. Such policies may use as input all information in the Envelope, the Receipt, and the Statement payload, as well as any local state.
 
-Verifiers SHOULD offer options to store or share Receipts in case they are needed to audit the TS in case of a dispute.
+Verifiers SHOULD offer options to store or share Receipts in case they are needed to audit the Transparency Services in case of a dispute.
 
-# Federation
+# Federation[^1]
+
+[^1]: This section needs work.
+{: source="Henk"}
 
 Editor's note: This section needs work.
 
-Multiple, independently-operated transparency services can help secure distributed supply chains, without the need for a single, centralized service trusted by all parties. For example, multiple SCITT instances may be governed and operated by different organizations that do not trust one another.
+Multiple, independently-operated Transparency Services can help secure distributed supply chains, without the need for a single, centralized service trusted by all parties. For example, multiple Transparency Service instances may be governed and operated by different organizations that do not trust one another.
 
-This may involve registering the same Claims at different transparency services, each with their own purpose and registration policy.
-This may also involve attaching multiple Receipts to the same Claims, each Receipt endorsing the Issuer signature and a subset of prior Receipts, and each TS verifying prior Receipts as part of their registration policy.
+This may involve registering the same Signed Statements at different Transparency Services, each with their own purpose and registration policy.
+This may also involve attaching multiple Receipts to the same Signed Statements, each Receipt endorsing the Issuer signature and a subset of prior Receipts, and each Transparency Service  verifying prior Receipts as part of their registration policy.
 
 For example,
-a supplier TS may provide a complete, authoritative Registry for some kind of Claims, whereas a consumer TS may collect different kinds of Claims
-to ensure complete auditing for a specific use case, and possibly require additional reviews before registering some of these claims.
+a supplier's Transparency Service may provide a complete, authoritative Registry for some kind of Signed Statements, whereas a consumer's Transparency Service may collect different kinds of Signed Statements
+to ensure complete auditing for a specific use case, and possibly require additional reviews before registering some of these Signed Statements.
 
-# Transparency Service API
+# Transparency Service API[^2]
+
+[^2]: This may be moved to appendix.
+{: source="Henk"}
 
 Editor's Note: This may be moved to appendix.
 
@@ -580,9 +589,9 @@ The `400` response has a `Content-Type: application/json` header and a body cont
 }
 ```
 
-`AwaitingDIDResolutionTryLater` means the service does not have an up-to-date DID document of the DID referenced in the Signed Claims but is performing or will perform a DID resolution after which the client may retry the request. The response may contain the HTTP header `Retry-After` to inform the client about the expected wait time.
+`AwaitingDIDResolutionTryLater` means the service does not have an up-to-date DID document of the DID referenced in the Signed Statements but is performing or will perform a DID resolution after which the client may retry the request. The response may contain the HTTP header `Retry-After` to inform the client about the expected wait time.
 
-`InvalidInput` means either the Signed Claims message is syntactically malformed, violates the signing profile (e.g. signing algorithm), or has an invalid signature relative to the currently resolved DID document.
+`InvalidInput` means either the Signed Statements message is syntactically malformed, violates the signing profile (e.g. signing algorithm), or has an invalid signature relative to the currently resolved DID document.
 
 ### Retrieve Registration Receipt
 
@@ -614,56 +623,56 @@ The retrieved Receipt may be embedded in the corresponding COSE_Sign1 document i
 
 # Privacy Considerations
 
-Unless advertised by the TS, every Issuer should treat its Claims as public. In particular, their Envelope and Statement should not carry any private information in plaintext.
+Unless advertised by a Transparency Service, every Issuer should treat Signed Statements it registered (rendering them Transparent Claims) as public. In particular, Signed Statement's Envelopes and Statement payload should not carry any private information in plaintext.
 
 # Security Considerations
 
-On its own, verifying a Transparent Claim does not guarantee that its Envelope or contents are trustworthy---just that they have been signed by the apparent Issuer and counter-signed by the
-TS. If the Verifier trusts the Issuer, it can infer that the Claim was issued with this Envelope and contents, which may be interpreted as the Issuer saying the Artifact is fit for its intended purpose. If the Verifier trusts the TS, it can independently infer that the Claim passed the TS Registration policy and that has been persisted in the Registry. Unless advertised in the TS Registration policy, the Verifier should not assume that the ordering of Transparent Claims in the Registry matches the ordering of their issuance.
+On its own, verifying a Transparent Statement does not guarantee that its Envelope or contents are trustworthy---just that they have been signed by the apparent Issuer and counter-signed by the
+Transparency Service. If the Verifier trusts the Issuer, it can infer that an Issuer's Signed Statement was issued with this Envelope and contents, which may be interpreted as the Issuer saying the Artifact is fit for its intended purpose. If the Verifier trusts the Transparency Service, it can independently infer that the Signed Statement passed the Transparency Service Registration policy and that has been persisted in the Registry. Unless advertised in the Transparency Service Registration policy, the Verifier should not assume that the ordering of Transparent Statements in the Registry matches the ordering of their issuance.
 
-Similarly, the fact that an Issuer can be held accountable for its Transparent Claims does not on its own provide any mitigation or remediation mechanism in case one of these Claims turned out to be misleading or malicious---just that signed evidence will be available to support them.
+Similarly, the fact that an Issuer can be held accountable for its Transparent Statements does not on its own provide any mitigation or remediation mechanism in case one of these Transparent Statements turned out to be misleading or malicious---just that signed evidence will be available to support them.
 
-Issuers SHOULD ensure that the Statements in their Claims are correct and unambiguous, for example by avoiding ill-defined or ambiguous formats that may cause Verifiers to interpret the Claim as valid for some other purpose.
+Issuers SHOULD ensure that the Statement payloads in their Signed Statements are correct and unambiguous, for example by avoiding ill-defined or ambiguous formats that may cause Verifiers to interpret the Signed Statement as valid for some other purpose.
 
 Issuers and Transparency Services SHOULD carefully protect their private signing keys
-and avoid these keys for any purpose not described in this architecture. In case key re-use is unavoidable, they MUST NOT sign any other message that may be verified as an Envelope.
+and avoid these keys for any purpose not described in this architecture document. In cases where key re-use is unavoidable, keys MUST NOT sign any other message that may be verified as an Envelope as part of a Signed Statement.
 
 ## Threat Model
 
-We provide a generic threat model for SCITT, describing its residual security properties when some of its actors (identity providers, Issuers, TS, and Auditors) are corrupt or compromised.
+We provide a generic threat model for SCITT, describing its residual security properties when some of its actors (identity providers, Issuers, Transparency Services, and Auditors) are corrupt or compromised.
 
 This model may need to be refined to account for specific supply chains and use cases.
 
-### Claim authentication and transparency.
+### Claim Authentication and Transparency.
 
-SCITT primarily supports evidence of Claim integrity, both from the Issuer (authentication) and from the TS (transparency). These guarantees are meant to hold for the long term, possibly decades.
+SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency). These guarantees are meant to hold for the extensive periods of time, possibly decades.
 
-We conservatively suppose that some issuers and some TS will be corrupt.
+It can never be assumed that some Issuers and some Transparency Services will not be corrupt.
 
-SCITT entities explicitly trust one another on the basis of their long-term identity, which maps to shorter-lived cryptographic credentials. Hence, a Verifier would usually validate a transparent signed Claim from a given Issuer, registered at a given TS (both identified in the Verifier's local authorization policy) and would not depend on any other Issuer or TS.
+SCITT entities explicitly trust one another on the basis of their long-term identity, which maps to shorter-lived cryptographic credentials. Hence, a Verifier would usually validate a Transparent Statement originating from a given Issuer, registered at a given Transparency Service (both identified in the Verifier's local authorization policy) and would not depend on any other Issuer or Transparency Services.
 
-We cannot stop authorized supply chain actors from making false claims (either by mistake or by corruption) but we can make them accountable by ensuring their Claims are systematically registered at a trustworthy TS.
+Authorized supply chain actors (Issuers) cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a trustworthy Transparency Service.
 
-Similarly, we aim to provide strong residual guarantees against a faulty/corrupt TS. We cannot stop a TS from registering Claims that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their append-only Registry, but we can hold it accountable and guarantee that it will be blamed by any Auditor that replays their Registry against any contested Receipt. Note that SCITT does not require trust in a single centralized TS: different actors may rely on different TS, each registering a subset of claims subject to their own policy.
+Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal. Preventing a Transparency Service from registering Claims that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their append-only Registry is not possible. In contrast Transparency Services can be hold accountable and they can be called out by any Auditor that replays their Registry against any contested Receipt. Note that the SCITT Architecture does not require trust in a single centralized Transparency Service: different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
 
-In both cases, SCITT provides generic, universally-verifiable cryptographic evidence to individually blame the Issuer or the TS. This enables valid actors to detect and disambiguate malicious actors who make contradictory Claims to different entities (Verifiers, Auditors, Issuers). On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope for SCITT.
+In both cases, the SCITT Architecture provides generic, universally-verifiable cryptographic proof to individually blame Issuers or the Transparency Service. On the one hand, this enables valid actors to detect and disambiguate malicious actors who issue contradictory Signed Statements to different entities (Verifiers, Auditors, Issuers). On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT Architecture.
 
-Verifiers and Auditors need not be trusted by other actors. In particular, they cannot "frame" an Issuer or a TS for claims they did not issue or register.
+Verifiers and Auditors need not be trusted by other actors. In particular, they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.
 
 **Append-only log**
 
-If a TS is honest, then a transparent signed Claim with a correct Receipt of registration at a given position ensures that the signed claim passed its Registration Policy and was recorded at that position in its Registry.
+If a Transparency Service is honest, then a Transparent Statement including a correct Receipt ensures that the Transparent Statement passed its Registration Policy and was recorded appropriately.
 
-Conversely, a corrupt TS may
-1. refuse or delay the registration of Claims;
-2. register Claims that do not pass its Registration Policy (e.g. Claims with Issuer identities and signatures that do not verify.)
-3. issue verifiable Receipts for Claims that do not match its Registry;
-4. refuse access to its Registry (e.g. to Auditors, possibly after storage loss)
+Conversely, a corrupt Transparency Service may
+1. refuse or delay the registration of Signed Statements,
+2. register Signed Statements that do not pass its Registration Policy (e.g., Claims with Issuer identities and signatures that do not verify),
+3. issue verifiable Receipts for Signed Statements that do not match its Registry, or
+4. refuse access to its Registry (e.g., to Auditors, possibly after storage loss).
 
-An Auditor granted (partial) access to the Registry and to a collection of disputed Receipts will be able to replay it, detect any invalid Registration (2) or incorrect  receipt in this collection (3), and blame the TS for them. This ensures any Verifier that trust at least one such Auditor that (2,3) will be blamed to the TS.
+An Auditor granted (partial) access to a Registry and to a collection of disputed Receipts will be able to replay it, detect any invalid Registration (2) or incorrect Receipt in this collection (3), and blame the Transparency Service for them. This ensures any Verifier that trusts at least one such Auditor that (2,3) will be blamed to the Transparency Service.
 
 Due to the operational challenge of maintaining a globally consistent append-only Registry,
-some TS may provide limited support for historical queries on the Claims they have registered,
+some Transparency Services may provide limited support for historical queries on the Transparent Statements they have registered,
 and accept the risk of being blamed for inconsistent Registration or Issuer equivocation.
 
 Verifier and Auditors may also witness (1,4) but may not be able to collect verifiable evidence for it.
@@ -672,45 +681,45 @@ Verifier and Auditors may also witness (1,4) but may not be able to collect veri
 
 Networking and Storage are trusted only for availability.
 
-Auditing may involve access to data beyond what is persisted in the TS log. For example, the registered TS may include only the hash of a detailed SBOM, which may limit the scope of auditing.
+Auditing may involve access to data beyond what is persisted in the Transparency Services. For example, the registered Transparency Service may include only the hash of a detailed SBOM, which may limit the scope of auditing.
 
 Resistance to denial-of-service is implementation specific.
 
-Actors should independently keep their own record of the Claims they issue, endorse, verify, or audit.
+Actors should independently keep their own record of the Signed Statements they issue, endorse, verify, or audit.
 
 ### Confidentiality and privacy.
 
-The network is untrusted. All contents exchanged between actors is protected using secure authenticated channels (TLS) but, as usual, this may not exclude network traffic analysis.
+According to Zero Trust Principles any location in a network is never trusted. All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but, as usual, this may not exclude network traffic analysis.
 
 **Claims and their registration**
 
-The TS is trusted with the confidentiality of the claims presented for registration. Some TS may publish every claim in their logs, to facilitate their dissemination and auditing. Others may just return receipts to the client that present claims for registration, and disclose the ledger only to auditors trusted with the confidentiality of its contents.
+The Transparency Service is trusted with the confidentiality of the Signed Statements presented for registration. Some Transparency Services may publish every Transparent Claim in their logs, to facilitate their dissemination and auditing. Others may just return Receipts to clients that present Singed Statements for registration, and disclose the ledger only to auditors trusted with the confidentiality of its contents.
 
-A collection of transparent Claims leaks no information about the contents of other Claims registered at the TS.
+A collection of Transparent Statements leaks no information about the contents of other Transparent Claims registered at the Transparency Service.
 
-Nonetheless, Issuers should carefully review the inclusion of private/confidential materials in their Claims; they may for instance remove any PII, or include instead opaque cryptographic commitments, such as hashes.
+Nonetheless, Issuers should carefully review the inclusion of private/confidential materials in their issued Signed Statements; they may for instance remove any PII, or include instead opaque cryptographic commitments, such as hashes.
 
 **Queries to the Registry**
 
-The confidentiality of queries is implementation-specific, and generally not guaranteed. For example, while offline Claim verification is private, a TS may monitor which of its Claims are being verified from lookups to ensure their freshness.
+The confidentiality of queries is implementation-specific, and generally not guaranteed. For example, while offline Envelope validation of Signed Statements is private, a Transparency Services may monitor which of its Transparent Claims are being verified from lookups to ensure their freshness.
 
 ### Cryptographic Assumptions
 
-We rely on standard cryptographic security for signing schemes (EUF-CMA: for a given key, given the public key and any number of signed messages, the attacker cannot forge a valid signature for any other message) and for receipts schemes (log collision-resistance: for a given commitment such as a Merkle-tree root, there is a unique log such that any valid path authenticates a claim in this log.)
+We rely on standard cryptographic security for signing schemes (EUF-CMA: for a given key, given the public key and any number of signed messages, an attacker cannot forge a valid signature for any other message) and for Receipts schemes (log collision-resistance: for a given commitment such as a Merkle-tree root, there is a unique log such that any valid path authenticates a Signed Statement in this log.)
 
-SCITT supports cryptographic agility: the actors depend only on the subset of signing and receipt schemes they trust. This enables the gradual transition to stronger algorithms, including e.g. post-quantum signature algorithms.
+The SCITT Architecture supports cryptographic agility: the actors depend only on the subset of signing and Receipt schemes they trust. This enables the gradual transition to stronger algorithms, including e.g. post-quantum signature algorithms.
 
-### TS Clients
+### Transparency Service Clients
 
-Trust in clients that submit Claims for registration is implementation-specific. Hence, an attacker may attempt to register any Claim it has obtained, at any TS that accepts them, possibly multiple times and out of order. This may be mitigated by a TS that enforces restrictive access control and registration policies.
+Trust in clients that submit Signed Statements for registration is implementation-specific. Hence, an attacker may attempt to register any Signed Statement it has obtained, at any Transparency Service that accepts them, possibly multiple times and out of order. This may be mitigated by a Transparency Services that enforces restrictive access control and Registration policies.
 
 ### Identity
 
-The identity resolution mechanism is trusted to associate long-term identifiers with their public signature-verification keys. (The TS and other parties may record identity-resolution evidence to facilitate its auditing.)
+The identity resolution mechanism is trusted to associate long-term identifiers with their public signature-verification keys. (Transparency Services and other parties may record identity-resolution evidence to facilitate its auditing.)
 
-If one of the credentials of an Issuer gets compromised, SCITT still guarantee the authenticity of all claims signed with this credential that have been registered on a TS before the compromise. It is up to the Issuer to notify TS of credential revocation to stop Verifiers from accepting Claims signed with compromised credentials. [See the thread of revocation for additional details.]
+If one of the credentials of an Issuer gets compromised, the SCITT Architecture still guarantees the authenticity of all Signed Statements signed with this credential that have been registered on a Transparency Service before the compromise. It is up to the Issuer to notify Transparency Services of credential revocation to stop Verifiers from accepting Signed Statements signed with compromised credentials.
 
-The confidentiality of any identity lookup during Claim Registration or Claim Verification is out of scope.
+The confidentiality of any identity lookup during Signed Statement Registration or Transparent Statement Verification is out of scope.
 
 # IANA Considerations
 
