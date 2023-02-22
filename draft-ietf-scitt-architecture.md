@@ -604,7 +604,7 @@ One of the following:
 
 - Status 400 - Registration was unsuccessful due to invalid input.
   - Error code `badSignatureAlgorithm`
-  - [TODO]: more error codes to be defined
+  - [TODO]: more error codes to be defined, see [#17](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17)
 
 If 202 is returned, then clients should wait until registration succeeded or failed by polling the registration status using the Operation ID returned in the response. Clients should always obtain a receipt as a proof that registration has succeeded.
 
@@ -634,7 +634,7 @@ One of the following:
     - Header `Content-Type: application/json`
     - Body: `{ "operationId": "<Operation ID>", "status": "failed", "error": { "type": "<type>", "detail": "<detail>" } }`
     - Error code: `badSignatureAlgorithm`
-    - [TODO]: more error codes to be defined
+    - [TODO]: more error codes to be defined, see [#17](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17)
 
 - Status 404 - Unknown Operation ID
     - Error code: `operationNotFound`
