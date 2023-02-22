@@ -558,12 +558,12 @@ If the transparency service cannot process a client's request, it MUST return an
 
 Error responses SHOULD be sent with the `Content-Type: application/problem+json` HTTP header.
 
-As an example, submitting a claim with an unsupported signature algorithm would return a `400 Bad Request` status code and the following body:
+As an example, submitting a signed statement with an unsupported signature algorithm would return a `400 Bad Request` status code and the following body:
 
 ~~~json
 {
   "type": "urn:ietf:params:scitt:error:badSignatureAlgorithm",
-  "detail": "The claim was signed with an algorithm the server does not support"
+  "detail": "The statement was signed with an algorithm the server does not support"
 }
 ~~~
 
@@ -573,7 +573,7 @@ Most error types are specific to the type of request and are defined in the resp
 
 Clients SHOULD treat 500 and 503 HTTP status code responses as transient failures and MAY retry the same request without modification at a later date. Note that in the case of a 503 response, the transparency service MAY include a `Retry-After` header field per {{RFC7231}} in order to request a minimum time for the client to wait before retrying the request. In the absence of this header field, this document does not specify a minimum.
 
-### Register Signed Claims
+### Register Signed Statement
 
 #### Request
 
@@ -644,7 +644,7 @@ If an operation failed, then error details SHOULD be embedded as a JSON problem 
 
 If an operation ID is invalid (i.e., it does not correspond to any submit operation), a service may return either a 404 or a `running` status. This is because differentiating between the two may not be possible in an eventually consistent system.
 
-### Retrieve Registration Entry
+### Retrieve Signed Statement
 
 #### Request
 
@@ -652,29 +652,11 @@ If an operation ID is invalid (i.e., it does not correspond to any submit operat
 GET <Base URL>/entries/<Entry ID>
 ~~~
 
-#### Response
-
-One of the following:
-
-- Status 200.
-  - Header `Content-Type: application/json`
-  - Body `{ "entryId": "<Entry ID>" }`
-- Status 404 - Entry not found.
-  - Error code: `entryNotFound`
-
-### Retrieve Registered Claim
-
-#### Request
-
-~~~
-GET <Base URL>/entries/<Entry ID>/claim
-~~~
-
 Query parameters:
 
 - (Optional) `embedReceipt=true`
 
-If the query parameter `embedReceipt=true` is provided, then the claim is returned with the corresponding registration receipt embedded in the claim's COSE unprotected header.
+If the query parameter `embedReceipt=true` is provided, then the signed statement is returned with the corresponding registration receipt embedded in the COSE unprotected header.
 
 #### Response
 
@@ -682,7 +664,7 @@ One of the following:
 
 - Status 200.
   - Header: `Content-Type: application/cose`
-  - Body: COSE_Sign1 claim
+  - Body: COSE_Sign1
 
 - Status 404 - Entry not found.
   - Error code: `entryNotFound`
