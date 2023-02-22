@@ -98,7 +98,7 @@ Table of Contents
        5.2.1.  Service Identity, Remote Attestation, and Keying
        5.2.2.  Registration Policies
        5.2.3.  Registry Security Requirements
-     5.3.  Verifying Transparent Claims
+     5.3.  Verifying Transparent Statements
    6.  Claim Issuance, Registration, and Verification
      6.1.  Envelope and Claim Format
      6.2.  Signed Statement Issuance
@@ -108,7 +108,7 @@ Table of Contents
    7.  FederationThis section needs work.
    8.  Transparency Service APIThis may be moved to appendix.
      8.1.  Messages
-       8.1.1.  Register Signed Claims
+       8.1.1.  Register Signed Statements
        8.1.2.  Retrieve Registration Receipt
    9.  Privacy Considerations
    10. Security Considerations
@@ -166,18 +166,18 @@ Table of Contents
    configuration of involved supply chain entities and their system
    components is ever-changing and always in flux.
 
-   A TS provides visibility into claims issued by supply chain entities
-   and their sub-systems.  These claims are called Digital Supply Chain
-   Artifacts (DSCA).  A TS vouches for specific and well-defined
-   metadata about these DSCAs.  Some metadata is selected (and signed)
-   by the issuer, indicating, e.g., "who issued the DSCA" or "what type
-   of DSCA is described" or "what is the DSCA version"; whereas
-   additional metadata is selected (and countersigned) by the TS,
-   indicating, e.g., "when was the DSCA registered in the Registry".
+   A TS provides visibility into statements issued by supply chain
+   entities and their sub-systems.  These statements are called Digital
+   Supply Chain Artifacts (DSCA).  A TS vouches for specific and well-
+   defined metadata about these DSCAs.  Some metadata is selected (and
+   signed) by the issuer, indicating, e.g., "who issued the DSCA" or
+   "what type of DSCA is described" or "what is the DSCA version";
+   whereas additional metadata is selected (and countersigned) by the
+   TS, indicating, e.g., "when was the DSCA registered in the Registry".
    The DSCA contents can be opaque to the TS, if so desired: it is the
    metadata that must always be transparent in order to warrant trust.
 
-   Transparent claims provide a common basis for holding issuers
+   Transparent statements provide a common basis for holding issuers
    accountable for the DSCA they release and (more generally) principals
    accountable for auxiliary claims they make about DSCAs.  Hence,
    issuers may register new claims about their artifacts, but they
@@ -365,9 +365,9 @@ Table of Contents
       header of the Envelope.
 
    Registry:  the verifiable append-only data structure that stores
-      Claims in a Transparency Service often referred to by the synonym
-      log or ledger.  SCITT supports multiple Registry and Receipt
-      formats to accommodate different Transparency Service
+      statements in a Transparency Service often referred to by the
+      synonym log or ledger.  SCITT supports multiple Registry and
+      Receipt formats to accommodate different Transparency Service
       implementations, such as historical Merkle Trees and sparse Merkle
       Trees.
 
@@ -405,14 +405,14 @@ Table of Contents
       Statement, and may be registered again in a different Transparency
       Service.
 
-   Verifier:  an entity that consumes Transparent Claims (a
-      specialization of Claim Consumer), verifying their proofs and
+   Verifier:  an entity that consumes Transparent Statements (a
+      specialization of Statement Consumer), verifying their proofs and
       inspecting their Statements, either before using corresponding
       Artifacts, or later to audit an Artifact's provenance on the
       supply chain.
 
    Auditor:  an entity that checks the correctness and consistency of
-      all Transparent Claims registered by a Transparency Service (a
+      all Transparent Statements registered by a Transparency Service (a
       specialization of Claim Consumer).
 
    Consumer of Signed Statements:
@@ -722,9 +722,9 @@ Table of Contents
       |  policies is a work in progress.  An alternative design would be
       |  to include the registration policies in the receipt/
       |  countersignature rather than in the envelope.  This improves
-      |  the portability of claims but requires the verifier to be more
-      |  aware of the particular policies at the TS where the claim is
-      |  registered.
+      |  the portability of Signed Statements but requires the verifier
+      |  to be more aware of the particular policies at the TS where the
+      |  claim is registered.
 
 5.2.3.  Registry Security Requirements
 
@@ -791,8 +791,8 @@ Table of Contents
    defined procedures for allocating resources to operate the Registry
    (e.g., for provisioning trusted hardware and registering their
    attestation materials in the Registry) and for updating its code
-   (e.g., relying on Transparent Claims about code updates, secured on
-   the Registry itself, or on some auxiliary Transparency Service).
+   (e.g., relying on Transparent Statements about code updates, secured
+   on the Registry itself, or on some auxiliary Transparency Service).
 
    Governance procedures, their auditing, and their transparency are
    implementation specific.  A Transparency Service SHOULD document
@@ -811,7 +811,7 @@ Table of Contents
       Transparency Service governance before trusting the service, or on
       a regular basis.
 
-5.3.  Verifying Transparent Claims
+5.3.  Verifying Transparent Statements
 
    For a given Artifact, Verifiers take as trusted inputs:
 
@@ -1163,7 +1163,7 @@ Table of Contents
 
 8.1.  Messages
 
-8.1.1.  Register Signed Claims
+8.1.1.  Register Signed Statements
 
 8.1.1.1.  Request
 
@@ -1250,8 +1250,8 @@ Table of Contents
 
    Unless advertised by a Transparency Service, every Issuer should
    treat Signed Statements it registered (rendering them Transparent
-   Claims) as public.  In particular, Signed Statement's Envelopes and
-   Statement payload should not carry any private information in
+   Statements) as public.  In particular, Signed Statement's Envelopes
+   and Statement payload should not carry any private information in
    plaintext.
 
 10.  Security Considerations
@@ -1323,9 +1323,9 @@ Table of Contents
 
    Similarly, providing strong residual guarantees against faulty/
    corrupt Transparency Services is a SCITT design goal.  Preventing a
-   Transparency Service from registering Claims that do not meet its
-   stated Registration Policy, or to issue Receipts that are not
-   consistent with their append-only Registry is not possible.  In
+   Transparency Service from registering Signed Statements that do not
+   meet its stated Registration Policy, or to issue Receipts that are
+   not consistent with their append-only Registry is not possible.  In
    contrast Transparency Services can be hold accountable and they can
    be called out by any Auditor that replays their Registry against any
    contested Receipt.  Note that the SCITT Architecture does not require
@@ -1354,11 +1354,11 @@ Table of Contents
 
    Conversely, a corrupt Transparency Service may 1. refuse or delay the
    registration of Signed Statements, 2. register Signed Statements that
-   do not pass its Registration Policy (e.g., Claims with Issuer
-   identities and signatures that do not verify), 3. issue verifiable
-   Receipts for Signed Statements that do not match its Registry, or 4.
-   refuse access to its Registry (e.g., to Auditors, possibly after
-   storage loss).
+   do not pass its Registration Policy (e.g., ClaSigned Statements with
+   Issuer identities and signatures that do not verify), 3. issue
+   verifiable Receipts for Signed Statements that do not match its
+   Registry, or 4. refuse access to its Registry (e.g., to Auditors,
+   possibly after storage loss).
 
    An Auditor granted (partial) access to a Registry and to a collection
    of disputed Receipts will be able to replay it, detect any invalid
@@ -1376,7 +1376,7 @@ Table of Contents
    Verifier and Auditors may also witness (1,4) but may not be able to
    collect verifiable evidence for it.
 
-   *Availability of Transparent Signed Claims*
+   *Availability of Transparent Signed Statements*
 
    Networking and Storage are trusted only for availability.
 
@@ -1397,7 +1397,7 @@ Table of Contents
    secure authenticated channels (e.g., TLS) but, as usual, this may not
    exclude network traffic analysis.
 
-   *Claims and their registration*
+   *Signed Statements and their registration*
 
    The Transparency Service is trusted with the confidentiality of the
    Signed Statements presented for registration.  Some Transparency
@@ -1408,8 +1408,8 @@ Table of Contents
    confidentiality of its contents.
 
    A collection of Transparent Statements leaks no information about the
-   contents of other Transparent Claims registered at the Transparency
-   Service.
+   contents of other Transparent Statements registered at the
+   Transparency Service.
 
    Nonetheless, Issuers should carefully review the inclusion of
    private/confidential materials in their issued Signed Statements;
@@ -1421,8 +1421,8 @@ Table of Contents
    The confidentiality of queries is implementation-specific, and
    generally not guaranteed.  For example, while offline Envelope
    validation of Signed Statements is private, a Transparency Services
-   may monitor which of its Transparent Claims are being verified from
-   lookups to ensure their freshness.
+   may monitor which of its Transparent Statements are being verified
+   from lookups to ensure their freshness.
 
 10.1.3.  Cryptographic Assumptions
 
