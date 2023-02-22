@@ -52,7 +52,11 @@ normative:
 #  RFC9053: COSE-ALGS
 #  RFC9054: COSE-HASH
   RFC9162: CT
+  RFC7807:
+  RFC7231:
   RFC6838:
+  RFC3553:
+  IANA.params:
   IANA.cose:
   DID-CORE:
     target: https://www.w3.org/TR/did-core/
@@ -544,7 +548,32 @@ Editor's Note: This may be moved to appendix.
 
 ## Messages
 
-### Register Signed Claims
+All messages are sent as HTTP GET or POST requests.
+
+If the transparency service cannot process a client's request, it MUST return an HTTP 4xx or 5xx status code, and the body SHOULD be a JSON problem details object ({{RFC7807}}) containing:
+
+- type: A URI reference identifying the problem. To facilitate automated response to errors, this document defines a set of standard tokens for use in the type field within the URN namespace of: "urn:ietf:params:scitt:error:".
+
+- detail: A human-readable string describing the error that prevented the transparency service from processing the request, ideally with sufficient detail to enable the error to be rectified.
+
+Error responses SHOULD be sent with the `Content-Type: application/problem+json` HTTP header.
+
+As an example, submitting a signed statement with an unsupported signature algorithm would return a `400 Bad Request` status code and the following body:
+
+~~~json
+{
+  "type": "urn:ietf:params:scitt:error:badSignatureAlgorithm",
+  "detail": "The statement was signed with an algorithm the server does not support"
+}
+~~~
+
+Most error types are specific to the type of request and are defined in the respective subsections below. The one exception is the "malformed" error type, which indicates that the transparency service could not parse the client's request because it did not comply with this document:
+
+- Error code: `malformed` (The request could not be parsed).
+
+Clients SHOULD treat 500 and 503 HTTP status code responses as transient failures and MAY retry the same request without modification at a later date. Note that in the case of a 503 response, the transparency service MAY include a `Retry-After` header field per {{RFC7231}} in order to request a minimum time for the client to wait before retrying the request. In the absence of this header field, this document does not specify a minimum.
+
+### Register Signed Statement
 
 #### Request
 
@@ -552,64 +581,113 @@ Editor's Note: This may be moved to appendix.
 POST <Base URL>/entries
 ~~~
 
+Headers:
+
+- `Content-Type: application/cose`
+
 Body: SCITT COSE_Sign1 message
 
 #### Response
 
 One of the following:
 
-- HTTP Status `201` - Registration was tentatively successful pending service consensus.
-- HTTP Status `400` - Registration was unsuccessful.
-  - Error code `AwaitingDIDResolutionTryLater`
-  - Error code `InvalidInput`
+- Status 201 - Registration is successful.
+  - Header `Location: <Base URL>/entries/<Entry ID>`
+  - Header `Content-Type: application/json`
+  - Body `{ "entryId": "<Entry ID"> }`
 
-[TODO] Use 5xx for AwaitingDIDResolutionTryLater
+- Status 202 - Registration is running.
+  - Header `Location: <Base URL>/operations/<Operation ID>`
+  - Header `Content-Type: application/json`
+  - (Optional) Header: `Retry-After: <seconds>`
+  - Body `{ "operationId": "<Operation ID>", "status": "running" }`
 
-The `201` response contains the `x-ms-ccf-transaction-id` HTTP header which can be used to retrieve the Registration Receipt with the given transaction ID. [TODO] this has to be made generic
+- Status 400 - Registration was unsuccessful due to invalid input.
+  - Error code `badSignatureAlgorithm`
+  - [TODO]: more error codes to be defined, see [#17](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17)
 
-[TODO] probably a bad idea to define a new header, or is it ok? can we register a new one? https://www.iana.org/assignments/http-fields/http-fields.xhtml
+If 202 is returned, then clients should wait until registration succeeded or failed by polling the registration status using the Operation ID returned in the response. Clients should always obtain a receipt as a proof that registration has succeeded.
 
-The `400` response has a `Content-Type: application/json` header and a body containing details about the error:
-
-```json
-{
-  "error": {
-    "code": "<error code>",
-    "message": "<message>"
-  }
-}
-```
-
-`AwaitingDIDResolutionTryLater` means the service does not have an up-to-date DID document of the DID referenced in the Signed Claims but is performing or will perform a DID resolution after which the client may retry the request. The response may contain the HTTP header `Retry-After` to inform the client about the expected wait time.
-
-`InvalidInput` means either the Signed Claims message is syntactically malformed, violates the signing profile (e.g. signing algorithm), or has an invalid signature relative to the currently resolved DID document.
-
-### Retrieve Registration Receipt
+### Retrieve Operation Status
 
 #### Request
 
 ~~~
-GET <Base URL>/entries/<Transaction ID>/receipt
+GET <Base URL>/operations/<Operation ID>
 ~~~
 
 #### Response
 
 One of the following:
 
-- HTTP Status `200` - Registration was successful and the Receipt is returned.
-- HTTP Status `400` - Transaction exists but does not correspond to a Registration Request.
-  - Error code `TransactionMismatch`
-- HTTP Status `404` - Transaction is pending, unknown, or invalid.
-  - Error code `TransactionPendingOrUnknown`
-  - Error code `TransactionInvalid`
+- Status 200 - Registration is running
+    - Header: `Content-Type: application/json`
+    - (Optional) Header: `Retry-After: <seconds>`
+    - Body: `{ "operationId": "<Operation ID>", "status": "running" }`
 
-The `200` response contains the SCITT_Receipt in the body.
+- Status 200 - Registration was successful
+    - Header: `Location: <Base URL>/entries/<Entry ID>`
+    - Header: `Content-Type: application/json`
+    - Body: `{ "operationId": "<Operation ID>", "status": "succeeded", "entryId": "<Entry ID>" }`
 
-The `400` and `404` responses return the error details as described earlier.
+- Status 200 - Registration failed
+    - Header `Content-Type: application/json`
+    - Body: `{ "operationId": "<Operation ID>", "status": "failed", "error": { "type": "<type>", "detail": "<detail>" } }`
+    - Error code: `badSignatureAlgorithm`
+    - [TODO]: more error codes to be defined, see [#17](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17)
 
-The retrieved Receipt may be embedded in the corresponding COSE_Sign1 document in the unprotected header, see TBD.
+- Status 404 - Unknown Operation ID
+    - Error code: `operationNotFound`
+    - This can happen if the operation ID has expired and been deleted.
 
-[TODO] There's also the `GET <Base URL>/entries/<Transaction ID>` endpoint which returns the submitted COSE_Sign1 with the Receipt already embedded. Is this useful?
+If an operation failed, then error details SHOULD be embedded as a JSON problem details object in the `"error"` field.
+
+If an operation ID is invalid (i.e., it does not correspond to any submit operation), a service may return either a 404 or a `running` status. This is because differentiating between the two may not be possible in an eventually consistent system.
+
+### Retrieve Signed Statement
+
+#### Request
+
+~~~
+GET <Base URL>/entries/<Entry ID>
+~~~
+
+Query parameters:
+
+- (Optional) `embedReceipt=true`
+
+If the query parameter `embedReceipt=true` is provided, then the signed statement is returned with the corresponding registration receipt embedded in the COSE unprotected header.
+
+#### Response
+
+One of the following:
+
+- Status 200.
+  - Header: `Content-Type: application/cose`
+  - Body: COSE_Sign1
+
+- Status 404 - Entry not found.
+  - Error code: `entryNotFound`
+
+### Retrieve Registration Receipt
+
+#### Request
+
+~~~
+GET <Base URL>/entries/<Entry ID>/receipt
+~~~
+
+#### Response
+
+One of the following:
+
+- Status 200.
+  - Header: `Content-Type: application/cbor`
+  - Body: SCITT_Receipt
+- Status 404 - Entry not found.
+  - Error code: `entryNotFound`
+
+The retrieved Receipt may be embedded in the corresponding COSE_Sign1 document in the unprotected header, see draft-birkholz-scitt-receipts ([TODO]: replace with final reference).
 
 
 # Privacy Considerations
@@ -715,6 +793,20 @@ The confidentiality of any identity lookup during Claim Registration or Claim Ve
 # IANA Considerations
 
 TBD; {{mybody}}.
+
+## URN Sub-namespace for SCITT (urn:ietf:params:scitt)
+
+IANA is requested to register the URN sub-namespace `urn:ietf:params:scitt`
+in the "IETF URN Sub-namespace for Registered Protocol Parameter Identifiers"
+registry {{!IANA.params}}, following the template in {{!RFC3553}}:
+
+   Registry name:  scitt
+
+   Specification:  [RFCthis]
+
+   Repository:  http://www.iana.org/assignments/scitt
+
+   Index value:  No transformation needed.
 
 --- back
 
