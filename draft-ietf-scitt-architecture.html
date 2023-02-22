@@ -373,9 +373,12 @@ dl {
   --indent: 3ch;
   /* --indent: attr(indent ch); not supported in any browser, but we can dream */
 }
+dl.olPercent {
+  --indent: 5ch;
+}
 dl > dt {
   float: left;
-  margin-right: 1em;
+  margin-right: 2ch;
   min-width: 8ch;
 }
 dl.dlNewline > dt {
@@ -385,6 +388,9 @@ dl > dd {
   margin-bottom: .8em;
   margin-left: var(--indent) !important; /* stupid element overrides */
   min-height: 2ex;
+}
+dl.olPercent > dt {
+  min-width: calc(var(--indent) - 2ch);
 }
 :is(dl.compact, .dlCompact) > dd {
   margin-bottom: 0;
@@ -1049,7 +1055,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 23 August 2023</td>
+<td class="center">Expires 26 August 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1062,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-02-19" class="published">19 February 2023</time>
+<time datetime="2023-02-22" class="published">22 February 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-08-23">23 August 2023</time></dd>
+<dd class="expires"><time datetime="2023-08-26">26 August 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1129,7 +1135,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 23 August 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 26 August 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1252,10 +1258,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-messages" class="internal xref">Messages</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.1">
-                    <p id="section-toc.1-1.8.2.1.2.1.1"><a href="#section-8.1.1" class="auto internal xref">8.1.1</a>.  <a href="#name-register-signed-claims" class="internal xref">Register Signed Claims</a></p>
+                    <p id="section-toc.1-1.8.2.1.2.1.1"><a href="#section-8.1.1" class="auto internal xref">8.1.1</a>.  <a href="#name-register-signed-statement" class="internal xref">Register Signed Statement</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2">
-                    <p id="section-toc.1-1.8.2.1.2.2.1"><a href="#section-8.1.2" class="auto internal xref">8.1.2</a>.  <a href="#name-retrieve-registration-recei" class="internal xref">Retrieve Registration Receipt</a></p>
+                    <p id="section-toc.1-1.8.2.1.2.2.1"><a href="#section-8.1.2" class="auto internal xref">8.1.2</a>.  <a href="#name-retrieve-operation-status" class="internal xref">Retrieve Operation Status</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.3">
+                    <p id="section-toc.1-1.8.2.1.2.3.1"><a href="#section-8.1.3" class="auto internal xref">8.1.3</a>.  <a href="#name-retrieve-signed-statement" class="internal xref">Retrieve Signed Statement</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.4">
+                    <p id="section-toc.1-1.8.2.1.2.4.1"><a href="#section-8.1.4" class="auto internal xref">8.1.4</a>.  <a href="#name-retrieve-registration-recei" class="internal xref">Retrieve Registration Receipt</a></p>
 </li>
                 </ul>
 </li>
@@ -1291,6 +1303,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
             <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.1">
+                <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="auto internal xref">11.1</a>.  <a href="#name-urn-sub-namespace-for-scitt" class="internal xref">URN Sub-namespace for SCITT (urn:ietf:params:scitt)</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
             <p id="section-toc.1-1.12.1"><a href="#section-12" class="auto internal xref">12</a>. <a href="#name-references" class="internal xref">References</a></p>
@@ -2043,10 +2060,34 @@ to ensure complete auditing for a specific use case, and possibly require additi
         <h3 id="name-messages">
 <a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-messages" class="section-name selfRef">Messages</a>
         </h3>
-<div id="sec-register-signed-claims">
+<p id="section-8.1-1">All messages are sent as HTTP GET or POST requests.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+<p id="section-8.1-2">If the transparency service cannot process a client's request, it <span class="bcp14">MUST</span> return an HTTP 4xx or 5xx status code, and the body <span class="bcp14">SHOULD</span> be a JSON problem details object (<span>[<a href="#RFC7807" class="cite xref">RFC7807</a>]</span>) containing:<a href="#section-8.1-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1-3.1">type: A URI reference identifying the problem. To facilitate automated response to errors, this document defines a set of standard tokens for use in the type field within the URN namespace of: "urn:ietf:params:scitt:error:".<a href="#section-8.1-3.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-8.1-3.2">detail: A human-readable string describing the error that prevented the transparency service from processing the request, ideally with sufficient detail to enable the error to be rectified.<a href="#section-8.1-3.2" class="pilcrow">¶</a>
+</li>
+        </ul>
+<p id="section-8.1-4">Error responses <span class="bcp14">SHOULD</span> be sent with the <code>Content-Type: application/problem+json</code> HTTP header.<a href="#section-8.1-4" class="pilcrow">¶</a></p>
+<p id="section-8.1-5">As an example, submitting a signed statement with an unsupported signature algorithm would return a <code>400 Bad Request</code> status code and the following body:<a href="#section-8.1-5" class="pilcrow">¶</a></p>
+<div class="lang-json sourcecode" id="section-8.1-6">
+<pre>
+{
+  "type": "urn:ietf:params:scitt:error:badSignatureAlgorithm",
+  "detail": "The statement was signed with an algorithm the server does not support"
+}
+</pre><a href="#section-8.1-6" class="pilcrow">¶</a>
+</div>
+<p id="section-8.1-7">Most error types are specific to the type of request and are defined in the respective subsections below. The one exception is the "malformed" error type, which indicates that the transparency service could not parse the client's request because it did not comply with this document:<a href="#section-8.1-7" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1-8.1">Error code: <code>malformed</code> (The request could not be parsed).<a href="#section-8.1-8.1" class="pilcrow">¶</a>
+</li>
+        </ul>
+<p id="section-8.1-9">Clients <span class="bcp14">SHOULD</span> treat 500 and 503 HTTP status code responses as transient failures and <span class="bcp14">MAY</span> retry the same request without modification at a later date. Note that in the case of a 503 response, the transparency service <span class="bcp14">MAY</span> include a <code>Retry-After</code> header field per <span>[<a href="#RFC7231" class="cite xref">RFC7231</a>]</span> in order to request a minimum time for the client to wait before retrying the request. In the absence of this header field, this document does not specify a minimum.<a href="#section-8.1-9" class="pilcrow">¶</a></p>
+<div id="sec-register-signed-statement">
 <section id="section-8.1.1">
-          <h4 id="name-register-signed-claims">
-<a href="#section-8.1.1" class="section-number selfRef">8.1.1. </a><a href="#name-register-signed-claims" class="section-name selfRef">Register Signed Claims</a>
+          <h4 id="name-register-signed-statement">
+<a href="#section-8.1.1" class="section-number selfRef">8.1.1. </a><a href="#name-register-signed-statement" class="section-name selfRef">Register Signed Statement</a>
           </h4>
 <div id="sec-request">
 <section id="section-8.1.1.1">
@@ -2058,7 +2099,13 @@ to ensure complete auditing for a specific use case, and possibly require additi
 POST &lt;Base URL&gt;/entries
 </pre><a href="#section-8.1.1.1-1" class="pilcrow">¶</a>
 </div>
-<p id="section-8.1.1.1-2">Body: SCITT COSE_Sign1 message<a href="#section-8.1.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-8.1.1.1-2">Headers:<a href="#section-8.1.1.1-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.1.1-3.1">
+                <code>Content-Type: application/cose</code><a href="#section-8.1.1.1-3.1" class="pilcrow">¶</a>
+</li>
+            </ul>
+<p id="section-8.1.1.1-4">Body: SCITT COSE_Sign1 message<a href="#section-8.1.1.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-response">
@@ -2068,40 +2115,48 @@ POST &lt;Base URL&gt;/entries
             </h5>
 <p id="section-8.1.1.2-1">One of the following:<a href="#section-8.1.1.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-8.1.1.2-2.1">HTTP Status <code>201</code> - Registration was tentatively successful pending service consensus.<a href="#section-8.1.1.2-2.1" class="pilcrow">¶</a>
-</li>
-              <li class="normal" id="section-8.1.1.2-2.2">
-                <p id="section-8.1.1.2-2.2.1">HTTP Status <code>400</code> - Registration was unsuccessful.<a href="#section-8.1.1.2-2.2.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-8.1.1.2-2.1">
+                <p id="section-8.1.1.2-2.1.1">Status 201 - Registration is successful.<a href="#section-8.1.1.2-2.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-8.1.1.2-2.2.2.1">Error code <code>AwaitingDIDResolutionTryLater</code><a href="#section-8.1.1.2-2.2.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-8.1.1.2-2.1.2.1">Header <code>Location: &lt;Base URL&gt;/entries/&lt;Entry ID&gt;</code><a href="#section-8.1.1.2-2.1.2.1" class="pilcrow">¶</a>
 </li>
-                  <li class="normal" id="section-8.1.1.2-2.2.2.2">Error code <code>InvalidInput</code><a href="#section-8.1.1.2-2.2.2.2" class="pilcrow">¶</a>
+                  <li class="normal" id="section-8.1.1.2-2.1.2.2">Header <code>Content-Type: application/json</code><a href="#section-8.1.1.2-2.1.2.2" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.1.2-2.1.2.3">Body <code>{ "entryId": "&lt;Entry ID"&gt; }</code><a href="#section-8.1.1.2-2.1.2.3" class="pilcrow">¶</a>
 </li>
                 </ul>
 </li>
+              <li class="normal" id="section-8.1.1.2-2.2">
+                <p id="section-8.1.1.2-2.2.1">Status 202 - Registration is running.<a href="#section-8.1.1.2-2.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.1.2-2.2.2.1">Header <code>Location: &lt;Base URL&gt;/operations/&lt;Operation ID&gt;</code><a href="#section-8.1.1.2-2.2.2.1" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.1.2-2.2.2.2">Header <code>Content-Type: application/json</code><a href="#section-8.1.1.2-2.2.2.2" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.1.2-2.2.2.3">(Optional) Header: <code>Retry-After: &lt;seconds&gt;</code><a href="#section-8.1.1.2-2.2.2.3" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.1.2-2.2.2.4">Body <code>{ "operationId": "&lt;Operation ID&gt;", "status": "running" }</code><a href="#section-8.1.1.2-2.2.2.4" class="pilcrow">¶</a>
+</li>
+                </ul>
+</li>
+              <li class="normal" id="section-8.1.1.2-2.3">
+                <p id="section-8.1.1.2-2.3.1">Status 400 - Registration was unsuccessful due to invalid input.<a href="#section-8.1.1.2-2.3.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.1.2-2.3.2.1">Error code <code>badSignatureAlgorithm</code><a href="#section-8.1.1.2-2.3.2.1" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.1.2-2.3.2.2">
+                </ul>
+</li>
             </ul>
-<p id="section-8.1.1.2-3">[TODO] Use 5xx for AwaitingDIDResolutionTryLater<a href="#section-8.1.1.2-3" class="pilcrow">¶</a></p>
-<p id="section-8.1.1.2-4">The <code>201</code> response contains the <code>x-ms-ccf-transaction-id</code> HTTP header which can be used to retrieve the Registration Receipt with the given transaction ID. [TODO] this has to be made generic<a href="#section-8.1.1.2-4" class="pilcrow">¶</a></p>
-<p id="section-8.1.1.2-5">[TODO] probably a bad idea to define a new header, or is it ok? can we register a new one? https://www.iana.org/assignments/http-fields/http-fields.xhtml<a href="#section-8.1.1.2-5" class="pilcrow">¶</a></p>
-<p id="section-8.1.1.2-6">The <code>400</code> response has a <code>Content-Type: application/json</code> header and a body containing details about the error:<a href="#section-8.1.1.2-6" class="pilcrow">¶</a></p>
-<p id="section-8.1.1.2-7"><code>json
-{
-  "error": {
-    "code": "&lt;error code&gt;",
-    "message": "&lt;message&gt;"
-  }
-}
-</code><a href="#section-8.1.1.2-7" class="pilcrow">¶</a></p>
-<p id="section-8.1.1.2-8"><code>AwaitingDIDResolutionTryLater</code> means the service does not have an up-to-date DID document of the DID referenced in the Signed Claims but is performing or will perform a DID resolution after which the client may retry the request. The response may contain the HTTP header <code>Retry-After</code> to inform the client about the expected wait time.<a href="#section-8.1.1.2-8" class="pilcrow">¶</a></p>
-<p id="section-8.1.1.2-9"><code>InvalidInput</code> means either the Signed Claims message is syntactically malformed, violates the signing profile (e.g. signing algorithm), or has an invalid signature relative to the currently resolved DID document.<a href="#section-8.1.1.2-9" class="pilcrow">¶</a></p>
+<p id="section-8.1.1.2-3">If 202 is returned, then clients should wait until registration succeeded or failed by polling the registration status using the Operation ID returned in the response. Clients should always obtain a receipt as a proof that registration has succeeded.<a href="#section-8.1.1.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
-<div id="sec-retrieve-registration-receipt">
+<div id="sec-retrieve-operation-status">
 <section id="section-8.1.2">
-          <h4 id="name-retrieve-registration-recei">
-<a href="#section-8.1.2" class="section-number selfRef">8.1.2. </a><a href="#name-retrieve-registration-recei" class="section-name selfRef">Retrieve Registration Receipt</a>
+          <h4 id="name-retrieve-operation-status">
+<a href="#section-8.1.2" class="section-number selfRef">8.1.2. </a><a href="#name-retrieve-operation-status" class="section-name selfRef">Retrieve Operation Status</a>
           </h4>
 <div id="sec-request-1">
 <section id="section-8.1.2.1">
@@ -2110,7 +2165,7 @@ POST &lt;Base URL&gt;/entries
             </h5>
 <div class="alignLeft art-text artwork" id="section-8.1.2.1-1">
 <pre>
-GET &lt;Base URL&gt;/entries/&lt;Transaction ID&gt;/receipt
+GET &lt;Base URL&gt;/operations/&lt;Operation ID&gt;
 </pre><a href="#section-8.1.2.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2122,29 +2177,149 @@ GET &lt;Base URL&gt;/entries/&lt;Transaction ID&gt;/receipt
             </h5>
 <p id="section-8.1.2.2-1">One of the following:<a href="#section-8.1.2.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-8.1.2.2-2.1">HTTP Status <code>200</code> - Registration was successful and the Receipt is returned.<a href="#section-8.1.2.2-2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-8.1.2.2-2.1">
+                <p id="section-8.1.2.2-2.1.1">Status 200 - Registration is running<a href="#section-8.1.2.2-2.1.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.2.2-2.1.2.1">Header: <code>Content-Type: application/json</code><a href="#section-8.1.2.2-2.1.2.1" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.2.2-2.1.2.2">(Optional) Header: <code>Retry-After: &lt;seconds&gt;</code><a href="#section-8.1.2.2-2.1.2.2" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.2.2-2.1.2.3">Body: <code>{ "operationId": "&lt;Operation ID&gt;", "status": "running" }</code><a href="#section-8.1.2.2-2.1.2.3" class="pilcrow">¶</a>
+</li>
+                </ul>
 </li>
               <li class="normal" id="section-8.1.2.2-2.2">
-                <p id="section-8.1.2.2-2.2.1">HTTP Status <code>400</code> - Transaction exists but does not correspond to a Registration Request.<a href="#section-8.1.2.2-2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-8.1.2.2-2.2.1">Status 200 - Registration was successful<a href="#section-8.1.2.2-2.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-8.1.2.2-2.2.2.1">Error code <code>TransactionMismatch</code><a href="#section-8.1.2.2-2.2.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-8.1.2.2-2.2.2.1">Header: <code>Location: &lt;Base URL&gt;/entries/&lt;Entry ID&gt;</code><a href="#section-8.1.2.2-2.2.2.1" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.2.2-2.2.2.2">Header: <code>Content-Type: application/json</code><a href="#section-8.1.2.2-2.2.2.2" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.2.2-2.2.2.3">Body: <code>{ "operationId": "&lt;Operation ID&gt;", "status": "succeeded", "entryId": "&lt;Entry ID&gt;" }</code><a href="#section-8.1.2.2-2.2.2.3" class="pilcrow">¶</a>
 </li>
                 </ul>
 </li>
               <li class="normal" id="section-8.1.2.2-2.3">
-                <p id="section-8.1.2.2-2.3.1">HTTP Status <code>404</code> - Transaction is pending, unknown, or invalid.<a href="#section-8.1.2.2-2.3.1" class="pilcrow">¶</a></p>
+                <p id="section-8.1.2.2-2.3.1">Status 200 - Registration failed<a href="#section-8.1.2.2-2.3.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-8.1.2.2-2.3.2.1">Error code <code>TransactionPendingOrUnknown</code><a href="#section-8.1.2.2-2.3.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-8.1.2.2-2.3.2.1">Header <code>Content-Type: application/json</code><a href="#section-8.1.2.2-2.3.2.1" class="pilcrow">¶</a>
 </li>
-                  <li class="normal" id="section-8.1.2.2-2.3.2.2">Error code <code>TransactionInvalid</code><a href="#section-8.1.2.2-2.3.2.2" class="pilcrow">¶</a>
+                  <li class="normal" id="section-8.1.2.2-2.3.2.2">Body: <code>{ "operationId": "&lt;Operation ID&gt;", "status": "failed", "error": { "type": "&lt;type&gt;", "detail": "&lt;detail&gt;" } }</code><a href="#section-8.1.2.2-2.3.2.2" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.2.2-2.3.2.3">Error code: <code>badSignatureAlgorithm</code><a href="#section-8.1.2.2-2.3.2.3" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.2.2-2.3.2.4">
+                </ul>
+</li>
+              <li class="normal" id="section-8.1.2.2-2.4">
+                <p id="section-8.1.2.2-2.4.1">Status 404 - Unknown Operation ID<a href="#section-8.1.2.2-2.4.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.2.2-2.4.2.1">Error code: <code>operationNotFound</code><a href="#section-8.1.2.2-2.4.2.1" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.2.2-2.4.2.2">This can happen if the operation ID has expired and been deleted.<a href="#section-8.1.2.2-2.4.2.2" class="pilcrow">¶</a>
 </li>
                 </ul>
 </li>
             </ul>
-<p id="section-8.1.2.2-3">The <code>200</code> response contains the SCITT_Receipt in the body.<a href="#section-8.1.2.2-3" class="pilcrow">¶</a></p>
-<p id="section-8.1.2.2-4">The <code>400</code> and <code>404</code> responses return the error details as described earlier.<a href="#section-8.1.2.2-4" class="pilcrow">¶</a></p>
-<p id="section-8.1.2.2-5">The retrieved Receipt may be embedded in the corresponding COSE_Sign1 document in the unprotected header, see TBD.<a href="#section-8.1.2.2-5" class="pilcrow">¶</a></p>
-<p id="section-8.1.2.2-6">[TODO] There's also the <code>GET &lt;Base URL&gt;/entries/&lt;Transaction ID&gt;</code> endpoint which returns the submitted COSE_Sign1 with the Receipt already embedded. Is this useful?<a href="#section-8.1.2.2-6" class="pilcrow">¶</a></p>
+<p id="section-8.1.2.2-3">If an operation failed, then error details <span class="bcp14">SHOULD</span> be embedded as a JSON problem details object in the <code>"error"</code> field.<a href="#section-8.1.2.2-3" class="pilcrow">¶</a></p>
+<p id="section-8.1.2.2-4">If an operation ID is invalid (i.e., it does not correspond to any submit operation), a service may return either a 404 or a <code>running</code> status. This is because differentiating between the two may not be possible in an eventually consistent system.<a href="#section-8.1.2.2-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="sec-retrieve-signed-statement">
+<section id="section-8.1.3">
+          <h4 id="name-retrieve-signed-statement">
+<a href="#section-8.1.3" class="section-number selfRef">8.1.3. </a><a href="#name-retrieve-signed-statement" class="section-name selfRef">Retrieve Signed Statement</a>
+          </h4>
+<div id="sec-request-2">
+<section id="section-8.1.3.1">
+            <h5 id="name-request-3">
+<a href="#section-8.1.3.1" class="section-number selfRef">8.1.3.1. </a><a href="#name-request-3" class="section-name selfRef">Request</a>
+            </h5>
+<div class="alignLeft art-text artwork" id="section-8.1.3.1-1">
+<pre>
+GET &lt;Base URL&gt;/entries/&lt;Entry ID&gt;
+</pre><a href="#section-8.1.3.1-1" class="pilcrow">¶</a>
+</div>
+<p id="section-8.1.3.1-2">Query parameters:<a href="#section-8.1.3.1-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.3.1-3.1">(Optional) <code>embedReceipt=true</code><a href="#section-8.1.3.1-3.1" class="pilcrow">¶</a>
+</li>
+            </ul>
+<p id="section-8.1.3.1-4">If the query parameter <code>embedReceipt=true</code> is provided, then the signed statement is returned with the corresponding registration receipt embedded in the COSE unprotected header.<a href="#section-8.1.3.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-response-2">
+<section id="section-8.1.3.2">
+            <h5 id="name-response-3">
+<a href="#section-8.1.3.2" class="section-number selfRef">8.1.3.2. </a><a href="#name-response-3" class="section-name selfRef">Response</a>
+            </h5>
+<p id="section-8.1.3.2-1">One of the following:<a href="#section-8.1.3.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.3.2-2.1">
+                <p id="section-8.1.3.2-2.1.1">Status 200.<a href="#section-8.1.3.2-2.1.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.3.2-2.1.2.1">Header: <code>Content-Type: application/cose</code><a href="#section-8.1.3.2-2.1.2.1" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.3.2-2.1.2.2">Body: COSE_Sign1<a href="#section-8.1.3.2-2.1.2.2" class="pilcrow">¶</a>
+</li>
+                </ul>
+</li>
+              <li class="normal" id="section-8.1.3.2-2.2">
+                <p id="section-8.1.3.2-2.2.1">Status 404 - Entry not found.<a href="#section-8.1.3.2-2.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.3.2-2.2.2.1">Error code: <code>entryNotFound</code><a href="#section-8.1.3.2-2.2.2.1" class="pilcrow">¶</a>
+</li>
+                </ul>
+</li>
+            </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="sec-retrieve-registration-receipt">
+<section id="section-8.1.4">
+          <h4 id="name-retrieve-registration-recei">
+<a href="#section-8.1.4" class="section-number selfRef">8.1.4. </a><a href="#name-retrieve-registration-recei" class="section-name selfRef">Retrieve Registration Receipt</a>
+          </h4>
+<div id="sec-request-3">
+<section id="section-8.1.4.1">
+            <h5 id="name-request-4">
+<a href="#section-8.1.4.1" class="section-number selfRef">8.1.4.1. </a><a href="#name-request-4" class="section-name selfRef">Request</a>
+            </h5>
+<div class="alignLeft art-text artwork" id="section-8.1.4.1-1">
+<pre>
+GET &lt;Base URL&gt;/entries/&lt;Entry ID&gt;/receipt
+</pre><a href="#section-8.1.4.1-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="sec-response-3">
+<section id="section-8.1.4.2">
+            <h5 id="name-response-4">
+<a href="#section-8.1.4.2" class="section-number selfRef">8.1.4.2. </a><a href="#name-response-4" class="section-name selfRef">Response</a>
+            </h5>
+<p id="section-8.1.4.2-1">One of the following:<a href="#section-8.1.4.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.4.2-2.1">
+                <p id="section-8.1.4.2-2.1.1">Status 200.<a href="#section-8.1.4.2-2.1.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.4.2-2.1.2.1">Header: <code>Content-Type: application/cbor</code><a href="#section-8.1.4.2-2.1.2.1" class="pilcrow">¶</a>
+</li>
+                  <li class="normal" id="section-8.1.4.2-2.1.2.2">Body: SCITT_Receipt<a href="#section-8.1.4.2-2.1.2.2" class="pilcrow">¶</a>
+</li>
+                </ul>
+</li>
+              <li class="normal" id="section-8.1.4.2-2.2">
+                <p id="section-8.1.4.2-2.2.1">Status 404 - Entry not found.<a href="#section-8.1.4.2-2.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1.4.2-2.2.2.1">Error code: <code>entryNotFound</code><a href="#section-8.1.4.2-2.2.2.1" class="pilcrow">¶</a>
+</li>
+                </ul>
+</li>
+            </ul>
+<p id="section-8.1.4.2-3">The retrieved Receipt may be embedded in the corresponding COSE_Sign1 document in the unprotected header, see draft-birkholz-scitt-receipts (<a href="more%20error%20codes%20to%20be%20defined,%20see%20%5B#17%5D(https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17)">TODO</a>: replace with final reference).<a href="#section-8.1.4.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2261,6 +2436,20 @@ and accept the risk of being blamed for inconsistent Registration or Issuer equi
 <a href="#section-11" class="section-number selfRef">11. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
 <p id="section-11-1">TBD; <a href="#mybody" class="auto internal xref">Section 4</a>.<a href="#section-11-1" class="pilcrow">¶</a></p>
+<div id="sec-urn-sub-namespace-for-scitt-urnietfparamsscitt">
+<section id="section-11.1">
+        <h3 id="name-urn-sub-namespace-for-scitt">
+<a href="#section-11.1" class="section-number selfRef">11.1. </a><a href="#name-urn-sub-namespace-for-scitt" class="section-name selfRef">URN Sub-namespace for SCITT (urn:ietf:params:scitt)</a>
+        </h3>
+<p id="section-11.1-1">IANA is requested to register the URN sub-namespace <code>urn:ietf:params:scitt</code>
+in the "IETF URN Sub-namespace for Registered Protocol Parameter Identifiers"
+registry <span>[<a href="#IANA.params" class="cite xref">IANA.params</a>]</span>, following the template in <span>[<a href="#RFC3553" class="cite xref">RFC3553</a>]</span>:<a href="#section-11.1-1" class="pilcrow">¶</a></p>
+<p id="section-11.1-2">Registry name:  scitt<a href="#section-11.1-2" class="pilcrow">¶</a></p>
+<p id="section-11.1-3">Specification:  [RFCthis]<a href="#section-11.1-3" class="pilcrow">¶</a></p>
+<p id="section-11.1-4">Repository:  http://www.iana.org/assignments/scitt<a href="#section-11.1-4" class="pilcrow">¶</a></p>
+<p id="section-11.1-5">Index value:  No transformation needed.<a href="#section-11.1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <section id="section-12">
@@ -2284,13 +2473,29 @@ and accept the risk of being blamed for inconsistent Registration or Issuer equi
         <dd>
 <span class="refAuthor">IANA</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE)"</span>, <span>&lt;<a href="https://www.iana.org/assignments/cose">https://www.iana.org/assignments/cose</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="IANA.params">[IANA.params]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"Uniform Resource Name (URN) Namespace for IETF Use"</span>, <span>&lt;<a href="https://www.iana.org/assignments/params">https://www.iana.org/assignments/params</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC3553">[RFC3553]</dt>
+        <dd>
+<span class="refAuthor">Mealling, M.</span>, <span class="refAuthor">Masinter, L.</span>, <span class="refAuthor">Hardie, T.</span>, and <span class="refAuthor">G. Klyne</span>, <span class="refTitle">"An IETF URN Sub-namespace for Registered Protocol Parameters"</span>, <span class="seriesInfo">BCP 73</span>, <span class="seriesInfo">RFC 3553</span>, <span class="seriesInfo">DOI 10.17487/RFC3553</span>, <time datetime="2003-06" class="refDate">June 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3553">https://www.rfc-editor.org/rfc/rfc3553</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC6838">[RFC6838]</dt>
         <dd>
 <span class="refAuthor">Freed, N.</span>, <span class="refAuthor">Klensin, J.</span>, and <span class="refAuthor">T. Hansen</span>, <span class="refTitle">"Media Type Specifications and Registration Procedures"</span>, <span class="seriesInfo">BCP 13</span>, <span class="seriesInfo">RFC 6838</span>, <span class="seriesInfo">DOI 10.17487/RFC6838</span>, <time datetime="2013-01" class="refDate">January 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6838">https://www.rfc-editor.org/rfc/rfc6838</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7231">[RFC7231]</dt>
+        <dd>
+<span class="refAuthor">Fielding, R., Ed.</span> and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content"</span>, <span class="seriesInfo">RFC 7231</span>, <span class="seriesInfo">DOI 10.17487/RFC7231</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7231">https://www.rfc-editor.org/rfc/rfc7231</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7807">[RFC7807]</dt>
+        <dd>
+<span class="refAuthor">Nottingham, M.</span> and <span class="refAuthor">E. Wilde</span>, <span class="refTitle">"Problem Details for HTTP APIs"</span>, <span class="seriesInfo">RFC 7807</span>, <span class="seriesInfo">DOI 10.17487/RFC7807</span>, <time datetime="2016-03" class="refDate">March 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7807">https://www.rfc-editor.org/rfc/rfc7807</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
