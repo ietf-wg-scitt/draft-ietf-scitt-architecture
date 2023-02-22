@@ -196,7 +196,7 @@ Registration:
 
 Registration Policy:
 
-: the pre-condition enforced by the Transparency Service before registering a Signed Claim,
+: the pre-condition enforced by the Transparency Service before registering a Signed Statement,
 based on metadata contained in its COSE Envelope (notably the identity of its Issuer)
 and on prior Signed Statements already added to a Registry.
 
