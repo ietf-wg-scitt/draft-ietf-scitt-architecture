@@ -27,9 +27,9 @@ Abstract
 
    This memo defines a generic and scalable architecture to enable
    transparency across any supply chain with minimum adoption barriers
-   for producers (who can register their claims on any Transparency
-   Service (TS), with the guarantee that all consumers will be able to
-   verify them) and enough flexibility to allow different
+   for producers (who can register their signed statements on any
+   Transparency Service (TS), with the guarantee that all consumers will
+   be able to verify them) and enough flexibility to allow different
    implementations of Transparency Services with various auditing and
    compliance requirements.
 
@@ -90,17 +90,17 @@ Table of Contents
    3.  Terminology
    4.  Definition of Transparency
    5.  Architecture Overview
-     5.1.  Claim Issuance and Registration
+     5.1.  Signed Statement Issuance and Registration
        5.1.1.  Issuer Identity
        5.1.2.  Naming Artifacts
-       5.1.3.  Claim Metadata
+       5.1.3.  Signed Statement Metadata
      5.2.  Transparency Service
        5.2.1.  Service Identity, Remote Attestation, and Keying
        5.2.2.  Registration Policies
        5.2.3.  Registry Security Requirements
      5.3.  Verifying Transparent Statements
-   6.  Claim Issuance, Registration, and Verification
-     6.1.  Envelope and Claim Format
+   6.  Signed Statement Issuance, Registration, and Verification
+     6.1.  Envelope and Signed Statement Format
      6.2.  Signed Statement Issuance
      6.3.  Standard Registration Policies
      6.4.  Registering Signed Statements
@@ -113,7 +113,7 @@ Table of Contents
    9.  Privacy Considerations
    10. Security Considerations
      10.1.  Threat Model
-       10.1.1.  Claim Authentication and Transparency.
+       10.1.1.  Signed Statement Authentication and Transparency.
        10.1.2.  Confidentiality and privacy.
        10.1.3.  Cryptographic Assumptions
        10.1.4.  Transparency Service Clients
@@ -140,8 +140,9 @@ Table of Contents
        independently and consistently audited;
 
    3.  issuers can efficiently prove to any other party the registration
-       of their claims; verifying this proof ensures that the issuer is
-       consistent and non-equivocal when making claims.
+       of their signed statements; verifying this proof ensures that the
+       issuer is consistent and non-equivocal when making these signed
+       statements.
 
    The first guarantee is achieved by requiring issuers to sign their
    statements and associated metadata using a distributed public key
@@ -159,12 +160,12 @@ Table of Contents
    this document is much broader, which requires much more flexibility
    in how each TS implements and operates its Registry.  Each service
    may enforce its own policy for authorizing entities to register their
-   claims on the TS.  Some TS may also enforce access control policies
-   to limit who can audit the full Registry, or keep some information on
-   the Registry encrypted.  Nevertheless, it is critical to provide
-   global interoperability for all TS instances as the composition and
-   configuration of involved supply chain entities and their system
-   components is ever-changing and always in flux.
+   signed statements on the TS.  Some TS may also enforce access control
+   policies to limit who can audit the full Registry, or keep some
+   information on the Registry encrypted.  Nevertheless, it is critical
+   to provide global interoperability for all TS instances as the
+   composition and configuration of involved supply chain entities and
+   their system components is ever-changing and always in flux.
 
    A TS provides visibility into statements issued by supply chain
    entities and their sub-systems.  These statements are called Digital
@@ -179,10 +180,10 @@ Table of Contents
 
    Transparent statements provide a common basis for holding issuers
    accountable for the DSCA they release and (more generally) principals
-   accountable for auxiliary claims they make about DSCAs.  Hence,
-   issuers may register new claims about their artifacts, but they
-   cannot delete or alter earlier claims, or hide their claims from
-   third parties such as auditors.
+   accountable for auxiliary statements they make about DSCAs.  Hence,
+   issuers may register new statements about their artifacts, but they
+   cannot delete or alter earlier statements, or hide their statements
+   from third parties such as auditors.
 
    Trust in the TS itself is supported both by protecting their
    implementation (using, for instance, replication, trusted hardware,
@@ -413,7 +414,7 @@ Table of Contents
 
    Auditor:  an entity that checks the correctness and consistency of
       all Transparent Statements registered by a Transparency Service (a
-      specialization of Claim Consumer).
+      specialization of Signed Statement Consumer).
 
    Consumer of Signed Statements:
       // Define here.
@@ -487,9 +488,9 @@ Table of Contents
                              '----. .----'        | DID Key Manifest |
                                    |              | (decentralized)  |
                                    v              +---+----------+---+
-                                .--+--.   Sign Claim  |          |
-                               | Claim +<------------'           |
-                                '--+--'                          |
+                        .---------------+--.   Sign Stat.  |          |
+                        | Signed Statement  +<------------'           |
+                        '--+---------------'                          |
                                    |            +--------------+ |
                                 .-' '---------->+ Transparency | |
                                |   .-------.    |              | |
@@ -500,14 +501,14 @@ Table of Contents
                                    v                    |        |
                              .-+-------+-.              |        |
                             | Transparent |             |        |
-                            |    Claim    |             |        |
+                            | Statement   |             |        |
                              '-----+-----'              |        |
                                    |                    |        |
                                    |'------.     .------)-------'
                                    |        |   |       |
                                    |        v   v       |
                                    |   .----+---+-----. |
-   Verifier      -->               |  / Verify Claim /  |
+   Verifier      -->               |  / Verify Stmt  /  |
                                    | '--------------'   |
                                    v                    v
                           .--------+---------.  .-------+---------.
@@ -530,11 +531,11 @@ Table of Contents
 
    In this section, we describe at a high level the three main roles and
    associated processes in SCITT: Issuers and the Signed Statement
-   issuance process, transparency Registry and the Transparent Claim
+   issuance process, transparency Registry and the Transparent Statement
    Registration process, as well as Verifiers and the Receipt validation
    process.
 
-5.1.  Claim Issuance and Registration
+5.1.  Signed Statement Issuance and Registration
 
 5.1.1.  Issuer Identity
 
@@ -573,7 +574,7 @@ Table of Contents
    different Artifacts, or sign all Signed Statements under the same
    key.
 
-5.1.3.  Claim Metadata
+5.1.3.  Signed Statement Metadata
 
    Besides Issuer, Feed and kid, the only other mandatory metadata in a
    Signed Statement is the type of the Payload, indicated in the cty
@@ -683,17 +684,18 @@ Table of Contents
    In general, registration policies are applied at the discretion of
    the Transparency Services, and verifiers use Receipts as witnesses
    that confirm that the registration policy of the Transparency
-   Services was satisfied at the time of creating a Transparent Claim
-   via Signed Claim registration.  Transparency Service implementations
-   SHOULD make their full registration policy public and auditable, e.g.
-   by recording stateful policy inputs at evaluation time in the
-   registry to ensure that policy can be independently validated later.
-   From an interoperability point of view, the policy that was applied
-   by the Transparency Services is opaque to the verifier, which is
-   forced to trust the associated registration policy.  If the policy of
-   the Transparency Services evolves over time, or is different across
-   Issuers, the assurances derived from Receipt validation may not be
-   uniform across all Signed Statements over time.
+   Services was satisfied at the time of creating a Transparent
+   Statement via Signed Statement registration.  Transparency Service
+   implementations SHOULD make their full registration policy public and
+   auditable, e.g. by recording stateful policy inputs at evaluation
+   time in the registry to ensure that policy can be independently
+   validated later.  From an interoperability point of view, the policy
+   that was applied by the Transparency Services is opaque to the
+   verifier, which is forced to trust the associated registration
+   policy.  If the policy of the Transparency Services evolves over
+   time, or is different across Issuers, the assurances derived from
+   Receipt validation may not be uniform across all Signed Statements
+   over time.
 
    To help verifiers interpret the semantics of Signed Statement
    registration, the SCITT Architecture defines a standard mechanism to
@@ -723,8 +725,8 @@ Table of Contents
       |  to include the registration policies in the receipt/
       |  countersignature rather than in the envelope.  This improves
       |  the portability of Signed Statements but requires the verifier
-      |  to be more aware of the particular policies at the TS where the
-      |  claim is registered.
+      |  to be more aware of the particular policies of the TS where the
+      |  signed statement is registered.
 
 5.2.3.  Registry Security Requirements
 
@@ -750,7 +752,7 @@ Table of Contents
 5.2.3.1.  Finality
 
    A Registry is append-only: once a Signed Statement is registered and
-   becomes a Transparent Claim, it cannot be modified, deleted, or
+   becomes a Transparent Statement, it cannot be modified, deleted, or
    moved.  In particular, once a Receipt is returned for a given Signed
    Statement, the registered Signed Statement and any preceding entry in
    the Registry become immutable, and the Receipt provides universally-
@@ -843,13 +845,13 @@ Table of Contents
    Transparency Services, they can still keep the Receipt and blame the
    Issuer or the Transparency Services at a later point.
 
-6.  Claim Issuance, Registration, and Verification
+6.  Signed Statement Issuance, Registration, and Verification
 
    This section details the interoperability requirements for
    implementers of Signed Statements issuance and validation libraries,
    and of Transparency Services.
 
-6.1.  Envelope and Claim Format
+6.1.  Envelope and Signed Statement Format
 
    The formats of Signed Statements and Receipts are based on CBOR
    Object Signing and Encryption (COSE [RFC9052]).  The choice of CBOR
@@ -1025,8 +1027,8 @@ Table of Contents
    +==========+==============+=========================================+
    | Temporal | issuance_ts: | Returns true if and only if there is    |
    |          | uint .within | no existing already registered          |
-   |          | (~time)      | Transparent Claim in the ledger with    |
-   |          |              | the same Issuer and Feed with a         |
+   |          | (~time)      | Transparent Statement in the ledger     |
+   |          |              | with the same Issuer and Feed with a    |
    |          |              | greater issuance_ts and now () >        |
    |          |              | issuance_ts at registration time.       |
    |          |              | The value provided for issuance_ts      |
@@ -1091,8 +1093,8 @@ Table of Contents
    A Transparency Service MUST ensure that a Signed Statement is
    registered before releasing its Receipt, so that it can always back
    up the Receipt by releasing the corresponding entry (the now
-   Transparent Claim) in the Registry.  Conversely, the service MAY re-
-   issue Receipts for the Registry content, for instance after a
+   Transparent Statement) in the Registry.  Conversely, the service MAY
+   re-issue Receipts for the Registry content, for instance after a
    transient fault during Signed Statement Registration.
 
 6.5.  Validation of Transparent Statements
@@ -1297,7 +1299,7 @@ Table of Contents
    This model may need to be refined to account for specific supply
    chains and use cases.
 
-10.1.1.  Claim Authentication and Transparency.
+10.1.1.  Signed Statement Authentication and Transparency.
 
    SCITT primarily supports checking of Signed Statement authenticity,
    both from the Issuer (authentication) and from the Transparency
@@ -1401,7 +1403,7 @@ Table of Contents
 
    The Transparency Service is trusted with the confidentiality of the
    Signed Statements presented for registration.  Some Transparency
-   Services may publish every Transparent Claim in their logs, to
+   Services may publish every Transparent Statement in their logs, to
    facilitate their dissemination and auditing.  Others may just return
    Receipts to clients that present Singed Statements for registration,
    and disclose the ledger only to auditors trusted with the

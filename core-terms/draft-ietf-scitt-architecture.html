@@ -11,7 +11,7 @@
 <meta content="Yogesh Deshpande" name="author">
 <meta content="
        Traceability of physical and digital artifacts in supply chains is a long-standing, but increasingly serious security concern. The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases. 
-       This memo defines a generic and scalable architecture to enable transparency across any supply chain with minimum adoption barriers for producers (who can register their claims on any Transparency Service (TS), with the guarantee that all consumers will be able to verify them) and enough flexibility to allow different implementations of Transparency Services with various auditing and compliance requirements. 
+       This memo defines a generic and scalable architecture to enable transparency across any supply chain with minimum adoption barriers for producers (who can register their signed statements on any Transparency Service (TS), with the guarantee that all consumers will be able to verify them) and enough flexibility to allow different implementations of Transparency Services with various auditing and compliance requirements. 
     " name="description">
 <meta content="xml2rfc 3.16.0" name="generator">
 <meta content="Internet-Draft" name="keyword">
@@ -1099,7 +1099,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">Traceability of physical and digital artifacts in supply chains is a long-standing, but increasingly serious security concern. The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">This memo defines a generic and scalable architecture to enable transparency across any supply chain with minimum adoption barriers for producers (who can register their claims on any Transparency Service (TS), with the guarantee that all consumers will be able to verify them) and enough flexibility to allow different implementations of Transparency Services with various auditing and compliance requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">This memo defines a generic and scalable architecture to enable transparency across any supply chain with minimum adoption barriers for producers (who can register their signed statements on any Transparency Service (TS), with the guarantee that all consumers will be able to verify them) and enough flexibility to allow different implementations of Transparency Services with various auditing and compliance requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1196,7 +1196,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-architecture-overview" class="internal xref">Architecture Overview</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-claim-issuance-and-registra" class="internal xref">Claim Issuance and Registration</a></p>
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-signed-statement-issuance-a" class="internal xref">Signed Statement Issuance and Registration</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.1">
                     <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="auto internal xref">5.1.1</a>.  <a href="#name-issuer-identity" class="internal xref">Issuer Identity</a></p>
@@ -1205,7 +1205,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     <p id="section-toc.1-1.5.2.1.2.2.1"><a href="#section-5.1.2" class="auto internal xref">5.1.2</a>.  <a href="#name-naming-artifacts" class="internal xref">Naming Artifacts</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.3">
-                    <p id="section-toc.1-1.5.2.1.2.3.1"><a href="#section-5.1.3" class="auto internal xref">5.1.3</a>.  <a href="#name-claim-metadata" class="internal xref">Claim Metadata</a></p>
+                    <p id="section-toc.1-1.5.2.1.2.3.1"><a href="#section-5.1.3" class="auto internal xref">5.1.3</a>.  <a href="#name-signed-statement-metadata" class="internal xref">Signed Statement Metadata</a></p>
 </li>
                 </ul>
 </li>
@@ -1229,10 +1229,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-claim-issuance-registration" class="internal xref">Claim Issuance, Registration, and Verification</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-signed-statement-issuance-r" class="internal xref">Signed Statement Issuance, Registration, and Verification</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-envelope-and-claim-format" class="internal xref">Envelope and Claim Format</a></p>
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-envelope-and-signed-stateme" class="internal xref">Envelope and Signed Statement Format</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
                 <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-signed-statement-issuance" class="internal xref">Signed Statement Issuance</a></p>
@@ -1277,7 +1277,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-threat-model" class="internal xref">Threat Model</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1.2.1">
-                    <p id="section-toc.1-1.10.2.1.2.1.1"><a href="#section-10.1.1" class="auto internal xref">10.1.1</a>.  <a href="#name-claim-authentication-and-tr" class="internal xref">Claim Authentication and Transparency.</a></p>
+                    <p id="section-toc.1-1.10.2.1.2.1.1"><a href="#section-10.1.1" class="auto internal xref">10.1.1</a>.  <a href="#name-signed-statement-authentica" class="internal xref">Signed Statement Authentication and Transparency.</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1.2.2">
                     <p id="section-toc.1-1.10.2.1.2.2.1"><a href="#section-10.1.2" class="auto internal xref">10.1.2</a>.  <a href="#name-confidentiality-and-privacy" class="internal xref">Confidentiality and privacy.</a></p>
@@ -1331,14 +1331,14 @@ It achieves this goal by enforcing the following complementary security guarante
 </li>
         <li id="section-1-2.2">such statements must be registered on a secure append-only Registry so that their provenance and history can be independently and consistently audited;<a href="#section-1-2.2" class="pilcrow">¶</a>
 </li>
-        <li id="section-1-2.3">issuers can efficiently prove to any other party the registration of their claims; verifying this proof ensures that the issuer is consistent and non-equivocal when making claims.<a href="#section-1-2.3" class="pilcrow">¶</a>
+        <li id="section-1-2.3">issuers can efficiently prove to any other party the registration of their signed statements; verifying this proof ensures that the issuer is consistent and non-equivocal when making these signed statements.<a href="#section-1-2.3" class="pilcrow">¶</a>
 </li>
       </ol>
 <p id="section-1-3">The first guarantee is achieved by requiring issuers to sign their statements and associated metadata using a distributed public key infrastructure. The second guarantee is achieved by storing the signed statement in an immutable, append-only, transparent Registry. The last guarantee is achieved by implementing the Registry using a verifiable data structure (such as a Merkle Tree <span>[<a href="#MERKLE" class="cite xref">MERKLE</a>]</span>), and by requiring a Transparency Service (TS) that operates the Registry to endorse its state at the time of registration.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">The guarantees and techniques used in this document generalize those of Certificate Transparency <span>[<a href="#RFC9162" class="cite xref">RFC9162</a>]</span>, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates. However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each TS implements and operates its Registry. Each service may enforce its own policy for authorizing entities to register their claims on the TS. Some TS may also enforce access control policies to limit who can audit the full Registry, or keep some information on the Registry encrypted. Nevertheless, it is critical to provide global interoperability for all TS instances as the composition and configuration of involved supply chain entities and their system components is ever-changing and always in flux.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-4">The guarantees and techniques used in this document generalize those of Certificate Transparency <span>[<a href="#RFC9162" class="cite xref">RFC9162</a>]</span>, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates. However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each TS implements and operates its Registry. Each service may enforce its own policy for authorizing entities to register their signed statements on the TS. Some TS may also enforce access control policies to limit who can audit the full Registry, or keep some information on the Registry encrypted. Nevertheless, it is critical to provide global interoperability for all TS instances as the composition and configuration of involved supply chain entities and their system components is ever-changing and always in flux.<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">A TS provides visibility into statements issued by supply chain entities and their sub-systems. These statements are called Digital Supply Chain Artifacts (DSCA).
 A TS vouches for specific and well-defined metadata about these DSCAs. Some metadata is selected (and signed) by the issuer, indicating, e.g., "who issued the DSCA" or "what type of DSCA is described" or "what is the DSCA version"; whereas additional metadata is selected (and countersigned) by the TS, indicating, e.g., "when was the DSCA registered in the Registry". The DSCA contents can be opaque to the TS, if so desired: it is the metadata that must always be transparent in order to warrant trust.<a href="#section-1-5" class="pilcrow">¶</a></p>
-<p id="section-1-6">Transparent statements provide a common basis for holding issuers accountable for the DSCA they release and (more generally) principals accountable for auxiliary claims they make about DSCAs. Hence, issuers may register new claims about their artifacts, but they cannot delete or alter earlier claims, or hide their claims from third parties such as auditors.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-6">Transparent statements provide a common basis for holding issuers accountable for the DSCA they release and (more generally) principals accountable for auxiliary statements they make about DSCAs. Hence, issuers may register new statements about their artifacts, but they cannot delete or alter earlier statements, or hide their statements from third parties such as auditors.<a href="#section-1-6" class="pilcrow">¶</a></p>
 <p id="section-1-7">Trust in the TS itself is supported both by protecting their implementation (using, for instance, replication, trusted hardware, and remote attestation of systems) and by enabling independent audits of the correctness and consistency of its Registry, thereby holding the organization accountable that operates it. Unlike CT, where independent auditors are responsible for enforcing the consistency of multiple independent instances of the same global Registry, we require each TS to guarantee the consistency of its own Registry (for instance, through the use of a consensus algorithm between replicas of the Registry), but assume no consistency between different transparency services.<a href="#section-1-7" class="pilcrow">¶</a></p>
 <p id="section-1-8">The TS specified in this architecture caters to two types of audiences:<a href="#section-1-8" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-1-9">
@@ -1484,7 +1484,7 @@ and on prior Signed Statements already added to a Registry.<a href="#section-3-2
         <dd class="break"></dd>
 <dt id="section-3-2.27">Auditor:</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.28">
-          <p id="section-3-2.28.1">an entity that checks the correctness and consistency of all Transparent Statements registered by a Transparency Service (a specialization of Claim Consumer).<a href="#section-3-2.28.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.28.1">an entity that checks the correctness and consistency of all Transparent Statements registered by a Transparency Service (a specialization of Signed Statement Consumer).<a href="#section-3-2.28.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-2.29">Consumer of Signed Statements:</dt>
@@ -1515,13 +1515,13 @@ and on prior Signed Statements already added to a Registry.<a href="#section-3-2
       </h2>
 <div id="section-5-1">
         <div class="alignLeft art-svg artwork" id="section-5-1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="624" width="544" viewBox="0 0 544 624" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="624" width="552" viewBox="0 0 552 624" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+            <path d="M 176,208 L 176,240" fill="none" stroke="black"></path>
             <path d="M 208,64 L 208,88" fill="none" stroke="black"></path>
             <path d="M 208,128 L 208,144" fill="none" stroke="black"></path>
             <path d="M 208,400 L 208,416" fill="none" stroke="black"></path>
             <path d="M 232,288 L 232,320" fill="none" stroke="black"></path>
             <path d="M 264,176 L 264,200" fill="none" stroke="black"></path>
-            <path d="M 264,240 L 264,256" fill="none" stroke="black"></path>
             <path d="M 264,352 L 264,376" fill="none" stroke="black"></path>
             <path d="M 264,432 L 264,568" fill="none" stroke="black"></path>
             <path d="M 320,128 L 320,144" fill="none" stroke="black"></path>
@@ -1530,12 +1530,12 @@ and on prior Signed Statements already added to a Registry.<a href="#section-3-2
             <path d="M 368,256 L 368,320" fill="none" stroke="black"></path>
             <path d="M 368,480 L 368,504" fill="none" stroke="black"></path>
             <path d="M 384,144 L 384,192" fill="none" stroke="black"></path>
-            <path d="M 416,192 L 416,208" fill="none" stroke="black"></path>
             <path d="M 432,320 L 432,456" fill="none" stroke="black"></path>
             <path d="M 432,472 L 432,568" fill="none" stroke="black"></path>
             <path d="M 488,256 L 488,320" fill="none" stroke="black"></path>
-            <path d="M 504,192 L 504,448" fill="none" stroke="black"></path>
+            <path d="M 504,256 L 504,448" fill="none" stroke="black"></path>
             <path d="M 536,144 L 536,192" fill="none" stroke="black"></path>
+            <path d="M 544,208 L 544,240" fill="none" stroke="black"></path>
             <path d="M 176,32 L 248,32" fill="none" stroke="black"></path>
             <path d="M 176,64 L 248,64" fill="none" stroke="black"></path>
             <path d="M 176,96 L 240,96" fill="none" stroke="black"></path>
@@ -1546,10 +1546,10 @@ and on prior Signed Statements already added to a Registry.<a href="#section-3-2
             <path d="M 384,144 L 536,144" fill="none" stroke="black"></path>
             <path d="M 224,160 L 248,160" fill="none" stroke="black"></path>
             <path d="M 280,160 L 304,160" fill="none" stroke="black"></path>
-            <path d="M 384,192 L 536,192" fill="none" stroke="black"></path>
-            <path d="M 248,208 L 280,208" fill="none" stroke="black"></path>
-            <path d="M 304,224 L 400,224" fill="none" stroke="black"></path>
-            <path d="M 248,240 L 280,240" fill="none" stroke="black"></path>
+            <path d="M 384,192 L 528,192" fill="none" stroke="black"></path>
+            <path d="M 176,208 L 320,208" fill="none" stroke="black"></path>
+            <path d="M 344,224 L 440,224" fill="none" stroke="black"></path>
+            <path d="M 176,240 L 320,240" fill="none" stroke="black"></path>
             <path d="M 368,256 L 488,256" fill="none" stroke="black"></path>
             <path d="M 280,272 L 360,272" fill="none" stroke="black"></path>
             <path d="M 272,288 L 320,288" fill="none" stroke="black"></path>
@@ -1591,11 +1591,10 @@ and on prior Signed Statements already added to a Registry.<a href="#section-3-2
             <path d="M 248,160 C 256.83064,160 264,167.16936 264,176" fill="none" stroke="black"></path>
             <path d="M 280,160 C 271.16936,160 264,167.16936 264,176" fill="none" stroke="black"></path>
             <path d="M 304,160 C 312.83064,160 320,152.83064 320,144" fill="none" stroke="black"></path>
-            <path d="M 248,208 C 239.16936,208 232,215.16936 232,224" fill="none" stroke="black"></path>
-            <path d="M 280,208 C 288.83064,208 296,215.16936 296,224" fill="none" stroke="black"></path>
-            <path d="M 400,224 C 408.83064,224 416,216.83064 416,208" fill="none" stroke="black"></path>
-            <path d="M 248,240 C 239.16936,240 232,232.83064 232,224" fill="none" stroke="black"></path>
-            <path d="M 280,240 C 288.83064,240 296,232.83064 296,224" fill="none" stroke="black"></path>
+            <path d="M 528,192 C 536.83064,192 544,199.16936 544,208" fill="none" stroke="black"></path>
+            <path d="M 320,208 C 328.83064,208 336,215.16936 336,224" fill="none" stroke="black"></path>
+            <path d="M 440,224 C 448.83064,224 456,216.83064 456,208" fill="none" stroke="black"></path>
+            <path d="M 320,240 C 328.83064,240 336,232.83064 336,224" fill="none" stroke="black"></path>
             <path d="M 248,272 C 239.16936,272 232,279.16936 232,288" fill="none" stroke="black"></path>
             <path d="M 248,272 C 256.83064,272 264,264.83064 264,256" fill="none" stroke="black"></path>
             <path d="M 280,272 C 271.16936,272 264,264.83064 264,256" fill="none" stroke="black"></path>
@@ -1620,8 +1619,8 @@ and on prior Signed Statements already added to a Registry.<a href="#section-3-2
             <polygon class="arrowhead" points="376,504 364,498.4 364,509.6" fill="black" transform="rotate(90,368,504)"></polygon>
             <polygon class="arrowhead" points="368,272 356,266.4 356,277.6" fill="black" transform="rotate(0,360,272)"></polygon>
             <polygon class="arrowhead" points="352,304 340,298.4 340,309.6" fill="black" transform="rotate(180,344,304)"></polygon>
+            <polygon class="arrowhead" points="352,224 340,218.4 340,229.6" fill="black" transform="rotate(180,344,224)"></polygon>
             <polygon class="arrowhead" points="344,504 332,498.4 332,509.6" fill="black" transform="rotate(90,336,504)"></polygon>
-            <polygon class="arrowhead" points="312,224 300,218.4 300,229.6" fill="black" transform="rotate(180,304,224)"></polygon>
             <polygon class="arrowhead" points="272,568 260,562.4 260,573.6" fill="black" transform="rotate(90,264,568)"></polygon>
             <polygon class="arrowhead" points="272,376 260,370.4 260,381.6" fill="black" transform="rotate(90,264,376)"></polygon>
             <polygon class="arrowhead" points="272,200 260,194.4 260,205.6" fill="black" transform="rotate(90,264,200)"></polygon>
@@ -1639,19 +1638,20 @@ and on prior Signed Statements already added to a Registry.<a href="#section-3-2
               <text x="440" y="164">Key</text>
               <text x="492" y="164">Manifest</text>
               <text x="456" y="180">(decentralized)</text>
-              <text x="332" y="212">Sign</text>
-              <text x="376" y="212">Claim</text>
-              <text x="264" y="228">Claim</text>
+              <text x="372" y="212">Sign</text>
+              <text x="416" y="212">Stat.</text>
+              <text x="212" y="228">Signed</text>
+              <text x="280" y="228">Statement</text>
               <text x="428" y="276">Transparency</text>
               <text x="52" y="308">Transparency</text>
               <text x="296" y="308">Receipt</text>
               <text x="428" y="308">Registry</text>
               <text x="72" y="324">Service</text>
               <text x="264" y="404">Transparent</text>
-              <text x="264" y="420">Claim</text>
+              <text x="256" y="420">Statement</text>
               <text x="36" y="532">Verifier</text>
               <text x="324" y="532">Verify</text>
-              <text x="376" y="532">Claim</text>
+              <text x="372" y="532">Stmt</text>
               <text x="32" y="596">Auditor</text>
               <text x="224" y="596">Collect</text>
               <text x="292" y="596">Receipts</text>
@@ -1663,11 +1663,11 @@ and on prior Signed Statements already added to a Registry.<a href="#section-3-2
 </div>
 <p id="section-5-2">The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing, registering and auditing Transparent Statements.
 In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the Registry algorithm. Most of the details of the Receipt's contents are specific to the Registry algorithm. The <span>[<a href="#I-D.birkholz-scitt-receipts" class="cite xref">I-D.birkholz-scitt-receipts</a>]</span> document defines two initial Registry algorithms (for historical and sparse Merkle Trees), but other Registry formats (such as blockchains, or hybrid historical and indexed Merkle Trees) may be proposed later.<a href="#section-5-2" class="pilcrow">¶</a></p>
-<p id="section-5-3">In this section, we describe at a high level the three main roles and associated processes in SCITT: Issuers and the Signed Statement issuance process, transparency Registry and the Transparent Claim Registration process, as well as  Verifiers and the Receipt validation process.<a href="#section-5-3" class="pilcrow">¶</a></p>
-<div id="sec-claim-issuance-and-registration">
+<p id="section-5-3">In this section, we describe at a high level the three main roles and associated processes in SCITT: Issuers and the Signed Statement issuance process, transparency Registry and the Transparent Statement Registration process, as well as  Verifiers and the Receipt validation process.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<div id="sec-signed-statement-issuance-and-registration">
 <section id="section-5.1">
-        <h3 id="name-claim-issuance-and-registra">
-<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-claim-issuance-and-registra" class="section-name selfRef">Claim Issuance and Registration</a>
+        <h3 id="name-signed-statement-issuance-a">
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-signed-statement-issuance-a" class="section-name selfRef">Signed Statement Issuance and Registration</a>
         </h3>
 <div id="sec-issuer-identity">
 <section id="section-5.1.1">
@@ -1688,10 +1688,10 @@ A DID can be <em>resolved</em> into a <em>key manifest</em> (a list of public ke
 <p id="section-5.1.2-1">Many Issuers issue Signed Statements about different Artifacts under the same DID, so it is important for everyone to be able to immediately recognize by looking at the Envelope of a Signed Statments what Artifact it is referring to. This information is stored in the Feed header of the Envelope. Issuers <span class="bcp14">MAY</span> use different signing keys (identified by <code>kid</code> in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.<a href="#section-5.1.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sec-claim-metadata">
+<div id="sec-signed-statement-metadata">
 <section id="section-5.1.3">
-          <h4 id="name-claim-metadata">
-<a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-claim-metadata" class="section-name selfRef">Claim Metadata</a>
+          <h4 id="name-signed-statement-metadata">
+<a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-signed-statement-metadata" class="section-name selfRef">Signed Statement Metadata</a>
           </h4>
 <p id="section-5.1.3-1">Besides Issuer, Feed and kid, the only other mandatory metadata in a Signed Statement is the type of the Payload, indicated in the <code>cty</code> (content type) Envelope header.
 However, this set of mandatory metadata is not sufficient to express many important Registration policies. For example, a Registry may only allow a Signed Statement to be registered, if it was signed recently. While the Issuer is free to add any information in the payload of the Signed Statements, the Transparency Services (and most of its auditors) can only be expected to interpret information in the Envelope.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
@@ -1727,7 +1727,7 @@ associated with public/private key pairs for signing on behalf of the service. I
           </h4>
 <p id="section-5.2.2-1">A Transparency Services that accepts to register any valid Signed Statement offered by an Issuer would end up providing only limited value to verifiers. In consequence, a baseline transparency guarantee policing the registration of Signed Statements is required to ensure completeness of audit, which can help detect equivocation.
 Most advanced SCITT scenarios rely on the Transparency Service performing additional domain-specific checks before a Signed Statement is accepted: Transparency Services may only allow trusted authenticated users to register Signed Statements, Transparency Services may try to check that a new Signed Statement is consistent with previous Signed Statements from the same Issuers or that Signed Statements are registered in the correct order and cannot be re-played; some Transparency Services may even interpret and validate the payload of Signed Statements.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-2">In general, registration policies are applied at the discretion of the Transparency Services, and verifiers use Receipts as witnesses that confirm that the registration policy of the Transparency Services was satisfied at the time of creating a Transparent Claim via Signed Claim registration. Transparency Service implementations <span class="bcp14">SHOULD</span> make their full registration policy public and auditable, e.g. by recording stateful policy inputs at evaluation time in the registry to ensure that policy can be independently validated later.
+<p id="section-5.2.2-2">In general, registration policies are applied at the discretion of the Transparency Services, and verifiers use Receipts as witnesses that confirm that the registration policy of the Transparency Services was satisfied at the time of creating a Transparent Statement via Signed Statement registration. Transparency Service implementations <span class="bcp14">SHOULD</span> make their full registration policy public and auditable, e.g. by recording stateful policy inputs at evaluation time in the registry to ensure that policy can be independently validated later.
 From an interoperability point of view, the policy that was applied by the Transparency Services is opaque to the verifier, which is forced to trust the associated registration policy. If the policy of the Transparency Services evolves over time, or is different across Issuers, the assurances  derived from Receipt validation may not be uniform across all Signed Statements over time.<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
 <p id="section-5.2.2-3">To help verifiers interpret the semantics of Signed Statement registration, the SCITT Architecture defines a standard mechanism to include signals the Signed Statement itself which policies have been applied by the Transparency Service from a defined set
 of registration policies with standardized semantics. Each policy that is expected to be enforced by the Transparency Service is represented by an entry in the registration policy info map (<code>reg_info</code>) in the COSE Envelope of the Signed Statement. The key of the map entry corresponds to the name of the policy, while its value (including its type) is policy-specific. For instance, the <code>register_by</code> policy defines the maximum timestamp by which a Signed Statemnet can be registered, hence the associated value contains an unsigned integer.<a href="#section-5.2.2-3" class="pilcrow">¶</a></p>
@@ -1735,7 +1735,7 @@ of registration policies with standardized semantics. Each policy that is expect
 <aside id="section-5.2.2-5">
             <p id="section-5.2.2-5.1"><strong>Editor's note</strong><a href="#section-5.2.2-5.1" class="pilcrow">¶</a></p>
 <p id="section-5.2.2-5.2">The technical design for signalling and verifying registration policies is a work in progress.
-An alternative design would be to include the registration policies in the receipt/countersignature rather than in the envelope. This improves the portability of Signed Statements but requires the verifier to be more aware of the particular policies at the TS where the claim is registered.<a href="#section-5.2.2-5.2" class="pilcrow">¶</a></p>
+An alternative design would be to include the registration policies in the receipt/countersignature rather than in the envelope. This improves the portability of Signed Statements but requires the verifier to be more aware of the particular policies of the TS where the signed statement is registered.<a href="#section-5.2.2-5.2" class="pilcrow">¶</a></p>
 </aside>
 </section>
 </div>
@@ -1751,7 +1751,7 @@ An alternative design would be to include the registration policies in the recei
             <h5 id="name-finality">
 <a href="#section-5.2.3.1" class="section-number selfRef">5.2.3.1. </a><a href="#name-finality" class="section-name selfRef">Finality</a>
             </h5>
-<p id="section-5.2.3.1-1">A Registry is append-only: once a Signed Statement is registered and becomes a Transparent Claim, it cannot be modified, deleted, or moved. In particular, once a Receipt is returned for a given Signed Statement, the registered Signed Statement and any preceding entry in the Registry become immutable, and the Receipt provides universally-verifiable evidence of this property.<a href="#section-5.2.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3.1-1">A Registry is append-only: once a Signed Statement is registered and becomes a Transparent Statement, it cannot be modified, deleted, or moved. In particular, once a Receipt is returned for a given Signed Statement, the registered Signed Statement and any preceding entry in the Registry become immutable, and the Receipt provides universally-verifiable evidence of this property.<a href="#section-5.2.3.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-consistency">
@@ -1824,16 +1824,16 @@ They may additionally apply a validation policy based on the protected headers p
 </div>
 </section>
 </div>
-<div id="sec-claim-issuance-registration-and-verification">
+<div id="sec-signed-statement-issuance-registration-and-verification">
 <section id="section-6">
-      <h2 id="name-claim-issuance-registration">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-claim-issuance-registration" class="section-name selfRef">Claim Issuance, Registration, and Verification</a>
+      <h2 id="name-signed-statement-issuance-r">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-signed-statement-issuance-r" class="section-name selfRef">Signed Statement Issuance, Registration, and Verification</a>
       </h2>
 <p id="section-6-1">This section details the interoperability requirements for implementers of Signed Statements issuance and validation libraries, and of Transparency Services.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<div id="sec-envelope-and-claim-format">
+<div id="sec-envelope-and-signed-statement-format">
 <section id="section-6.1">
-        <h3 id="name-envelope-and-claim-format">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-envelope-and-claim-format" class="section-name selfRef">Envelope and Claim Format</a>
+        <h3 id="name-envelope-and-signed-stateme">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-envelope-and-signed-stateme" class="section-name selfRef">Envelope and Signed Statement Format</a>
         </h3>
 <p id="section-6.1-1">The formats of Signed Statements and Receipts are based on CBOR Object Signing and Encryption (COSE <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>). The choice of CBOR <span>[<a href="#RFC9849" class="cite xref">RFC9849</a>]</span> is a trade-off between safety (in particular, non-malleability: each Signed Statement has a unique serialization), ease of processing and availability of implementations.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.1-2">At a high-level that is the context of this architecture, a Signed Statement is a COSE single-signed object (i.e., a <code>COSE_Sign1</code>) that contains the correct set of protected headers. Although Issuers and relaying parties may attach unprotected headers to Signed Statements, Transparency Services and Verifiers <span class="bcp14">MUST NOT</span> rely on the presence or value of additional unprotected headers in Signed Statements during Registration and validation.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
@@ -1973,7 +1973,7 @@ For now, we inline some significant policies to illustrate the most common use c
             <tr>
               <th class="text-left" rowspan="1" colspan="1">Temporal</th>
               <th class="text-left" rowspan="1" colspan="1">issuance_ts: uint .within (~time)</th>
-              <th class="text-left" rowspan="1" colspan="1">Returns true if and only if there is no existing already registered Transparent Claim in the ledger with the same Issuer and Feed with a greater issuance_ts and now () &gt; issuance_ts at registration time. The value provided for issuance_ts MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.</th>
+              <th class="text-left" rowspan="1" colspan="1">Returns true if and only if there is no existing already registered Transparent Statement in the ledger with the same Issuer and Feed with a greater issuance_ts and now () &gt; issuance_ts at registration time. The value provided for issuance_ts MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.</th>
             </tr>
           </thead>
           <tbody>
@@ -2012,7 +2012,7 @@ For now, we inline some significant policies to illustrate the most common use c
 </li>
         </ol>
 <p id="section-6.4-3">The last two steps <span class="bcp14">MAY</span> be shared between a batch of Signed Statements recorded in the Registry.<a href="#section-6.4-3" class="pilcrow">¶</a></p>
-<p id="section-6.4-4">A Transparency Service <span class="bcp14">MUST</span> ensure that a Signed Statement is registered before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry (the now Transparent Claim) in the Registry. Conversely, the service <span class="bcp14">MAY</span> re-issue Receipts for the Registry content, for instance after a transient fault during Signed Statement Registration.<a href="#section-6.4-4" class="pilcrow">¶</a></p>
+<p id="section-6.4-4">A Transparency Service <span class="bcp14">MUST</span> ensure that a Signed Statement is registered before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry (the now Transparent Statement) in the Registry. Conversely, the service <span class="bcp14">MAY</span> re-issue Receipts for the Registry content, for instance after a transient fault during Signed Statement Registration.<a href="#section-6.4-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-validation-of-transparent-statements">
@@ -2190,10 +2190,10 @@ and avoid these keys for any purpose not described in this architecture document
         </h3>
 <p id="section-10.1-1">We provide a generic threat model for SCITT, describing its residual security properties when some of its actors (identity providers, Issuers, Transparency Services, and Auditors) are corrupt or compromised.<a href="#section-10.1-1" class="pilcrow">¶</a></p>
 <p id="section-10.1-2">This model may need to be refined to account for specific supply chains and use cases.<a href="#section-10.1-2" class="pilcrow">¶</a></p>
-<div id="sec-claim-authentication-and-transparency">
+<div id="sec-signed-statement-authentication-and-transparency">
 <section id="section-10.1.1">
-          <h4 id="name-claim-authentication-and-tr">
-<a href="#section-10.1.1" class="section-number selfRef">10.1.1. </a><a href="#name-claim-authentication-and-tr" class="section-name selfRef">Claim Authentication and Transparency.</a>
+          <h4 id="name-signed-statement-authentica">
+<a href="#section-10.1.1" class="section-number selfRef">10.1.1. </a><a href="#name-signed-statement-authentica" class="section-name selfRef">Signed Statement Authentication and Transparency.</a>
           </h4>
 <p id="section-10.1.1-1">SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency). These guarantees are meant to hold for the extensive periods of time, possibly decades.<a href="#section-10.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-10.1.1-2">It can never be assumed that some Issuers and some Transparency Services will not be corrupt.<a href="#section-10.1.1-2" class="pilcrow">¶</a></p>
@@ -2228,7 +2228,7 @@ and accept the risk of being blamed for inconsistent Registration or Issuer equi
           </h4>
 <p id="section-10.1.2-1">According to Zero Trust Principles any location in a network is never trusted. All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but, as usual, this may not exclude network traffic analysis.<a href="#section-10.1.2-1" class="pilcrow">¶</a></p>
 <p id="section-10.1.2-2"><strong>Signed Statements and their registration</strong><a href="#section-10.1.2-2" class="pilcrow">¶</a></p>
-<p id="section-10.1.2-3">The Transparency Service is trusted with the confidentiality of the Signed Statements presented for registration. Some Transparency Services may publish every Transparent Claim in their logs, to facilitate their dissemination and auditing. Others may just return Receipts to clients that present Singed Statements for registration, and disclose the ledger only to auditors trusted with the confidentiality of its contents.<a href="#section-10.1.2-3" class="pilcrow">¶</a></p>
+<p id="section-10.1.2-3">The Transparency Service is trusted with the confidentiality of the Signed Statements presented for registration. Some Transparency Services may publish every Transparent Statement in their logs, to facilitate their dissemination and auditing. Others may just return Receipts to clients that present Singed Statements for registration, and disclose the ledger only to auditors trusted with the confidentiality of its contents.<a href="#section-10.1.2-3" class="pilcrow">¶</a></p>
 <p id="section-10.1.2-4">A collection of Transparent Statements leaks no information about the contents of other Transparent Statements registered at the Transparency Service.<a href="#section-10.1.2-4" class="pilcrow">¶</a></p>
 <p id="section-10.1.2-5">Nonetheless, Issuers should carefully review the inclusion of private/confidential materials in their issued Signed Statements; they may for instance remove any PII, or include instead opaque cryptographic commitments, such as hashes.<a href="#section-10.1.2-5" class="pilcrow">¶</a></p>
 <p id="section-10.1.2-6"><strong>Queries to the Registry</strong><a href="#section-10.1.2-6" class="pilcrow">¶</a></p>
