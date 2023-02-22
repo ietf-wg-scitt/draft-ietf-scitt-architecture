@@ -89,7 +89,7 @@ It achieves this goal by enforcing the following complementary security guarante
 
 1. statements made by issuers about supply chain artifacts must be identifiable, authentic, and non-repudiable;
 2. such statements must be registered on a secure append-only Registry so that their provenance and history can be independently and consistently audited;
-3. issuers can efficiently prove to any other party the registration of their Signed Statements; verifying this proof ensures that the issuer is consistent and non-equivocal when producing Signed Statements.
+3. Issuers can efficiently prove to any other party the registration of their Signed Statements; verifying this proof ensures that the issuer is consistent and non-equivocal when producing Signed Statements.
 
 The first guarantee is achieved by requiring issuers to sign their statements and associated metadata using a distributed public key infrastructure. The second guarantee is achieved by storing the signed statement in an immutable, append-only, transparent Registry. The last guarantee is achieved by implementing the Registry using a verifiable data structure (such as a Merkle Tree {{MERKLE}}), and by requiring a Transparency Service that operates the Registry to endorse its state at the time of registration.
 
