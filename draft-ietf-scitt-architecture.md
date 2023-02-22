@@ -1,25 +1,22 @@
 ---
+v: 3
+
 title: An Architecture for Trustworthy and Transparent Digital Supply Chains
 abbrev: SCITT Architecture
 docname: draft-ietf-scitt-architecture-latest
-stand_alone: true
-ipr: trust200902
+
 area: Security
-wg: TBD
+wg: SCITT
 kw: Internet-Draft
 cat: std
 consensus: yes
 submissiontype: IETF
-pi:
-  toc: yes
-  sortrefs: yes
-  symrefs: yes
+
 kramdown_options:
   auto_id_prefix: sec-
 
 author:
-- ins: H. Birkholz
-  name: Henk Birkholz
+- name: Henk Birkholz
   org: Fraunhofer SIT
   abbrev: Fraunhofer SIT
   email: henk.birkholz@sit.fraunhofer.de
@@ -27,24 +24,21 @@ author:
   code: '64295'
   city: Darmstadt
   country: Germany
-- ins: A. Delignat-Lavaud
-  name: Antoine Delignat-Lavaud
+- name: Antoine Delignat-Lavaud
   organization: Microsoft Research
   street: 21 Station Road
   code: 'CB1 2FB'
   city: Cambridge
   email: antdl@microsoft.com
   country: UK
-- ins: C. Fournet
-  name: Cedric Fournet
+- name: Cedric Fournet
   organization: Microsoft Research
   street: 21 Station Road
   code: 'CB1 2FB'
   city: Cambridge
   email: fournet@microsoft.com
   country: UK
-- ins: Y. Deshpande
-  name: Yogesh Deshpande
+- name: Yogesh Deshpande
   organization: ARM
   street: 110 Fulbourn Road
   code: 'CB1 9NJ'
@@ -54,33 +48,31 @@ author:
 
 normative:
   RFC8610: CDDL
-  RFC8152: COSE
+  RFC9052: COSE
+#  RFC9053: COSE-ALGS
+#  RFC9054: COSE-HASH
   RFC9162: CT
   RFC7807:
   RFC7231:
   RFC6838:
   RFC3553:
   IANA.params:
+  IANA.cose:
+  DID-CORE:
+    target: https://www.w3.org/TR/did-core/
+    title: Decentralized Identifiers (DIDs) v1.0
+    author:
+      org: W3C
+    date: 2022-07-22
+  DID-WEB:
+    target: https://w3c-ccg.github.io/did-method-web/
+    title: did:web Decentralized Identifiers Method Spec
 informative:
   I-D.birkholz-scitt-receipts: RECEIPTS
-  PBFT:
-    title: Practical byzantine fault tolerance and proactive recovery
-    target: https://doi:10.1145/571637.571640
-    author:
-    -
-      ins: M. Castro
-      name: Miguel Castro
-      org: Microsoft Research
-    -
-      ins: B. Liskov
-      name: Barbara Liskov
-      org: MIT Laboratory for Computer Science
-    date: 2002-11
-    seriesinfo:
-      ACM Transactions on Computer Systems, Volume 20, Issue 4
+  PBFT: DOI.10.1145/571637.571640
+  MERKLE: DOI.10.1007/3-540-48184-2_32
 
 venue:
-  group: SCITT
   mail: scitt@ietf.org
   github: ietf-wg-scitt/draft-ietf-scitt-architecture
 
@@ -101,9 +93,9 @@ It achieves this goal by enforcing the following complementary security guarante
 2. such statements must be registered on a secure append-only Registry so that their provenance and history can be independently and consistently audited;
 3. issuers can efficiently prove to any other party the registration of their claims; verifying this proof ensures that the issuer is consistent and non-equivocal when making claims.
 
-The first guarantee is achieved by requiring issuers to sign their statements and associated metadata using a distributed public key infrastructure. The second guarantee is achieved by storing the signed statement in an immutable, append-only, transparent Registry. The last guarantee is achieved by implementing the Registry using a verifiable data structure (such as a Merkle Tree), and by requiring a TS that operates the Registry to endorse its state at the time of registration.
+The first guarantee is achieved by requiring issuers to sign their statements and associated metadata using a distributed public key infrastructure. The second guarantee is achieved by storing the signed statement in an immutable, append-only, transparent Registry. The last guarantee is achieved by implementing the Registry using a verifiable data structure (such as a Merkle Tree {{MERKLE}}), and by requiring a Transparency Service (TS) that operates the Registry to endorse its state at the time of registration.
 
-The guarantees and techniques used in this document generalize those of Certificate Transparency {{-CT}}, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates. However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each TS implements and operates its Registry. Each service may enforce its own policy for authorizing entities to register their claims on the TS. Some TS may also enforce access control policies to limit who can audit the full Registry, or keep some information on the Registry encrypted. Nevertheless, it is critical to provide global interoperability for all TS instances as the composition and configuration of involved supply chain entities and their system components is ever changing and always in flux.
+The guarantees and techniques used in this document generalize those of Certificate Transparency {{-CT}}, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates. However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each TS implements and operates its Registry. Each service may enforce its own policy for authorizing entities to register their claims on the TS. Some TS may also enforce access control policies to limit who can audit the full Registry, or keep some information on the Registry encrypted. Nevertheless, it is critical to provide global interoperability for all TS instances as the composition and configuration of involved supply chain entities and their system components is ever-changing and always in flux.
 
 A TS provides visibility into claims issued by supply chain entities and their sub-systems. These claims are called Digital Supply Chain Artifacts (DSCA).
 A TS vouches for specific and well-defined metadata about these DSCAs. Some metadata is selected (and signed) by the issuer, indicating, e.g., "who issued the DSCA" or "what type of DSCA is described" or "what is the DSCA version"; whereas additional metadata is selected (and countersigned) by the TS, indicating, e.g., "when was the DSCA registered in the Registry". The DSCA contents can be opaque to the TS, if so desired: it is the metadata that must always be transparent in order to warrant trust.
@@ -136,7 +128,7 @@ This section presents representative and solution-agnostic use cases to illustra
 
 ## Software Bill of Materials (SBOM)
 
-As the ever increasing complexity of large software projects requires more modularity and abstractions to manage them, keeping track of their full Trusted Computing Base (TCB) is becoming increasingly difficult. Each component may have its own set of dependencies and libraries. Some of these dependencies are binaries, which means their TCB depends not only on their source, but also on their build environment (compilers and tool-chains). Besides, many source and binary packages are distributed through various channels and repositories that may not be trustworthy.
+As the ever-increasing complexity of large software projects requires more modularity and abstractions to manage them, keeping track of their full Trusted Computing Base (TCB) is becoming increasingly difficult. Each component may have its own set of dependencies and libraries. Some of these dependencies are binaries, which means their TCB depends not only on their source, but also on their build environment (compilers and tool-chains). Besides, many source and binary packages are distributed through various channels and repositories that may not be trustworthy.
 
 Software Bills of Materials (SBOM) help the authors, packagers, distributors, auditors and users of software understand its provenance and who may have the ability to introduce a vulnerability that can affect the supply chain downstream. However, the usefulness of SBOM in protecting end users is limited if supply chain actors cannot be held accountable for their contents. For instance, consider a package repository for an open source operating system distribution. The operator of this repository may decide to provide a malicious version of a package only to users who live in a specific country. They can write two equivocal SBOMs for the honest and backdoored versions of the package, so that nobody outside the affected country can discover the malicious version, but victims are not aware they are being targeted.
 
@@ -151,11 +143,11 @@ But how can users verify the software measurement for their task? And how can op
 without first convincing all users to update the measurements they trust?
 
 A supply chain that maintains a transparent record of the successive software releases for machine-learning models and runtimes, recording both their software measurements
-and their provenance (source code, build reports, audit reports,...) can provide users with the information they need to authorize these tasks, while holding the service operator accountable for the software they release for them.
+and their provenance (source code, build reports, audit reports, ...) can provide users with the information they need to authorize these tasks, while holding the service operator accountable for the software they release for them.
 
 ## Cold Chains for Seafood
 
-Once seafood is caught, its quality is determined -- amongst other criteria -- via the integrity of a cold chain that ensures a regulatory perspective freshness mandating a continuous storing temperature between 1 {{{°}}}C and 0 {{{°}}}C (or -18 {{{°}}}C and lower for frozen seafood). The temperature is recorded by cooling units adhering to certain compliance standards automatically. Batches of seafood can be split or aggregated before arriving in a shelf so that each unit can potentially have a potentially unique cold chain record whose transparency impacts the accuracy of the shelf-life associated with it. Especially in early links of the supply chain, Internet connection or sophisticated IT equipment are typically not available and sometimes temperature measurements are recorded manually and digital records are created in hindsight.
+Once seafood is caught, its quality is determined -- amongst other criteria -- via the integrity of a cold chain that ensures a regulatory perspective freshness mandating a continuous storing temperature between 1 {{{°}}}C and 0 {{{°}}}C (or -18 {{{°}}}C and lower for frozen seafood). The temperature is recorded by cooling units adhering to certain compliance standards automatically. Batches of seafood can be split or aggregated before arriving in a shelf so that each unit can potentially have a potentially unique cold chain record whose transparency impacts the accuracy of the shelf-life associated with it. Especially in early links of the supply chain, Internet connection or sophisticated IT equipment are typically not available; sometimes temperature measurements are recorded manually; and digital records are created in hindsight.
 
 # Terminology
 
@@ -192,13 +184,13 @@ Registry:
 
 : the verifiable append-only data structure that stores Claims in a Transparency Service often referred to by the synonym log or ledger. SCITT supports multiple Registry and Receipt formats to accommodate different Transparency Service implementations, such as historical Merkle Trees and sparse Merkle Trees.
 
-Transparency Service:
+Transparency Service (TS):
 
-: an entity that maintains and extends the Registry, and endorses its state. A Transparency Service is often referred to by its synonym Notary. A Transparency Service can be a complex distributed system, and SCITT requires the TS to provide many security guarantees about its Registry . The identity of a TS is captured by a public key that must be known by Verifiers in order to validate Receipts.
+: an entity that maintains and extends the Registry, and endorses its state. A Transparency Service is often referred to by its synonym Notary. A Transparency Service can be a complex distributed system, and SCITT requires the TS to provide many security guarantees about its Registry. The identity of a TS is captured by a public key that must be known by Verifiers in order to validate Receipts.
 
 Receipt:
 
-: a Receipt is a special form of COSE countersignature for Claims that embeds cryptographic evidence that the Claim is recorded in the Registry . It consists of a Registry -specific inclusion proof, a signature by the Transparency Service of the state of the Registry , and additional metadata (contained in the countersignature protected headers) to assist in auditing.
+: a Receipt is a special form of COSE countersignature for Claims that embeds cryptographic evidence that the Claim is recorded in the Registry. It consists of a Registry-specific inclusion proof, a signature by the Transparency Service of the state of the Registry, and additional metadata (contained in the countersignature protected headers) to assist in auditing.
 
 Registration:
 
@@ -220,7 +212,13 @@ Verifier:
 
 Auditor:
 
-: an entity that checks the correctness and consistency of all Claim registered by a TS (a specialization of Claim Consumer).
+: an entity that checks the correctness and consistency of all Claims registered by a TS (a specialization of Claim Consumer).
+
+Claim Consumer:
+
+: [^definehere]
+
+[^definehere]: Define here.
 
 {: #mybody}
 
@@ -228,15 +226,15 @@ Auditor:
 
 In this document, we use a definition of transparency built over abstract notions of Registry and Receipts. Existing transparency systems such as Certificate Transparency are instances of this definition.
 
-A Claim is an identifiable and non-repudiable Statement made by an Issuer. The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata. Claims can be made transparent by attaching a proof of Registration by a TS, in the form of a Receipt that countersigns the Claim and witnesses its inclusion in the Registry of a TS. By extension, we may say an Artifact (e.g. a firmware binary) is transparent if it comes with one or more Transparent Claims from its author or owner, though the context should make it clear what type of Claim is expected for a given Artifact.
+A Claim is an identifiable and non-repudiable Statement made by an Issuer. The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata. Claims can be made transparent by attaching a proof of Registration by a TS, in the form of a Receipt that countersigns the Claim and witnesses its inclusion in the Registry of a TS. By extension, we may say an Artifact (e.g., a firmware binary) is transparent if it comes with one or more Transparent Claims from its author or owner, though the context should make it clear what type of Claim is expected for a given Artifact.
 
 Transparency does not prevent dishonest or compromised Issuers, but it holds them accountable: any Artifact that may be used to target a particular user that checks for Receipts must have been recorded in the tamper-proof Registry, and will be subject to scrutiny and auditing by other parties.
 
 Transparency is implemented by a Registry that provides a consistent, append-only, cryptographically verifiable, publicly available record of entries. Implementations of TS may protect their Registry using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence. A Receipt is an offline, universally-verifiable proof that an entry is recorded in the Registry. Receipts do not expire, but it is possible to append new entries that subsume older entries.
 
-Anyone with access to the Registry can independently verify its consistency and review the complete list of Claims registered by each Issuer. However, the Registry of separate Transparency Services are generally disjoint, though it is possible to take a Claim from one Registry and register it again on another (if its policy allows it), so the authorization of the Issuer and of the Registry by the Verifier of the Receipt are generally independent.
+Anyone with access to the Registry can independently verify its consistency and review the complete list of Claims registered by each Issuer. However, the Registries of separate Transparency Services are generally disjoint, though it is possible to take a Claim from one Registry and register it again on another (if its policy allows it), so the authorization of the Issuer and of the Registry by the Verifier of the Receipt are generally independent.
 
-Reputable Issuers are thus incentivized to carefully review their Statements before signing them into Claims. Similarly, reputable TS are incentivized to secure their Registry, as any inconsistency can easily be pinpointed by any auditor with read access to the Registry. Some Registry formats may also support consistency auditing through Receipts, that is, given two valid Receipts the TS may be asked to produce a cryptographic proof that they are consistent. Failure to produce this proof can indicate that the TS operator misbehaved.
+Reputable Issuers are thus incentivized to carefully review their Statements before signing them into Claims. Similarly, reputable TS are incentivized to secure their Registry, as any inconsistency can easily be pinpointed by any auditor with read access to the Registry. Some Registry formats may also support consistency auditing ({{sec-consistency}}) through Receipts, that is, given two valid Receipts the TS may be asked to produce a cryptographic proof that they are consistent. Failure to produce this proof can indicate that the TS operator misbehaved.
 
 # Architecture Overview
 
@@ -289,10 +287,10 @@ In this section, we describe at a high level the three main roles and associated
 
 ### Issuer Identity
 
-Before an Issuer is able to produce Claims, it must first create its [decentralized identifier](https://www.w3.org/TR/did-core) (also known as a DID).
+Before an Issuer is able to produce Claims, it must first create its [decentralized identifier](#DID-CORE) (also known as a DID).
 A DID can be *resolved* into a *key manifest* (a list of public keys indexed by a *key identifier*) using many different DID methods.
 
-Issuers MAY choose the DID method they prefer, but with no guarantee that all TS will be able to register their Claim. To facilitate interoperability, all Transparency Service implementations SHOULD support the `did:web` method from [https://w3c-ccg.github.io/did-method-web/]. For instance, if the Issuer publishes its manifest at `https://sample.issuer/user/alice/did.json`, the DID of the Issuer is `did:web:sample.issuer:user:alice`.
+Issuers MAY choose the DID method they prefer, but with no guarantee that all TS will be able to register their Claim. To facilitate interoperability, all Transparency Service implementations SHOULD support the `did:web` method {{DID-WEB}}. For instance, if the Issuer publishes its manifest at `https://sample.issuer/user/alice/did.json`, the DID of the Issuer is `did:web:sample.issuer:user:alice`.
 
 Issuers SHOULD use consistent decentralized identifiers for all their Artifacts, to simplify authorization by Verifiers and auditing. They MAY update their DID manifest, for instance to refresh their signing keys or algorithms, but they SHOULD NOT remove or change any prior keys unless they intend to revoke all Claims issued with those keys. This DID appears in the Issuer header of the Claim's Envelope, while the version of the key from the manifest used to sign the Claim is written in the `kid` header.
 
@@ -302,10 +300,10 @@ Many Issuers issue Claims about different Artifacts under the same DID, so it is
 
 ### Claim Metadata
 
-Besides Issuer, Feed and kid, the only other mandatory metadata in the Claim is the type of the Payload, indicated in the `cty` Envelope header.
-However, this set of mandatory metadata is not sufficient to express many important Registration policies. For example, a Registry may only allow a Claim to be registered if it was signed recently. While the Issuer is free to add any information in the payload of the Claim, the TS (and most of its auditor) can only be expected to interpret information in the Envelope.
+Besides Issuer, Feed and kid, the only other mandatory metadata in the Claim is the type of the Payload, indicated in the `cty` (content type) Envelope header.
+However, this set of mandatory metadata is not sufficient to express many important Registration policies. For example, a Registry may only allow a Claim to be registered if it was signed recently. While the Issuer is free to add any information in the payload of the Claim, the TS (and most of its auditors) can only be expected to interpret information in the Envelope.
 
-Such metadata, meant to be interpreted by the TS during Registration policy evaluation, should be added to the `reg_info` header. While the header MUST be present in all Claims, its contents consist of a map of named attributes. Some attributes (such as the Issuer's timestamp) are standardized with a defined type, to help uniformize their semantics across TS. Others are completely customizable and may have arbitrary types. In any case, all attributes are optional so the map MAY be empty.
+Such metadata, meant to be interpreted by the TS during Registration policy evaluation, should be added to the `reg_info` header. While the header MUST be present in all Claims, its contents consist of a map of named attributes. Some attributes (such as the Issuer's timestamp) are standardized with a defined type, to help uniformize their semantics across TS. Others are completely customizable and may have arbitrary types. In any case, all attributes are optional; so the map MAY be empty.
 
 ## Transparency Service (TS)
 
@@ -318,7 +316,7 @@ Beyond the trusted components, Transparency Services may operate additional endp
 ### Service Identity, Remote Attestation, and Keying
 
 Every TS MUST have a public service identity,
-associated with public/private key pairs for signing on behalf of the service. In particular, this identity must be known by Verifiers when validating a Receipt
+associated with public/private key pairs for signing on behalf of the service. In particular, this identity must be known by Verifiers when validating a Receipt.
 
 This identity should be stable for the lifetime of the service, so that all Receipts remain valid and consistent. The TS operator MAY use a distributed identifier as their public service identity if they wish to rotate their keys, if the Registry algorithm they use for their Receipt supports it. Other types of cryptographic identities, such as parameters for non-interactive zero-knowledge proof systems, may also be used in the future.
 
@@ -334,11 +332,12 @@ Most advanced SCITT scenarios rely on the TS performing additional domain-specif
 In general, registration policies are applied at the discretion of the TS, and verifiers use receipts as witnesses that confirm that the registration policy of the TS was satisfied at the time claim registration. TS implementations SHOULD make their full registration policy public and auditable, e.g. by recording stateful policy inputs at evaluation time in the registry to ensure that policy can be independently validated later.
 From an interoperability point of view, the policy that was applied by the TS is opaque to the verifier, who is forced to trust the associated registration policy. If the policy of the TS evolves over time, or is different across issuers, the guarantee derived from receipt validation may not be uniform across all claims over time.
 
-To help verifiers interpret the semantics of claim registration, SCITT defines a standard mechanism for signalling in the claim itself which policies have been applied by the TS from a defined set
-of registration policies with standardized semantics. Each policy that is expected to be enforced by the TS is represented by an entry in the registration policy info map (`reg_info`) in the envelope. The key of the map corresponds to the name of the policy, while its value (including its type) is policy-specific. For instance, the `register_by` policy defines the maximum timestamp by which a claim can be registered, hence the associated value contains an unsigned integer.
+To help verifiers interpret the semantics of claim registration, SCITT defines a standard mechanism for signaling in the claim itself which policies have been applied by the TS from a defined set
+of registration policies with standardized semantics. Each policy that is expected to be enforced by the TS is represented by an entry in the registration policy info map (`reg_info`) in the envelope. The key of the map entry corresponds to the name of the policy, while its value (including its type) is policy-specific. For instance, the `register_by` policy defines the maximum timestamp by which a claim can be registered, hence the associated value contains an unsigned integer.
 
 While this design ensures that all verifiers get the same guarantee regardless of where a claim is registered, its main downside is that it requires the issuer to include the necessary policies in the envelope when the claim is signed. Furthermore, it makes it impossible to register the same claim on two different TS if their required registration policies are incompatible.
 
+{:aside}
 > **Editor's note**
 >
 > The technical design for signalling and verifying registration policies is a work in progress.
@@ -346,7 +345,7 @@ While this design ensures that all verifiers get the same guarantee regardless o
 
 ### Registry Security Requirements
 
-There are many different candidate verifiable data structures that may be used to implement the Registry, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants. We only require the Registry to support concise Receipts (i.e. whose size grows at most logarithmically in the number of entries in the Registry). This does not necessarily rule out blockchains as a Registry, but may necessitate advanced Receipt schemes that use arguments of knowledge and other verifiable computing techniques.
+There are many different candidate verifiable data structures that may be used to implement the Registry, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants. We only require the Registry to support concise Receipts (i.e., whose size grows at most logarithmically in the number of entries in the Registry). This does not necessarily rule out blockchains as a Registry, but may necessitate advanced Receipt schemes that use arguments of knowledge and other verifiable computing techniques.
 
 Since the details of how to verify a Receipt are specific to the data structure, we do not specify any particular Registry format in this document. Instead, we propose two initial formats for Registry in {{-RECEIPTS}} using historical and sparse Merkle Trees. Beyond the format of Receipts, we require generic properties that should be satisfied by the components in the TS that have the ability to write to the Registry.
 
@@ -363,7 +362,7 @@ TS implementations SHOULD provide a mechanism to verify that the state of the Re
 
 Everyone with access to the Registry can check the correctness of its contents. In particular,
 
-- the TS defines and enforces deterministic Registration policies that can be re-evaluated based solely on the contents of the Registry at the time of registraton, and must then yield the same result.
+- the TS defines and enforces deterministic Registration policies that can be re-evaluated based solely on the contents of the Registry at the time of registration, and must then yield the same result.
 
 - The ordering of entries, their cryptographic contents, and the Registry governance may be non-deterministic, but they must be verifiable.
 
@@ -388,7 +387,7 @@ Governance procedures, their auditing, and their transparency are implementation
 For a given Artifact, Verifiers take as trusted inputs:
 
 1. the distributed identifier of the Issuer (or its resolved key manifest),
-2. the expected name of the Artifact (i.e. the Feed),
+2. the expected name of the Artifact (i.e., the Feed),
 3. the list of service identities of trusted TS.
 
 When presented with a Transparent Claim for the Artifact, they verify its Issuer identity, signature, and Receipt.
@@ -406,12 +405,12 @@ This section details the interoperability requirements for implementers of Claim
 
 The formats of Claims and Receipts are based on CBOR Object Signing and Encryption (COSE). The choice of CBOR is a trade-off between safety (in particular, non-malleability: each Claim has a unique serialization), ease of processing and availability of implementations.
 
-At a high-level that is the context of this architecture, a Claim is a COSE single-signed object (i.e. `COSE_Sign1`) that contains the correct set of protected headers. Although Issuers and relays may attach unprotected headers to Claims, Transparency Services and Verifiers MUST NOT rely on the presence or value of additional unprotected headers in Claims during Registration and validation.
+At a high-level that is the context of this architecture, a Claim is a COSE single-signed object (i.e., `COSE_Sign1`) that contains the correct set of protected headers. Although Issuers and relays may attach unprotected headers to Claims, Transparency Services and Verifiers MUST NOT rely on the presence or value of additional unprotected headers in Claims during Registration and validation.
 
 All Claims MUST include the following protected headers:
 
-- algorithm (label: `1`): Asymmetric signature algorithm used by the Claim Issuer, as an integer, for example `-35` for ECDSA with SHA-384, see [COSE Algorithms registry](https://www.iana.org/assignments/cose/cose.xhtml);
-- Issuer (label: `TBD`, temporary: `391`): DID (Decentralized Identifier, see [W3C Candidate Recommendation](https://www.w3.org/TR/did-core/)) of the signer, as a string, for example `did:web:example.com`;
+- algorithm (label: `1`): Asymmetric signature algorithm used by the Claim Issuer, as an integer, for example `-35` for ECDSA with SHA-384, see [COSE Algorithms registry](#IANA.cose);
+- Issuer (label: `TBD`, temporary: `391`): DID (Decentralized Identifier {{DID-CORE}}) of the signer, as a string, for example `did:web:example.com`;
 - Feed (label: `TBD`, temporary: `392`): the Issuer's name for the Artifact, as a string;
 - payload type (label: `3`): Media type of payload as a string, for example `application/spdx+json`
 - Registration policy info (label: `TBD`, temporary: `393`): a map of additional attributes to help enforce Registration policies;
@@ -436,9 +435,10 @@ COSE_Sign1 = [
 ]
 
 Reg_Info = {
-  ? "register_by": uint,
+  ? "register_by": uint .within (~time),
   ? "sequence_no": uint,
-  ? "issuance_ts": uint,
+  ? "issuance_ts": uint .within (~time),
+  ? "no_replay": null,
   * tstr => any
 }
 
@@ -478,9 +478,10 @@ Once all the Envelope headers are set, the Issuer MAY use a standard COSE implem
 
 ## Standard registration policies
 
+{:aside}
 > **Editor's note**
 >
-> The technical design for signalling and verifying registration policies is a work in progress.
+> The technical design for signaling and verifying registration policies is a work in progress.
 > We expect that once the formats and semantics of the registration policy headers are finalized, standardized policies may be moved to a separate draft.
 > For now, we inline some significant policies to illustrate the most common use cases.
 
@@ -488,10 +489,10 @@ TS implementations MUST indicate their support for registration policies and MUS
 
 Policy Name | Required `reg_info` attributes | Implementation
 ---|---|---
-TimeLimited | `register_by: uint` | Returns true if now () < register_by at registration time. The ledger MUST store the ledger time at registration along with the claim, and SHOULD indicate it in receipts
+TimeLimited | `register_by: uint .within (~time)` | Returns true if now () < `register_by` at registration time. The ledger MUST store the ledger time at registration along with the claim, and SHOULD indicate it in receipts. The value provided for `register_by` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
 Sequential | `sequence_no: uint` | First, lookup in the ledger for claims with the same issuer and feed. If at least one is found, returns true if and only if the `sequence_no` of the new claim is the highest `sequence_no` in the existing claims incremented by one. Otherwise, returns true if and only if `sequence_no = 0`.
-Temporal | `issuance_ts: uint` | Returns true if and only if there is no claim in the ledger with the same issuer and feed with a greater `issuance_ts`
-NoReplay | None | Returns true if and only if the claim doesn't already appear in the ledger
+Temporal | `issuance_ts: uint .within (~time)` | Returns true if and only if there is no claim in the ledger with the same issuer and feed with a greater `issuance_ts` and now () > `issuance_ts` at registration time. The value provided for `issuance_ts` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
+NoReplay | `no_replay: null` | If the `no_replay` attribute is present then the policy returns true if and only if the claim doesn't already appear in the ledger. This policy has no required attributes.
 {: #tbl-initial-named-policies title="An Initial Set of Named Policies"}
 
 ## Registering Signed Claims
@@ -518,7 +519,7 @@ The service MUST ensure that the Claim is committed before releasing its Receipt
 
 ## Validation of Transparent Claims
 
-This section provides additional implementation considerations, the high-level validation algorithm is described in {{validation}}, with the Registry-specific details of checking Receipts are covered in {{-RECEIPTS}}.
+This section provides additional implementation considerations.  The high-level validation algorithm is described in {{validation}}; the Registry-specific details of checking Receipts are covered in {{-RECEIPTS}}.
 
 Before checking a Claim, the Verifier must be configured with one or more identities of trusted Transparency Services. If more than one service is configured, the Verifier MUST return which service the Claim is registered on.
 
@@ -809,7 +810,7 @@ The confidentiality of any identity lookup during Claim Registration or Claim Ve
 
 # IANA Considerations
 
-See Body {{mybody}}.
+TBD; {{mybody}}.
 
 ## URN Sub-namespace for SCITT (urn:ietf:params:scitt)
 
