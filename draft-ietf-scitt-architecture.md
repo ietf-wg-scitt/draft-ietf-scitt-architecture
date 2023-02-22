@@ -200,7 +200,7 @@ Registration Policy:
 based on metadata contained in its COSE Envelope (notably the identity of its Issuer)
 and on prior Signed Statements already added to a Registry.
 
-Transparent Claim:
+Transparent Statement:
 
 : a Signed Statement that is augmented with a Receipt created via registration at a Transparency Services (stored in the unprotected header of COSE envelope of the Signed Statement). A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.
 
