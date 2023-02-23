@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-02-21T00:43:35.540643+00:00",
+  "timestamp": "2023-02-23T00:39:44.799469+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -47,6 +47,11 @@
       "name": "wontfix",
       "description": "This will not be worked on",
       "color": "ffffff"
+    },
+    {
+      "name": "terminology",
+      "description": "",
+      "color": "1d76db"
     }
   ],
   "issues": [
@@ -79,6 +84,198 @@
       "body": "Which issues from https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues should be carried forward?",
       "createdAt": "2023-02-17T16:19:00Z",
       "updatedAt": "2023-02-17T16:19:00Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOIvmHss5e8RUk",
+      "title": "make errors relating to aasvg, binread, and kramdown-rfc",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/6",
+      "state": "OPEN",
+      "author": "nealmcb",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "When I run `make` to build the document as instructed, I get lots of new tools installed (in a local `lib/.venv/` directory), culminating in this output:\r\n```\r\n[...]\r\nInstalling collected packages: webencodings, wcwidth, sortedcontainers, iddiff, charset-normalizer, appdirs, urllib3, toml, six, rfc-tidy, pyyaml, pycountry, markupsafe, lxml, intervaltree, idna, configargparse, certifi, requests, python-dateutil, pyang, jinja2, html5lib, google-i18n-address, archive-repo, xml2rfc, svgcheck\r\nSuccessfully installed appdirs-1.4.4 archive-repo-0.0.2 certifi-2022.12.7 charset-normalizer-3.0.1 configargparse-1.5.3 google-i18n-address-2.5.2 html5lib-1.1 iddiff-0.4.3 idna-3.4 intervaltree-3.1.0 jinja2-3.1.2 lxml-4.9.2 markupsafe-2.1.2 pyang-2.5.3 pycountry-22.3.5 python-dateutil-2.8.2 pyyaml-6.0 requests-2.28.2 rfc-tidy-0.1.1 six-1.16.0 sortedcontainers-2.4.0 svgcheck-0.7.1 toml-0.10.2 urllib3-1.26.14 wcwidth-0.2.6 webencodings-0.5.1 xml2rfc-3.16.0\r\ntouch /srv/s/ietf/draft-ietf-scitt-architecture/lib/.venv/bin/.initialized-with-Makefile.venv\r\ncat draft-ietf-scitt-architecture.md  | kramdown-rfc --v3 | lib/trace.sh draft-ietf-scitt-architecture.xml -s venue /srv/s/ietf/draft-ietf-scitt-architecture/lib/.venv/bin/python lib/add-note.py | lib/trace.sh draft-ietf-scitt-architecture.xml -s v2v3 /srv/s/ietf/draft-ietf-scitt-architecture/lib/.venv/bin/xml2rfc -q -s 'Setting consensus=\"true\" for IETF STD document' --rfc-base-url https://www.rfc-editor.org/rfc/ --id-base-url https://datatracker.ietf.org/doc/html/ --cache=/home/neal/.cache/xml2rfc --v2v3 /dev/stdin -o /dev/stdout >draft-ietf-scitt-architecture.xml\r\nlib/trace.sh: line 14: exec: kramdown-rfc: not found\r\nError: Unable to parse the XML document: /dev/stdin\r\nmake: *** [lib/main.mk:72: draft-ietf-scitt-architecture.xml] Error 1\r\nmake: *** Deleting file 'draft-ietf-scitt-architecture.xml'\r\n```\r\n\r\nSo I looked at the setup doc: [i\\-d\\-template/SETUP\\.md at main \u00b7 martinthomson/i\\-d\\-template \u00b7 GitHub](https://github.com/martinthomson/i-d-template/blob/main/doc/SETUP.md)\r\n\r\nIt wasn't quite clear how to install bundler, but this seems to have worked on Ubuntu 20.04:\r\n\r\n`sudo apt install ruby-bundler`\r\n\r\nAfter running `make` again, I got an error with these interesting lines:\r\n\r\n```\r\n/srv/s/ietf/draft-ietf-scitt-architecture/lib/.gems/ruby/2.7.0/gems/kramdown-rfc2629-1.6.23/lib/kramdown-rfc2629.rb:463:in `binread': No such file or directory @ rb_sysopen - /home/neal/.cache/xml2rfc/kdrfc-1_6_23-svg_tool_process-f6af3c66d015d02c71df638c578665ec07ac4bde.cache (Errno::ENOENT)\r\n...\r\n/usr/lib/ruby/2.7.0/open3.rb:213:in `spawn': No such file or directory - aasvg (Errno::ENOENT)\r\n```\r\n\r\nAny hints on what else is needed?",
+      "createdAt": "2023-02-21T05:55:22Z",
+      "updatedAt": "2023-02-21T05:55:22Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOIvmHss5e_acF",
+      "title": "Terminology: Registry & Transparency Service ",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/7",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "terminology"
+      ],
+      "body": "Copied over from: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/38\r\n\r\nThe architecture I-D, and other docs use Registry and Transparency Service (TS) interchangeably. \r\n\r\nThis issue is about consistent naming, and what we should use for an implementation that hosts the SCITT standards.  \r\nAs we've discussed various terms, I'm pasting a \"thousand words\" to highlight conceptual components.\r\n\r\n![image](https://user-images.githubusercontent.com/7647382/202588667-782e7227-ac9b-49f5-b740-0a2a27fd807d.png)\r\n\r\nHow do we finish this sentence:  \r\n*The user will submit a signed statement/claim (see issue #34) to the ___*\r\n\r\n1. The thing we're trying to name here, which is an implementation of a service.\r\n2. The **eNotary** component that evaluates the Registration Policy (3) before proceeding\r\n3. The **Registration Policy**, as the gatekeeper for what may be submitted to the ledger.\r\n4. The **eNotary** counter signing key/service\r\n5. The **ledger**, where statements/claims are persisted\r\n6. The ledger of a ___ (1) may be implemented through various \"ledger databases\", such as [Azure CCF](https://azure.microsoft.com/en-us/products/azure-confidential-ledger/), [QLDB](https://aws.amazon.com/qldb/), [Trillian](https://github.com/google/trillian)\r\n\r\nThis issue is to discuss what we call (1)\r\nPlease \"vote\" with a comment, representing a number, and any supporting thoughts:\r\n\r\n1. Transparency Service (with no acronym)\r\n2. Registry\r\n3. SCITT Implementation\r\n4. Transparency Service (TS as a acronym)\r\n5. _write in your own_",
+      "createdAt": "2023-02-21T15:30:00Z",
+      "updatedAt": "2023-02-21T15:30:33Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 8,
+      "id": "I_kwDOIvmHss5e_b-V",
+      "title": "Converge Claim and Statement",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/8",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "terminology"
+      ],
+      "body": "Copying over: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/34\r\n\r\nAt IETF-115, discussions involved:\r\n\r\n- Leverage existing IETF and/or W3C definitions and terms, or at least not conflict and cause confusion with existing terms.\r\n- Minimize the concept count\r\n\r\n### Existing Standards Terminology\r\n\r\n- [IETF: Remote Attestation Procedures Architecture (RATS)](https://www.ietf.org/archive/id/draft-ietf-rats-architecture-22.html#name-artifacts)\r\n- [IETF: SCITT Architecture](https://ietf-scitt.github.io/draft-birkholz-scitt-architecture/draft-birkholz-scitt-architecture.html#name-terminology)\r\n- [IETF: RFC7519](https://www.ietf.org/archive/id/draft-ietf-rats-architecture-22.html#RFC7519)\r\n\r\n### Proposal\r\n\r\nClaim conflicts with RATS and W3C\r\n\r\nComparison of terms across orgs as the object changes state:\r\n![](https://hackmd.io/_uploads/SklGkMSBs.png)\r\n\r\nInstead of transitioning from `statement` to `claim` to `transparent claim`, what if we used `statement` as the base concept:\r\n- Statement --> Signed Statment --> Transparent Statement",
+      "createdAt": "2023-02-21T15:34:14Z",
+      "updatedAt": "2023-02-21T15:34:14Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 9,
+      "id": "I_kwDOIvmHss5e_dxR",
+      "title": "Change term 'artifact'",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/9",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "terminology"
+      ],
+      "body": "Copying over from: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/42\r\n\r\nThe architecture document currently defines `artifact` as the \"physical or non-physical item that is moving along the supply chain\". In other forums, different terms are used, for example: `supplied good`, `product`, `asset`.",
+      "createdAt": "2023-02-21T15:38:27Z",
+      "updatedAt": "2023-02-21T18:42:21Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Adding some other names, to consider:\r\n- Asset",
+          "createdAt": "2023-02-21T18:42:21Z",
+          "updatedAt": "2023-02-21T18:42:21Z"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "I_kwDOIvmHss5e_fzJ",
+      "title": "Mapping SLSA and SCITT terminology",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/10",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "terminology"
+      ],
+      "body": "Within the terminology of https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/29#issuecomment-1384320432, @joshuagl brought up some good questions of SLSA terminology.\r\nThis issue is specific to SLSA mappings\r\n\r\n",
+      "createdAt": "2023-02-21T15:44:01Z",
+      "updatedAt": "2023-02-21T15:44:01Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 11,
+      "id": "I_kwDOIvmHss5e_g6q",
+      "title": "Refine Definition of Feed",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/11",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Copied over from: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/36\r\n\r\nA feed is a great base for how we can create a series of statements for different artifacts, getting freshness for a receipt/or VEX report.\r\nThe current definition likely needs to expand a bit to account for:\r\n- What are the versions of a specific artifact\r\n- What are all the statements for a version of an artifact\r\n- What is the latest statement for a specific `contentType` of a specific versioned `artifact`: (eg: what's the latest `SBOM` for the `net-monitor:v1` software?\r\n- If the `contentType` is a referenced [statement by reference](#35), which stores SBOMs, Scan Reports, how do we drill into each if they all use the same payload `contentType` of satementByReference?\r\n",
+      "createdAt": "2023-02-21T15:46:59Z",
+      "updatedAt": "2023-02-21T15:46:59Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOIvmHss5e_hiw",
+      "title": "Considering the impact of claim semantics on policy layer",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/12",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Copied over from: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/26\r\n\r\nWhen specific and detailed claims are provided an advanced policy might be applied.\r\n\r\nIf only shallow / simple claims are provided, there is not much of an opportunity to apply advanced policies.",
+      "createdAt": "2023-02-21T15:48:42Z",
+      "updatedAt": "2023-02-21T15:48:42Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOIvmHss5e_jL3",
+      "title": "Add a sequence diagram",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/13",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Copied over from: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/27\r\n\r\n##  Compound User Story / Sequence Diagram\r\n\r\nAs a consumer, I want to understand if I should trust an artifact\r\nAs a producer, I want to be assured that the integrity of my artifacts has been reviewed by a trusted 3rd party.\r\n\r\n```mermaid\r\nsequenceDiagram\r\n    participant Issuer\r\n    participant Notary\r\n    Note left of Issuer: I take responsibility for the artifacts I produce\r\n    Issuer ->> Notary: These are the policies I am committed to meeting\r\n    Issuer ->> Notary: I stand by my claims about my artifact\r\n    loop Claims Check\r\n        Notary ->> Notary: Review relevant claims and policies\r\n    end\r\n    Notary ->> Issuer: Here is my endorsement and receipt\r\n    Consumer->>Notary: Is this artifact safe to use?\r\n    loop Endorsement Check\r\n        Notary->>Notary: Review relevant claims and endorsements\r\n    end\r\n     Notary ->> Consumer: You can trust this artifact, the endorsement is still valid\r\n     Note right of Consumer: I have confidence in the artifacts I consume\r\n```\r\n",
+      "createdAt": "2023-02-21T15:53:11Z",
+      "updatedAt": "2023-02-21T15:53:11Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 14,
+      "id": "I_kwDOIvmHss5e_kHn",
+      "title": "Registry Access Scenarios",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/14",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Copied over from: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/25\r\n\r\n### Case 0 \r\n\r\n- Public Read\r\n- Private Write\r\n\r\n### Case 1\r\n\r\n- Private Read\r\n- Private Write\r\n\r\n\r\nWhen holding an endorsement, one might be be able to verify directly in a public read, or rely on an auditor in the case of a private read scenario.\r\n",
+      "createdAt": "2023-02-21T15:55:50Z",
+      "updatedAt": "2023-02-21T15:55:50Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 15,
+      "id": "I_kwDOIvmHss5fBbAw",
+      "title": "Global Terminology Overhaul & Some Text Issues",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/15",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Payload and Statement seem to be used intermixed in the text. I tried to disambiguate the via \"Statement payload\". If that does not work, please provide a counter proposal.\r\n\r\nThe term Claim sometimes seem to have meant Signed Statement and sometimes Transparent Statement. Using our interim terminology, that became a selection process for me. Please check, if I made the correct choice in all occurrences (sometimes I had to guess the intent).\r\n\r\nConsistent Capitalization was a mess. I hope I fixed most of that. Please check.\r\n\r\nThere is still no consistent use of \"Registry\" vs. \"log\" vs. \"ledger\" vs. \"Transparency Service\", I think. Please check.\r\n\r\nPlease check every use of the term \"Evidence\" and if an alternative expression could be used.\r\n\r\nPlease check every occurrence of the term \"guarantee\" or \"proof\" and if an alternative expression could be used.\r\n\r\nPrivacy Considerations and Security Considerations texts require significant improvement.",
+      "createdAt": "2023-02-21T23:03:09Z",
+      "updatedAt": "2023-02-21T23:03:09Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 17,
+      "id": "I_kwDOIvmHss5fEmZl",
+      "title": "Define error codes",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17",
+      "state": "OPEN",
+      "author": "letmaik",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/3#discussion_r1114223387.\r\n\r\nMore error codes should be defined.",
+      "createdAt": "2023-02-22T12:43:22Z",
+      "updatedAt": "2023-02-22T12:43:22Z",
       "closedAt": null,
       "comments": []
     }
@@ -145,25 +342,49 @@
       "id": "PR_kwDOIvmHss5KNOpx",
       "title": "Cleanup of REST API",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/3",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "letmaik",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This PR is a duplicate of what had already been reviewed in the old repository:\r\n\r\nhttps://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/44\r\n",
       "createdAt": "2023-02-17T10:32:25Z",
-      "updatedAt": "2023-02-19T21:25:17Z",
+      "updatedAt": "2023-02-22T14:33:57Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
-      "baseRefOid": "757b536c87c0425ce38e4bb034a5239f588e615a",
+      "baseRefOid": "c8ad68740476eaf24c663147fd349b16bfa4f4d2",
       "headRepository": "letmaik/draft-ietf-scitt-architecture",
       "headRefName": "letmaik/rest-api",
-      "headRefOid": "df115537c250c8903fae052666b42e5655b60324",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "headRefOid": "e3260b92996cb7a9abe7401fc2c530ea6c495e37",
+      "closedAt": "2023-02-22T14:33:53Z",
+      "mergedAt": "2023-02-22T14:33:53Z",
+      "mergedBy": "letmaik",
+      "mergeCommit": {
+        "oid": "2056dc9704ef7cad925f51c3c82719a71effd962"
+      },
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@letmaik I am reviewing it now!",
+          "createdAt": "2023-02-22T11:52:18Z",
+          "updatedAt": "2023-02-22T11:52:18Z"
+        },
+        {
+          "author": "letmaik",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@yogeshbdeshpande Thanks for the review. I addressed your comments, please approve if you think it's good to go.",
+          "createdAt": "2023-02-22T12:55:28Z",
+          "updatedAt": "2023-02-22T12:55:28Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@letmaik DONE!",
+          "createdAt": "2023-02-22T12:56:27Z",
+          "updatedAt": "2023-02-22T12:56:27Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss5NrBIb",
@@ -275,6 +496,339 @@
           "createdAt": "2023-02-17T12:26:42Z",
           "updatedAt": "2023-02-17T12:26:42Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5OBxzV",
+          "commit": {
+            "abbreviatedOid": "fa3c51b"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-22T11:55:38Z",
+          "updatedAt": "2023-02-22T11:55:38Z",
+          "comments": [
+            {
+              "originalPosition": 77,
+              "body": "Perhaps add a github issue to define more error codes and refer it here!",
+              "createdAt": "2023-02-22T11:55:38Z",
+              "updatedAt": "2023-02-22T11:55:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5OByN9",
+          "commit": {
+            "abbreviatedOid": "fa3c51b"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-22T11:56:48Z",
+          "updatedAt": "2023-02-22T11:56:49Z",
+          "comments": [
+            {
+              "originalPosition": 80,
+              "body": "```suggestion\r\nIf 202 is returned, then clients should wait until registration succeeded or failed, by polling the registration status using the Operation ID returned in the response. Clients should always obtain a receipt as a proof that registration has succeeded.\r\n```",
+              "createdAt": "2023-02-22T11:56:48Z",
+              "updatedAt": "2023-02-22T11:56:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5OBy7q",
+          "commit": {
+            "abbreviatedOid": "fa3c51b"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-22T11:58:44Z",
+          "updatedAt": "2023-02-22T11:58:44Z",
+          "comments": [
+            {
+              "originalPosition": 80,
+              "body": "On line 609, did you mean to say:\r\nUpon polling, client will always get a Receipt as a proof if registration has succeeded.",
+              "createdAt": "2023-02-22T11:58:44Z",
+              "updatedAt": "2023-02-22T11:58:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5OBzko",
+          "commit": {
+            "abbreviatedOid": "fa3c51b"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-22T12:00:28Z",
+          "updatedAt": "2023-02-22T12:00:29Z",
+          "comments": [
+            {
+              "originalPosition": 106,
+              "body": "Should we not return 202 here if the Registration is running ?",
+              "createdAt": "2023-02-22T12:00:29Z",
+              "updatedAt": "2023-02-22T12:00:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5OB1Mb",
+          "commit": {
+            "abbreviatedOid": "fa3c51b"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Thanks, the API set looks quite tidy, left few minor .nits, please check and incorporate them.\r\n",
+          "createdAt": "2023-02-22T12:04:52Z",
+          "updatedAt": "2023-02-22T12:04:52Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5OCBsY",
+          "commit": {
+            "abbreviatedOid": "fa3c51b"
+          },
+          "author": "letmaik",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-22T12:39:37Z",
+          "updatedAt": "2023-02-22T12:39:38Z",
+          "comments": [
+            {
+              "originalPosition": 106,
+              "body": "No, status codes are always relative to the given resource. Here, 200 means the server was able to return the representation of the operation status. If it returned 202, it would mean that the server can't currently report on the status but will be able soon, which is not the intent here.",
+              "createdAt": "2023-02-22T12:39:37Z",
+              "updatedAt": "2023-02-22T12:39:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5OCGyQ",
+          "commit": {
+            "abbreviatedOid": "fa3c51b"
+          },
+          "author": "letmaik",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-22T12:52:51Z",
+          "updatedAt": "2023-02-22T12:52:52Z",
+          "comments": [
+            {
+              "originalPosition": 77,
+              "body": "Done.",
+              "createdAt": "2023-02-22T12:52:51Z",
+              "updatedAt": "2023-02-22T12:52:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5OCHY3",
+          "commit": {
+            "abbreviatedOid": "fa3c51b"
+          },
+          "author": "letmaik",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-22T12:54:29Z",
+          "updatedAt": "2023-02-22T12:54:29Z",
+          "comments": [
+            {
+              "originalPosition": 80,
+              "body": "I think I prefer the current phrasing. It should be clear enough, saying essentially wait until it's done, then fetch the receipt to get a proof of registration.",
+              "createdAt": "2023-02-22T12:54:29Z",
+              "updatedAt": "2023-02-22T12:54:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5OCIBL",
+          "commit": {
+            "abbreviatedOid": "e3260b9"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!\r\n",
+          "createdAt": "2023-02-22T12:56:06Z",
+          "updatedAt": "2023-02-22T12:56:06Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOIvmHss5Kd623",
+      "title": "Vast Terminology Overhaul",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #15\r\n\r\n(to some extend), please see #15 and check the issues highlighted there as part of reviewing this PR.",
+      "createdAt": "2023-02-21T23:04:47Z",
+      "updatedAt": "2023-02-22T21:41:38Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "c8ad68740476eaf24c663147fd349b16bfa4f4d2",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "core-terms",
+      "headRefOid": "5b497e565f09bc7f8b9639de313afda87fcde64c",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@henkbirkholz @fournet @letmaik \r\nAll claim terminology has been replaced with \"Signed Statement\" including the Architecture Diagram.\r\n\r\nPlease have a look!",
+          "createdAt": "2023-02-22T18:51:07Z",
+          "updatedAt": "2023-02-22T18:51:07Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5OAztQ",
+          "commit": {
+            "abbreviatedOid": "e2a25f0"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-22T09:25:16Z",
+          "updatedAt": "2023-02-22T09:25:16Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "```suggestion\r\n: the pre-condition enforced by the Transparency Service before registering a Signed Statement,\r\n```",
+              "createdAt": "2023-02-22T09:25:16Z",
+              "updatedAt": "2023-02-22T09:25:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5OBtua",
+          "commit": {
+            "abbreviatedOid": "69371b9"
+          },
+          "author": "letmaik",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-22T11:43:45Z",
+          "updatedAt": "2023-02-22T11:43:46Z",
+          "comments": [
+            {
+              "originalPosition": 85,
+              "body": "```suggestion\r\nTransparent Statement:\r\n```",
+              "createdAt": "2023-02-22T11:43:45Z",
+              "updatedAt": "2023-02-22T11:43:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5OFbDs",
+          "commit": {
+            "abbreviatedOid": "69371b9"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-22T19:37:06Z",
+          "updatedAt": "2023-02-22T19:37:06Z",
+          "comments": [
+            {
+              "originalPosition": 85,
+              "body": "We have to check consistent use of Signed Statement vs. Transparent Statement.",
+              "createdAt": "2023-02-22T19:37:06Z",
+              "updatedAt": "2023-02-22T19:37:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5OGPld",
+          "commit": {
+            "abbreviatedOid": "5b497e5"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "+1 to simplify a \"claim\" becomes \"statement\" and refer to statements that change \"state\" (#8)\r\n`Statement` --> `Signed Statment` --> `Transparent Statement`\r\n",
+          "createdAt": "2023-02-22T21:23:50Z",
+          "updatedAt": "2023-02-22T21:35:54Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "nit: case consistency on each bullet:\r\n\r\nr/I w/i",
+              "createdAt": "2023-02-22T21:23:51Z",
+              "updatedAt": "2023-02-22T21:35:54Z"
+            },
+            {
+              "originalPosition": 41,
+              "body": "+1 to the more expressive, expanded acronyms.\r\n\r\n>\"when was the Signed Statement about the Artifact registered in the Registry\" \r\n\r\nWhich term do we wish to settle on, and under what context? This is the question under #7 \r\nPersonally, I struggle with Registry as a generic term and Transparency Service, which I think confuses transparent with public. \r\nEither way, the use of registry and transparency service seem interchangeable here. Or, are we talking about different sub-components?\r\n\r\n",
+              "createdAt": "2023-02-22T21:29:43Z",
+              "updatedAt": "2023-02-22T21:35:54Z"
+            },
+            {
+              "originalPosition": 50,
+              "body": "cater--> caters",
+              "createdAt": "2023-02-22T21:33:05Z",
+              "updatedAt": "2023-02-22T21:35:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5OGYs7",
+          "commit": {
+            "abbreviatedOid": "5b497e5"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-22T21:40:46Z",
+          "updatedAt": "2023-02-22T21:40:47Z",
+          "comments": [
+            {
+              "originalPosition": 85,
+              "body": "> ...independent third party such as a reviewer or an endorser.\r\n\r\nI can see statements being made that are \"negative\", meaning a security company makes a statement the artifact has many critical vulnerabilities and should be replaced with version:foo.\r\nDo we want to elaborate endorser to include opposed, or another term that reflects a negative statement? \r\nOr, do we want to generalize all statements, and leave it to the consumer and artifactType to define the schema of positive/negative?",
+              "createdAt": "2023-02-22T21:40:47Z",
+              "updatedAt": "2023-02-22T21:40:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5OGZF9",
+          "commit": {
+            "abbreviatedOid": "5b497e5"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-22T21:41:38Z",
+          "updatedAt": "2023-02-22T21:41:38Z",
+          "comments": [
+            {
+              "originalPosition": 91,
+              "body": "> metadata and an Issuer's signature is added to a Statement via COSE envelope \r\n\r\nmetadata and an Issuer's signature is added to a Statement via _**a**_ COSE envelope ",
+              "createdAt": "2023-02-22T21:41:38Z",
+              "updatedAt": "2023-02-22T21:41:38Z"
+            }
+          ]
         }
       ]
     }
