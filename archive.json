@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-02-23T00:39:44.799469+00:00",
+  "timestamp": "2023-02-28T00:41:42.274459+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -76,16 +76,24 @@
       "id": "I_kwDOIvmHss5ev4Yz",
       "title": "Cull through previous draft issues",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/5",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Which issues from https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues should be carried forward?",
       "createdAt": "2023-02-17T16:19:00Z",
-      "updatedAt": "2023-02-17T16:19:00Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2023-02-27T16:04:22Z",
+      "closedAt": "2023-02-27T16:04:22Z",
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closed, as complete",
+          "createdAt": "2023-02-27T16:04:22Z",
+          "updatedAt": "2023-02-27T16:04:22Z"
+        }
+      ]
     },
     {
       "number": 6,
@@ -117,9 +125,31 @@
       ],
       "body": "Copied over from: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/38\r\n\r\nThe architecture I-D, and other docs use Registry and Transparency Service (TS) interchangeably. \r\n\r\nThis issue is about consistent naming, and what we should use for an implementation that hosts the SCITT standards.  \r\nAs we've discussed various terms, I'm pasting a \"thousand words\" to highlight conceptual components.\r\n\r\n![image](https://user-images.githubusercontent.com/7647382/202588667-782e7227-ac9b-49f5-b740-0a2a27fd807d.png)\r\n\r\nHow do we finish this sentence:  \r\n*The user will submit a signed statement/claim (see issue #34) to the ___*\r\n\r\n1. The thing we're trying to name here, which is an implementation of a service.\r\n2. The **eNotary** component that evaluates the Registration Policy (3) before proceeding\r\n3. The **Registration Policy**, as the gatekeeper for what may be submitted to the ledger.\r\n4. The **eNotary** counter signing key/service\r\n5. The **ledger**, where statements/claims are persisted\r\n6. The ledger of a ___ (1) may be implemented through various \"ledger databases\", such as [Azure CCF](https://azure.microsoft.com/en-us/products/azure-confidential-ledger/), [QLDB](https://aws.amazon.com/qldb/), [Trillian](https://github.com/google/trillian)\r\n\r\nThis issue is to discuss what we call (1)\r\nPlease \"vote\" with a comment, representing a number, and any supporting thoughts:\r\n\r\n1. Transparency Service (with no acronym)\r\n2. Registry\r\n3. SCITT Implementation\r\n4. Transparency Service (TS as a acronym)\r\n5. _write in your own_",
       "createdAt": "2023-02-21T15:30:00Z",
-      "updatedAt": "2023-02-21T15:30:33Z",
+      "updatedAt": "2023-02-27T21:43:16Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "body": "4. Transparency Service (TS as a acronym)\r\n\r\nPlease look at the existing terminology section before proposing global substitutions. ",
+          "createdAt": "2023-02-27T16:10:49Z",
+          "updatedAt": "2023-02-27T16:10:49Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "The substitution of TS to Transparency Services was due to comments that highlighted a possible confusion with Timestamp that might be not intuitive to the generic reader.\r\n\r\nMaybe let us split that decision out to the list and then fix this with a %s/foo/bar/g?",
+          "createdAt": "2023-02-27T16:17:56Z",
+          "updatedAt": "2023-02-27T16:18:28Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "IMO a \"Transparency Service\" operates a SCITT Registry that contains authenticated statements expressing trust in an artifact. A SCITT Registry may employ multiple technologies to provide its services, i.e. blockchain ledger, relational database, evidence locker, REST API to query the Registry for statements, API's to submit new statements and evidence, etc. The operator of a Transparency Service serves as the Registry Gatekeeper to ensure the integrity of the Registry.",
+          "createdAt": "2023-02-27T21:41:20Z",
+          "updatedAt": "2023-02-27T21:43:16Z"
+        }
+      ]
     },
     {
       "number": 8,
@@ -135,9 +165,17 @@
       ],
       "body": "Copying over: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/34\r\n\r\nAt IETF-115, discussions involved:\r\n\r\n- Leverage existing IETF and/or W3C definitions and terms, or at least not conflict and cause confusion with existing terms.\r\n- Minimize the concept count\r\n\r\n### Existing Standards Terminology\r\n\r\n- [IETF: Remote Attestation Procedures Architecture (RATS)](https://www.ietf.org/archive/id/draft-ietf-rats-architecture-22.html#name-artifacts)\r\n- [IETF: SCITT Architecture](https://ietf-scitt.github.io/draft-birkholz-scitt-architecture/draft-birkholz-scitt-architecture.html#name-terminology)\r\n- [IETF: RFC7519](https://www.ietf.org/archive/id/draft-ietf-rats-architecture-22.html#RFC7519)\r\n\r\n### Proposal\r\n\r\nClaim conflicts with RATS and W3C\r\n\r\nComparison of terms across orgs as the object changes state:\r\n![](https://hackmd.io/_uploads/SklGkMSBs.png)\r\n\r\nInstead of transitioning from `statement` to `claim` to `transparent claim`, what if we used `statement` as the base concept:\r\n- Statement --> Signed Statment --> Transparent Statement",
       "createdAt": "2023-02-21T15:34:14Z",
-      "updatedAt": "2023-02-21T15:34:14Z",
+      "updatedAt": "2023-02-27T21:46:08Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "IMO, A \"Transparency Service\" has an operator (entity) that serves as a Gatekeeper to ensure integrity of the Registry and maintain a high availability service to ensure access to the Registry data via defined API's. ",
+          "createdAt": "2023-02-27T21:46:07Z",
+          "updatedAt": "2023-02-27T21:46:07Z"
+        }
+      ]
     },
     {
       "number": 9,
@@ -256,12 +294,22 @@
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "terminology"
+      ],
       "body": "Payload and Statement seem to be used intermixed in the text. I tried to disambiguate the via \"Statement payload\". If that does not work, please provide a counter proposal.\r\n\r\nThe term Claim sometimes seem to have meant Signed Statement and sometimes Transparent Statement. Using our interim terminology, that became a selection process for me. Please check, if I made the correct choice in all occurrences (sometimes I had to guess the intent).\r\n\r\nConsistent Capitalization was a mess. I hope I fixed most of that. Please check.\r\n\r\nThere is still no consistent use of \"Registry\" vs. \"log\" vs. \"ledger\" vs. \"Transparency Service\", I think. Please check.\r\n\r\nPlease check every use of the term \"Evidence\" and if an alternative expression could be used.\r\n\r\nPlease check every occurrence of the term \"guarantee\" or \"proof\" and if an alternative expression could be used.\r\n\r\nPrivacy Considerations and Security Considerations texts require significant improvement.",
       "createdAt": "2023-02-21T23:03:09Z",
-      "updatedAt": "2023-02-21T23:03:09Z",
+      "updatedAt": "2023-02-27T22:01:54Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "Here is my opinion:\r\nRegistry refers to the facilities used to store and retrieve \"Authenticated Statement Data\" that has been submitted to a \"Transparency Service\" \"operator\". A Registry contains specific \"Statements\" which the Transparency service supports, as documented in their registration policies document. A Registry may employ different technologies needed to carry out its function to store and retrieve \"Statements\" that are permitted in the Registry, per the registration policies defined by the Transparency Service operator. The operator of a Transparency Service serves the role of Gatekeeper to ensure the integrity of the Registry data and services provided to access the Registry data. A Statement is contained in a message \"Payload\" exchanged between a Transparency Service API function and other parties, i.e. consumer inquiries and Notary submissions.",
+          "createdAt": "2023-02-27T21:58:30Z",
+          "updatedAt": "2023-02-27T22:01:54Z"
+        }
+      ]
     },
     {
       "number": 17,
@@ -276,6 +324,22 @@
       "body": "From https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/3#discussion_r1114223387.\r\n\r\nMore error codes should be defined.",
       "createdAt": "2023-02-22T12:43:22Z",
       "updatedAt": "2023-02-22T12:43:22Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 18,
+      "id": "I_kwDOIvmHss5fdHKX",
+      "title": "Statement by reference",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/18",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Copied over from: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/35\r\n\r\nAt IETF 115 there were discussions on having some kind of standard way to deal with statements by reference. Here are also the two relevant slides from https://datatracker.ietf.org/doc/slides-115-scitt-combined-scitt-presentations/:\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "createdAt": "2023-02-27T15:59:38Z",
+      "updatedAt": "2023-02-27T15:59:38Z",
       "closedAt": null,
       "comments": []
     }
