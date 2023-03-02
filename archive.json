@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-02-28T00:41:42.274459+00:00",
+  "timestamp": "2023-03-02T00:44:43.132517+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -165,7 +165,7 @@
       ],
       "body": "Copying over: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/34\r\n\r\nAt IETF-115, discussions involved:\r\n\r\n- Leverage existing IETF and/or W3C definitions and terms, or at least not conflict and cause confusion with existing terms.\r\n- Minimize the concept count\r\n\r\n### Existing Standards Terminology\r\n\r\n- [IETF: Remote Attestation Procedures Architecture (RATS)](https://www.ietf.org/archive/id/draft-ietf-rats-architecture-22.html#name-artifacts)\r\n- [IETF: SCITT Architecture](https://ietf-scitt.github.io/draft-birkholz-scitt-architecture/draft-birkholz-scitt-architecture.html#name-terminology)\r\n- [IETF: RFC7519](https://www.ietf.org/archive/id/draft-ietf-rats-architecture-22.html#RFC7519)\r\n\r\n### Proposal\r\n\r\nClaim conflicts with RATS and W3C\r\n\r\nComparison of terms across orgs as the object changes state:\r\n![](https://hackmd.io/_uploads/SklGkMSBs.png)\r\n\r\nInstead of transitioning from `statement` to `claim` to `transparent claim`, what if we used `statement` as the base concept:\r\n- Statement --> Signed Statment --> Transparent Statement",
       "createdAt": "2023-02-21T15:34:14Z",
-      "updatedAt": "2023-02-27T21:46:08Z",
+      "updatedAt": "2023-02-28T16:51:18Z",
       "closedAt": null,
       "comments": [
         {
@@ -174,6 +174,41 @@
           "body": "IMO, A \"Transparency Service\" has an operator (entity) that serves as a Gatekeeper to ensure integrity of the Registry and maintain a high availability service to ensure access to the Registry data via defined API's. ",
           "createdAt": "2023-02-27T21:46:07Z",
           "updatedAt": "2023-02-27T21:46:07Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "While reviewing the architecture terminology, we are considering various terms for information being placed on SCITT. What are the terms as the submission changes state? \r\n\r\nThe current [architecture document](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-architecture-overview) uses:\r\n- Statement\r\n- Claim\r\n- Transparent Claim\r\n\r\nTo converge on the terminology, please provide your suggestion for each stage. By the end of the week: (March 3, 2023), we'll consolidate the options and put it up for vote.",
+          "createdAt": "2023-02-28T16:21:54Z",
+          "updatedAt": "2023-02-28T16:21:54Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "- Statement\r\n- Signed Statement\r\n- Transparent Statement",
+          "createdAt": "2023-02-28T16:22:42Z",
+          "updatedAt": "2023-02-28T16:22:42Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "As a potentially more palatable alternative:\r\n\r\n* Assertion\r\n* Signed Statement\r\n* Transparent Statement",
+          "createdAt": "2023-02-28T16:33:11Z",
+          "updatedAt": "2023-02-28T16:33:11Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "Entries in REA's SAG-CTR are called a \"Declaration\";\r\n \r\n> a formal or explicit statement or announcement.\r\n> \"they issued a declaration at the close of the talks\"\r\n> \r\nThere are different types of declarations, in SAG-CTR i.e. \"Trusted Software\", \"Trusted Artifact\", \"SAGScore\" (TM) etc.",
+          "createdAt": "2023-02-28T16:38:56Z",
+          "updatedAt": "2023-02-28T16:43:11Z"
+        },
+        {
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I believe the current architecture had **4** different notions: Statement, Claim, Signed Claim, and Transparent Claim.\r\nAs we often discussed, I think the terminology in the architecture should clearly distinguish between the notion of opaque payloads (previously known as statements) from \"things with headers\" which are consistently signed, made transparent, and communicated between SCITT parties. I care about it because in almost all use cases, headers matter a lot. \r\nMy proposed revised names for these 4 notions are: \r\n- Document (Assertion is fine too)\r\n- Statement (The document in an envelope with selected headers)\r\n- Signed Statement (Adding the issuer signature)\r\n- Transparent Statement (Adding the receipt to the Signed Statement).  \r\n",
+          "createdAt": "2023-02-28T16:48:37Z",
+          "updatedAt": "2023-02-28T16:51:18Z"
         }
       ]
     },
@@ -340,6 +375,22 @@
       "body": "Copied over from: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/35\r\n\r\nAt IETF 115 there were discussions on having some kind of standard way to deal with statements by reference. Here are also the two relevant slides from https://datatracker.ietf.org/doc/slides-115-scitt-combined-scitt-presentations/:\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
       "createdAt": "2023-02-27T15:59:38Z",
       "updatedAt": "2023-02-27T15:59:38Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 19,
+      "id": "I_kwDOIvmHss5fj1KR",
+      "title": "Review Registration Policy",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/19",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Discussion on the functionality of the registration policy, as defined in the architecture.",
+      "createdAt": "2023-02-28T14:55:21Z",
+      "updatedAt": "2023-02-28T14:55:21Z",
       "closedAt": null,
       "comments": []
     }
