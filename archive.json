@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-03-02T00:44:43.132517+00:00",
+  "timestamp": "2023-03-05T00:47:04.256033+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -165,7 +165,7 @@
       ],
       "body": "Copying over: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/34\r\n\r\nAt IETF-115, discussions involved:\r\n\r\n- Leverage existing IETF and/or W3C definitions and terms, or at least not conflict and cause confusion with existing terms.\r\n- Minimize the concept count\r\n\r\n### Existing Standards Terminology\r\n\r\n- [IETF: Remote Attestation Procedures Architecture (RATS)](https://www.ietf.org/archive/id/draft-ietf-rats-architecture-22.html#name-artifacts)\r\n- [IETF: SCITT Architecture](https://ietf-scitt.github.io/draft-birkholz-scitt-architecture/draft-birkholz-scitt-architecture.html#name-terminology)\r\n- [IETF: RFC7519](https://www.ietf.org/archive/id/draft-ietf-rats-architecture-22.html#RFC7519)\r\n\r\n### Proposal\r\n\r\nClaim conflicts with RATS and W3C\r\n\r\nComparison of terms across orgs as the object changes state:\r\n![](https://hackmd.io/_uploads/SklGkMSBs.png)\r\n\r\nInstead of transitioning from `statement` to `claim` to `transparent claim`, what if we used `statement` as the base concept:\r\n- Statement --> Signed Statment --> Transparent Statement",
       "createdAt": "2023-02-21T15:34:14Z",
-      "updatedAt": "2023-02-28T16:51:18Z",
+      "updatedAt": "2023-03-02T19:18:40Z",
       "closedAt": null,
       "comments": [
         {
@@ -209,6 +209,20 @@
           "body": "I believe the current architecture had **4** different notions: Statement, Claim, Signed Claim, and Transparent Claim.\r\nAs we often discussed, I think the terminology in the architecture should clearly distinguish between the notion of opaque payloads (previously known as statements) from \"things with headers\" which are consistently signed, made transparent, and communicated between SCITT parties. I care about it because in almost all use cases, headers matter a lot. \r\nMy proposed revised names for these 4 notions are: \r\n- Document (Assertion is fine too)\r\n- Statement (The document in an envelope with selected headers)\r\n- Signed Statement (Adding the issuer signature)\r\n- Transparent Statement (Adding the receipt to the Signed Statement).  \r\n",
           "createdAt": "2023-02-28T16:48:37Z",
           "updatedAt": "2023-02-28T16:51:18Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "What do folks think about @fournet latest suggestion?\r\n1. It accounts for users creating a thing (a `document`), \r\n2. they prepare it to be submitted (`statement`: becomes a cose payload with the surrounding information, such as a from/to on an envelope)\r\n3. it's signed by the issuer (`signed statement`)\r\n4. It's submitted to the transparency service and accepted as a result of any registration policies (`transparent statement`)\r\n\r\nPersonally, what I like about: it takes a generic document (`SBOM`, `VEX`, `scan result`, `artifact x meets foo conformance policy`, ...) and then uses the same noun (statement) with adjectives (`signed`, `transparent`) as it travels through the SCITT workflow.",
+          "createdAt": "2023-03-02T18:47:30Z",
+          "updatedAt": "2023-03-02T18:50:07Z"
+        },
+        {
+          "author": "letmaik",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think introducing a term for the envelope without its signature (\"statement\" above) is confusing, simply because this piece does not exist as such (it's not something you can easily point to or even write to a file, or hash, etc.). And because of that, the transition would in practice be document -> signed statement, which is confusing. \r\n\r\nI think statement -> signed statement makes sense, even though it's a bit cumbersome and a single word for the latter would be nicer (thinking of APIs etc.). In practice, I think that's where it ends, and whether receipts from one or more TS exist (and are bundled in some way) and whether verifiers therefore consider the signed statement as more or less transparent is a policy decision I think. ",
+          "createdAt": "2023-03-02T19:18:39Z",
+          "updatedAt": "2023-03-02T19:18:39Z"
         }
       ]
     },
@@ -792,7 +806,7 @@
       "labels": [],
       "body": "Fixes #15\r\n\r\n(to some extend), please see #15 and check the issues highlighted there as part of reviewing this PR.",
       "createdAt": "2023-02-21T23:04:47Z",
-      "updatedAt": "2023-02-22T21:41:38Z",
+      "updatedAt": "2023-03-02T19:59:47Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "c8ad68740476eaf24c663147fd349b16bfa4f4d2",
@@ -942,6 +956,254 @@
               "body": "> metadata and an Issuer's signature is added to a Statement via COSE envelope \r\n\r\nmetadata and an Issuer's signature is added to a Statement via _**a**_ COSE envelope ",
               "createdAt": "2023-02-22T21:41:38Z",
               "updatedAt": "2023-02-22T21:41:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5O0enJ",
+          "commit": {
+            "abbreviatedOid": "5b497e5"
+          },
+          "author": "nedmsmith",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "Multiple comments ",
+          "createdAt": "2023-03-02T18:17:52Z",
+          "updatedAt": "2023-03-02T19:59:45Z",
+          "comments": [
+            {
+              "originalPosition": 348,
+              "body": "Why is this a SHOULD and not MUST?",
+              "createdAt": "2023-03-02T18:17:53Z",
+              "updatedAt": "2023-03-02T19:59:45Z"
+            },
+            {
+              "originalPosition": 355,
+              "body": "how does the TS ensure determinism?",
+              "createdAt": "2023-03-02T18:19:12Z",
+              "updatedAt": "2023-03-02T19:59:45Z"
+            },
+            {
+              "originalPosition": 357,
+              "body": "This requires more explanation. Sounds dubious.",
+              "createdAt": "2023-03-02T18:20:20Z",
+              "updatedAt": "2023-03-02T19:59:45Z"
+            },
+            {
+              "originalPosition": 360,
+              "body": "It might be better to describe the properties of manifests that are desired instead of or in addition to simply requiring 'manifests' - which is ambiguous.",
+              "createdAt": "2023-03-02T18:22:20Z",
+              "updatedAt": "2023-03-02T19:59:45Z"
+            },
+            {
+              "originalPosition": 371,
+              "body": "Why is this a SHOULD and not MUST? Otherwise it is an untrustworthy TS.",
+              "createdAt": "2023-03-02T18:24:47Z",
+              "updatedAt": "2023-03-02T19:59:45Z"
+            },
+            {
+              "originalPosition": 374,
+              "body": "Some exemplary text describing what is meant by \"auxiliary governance\" would be helpful.",
+              "createdAt": "2023-03-02T18:26:13Z",
+              "updatedAt": "2023-03-02T19:59:45Z"
+            },
+            {
+              "originalPosition": 380,
+              "body": "Why is this not a SHOULD instead of MAY? SHOULD implies the interfaces for performing reviews will be defined and implemented.",
+              "createdAt": "2023-03-02T18:27:58Z",
+              "updatedAt": "2023-03-02T19:59:45Z"
+            },
+            {
+              "originalPosition": 394,
+              "body": "'consumer' might not be the best term. Does it mean ingress or someone engaging in commerce?",
+              "createdAt": "2023-03-02T18:29:50Z",
+              "updatedAt": "2023-03-02T19:59:45Z"
+            },
+            {
+              "originalPosition": 455,
+              "body": "Since the use of COSE is mandatory, shouldn't this be MUST?",
+              "createdAt": "2023-03-02T18:34:24Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 467,
+              "body": "This is a long sentence, maybe break it up into multiple 80 character lines?\r\nA policy could be 'unrecognized', 'unparsable', or 'not implemented'. Does 'unknown' imply all of these? ",
+              "createdAt": "2023-03-02T18:37:28Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 510,
+              "body": "break up long lines please.\r\nThis seems to hint that a TS MUST have ACID properties and that \"registered\" is code for a committed transaction. Maybe make the expected TS integrity requirements more  clear in terms of durability, 'commit' and 'rollback', referential integrity of \"registered\" statements as well as what constitutes a sound or safe state when working with a blockchain. ",
+              "createdAt": "2023-03-02T18:43:25Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 519,
+              "body": "Does this work if the TS cluster is behind a load balancer?",
+              "createdAt": "2023-03-02T18:44:25Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 522,
+              "body": "please break up long sentences into shorter lines.\r\n\r\nThe term 'local' is subjective and contextual. If used, it needs to be defined.",
+              "createdAt": "2023-03-02T18:46:11Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 525,
+              "body": "Ambiguously describes things that may or may not be relevant or important. Consider deleting this or rewriting to focus on what Verifier MUST / SHOULD do to establish sufficient trust to interoperate with a TS.",
+              "createdAt": "2023-03-02T18:48:41Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 528,
+              "body": "The different available options should be described.",
+              "createdAt": "2023-03-02T18:49:22Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 540,
+              "body": "If they have different governance, organization trust, and otherwise don't trust each other what is the basis for allowing them to interoperate? This seems very dubious and possibly should be called out as conditions for NOT interoperating.",
+              "createdAt": "2023-03-02T18:51:50Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 544,
+              "body": "What is the value of having multiple registrations other than for availability? A Verifiler or relying party may have policies for not trusting one or more of the selected TSs and therefore, registration at multiple is potentially dubious if the reason for not trusting is the TS is compromised or malicious etc. The justification for why this is being considered needs to be motivated better.",
+              "createdAt": "2023-03-02T18:55:27Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 585,
+              "body": "This seems to be stating that a TS is intended to be trusted to protect privacy on behalf of the user community. It would be better if the user community is allowed to apply their own privacy protections independent of the TS. This might be in the form of blinded values in a Signed Statement.",
+              "createdAt": "2023-03-02T18:59:38Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 591,
+              "body": "Use of 'trustworthy' seems overly ambiguous. Does it mean the contents of the Transparent Statement are opaque to the TS? Does that further imply the contents could be privacy protected in some way including encrypted? If the TS provides registration assurances but contents are allowed to be opaque. Then wouldn't it make more sense to call it a \"Registered Statement\" instead of a \"Transparent Statement\"?",
+              "createdAt": "2023-03-02T19:04:02Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 595,
+              "body": "This seems to be describing the legal liability of the TS. If so, does it really belong here? If not, what is it trying to describe?",
+              "createdAt": "2023-03-02T19:05:40Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 598,
+              "body": "The wording needs to clarify the difference between a purposefully opaque payload from a payload that is described by a well-known schema.",
+              "createdAt": "2023-03-02T19:07:05Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 602,
+              "body": "What threat does this normative requirement counter? Given keys are certified (X.509) or described by DID or other certification process. Does this requirement override these other forms of qualifiers on keys or is it just giving advice?",
+              "createdAt": "2023-03-02T19:08:20Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 607,
+              "body": "'malicious' and 'misbehaved' might be better words.",
+              "createdAt": "2023-03-02T19:11:33Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 618,
+              "body": "This contradicts statements about dissimilar TSs interoperating or working together in a trusted way. The use of trust anchors to validate key credentials implies trust. All of this can be compromised or is subject to malicious or improper behavior. It seems impossible to achieve both objectives at the same time. Some aspects of this document is overstated, but it isn't clear which part.",
+              "createdAt": "2023-03-02T19:16:49Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 621,
+              "body": "This seems to contradict line 651.",
+              "createdAt": "2023-03-02T19:17:25Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 624,
+              "body": "Maybe 'accountable' is the wrong word. If the user contributes a purposefully opaque statement, that shouldn't be considered form of unaccountability. It appears that opaque statements are expected by the SCITT architecture. Use of the term 'false assertion' with an expectation that SCITT treats assertions as opaque doesn't make sense and seems biased or judgmental. Maybe the paragraph should focus on what properties of transparency, or trust that SCITT provides and leave other things out of scope?",
+              "createdAt": "2023-03-02T19:25:26Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 627,
+              "body": "break this into several lines.",
+              "createdAt": "2023-03-02T19:26:41Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 630,
+              "body": "please break into multiple lines.\r\nIt isn't clear who's liability is being described.",
+              "createdAt": "2023-03-02T19:28:51Z",
+              "updatedAt": "2023-03-02T19:59:46Z"
+            },
+            {
+              "originalPosition": 639,
+              "body": "use of 'honest' seems out of place. Is this describing TS operational integrity requirements such as ACID?",
+              "createdAt": "2023-03-02T19:31:01Z",
+              "updatedAt": "2023-03-02T19:59:47Z"
+            },
+            {
+              "originalPosition": 646,
+              "body": "Of course a compromised TS could do all sorts of malicious things. If the previous line / paragraph stated the 4 (or more?) bullet points below in terms of how a TS is supposed to behave. It might be easier to understand what requirements implementers must address in order to build a suitable TS?",
+              "createdAt": "2023-03-02T19:33:47Z",
+              "updatedAt": "2023-03-02T19:59:47Z"
+            },
+            {
+              "originalPosition": 653,
+              "body": "This is confusing.",
+              "createdAt": "2023-03-02T19:34:58Z",
+              "updatedAt": "2023-03-02T19:59:47Z"
+            },
+            {
+              "originalPosition": 665,
+              "body": "I don't think 'trust' is the right word. Availability is facilitated by networks and storage subsystems, but this paragraph doesn't explain how. If a deployment of SCITT utilizes a trusted network, the inclusion of SCITT doesn't superficially make the network untrusted. ",
+              "createdAt": "2023-03-02T19:38:50Z",
+              "updatedAt": "2023-03-02T19:59:47Z"
+            },
+            {
+              "originalPosition": 668,
+              "body": "Auditing isn't normally regarded as a mechanism for establishing or ensuring availability. Should this be in a different section?",
+              "createdAt": "2023-03-02T19:40:09Z",
+              "updatedAt": "2023-03-02T19:59:47Z"
+            },
+            {
+              "originalPosition": 673,
+              "body": "Availability strategies generally involve replication and redundancy techniques. This seems to contradict that. This is confusing as an availability strategy.",
+              "createdAt": "2023-03-02T19:42:01Z",
+              "updatedAt": "2023-03-02T19:59:47Z"
+            },
+            {
+              "originalPosition": 684,
+              "body": "Maybe it would be better if the information owner is expected to apply privacy protections before contributing a Statement?",
+              "createdAt": "2023-03-02T19:47:46Z",
+              "updatedAt": "2023-03-02T19:59:47Z"
+            },
+            {
+              "originalPosition": 687,
+              "body": "Is this describing a requirement on TSs, Issuers (users), or Verifiers? It's confusing.",
+              "createdAt": "2023-03-02T19:49:17Z",
+              "updatedAt": "2023-03-02T19:59:47Z"
+            },
+            {
+              "originalPosition": 701,
+              "body": "It is unclear who 'we' is. - Possibly, \"the SCITT architecture\"?",
+              "createdAt": "2023-03-02T19:50:53Z",
+              "updatedAt": "2023-03-02T19:59:47Z"
+            },
+            {
+              "originalPosition": 710,
+              "body": "An untrusted Client could obtain legitimate credentials and masquerade as a legitimate user only to perform a denial of service attack in the form of out of order registrations and the like. The SCITT architecture should have some mechanism for ensuring operational integrity despite having untrusted Clients or it should require Client trust and employ some form of vetting process to register, authenticate and authorize them.",
+              "createdAt": "2023-03-02T19:55:37Z",
+              "updatedAt": "2023-03-02T19:59:47Z"
+            },
+            {
+              "originalPosition": 718,
+              "body": "It might scale better if the TSs request revocation status updates such as OCSP [RFC2560].",
+              "createdAt": "2023-03-02T19:58:51Z",
+              "updatedAt": "2023-03-02T19:59:47Z"
             }
           ]
         }
