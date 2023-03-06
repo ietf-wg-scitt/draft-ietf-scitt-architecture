@@ -508,7 +508,7 @@ Table of Contents
                                  |               +--------------+  |
                               .-' '------------->+ Transparency |  |
                              |   .-------.       |              |  |
- Transparency -->            |  | Receipt +<-----+   Registry   |  |
+ Transparency -->            |  | Receipt +<-----+   Service    |  |
       Service                |   '---+---'       +------------+-+  |
                               '-. .-'                         |    |
                                  |                            |    |
@@ -527,7 +527,7 @@ Table of Contents
                                  | '-------------------'      |
                                  v                            v
                         .--------+---------.      .-----------+-----.
- Auditor       -->     / Collect Receipts /      / Replay Registry /
+ Auditor       -->     / Collect Receipts /      /   Replay Log    /
                       '------------------'      '-----------------'
 
    The SCITT architecture consists of a very loose federation of
