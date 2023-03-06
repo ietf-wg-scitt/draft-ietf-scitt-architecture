@@ -255,7 +255,7 @@ Issuer       -->   | Statement ||  Envelope  +<------------------.
                                 |               +--------------+  |
                              .-' '------------->+ Transparency |  |
                             |   .-------.       |              |  |
-Transparency -->            |  | Receipt +<-----+   Registry   |  |
+Transparency -->            |  | Receipt +<-----+   Service    |  |
      Service                |   '---+---'       +------------+-+  |
                              '-. .-'                         |    |
                                 |                            |    |
@@ -274,7 +274,7 @@ Verifier      -->               |   / Verify Transparent /   |
                                 | '-------------------'      |
                                 v                            v
                        .--------+---------.      .-----------+-----.
-Auditor       -->     / Collect Receipts /      / Replay Registry /
+Auditor       -->     / Collect Receipts /      /   Replay Log    /
                      '------------------'      '-----------------'
 ~~~~
 
