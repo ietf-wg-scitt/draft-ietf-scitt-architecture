@@ -113,7 +113,7 @@ If trust can be put into the operations that record Signed Statements (i.e., a b
 
 The Transparency Services specified in this architecture can be implemented by various different types of services in various types of languages provided via various variants of API layouts.
 
-The global interoperability enabled and guaranteed by the Transparency Services is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs). The core components are based on the Concise Signing and Encryption standard specified in {{-COSE}}, which is used to sign released Statements about Artifacts and to build and maintain a Merkle tree that functions as an append-only Registry for correspsonding Signed Statements.
+The global interoperability enabled and guaranteed by the Transparency Services is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs). The core components are based on the Concise Signing and Encryption standard specified in {{-COSE}}, which is used to sign released Statements about Artifacts and to build and maintain a Merkle tree that functions as an append-only Registry for corresponding Signed Statements.
 The format and verification process for Registry-based transparency receipts are described in {{-RECEIPTS}}.
 
 ## Requirements Notation
