@@ -244,7 +244,7 @@ Reputable Issuers are thus incentivized to carefully review their Statements bef
                     .----+----.  .----------.    DID Identifier
 Issuer       -->   | Statement ||  Envelope  +<------------------.
                     '----+----'  '-----+----'                     |
-                         |             |           +------------------+
+                         |             |           +--------------+---+
                           '----. .----'            | DID Key Manifest |
                                 |                  | (decentralized)  |
                                 v                  +-------+------+---+
@@ -268,10 +268,10 @@ Transparency -->            |  | Receipt +<-----+   Service    |  |
                                 |'-------.     .-------------)---'
                                 |         |   |              |
                                 |         v   v              |
-                                |    .----+---+----------.   |
+                                |    .----+---+-----------.  |
 Verifier      -->               |   / Verify Transparent /   |
                                 |  /      Statement     /    |
-                                | '-------------------'      |
+                                | '--------------------'     |
                                 v                            v
                        .--------+---------.      .-----------+-----.
 Auditor       -->     / Collect Receipts /      /   Replay Log    /
