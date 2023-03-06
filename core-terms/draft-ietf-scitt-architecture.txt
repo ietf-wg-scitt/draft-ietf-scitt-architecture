@@ -870,7 +870,7 @@ Table of Contents
 
    The formats of Signed Statements and Receipts are based on CBOR
    Object Signing and Encryption (COSE [RFC9052]).  The choice of CBOR
-   [RFC9849] is a trade-off between safety (in particular, non-
+   [RFC8949] is a trade-off between safety (in particular, non-
    malleability: each Signed Statement has a unique serialization), ease
    of processing and availability of implementations.
 
@@ -1521,6 +1521,11 @@ Table of Contents
               JSON Data Structures", RFC 8610, DOI 10.17487/RFC8610,
               June 2019, <https://www.rfc-editor.org/rfc/rfc8610>.
 
+   [RFC8949]  Bormann, C. and P. Hoffman, "Concise Binary Object
+              Representation (CBOR)", STD 94, RFC 8949,
+              DOI 10.17487/RFC8949, December 2020,
+              <https://www.rfc-editor.org/rfc/rfc8949>.
+
    [RFC9052]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
               Structures and Process", STD 96, RFC 9052,
               DOI 10.17487/RFC9052, August 2022,
@@ -1529,8 +1534,6 @@ Table of Contents
    [RFC9162]  Laurie, B., Messeri, E., and R. Stradling, "Certificate
               Transparency Version 2.0", RFC 9162, DOI 10.17487/RFC9162,
               December 2021, <https://www.rfc-editor.org/rfc/rfc9162>.
-
-   [RFC9849]  "*** BROKEN REFERENCE ***".
 
 12.2.  Informative References
 

@@ -1843,7 +1843,7 @@ They may additionally apply a validation policy based on the protected headers p
         <h3 id="name-envelope-and-signed-stateme">
 <a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-envelope-and-signed-stateme" class="section-name selfRef">Envelope and Signed Statement Format</a>
         </h3>
-<p id="section-6.1-1">The formats of Signed Statements and Receipts are based on CBOR Object Signing and Encryption (COSE <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>). The choice of CBOR <span>[<a href="#RFC9849" class="cite xref">RFC9849</a>]</span> is a trade-off between safety (in particular, non-malleability: each Signed Statement has a unique serialization), ease of processing and availability of implementations.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1-1">The formats of Signed Statements and Receipts are based on CBOR Object Signing and Encryption (COSE <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>). The choice of CBOR <span>[<a href="#RFC8949" class="cite xref">RFC8949</a>]</span> is a trade-off between safety (in particular, non-malleability: each Signed Statement has a unique serialization), ease of processing and availability of implementations.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.1-2">At a high-level that is the context of this architecture, a Signed Statement is a COSE single-signed object (i.e., a <code>COSE_Sign1</code>) that contains the correct set of protected headers. Although Issuers and relaying parties may attach unprotected headers to Signed Statements, Transparency Services and Verifiers <span class="bcp14">MUST NOT</span> rely on the presence or value of additional unprotected headers in Signed Statements during Registration and validation.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.1-3">All Signed Statements <span class="bcp14">MUST</span> include the following protected headers:<a href="#section-6.1-3" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -2343,17 +2343,17 @@ and accept the risk of being blamed for inconsistent Registration or Issuer equi
         <dd>
 <span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Vigano, C.</span>, and <span class="refAuthor">C. Bormann</span>, <span class="refTitle">"Concise Data Definition Language (CDDL): A Notational Convention to Express Concise Binary Object Representation (CBOR) and JSON Data Structures"</span>, <span class="seriesInfo">RFC 8610</span>, <span class="seriesInfo">DOI 10.17487/RFC8610</span>, <time datetime="2019-06" class="refDate">June 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8610">https://www.rfc-editor.org/rfc/rfc8610</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8949">[RFC8949]</dt>
+        <dd>
+<span class="refAuthor">Bormann, C.</span> and <span class="refAuthor">P. Hoffman</span>, <span class="refTitle">"Concise Binary Object Representation (CBOR)"</span>, <span class="seriesInfo">STD 94</span>, <span class="seriesInfo">RFC 8949</span>, <span class="seriesInfo">DOI 10.17487/RFC8949</span>, <time datetime="2020-12" class="refDate">December 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8949">https://www.rfc-editor.org/rfc/rfc8949</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC9052">[RFC9052]</dt>
         <dd>
 <span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Structures and Process"</span>, <span class="seriesInfo">STD 96</span>, <span class="seriesInfo">RFC 9052</span>, <span class="seriesInfo">DOI 10.17487/RFC9052</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9052">https://www.rfc-editor.org/rfc/rfc9052</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9162">[RFC9162]</dt>
-        <dd>
-<span class="refAuthor">Laurie, B.</span>, <span class="refAuthor">Messeri, E.</span>, and <span class="refAuthor">R. Stradling</span>, <span class="refTitle">"Certificate Transparency Version 2.0"</span>, <span class="seriesInfo">RFC 9162</span>, <span class="seriesInfo">DOI 10.17487/RFC9162</span>, <time datetime="2021-12" class="refDate">December 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9162">https://www.rfc-editor.org/rfc/rfc9162</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC9849">[RFC9849]</dt>
       <dd>
-<span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
+<span class="refAuthor">Laurie, B.</span>, <span class="refAuthor">Messeri, E.</span>, and <span class="refAuthor">R. Stradling</span>, <span class="refTitle">"Certificate Transparency Version 2.0"</span>, <span class="seriesInfo">RFC 9162</span>, <span class="seriesInfo">DOI 10.17487/RFC9162</span>, <time datetime="2021-12" class="refDate">December 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9162">https://www.rfc-editor.org/rfc/rfc9162</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
