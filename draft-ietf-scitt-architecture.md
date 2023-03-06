@@ -170,7 +170,7 @@ Issuer:
 
 Envelope:
 
-: metadata and an Issuer's signature is added to a Statement via COSE envelope by the Issuer to produce a Signed Statement.
+: metadata and an Issuer's signature is added to a Statement via a COSE envelope by the Issuer to produce a Signed Statement.
 An Envelope contains the identity of the Issuer and other information to help components responsible for validation that are part of a Transparency Services to identify the software Artifact referred to in a Signed Statement. In essence, a Signed Statement is a COSE Envelope wrapped around a Statement binding the metadata included in the Envelope to a Statement. In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).
 
 Feed:
