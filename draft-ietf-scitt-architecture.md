@@ -241,40 +241,41 @@ Reputable Issuers are thus incentivized to carefully review their Statements bef
                    |  Artifact  |
                     '----+-----'
                          v
-                    .----+----.  .----------.
-Issuer       -->   | Statement ||  Envelope  |
-                    '----+----'  '-----+----'
-                         |             |         +------------------+
-                          '----. .----'          | DID Key Manifest |
-                                |                | (decentralized)  |
-                                v                +-------+------+---+
-                  .-------------+--.   Sign Statement    |      |
-                 | Signed Statement +<------------------'       |
-                  '-------------+--'                            |
-                                |             +--------------+  |
-                             .-' '----------->+ Transparency |  |
-                            |   .-------.     |              |  |
-Transparency -->            |  | Receipt +<---+   Registry   |  |
-     Service                |   '---+---'     +------------+-+  |
-                             '-. .-'                       |    |
-                                |                          |    |
-                                v                          |    |
-                          .-----+-----.                    |    |
-                         | Transparent |                   |    |
-                         |  Statement  |                   |    |
-                          '-----+-----'                    |    |
-                                |                          |    |
-                                |'-------.     .-----------)---'
-                                |         |   |            |
-                                |         v   v            |
-                                |    .----+---+----------. |
-Verifier      -->               |   / Verify Transparent / |
-                                |  /      Statement     /  |
-                                | '-------------------'    |
-                                v                          v
-                       .--------+---------.    .-----------+-----.
-Auditor       -->     / Collect Receipts /    / Replay Registry /
-                     '------------------'    '-----------------'
+                    .----+----.  .----------.    DID Identifier
+Issuer       -->   | Statement ||  Envelope  +<------------------.
+                    '----+----'  '-----+----'                     |
+                         |             |           +------------------+
+                          '----. .----'            | DID Key Manifest |
+                                |                  | (decentralized)  |
+                                v                  +-------+------+---+
+                           .----+----.                     |      |
+                          |  Signed   |    COSE Signing    |      |
+                          | Statement +<-------------------'      |
+                           '----+----'                            |
+                                |               +--------------+  |
+                             .-' '------------->+ Transparency |  |
+                            |   .-------.       |              |  |
+Transparency -->            |  | Receipt +<-----+   Registry   |  |
+     Service                |   '---+---'       +------------+-+  |
+                             '-. .-'                         |    |
+                                |                            |    |
+                                v                            |    |
+                          .-----+-----.                      |    |
+                         | Transparent |                     |    |
+                         |  Statement  |                     |    |
+                          '-----+-----'                      |    |
+                                |                            |    |
+                                |'-------.     .-------------)---'
+                                |         |   |              |
+                                |         v   v              |
+                                |    .----+---+----------.   |
+Verifier      -->               |   / Verify Transparent /   |
+                                |  /      Statement     /    |
+                                | '-------------------'      |
+                                v                            v
+                       .--------+---------.      .-----------+-----.
+Auditor       -->     / Collect Receipts /      / Replay Registry /
+                     '------------------'      '-----------------'
 ~~~~
 
 The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing, registering and auditing Transparent Statements.
