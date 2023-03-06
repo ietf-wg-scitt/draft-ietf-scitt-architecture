@@ -102,7 +102,7 @@ Transparent Statements provide a common basis for holding Issuers accountable fo
 
 Trust in the Transparency Service itself is supported both by protecting their implementation (using, for instance, replication, trusted hardware, and remote attestation of systems) and by enabling independent audits of the correctness and consistency of its Registry, thereby holding the organization accountable that operates it. Unlike CT, where independent auditors are responsible for enforcing the consistency of multiple independent instances of the same global Registry, each Transparency Service is required to guarantee the consistency of its own Registry (for instance, through the use of a consensus algorithm between replicas of the Registry), but assume no consistency between different Transparency Services.
 
-The Transparency Services specified in this architecture cater to two types of audiences:
+The Transparency Services specified in this architecture caters to two types of audiences:
 
 1. Signed Statement Issuers: entities, stakeholders, and users involved in supply chain interactions that need to release authentic Statements to a definable set of peers; and
 2. Transparent Statement Consumers: entities, stakeholders, and users involved in supply chain interactions that need to access, validate, and trust authentic Statements.
@@ -113,7 +113,7 @@ If trust can be put into the operations that record Signed Statements (i.e., a b
 
 The Transparency Services specified in this architecture can be implemented by various different types of services in various types of languages provided via various variants of API layouts.
 
-The global interoperability enabled and guaranteed by the Transparency Services is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs). The core components are based on the Concise Signing and Encryption standard specified in {{-COSE}}, which is used to sign released Statements about Artifacts and to build and maintain a Merkle tree that functions as an append-only Registry for correspsonding Signed Statements.
+The global interoperability enabled and guaranteed by the Transparency Services is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs). The core components are based on the Concise Signing and Encryption standard specified in {{-COSE}}, which is used to sign released Statements about Artifacts and to build and maintain a Merkle tree that functions as an append-only Registry for corresponding Signed Statements.
 The format and verification process for Registry-based transparency receipts are described in {{-RECEIPTS}}.
 
 ## Requirements Notation
@@ -170,7 +170,7 @@ Issuer:
 
 Envelope:
 
-: metadata and an Issuer's signature is added to a Statement via COSE envelope by the Issuer to produce a Signed Statement.
+: metadata and an Issuer's signature is added to a Statement via a COSE envelope by the Issuer to produce a Signed Statement.
 An Envelope contains the identity of the Issuer and other information to help components responsible for validation that are part of a Transparency Services to identify the software Artifact referred to in a Signed Statement. In essence, a Signed Statement is a COSE Envelope wrapped around a Statement binding the metadata included in the Envelope to a Statement. In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).
 
 Feed:
