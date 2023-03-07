@@ -241,7 +241,7 @@ Reputable Issuers are thus incentivized to carefully review their Statements bef
                    |  Artifact  |
                     '----+-----'
                          v
-                    .----+----.  .----------.    DID Identifier
+                    .----+----.  .----------.    Decentralized Identifier
 Issuer       -->   | Statement ||  Envelope  +<------------------.
                     '----+----'  '-----+----'                     |
                          |             |           +--------------+---+
