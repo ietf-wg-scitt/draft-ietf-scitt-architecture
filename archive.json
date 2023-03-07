@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-03-05T00:47:04.256033+00:00",
+  "timestamp": "2023-03-07T00:44:51.023807+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -125,7 +125,7 @@
       ],
       "body": "Copied over from: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/38\r\n\r\nThe architecture I-D, and other docs use Registry and Transparency Service (TS) interchangeably. \r\n\r\nThis issue is about consistent naming, and what we should use for an implementation that hosts the SCITT standards.  \r\nAs we've discussed various terms, I'm pasting a \"thousand words\" to highlight conceptual components.\r\n\r\n![image](https://user-images.githubusercontent.com/7647382/202588667-782e7227-ac9b-49f5-b740-0a2a27fd807d.png)\r\n\r\nHow do we finish this sentence:  \r\n*The user will submit a signed statement/claim (see issue #34) to the ___*\r\n\r\n1. The thing we're trying to name here, which is an implementation of a service.\r\n2. The **eNotary** component that evaluates the Registration Policy (3) before proceeding\r\n3. The **Registration Policy**, as the gatekeeper for what may be submitted to the ledger.\r\n4. The **eNotary** counter signing key/service\r\n5. The **ledger**, where statements/claims are persisted\r\n6. The ledger of a ___ (1) may be implemented through various \"ledger databases\", such as [Azure CCF](https://azure.microsoft.com/en-us/products/azure-confidential-ledger/), [QLDB](https://aws.amazon.com/qldb/), [Trillian](https://github.com/google/trillian)\r\n\r\nThis issue is to discuss what we call (1)\r\nPlease \"vote\" with a comment, representing a number, and any supporting thoughts:\r\n\r\n1. Transparency Service (with no acronym)\r\n2. Registry\r\n3. SCITT Implementation\r\n4. Transparency Service (TS as a acronym)\r\n5. _write in your own_",
       "createdAt": "2023-02-21T15:30:00Z",
-      "updatedAt": "2023-02-27T21:43:16Z",
+      "updatedAt": "2023-03-06T16:35:08Z",
       "closedAt": null,
       "comments": [
         {
@@ -148,6 +148,13 @@
           "body": "IMO a \"Transparency Service\" operates a SCITT Registry that contains authenticated statements expressing trust in an artifact. A SCITT Registry may employ multiple technologies to provide its services, i.e. blockchain ledger, relational database, evidence locker, REST API to query the Registry for statements, API's to submit new statements and evidence, etc. The operator of a Transparency Service serves as the Registry Gatekeeper to ensure the integrity of the Registry.",
           "createdAt": "2023-02-27T21:41:20Z",
           "updatedAt": "2023-02-27T21:43:16Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Adding a link to a higher level overview @raylutz \r\n assembled: https://docs.google.com/document/d/1qYljgugcraiamGjrhldQ1ZEoa4i_TkM3tzBg8yNzE_E/edit#",
+          "createdAt": "2023-03-06T16:35:08Z",
+          "updatedAt": "2023-03-06T16:35:08Z"
         }
       ]
     },
@@ -165,7 +172,7 @@
       ],
       "body": "Copying over: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/34\r\n\r\nAt IETF-115, discussions involved:\r\n\r\n- Leverage existing IETF and/or W3C definitions and terms, or at least not conflict and cause confusion with existing terms.\r\n- Minimize the concept count\r\n\r\n### Existing Standards Terminology\r\n\r\n- [IETF: Remote Attestation Procedures Architecture (RATS)](https://www.ietf.org/archive/id/draft-ietf-rats-architecture-22.html#name-artifacts)\r\n- [IETF: SCITT Architecture](https://ietf-scitt.github.io/draft-birkholz-scitt-architecture/draft-birkholz-scitt-architecture.html#name-terminology)\r\n- [IETF: RFC7519](https://www.ietf.org/archive/id/draft-ietf-rats-architecture-22.html#RFC7519)\r\n\r\n### Proposal\r\n\r\nClaim conflicts with RATS and W3C\r\n\r\nComparison of terms across orgs as the object changes state:\r\n![](https://hackmd.io/_uploads/SklGkMSBs.png)\r\n\r\nInstead of transitioning from `statement` to `claim` to `transparent claim`, what if we used `statement` as the base concept:\r\n- Statement --> Signed Statment --> Transparent Statement",
       "createdAt": "2023-02-21T15:34:14Z",
-      "updatedAt": "2023-03-02T19:18:40Z",
+      "updatedAt": "2023-03-06T16:29:42Z",
       "closedAt": null,
       "comments": [
         {
@@ -223,6 +230,20 @@
           "body": "I think introducing a term for the envelope without its signature (\"statement\" above) is confusing, simply because this piece does not exist as such (it's not something you can easily point to or even write to a file, or hash, etc.). And because of that, the transition would in practice be document -> signed statement, which is confusing. \r\n\r\nI think statement -> signed statement makes sense, even though it's a bit cumbersome and a single word for the latter would be nicer (thinking of APIs etc.). In practice, I think that's where it ends, and whether receipts from one or more TS exist (and are bundled in some way) and whether verifiers therefore consider the signed statement as more or less transparent is a policy decision I think. ",
           "createdAt": "2023-03-02T19:18:39Z",
           "updatedAt": "2023-03-02T19:18:39Z"
+        },
+        {
+          "author": "kaywilliams",
+          "authorAssociation": "NONE",
+          "body": "Agree with Maik. I prefer statement -> signed statement. For describing to lay audiences (which I do with some frequency) there are fewer concepts which makes it easier for a) the presenter to describe and b) the audience to understand.",
+          "createdAt": "2023-03-06T16:10:04Z",
+          "updatedAt": "2023-03-06T16:10:04Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/commit/f73a68d938d2c20d20f321a3f3e07e7ef6a4719a hopefully addresses the core issues of most parties as a step forward to rough consensus.\r\n\r\n> Agree with Maik. I prefer statement -> signed statement. For describing to lay audiences (which I do with some frequency) there are fewer concepts which makes it easier for a) the presenter to describe and b) the audience to understand.\r\n\r\nFortunately, the current proposal still uses these terms \ud83d\ude0c\r\n",
+          "createdAt": "2023-03-06T16:29:42Z",
+          "updatedAt": "2023-03-06T16:29:42Z"
         }
       ]
     },
@@ -348,7 +369,7 @@
       ],
       "body": "Payload and Statement seem to be used intermixed in the text. I tried to disambiguate the via \"Statement payload\". If that does not work, please provide a counter proposal.\r\n\r\nThe term Claim sometimes seem to have meant Signed Statement and sometimes Transparent Statement. Using our interim terminology, that became a selection process for me. Please check, if I made the correct choice in all occurrences (sometimes I had to guess the intent).\r\n\r\nConsistent Capitalization was a mess. I hope I fixed most of that. Please check.\r\n\r\nThere is still no consistent use of \"Registry\" vs. \"log\" vs. \"ledger\" vs. \"Transparency Service\", I think. Please check.\r\n\r\nPlease check every use of the term \"Evidence\" and if an alternative expression could be used.\r\n\r\nPlease check every occurrence of the term \"guarantee\" or \"proof\" and if an alternative expression could be used.\r\n\r\nPrivacy Considerations and Security Considerations texts require significant improvement.",
       "createdAt": "2023-02-21T23:03:09Z",
-      "updatedAt": "2023-02-27T22:01:54Z",
+      "updatedAt": "2023-03-06T17:05:16Z",
       "closedAt": null,
       "comments": [
         {
@@ -357,6 +378,20 @@
           "body": "Here is my opinion:\r\nRegistry refers to the facilities used to store and retrieve \"Authenticated Statement Data\" that has been submitted to a \"Transparency Service\" \"operator\". A Registry contains specific \"Statements\" which the Transparency service supports, as documented in their registration policies document. A Registry may employ different technologies needed to carry out its function to store and retrieve \"Statements\" that are permitted in the Registry, per the registration policies defined by the Transparency Service operator. The operator of a Transparency Service serves the role of Gatekeeper to ensure the integrity of the Registry data and services provided to access the Registry data. A Statement is contained in a message \"Payload\" exchanged between a Transparency Service API function and other parties, i.e. consumer inquiries and Notary submissions.",
           "createdAt": "2023-02-27T21:58:30Z",
           "updatedAt": "2023-02-27T22:01:54Z"
+        },
+        {
+          "author": "nealmcb",
+          "authorAssociation": "NONE",
+          "body": "It would help to be able to read the document given the changes proposed here. But due to the make errors documented in #6 I haven't yet succeeded in doing so. Does the build infrastructure automatically build documents for other branches? Or can someone else build and publish the document based on this branch?",
+          "createdAt": "2023-03-06T04:11:46Z",
+          "updatedAt": "2023-03-06T04:11:46Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "Editor's version build via github actions for #16 is located here: https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/core-terms/draft-ietf-scitt-architecture.html",
+          "createdAt": "2023-03-06T17:05:15Z",
+          "updatedAt": "2023-03-06T17:05:15Z"
         }
       ]
     },
@@ -405,6 +440,38 @@
       "body": "Discussion on the functionality of the registration policy, as defined in the architecture.",
       "createdAt": "2023-02-28T14:55:21Z",
       "updatedAt": "2023-02-28T14:55:21Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 20,
+      "id": "I_kwDOIvmHss5gE3ct",
+      "title": "Terminology: 'Transparent Statement' -> 'Registered Statement'",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/20",
+      "state": "OPEN",
+      "author": "kaywilliams",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "In describing to lay audiences, I have found it easier to use the term 'registered statement' rather than 'transparent statement'. It reduces the number of concepts needed for understanding. Here is the workflow description I have been using:\r\n\r\nUser creates a statement\r\nUser signs a statement\r\nUser registers a statement on a transparency registry. Prior to registration, the statement is evaluated against registration policy.\r\nUser receives a receipt of registration\r\nUser shares a registered statement with interested parties\r\nAuditors and others query the transparency registry to get a history of registered statements\r\n\r\nSee related comment on Issue #16 ",
+      "createdAt": "2023-03-06T17:22:44Z",
+      "updatedAt": "2023-03-06T17:23:50Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 21,
+      "id": "I_kwDOIvmHss5gFHY7",
+      "title": "Support auditing of multiple replicas of a given Transparency Service, like in CT",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/21",
+      "state": "OPEN",
+      "author": "nealmcb",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "> Unlike CT, where independent auditors are responsible for enforcing the consistency of multiple independent instances of the same global Registry, each Transparency Service is required to guarantee the consistency of its own Registry (for instance, through the use of a consensus algorithm between replicas of the Registry), but assume no consistency between different Transparency Services\r\n\r\nThe sentence _Unlike CT,..._ takes away an important aspect of any transparency service, and negates the overall notion that we are trying to generalize CT.\r\n\r\nInstead, we should note that any given TS will be well served by having replicas and auditors which confirm that relying parties can choose any replica they want.",
+      "createdAt": "2023-03-06T18:04:01Z",
+      "updatedAt": "2023-03-06T18:04:01Z",
       "closedAt": null,
       "comments": []
     }
@@ -803,16 +870,18 @@
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "terminology"
+      ],
       "body": "Fixes #15\r\n\r\n(to some extend), please see #15 and check the issues highlighted there as part of reviewing this PR.",
       "createdAt": "2023-02-21T23:04:47Z",
-      "updatedAt": "2023-03-02T19:59:47Z",
+      "updatedAt": "2023-03-06T18:06:57Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "c8ad68740476eaf24c663147fd349b16bfa4f4d2",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "core-terms",
-      "headRefOid": "5b497e565f09bc7f8b9639de313afda87fcde64c",
+      "headRefOid": "3745801443f064386de473e479f9f74f03ef2860",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -1204,6 +1273,425 @@
               "body": "It might scale better if the TSs request revocation status updates such as OCSP [RFC2560].",
               "createdAt": "2023-03-02T19:58:51Z",
               "updatedAt": "2023-03-02T19:59:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PAYsU",
+          "commit": {
+            "abbreviatedOid": "5b497e5"
+          },
+          "author": "nealmcb",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T04:25:32Z",
+          "updatedAt": "2023-03-06T04:25:32Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "> cannot delete or alter earlier Signed Statements about certain Artifacts\r\n\r\ndrop \"about certain Artifacts\". It makes it seem like they could delete or alter Signed Statements about certain *other* Artifacts. But they can't delete or alter any earlier Signed Statements about anything.\r\n\r\n\r\n\r\n",
+              "createdAt": "2023-03-06T04:25:32Z",
+              "updatedAt": "2023-03-06T04:25:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PAZyt",
+          "commit": {
+            "abbreviatedOid": "5b497e5"
+          },
+          "author": "nealmcb",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T04:34:34Z",
+          "updatedAt": "2023-03-06T04:34:34Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "The sentence *Unlike CT,...* takes away an important aspect of any transparency service, and negates the overall notion that we are trying to generalize CT.\r\n\r\nInstead, we should note that any given TS will be well served by having replicas and auditors which confirm that relying parties can choose any replica they want.",
+              "createdAt": "2023-03-06T04:34:34Z",
+              "updatedAt": "2023-03-06T04:34:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PAbsC",
+          "commit": {
+            "abbreviatedOid": "5b497e5"
+          },
+          "author": "nealmcb",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T04:46:22Z",
+          "updatedAt": "2023-03-06T04:46:22Z",
+          "comments": [
+            {
+              "originalPosition": 55,
+              "body": "I'd take out \"need to\" in both definitions.\r\n\r\nFor the end of the second one I'd get rid of the tricky and unnecessary word *trust* by substituting this:\r\n=> that access, validate, and evaluate the reliability of authentic Statements",
+              "createdAt": "2023-03-06T04:46:22Z",
+              "updatedAt": "2023-03-06T04:46:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PE3Mg",
+          "commit": {
+            "abbreviatedOid": "7d66813"
+          },
+          "author": "OR13",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T16:25:40Z",
+          "updatedAt": "2023-03-06T16:25:41Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "I don't love this language.\r\n\r\nI think notarizing applies to making a \"Signed Statement\" a \"Transparent Statement\"... but this sentence seems to imply notarization is part of the process of creating a \"Signed Statement\", which seems wrong.\r\n",
+              "createdAt": "2023-03-06T16:25:40Z",
+              "updatedAt": "2023-03-06T16:25:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PE3Wa",
+          "commit": {
+            "abbreviatedOid": "7d66813"
+          },
+          "author": "OR13",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T16:26:02Z",
+          "updatedAt": "2023-03-06T16:26:04Z",
+          "comments": [
+            {
+              "originalPosition": 68,
+              "body": "```suggestion\r\nThe global interoperability enabled and guaranteed by the Transparency Services is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs). The core components are based on the Concise Signing and Encryption standard specified in {{-COSE}}, which is used to sign released Statements about Artifacts and to build and maintain a Merkle tree that functions as an append-only Registry for corresponding Signed Statements.\r\n```",
+              "createdAt": "2023-03-06T16:26:02Z",
+              "updatedAt": "2023-03-06T16:26:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PE3-n",
+          "commit": {
+            "abbreviatedOid": "7d66813"
+          },
+          "author": "OR13",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T16:27:07Z",
+          "updatedAt": "2023-03-06T16:27:07Z",
+          "comments": [
+            {
+              "originalPosition": 114,
+              "body": "I think the concept of \"notarization\" needs to go here... or it needs to not be used anywhere.",
+              "createdAt": "2023-03-06T16:27:07Z",
+              "updatedAt": "2023-03-06T16:27:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PE47V",
+          "commit": {
+            "abbreviatedOid": "7d66813"
+          },
+          "author": "OR13",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T16:28:34Z",
+          "updatedAt": "2023-03-06T16:28:35Z",
+          "comments": [
+            {
+              "originalPosition": 209,
+              "body": "love these updates!",
+              "createdAt": "2023-03-06T16:28:34Z",
+              "updatedAt": "2023-03-06T16:28:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PE5rk",
+          "commit": {
+            "abbreviatedOid": "7d66813"
+          },
+          "author": "OR13",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T16:29:40Z",
+          "updatedAt": "2023-03-06T16:29:41Z",
+          "comments": [
+            {
+              "originalPosition": 212,
+              "body": "I suggest maybe not using the words \"DID Key Manifest\"... \r\n\r\nMaybe \"Public Key Identifier\" or \"VerificationMethod\".",
+              "createdAt": "2023-03-06T16:29:40Z",
+              "updatedAt": "2023-03-06T16:29:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PE59s",
+          "commit": {
+            "abbreviatedOid": "7d66813"
+          },
+          "author": "OR13",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T16:30:02Z",
+          "updatedAt": "2023-03-06T16:30:03Z",
+          "comments": [
+            {
+              "originalPosition": 213,
+              "body": "extra \"(decentralized)\" seems redundant.",
+              "createdAt": "2023-03-06T16:30:03Z",
+              "updatedAt": "2023-03-06T16:30:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PE6LB",
+          "commit": {
+            "abbreviatedOid": "7d66813"
+          },
+          "author": "OR13",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T16:30:21Z",
+          "updatedAt": "2023-03-06T16:30:22Z",
+          "comments": [
+            {
+              "originalPosition": 208,
+              "body": "```suggestion\r\n                    .----+----.  .----------.    Decentralized Identifier\r\n```",
+              "createdAt": "2023-03-06T16:30:22Z",
+              "updatedAt": "2023-03-06T16:30:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PE6dX",
+          "commit": {
+            "abbreviatedOid": "7d66813"
+          },
+          "author": "OR13",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T16:30:47Z",
+          "updatedAt": "2023-03-06T16:30:48Z",
+          "comments": [
+            {
+              "originalPosition": 212,
+              "body": "```suggestion\r\n                          '----. .----'            | Public Key Identifiers |\r\n```",
+              "createdAt": "2023-03-06T16:30:48Z",
+              "updatedAt": "2023-03-06T16:31:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PE6oB",
+          "commit": {
+            "abbreviatedOid": "7d66813"
+          },
+          "author": "OR13",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T16:31:03Z",
+          "updatedAt": "2023-03-06T16:31:04Z",
+          "comments": [
+            {
+              "originalPosition": 213,
+              "body": "```suggestion\r\n                                |                  |   |\r\n```",
+              "createdAt": "2023-03-06T16:31:03Z",
+              "updatedAt": "2023-03-06T16:31:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PFCwO",
+          "commit": {
+            "abbreviatedOid": "7d66813"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T16:42:27Z",
+          "updatedAt": "2023-03-06T16:42:27Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "This PR intends to do three things (and is not complete in doing it yet):\r\n\r\n1. using Statement, Signed Statement & Transparent Statement\r\n2. expanding TS to Transparency Services\r\n3. updating Figure 1, aligning with 1. and 2.\r\n\r\nThe issues you raise are all valid, but I would like to get 1-3 done in this PR and get another one going for others (if possible).",
+              "createdAt": "2023-03-06T16:42:27Z",
+              "updatedAt": "2023-03-06T16:42:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PFETZ",
+          "commit": {
+            "abbreviatedOid": "7d66813"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T16:44:51Z",
+          "updatedAt": "2023-03-06T16:44:51Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "@nealmcb, could you create a proposal (maybe in separate PR) after we merged this PR in?",
+              "createdAt": "2023-03-06T16:44:51Z",
+              "updatedAt": "2023-03-06T16:44:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PFEfE",
+          "commit": {
+            "abbreviatedOid": "7d66813"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T16:45:09Z",
+          "updatedAt": "2023-03-06T16:45:10Z",
+          "comments": [
+            {
+              "originalPosition": 50,
+              "body": "```suggestion\r\nThe Transparency Services specified in this architecture caters to two types of audiences:\r\n```",
+              "createdAt": "2023-03-06T16:45:09Z",
+              "updatedAt": "2023-03-06T16:45:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PFHHX",
+          "commit": {
+            "abbreviatedOid": "81c750a"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T16:49:12Z",
+          "updatedAt": "2023-03-06T16:49:12Z",
+          "comments": [
+            {
+              "originalPosition": 91,
+              "body": "```suggestion\r\n: metadata and an Issuer's signature is added to a Statement via a COSE envelope by the Issuer to produce a Signed Statement.\r\n```",
+              "createdAt": "2023-03-06T16:49:12Z",
+              "updatedAt": "2023-03-06T16:49:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PFZaK",
+          "commit": {
+            "abbreviatedOid": "3745801"
+          },
+          "author": "nealmcb",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T17:19:13Z",
+          "updatedAt": "2023-03-06T17:19:14Z",
+          "comments": [
+            {
+              "originalPosition": 348,
+              "body": "Re the discussion at the end of the call March 6, on the benefits of quickly merging this PR:\r\nThis is one of many examples (including ones I have made...) of a comment on the original document, not on the proposed change. Comments like this need to be resolved quickly, or kept alive somehow, via a new issue.\r\n\r\nIf we don't merge this PR quickly, we risk accumulating more of these comments which should really be issues.",
+              "createdAt": "2023-03-06T17:19:13Z",
+              "updatedAt": "2023-03-06T17:19:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PFath",
+          "commit": {
+            "abbreviatedOid": "7d66813"
+          },
+          "author": "OR13",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "Massive PR, lots of comments from other reviewers, assuming they are addressed, I think it can be merged, I don't have any blocking feedback.",
+          "createdAt": "2023-03-06T17:21:23Z",
+          "updatedAt": "2023-03-06T17:21:23Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PFb26",
+          "commit": {
+            "abbreviatedOid": "3745801"
+          },
+          "author": "nealmcb",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T17:23:17Z",
+          "updatedAt": "2023-03-06T17:23:18Z",
+          "comments": [
+            {
+              "originalPosition": 455,
+              "body": "Parenthetically, it might be helpful to point to a discussion of why COSE is mandatory. Does that choice preclude interoperability with Sigstore, which uses DSSE instead, I think?",
+              "createdAt": "2023-03-06T17:23:17Z",
+              "updatedAt": "2023-03-06T17:23:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PFeZF",
+          "commit": {
+            "abbreviatedOid": "3745801"
+          },
+          "author": "nealmcb",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T17:27:30Z",
+          "updatedAt": "2023-03-06T17:27:30Z",
+          "comments": [
+            {
+              "originalPosition": 540,
+              "body": "Perhaps just taking out the always-overloaded term \"trust\" would help. In this context, it is easy to imagine a consumer choosing to rely on multiple transparency services which choose not to \"trust\" each other, based on quite distinct notions of trust relating to budget or jurisdictional issues.",
+              "createdAt": "2023-03-06T17:27:30Z",
+              "updatedAt": "2023-03-06T17:27:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PFfOJ",
+          "commit": {
+            "abbreviatedOid": "3745801"
+          },
+          "author": "nealmcb",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-06T17:28:56Z",
+          "updatedAt": "2023-03-06T18:06:57Z",
+          "comments": [
+            {
+              "originalPosition": 544,
+              "body": "They may have different accessibility policies - confidential vs public, or different performance characteristics (detailed internal view vs customer-facing view.",
+              "createdAt": "2023-03-06T17:28:57Z",
+              "updatedAt": "2023-03-06T18:06:57Z"
+            },
+            {
+              "originalPosition": 618,
+              "body": "This is just a statement of fact. Trust is in the eye of the beholder. Different relying parties will have different threat models and requirements for how they handle artifacts. Some TS will screw up and be compromised, and hopefully auditors will catch that.",
+              "createdAt": "2023-03-06T17:39:27Z",
+              "updatedAt": "2023-03-06T18:06:57Z"
             }
           ]
         }
