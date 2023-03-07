@@ -246,7 +246,7 @@ Issuer       -->   | Statement ||  Envelope  +<------------------.
                     '----+----'  '-----+----'                     |
                          |             |           +--------------+---+
                           '----. .----'            | DID Key Manifest |
-                                |                  | (decentralized)  |
+                                |                  |   |
                                 v                  +-------+------+---+
                            .----+----.                     |      |
                           |  Signed   |    COSE Signing    |      |
