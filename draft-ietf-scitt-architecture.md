@@ -186,21 +186,15 @@ Artifact:
 
 : a physical or non-physical item that is moving along the supply chain.
 
-Statement:
+Auditor:
 
-: any serializable information about an Artifact.
-To help interpretation of Statements, they must be tagged with a media type (as specified in {{RFC6838}}).
-For example, a statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, or some endorsement or attestation about an Artifact.
+: an entity that checks the correctness and consistency of all Transparent Statements registered by a Transparency Service (a subset of potential Transparent Statement Consumers).
 
-Signed Statement:
+Consumer of Signed Statements:
 
-: an identifiable and non-repudiable Statement about an Artifact made by an Issuer.
-In SCITT, Signed Statements are encoded as COSE signed objects; the payload of the COSE structure contains the issued Statement.
+: [^definehere]
 
-Issuer:
-
-: an entity that creates Signed Statements about software Artifacts in the supply chain.
-An Issuer may be the owner or author of software Artifacts, or an independent third party such as a reviewer or an endorser.
+[^definehere]: Define here.
 
 Envelope:
 
@@ -215,17 +209,10 @@ Feed:
 For every Issuer and Feed, the Registry on a Transparency Service contains a sequence of Signed Statements about the same Artifact.
 In COSE, Feed is a dedicated header attribute in the protected header of the Envelope.
 
-Registry:
+Issuer:
 
-: the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym ledger.
-SCITT supports multiple Registry and Receipt formats to accommodate different Transparency Service implementations, such as historical Merkle Trees and sparse Merkle Trees.
-
-Transparency Service:
-
-: an entity that maintains and extends the Registry, and endorses its state.
-A Transparency Service is often referred to by its synonym Notary.
-A Transparency Service can be a complex distributed system, and SCITT requires the Transparency Service to provide many security guarantees about its Registry.
-The identity of a Transparency Service is captured by a public key that must be known by Verifiers in order to validate Receipts.
+: an entity that creates Signed Statements about software Artifacts in the supply chain.
+An Issuer may be the owner or author of software Artifacts, or an independent third party such as a reviewer or an endorser.
 
 Receipt:
 
@@ -242,6 +229,29 @@ Registration Policy:
 based on metadata contained in its COSE Envelope (notably the identity of its Issuer)
 and on prior Signed Statements already added to a Registry.
 
+Registry:
+
+: the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym ledger.
+SCITT supports multiple Registry and Receipt formats to accommodate different Transparency Service implementations, such as historical Merkle Trees and sparse Merkle Trees.
+
+Signed Statement:
+
+: an identifiable and non-repudiable Statement about an Artifact made by an Issuer.
+In SCITT, Signed Statements are encoded as COSE signed objects; the payload of the COSE structure contains the issued Statement.
+
+Statement:
+
+: any serializable information about an Artifact.
+To help interpretation of Statements, they must be tagged with a media type (as specified in {{RFC6838}}).
+For example, a statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, or some endorsement or attestation about an Artifact.
+
+Transparency Service:
+
+: an entity that maintains and extends the Registry, and endorses its state.
+A Transparency Service is often referred to by its synonym Notary.
+A Transparency Service can be a complex distributed system, and SCITT requires the Transparency Service to provide many security guarantees about its Registry.
+The identity of a Transparency Service is captured by a public key that must be known by Verifiers in order to validate Receipts.
+
 Transparent Statement:
 
 : a Signed Statement that is augmented with a Receipt created via registration at a Transparency Services (stored in the unprotected header of COSE envelope of the Signed Statement).
@@ -250,16 +260,6 @@ A Transparent Statement remains a valid Signed Statement, and may be registered 
 Verifier:
 
 : an entity that consumes Transparent Statements (a specialization of Signed Statement Consumer), verifying their proofs and inspecting their Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.
-
-Auditor:
-
-: an entity that checks the correctness and consistency of all Transparent Statements registered by a Transparency Service (a subset of potential Transparent Statement Consumers).
-
-Consumer of Signed Statements:
-
-: [^definehere]
-
-[^definehere]: Define here.
 
 {: #mybody}
 
