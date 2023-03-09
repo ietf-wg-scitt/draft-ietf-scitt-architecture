@@ -437,10 +437,10 @@ Table of Contents
 
 4.  Definition of Transparency
 
-   In this document, we use a definition of transparency built over
-   abstract notions of Registry and Receipts.  Existing transparency
-   systems such as Certificate Transparency are instances of this
-   definition.
+   In this document, the definition of transparency is indented to build
+   over abstract notions of Registry and Receipts.  Existing
+   transparency systems such as Certificate Transparency are instances
+   of this definition.
 
    A Signed Statement is an identifiable and non-repudiable Statement
    made by an Issuer.  The Issuer selects additional metadata and
@@ -450,10 +450,11 @@ Table of Contents
    proof of Registration by a Transparency Service, in the form of a
    Receipt that countersigns the Signed Statement and witnesses its
    inclusion in the Registry of a Transparency Service.  By extension,
-   we may say an Artifact (e.g., a firmware binary) is transparent if it
-   comes with one or more Transparent Signed Statements from its author
-   or owner, though the context should make it clear what type of Signed
-   Statements is expected for a given Artifact.
+   the document may say an Artifact (e.g., a firmware binary) is
+   transparent if it comes with one or more Transparent Signed
+   Statements from its author or owner, though the context should make
+   it clear what type of Signed Statements is expected for a given
+   Artifact.
 
    Transparency does not prevent dishonest or compromised Issuers, but
    it holds them accountable: any Artifact that may be used to target a
@@ -547,9 +548,9 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
    Registry formats (such as blockchains, or hybrid historical and
    indexed Merkle Trees) may be proposed later.
 
-   In this section, we describe at a high level the three main roles and
-   associated processes in SCITT: Issuers and the Signed Statement
-   issuance process, transparency Registry and the Transparent Statement
+   In this section, a high level the three main roles and associated
+   processes in SCITT: Issuers and the Signed Statement issuance
+   process, transparency Registry and the Transparent Statement
    Registration process, as well as Verifiers and the Receipt validation
    process.
 
@@ -1416,10 +1417,10 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
 
 10.1.  Threat Model
 
-   We provide a generic threat model for SCITT, describing its residual
-   security properties when some of its actors (identity providers,
-   Issuers, Transparency Services, and Auditors) are corrupt or
-   compromised.
+   The document provides a generic threat model for SCITT, describing
+   its residual security properties when some of its actors (identity
+   providers, Issuers, Transparency Services, and Auditors) are corrupt
+   or compromised.
 
    This model may need to be refined to account for specific supply
    chains and use cases.
@@ -1553,12 +1554,12 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
 
 10.1.3.  Cryptographic Assumptions
 
-   We rely on standard cryptographic security for signing schemes (EUF-
-   CMA: for a given key, given the public key and any number of signed
-   messages, an attacker cannot forge a valid signature for any other
-   message) and for Receipts schemes (log collision-resistance: for a
-   given commitment such as a Merkle-tree root, there is a unique log
-   such that any valid path authenticates a Signed Statement in this
+   SCITT relies on standard cryptographic security for signing schemes
+   (EUF-CMA: for a given key, given the public key and any number of
+   signed messages, an attacker cannot forge a valid signature for any
+   other message) and for Receipts schemes (log collision-resistance:
+   for a given commitment such as a Merkle-tree root, there is a unique
+   log such that any valid path authenticates a Signed Statement in this
    log.)
 
    The SCITT Architecture supports cryptographic agility: the actors
