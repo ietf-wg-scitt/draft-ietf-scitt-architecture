@@ -502,7 +502,7 @@ Issuer       -->   | Statement ||  Envelope  +<------------------.
                     '----+----'  '-----+----'                     |
                          |             |           +--------------+---+
                           '----. .----'            | DID Key Manifest |
-                                |                  |   |
+                                |                  |                  |
                                 v                  +-------+------+---+
                            .----+----.                     |      |
                           |  Signed   |    COSE Signing    |      |
@@ -795,14 +795,14 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
       contents of the Registry at the time of registration, and must
       then yield the same result.
 
-   *  The ordering of entries, their cryptographic contents, and the
+   *  the ordering of entries, their cryptographic contents, and the
       Registry governance may be non-deterministic, but they must be
       verifiable.
 
-   *  A Transparency Services SHOULD store evidence about the resolution
+   *  a Transparency Services SHOULD store evidence about the resolution
       of distributed identifiers into manifests.
 
-   *  A Transparency Service MAY additionally support verifiability of
+   *  a Transparency Service MAY additionally support verifiability of
       client authentication and access control.
 
 5.2.3.4.  Governance and Bootstrapping
@@ -1039,31 +1039,29 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
     |             |              | returns true if and only if        |
     |             |              | sequence_no = 0.                   |
     +-------------+--------------+------------------------------------+
+    | Temporal    | issuance_ts: | Returns true if and only if there  |
+    |             | uint .within | is no existing already registered  |
+    |             | (~time)      | Transparent Statement in the       |
+    |             |              | ledger with the same Issuer and    |
+    |             |              | Feed with a greater issuance_ts    |
+    |             |              | and now () > issuance_ts at        |
+    |             |              | registration time.  The value      |
+    |             |              | provided for issuance_ts MUST be   |
+    |             |              | an unsigned integer, interpreted   |
+    |             |              | according to POSIX time,           |
+    |             |              | representing the number of seconds |
+    |             |              | since 1970-01-01T00:00Z UTC.       |
+    +-------------+--------------+------------------------------------+
+    | NoReplay    | no_replay:   | If the no_replay attribute is      |
+    |             | null         | present then the policy returns    |
+    |             |              | true if and only if the Signed     |
+    |             |              | Statement about to be registered   |
+    |             |              | doesn't already appear in the      |
+    |             |              | ledger.  This policy has no        |
+    |             |              | required attributes.               |
+    +-------------+--------------+------------------------------------+
 
-                                  Table 1
-
-   +==========+==============+=========================================+
-   | Temporal | issuance_ts: | Returns true if and only if there is    |
-   |          | uint .within | no existing already registered          |
-   |          | (~time)      | Transparent Statement in the ledger     |
-   |          |              | with the same Issuer and Feed with a    |
-   |          |              | greater issuance_ts and now () >        |
-   |          |              | issuance_ts at registration time.       |
-   |          |              | The value provided for issuance_ts      |
-   |          |              | MUST be an unsigned integer,            |
-   |          |              | interpreted according to POSIX time,    |
-   |          |              | representing the number of seconds      |
-   |          |              | since 1970-01-01T00:00Z UTC.            |
-   +==========+==============+=========================================+
-   | NoReplay | no_replay:   | If the no_replay attribute is           |
-   |          | null         | present then the policy returns true    |
-   |          |              | if and only if the Signed Statement     |
-   |          |              | about to be registered doesn't          |
-   |          |              | already appear in the ledger.  This     |
-   |          |              | policy has no required attributes.      |
-   +----------+--------------+-----------------------------------------+
-
-                 Table 2: An Initial Set of Named Policies
+                 Table 1: An Initial Set of Named Policies
 
 6.4.  Registering Signed Statements
 
