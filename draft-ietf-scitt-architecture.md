@@ -919,7 +919,9 @@ Others may just return Receipts to clients that present Singed Statements for re
 
 A collection of Transparent Statements must not leak information about the contents of other Transparent Statements registered on the Ledger.
 
-Nonetheless, Issuers should carefully review the inclusion of private/confidential materials in their Statements. For example, issuers should remove Personally Identifiable Information (PII) as clear text in the statement. Alternatively, Issuers may include opaque cryptographic statements, such as hashes.
+Nonetheless, Issuers should carefully review the inclusion of private/confidential materials in their Statements.
+For example, issuers should remove Personally Identifiable Information (PII) as clear text in the statement.
+Alternatively, Issuers may include opaque cryptographic statements, such as hashes.
 
 #### Queries to the Registry
 
