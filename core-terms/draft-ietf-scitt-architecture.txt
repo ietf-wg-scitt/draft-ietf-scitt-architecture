@@ -5,11 +5,11 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 8 September 2023                                     C. Fournet
+Expires: 10 September 2023                                    C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
-                                                            7 March 2023
+                                                            9 March 2023
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 September 2023.
+   This Internet-Draft will expire on 10 September 2023.
 
 Copyright Notice
 
@@ -108,8 +108,10 @@ Table of Contents
    7.  FederationThis section needs work.
    8.  Transparency Service APIThis may be moved to appendix.
      8.1.  Messages
-       8.1.1.  Register Signed Statements
-       8.1.2.  Retrieve Registration Receipt
+       8.1.1.  Register Signed Statement
+       8.1.2.  Retrieve Operation Status
+       8.1.3.  Retrieve Signed Statement
+       8.1.4.  Retrieve Registration Receipt
    9.  Privacy Considerations
    10. Security Considerations
      10.1.  Threat Model
@@ -119,6 +121,7 @@ Table of Contents
        10.1.4.  Transparency Service Clients
        10.1.5.  Identity
    11. IANA Considerations
+     11.1.  URN Sub-namespace for SCITT (urn:ietf:params:scitt)
    12. References
      12.1.  Normative References
      12.2.  Informative References
@@ -1180,11 +1183,59 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
 
 8.1.  Messages
 
-8.1.1.  Register Signed Statements
+   All messages are sent as HTTP GET or POST requests.
+
+   If the transparency service cannot process a client's request, it
+   MUST return an HTTP 4xx or 5xx status code, and the body SHOULD be a
+   JSON problem details object ([RFC7807]) containing:
+
+   *  type: A URI reference identifying the problem.  To facilitate
+      automated response to errors, this document defines a set of
+      standard tokens for use in the type field within the URN namespace
+      of: "urn:ietf:params:scitt:error:".
+
+   *  detail: A human-readable string describing the error that
+      prevented the transparency service from processing the request,
+      ideally with sufficient detail to enable the error to be
+      rectified.
+
+   Error responses SHOULD be sent with the Content-Type: application/
+   problem+json HTTP header.
+
+   As an example, submitting a signed statement with an unsupported
+   signature algorithm would return a 400 Bad Request status code and
+   the following body:
+
+   {
+     "type": "urn:ietf:params:scitt:error:badSignatureAlgorithm",
+     "detail": "The statement was signed with an algorithm the server does not support"
+   }
+
+   Most error types are specific to the type of request and are defined
+   in the respective subsections below.  The one exception is the
+   "malformed" error type, which indicates that the transparency service
+   could not parse the client's request because it did not comply with
+   this document:
+
+   *  Error code: malformed (The request could not be parsed).
+
+   Clients SHOULD treat 500 and 503 HTTP status code responses as
+   transient failures and MAY retry the same request without
+   modification at a later date.  Note that in the case of a 503
+   response, the transparency service MAY include a Retry-After header
+   field per [RFC7231] in order to request a minimum time for the client
+   to wait before retrying the request.  In the absence of this header
+   field, this document does not specify a minimum.
+
+8.1.1.  Register Signed Statement
 
 8.1.1.1.  Request
 
    POST <Base URL>/entries
+
+   Headers:
+
+   *  Content-Type: application/cose
 
    Body: SCITT COSE_Sign1 message
 
@@ -1192,76 +1243,137 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
 
    One of the following:
 
-   *  HTTP Status 201 - Registration was tentatively successful pending
-      service consensus.
+   *  Status 201 - Registration is successful.
 
-   *  HTTP Status 400 - Registration was unsuccessful.
+      -  Header Location: <Base URL>/entries/<Entry ID>
 
-      -  Error code AwaitingDIDResolutionTryLater
+      -  Header Content-Type: application/json
 
-      -  Error code InvalidInput
+      -  Body { "entryId": "<Entry ID"> }
 
-   [TODO] Use 5xx for AwaitingDIDResolutionTryLater
+   *  Status 202 - Registration is running.
 
-   The 201 response contains the x-ms-ccf-transaction-id HTTP header
-   which can be used to retrieve the Registration Receipt with the given
-   transaction ID.  [TODO] this has to be made generic
+      -  Header Location: <Base URL>/operations/<Operation ID>
 
-   [TODO] probably a bad idea to define a new header, or is it ok? can
-   we register a new one? https://www.iana.org/assignments/http-fields/
-   http-fields.xhtml
+      -  Header Content-Type: application/json
 
-   The 400 response has a Content-Type: application/json header and a
-   body containing details about the error:
+      -  (Optional) Header: Retry-After: <seconds>
 
-   json { "error": { "code": "<error code>", "message": "<message>" } }
+      -  Body { "operationId": "<Operation ID>", "status": "running" }
 
-   AwaitingDIDResolutionTryLater means the service does not have an up-
-   to-date DID document of the DID referenced in the Signed Statements
-   but is performing or will perform a DID resolution after which the
-   client may retry the request.  The response may contain the HTTP
-   header Retry-After to inform the client about the expected wait time.
+   *  Status 400 - Registration was unsuccessful due to invalid input.
 
-   InvalidInput means either the Signed Statements message is
-   syntactically malformed, violates the signing profile (e.g. signing
-   algorithm), or has an invalid signature relative to the currently
-   resolved DID document.
+      -  Error code badSignatureAlgorithm
 
-8.1.2.  Retrieve Registration Receipt
+   If 202 is returned, then clients should wait until registration
+   succeeded or failed by polling the registration status using the
+   Operation ID returned in the response.  Clients should always obtain
+   a receipt as a proof that registration has succeeded.
+
+8.1.2.  Retrieve Operation Status
 
 8.1.2.1.  Request
 
-   GET <Base URL>/entries/<Transaction ID>/receipt
+   GET <Base URL>/operations/<Operation ID>
 
 8.1.2.2.  Response
 
    One of the following:
 
-   *  HTTP Status 200 - Registration was successful and the Receipt is
-      returned.
+   *  Status 200 - Registration is running
 
-   *  HTTP Status 400 - Transaction exists but does not correspond to a
-      Registration Request.
+      -  Header: Content-Type: application/json
 
-      -  Error code TransactionMismatch
+      -  (Optional) Header: Retry-After: <seconds>
 
-   *  HTTP Status 404 - Transaction is pending, unknown, or invalid.
+      -  Body: { "operationId": "<Operation ID>", "status": "running" }
 
-      -  Error code TransactionPendingOrUnknown
+   *  Status 200 - Registration was successful
 
-      -  Error code TransactionInvalid
+      -  Header: Location: <Base URL>/entries/<Entry ID>
 
-   The 200 response contains the SCITT_Receipt in the body.
+      -  Header: Content-Type: application/json
 
-   The 400 and 404 responses return the error details as described
-   earlier.
+      -  Body: { "operationId": "<Operation ID>", "status": "succeeded",
+         "entryId": "<Entry ID>" }
+
+   *  Status 200 - Registration failed
+
+      -  Header Content-Type: application/json
+
+      -  Body: { "operationId": "<Operation ID>", "status": "failed",
+         "error": { "type": "<type>", "detail": "<detail>" } }
+
+      -  Error code: badSignatureAlgorithm
+
+   *  Status 404 - Unknown Operation ID
+
+      -  Error code: operationNotFound
+
+      -  This can happen if the operation ID has expired and been
+         deleted.
+
+   If an operation failed, then error details SHOULD be embedded as a
+   JSON problem details object in the "error" field.
+
+   If an operation ID is invalid (i.e., it does not correspond to any
+   submit operation), a service may return either a 404 or a running
+   status.  This is because differentiating between the two may not be
+   possible in an eventually consistent system.
+
+8.1.3.  Retrieve Signed Statement
+
+8.1.3.1.  Request
+
+   GET <Base URL>/entries/<Entry ID>
+
+   Query parameters:
+
+   *  (Optional) embedReceipt=true
+
+   If the query parameter embedReceipt=true is provided, then the signed
+   statement is returned with the corresponding registration receipt
+   embedded in the COSE unprotected header.
+
+8.1.3.2.  Response
+
+   One of the following:
+
+   *  Status 200.
+
+      -  Header: Content-Type: application/cose
+
+      -  Body: COSE_Sign1
+
+   *  Status 404 - Entry not found.
+
+      -  Error code: entryNotFound
+
+8.1.4.  Retrieve Registration Receipt
+
+8.1.4.1.  Request
+
+   GET <Base URL>/entries/<Entry ID>/receipt
+
+8.1.4.2.  Response
+
+   One of the following:
+
+   *  Status 200.
+
+      -  Header: Content-Type: application/cbor
+
+      -  Body: SCITT_Receipt
+
+   *  Status 404 - Entry not found.
+
+      -  Error code: entryNotFound
 
    The retrieved Receipt may be embedded in the corresponding COSE_Sign1
-   document in the unprotected header, see TBD.
-
-   [TODO] There's also the GET <Base URL>/entries/<Transaction ID>
-   endpoint which returns the submitted COSE_Sign1 with the Receipt
-   already embedded.  Is this useful?
+   document in the unprotected header, see draft-birkholz-scitt-receipts
+   (TODO (more error codes to be defined, see [#17](https://github.com/
+   ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17)): replace with
+   final reference).
 
 9.  Privacy Considerations
 
@@ -1487,6 +1599,21 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
 
    TBD; Section 4.
 
+11.1.  URN Sub-namespace for SCITT (urn:ietf:params:scitt)
+
+   IANA is requested to register the URN sub-namespace
+   urn:ietf:params:scitt in the "IETF URN Sub-namespace for Registered
+   Protocol Parameter Identifiers" registry [IANA.params], following the
+   template in [RFC3553]:
+
+   Registry name: scitt
+
+   Specification: [RFCthis]
+
+   Repository: http://www.iana.org/assignments/scitt
+
+   Index value: No transformation needed.
+
 12.  References
 
 12.1.  Normative References
@@ -1501,15 +1628,33 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
               IANA, "CBOR Object Signing and Encryption (COSE)",
               <https://www.iana.org/assignments/cose>.
 
+   [IANA.params]
+              IANA, "Uniform Resource Name (URN) Namespace for IETF
+              Use", <https://www.iana.org/assignments/params>.
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
 
+   [RFC3553]  Mealling, M., Masinter, L., Hardie, T., and G. Klyne, "An
+              IETF URN Sub-namespace for Registered Protocol
+              Parameters", BCP 73, RFC 3553, DOI 10.17487/RFC3553, June
+              2003, <https://www.rfc-editor.org/rfc/rfc3553>.
+
    [RFC6838]  Freed, N., Klensin, J., and T. Hansen, "Media Type
               Specifications and Registration Procedures", BCP 13,
               RFC 6838, DOI 10.17487/RFC6838, January 2013,
               <https://www.rfc-editor.org/rfc/rfc6838>.
+
+   [RFC7231]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
+              Protocol (HTTP/1.1): Semantics and Content", RFC 7231,
+              DOI 10.17487/RFC7231, June 2014,
+              <https://www.rfc-editor.org/rfc/rfc7231>.
+
+   [RFC7807]  Nottingham, M. and E. Wilde, "Problem Details for HTTP
+              APIs", RFC 7807, DOI 10.17487/RFC7807, March 2016,
+              <https://www.rfc-editor.org/rfc/rfc7807>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
