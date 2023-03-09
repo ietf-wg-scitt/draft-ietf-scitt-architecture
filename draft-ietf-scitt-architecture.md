@@ -460,11 +460,11 @@ In particular,
 
 - the Transparency Service defines and enforces deterministic Registration policies that can be re-evaluated based solely on the contents of the Registry at the time of registration, and must then yield the same result.
 
-- The ordering of entries, their cryptographic contents, and the Registry governance may be non-deterministic, but they must be verifiable.
+- the ordering of entries, their cryptographic contents, and the Registry governance may be non-deterministic, but they must be verifiable.
 
-- A Transparency Services SHOULD store evidence about the resolution of distributed identifiers into manifests.
+- a Transparency Services SHOULD store evidence about the resolution of distributed identifiers into manifests.
 
-- A Transparency Service MAY additionally support verifiability of client authentication and access control.
+- a Transparency Service MAY additionally support verifiability of client authentication and access control.
 
 #### Governance and Bootstrapping
 
@@ -850,8 +850,7 @@ Similarly, the fact that an Issuer can be held accountable for its Transparent S
 
 Issuers SHOULD ensure that the Statement payloads in their Signed Statements are correct and unambiguous, for example by avoiding ill-defined or ambiguous formats that may cause Verifiers to interpret the Signed Statement as valid for some other purpose.
 
-Issuers and Transparency Services SHOULD carefully protect their private signing keys
-and avoid these keys for any purpose not described in this architecture document.
+Issuers and Transparency Services SHOULD carefully protect their private signing keys and avoid these keys for any purpose not described in this architecture document.
 In cases where key re-use is unavoidable, keys MUST NOT sign any other message that may be verified as an Envelope as part of a Signed Statement.
 
 ## Threat Model
