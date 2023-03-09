@@ -265,13 +265,13 @@ Verifier:
 
 # Definition of Transparency
 
-In this document, we use a definition of transparency built over abstract notions of Registry and Receipts.
+In this document, the definition of transparency is indented to build over abstract notions of Registry and Receipts.
 Existing transparency systems such as Certificate Transparency are instances of this definition.
 
 A Signed Statement is an identifiable and non-repudiable Statement made by an Issuer.
 The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata.
 Signed Statements can be made transparent by attaching a proof of Registration by a Transparency Service, in the form of a Receipt that countersigns the Signed Statement and witnesses its inclusion in the Registry of a Transparency Service.
-By extension, we may say an Artifact (e.g., a firmware binary) is transparent if it comes with one or more Transparent Signed Statements from its author or owner, though the context should make it clear what type of Signed Statements is expected for a given Artifact.
+By extension, the document may say an Artifact (e.g., a firmware binary) is transparent if it comes with one or more Transparent Signed Statements from its author or owner, though the context should make it clear what type of Signed Statements is expected for a given Artifact.
 
 Transparency does not prevent dishonest or compromised Issuers, but it holds them accountable: any Artifact that may be used to target a particular user that checks for Receipts must have been recorded in the tamper-proof Registry, and will be subject to scrutiny and auditing by other parties.
 
@@ -337,7 +337,7 @@ In order to accommodate as many Transparency Service implementations as possible
 Most of the details of the Receipt's contents are specific to the Registry algorithm.
 The {{-RECEIPTS}} document defines two initial Registry algorithms (for historical and sparse Merkle Trees), but other Registry formats (such as blockchains, or hybrid historical and indexed Merkle Trees) may be proposed later.
 
-In this section, we describe at a high level the three main roles and associated processes in SCITT: Issuers and the Signed Statement issuance process, transparency Registry and the Transparent Statement Registration process, as well as  Verifiers and the Receipt validation process.
+In this section, a high level the three main roles and associated processes in SCITT: Issuers and the Signed Statement issuance process, transparency Registry and the Transparent Statement Registration process, as well as  Verifiers and the Receipt validation process.
 
 ## Signed Statement Issuance and Registration
 
@@ -848,7 +848,7 @@ In cases where key re-use is unavoidable, keys MUST NOT sign any other message t
 
 ## Threat Model
 
-We provide a generic threat model for SCITT, describing its residual security properties when some of its actors (identity providers, Issuers, Transparency Services, and Auditors) are corrupt or compromised.
+The document provides a generic threat model for SCITT, describing its residual security properties when some of its actors (identity providers, Issuers, Transparency Services, and Auditors) are corrupt or compromised.
 
 This model may need to be refined to account for specific supply chains and use cases.
 
@@ -928,7 +928,7 @@ For example, while offline Envelope validation of Signed Statements is private, 
 
 ### Cryptographic Assumptions
 
-We rely on standard cryptographic security for signing schemes (EUF-CMA: for a given key, given the public key and any number of signed messages, an attacker cannot forge a valid signature for any other message) and for Receipts schemes (log collision-resistance: for a given commitment such as a Merkle-tree root, there is a unique log such that any valid path authenticates a Signed Statement in this log.)
+SCITT relies on standard cryptographic security for signing schemes (EUF-CMA: for a given key, given the public key and any number of signed messages, an attacker cannot forge a valid signature for any other message) and for Receipts schemes (log collision-resistance: for a given commitment such as a Merkle-tree root, there is a unique log such that any valid path authenticates a Signed Statement in this log.)
 
 The SCITT Architecture supports cryptographic agility: the actors depend only on the subset of signing and Receipt schemes they trust.
 This enables the gradual transition to stronger algorithms, including e.g. post-quantum signature algorithms.
