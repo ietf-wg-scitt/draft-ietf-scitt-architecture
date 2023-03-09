@@ -377,7 +377,7 @@ Table of Contents
       as a reviewer or an endorser.
 
    Receipt:  a Receipt is a special form of COSE countersignature for
-      Signed Statments that embeds cryptographic evidence that the
+      Signed Statements that embeds cryptographic evidence that the
       Signed Statement is recorded in the Registry.  A Receipt consists
       of a Registry-specific inclusion proof, a signature by the
       Transparency Service of the state of the Registry, and additional
@@ -586,7 +586,7 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
    Many Issuers issue Signed Statements about different Artifacts under
    the same DID, so it is important for everyone to be able to
    immediately recognize by looking at the Envelope of a Signed
-   Statments what Artifact it is referring to.  This information is
+   Statements what Artifact it is referring to.  This information is
    stored in the Feed header of the Envelope.  Issuers MAY use different
    signing keys (identified by kid in the resolved key manifest) for
    different Artifacts, or sign all Signed Statements under the same
@@ -725,7 +725,7 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
    COSE Envelope of the Signed Statement.  The key of the map entry
    corresponds to the name of the policy, while its value (including its
    type) is policy-specific.  For instance, the register_by policy
-   defines the maximum timestamp by which a Signed Statemnet can be
+   defines the maximum timestamp by which a Signed Statement can be
    registered, hence the associated value contains an unsigned integer.
 
    While this design ensures that all verifiers get the same guarantee
@@ -850,7 +850,7 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
    details.
 
    Some Verifiers may systematically resolve Issuer DIDs to fetch the
-   latest corresponding DID documents.  This behaviour strictly enforces
+   latest corresponding DID documents.  This behavior strictly enforces
    the revocation of compromised keys: once the Issuer has updated its
    Statement to remove a key identifier, all Signed Statements include
    the corresponding kid will be rejected.  However, others may delegate
@@ -1524,7 +1524,7 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
    secure authenticated channels (e.g., TLS) but, as usual, this may not
    exclude network traffic analysis.
 
-10.1.2.1.  Signed Statements and Their Tegistration
+10.1.2.1.  Signed Statements and Their Registration
 
    The Transparency Service is trusted with the confidentiality of the
    Signed Statements presented for registration.  Some Transparency
