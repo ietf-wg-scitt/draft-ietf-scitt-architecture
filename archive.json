@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-03-07T00:44:51.023807+00:00",
+  "timestamp": "2023-03-09T00:42:47.087538+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -303,9 +303,24 @@
       "labels": [],
       "body": "Copied over from: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/36\r\n\r\nA feed is a great base for how we can create a series of statements for different artifacts, getting freshness for a receipt/or VEX report.\r\nThe current definition likely needs to expand a bit to account for:\r\n- What are the versions of a specific artifact\r\n- What are all the statements for a version of an artifact\r\n- What is the latest statement for a specific `contentType` of a specific versioned `artifact`: (eg: what's the latest `SBOM` for the `net-monitor:v1` software?\r\n- If the `contentType` is a referenced [statement by reference](#35), which stores SBOMs, Scan Reports, how do we drill into each if they all use the same payload `contentType` of satementByReference?\r\n",
       "createdAt": "2023-02-21T15:46:59Z",
-      "updatedAt": "2023-02-21T15:46:59Z",
+      "updatedAt": "2023-03-08T09:59:08Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "raylutz",
+          "authorAssociation": "NONE",
+          "body": "I'm not sure if \"feed\" represents the right concept, when it seems to me that the API to the registry will need to offer the ability to query records for specific orgs-products-models-releases, and collect all the relevant records, which likely include a number of ledger entries to various related artifacts.  With that said, can imagine also the notion of a different API which would provide a feed of updates to the registry, esp. to allow a mirrored version or to perhaps aggregate from several source registries.",
+          "createdAt": "2023-03-08T00:52:40Z",
+          "updatedAt": "2023-03-08T00:52:40Z"
+        },
+        {
+          "author": "ad-l",
+          "authorAssociation": "NONE",
+          "body": "> I'm not sure if \"feed\" represents the right concept, when it seems to me that the API to the registry will need to offer the ability to query records for specific orgs-products-models-releases, and collect all the relevant records, which likely include a number of ledger entries to various related artifacts. With that said, can imagine also the notion of a different API which would provide a feed of updates to the registry, esp. to allow a mirrored version or to perhaps aggregate from several source registries.\r\n\r\nThis is a good point and one possible improvement that was already brought up at the previous IETF meeting is to enable some structure in the feed header. For instance, using an array of strings would capture many of the common patterns (such as product > model > release), and allow some advanced functions in the API (such as prefix-based querying). Another approach would be to allow each issuer to structure their feed using arbitrary CBOR representations; while this captures many more complex usages (e.g. packages for different Linux distributions, binaries for different architectures) it becomes harder for the transparency service to understand what constitutes related claims (it requires interpretation of the feed format), and thus, harder to define auditing APIs.",
+          "createdAt": "2023-03-08T09:59:08Z",
+          "updatedAt": "2023-03-08T09:59:08Z"
+        }
+      ]
     },
     {
       "number": 12,
@@ -455,9 +470,31 @@
       "labels": [],
       "body": "In describing to lay audiences, I have found it easier to use the term 'registered statement' rather than 'transparent statement'. It reduces the number of concepts needed for understanding. Here is the workflow description I have been using:\r\n\r\nUser creates a statement\r\nUser signs a statement\r\nUser registers a statement on a transparency registry. Prior to registration, the statement is evaluated against registration policy.\r\nUser receives a receipt of registration\r\nUser shares a registered statement with interested parties\r\nAuditors and others query the transparency registry to get a history of registered statements\r\n\r\nSee related comment on Issue #16 ",
       "createdAt": "2023-03-06T17:22:44Z",
-      "updatedAt": "2023-03-06T17:23:50Z",
+      "updatedAt": "2023-03-08T22:38:01Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks @kaywilliams. As the list of issues is growing, do you mind converging this discussion in #8?",
+          "createdAt": "2023-03-08T22:34:17Z",
+          "updatedAt": "2023-03-08T22:34:17Z"
+        },
+        {
+          "author": "kaywilliams",
+          "authorAssociation": "NONE",
+          "body": "I don't mind, but please note that Henk did ask me to create a separate issue. So, perhaps we check with him first?",
+          "createdAt": "2023-03-08T22:36:44Z",
+          "updatedAt": "2023-03-08T22:36:44Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@henkbirkholz, any reason to keep this separate from #8?",
+          "createdAt": "2023-03-08T22:38:01Z",
+          "updatedAt": "2023-03-08T22:38:01Z"
+        }
+      ]
     },
     {
       "number": 21,
@@ -472,6 +509,350 @@
       "body": "> Unlike CT, where independent auditors are responsible for enforcing the consistency of multiple independent instances of the same global Registry, each Transparency Service is required to guarantee the consistency of its own Registry (for instance, through the use of a consensus algorithm between replicas of the Registry), but assume no consistency between different Transparency Services\r\n\r\nThe sentence _Unlike CT,..._ takes away an important aspect of any transparency service, and negates the overall notion that we are trying to generalize CT.\r\n\r\nInstead, we should note that any given TS will be well served by having replicas and auditors which confirm that relying parties can choose any replica they want.",
       "createdAt": "2023-03-06T18:04:01Z",
       "updatedAt": "2023-03-06T18:04:01Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 22,
+      "id": "I_kwDOIvmHss5gLwUY",
+      "title": "Incorporate cose-merkle-tree-proofs replacing SCITT Receipts",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/22",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "fournet"
+      ],
+      "labels": [],
+      "body": "[cose-merkle-tree-proofs](https://github.com/ietf-scitt/cose-merkle-tree-proofs)",
+      "createdAt": "2023-03-07T15:30:58Z",
+      "updatedAt": "2023-03-07T15:30:59Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 23,
+      "id": "I_kwDOIvmHss5gLx5_",
+      "title": "Clarification: Notarization is not the process of creating a signed statement",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/23",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "yogeshbdeshpande"
+      ],
+      "labels": [
+        "terminology"
+      ],
+      "body": "              I don't love this language.\r\n\r\nI think notarizing applies to making a \"Signed Statement\" a \"Transparent Statement\"... but this sentence seems to imply notarization is part of the process of creating a \"Signed Statement\", which seems wrong.\r\n\r\n_Originally posted by @OR13 in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1126710441_\r\n            ",
+      "createdAt": "2023-03-07T15:34:29Z",
+      "updatedAt": "2023-03-07T15:37:07Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 24,
+      "id": "I_kwDOIvmHss5gLzx-",
+      "title": "Clarification: add notarization",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/24",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              I think the concept of \"notarization\" needs to go here... or it needs to not be used anywhere.\r\n\r\n_Originally posted by @OR13 in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1126712923_\r\n            ",
+      "createdAt": "2023-03-07T15:39:14Z",
+      "updatedAt": "2023-03-07T15:39:14Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 25,
+      "id": "I_kwDOIvmHss5gL1VT",
+      "title": "Clarification: \"DID Key Manifest\" to another term",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/25",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              I suggest maybe not using the words \"DID Key Manifest\"... \r\n\r\nMaybe \"Public Key Identifier\" or \"VerificationMethod\".\r\n\r\n_Originally posted by @OR13 in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1126717438_\r\n            ",
+      "createdAt": "2023-03-07T15:42:18Z",
+      "updatedAt": "2023-03-07T15:42:18Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 26,
+      "id": "I_kwDOIvmHss5gL6MW",
+      "title": "Break up paragraphs to single lines per sentence.",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/26",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "SteveLasker"
+      ],
+      "labels": [],
+      "body": "              This is a long sentence, maybe break it up into multiple 80 character lines?\r\nA policy could be 'unrecognized', 'unparsable', or 'not implemented'. Does 'unknown' imply all of these?\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123556851_\r\n            ",
+      "createdAt": "2023-03-07T15:53:51Z",
+      "updatedAt": "2023-03-07T15:54:54Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 27,
+      "id": "I_kwDOIvmHss5gMC9H",
+      "title": "Clarification: cannot delete or alter earlier Signed Statements",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/27",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              > cannot delete or alter earlier Signed Statements about certain Artifacts\r\n\r\ndrop \"about certain Artifacts\". It makes it seem like they could delete or alter Signed Statements about certain *other* Artifacts. But they can't delete or alter any earlier Signed Statements about anything.\r\n\r\n_Originally posted by @nealmcb in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1125888615_\r\n            ",
+      "createdAt": "2023-03-07T16:14:28Z",
+      "updatedAt": "2023-03-07T16:14:28Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 28,
+      "id": "I_kwDOIvmHss5gMEQ7",
+      "title": "Clarification: CT and TS generalization, replicas and auditors",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/28",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              The sentence *Unlike CT,...* takes away an important aspect of any transparency service, and negates the overall notion that we are trying to generalize CT.\r\n\r\nInstead, we should note that any given TS will be well served by having replicas and auditors which confirm that relying parties can choose any replica they want.\r\n\r\n_Originally posted by @nealmcb in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1125894980_\r\n            ",
+      "createdAt": "2023-03-07T16:17:57Z",
+      "updatedAt": "2023-03-07T16:17:57Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 29,
+      "id": "I_kwDOIvmHss5gMFqH",
+      "title": "Clarification: need and trust references",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/29",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              I'd take out \"need to\" in both definitions.\r\n\r\nFor the end of the second one I'd get rid of the tricky and unnecessary word *trust* by substituting this:\r\n=> that access, validate, and evaluate the reliability of authentic Statements\r\n\r\n_Originally posted by @nealmcb in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1125902807_\r\n            ",
+      "createdAt": "2023-03-07T16:21:37Z",
+      "updatedAt": "2023-03-07T16:21:37Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 30,
+      "id": "I_kwDOIvmHss5gMcOA",
+      "title": "Clarification: SHOULD | MUST verify the ledger is consistent with a previously issued receipt",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/30",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              Why is this a SHOULD and not MUST?\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123536590_\r\n            ",
+      "createdAt": "2023-03-07T17:13:04Z",
+      "updatedAt": "2023-03-07T17:13:04Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 31,
+      "id": "I_kwDOIvmHss5gMcrm",
+      "title": "Clarification: how does the Transparency Service ensure determinism?",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/31",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              how does the TS ensure determinism?\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123538125_\r\n            ",
+      "createdAt": "2023-03-07T17:14:27Z",
+      "updatedAt": "2023-03-07T17:14:27Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 32,
+      "id": "I_kwDOIvmHss5gMgg1",
+      "title": "Clarification: Requirements for SCITT implementations to build a suitable Transparency Service",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/32",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              Of course a compromised TS could do all sorts of malicious things. If the previous line / paragraph stated the 4 (or more?) bullet points below in terms of how a TS is supposed to behave. It might be easier to understand what requirements implementers must address in order to build a suitable TS?\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123612216_\r\n            ",
+      "createdAt": "2023-03-07T17:23:15Z",
+      "updatedAt": "2023-03-07T17:23:15Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 33,
+      "id": "I_kwDOIvmHss5gMiIO",
+      "title": "Clarification: References to multiple Transparency Servies",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/33",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              Does this work if the TS cluster is behind a load balancer?\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123564059_\r\n            ",
+      "createdAt": "2023-03-07T17:27:16Z",
+      "updatedAt": "2023-03-07T17:27:16Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 34,
+      "id": "I_kwDOIvmHss5gMjDr",
+      "title": "Clarification: Reference to \"Local\"",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/34",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              please break up long sentences into shorter lines.\r\n\r\nThe term 'local' is subjective and contextual. If used, it needs to be defined.\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123565919_\r\n            ",
+      "createdAt": "2023-03-07T17:29:25Z",
+      "updatedAt": "2023-03-07T17:29:25Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 35,
+      "id": "I_kwDOIvmHss5gMkV0",
+      "title": "Clarification: How does a Transparency Service ensure determinism?",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/35",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              how does the TS ensure determinism?\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123538125_\r\n            ",
+      "createdAt": "2023-03-07T17:32:38Z",
+      "updatedAt": "2023-03-07T17:32:38Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 36,
+      "id": "I_kwDOIvmHss5gMlbf",
+      "title": "Clarification: Describe the properties of a DID resolution",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/36",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              It might be better to describe the properties of manifests that are desired instead of or in addition to simply requiring 'manifests' - which is ambiguous.\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123542029_\r\n            ",
+      "createdAt": "2023-03-07T17:35:25Z",
+      "updatedAt": "2023-03-07T17:35:25Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 37,
+      "id": "I_kwDOIvmHss5gMm2j",
+      "title": "Clarification: SHOULD | MUST document governance procedure details.",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/37",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Clarify what level of detail MUST or SHOULD be captured by a SCITT instance? \r\n\r\n              Why is this a SHOULD and not MUST? Otherwise it is an untrustworthy TS.\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123544646_\r\n            ",
+      "createdAt": "2023-03-07T17:39:12Z",
+      "updatedAt": "2023-03-07T17:39:12Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 38,
+      "id": "I_kwDOIvmHss5gMoy0",
+      "title": "Clarification: Ordering of entities, determinism, verifiable",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/38",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              This requires more explanation. Sounds dubious.\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123539145_\r\n            ",
+      "createdAt": "2023-03-07T17:44:29Z",
+      "updatedAt": "2023-03-07T17:44:29Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 39,
+      "id": "I_kwDOIvmHss5gMqhT",
+      "title": "Clarification: Define consumer",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/39",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From a terminology perspective, \"consumer\" can mean:\r\n- End users that \"consume\" software, akin to a consumer of purchased good and services\r\n- Anyone interacting with a SCITT Transparency Service - akin to publishers and consumers of a SCITT Transparency service\r\n\r\nSuggestion for tracking: add \"Consumer\" to the [Terminology](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-terminology) section\r\n\r\n              'consumer' might not be the best term. Does it mean ingress or someone engaging in commerce?\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123549835_\r\n            ",
+      "createdAt": "2023-03-07T17:49:05Z",
+      "updatedAt": "2023-03-07T17:49:05Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 40,
+      "id": "I_kwDOIvmHss5gMrqp",
+      "title": "Clarification: Use of COSE is mandatory, SHOULD | MUST",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/40",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              Since the use of COSE is mandatory, shouldn't this be MUST?\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123554033_\r\n            ",
+      "createdAt": "2023-03-07T17:52:21Z",
+      "updatedAt": "2023-03-07T17:52:21Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 41,
+      "id": "I_kwDOIvmHss5gMy9A",
+      "title": "Clarification: Details for what verifiers should offer as options to share receipts.",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/41",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              The different available options should be described.\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123568871_\r\n            ",
+      "createdAt": "2023-03-07T18:12:59Z",
+      "updatedAt": "2023-03-07T18:12:59Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 42,
+      "id": "I_kwDOIvmHss5gM1QP",
+      "title": "Clarification: Multiple SCITT Instances and trust between them",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/42",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "There will be multiple instances of SCITT Transparency services, run by different organizations. Multiples will likely exist for private software, where internal information is maintained for compliance and auditing, while public instances will provide the public info. \r\nThe suggestion here is to remove the reference to multiple SCITT Transparency Services trusting each other, as it's accepted that different instances will have different registration policies and neither have to trust the other, rather the consumer has to decide what's applicable to them.\r\n\r\n              If they have different governance, organization trust, and otherwise don't trust each other what is the basis for allowing them to interoperate? This seems very dubious and possibly should be called out as conditions for NOT interoperating.\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123571906_\r\n            ",
+      "createdAt": "2023-03-07T18:20:25Z",
+      "updatedAt": "2023-03-07T18:20:33Z",
       "closedAt": null,
       "comments": []
     }
@@ -875,13 +1256,13 @@
       ],
       "body": "Fixes #15\r\n\r\n(to some extend), please see #15 and check the issues highlighted there as part of reviewing this PR.",
       "createdAt": "2023-02-21T23:04:47Z",
-      "updatedAt": "2023-03-06T18:06:57Z",
+      "updatedAt": "2023-03-07T18:29:41Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "c8ad68740476eaf24c663147fd349b16bfa4f4d2",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "core-terms",
-      "headRefOid": "3745801443f064386de473e479f9f74f03ef2860",
+      "headRefOid": "f499b2b17273be2ba446f429063f43e3abe84bb5",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -1342,7 +1723,7 @@
             "abbreviatedOid": "7d66813"
           },
           "author": "OR13",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-03-06T16:25:40Z",
@@ -1362,7 +1743,7 @@
             "abbreviatedOid": "7d66813"
           },
           "author": "OR13",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-03-06T16:26:02Z",
@@ -1382,7 +1763,7 @@
             "abbreviatedOid": "7d66813"
           },
           "author": "OR13",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-03-06T16:27:07Z",
@@ -1402,7 +1783,7 @@
             "abbreviatedOid": "7d66813"
           },
           "author": "OR13",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-03-06T16:28:34Z",
@@ -1422,7 +1803,7 @@
             "abbreviatedOid": "7d66813"
           },
           "author": "OR13",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-03-06T16:29:40Z",
@@ -1442,7 +1823,7 @@
             "abbreviatedOid": "7d66813"
           },
           "author": "OR13",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-03-06T16:30:02Z",
@@ -1462,7 +1843,7 @@
             "abbreviatedOid": "7d66813"
           },
           "author": "OR13",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-03-06T16:30:21Z",
@@ -1482,7 +1863,7 @@
             "abbreviatedOid": "7d66813"
           },
           "author": "OR13",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-03-06T16:30:47Z",
@@ -1502,7 +1883,7 @@
             "abbreviatedOid": "7d66813"
           },
           "author": "OR13",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-03-06T16:31:03Z",
@@ -1622,7 +2003,7 @@
             "abbreviatedOid": "7d66813"
           },
           "author": "OR13",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "APPROVED",
           "body": "Massive PR, lots of comments from other reviewers, assuming they are addressed, I think it can be merged, I don't have any blocking feedback.",
           "createdAt": "2023-03-06T17:21:23Z",
@@ -1692,6 +2073,606 @@
               "body": "This is just a statement of fact. Trust is in the eye of the beholder. Different relying parties will have different threat models and requirements for how they handle artifacts. Some TS will screw up and be compromised, and hopefully auditors will catch that.",
               "createdAt": "2023-03-06T17:39:27Z",
               "updatedAt": "2023-03-06T18:06:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PNHZa",
+          "commit": {
+            "abbreviatedOid": "3745801"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T15:37:26Z",
+          "updatedAt": "2023-03-07T15:37:27Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "Tracked at #23 ",
+              "createdAt": "2023-03-07T15:37:27Z",
+              "updatedAt": "2023-03-07T15:37:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PNI47",
+          "commit": {
+            "abbreviatedOid": "3745801"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T15:39:30Z",
+          "updatedAt": "2023-03-07T15:39:30Z",
+          "comments": [
+            {
+              "originalPosition": 114,
+              "body": "Tracked at #24 ",
+              "createdAt": "2023-03-07T15:39:30Z",
+              "updatedAt": "2023-03-07T15:39:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PNMJz",
+          "commit": {
+            "abbreviatedOid": "2897db5"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T15:42:35Z",
+          "updatedAt": "2023-03-07T15:42:36Z",
+          "comments": [
+            {
+              "originalPosition": 212,
+              "body": "Captured in #25 ",
+              "createdAt": "2023-03-07T15:42:35Z",
+              "updatedAt": "2023-03-07T15:42:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PNMwX",
+          "commit": {
+            "abbreviatedOid": "2897db5"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T15:43:20Z",
+          "updatedAt": "2023-03-07T15:43:21Z",
+          "comments": [
+            {
+              "originalPosition": 212,
+              "body": "Captured in #25 ",
+              "createdAt": "2023-03-07T15:43:21Z",
+              "updatedAt": "2023-03-07T15:43:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PNT-6",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T15:53:14Z",
+          "updatedAt": "2023-03-07T15:53:15Z",
+          "comments": [
+            {
+              "originalPosition": 467,
+              "body": "Thanks @nedmsmith, we discussed on an editors call, and agreed to simplify content feedback to use sentence-based lines. And, we'll create a document for conventions for this org.",
+              "createdAt": "2023-03-07T15:53:15Z",
+              "updatedAt": "2023-03-07T15:53:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PNjFc",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T16:15:03Z",
+          "updatedAt": "2023-03-07T16:15:04Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "Captured in #27 ",
+              "createdAt": "2023-03-07T16:15:03Z",
+              "updatedAt": "2023-03-07T16:15:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PNl47",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T16:19:02Z",
+          "updatedAt": "2023-03-07T16:19:03Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "Captured in #28 ",
+              "createdAt": "2023-03-07T16:19:02Z",
+              "updatedAt": "2023-03-07T16:19:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PNo5d",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T16:23:22Z",
+          "updatedAt": "2023-03-07T16:23:22Z",
+          "comments": [
+            {
+              "originalPosition": 55,
+              "body": "Captured in #29",
+              "createdAt": "2023-03-07T16:23:22Z",
+              "updatedAt": "2023-03-07T16:23:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PNpNS",
+          "commit": {
+            "abbreviatedOid": "3745801"
+          },
+          "author": "raylutz",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T16:23:50Z",
+          "updatedAt": "2023-03-07T16:23:50Z",
+          "comments": [
+            {
+              "originalPosition": 640,
+              "body": "```suggestion\r\nVerifiers and Auditors need not have a previously established trust relationship with other actors. In particular, they cannot \"frame\" an Issuer or a Transparency Service for Signed Statements they did not issue or register.\r\n```",
+              "createdAt": "2023-03-07T16:23:50Z",
+              "updatedAt": "2023-03-07T16:23:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POLNx",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:13:45Z",
+          "updatedAt": "2023-03-07T17:13:46Z",
+          "comments": [
+            {
+              "originalPosition": 348,
+              "body": "Captured in #30 ",
+              "createdAt": "2023-03-07T17:13:45Z",
+              "updatedAt": "2023-03-07T17:13:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POMR8",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:15:50Z",
+          "updatedAt": "2023-03-07T17:15:51Z",
+          "comments": [
+            {
+              "originalPosition": 627,
+              "body": "Captured in #26 ",
+              "createdAt": "2023-03-07T17:15:51Z",
+              "updatedAt": "2023-03-07T17:15:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POMg4",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:16:09Z",
+          "updatedAt": "2023-03-07T17:16:09Z",
+          "comments": [
+            {
+              "originalPosition": 630,
+              "body": "Line breaks captured in #26 \r\n@nedmsmith, the multiple \"hands\" could use some more tweaking. Please open a new issue or PR for further clarification on liability. ",
+              "createdAt": "2023-03-07T17:16:09Z",
+              "updatedAt": "2023-03-07T17:18:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POPAr",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:20:44Z",
+          "updatedAt": "2023-03-07T17:20:44Z",
+          "comments": [
+            {
+              "originalPosition": 640,
+              "body": "Thanks, @raylutz, in the spirit of merging this doc, and creating new issues/PRs for additional changes, I'm resolving this one. I did think we were avoiding the reference to \"trust relationship\", but please open an issue/PR if you feel otherwise.",
+              "createdAt": "2023-03-07T17:20:44Z",
+              "updatedAt": "2023-03-07T17:20:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PORvQ",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:25:01Z",
+          "updatedAt": "2023-03-07T17:25:02Z",
+          "comments": [
+            {
+              "originalPosition": 467,
+              "body": "Captured in #26 ",
+              "createdAt": "2023-03-07T17:25:02Z",
+              "updatedAt": "2023-03-07T17:25:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POSKT",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:26:02Z",
+          "updatedAt": "2023-03-07T17:26:02Z",
+          "comments": [
+            {
+              "originalPosition": 510,
+              "body": "@nedmsmith, can you confirm #32 captures your need here? If not, can you please open a new issue/PR?",
+              "createdAt": "2023-03-07T17:26:02Z",
+              "updatedAt": "2023-03-07T17:26:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POTBT",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:28:07Z",
+          "updatedAt": "2023-03-07T17:28:08Z",
+          "comments": [
+            {
+              "originalPosition": 519,
+              "body": "Captured in #33 ",
+              "createdAt": "2023-03-07T17:28:07Z",
+              "updatedAt": "2023-03-07T17:28:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POTxY",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:29:55Z",
+          "updatedAt": "2023-03-07T17:29:56Z",
+          "comments": [
+            {
+              "originalPosition": 522,
+              "body": "Captured in #34 ",
+              "createdAt": "2023-03-07T17:29:56Z",
+              "updatedAt": "2023-03-07T17:29:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POWgn",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:34:11Z",
+          "updatedAt": "2023-03-07T17:34:12Z",
+          "comments": [
+            {
+              "originalPosition": 355,
+              "body": "Thanks @nedmsmith, to make iterative progress, this has been captured in #35 ",
+              "createdAt": "2023-03-07T17:34:12Z",
+              "updatedAt": "2023-03-07T17:34:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POXqx",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:36:14Z",
+          "updatedAt": "2023-03-07T17:36:14Z",
+          "comments": [
+            {
+              "originalPosition": 360,
+              "body": "Thanks @nedmsmith, to make iterative progress, this has been captured in #36 ",
+              "createdAt": "2023-03-07T17:36:14Z",
+              "updatedAt": "2023-03-07T17:36:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POZbY",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:39:56Z",
+          "updatedAt": "2023-03-07T17:39:57Z",
+          "comments": [
+            {
+              "originalPosition": 371,
+              "body": "Thanks @nedmsmith, to make iterative progress, this has been captured in #37 ",
+              "createdAt": "2023-03-07T17:39:56Z",
+              "updatedAt": "2023-03-07T17:39:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POZ7g",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:41:05Z",
+          "updatedAt": "2023-03-07T17:41:05Z",
+          "comments": [
+            {
+              "originalPosition": 374,
+              "body": "Thanks @nedmsmith, to make iterative progress, this has been captured in #36. \r\nIf you feel \"auxiliary governance\" should be tracked separately, please open a new issue/pr.",
+              "createdAt": "2023-03-07T17:41:05Z",
+              "updatedAt": "2023-03-07T17:41:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POaJ2",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:41:33Z",
+          "updatedAt": "2023-03-07T17:41:34Z",
+          "comments": [
+            {
+              "originalPosition": 380,
+              "body": "Thanks @nedmsmith, to make iterative progress, this has been captured in #36",
+              "createdAt": "2023-03-07T17:41:33Z",
+              "updatedAt": "2023-03-07T17:41:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POcF2",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:45:11Z",
+          "updatedAt": "2023-03-07T17:45:11Z",
+          "comments": [
+            {
+              "originalPosition": 357,
+              "body": "Thanks @nedmsmith, to make iterative progress, this has been captured in #38 ",
+              "createdAt": "2023-03-07T17:45:11Z",
+              "updatedAt": "2023-03-07T17:45:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POevA",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T17:50:53Z",
+          "updatedAt": "2023-03-07T17:50:54Z",
+          "comments": [
+            {
+              "originalPosition": 394,
+              "body": "Thanks @nedmsmith, to make iterative progress, this has been captured in #39 ",
+              "createdAt": "2023-03-07T17:50:53Z",
+              "updatedAt": "2023-03-07T17:50:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POltR",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T18:06:13Z",
+          "updatedAt": "2023-03-07T18:06:13Z",
+          "comments": [
+            {
+              "originalPosition": 455,
+              "body": "Thanks, @nedmsmith, to make iterative progress, this has been captured in #40 \r\nThanks, @nealmcb. COSE is intrinsic to SCITT as an extensible means to capture headers and payload in a consistent/standards-based format. The evaluation was captured here: [Digital Artifact Signing Envelope Format Comparison](https://docs.google.com/document/d/18YVGA4mq45wfUkWrAqWkymzdHRcXxlwINKXnEp86L0w/edit#heading=h.3v6vw85pjg5e)\r\nAs a result, sigstore/rekor added support through a [draft](https://github.com/sigstore/rekor/pull/731) then [subsequent merged PR](https://github.com/sigstore/rekor/pull/867)",
+              "createdAt": "2023-03-07T18:06:13Z",
+              "updatedAt": "2023-03-07T18:06:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POnbK",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T18:10:54Z",
+          "updatedAt": "2023-03-07T18:10:55Z",
+          "comments": [
+            {
+              "originalPosition": 525,
+              "body": "Thanks @nedmsmith, to make iterative progress, I believe this has been captured in #34. \r\nIf you consider an external validation (local), may wish to re-verify information the service ran through its registration policy, the term local may help.\r\nRegistration policies will change over time, which also need to be captured as statements. So, a consumer may wish to validate specific policies unique to its environment.\r\nPlease do open another issue/PR if you feel this needs further clarification.",
+              "createdAt": "2023-03-07T18:10:54Z",
+              "updatedAt": "2023-03-07T18:10:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POoge",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T18:13:31Z",
+          "updatedAt": "2023-03-07T18:13:31Z",
+          "comments": [
+            {
+              "originalPosition": 528,
+              "body": "Thanks @nedmsmith, to make iterative progress, this has been captured in #41",
+              "createdAt": "2023-03-07T18:13:31Z",
+              "updatedAt": "2023-03-07T18:13:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POrhn",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T18:21:22Z",
+          "updatedAt": "2023-03-07T18:21:23Z",
+          "comments": [
+            {
+              "originalPosition": 540,
+              "body": "Thanks @nedmsmith, @nealmcb: to make iterative progress, this has been captured in #42 ",
+              "createdAt": "2023-03-07T18:21:22Z",
+              "updatedAt": "2023-03-07T18:21:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POtn8",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T18:26:21Z",
+          "updatedAt": "2023-03-07T18:26:21Z",
+          "comments": [
+            {
+              "originalPosition": 544,
+              "body": "Thanks @nedmsmith, there's been a few discussions around the need for multiple instances, operated by different entities for their specific purpose.  There's some more explanation here: https://scitt.io/supply-chain where a publisher and consumer will operate their own SCITT Transparency Service. Please open an issue if you feel we need further clarification on multiple instances, beyond the reliability/availability discussion. ",
+              "createdAt": "2023-03-07T18:26:21Z",
+              "updatedAt": "2023-03-07T18:26:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5POvTc",
+          "commit": {
+            "abbreviatedOid": "f499b2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-07T18:29:40Z",
+          "updatedAt": "2023-03-07T18:29:41Z",
+          "comments": [
+            {
+              "originalPosition": 585,
+              "body": "Thanks @nedmsmith, this is meant to capture PII or other privacy information. I read it as: anything in a SCITT Transparency Service should not be considered private, so don't put private information in SCITT, particularly in plaintext. \r\n\r\nTo make iterative progress, please open an issue/pr if you feel this needs further clarification. ",
+              "createdAt": "2023-03-07T18:29:40Z",
+              "updatedAt": "2023-03-07T18:29:41Z"
             }
           ]
         }
