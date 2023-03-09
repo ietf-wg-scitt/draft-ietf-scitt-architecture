@@ -1456,91 +1456,93 @@ To ensure readability, only a core set of terms is included in this section.<a h
           <p id="section-3-2.2.1">a physical or non-physical item that is moving along the supply chain.<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.3">Statement:</dt>
+<dt id="section-3-2.3">Auditor:</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.4">
-          <p id="section-3-2.4.1">any serializable information about an Artifact.
-To help interpretation of Statements, they must be tagged with a media type (as specified in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>).
-For example, a statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, or some endorsement or attestation about an Artifact.<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.4.1">an entity that checks the correctness and consistency of all Transparent Statements registered by a Transparency Service (a subset of potential Transparent Statement Consumers).<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.5">Signed Statement:</dt>
+<dt id="section-3-2.5">Consumer of Signed Statements:</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.6">
-          <p id="section-3-2.6.1">an identifiable and non-repudiable Statement about an Artifact made by an Issuer.
-In SCITT, Signed Statements are encoded as COSE signed objects; the payload of the COSE structure contains the issued Statement.<a href="#section-3-2.6.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.6.1"><span class="cref" id="definehere">Define here.</span><a href="#section-3-2.6.1" class="pilcrow">¶</a></p>
 </dd>
-        <dd class="break"></dd>
-<dt id="section-3-2.7">Issuer:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.8">
-          <p id="section-3-2.8.1">an entity that creates Signed Statements about software Artifacts in the supply chain.
-An Issuer may be the owner or author of software Artifacts, or an independent third party such as a reviewer or an endorser.<a href="#section-3-2.8.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-2.9">Envelope:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.10">
-          <p id="section-3-2.10.1">metadata and an Issuer's signature is added to a Statement via a COSE envelope by the Issuer to produce a Signed Statement.
+      <dd class="break"></dd>
+</dl>
+<span class="break"></span><dl class="dlParallel" id="section-3-3">
+        <dt id="section-3-3.1">Envelope:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.2">
+          <p id="section-3-3.2.1">metadata and an Issuer's signature is added to a Statement via a COSE envelope by the Issuer to produce a Signed Statement.
 An Envelope contains the identity of the Issuer and other information to help components responsible for validation that are part of a Transparency Services to identify the software Artifact referred to in a Signed Statement.
 In essence, a Signed Statement is a COSE Envelope wrapped around a Statement binding the metadata included in the Envelope to a Statement.
-In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).<a href="#section-3-2.10.1" class="pilcrow">¶</a></p>
+In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).<a href="#section-3-3.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.11">Feed:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.12">
-          <p id="section-3-2.12.1">an identifier chosen by the Issuer for the Artifact.
+<dt id="section-3-3.3">Feed:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.4">
+          <p id="section-3-3.4.1">an identifier chosen by the Issuer for the Artifact.
 For every Issuer and Feed, the Registry on a Transparency Service contains a sequence of Signed Statements about the same Artifact.
-In COSE, Feed is a dedicated header attribute in the protected header of the Envelope.<a href="#section-3-2.12.1" class="pilcrow">¶</a></p>
+In COSE, Feed is a dedicated header attribute in the protected header of the Envelope.<a href="#section-3-3.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.13">Registry:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.14">
-          <p id="section-3-2.14.1">the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym log or ledger.
-SCITT supports multiple Registry and Receipt formats to accommodate different Transparency Service implementations, such as historical Merkle Trees and sparse Merkle Trees.<a href="#section-3-2.14.1" class="pilcrow">¶</a></p>
+<dt id="section-3-3.5">Issuer:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.6">
+          <p id="section-3-3.6.1">an entity that creates Signed Statements about software Artifacts in the supply chain.
+An Issuer may be the owner or author of software Artifacts, or an independent third party such as a reviewer or an endorser.<a href="#section-3-3.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.15">Transparency Service:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.16">
-          <p id="section-3-2.16.1">an entity that maintains and extends the Registry, and endorses its state.
+<dt id="section-3-3.7">Receipt:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.8">
+          <p id="section-3-3.8.1">a Receipt is a special form of COSE countersignature for Signed Statments that embeds cryptographic evidence that the Signed Statement is recorded in the Registry.
+A Receipt consists of a Registry-specific inclusion proof, a signature by the Transparency Service of the state of the Registry, and additional metadata (contained in the countersignature's protected headers) to assist in auditing.<a href="#section-3-3.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-3.9">Registration:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.10">
+          <p id="section-3-3.10.1">the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's registration policy, storing it in the Registry, producing a Receipt, and returning it to the submitting Issuer.<a href="#section-3-3.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-3.11">Registration Policy:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.12">
+          <p id="section-3-3.12.1">the pre-condition enforced by the Transparency Service before registering a Signed Statement, rendering it a Signed Statement,
+based on metadata contained in its COSE Envelope (notably the identity of its Issuer)
+and on prior Signed Statements already added to a Registry.<a href="#section-3-3.12.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-3.13">Registry:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.14">
+          <p id="section-3-3.14.1">the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym log or ledger.
+SCITT supports multiple Registry and Receipt formats to accommodate different Transparency Service implementations, such as historical Merkle Trees and sparse Merkle Trees.<a href="#section-3-3.14.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-3.15">Signed Statement:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.16">
+          <p id="section-3-3.16.1">an identifiable and non-repudiable Statement about an Artifact made by an Issuer.
+In SCITT, Signed Statements are encoded as COSE signed objects; the payload of the COSE structure contains the issued Statement.<a href="#section-3-3.16.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-3.17">Statement:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.18">
+          <p id="section-3-3.18.1">any serializable information about an Artifact.
+To help interpretation of Statements, they must be tagged with a media type (as specified in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>).
+For example, a statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, or some endorsement or attestation about an Artifact.<a href="#section-3-3.18.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-3.19">Transparency Service:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.20">
+          <p id="section-3-3.20.1">an entity that maintains and extends the Registry, and endorses its state.
 A Transparency Service is often referred to by its synonym Notary.
 A Transparency Service can be a complex distributed system, and SCITT requires the Transparency Service to provide many security guarantees about its Registry.
-The identity of a Transparency Service is captured by a public key that must be known by Verifiers in order to validate Receipts.<a href="#section-3-2.16.1" class="pilcrow">¶</a></p>
+The identity of a Transparency Service is captured by a public key that must be known by Verifiers in order to validate Receipts.<a href="#section-3-3.20.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.17">Receipt:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.18">
-          <p id="section-3-2.18.1">a Receipt is a special form of COSE countersignature for Signed Statments that embeds cryptographic evidence that the Signed Statement is recorded in the Registry.
-A Receipt consists of a Registry-specific inclusion proof, a signature by the Transparency Service of the state of the Registry, and additional metadata (contained in the countersignature's protected headers) to assist in auditing.<a href="#section-3-2.18.1" class="pilcrow">¶</a></p>
+<dt id="section-3-3.21">Transparent Statement:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.22">
+          <p id="section-3-3.22.1">a Signed Statement that is augmented with a Receipt created via registration at a Transparency Services (stored in the unprotected header of COSE envelope of the Signed Statement).
+A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.<a href="#section-3-3.22.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.19">Registration:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.20">
-          <p id="section-3-2.20.1">the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's registration policy, storing it in the Registry, producing a Receipt, and returning it to the submitting Issuer.<a href="#section-3-2.20.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-2.21">Registration Policy:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.22">
-          <p id="section-3-2.22.1">the pre-condition enforced by the Transparency Service before registering a Signed Statement, rendering it a Signed Statement,
-based on metadata contained in its COSE Envelope (notably the identity of its Issuer)
-and on prior Signed Statements already added to a Registry.<a href="#section-3-2.22.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-2.23">Transparent Statement:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.24">
-          <p id="section-3-2.24.1">a Signed Statement that is augmented with a Receipt created via registration at a Transparency Services (stored in the unprotected header of COSE envelope of the Signed Statement).
-A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.<a href="#section-3-2.24.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-2.25">Verifier:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.26">
-          <p id="section-3-2.26.1">an entity that consumes Transparent Statements (a specialization of Signed Statement Consumer), verifying their proofs and inspecting their Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.<a href="#section-3-2.26.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-2.27">Auditor:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.28">
-          <p id="section-3-2.28.1">an entity that checks the correctness and consistency of all Transparent Statements registered by a Transparency Service (a subset of potential Transparent Statement Consumers).<a href="#section-3-2.28.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-2.29">Consumer of Signed Statements:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.30">
-          <p id="section-3-2.30.1"><span class="cref" id="definehere">Define here.</span><a href="#section-3-2.30.1" class="pilcrow">¶</a></p>
+<dt id="section-3-3.23">Verifier:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.24">
+          <p id="section-3-3.24.1">an entity that consumes Transparent Statements (a specialization of Signed Statement Consumer), verifying their proofs and inspecting their Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.<a href="#section-3-3.24.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
