@@ -229,7 +229,7 @@ The identity of a Transparency Service is captured by a public key that must be 
 
 Receipt:
 
-: a Receipt is a special form of COSE countersignature for Signed Statments that embeds cryptographic evidence that the Signed Statement is recorded in the Registry.
+: a Receipt is a special form of COSE countersignature for Signed Statements that embeds cryptographic evidence that the Signed Statement is recorded in the Registry.
 A Receipt consists of a Registry-specific inclusion proof, a signature by the Transparency Service of the state of the Registry, and additional metadata (contained in the countersignature's protected headers) to assist in auditing.
 
 Registration:
@@ -356,7 +356,7 @@ This DID appears in the Issuer protected header of Signed Statements' Envelopes,
 
 ### Naming Artifacts
 
-Many Issuers issue Signed Statements about different Artifacts under the same DID, so it is important for everyone to be able to immediately recognize by looking at the Envelope of a Signed Statments what Artifact it is referring to.
+Many Issuers issue Signed Statements about different Artifacts under the same DID, so it is important for everyone to be able to immediately recognize by looking at the Envelope of a Signed Statements what Artifact it is referring to.
 This information is stored in the Feed header of the Envelope.
 Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
 
@@ -421,7 +421,7 @@ To help verifiers interpret the semantics of Signed Statement registration, the 
 of registration policies with standardized semantics.
 Each policy that is expected to be enforced by the Transparency Service is represented by an entry in the registration policy info map (`reg_info`) in the COSE Envelope of the Signed Statement.
 The key of the map entry corresponds to the name of the policy, while its value (including its type) is policy-specific.
-For instance, the `register_by` policy defines the maximum timestamp by which a Signed Statemnet can be registered, hence the associated value contains an unsigned integer.
+For instance, the `register_by` policy defines the maximum timestamp by which a Signed Statement can be registered, hence the associated value contains an unsigned integer.
 
 While this design ensures that all verifiers get the same guarantee regardless of where a Transparent Statement is registered, its main downside is that it requires the Issuer to include the necessary policies in the Envelope when the Signed Statement is produced.
 Furthermore, it makes it impossible to register the same Signed Statement on two different Transparency Services, if their required registration policies are incompatible.
@@ -492,7 +492,7 @@ When presented with a Transparent Statement for an Artifact, consumers verify it
 They may additionally apply a validation policy based on the protected headers present both in the Envelope, the Receipt, or the Statement itself, which may include security-critical or Artifact-specific details.
 
 Some Verifiers may systematically resolve Issuer DIDs to fetch the latest corresponding DID documents.
-This behaviour strictly enforces the revocation of compromised keys: once the Issuer has updated its Statement to remove a key identifier, all Signed Statements include the corresponding `kid` will be rejected.
+This behavior strictly enforces the revocation of compromised keys: once the Issuer has updated its Statement to remove a key identifier, all Signed Statements include the corresponding `kid` will be rejected.
 However, others may delegate DID resolution to a trusted third party and/or cache its results.
 
 Some Verifiers may decide to skip the DID-based signature verification, relying on the Transparency Service's Registration policy and the scrutiny of other Verifiers.
@@ -911,7 +911,7 @@ Actors should independently keep their own record of the Signed Statements they 
 According to Zero Trust Principles any location in a network is never trusted.
 All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but, as usual, this may not exclude network traffic analysis.
 
-#### Signed Statements and Their Tegistration
+#### Signed Statements and Their Registration
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for registration.
 Some Transparency Services may publish every Transparent Statement in their logs, to facilitate their dissemination and auditing.
