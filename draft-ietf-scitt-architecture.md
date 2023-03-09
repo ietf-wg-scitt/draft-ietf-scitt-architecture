@@ -597,17 +597,10 @@ This is to ensure that all verifiers get the same guarantee out of the registrat
 
 Policy Name | Required `reg_info` attributes | Implementation
 ---|---|---
-TimeLimited | `register_by: uint .within (~time)` | Returns true if now () < `register_by` at registration time.
-The Transparency Service MUST store the time of registration along with the Signed Statement, and SHOULD indicate it in corresponding Receipts.
-The value provided for `register_by` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
-Sequential | `sequence_no: uint` | First, lookup of existing registered Transparent Statements with same Issuer and Feed.
-If at least one is found, returns true if and only if the `sequence_no` of the new Signed Statement to be registered would become the highest `sequence_no` in the set of existing Transparent Statements, incremented by one.
-Otherwise, returns true if and only if `sequence_no = 0`.
-
-Temporal | `issuance_ts: uint .within (~time)` | Returns true if and only if there is no existing already registered Transparent Statement in the ledger with the same Issuer and Feed with a greater `issuance_ts` and now () > `issuance_ts` at registration time.
-The value provided for `issuance_ts` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
-NoReplay | `no_replay: null` | If the `no_replay` attribute is present then the policy returns true if and only if the Signed Statement about to be registered doesn't already appear in the ledger.
-This policy has no required attributes.
+TimeLimited | `register_by: uint .within (~time)` | Returns true if now () < `register_by` at registration time. The Transparency Service MUST store the time of registration along with the Signed Statement, and SHOULD indicate it in corresponding Receipts. The value provided for `register_by` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
+Sequential | `sequence_no: uint` | First, lookup of existing registered Transparent Statements with same Issuer and Feed. If at least one is found, returns true if and only if the `sequence_no` of the new Signed Statement to be registered would become the highest `sequence_no` in the set of existing Transparent Statements, incremented by one. Otherwise, returns true if and only if `sequence_no = 0`.
+Temporal | `issuance_ts: uint .within (~time)` | Returns true if and only if there is no existing already registered Transparent Statement in the ledger with the same Issuer and Feed with a greater `issuance_ts` and now () > `issuance_ts` at registration time. The value provided for `issuance_ts` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
+NoReplay | `no_replay: null` | If the `no_replay` attribute is present then the policy returns true if and only if the Signed Statement about to be registered doesn't already appear in the ledger. This policy has no required attributes.
 {: #tbl-initial-named-policies title="An Initial Set of Named Policies"}
 
 ## Registering Signed Statements
