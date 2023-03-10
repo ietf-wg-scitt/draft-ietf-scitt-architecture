@@ -5,11 +5,11 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 10 September 2023                                    C. Fournet
+Expires: 11 September 2023                                    C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
-                                                            9 March 2023
+                                                           10 March 2023
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 September 2023.
+   This Internet-Draft will expire on 11 September 2023.
 
 Copyright Notice
 
@@ -982,10 +982,10 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
    latest version, Issuers SHOULD use the sequence_no or issuer_ts
    attributes.
 
-   Once all the Envelope headers are set, an Issuer SHOULD use a
-   standard COSE implementation to produce an appropriately serialized
-   Signed Statement (the SCITT tag of COSE_Sign1_Tagged is outside the
-   scope of COSE, and used to indicate that a signed object is a Signed
+   Once all the Envelope headers are set, an Issuer MUST use a standard
+   COSE implementation to produce an appropriately serialized Signed
+   Statement (the SCITT tag of COSE_Sign1_Tagged is outside the scope of
+   COSE, and used to indicate that a signed object is a Signed
    Statement).
 
 6.3.  Standard Registration Policies
