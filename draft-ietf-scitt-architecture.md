@@ -231,7 +231,7 @@ and on prior Signed Statements already added to a Registry.
 
 Registry:
 
-: the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym log or ledger.
+: the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym ledger.
 SCITT supports multiple Registry and Receipt formats to accommodate different Transparency Service implementations, such as historical Merkle Trees and sparse Merkle Trees.
 
 Signed Statement:
@@ -327,9 +327,9 @@ Verifier      -->               |   / Verify Transparent /   |
                                 |  /      Statement     /    |
                                 | '--------------------'     |
                                 v                            v
-                       .--------+---------.      .-----------+-----.
-Auditor       -->     / Collect Receipts /      /   Replay Log    /
-                     '------------------'      '-----------------'
+                       .--------+---------.      .-----------+--------.
+Auditor       -->     / Collect Receipts /      /   Replay Ledger    /
+                     '------------------'      '--------------------'
 ~~~~
 
 The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing, registering and auditing Transparent Statements.
@@ -914,7 +914,7 @@ All contents exchanged between actors is protected using secure authenticated ch
 #### Signed Statements and Their Registration
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for registration.
-Some Transparency Services may publish every Transparent Statement in their logs, to facilitate their dissemination and auditing.
+Some Transparency Services may publish every Transparent Statement in its ledger, to facilitate their dissemination and auditing.
 Others may just return Receipts to clients that present Singed Statements for registration, and disclose the ledger only to auditors trusted with the confidentiality of its contents.
 
 A collection of Transparent Statements leaks no information about the contents of other Transparent Statements registered at the Transparency Service.
@@ -928,7 +928,7 @@ For example, while offline Envelope validation of Signed Statements is private, 
 
 ### Cryptographic Assumptions
 
-SCITT relies on standard cryptographic security for signing schemes (EUF-CMA: for a given key, given the public key and any number of signed messages, an attacker cannot forge a valid signature for any other message) and for Receipts schemes (log collision-resistance: for a given commitment such as a Merkle-tree root, there is a unique log such that any valid path authenticates a Signed Statement in this log.)
+We rely on standard cryptographic security for signing schemes (EUF-CMA: for a given key, given the public key and any number of signed messages, an attacker cannot forge a valid signature for any other message) and for Receipts schemes (ledger collision-resistance: for a given commitment such as a Merkle-tree root, there is a unique ledger such that any valid path authenticates a Signed Statement in this ledger.)
 
 The SCITT Architecture supports cryptographic agility: the actors depend only on the subset of signing and Receipt schemes they trust.
 This enables the gradual transition to stronger algorithms, including e.g. post-quantum signature algorithms.
