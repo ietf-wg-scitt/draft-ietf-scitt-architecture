@@ -124,7 +124,7 @@ The Transparency Services specified in this architecture caters to two types of 
 2. Transparent Statement Consumers: entities, stakeholders, and users involved in supply chain interactions that need to access, validate, and trust authentic Statements.
 
 Signed Statement Issuers rely on being discoverable and represented as the responsible parties for their registered Signed Statements via Transparency Services in a believable manner.
-The issuer of a Signed Statement should be authenticated and trusted according to a registration policy of the transprency service.
+The issuer of a Signed Statement should be authenticated and trusted according to the registration policy of the transparency service.
 Analogously, Transparent Statement Consumers rely on verifiable trustworthiness assertions associated with Transparent Statements and their processing provenance in a believable manner.
 If trust can be put into the operations that record Signed Statements in a secure, append-only Registry via online operations, the same trust can be put into a corresponding Receipt that is the resulting documentation (i.e transparent signed statement, via an endorsement from a notarization
 function) issued by the Transparency Services and that can be validated in offline operations.
