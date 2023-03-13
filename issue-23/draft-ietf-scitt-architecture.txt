@@ -5,11 +5,11 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 11 September 2023                                    C. Fournet
+Expires: 14 September 2023                                    C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
-                                                           10 March 2023
+                                                           13 March 2023
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 September 2023.
+   This Internet-Draft will expire on 14 September 2023.
 
 Copyright Notice
 
@@ -231,9 +231,9 @@ Table of Contents
    into the operations that record Signed Statements in a secure,
    append-only Registry via online operations, the same trust can be put
    into a corresponding Receipt that is the resulting documentation (i.e
-   transparent signed statement, via a believable notarization function)
-   issued by the Transparency Services and that can be validated in
-   offline operations.
+   transparent signed statement, via an endorsement from a notarization
+   function) issued by the Transparency Services and that can be
+   validated in offline operations.
 
    The Transparency Services specified in this architecture can be
    implemented by various different types of services in various types
