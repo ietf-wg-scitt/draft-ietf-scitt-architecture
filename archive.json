@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-03-12T00:42:24.127891+00:00",
+  "timestamp": "2023-03-14T00:36:27.823944+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -72,7 +72,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2023-02-17T16:09:43Z",
-      "updatedAt": "2023-03-10T01:46:36Z",
+      "updatedAt": "2023-03-13T16:55:34Z",
       "closedAt": null,
       "comments": []
     },
@@ -192,7 +192,7 @@
       ],
       "body": "Copying over: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/34\r\n\r\nAt IETF-115, discussions involved:\r\n\r\n- Leverage existing IETF and/or W3C definitions and terms, or at least not conflict and cause confusion with existing terms.\r\n- Minimize the concept count\r\n\r\n### Existing Standards Terminology\r\n\r\n- [IETF: Remote Attestation Procedures Architecture (RATS)](https://www.ietf.org/archive/id/draft-ietf-rats-architecture-22.html#name-artifacts)\r\n- [IETF: SCITT Architecture](https://ietf-scitt.github.io/draft-birkholz-scitt-architecture/draft-birkholz-scitt-architecture.html#name-terminology)\r\n- [IETF: RFC7519](https://www.ietf.org/archive/id/draft-ietf-rats-architecture-22.html#RFC7519)\r\n\r\n### Proposal\r\n\r\nClaim conflicts with RATS and W3C\r\n\r\nComparison of terms across orgs as the object changes state:\r\n![](https://hackmd.io/_uploads/SklGkMSBs.png)\r\n\r\nInstead of transitioning from `statement` to `claim` to `transparent claim`, what if we used `statement` as the base concept:\r\n- Statement --> Signed Statment --> Transparent Statement",
       "createdAt": "2023-02-21T15:34:14Z",
-      "updatedAt": "2023-03-10T01:43:17Z",
+      "updatedAt": "2023-03-13T22:59:20Z",
       "closedAt": null,
       "comments": [
         {
@@ -278,6 +278,13 @@
           "body": "I'm deferring to 117 so we can use the current #16 terminology as a common baseline for 116 discussions and slides.",
           "createdAt": "2023-03-10T01:43:17Z",
           "updatedAt": "2023-03-10T01:43:17Z"
+        },
+        {
+          "author": "kaywilliams",
+          "authorAssociation": "NONE",
+          "body": "@SteveLasker asked me to post this issue here rather than in the separate issue #20 that I had created (which has now been closed)\r\n\r\n----------------------------\r\nIn describing to lay audiences, I have found it easier to use the term 'registered statement' rather than 'transparent statement'. It reduces the number of concepts needed for understanding. Here is the workflow description I have been using:\r\n\r\nUser creates a statement\r\nUser signs a statement\r\nUser registers a statement on a transparency registry. Prior to registration, the statement is evaluated against registration policy.\r\nUser receives a receipt of registration\r\nUser shares a registered statement with interested parties\r\nAuditors and others query the transparency registry to get a history of registered statements\r\n\r\nSee related comment on Issue https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16\r\nSee related comment on Issue https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/20",
+          "createdAt": "2023-03-13T22:59:19Z",
+          "updatedAt": "2023-03-13T22:59:19Z"
         }
       ]
     },
@@ -420,7 +427,7 @@
       "labels": [],
       "body": "Copied over from: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/27\r\n\r\n##  Compound User Story / Sequence Diagram\r\n\r\nAs a consumer, I want to understand if I should trust an artifact\r\nAs a producer, I want to be assured that the integrity of my artifacts has been reviewed by a trusted 3rd party.\r\n\r\n```mermaid\r\nsequenceDiagram\r\n    participant Issuer\r\n    participant Notary\r\n    Note left of Issuer: I take responsibility for the artifacts I produce\r\n    Issuer ->> Notary: These are the policies I am committed to meeting\r\n    Issuer ->> Notary: I stand by my claims about my artifact\r\n    loop Claims Check\r\n        Notary ->> Notary: Review relevant claims and policies\r\n    end\r\n    Notary ->> Issuer: Here is my endorsement and receipt\r\n    Consumer->>Notary: Is this artifact safe to use?\r\n    loop Endorsement Check\r\n        Notary->>Notary: Review relevant claims and endorsements\r\n    end\r\n     Notary ->> Consumer: You can trust this artifact, the endorsement is still valid\r\n     Note right of Consumer: I have confidence in the artifacts I consume\r\n```\r\n",
       "createdAt": "2023-02-21T15:53:11Z",
-      "updatedAt": "2023-03-11T01:26:32Z",
+      "updatedAt": "2023-03-13T16:55:06Z",
       "closedAt": null,
       "comments": [
         {
@@ -611,7 +618,7 @@
       ],
       "body": "In describing to lay audiences, I have found it easier to use the term 'registered statement' rather than 'transparent statement'. It reduces the number of concepts needed for understanding. Here is the workflow description I have been using:\r\n\r\nUser creates a statement\r\nUser signs a statement\r\nUser registers a statement on a transparency registry. Prior to registration, the statement is evaluated against registration policy.\r\nUser receives a receipt of registration\r\nUser shares a registered statement with interested parties\r\nAuditors and others query the transparency registry to get a history of registered statements\r\n\r\nSee related comment on Issue #16 ",
       "createdAt": "2023-03-06T17:22:44Z",
-      "updatedAt": "2023-03-10T01:29:46Z",
+      "updatedAt": "2023-03-13T23:00:21Z",
       "closedAt": "2023-03-10T01:29:45Z",
       "comments": [
         {
@@ -641,6 +648,13 @@
           "body": "Resolving as a dupe of the #8 discussion and closing just to centralize common discussions. \r\n@kaywilliams, please review and copy your points to that issue. Also, please note the currently merged updates which use Statement.  \r\n",
           "createdAt": "2023-03-10T01:29:45Z",
           "updatedAt": "2023-03-10T01:29:45Z"
+        },
+        {
+          "author": "kaywilliams",
+          "authorAssociation": "NONE",
+          "body": "Added comment to #8",
+          "createdAt": "2023-03-13T23:00:20Z",
+          "updatedAt": "2023-03-13T23:00:20Z"
         }
       ]
     },
@@ -710,7 +724,7 @@
       ],
       "body": "              I don't love this language.\r\n\r\nI think notarizing applies to making a \"Signed Statement\" a \"Transparent Statement\"... but this sentence seems to imply notarization is part of the process of creating a \"Signed Statement\", which seems wrong.\r\n\r\n_Originally posted by @OR13 in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1126710441_\r\n            ",
       "createdAt": "2023-03-07T15:34:29Z",
-      "updatedAt": "2023-03-10T16:59:29Z",
+      "updatedAt": "2023-03-13T16:54:58Z",
       "closedAt": null,
       "comments": [
         {
@@ -752,7 +766,7 @@
       ],
       "body": "              I think the concept of \"notarization\" needs to go here... or it needs to not be used anywhere.\r\n\r\n_Originally posted by @OR13 in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1126712923_\r\n            ",
       "createdAt": "2023-03-07T15:39:14Z",
-      "updatedAt": "2023-03-10T13:56:57Z",
+      "updatedAt": "2023-03-13T16:54:32Z",
       "closedAt": null,
       "comments": [
         {
@@ -1134,7 +1148,7 @@
       ],
       "body": "From a terminology perspective, \"consumer\" can mean:\r\n- End users that \"consume\" software, akin to a consumer of purchased good and services\r\n- Anyone interacting with a SCITT Transparency Service - akin to publishers and consumers of a SCITT Transparency service\r\n\r\nSuggestion for tracking: add \"Consumer\" to the [Terminology](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-terminology) section\r\n\r\n              'consumer' might not be the best term. Does it mean ingress or someone engaging in commerce?\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123549835_\r\n            ",
       "createdAt": "2023-03-07T17:49:05Z",
-      "updatedAt": "2023-03-10T13:52:22Z",
+      "updatedAt": "2023-03-13T16:56:23Z",
       "closedAt": null,
       "comments": [
         {
@@ -1150,6 +1164,13 @@
           "body": "Yes, simply define as one who interacts with a SCITT service.",
           "createdAt": "2023-03-10T13:52:22Z",
           "updatedAt": "2023-03-10T13:52:22Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "There are references in the doc, as is. Deferring to 117, to create stability for 116.",
+          "createdAt": "2023-03-13T16:56:18Z",
+          "updatedAt": "2023-03-13T16:56:18Z"
         }
       ]
     },
@@ -1266,7 +1287,7 @@
       ],
       "body": "The architecture terminology refers to:\r\n\r\n**Registry:** the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the **synonym log or ledger**. \r\n\r\nTo minimize concept counts, and avoid confusion with diagnostic logs, shall we use Ledger as the persistent form of the Transparency Service?",
       "createdAt": "2023-03-09T21:09:40Z",
-      "updatedAt": "2023-03-09T22:20:45Z",
+      "updatedAt": "2023-03-13T16:53:52Z",
       "closedAt": null,
       "comments": [
         {
@@ -1338,7 +1359,7 @@
     {
       "number": 57,
       "id": "I_kwDOIvmHss5gc4m8",
-      "title": "COSE vs DSSE etc.",
+      "title": "Document rationale for COSE vs DSSE etc.",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/57",
       "state": "OPEN",
       "author": "nealmcb",
@@ -1347,7 +1368,7 @@
       "labels": [],
       "body": "Re: #40:\r\n\r\nThe [SCITT charter](https://datatracker.ietf.org/wg/scitt/about/) says:\r\n> reuse existing work from IETF WGs such as COSE and RATS, as appropriate,\r\n\r\nThe words \"as appropriate\" suggest to me that we should have some discussion of the pros and cons of mandating COSE, and address alternatives.\r\n\r\nIn particular, there is already deployment experience with the closely-related effort [Sigstore](https://www.sigstore.dev/) which uses [DSSE: Dead Simple Signing Envelope](https://github.com/secure-systems-lab/dsse). Some googling will surface a comparison of [Signature Formats. Envelopes and Wrappers and Formats, Oh My! by Dan Lorenc](https://dlorenc.medium.com/signature-formats-9b7b2a127473) which recommends DSSE over the family of JOSE standards, which includes COSE to some extent, though COSE is not covered in that article.\r\n\r\nI think we'd should try to promote interoperability with Sigstore.\r\n\r\nIs there some background info somewhere on advantages of mandating COSE?",
       "createdAt": "2023-03-10T00:41:23Z",
-      "updatedAt": "2023-03-10T01:49:25Z",
+      "updatedAt": "2023-03-13T16:26:25Z",
       "closedAt": null,
       "comments": [
         {
@@ -1356,6 +1377,13 @@
           "body": "Thanks @nealmcb,\r\nHere's some background that was in the comment on #16:\r\n\r\n-------\r\n\r\nThanks, @nealmcb. COSE is intrinsic to SCITT as an extensible means to capture headers and payload in a consistent/standards-based format. The evaluation was captured here: [Digital Artifact Signing Envelope Format Comparison](https://docs.google.com/document/d/18YVGA4mq45wfUkWrAqWkymzdHRcXxlwINKXnEp86L0w/edit#heading=h.3v6vw85pjg5e)\r\nAs a result, sigstore/rekor added support through a [draft](https://github.com/sigstore/rekor/pull/731) then [subsequent merged PR](https://github.com/sigstore/rekor/pull/867) ",
           "createdAt": "2023-03-10T01:49:25Z",
           "updatedAt": "2023-03-10T01:49:25Z"
+        },
+        {
+          "author": "nealmcb",
+          "authorAssociation": "NONE",
+          "body": "Thank you @SteveLasker, that document is very helpful. What is the status and plan for the document, which is undated, marked as a \"Draft\", and has a note that it had been perhaps 1/3 reviewed as of a 2022-03-16 meeting.\r\n\r\nI'll note that Dan Lorenc and Laurent Simon have a number of critiques from last year which I find insightful, and which have not been addressed yet.\r\nThough, as you note, it was also Dan who signed off on supporting COSE in Sigstore's Rekor last June.... ",
+          "createdAt": "2023-03-13T00:51:09Z",
+          "updatedAt": "2023-03-13T00:51:09Z"
         }
       ]
     },
@@ -3637,7 +3665,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2023-03-09T22:40:38Z",
-      "updatedAt": "2023-03-10T13:43:29Z",
+      "updatedAt": "2023-03-13T16:54:22Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "44649625141c8f13140deb2896a145172001d3d2",
@@ -3669,6 +3697,59 @@
               "updatedAt": "2023-03-10T13:43:29Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PtdgU",
+          "commit": {
+            "abbreviatedOid": "cd96de3"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T15:14:04Z",
+          "updatedAt": "2023-03-13T15:14:05Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nA collection of Transparent Statements must not leak information about the contents of other Transparent Statements registered on the Transparency Service.\r\n```",
+              "createdAt": "2023-03-13T15:14:04Z",
+              "updatedAt": "2023-03-13T15:14:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5Ptf_O",
+          "commit": {
+            "abbreviatedOid": "cd96de3"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T15:18:29Z",
+          "updatedAt": "2023-03-13T15:18:30Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "We should leave this to a generic statement, like as much as possible PII as clear statements should be avoided (unless the use case demands it).",
+              "createdAt": "2023-03-13T15:18:29Z",
+              "updatedAt": "2023-03-13T15:18:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5PthH1",
+          "commit": {
+            "abbreviatedOid": "cd96de3"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Left few comments, kindly absorb and move on.\r\n\r\nI have approved it now!",
+          "createdAt": "2023-03-13T15:20:36Z",
+          "updatedAt": "2023-03-13T15:20:36Z",
+          "comments": []
         }
       ]
     },
@@ -3684,7 +3765,7 @@
       "labels": [],
       "body": "Resolves #46 ",
       "createdAt": "2023-03-09T22:44:28Z",
-      "updatedAt": "2023-03-10T09:27:21Z",
+      "updatedAt": "2023-03-13T16:54:10Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "44649625141c8f13140deb2896a145172001d3d2",
@@ -3773,18 +3854,33 @@
       "labels": [],
       "body": "",
       "createdAt": "2023-03-10T18:57:09Z",
-      "updatedAt": "2023-03-10T19:45:29Z",
+      "updatedAt": "2023-03-13T16:35:24Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cab90cc1fb43a34c7b42bfa78b1ec79401a44125",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "issue-23",
-      "headRefOid": "f3a8b2d9b3562a2f804bf5798f9ccab8e81fc390",
+      "headRefOid": "3869b763664054b7c0f6dff400b4a43d4987c8fd",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@SteveLasker Incorporated Review Comments!",
+          "createdAt": "2023-03-13T15:40:39Z",
+          "updatedAt": "2023-03-13T15:40:39Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks @yogeshbdeshpande \r\nlets see if we can agree on append-only log|registry today so we can adapt and merge. ",
+          "createdAt": "2023-03-13T16:35:24Z",
+          "updatedAt": "2023-03-13T16:35:24Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss5PmXUV",
@@ -3825,8 +3921,83 @@
               "updatedAt": "2023-03-10T19:45:29Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5Pthgr",
+          "commit": {
+            "abbreviatedOid": "f3a8b2d"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T15:21:22Z",
+          "updatedAt": "2023-03-13T15:21:22Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "@SteveLasker Agree you have a valid point, I will change this!",
+              "createdAt": "2023-03-13T15:21:22Z",
+              "updatedAt": "2023-03-13T15:21:22Z"
+            }
+          ]
         }
       ]
+    },
+    {
+      "number": 60,
+      "id": "PR_kwDOIvmHss5L1wN9",
+      "title": "Consistency fixes",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/60",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "A scan of the document to align terminology consistency.\r\n\r\nThe changes account for:\r\n- Registry and Transparency Service being used interchangeably.\r\n- Log and Ledger being used interchangeably.\r\n\r\nFor the purpose of this PR:\r\n\r\n- **append-only Log** has been replaced with **append-only Ledger**. **Reasonsing:** As we're focusing on a Transparency Service verifying the identity of the issuer, this aligns with the Notary concept. A Notary writes entries to a Ledger. This also leaves the term Log available for diagnostics logs used to troubleshoot a Transparency Service.\r\n- **Transparency Service**: An entity operating an instance of this specification. Personally, I struggle as \"Transparent\" suggests everything is visible and public. We later discuss Opaque statements being placed in the Transparency Service. My personal suggestion is to call it a \"SCITT Registry\" and we leave the terms Transparent and Opaque to the types of payloads placed in the Statement.\r\n\r\nI've only completed to line 141, with an edit to terminology.  I'll try pickup later today.\r\nI've created this PR under a `consistency-fixes` branch here, so others can also make proposed changes.\r\n",
+      "createdAt": "2023-03-12T17:16:50Z",
+      "updatedAt": "2023-03-13T15:59:19Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "cab90cc1fb43a34c7b42bfa78b1ec79401a44125",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "consistency-fixes",
+      "headRefOid": "12a0d20709d08ec4fdb3d83cf7c3cbdfd4f768f7",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@SteveLasker , I think, we are going in circles here.\r\n\r\nWe agreed we will use SCITT Registry and where applicable, an append only log and not use the term ledger, consistently throughout the document.\r\n\r\nThis was agreed between all the Architecture authors in consensus during the Monday meeting.\r\n\r\nRequest please do not push more PR's with Ledger terminology.\r\n\r\nI would request please we stick to the same concept now also ",
+          "createdAt": "2023-03-13T09:33:42Z",
+          "updatedAt": "2023-03-13T09:33:42Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi @yogeshbdeshpande,\r\nI hadn\u2019t seen the note. \r\nThe doc currently uses several terms interchangeably. \r\n- append-only log is fine over ledger as a notary writes to a log\r\n- - we\u2019ve consolidated on statement, signed statement and transparent statement \u2705 :\r\n- but what are we using to refer to an instance of SCITT? Transparency Service or Registry?",
+          "createdAt": "2023-03-13T14:46:50Z",
+          "updatedAt": "2023-03-13T14:47:26Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * instance of SCITT\r\n\r\nInstance of SCITT is a Transparency Service. It is a logical layer, which has Registration Functions, Notary Function baked into it.\r\n\r\nRegistry is a synonym to an \"Append Only Log\"",
+          "createdAt": "2023-03-13T15:04:18Z",
+          "updatedAt": "2023-03-13T15:04:18Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Can we capture the decisions in these issues:\r\n- [Terminology: Registry & Transparency Service #7](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/7)\r\n- [Converge Claim and Statement #8](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/8)\r\n- [Change term artifact #9](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/9)",
+          "createdAt": "2023-03-13T15:59:19Z",
+          "updatedAt": "2023-03-13T15:59:19Z"
+        }
+      ],
+      "reviews": []
     }
   ]
 }
