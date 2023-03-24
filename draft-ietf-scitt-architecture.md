@@ -45,6 +45,12 @@ author:
   city: Cambridge
   email: yogesh.deshpande@arm.com
   country: UK
+- ins: S. Lasker
+  name: Steve Lasker
+  org: Lasker Consulting
+  email: stevenlasker@hotmail.com
+  city: Seattle
+  country: United States
 
 normative:
   RFC8610: CDDL
