@@ -8,7 +8,7 @@ docname: draft-ietf-scitt-architecture-latest
 area: Security
 wg: SCITT
 kw: Internet-Draft
-cat: std
+cat: std 
 consensus: yes
 submissiontype: IETF
 
@@ -919,13 +919,12 @@ All contents exchanged between actors is protected using secure authenticated ch
 
 #### Signed Statements and Their Registration
 
-The Transparency Service is trusted with the confidentiality of the Signed Statements presented for registration.
-Some Transparency Services may publish every Transparent Statement in their logs, to facilitate their dissemination and auditing.
-Others may just return Receipts to clients that present Singed Statements for registration, and disclose the ledger only to auditors trusted with the confidentiality of its contents.
+The Transparency Service is trusted with the confidentiality of the Signed Statements presented for registration. The act of registration will always record in the
+logs the Transparent Statement and associated resolution evidence.  There is a use case where the logs are publically accessible, and another where the audit requires elevated premission. This could be for privacy or for mitigation of servicing expensive operations. In this latter case the returned Receipts to the client will both facilitate simple evaluation of meeting the policy bar and as a key to allow query during the elevated deep audit.
 
 A collection of Transparent Statements leaks no information about the contents of other Transparent Statements registered at the Transparency Service.
 
-Nonetheless, Issuers should carefully review the inclusion of private/confidential materials in their issued Signed Statements; they may for instance remove any PII, or include instead opaque cryptographic commitments, such as hashes.
+Nonetheless, Issuers should carefully review the inclusion of private/confidential materials in their issued Signed Statements; they may for instance remove any PII, or include instead opaque cryptographic commitments, such as hashes.  The pattern of leveraging detached signatures with an embedded URL results in a situation where the envelope content is on the log (and viewable) and a different access policy to the confidential content could occur.  Furthermore the content maybe stored on a non-public system and have aged off, while the record of notarization remain.
 
 #### Queries to the Registry
 
