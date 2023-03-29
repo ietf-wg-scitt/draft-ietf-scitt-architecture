@@ -8,7 +8,7 @@ docname: draft-ietf-scitt-architecture-latest
 area: Security
 wg: SCITT
 kw: Internet-Draft
-cat: std 
+cat: std
 consensus: yes
 submissiontype: IETF
 
