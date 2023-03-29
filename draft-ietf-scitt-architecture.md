@@ -920,11 +920,11 @@ All contents exchanged between actors is protected using secure authenticated ch
 #### Signed Statements and Their Registration
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for registration. The act of registration will always record in the
-logs the Transparent Statement and associated resolution evidence.  There is a use case where the logs are publically accessible, and another where the audit requires elevated premission. This could be for privacy or for mitigation of servicing expensive operations. In this latter case the returned Receipts to the client will both facilitate simple evaluation of meeting the policy bar and as a key to allow query during the elevated deep audit.
+logs the Transparent Statement and associated resolution evidence.  There is a use case where the logs are fully publically accessible, and another where the audit requires elevated premission (this could be for privacy or for mitigation of servicing expensive operations). In either case the returned Receipts to the client will both facilitate simple evaluation of meeting the identity policy bar and act as a key to allow query during the elevated deep audit.
 
 A collection of Transparent Statements leaks no information about the contents of other Transparent Statements registered at the Transparency Service.
 
-Nonetheless, Issuers should carefully review the inclusion of private/confidential materials in their issued Signed Statements; they may for instance remove any PII, or include instead opaque cryptographic commitments, such as hashes.  The pattern of leveraging detached signatures with an embedded URL results in a situation where the envelope content is on the log (and viewable) and a different access policy to the confidential content could occur.  Furthermore the content maybe stored on a non-public system and have aged off, while the record of notarization remain.
+Nonetheless, Issuers should carefully review the inclusion of private/confidential materials in their issued Signed Statements; they may for instance remove any PII, or include instead opaque cryptographic commitments, such as hashes.  The pattern of leveraging detached signatures with an embedded URL results in a situation where the envelope content is on the log (and viewable) and a different access policy can be used for the confidential content.  Furthermore, the content may have aged off, leaving just the record of registration.
 
 #### Queries to the Registry
 
