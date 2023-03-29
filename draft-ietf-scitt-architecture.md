@@ -920,7 +920,7 @@ All contents exchanged between actors is protected using secure authenticated ch
 #### Signed Statements and Their Registration
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for registration. The act of registration will always record in the
-logs the Transparent Statement and associated resolution evidence.  There is a use case where the logs are fully publically accessible, and another where the audit requires elevated premission (this could be for privacy or for mitigation of servicing expensive operations). In either case the returned Receipts to the client will both facilitate simple evaluation of meeting the identity policy bar and act as a key to allow query during the elevated deep audit.
+logs the Transparent Statement and associated resolution evidence.  There is a use case where the logs are completely publicly accessible, and another where the audit requires elevated permission (this could be for privacy or for mitigation of servicing expensive operations). In either case the returned Receipts to the client will both facilitate simple evaluation of meeting the identity policy bar and act as a key to allow query during the elevated deep audit.
 
 A collection of Transparent Statements leaks no information about the contents of other Transparent Statements registered at the Transparency Service.
 
