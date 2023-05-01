@@ -95,18 +95,18 @@ This document describes a scalable and flexible, decentralized architecture to e
 It achieves this goal by enforcing the following complementary security guarantees:
 
 1. Statements made by Issuers about supply chain Artifacts must be identifiable, authentic, and non-repudiable;
-2. such Statements must be registered on a secure append-only Ledger, so that their provenance and history can be independently and consistently audited;
+2. such Statements must be registered on a secure append-only Log, so that their provenance and history can be independently and consistently audited;
 3. Issuers can efficiently prove to any other party the Registration of their Signed Statements; verifying this proof ensures that the Issuer is consistent and non-equivocal when producing Signed Statements.
 
 The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
-The second guarantee is achieved by storing the Signed Statement on an immutable, append-only Ledger.
-The next guarantee is achieved by implementing the append-only Ledger using a verifiable data structure (such as a Merkle Tree {{MERKLE}}).
+The second guarantee is achieved by storing the Signed Statement on an immutable, append-only Log.
+The next guarantee is achieved by implementing the append-only Log using a verifiable data structure (such as a Merkle Tree {{MERKLE}}).
 Lastly, the Transparency Service verifies the identity of the Issuer, and conformance to a Registration Policy associated with the instance of the Transparency Service.
-As the Issuer of the Signed Statement and conformance to the Registration Policy are confirmed, an endorsement is made as the Signed Statement is added to the append-only Ledger.
+As the Issuer of the Signed Statement and conformance to the Registration Policy are confirmed, an endorsement is made as the Signed Statement is added to the append-only Log.
 
 The guarantees and techniques used in this document generalize those of Certificate Transparency {{-CT}}, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates.
 However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each Transparency Service is implemented and operates.
-Each service MAY enforce its own Registration Policy for authorizing entities to register their Signed Statements to the append-only Ledger.
+Each service MAY enforce its own Registration Policy for authorizing entities to register their Signed Statements to the append-only Log.
 Some Transparency Services may also enforce role based access control (RBAC) policies limiting who can write, read and audit specific Feeds or the full Registry.
 It is critical to provide interoperability for all Transparency Services instances as the composition and configuration of involved supply chain entities and their system components is ever-changing and always in flux.
 
@@ -114,11 +114,11 @@ A Transparency Services provides visibility into Signed Statements associated wi
 These Signed Statements (and corresponding Statement payload) are about the Artifacts produced by a supply chain.
 A Transparency Service endorses specific and well-defined metadata about these Artifacts that is captured in Statements.
 Some metadata is selected (and signed) by the Issuer, indicating, e.g., "who issued the Statement" or "what type of Artifact is described" or "what is the Artifact's version"; whereas additional metadata is selected (and countersigned) by the Transparency Services, indicating, e.g., "when was the Signed Statement about the Artifact registered in the Registry".
-The countersignature is often referred to as being notarized.
+Producing a Transparent Statement is also referred to as a form of notarization.
 A Statements payload content MAY be encrypted and opaque to the Transparency Services, if so desired: however the metadata MUST be transparent in order to warrant trust for later processing.
 
 Transparent Statements provide a common basis for holding Issuers accountable for the Statement payload about Artifacts they release and (more generally) principals accountable for auxiliary Signed Statements from other Issuers about the original Signed Statement about an Artifact.
-Issuers may Register new Signed Statements about Artifacts, but they cannot delete or alter Signed Statements previously added to the append-only Ledger.
+Issuers may Register new Signed Statements about Artifacts, but they cannot delete or alter Signed Statements previously added to the append-only Log.
 A Transparency Service may restrict access to Signed Statements through Role Based Access Control, however third parties such as Auditors would be granted access as needed to attest to the validity of the Artifact, Feed or entirety of the Transparency Service.
 
 Trust in the Transparency Service itself is supported both by protecting their implementation (using, for instance, replication, trusted hardware, and remote attestation of systems) and by enabling independent audits of the correctness and consistency of its Registry, thereby holding the organization accountable that operates it.
@@ -132,13 +132,13 @@ Consumers MAY be producers, providing additional Signed Statements, attesting to
 
 Producers of Signed Statement rely on the Transparency Service being discoverable and represented as the responsible parties for their Registered Signed Statements.
 Analogously, Transparent Statement Consumers rely on verifiable trustworthiness assertions associated with Transparent Statements and their processing provenance.
-If trust can be put into the operations that record Signed Statements (i.e., a verified notarization function) in a secure, append-only Ledger via online operations, the same trust can be put into a corresponding Receipt that is the resulting documentation of these online operations issued by the Transparency Services and that can be validated in offline operations.
+If trust can be put into the operations that record Signed Statements (i.e., a verified notarization function) in a secure, append-only Log via online operations, the same trust can be put into a corresponding Receipt that is the resulting documentation of these online operations issued by the Transparency Services and that can be validated in offline operations.
 
 The Transparency Services specified in this architecture can be implemented by various different types of services in various types of languages provided via various variants of API layouts.
 
 The interoperability guaranteed by the Transparency Services is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs).
-The core components are based on the Concise Signing and Encryption standard specified in {{-COSE}}, which is used to Sign Statements about Artifacts and to build and maintain a Merkle tree that functions as an append-only Ledger for corresponding Signed Statements.
-The format and verification process for Ledger-based transparency Receipts are described in {{-RECEIPTS}}.
+The core components are based on the Concise Signing and Encryption standard specified in {{-COSE}}, which is used to produce Signed Statements about Artifacts and to build and maintain a Merkle tree that functions as an append-only Log for corresponding Signed Statements.
+The format and verification process for Log-based transparency Receipts are described in {{-RECEIPTS}}.
 
 ## Requirements Notation
 
@@ -221,10 +221,10 @@ Issuer:
 : an entity that creates Signed Statements about software Artifacts in the supply chain.
 An Issuer may be the owner or author of software Artifacts, or an independent third party such as a reviewer or an endorser.
 
-Ledger (was Registry):
+Append-only Log (converges Ledger and Registry):
 
 : the verifiable append-only data structure that stores Signed Statements in a Transparency Service.
-SCITT supports multiple Ledger and Receipt formats to accommodate different Transparency Service implementations, such as historical Merkle Trees and sparse Merkle Trees.
+SCITT supports multiple Log and Receipt formats to accommodate different Transparency Service implementations, such as historical Merkle Trees and sparse Merkle Trees.
 
 Receipt:
 
@@ -606,8 +606,8 @@ Policy Name | Required `reg_info` attributes | Implementation
 ---|---|---
 TimeLimited | `register_by: uint .within (~time)` | Returns true if now () < `register_by` at Registration time. The Transparency Service MUST store the time of Registration along with the Signed Statement, and SHOULD indicate it in corresponding Receipts. The value provided for `register_by` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
 Sequential | `sequence_no: uint` | First, lookup of existing registered Transparent Statements with same Issuer and Feed. If at least one is found, returns true if and only if the `sequence_no` of the new Signed Statement to be registered would become the highest `sequence_no` in the set of existing Transparent Statements, incremented by one. Otherwise, returns true if and only if `sequence_no = 0`.
-Temporal | `issuance_ts: uint .within (~time)` | Returns true if and only if there is no existing already registered Transparent Statement in the ledger with the same Issuer and Feed with a greater `issuance_ts` and now () > `issuance_ts` at Registration time. The value provided for `issuance_ts` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
-NoReplay | `no_replay: null` | If the `no_replay` attribute is present then the policy returns true if and only if the Signed Statement about to be registered doesn't already appear in the ledger. This policy has no required attributes.
+Temporal | `issuance_ts: uint .within (~time)` | Returns true if and only if there is no existing already registered Transparent Statement in the Append-only Log with the same Issuer and Feed with a greater `issuance_ts` and now () > `issuance_ts` at Registration time. The value provided for `issuance_ts` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
+NoReplay | `no_replay: null` | If the `no_replay` attribute is present then the policy returns true if and only if the Signed Statement about to be registered doesn't already appear in the Append-only Log. This policy has no required attributes.
 {: #tbl-initial-named-policies title="An Initial Set of Named Policies"}
 
 ## Registering Signed Statements
@@ -872,7 +872,7 @@ Hence, a Verifier would usually validate a Transparent Statement originating fro
 Authorized supply chain actors (Issuers) cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a trustworthy Transparency Service.
 
 Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal.
-Preventing a Transparency Service from registering Signed Statements that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their append-only Registry is not possible.
+Preventing a Transparency Service from registering Signed Statements that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their append-only Log is not possible.
 In contrast Transparency Services can be hold accountable and they can be called out by any Auditor that replays their Registry against any contested Receipt.
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service: different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
 
@@ -896,7 +896,7 @@ Conversely, a corrupt Transparency Service may
 An Auditor granted (partial) access to a Registry and to a collection of disputed Receipts will be able to replay it, detect any invalid Registration (2) or incorrect Receipt in this collection (3), and blame the Transparency Service for them.
 This ensures any Verifier that trusts at least one such Auditor that (2,3) will be blamed to the Transparency Service.
 
-Due to the operational challenge of maintaining a globally consistent append-only Registry,
+Due to the operational challenge of maintaining a globally consistent append-only Log,
 some Transparency Services may provide limited support for historical queries on the Transparent Statements they have registered,
 and accept the risk of being blamed for inconsistent Registration or Issuer equivocation.
 
@@ -922,7 +922,7 @@ All contents exchanged between actors is protected using secure authenticated ch
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
 Some Transparency Services may publish every Transparent Statement in their logs, to facilitate their dissemination and auditing.
-Others may just return Receipts to clients that present Singed Statements for Registration, and disclose the ledger only to Auditors trusted with the confidentiality of its contents.
+Others may just return Receipts to clients that present Singed Statements for Registration, and disclose the Append-only Log only to Auditors trusted with the confidentiality of its contents.
 
 A collection of Transparent Statements leaks no information about the contents of other Transparent Statements registered at the Transparency Service.
 
