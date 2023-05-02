@@ -117,6 +117,7 @@ These Signed Statements (and corresponding Statement payload) are about the obje
 A Transparency Service vouches for specific and well-defined metadata about these Artifacts that is captured in Statements.
 Some metadata is selected (and signed) by the Issuer, indicating, e.g., "who issued the Statement" or "what type of Artifact is described" or "what is the Artifact's version"; whereas additional metadata is selected (and countersigned) by the Transparency Services, indicating, e.g., "when was the Signed Statement about the Artifact registered in the Registry".
 Producing a Transparent Statement is also referred to as a form of notarization.
+A Statements payload content MAY be encrypted and opaque to the Transparency Services, if so desired: however the metadata MUST be transparent in order to warrant trust for later processing.
 Transparent Statements provide a common basis for holding Issuers accountable for the Statement payload about Artifacts they release and (more generally) principals accountable for auxiliary Signed Statements from other Issuers about the original Signed Statement about an Artifact.
 Hence, Issuers may register new Signed Statements about their Artifacts, but they cannot delete or alter earlier Signed Statements about certain Artifacts, or hide their Signed Statements from third parties such as auditors.
 
