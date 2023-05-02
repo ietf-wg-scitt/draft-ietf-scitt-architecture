@@ -127,7 +127,7 @@ Signed Statement Issuers rely on being discoverable and represented as the respo
 The issuer of a Signed Statement should be authenticated and authorized according to the registration policy of the transparency service.
 Analogously, Transparent Statement Consumers rely on verifiable trustworthiness assertions associated with Transparent Statements and their processing provenance in a believable manner.
 If trust can be put into the operations that record Signed Statements in a secure, append-only log via online operations, the same trust can be put into the resulting transparent statement,
-function) issued by the Transparency Services and that can be validated in offline operations.
+issued by the Transparency Services and that can be validated in offline operations.
 
 The Transparency Services specified in this architecture can be implemented by various different types of services in various types of languages provided via various variants of API layouts.
 
