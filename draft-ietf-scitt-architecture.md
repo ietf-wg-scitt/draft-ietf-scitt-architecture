@@ -45,6 +45,12 @@ author:
   city: Cambridge
   email: yogesh.deshpande@arm.com
   country: UK
+- ins: S. Lasker
+  name: Steve Lasker
+  org: Lasker Consulting
+  email: stevenlasker@hotmail.com
+  city: Seattle
+  country: United States
 
 normative:
   RFC8610: CDDL
@@ -130,9 +136,11 @@ The Transparency Services specified in this architecture caters to two types of 
 2. Consumers: organizations, stakeholders, and users involved in validating supply chain artifacts, but can only do so if the Statements are known to be authentic.
 Consumers MAY be producers, providing additional Signed Statements, attesting to conformance of various compliance requirements.
 
-Producers of Signed Statement rely on the Transparency Service being discoverable and represented as the responsible parties for their Registered Signed Statements.
-Analogously, Transparent Statement Consumers rely on verifiable trustworthiness assertions associated with Transparent Statements and their processing provenance.
-If trust can be put into the operations that record Signed Statements (i.e., a verified notarization function) in a secure, append-only Log via online operations, the same trust can be put into a corresponding Receipt that is the resulting documentation of these online operations issued by the Transparency Services and that can be validated in offline operations.
+Signed Statement Issuers rely on being discoverable and represented as the responsible parties for their registered Signed Statements via Transparency Services in a believable manner.
+The issuer of a Signed Statement should be authenticated and authorized according to the registration policy of the transparency service.
+Analogously, Transparent Statement Consumers rely on verifiable trustworthiness assertions associated with Transparent Statements and their processing provenance in a believable manner.
+If trust can be put into the operations that record Signed Statements in a secure, append-only log via online operations, the same trust can be put into the resulting transparent statement,
+issued by the Transparency Services and that can be validated in offline operations.
 
 The Transparency Services specified in this architecture can be implemented by various different types of services in various types of languages provided via various variants of API layouts.
 
@@ -924,9 +932,11 @@ The Transparency Service is trusted with the confidentiality of the Signed State
 Some Transparency Services may publish every Transparent Statement in their logs, to facilitate their dissemination and auditing.
 Others may just return Receipts to clients that present Singed Statements for Registration, and disclose the Append-only Log only to Auditors trusted with the confidentiality of its contents.
 
-A collection of Transparent Statements leaks no information about the contents of other Transparent Statements registered at the Transparency Service.
+A collection of Transparent Statements must not leak information about the contents of other Transparent Statements registered on the Transparency Service.
 
-Nonetheless, Issuers should carefully review the inclusion of private/confidential materials in their issued Signed Statements; they may for instance remove any PII, or include instead opaque cryptographic commitments, such as hashes.
+Nonetheless, Issuers should carefully review the inclusion of private/confidential materials in their Statements.
+For example, issuers should remove Personally Identifiable Information (PII) as clear text in the statement.
+Alternatively, Issuers may include opaque cryptographic statements, such as hashes.
 
 #### Queries to the Registry
 
