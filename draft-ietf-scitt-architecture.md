@@ -917,7 +917,7 @@ The Transparency Service is trusted with the confidentiality of the Signed State
 Some Transparency Services may publish every Transparent Statement in their logs, to facilitate their dissemination and auditing.
 Others may just return Receipts to clients that present Singed Statements for registration, and disclose the ledger only to auditors trusted with the confidentiality of its contents.
 
-A collection of Transparent Statements must not leak information about the contents of other Transparent Statements registered on the Ledger.
+A collection of Transparent Statements must not leak information about the contents of other Transparent Statements registered on the Transparency Service.
 
 Nonetheless, Issuers should carefully review the inclusion of private/confidential materials in their Statements.
 For example, issuers should remove Personally Identifiable Information (PII) as clear text in the statement.
