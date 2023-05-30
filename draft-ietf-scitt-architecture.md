@@ -595,7 +595,7 @@ Receipt = [
 
 ; Additional protected headers in the COSE signed_tree_root of the SignedMerkleTreeProof
 Protected_Header = {
-  390 => int               ; SCITT Version
+  390 => int               ; SCITT Receipt Version
   391 => tstr              ; DID of Issuer (required)
   393 => RegistrationInfo  ; Registration policy information (optional)
 
