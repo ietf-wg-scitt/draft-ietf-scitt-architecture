@@ -75,7 +75,7 @@ normative:
     target: https://w3c-ccg.github.io/did-method-web/
     title: did:web Decentralized Identifiers Method Spec
 informative:
-  I-D.draft-steele-cose-merkle-tree-proofs: COSEMTP
+  I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
   PBFT: DOI.10.1145/571637.571640
   MERKLE: DOI.10.1007/3-540-48184-2_32
   RFC9334: rats-arch
