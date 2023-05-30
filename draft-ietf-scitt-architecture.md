@@ -603,7 +603,7 @@ Protected_Header = {
   ; (e.g. tree algorithm, tree size)
 
   ; Optional standard COSE headers
-  2 => [+label]            ; Critical headers
+  2 => [+ label]            ; Critical headers
   4 => bstr                ; Key ID (optional)
   33 => COSE_X509	         ; X.509 chain (optional)
 }
