@@ -238,7 +238,7 @@ and on prior Signed Statements already added to a Registry.
 Registry:
 
 : the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym log or ledger.
-Since COSE Signed Merkle Tree Proofs ({{-COSEMTP}}) support multiple Merkle Tree algorithms, SCITT supports different Transparency Service implementations of the Registry, such as historical Merkle Trees or sparse Merkle Trees.
+Since COSE Signed Merkle Tree Proofs ({{-COMETRE}}) support multiple Merkle Tree algorithms, SCITT supports different Transparency Service implementations of the Registry, such as historical Merkle Trees or sparse Merkle Trees.
 
 Signed Statement:
 
