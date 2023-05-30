@@ -693,7 +693,7 @@ Conversely, the service MAY re-issue Receipts for the Registry content, for inst
 ## Validation of Transparent Statements
 
 This section provides additional implementation considerations.
-The high-level validation algorithm is described in {{validation}}; the Registry-specific details of checking Receipts are covered in {{-COSEMTP}}.
+The high-level validation algorithm is described in {{validation}}; the Registry-specific details of checking Receipts are covered in {{-COMTRE}}.
 
 Before checking a Transparent Statement, the Verifier must be configured with one or more identities of trusted Transparency Services.
 If more than one service is configured, the Verifier MUST return which service the Transparent Statement is registered on.
