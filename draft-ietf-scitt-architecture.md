@@ -223,7 +223,7 @@ An Issuer may be the owner or author of software Artifacts, or an independent th
 
 Receipt:
 
-: a Receipt is a cryptographic proof that a Signed Statement is recorded in the Registry. Receipts are based on COSE Signed Merkle Tree Proofs {{-COSEMTP}}; they consist of a Registry-specific inclusion proof, a signature by the Transparency Service of the state of the Registry, and additional metadata (contained in the signature's protected headers) to assist in auditing.
+: a Receipt is a cryptographic proof that a Signed Statement is recorded in the Registry. Receipts are based on COSE Signed Merkle Tree Proofs {{-COMETRE}}; they consist of a Registry-specific inclusion proof, a signature by the Transparency Service of the state of the Registry, and additional metadata (contained in the signature's protected headers) to assist in auditing.
 
 Registration:
 
