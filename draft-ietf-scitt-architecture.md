@@ -597,7 +597,7 @@ Receipt = [
 Protected_Header = {
   390 => int               ; SCITT Receipt Version
   391 => tstr              ; DID of Issuer (required)
-  393 => RegistrationInfo  ; Registration policy information (optional)
+  ? 393 => RegistrationInfo  ; Registration policy information (optional)
 
   ; Other COSE Signed Merkle Tree headers
   ; (e.g. tree algorithm, tree size)
