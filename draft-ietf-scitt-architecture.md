@@ -578,7 +578,7 @@ We also introduce the following requirements for the COSE signature of the Merkl
 - The SCITT version header MUST be included and its value match the `version` field of the Receipt stucture.
 - The DID of issuer header (like in Signed Claims) MUST be included and its value match the `ts_identifier` field of the Receipt structure.
 - TS MAY include the Registration policy info header to indicate to verifiers what policies have been applied at the registration of this claim.
-- Since {{-COSEMTP}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, issuer DID and Registration Policy) MUST be marked critical.
+- Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, issuer DID and Registration Policy) MUST be marked critical.
 
 The following registration policies are built-in and MAY be used by verifiers to help decide the trustworthiness of the Transparent Statement:
 
