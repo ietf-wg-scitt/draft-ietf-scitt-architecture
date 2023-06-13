@@ -578,13 +578,12 @@ We also introduce the following requirements for the COSE signature of the Merkl
 - The SCITT version header MUST be included and its value match the `version` field of the Receipt stucture.
 - The DID of issuer header (like in Signed Claims) MUST be included and its value match the `ts_identifier` field of the Receipt structure.
 - TS MAY include the Registration policy info header to indicate to verifiers what policies have been applied at the registration of this claim.
-- Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, issuer DID and Registration Policy) MUST be marked critical.
+- Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of TS and Registration Policy) MUST be marked critical.
 
 The following registration policies are built-in and MAY be used by verifiers to help decide the trustworthiness of the Transparent Statement:
 
 - Registration time: the timestamp at which the TS has added this Signed Claim to its Registry
-- DID Manifest: the manifest that was retured by resolving the DID of the issuer at registration, according to the TS.
-- Sequence number: the sequence number of this statement with relation to other statements with the same issuer and feed. There is no guarantee that all Signed Statements are registered with contiguous sequence numbers; only that it is monotonic and follows the issuer sequence numbers.
+- [TODO]: Discuss and add additional policies
 
 ~~~ cddl
 Receipt = [
@@ -595,24 +594,22 @@ Receipt = [
 
 ; Additional protected headers in the COSE signed_tree_root of the SignedMerkleTreeProof
 Protected_Header = {
-  390 => int               ; SCITT Receipt Version
-  391 => tstr              ; DID of Issuer (required)
-  ? 393 => RegistrationInfo  ; Registration policy information (optional)
+  390 => int                 ; SCITT Receipt Version
+  394 => tstr                ; DID of Transparency Service (required)
+  ? 395 => RegistrationInfo  ; Registration policy information (optional)
 
   ; Other COSE Signed Merkle Tree headers
   ; (e.g. tree algorithm, tree size)
 
-  ; Optional standard COSE headers
+  ; Additional standard COSE headers
   2 => [+ label]            ; Critical headers
-  ? 4 => bstr                ; Key ID (optional)
-  ? 33 => COSE_X509	         ; X.509 chain (optional)
+  ? 4 => bstr               ; Key ID (optional)
+  ? 33 => COSE_X509	    ; X.509 chain (optional)
 }
 
 ; Details of the registration policies applied by the TS
 RegistrationInfo = {
   ? "registration_time": uint .within (~time),
-  ? "did_manifest": bstr,
-  ? "sequence_no": uint,
   * tstr => any
 }
 ~~~
