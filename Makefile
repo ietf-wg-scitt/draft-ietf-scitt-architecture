@@ -1,4 +1,8 @@
 LIBDIR := lib
+
+# FIXME: workaround for old xml2rfc server no longer working 
+XML_RESOURCE_ORG_PREFIX := https://bib.ietf.org/public/rfc
+
 include $(LIBDIR)/main.mk
 
 $(LIBDIR)/main.mk:
