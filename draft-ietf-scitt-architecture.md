@@ -75,7 +75,7 @@ normative:
     target: https://w3c-ccg.github.io/did-method-web/
     title: did:web Decentralized Identifiers Method Spec
 informative:
-  I-D.birkholz-scitt-receipts: RECEIPTS
+  I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
   PBFT: DOI.10.1145/571637.571640
   MERKLE: DOI.10.1007/3-540-48184-2_32
   RFC9334: rats-arch
@@ -145,7 +145,6 @@ The Transparency Services specified in this architecture can be implemented by v
 
 The interoperability guaranteed by the Transparency Services is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs).
 The core components are based on the Concise Signing and Encryption standard specified in {{-COSE}}, which is used to produce Signed Statements about Artifacts and to build and maintain a Merkle tree that functions as an append-only Log for corresponding Signed Statements.
-The format and verification process for Log-based transparency Receipts are described in {{-RECEIPTS}}.
 
 ## Requirements Notation
 
@@ -235,8 +234,7 @@ SCITT supports multiple Log and Receipt formats to accommodate different Transpa
 
 Receipt:
 
-: a Receipt is a special form of COSE countersignature for Signed Statements that embeds cryptographic evidence that the Signed Statement is recorded in the Registry.
-A Receipt consists of a Registry-specific inclusion proof, a signature by the Transparency Service of the state of the Registry, and additional metadata (contained in the countersignature's protected headers) to assist in auditing.
+: a Receipt is a cryptographic proof that a Signed Statement is recorded in the Registry. Receipts are based on COSE Signed Merkle Tree Proofs {{-COMETRE}}; they consist of a Registry-specific inclusion proof, a signature by the Transparency Service of the state of the Registry, and additional metadata (contained in the signature's protected headers) to assist in auditing.
 
 Registration:
 
@@ -247,6 +245,11 @@ Registration Policy:
 : the pre-condition enforced by the Transparency Service before registering a Signed Statement, rendering it a Signed Statement,
 based on metadata contained in its COSE Envelope (notably the identity of its Issuer)
 and on prior Signed Statements already added to a Registry.
+
+Registry:
+
+: the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym log or ledger.
+Since COSE Signed Merkle Tree Proofs ({{-COMETRE}}) support multiple Merkle Tree algorithms, SCITT supports different Transparency Service implementations of the Registry, such as historical Merkle Trees or sparse Merkle Trees.
 
 Signed Statement:
 
@@ -347,9 +350,9 @@ Auditor       -->     / Collect Receipts /      /   Replay Log    /
 ~~~~
 
 The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing, registering and auditing Transparent Statements.
-In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the Registry algorithm.
-Most of the details of the Receipt's contents are specific to the Registry algorithm.
-The {{-RECEIPTS}} document defines two initial Registry algorithms (for historical and sparse Merkle Trees), but other Registry formats (such as blockchains, or hybrid historical and indexed Merkle Trees) may be proposed later.
+
+In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Merkle Tree Proof.
+Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
 
 In this section, a high level the three main roles and associated processes in SCITT: Issuers and the Signed Statement issuance process, transparency Registry and the Transparent Statement Registration process, as well as  Verifiers and the Receipt validation process.
 
@@ -443,19 +446,14 @@ Furthermore, it makes it impossible to register the same Signed Statement on two
 {:aside}
 > **Editor's note**
 >
-> The technical design for signalling and verifying Registration Policies is a work in progress.
-> An alternative design would be to include the Registration Policies in the receipt/countersignature rather than in the Envelope.
-This improves the portability of Signed Statements but requires the Verifier to be more aware of the particular policies at the Transparency Service where the Signed Statement is registered.
+> The technical design for signalling and verifying registration policies is a work in progress.
 
 ### Registry Security Requirements
 
 There are many different candidate verifiable data structures that may be used to implement the Registry, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants.
-The Registry is only required to support concise Receipts (i.e., whose size grows at most logarithmically in the number of entries in the Registry).
-This does not necessarily rule out blockchains as a Registry, but may necessitate advanced Receipt schemes that use arguments of knowledge and other verifiable computing techniques.
+The Registry is only required to support concise Receipts (i.e., whose size grows at most logarithmically in the number of entries in the Registry) that can be encoded as a COSE Signed Merkle Tree Proof.
 
-Since the details of how to verify a Receipt are specific to the data structure, no particular Registry format is specified in this document.
-Instead, two initial formats for Registry in {{-RECEIPTS}} using historical and sparse Merkle Trees are proposed.
-Beyond the format of Receipts, generic properties that should be satisfied by the components in the Transparency Services that have the ability to write to the Registry are required.
+It is possible to offer multiple signature algorithms for the COSE signature of receipts' Signed Merkle Tree, or to change the signing algorithm at a later points. However, the Merkle Tree algorithm (including its internal hash function) cannot easily be changed without beaking the consistency of the Registry. It is possible to maintain separate Registries for each algorithm in parallel but the Transparency Service is then responsible for proving their mutual consistency.
 
 #### Finality
 
@@ -535,7 +533,7 @@ All Signed Statements MUST include the following protected headers:
 
 Additionally, Signed Statements MAY carry the following unprotected headers:
 
-- Receipts (label: `TBD`, temporary: `394`): Array of Receipts, defined in {{-RECEIPTS}}
+- Receipts (label: `TBD`, temporary: `394`): Array of Receipts, defined below. This allows the Receipt to be attached to the Signed Statement, thus making a Transparent Statement.
 
 In CDDL {{-CDDL}} notation, the Envelope is defined as follows:
 
@@ -573,9 +571,58 @@ Protected_Header = {
 
 Unprotected_Header = {
   ; TBD, Labels are temporary
-  ? 394 => [+ SCITT_Receipt]
+  ? 394 => [+ Receipt]
 }
 ~~~~
+
+## Receipts
+
+Receipts are based on COSE Signed Merkle Tree Proofs ({{-COMETRE}}) with an additional wrapper structure that adds the following information:
+
+- version: Receipt version number; this should be set to `0` for implementation of this document. We envision that future version of SCITT may add support for more complex receipts; for instance, registrations on multiple TS, receipts for dependency graphs and endorsements of Signed Claims, etc.
+- ts_identifier: The DID of the Transparency Service that issued the claim. Verifiers MAY use this DID as a key discovery mechanism to verify the COSE Merkle Root signature; in this case the verification is the same as for Signed Claims and the signer should include the Key ID header. Verifiers MUST support the `did:web` method, all other methods are optional.
+
+We also introduce the following requirements for the COSE signature of the Merkle Root:
+
+- The SCITT version header MUST be included and its value match the `version` field of the Receipt stucture.
+- The DID of issuer header (like in Signed Claims) MUST be included and its value match the `ts_identifier` field of the Receipt structure.
+- TS MAY include the Registration policy info header to indicate to verifiers what policies have been applied at the registration of this claim.
+- Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of TS and Registration Policy) MUST be marked critical.
+
+The following registration policies are built-in and MAY be used by verifiers to help decide the trustworthiness of the Transparent Statement:
+
+- Registration time: the timestamp at which the TS has added this Signed Claim to its Registry
+- [TODO]: Discuss and add additional policies
+
+~~~ cddl
+Receipt = [
+    version: int,
+    ts_identifier: tstr,
+    proof: SignedMerkleTreeProof
+]
+
+; Additional protected headers in the COSE signed_tree_root of the SignedMerkleTreeProof
+Protected_Header = {
+  390 => int                 ; SCITT Receipt Version
+  394 => tstr                ; DID of Transparency Service (required)
+  ? 395 => RegistrationInfo  ; Registration policy information (optional)
+
+  ; Other COSE Signed Merkle Tree headers
+  ; (e.g. tree algorithm, tree size)
+
+  ; Additional standard COSE headers
+  2 => [+ label]            ; Critical headers
+  ? 4 => bstr               ; Key ID (optional)
+  ? 33 => COSE_X509	    ; X.509 chain (optional)
+}
+
+; Details of the registration policies applied by the TS
+RegistrationInfo = {
+  ? "registration_time": uint .within (~time),
+  * tstr => any
+}
+~~~
+
 
 ## Signed Statement Issuance
 
@@ -652,7 +699,7 @@ Conversely, the service MAY re-issue Receipts for the Registry content, for inst
 ## Validation of Transparent Statements
 
 This section provides additional implementation considerations.
-The high-level validation algorithm is described in {{validation}}; the Registry-specific details of checking Receipts are covered in {{-RECEIPTS}}.
+The high-level validation algorithm is described in {{validation}}; the Registry-specific details of checking Receipts are covered in {{-COMETRE}}.
 
 Before checking a Transparent Statement, the Verifier must be configured with one or more identities of trusted Transparency Services.
 If more than one service is configured, the Verifier MUST return which service the Transparent Statement is registered on.
@@ -837,7 +884,7 @@ One of the following:
 - Status 404 - Entry not found.
   - Error code: `entryNotFound`
 
-The retrieved Receipt may be embedded in the corresponding COSE_Sign1 document in the unprotected header, see draft-birkholz-scitt-receipts ([TODO]: replace with final reference).
+The retrieved Receipt may be embedded in the corresponding COSE_Sign1 document in the unprotected header.
 
 
 # Privacy Considerations
