@@ -59,6 +59,7 @@ normative:
 #  RFC9053: COSE-ALGS
 #  RFC9054: COSE-HASH
   RFC9162: CT
+  RFC6024:
   RFC7807:
   RFC7231:
   RFC6838:
@@ -442,7 +443,7 @@ users.
 
 As a minimum we expect that a deployment authenticates the Issuer of the
 Signed Statement, which requires some form of trust anchor. As defined
-in {{RFC6024}} and {{RFC9019}}, "A trust anchor represents an authoritative
+in {{RFC6024}}, "A trust anchor represents an authoritative
 entity via a public key and associated data. The public key is used to
 verify digital signatures, and the associated data is used to constrain
 the types of information for which the trust anchor is authoritative."
