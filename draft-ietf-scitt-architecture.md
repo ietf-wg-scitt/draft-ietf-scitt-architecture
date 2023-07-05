@@ -590,7 +590,7 @@ We also introduce the following requirements for the COSE signature of the Merkl
 - Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of TS and Registration Policy) MUST be marked critical.
 
 The TS may include the registration time to help verifiers decide about the trustworthiness of the Transparent Statement.
-The registration time is defined as the timestamp at which the TS has added this Signed Claim to its Registry.
+The registration time is defined as the timestamp at which the TS has added this Signed Statement to its Registry.
 
 ~~~ cddl
 Receipt = [
