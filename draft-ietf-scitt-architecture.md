@@ -589,10 +589,8 @@ We also introduce the following requirements for the COSE signature of the Merkl
 - TS MAY include the Registration policy info header to indicate to verifiers what policies have been applied at the registration of this claim.
 - Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of TS and Registration Policy) MUST be marked critical.
 
-The following registration policies are built-in and MAY be used by verifiers to help decide the trustworthiness of the Transparent Statement:
-
-- Registration time: the timestamp at which the TS has added this Signed Claim to its Registry
-- [TODO]: Discuss and add additional policies
+The TS may include the registration time to help verifiers decide about the trustworthiness of the Transparent Statement.
+The registration time is defined as the timestamp at which the TS has added this Signed Claim to its Registry.
 
 ~~~ cddl
 Receipt = [
@@ -616,7 +614,7 @@ Protected_Header = {
   ? 33 => COSE_X509	    ; X.509 chain (optional)
 }
 
-; Details of the registration policies applied by the TS
+; Details of the registration info, as provided by the TS
 RegistrationInfo = {
   ? "registration_time": uint .within (~time),
   * tstr => any
@@ -627,42 +625,14 @@ RegistrationInfo = {
 ## Signed Statement Issuance
 
 There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
-An Issuer must first decide on a suitable format to serialize the Statement payload, such as:
-
-- JSON-SPDX
-- CBOR-SPDX
-- SWID
-- CoSWID
-- CycloneDX
-- in-toto
-- SLSA
+An Issuer must first decide on a suitable format to serialize a Statement payload. For a software supply chain, payloads describing the software artifacts may,
+for example, include JSON-SPDX, CBOR-SPDX, SWID, CoSWID, CycloneDX, in-toto, SLSA or others.
 
 Once the Statement is serialized with the correct media-type/content-format, an Issuer should fill in the attributes for the Registration Policy information header.
 From the Issuer's perspective, using attributes from named policies ensures that the Signed Statement may only be registered on Transparency Services that implement the associated policy.
 For instance, if a Signed Statement is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers SHOULD use the `sequence_no` or `issuer_ts` attributes.
 
 Once all the Envelope headers are set, an Issuer MUST use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).
-
-## Standard Registration Policies
-
-{:aside}
-> **Editor's note**
->
-> The technical design for signaling and verifying Registration Policies is a work in progress.
-> We expect that once the formats and semantics of the Registration Policy headers are finalized, standardized policies may be moved to a separate draft.
-> For now, we inline some significant policies to illustrate the most common use cases.
-
-Transparency Service implementations MUST indicate their support for Registration Policies and MUST check that all the policies indicated as defined in the `reg_info` map are supported and are satisfied before a Signed Statement can be registered.
-Any unsupported types of Signed Statements MUST be indicated separately and corresponding unknown policy entries in the map of a Signed Statement MUST be rejected.
-This is to ensure that all Verifiers get the same guarantee out of the Registration Policies regardless of where it is registered.
-
-Policy Name | Required `reg_info` attributes | Implementation
----|---|---
-TimeLimited | `register_by: uint .within (~time)` | Returns true if now () < `register_by` at Registration time. The Transparency Service MUST store the time of Registration along with the Signed Statement, and SHOULD indicate it in corresponding Receipts. The value provided for `register_by` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
-Sequential | `sequence_no: uint` | First, lookup of existing registered Transparent Statements with same Issuer and Feed. If at least one is found, returns true if and only if the `sequence_no` of the new Signed Statement to be registered would become the highest `sequence_no` in the set of existing Transparent Statements, incremented by one. Otherwise, returns true if and only if `sequence_no = 0`.
-Temporal | `issuance_ts: uint .within (~time)` | Returns true if and only if there is no existing already registered Transparent Statement in the Append-only Log with the same Issuer and Feed with a greater `issuance_ts` and now () > `issuance_ts` at Registration time. The value provided for `issuance_ts` MUST be an unsigned integer, interpreted according to POSIX time, representing the number of seconds since 1970-01-01T00:00Z UTC.
-NoReplay | `no_replay: null` | If the `no_replay` attribute is present then the policy returns true if and only if the Signed Statement about to be registered doesn't already appear in the Append-only Log. This policy has no required attributes.
-{: #tbl-initial-named-policies title="An Initial Set of Named Policies"}
 
 ## Registering Signed Statements
 
@@ -724,7 +694,7 @@ Multiple, independently-operated Transparency Services can help secure distribut
 For example, multiple Transparency Service instances may be governed and operated by different organizations that do not trust one another.
 
 This may involve registering the same Signed Statements at different Transparency Services, each with their own purpose and Registration Policy.
-This may also involve attaching multiple Receipts to the same Signed Statements, each Receipt endorsing the Issuer signature and a subset of prior Receipts, and each Transparency Service  verifying prior Receipts as part of their Registration Policy.
+This may also involve attaching multiple Receipts to the same Signed Statements, each Receipt endorsing the Issuer signature and a subset of prior Receipts, and each Transparency Service verifying prior Receipts as part of their Registration Policy.
 
 For example,
 a supplier's Transparency Service may provide a complete, authoritative Registry for some kind of Signed Statements, whereas a Consumer's Transparency Service may collect different kinds of Signed Statements
@@ -1031,7 +1001,3 @@ Registry {{!IANA.params}}, following the template in {{!RFC3553}}:
    Index value:  No transformation needed.
 
 --- back
-
-# Attic
-
-Not ready to throw these texts into the trash bin yet.
