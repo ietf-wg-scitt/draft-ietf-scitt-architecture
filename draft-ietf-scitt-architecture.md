@@ -427,7 +427,7 @@ This attestation evidence SHOULD be supplemented with transparency Receipts for 
 ### Registration Policies
 
 A Transparency Services that accepts to register any valid Signed
-Statement offered by anonymous Issuers would only provide 
+Statement offered by anonymous Issuers would only provide
 limited value, or no value, to verifiers. As a consequence, some form of
 "verification" is needed before registration of Signed Statements to
 ensure completeness of audit. More advanced use case will rely on the
