@@ -150,45 +150,6 @@ The core components are based on the Concise Signing and Encryption standard spe
 
 {::boilerplate bcp14-tagged}
 
-# Use Cases
-
-This section presents representative and solution-agnostic use cases to illustrate the scope of SCITT and the processing of Digital Supply Chain Artifacts.
-
-## Software Bill of Materials (SBOM)
-
-As the ever-increasing complexity of large software projects requires more modularity and abstractions to manage them, keeping track of their full Trusted Computing Base (TCB) is becoming increasingly difficult.
-Each component may have its own set of dependencies and libraries.
-Some of these dependencies are binaries, which means their TCB depends not only on their source, but also on their build environment (compilers and tool-chains).
-Besides, many source and binary packages are distributed through various channels and repositories that may not be trustworthy.
-
-Software Bills of Materials (SBOM) help the authors, packagers, distributors, Auditors and users of software understand its provenance and who may have the ability to introduce a vulnerability that can affect the supply chain downstream.
-However, the usefulness of SBOM in protecting end users is limited if supply chain actors cannot be held accountable for their contents.
-For instance, consider a package repository for an open source operating system distribution.
-The operator of this repository may decide to provide a malicious version of a package only to users who live in a specific country.
-They can write two equivocal SBOMs for the honest and backdoored versions of the package, so that nobody outside the affected country can discover the malicious version, but victims are not aware they are being targeted.
-
-## Confidential Computing
-
-Confidential Computing can leverage hardware-protected trusted execution environments (TEEs) to operate cloud services that protect the confidentiality of data that they process.
-It relies on remote attestation, which allows the service to prove to remote users what is the hash of its software, as measured and signed by the hardware.
-
-For instance, consider a speech recognition service that implements machine learning inference using a deep neural network model.
-The operator of the service wants to prove to its users that the service preserves the user's privacy, that is, the submitted recordings can only be used to detect voice commands but no other purpose (such as storing the recordings or detecting mentions of brand names for advertisement purposes).
-When the user connects to the TEE implementing the service, the TEE presents attestation evidence that includes a hardware certificate and a software measurement for their task; the user verifies this evidence before sending its recording.
-
-But how can users verify the software measurement for their task? And how can operators update their service, e.g., to mitigate security vulnerabilities or improve accuracy,
-without first convincing all users to update the measurements they trust?
-
-A supply chain that maintains a transparent record of the successive software releases for machine-learning models and runtimes, recording both their software measurements
-and their provenance (source code, build reports, audit reports, ...) can provide users with the information they need to authorize these tasks, while holding the service operator accountable for the software they release for them.
-
-## Cold Chains for Seafood
-
-Once seafood is caught, its quality is determined -- amongst other criteria -- via the integrity of a cold chain that ensures a regulatory perspective freshness mandating a continuous storing temperature between 1 {{{°}}}C and 0 {{{°}}}C (or -18 {{{°}}}C and lower for frozen seafood).
-The temperature is recorded by cooling units adhering to certain compliance standards automatically.
-Batches of seafood can be split or aggregated before arriving in a shelf so that each unit can potentially have a potentially unique cold chain record whose transparency impacts the accuracy of the shelf-life associated with it.
-Especially in early links of the supply chain, Internet connection or sophisticated IT equipment are typically not available; sometimes temperature measurements are recorded manually; and digital records are created in hindsight.
-
 # Terminology
 
 The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust throughout this document.
