@@ -371,17 +371,17 @@ Issuers SHOULD use consistent decentralized identifiers for all their Statements
 They MAY update their DID manifest, for instance to refresh their signing keys or algorithms, but they SHOULD NOT remove or change any prior keys unless they intend to revoke all Signed Statements that are registered as Transparent Statements issued with those keys.
 This DID appears in the Issuer protected header of Signed Statements' Envelopes, while the version of the key from the manifest used to sign the Signed Statement is written in the `kid` header.
 
-`kid` MUST either be an absolute URL, 
-or `iss` MUST also be present in the protected header, 
+`kid` MUST either be an absolute URL,
+or `iss` MUST also be present in the protected header,
 and `kid` MUST be a URL relative to `iss`.
 
 Resolving `kid` MUST return an Identity Document of a registered content type (a set of public keys).
-In the case of `kid` being an absolute DID URL, the identity document is called a DID Document, 
+In the case of `kid` being an absolute DID URL, the identity document is called a DID Document,
 and is expected ot have content type `application/did+json`.
 
 Dereferencing a DID URL requires that it first be resolved, and then the fragment processed according to the media type.
 
-For example, when resolving `did:example:123#key-42`, 
+For example, when resolving `did:example:123#key-42`,
 first the identity document for `did:example:123` is resolved as content type `application/did+json`,
 next, the fragment `#key-2` is dereferenced to a verification method that contains a `publicKeyJwk` property in JSON.
 
@@ -389,7 +389,7 @@ The content type of `publicKeyJwk` is expected to be `application/jwk+json`.
 
 The details of both `did resolution` and `did dereferencing` are out of scope for this document.
 
-The `iss` or `kid`, might not be DID URLs, however the following interfaces MUST be satisfied in order to ensure 
+The `iss` or `kid`, might not be DID URLs, however the following interfaces MUST be satisfied in order to ensure
 issuer identity documents, and associated keys are discoverable in a consistent manner.
 
 #### Resolving Identity Documents
@@ -427,17 +427,17 @@ Might resolve to:
 }
 ```
 
-Editor note, we might wish to eliminate this intermediate identity document content type, 
+Editor note, we might wish to eliminate this intermediate identity document content type,
 by treating it as an alterative encoding of `application/jwk-set+json` or `application/cose-key-set`.
 
-However, there is no media type fragment processing directive 
+However, there is no media type fragment processing directive
 that would enable dereferencing the known key set content types, listed above.
 
 #### Dereferencing Public Keys
 
 `kid` is always present in the protected header.
 
-If `iss` is also present, `kid` MUST be a relative URL to `iss`, 
+If `iss` is also present, `kid` MUST be a relative URL to `iss`,
 otherwise `kid` MUST be an absolute URL that starts with `iss`.
 
 `id` = `kid` if `iss` is undefined, or `iss` + `#` + `kid` when `iss` is defined.
