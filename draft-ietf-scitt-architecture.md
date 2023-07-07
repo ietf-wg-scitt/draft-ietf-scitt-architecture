@@ -441,7 +441,7 @@ For instance, the `register_by` policy defines the maximum timestamp by which a 
 
 While this design ensures that all Verifiers get the same guarantee regardless from which Service
 a Transparent Statement originates from, its main downside is that it requires the Transparency Service
-to include the necessary policies in the Envelope when the Signed Statement becomes a 
+to include the necessary policies in the Envelope when the Signed Statement becomes a
 Transparent Statement.
 Furthermore, it makes it impossible to register the same Signed Statement on two different Transparency Services, if their required Registration Policies are incompatible.
 
