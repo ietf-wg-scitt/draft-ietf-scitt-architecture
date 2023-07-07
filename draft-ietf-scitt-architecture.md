@@ -201,7 +201,7 @@ Artifact:
 
 Auditor:
 
-: an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service (to a subset of potential Transparent Statement Consumers).
+: an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.
 
 Consumer of Signed Statements:
 
@@ -271,7 +271,7 @@ The identity of a Transparency Service is captured by a public key that must be 
 
 Transparent Statement:
 
-: a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service(stored in the unprotected header of COSE Envelope of the Signed Statement).
+: a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service( the receipt is stored in the unprotected header of COSE Envelope of the Signed Statement).
 A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.
 
 Verifier:
@@ -354,7 +354,7 @@ The SCITT architecture consists of a very loose federation of Transparency Servi
 In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Merkle Tree Proof.
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
 
-In this section, a high level the three main roles and associated processes in SCITT: Issuers and the Signed Statement issuance process, transparency Registry and the Signed Statement Registration process, as well as Verifiers and the Receipt validation process.
+This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and the Signed Statement issuance process, Transparency Service and the Signed Statement Registration process, as well as Verifiers of the Transparent Statements and the Receipt validation process.
 
 ## Signed Statement Issuance and Registration
 
@@ -434,14 +434,15 @@ Transparency Service implementations SHOULD make their full Registration Policy 
 From an interoperability point of view, the policy that was applied by the Transparency Services is opaque to the Verifier, which is forced to trust the associated Registration Policy.
 If the policy of the Transparency Services evolves over time, or is different across Issuers, the assurances  derived from Receipt validation may not be uniform across all Signed Statements over time.
 
-To help Verifiers interpret the semantics of Signed Statement Registration, the SCITT Architecture defines a standard mechanism to include signals the Signed Statement itself which policies have been applied by the Transparency Service from a defined set
-of Registration Policies with standardized semantics.
+To help Verifiers interpret the semantics of Signed Statement Registration, the SCITT Architecture defines a standard mechanism to include signals within the Signed Statement itself, which policies have been applied by the Transparency Service from a defined set of Registration Policies with standardized semantics.
 Each policy that is expected to be enforced by the Transparency Service is represented by an entry in the Registration Policy info map (`reg_info`) in the COSE Envelope of the Signed Statement.
 The key of the map entry corresponds to the name of the policy, while its value (including its type) is policy-specific.
 For instance, the `register_by` policy defines the maximum timestamp by which a Signed Statement can be registered, hence the associated value contains an unsigned integer.
 
 While this design ensures that all Verifiers get the same guarantee regardless from which Service
-a Transparent Statement originates from, its main downside is that it requires the Issuer to include the necessary policies in the Envelope when the Signed Statement is produced.
+a Transparent Statement originates from, its main downside is that it requires the Transparency Service
+to include the necessary policies in the Envelope when the Signed Statement becomes a 
+Transparent Statement.
 Furthermore, it makes it impossible to register the same Signed Statement on two different Transparency Services, if their required Registration Policies are incompatible.
 
 {:aside}
