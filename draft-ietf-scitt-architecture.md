@@ -113,7 +113,7 @@ As the Issuer of the Signed Statement and conformance to the Registration Policy
 The guarantees and techniques used in this document generalize those of Certificate Transparency {{-CT}}, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates.
 However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each Transparency Service is implemented and operates.
 Each service MAY enforce its own Registration Policy for authorizing entities to register their Signed Statements to the append-only Log.
-Some Transparency Services may also enforce role based access control (RBAC) policies limiting who can write, read and audit specific Feeds or the full Registry.
+Some Transparency Services may also enforce authorization policies limiting who can write, read and audit specific Feeds or the full registry.
 It is critical to provide interoperability for all Transparency Services instances as the composition and configuration of involved supply chain entities and their system components is ever-changing and always in flux.
 
 A Transparency Services provides visibility into Signed Statements associated with various supply chains and their sub-systems.
@@ -124,7 +124,7 @@ Producing a Transparent Statement is also referred to as a form of notarization.
 A Statements payload content MAY be encrypted and opaque to the Transparency Services, if so desired: however the metadata MUST be transparent in order to warrant trust for later processing.
 Transparent Statements provide a common basis for holding Issuers accountable for the Statement payload about Artifacts they release and (more generally) principals accountable for auxiliary Signed Statements from other Issuers about the original Signed Statement about an Artifact.
 Issuers may Register new Signed Statements about Artifacts, but they cannot delete or alter Signed Statements previously added to the append-only Log.
-A Transparency Service may restrict access to Signed Statements through Role Based Access Control, however third parties such as Auditors would be granted access as needed to attest to the validity of the Artifact, Feed or entirety of the Transparency Service.
+A Transparency Service may restrict access to Signed Statements through access control policies. However, third parties (such as Auditors) would be granted access as needed to attest to the validity of the Artifact, Feed or the entirety of the Transparency Service.
 
 Trust in the Transparency Service itself is supported both by protecting their implementation (using, for instance, replication, trusted hardware, and remote attestation of systems) and by enabling independent audits of the correctness and consistency of its Registry, thereby holding the organization accountable that operates it.
 Unlike CT, where independent Auditors are responsible for enforcing the consistency of multiple independent instances of the same global Registry, each Transparency Service is required to guarantee the consistency of its own Registry (for instance, through the use of a consensus algorithm between replicas of the Registry), but assume no consistency between different Transparency Services.
