@@ -944,7 +944,7 @@ In contrast Transparency Services can be hold accountable and they can be called
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service: different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
 
 In both cases, the SCITT Architecture provides generic, universally-verifiable cryptographic proof to individually blame Issuers or the Transparency Service.
-On the one hand, this enables valid actors to detect and disambiguate malicious actors who issue contradictory Signed Statements to different entities (Verifiers, Auditors, Issuers), otherwsie known as 'equivocation'.
+On the one hand, this enables valid actors to detect and disambiguate malicious actors who issue contradictory Signed Statements to different entities (Verifiers, Auditors, Issuers), otherwise known as 'equivocation'.
 On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT Architecture.
 
 Verifiers and Auditors need not be trusted by other actors.
@@ -967,7 +967,7 @@ Due to the operational challenge of maintaining a globally consistent append-onl
 some Transparency Services may provide limited support for historical queries on the Transparent Statements they have registered,
 and accept the risk of being blamed for inconsistent Registration or Issuer equivocation.
 
-Verifier and Auditors may also witness (1,4) but may not be able to collect verifiable evidence for it.
+Verifiers and Auditors may also witness (1,4) but may not be able to collect verifiable evidence for it.
 
 #### Availability of Transparent Signed Statement
 
@@ -1000,7 +1000,7 @@ Alternatively, Issuers may include opaque cryptographic statements, such as hash
 #### Queries to the Registry
 
 The confidentiality of queries is implementation-specific, and generally not guaranteed.
-For example, while offline Envelope validation of Signed Statements is private, a Transparency Services may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.
+For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.
 
 ### Cryptographic Assumptions
 
@@ -1013,7 +1013,7 @@ This enables the gradual transition to stronger algorithms, including e.g. post-
 
 Trust in clients that submit Signed Statements for Registration is implementation-specific.
 Hence, an attacker may attempt to register any Signed Statement it has obtained, at any Transparency Service that accepts them, possibly multiple times and out of order.
-This may be mitigated by a Transparency Services that enforces restrictive access control and Registration Policies.
+This may be mitigated by a Transparency Service that enforces restrictive access control and Registration Policies.
 
 ### Identity
 
