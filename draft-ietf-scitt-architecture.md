@@ -80,6 +80,7 @@ informative:
   PBFT: DOI.10.1145/571637.571640
   MERKLE: DOI.10.1007/3-540-48184-2_32
   RFC9334: rats-arch
+  I-D.ietf-scitt-software-use-cases:
 
 venue:
   mail: scitt@ietf.org
@@ -151,11 +152,11 @@ The core components are based on the Concise Signing and Encryption standard spe
 
 {::boilerplate bcp14-tagged}
 
-- # Use Cases
+# Use Cases
 
 The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.
 
-Detailed use cases are maintained in a separate document: https://datatracker.ietf.org/doc/draft-ietf-scitt-software-use-cases/
+Detailed use cases are maintained in a separate document {{I-D.ietf-scitt-software-use-cases}}.
 
 # Terminology
 
