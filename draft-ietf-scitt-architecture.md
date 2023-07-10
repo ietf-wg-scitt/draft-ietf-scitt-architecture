@@ -151,7 +151,7 @@ The issuer of a Signed Statement should be authenticated and authorized accordin
 Analogously, Transparent Statement Consumers rely on verifiable trustworthiness assertions associated with Transparent Statements and their processing provenance in a believable manner.
 If trust can be put into the operations that record Signed Statements in a secure, append-only log via _online_ operations, the same trust can be put into the resulting transparent statement issued by the Transparency Service that can be validated in _offline_ operations.
 
-Breadth of access if critical so the Transparency Services specified in this architecture can be implemented by various different types of services in various types of languages provided via various variants of API layouts.
+Breadth of access is critical so the Transparency Services specified in this architecture can be implemented by various different types of services in various types of languages provided via various variants of API layouts.
 
 The interoperability guaranteed by the Transparency Services is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs but can be relied upon as non functional requirements).
 Much of the data processed by the core components are based on the Concise Signing and Encryption standard specified in {{-COSE}}, which is used to produce Signed Statements about Artifacts and to build and maintain a Merkle tree that functions as an append-only Log for corresponding Signed Statements.
@@ -989,7 +989,7 @@ All contents exchanged between actors is protected using secure authenticated ch
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
 Some Transparency Services may publish every Transparent Statement in their logs, to facilitate their dissemination and auditing.
-Others may just return Receipts to clients that present Singed Statements for Registration, and disclose the Append-only Log only to Auditors trusted with the confidentiality of its contents.
+Others may just return Receipts to clients that present Signed Statements for Registration, and disclose the Append-only Log only to Auditors trusted with the confidentiality of its contents.
 
 A collection of Transparent Statements must not leak information about the contents of other Transparent Statements registered on the Transparency Service.
 
