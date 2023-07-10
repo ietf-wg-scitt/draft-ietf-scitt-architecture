@@ -51,6 +51,13 @@ author:
   email: stevenlasker@hotmail.com
   city: Seattle
   country: United States
+- name: Jon Geater
+  organization: RKVST
+  street: Wellington House, East Road
+  code: 'CB1 1BH'
+  city: Cambridge
+  email: jon.geater@rkvst.com
+  country: UK
 
 normative:
   RFC8610: CDDL
@@ -84,6 +91,7 @@ informative:
 venue:
   mail: scitt@ietf.org
   github: ietf-wg-scitt/draft-ietf-scitt-architecture
+---
 
 --- abstract
 
@@ -113,39 +121,40 @@ As the Issuer of the Signed Statement and conformance to the Registration Policy
 
 The guarantees and techniques used in this document generalize those of Certificate Transparency {{-CT}}, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates.
 However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each Transparency Service is implemented and operates.
-Each service MAY enforce its own Registration Policy for authorizing entities to register their Signed Statements to the append-only Log.
+
+Each service MAY enforce its own Registration Policies for authorizing entities to register their Signed Statements to the append-only Log.
 Some Transparency Services may also enforce authorization policies limiting who can write, read and audit specific Feeds or the full registry.
-It is critical to provide interoperability for all Transparency Services instances as the composition and configuration of involved supply chain entities and their system components is ever-changing and always in flux.
+It is critical to provide interoperability for all Transparency Services instances as the composition and configuration of involved supply chain entities and their system components is ever-changing and always in flux, so it is implausible to expect all participants to choose a single vendor or registry.
 
 A Transparency Services provides visibility into Signed Statements associated with various supply chains and their sub-systems.
-These Signed Statements (and corresponding Statement payload) are about the Artifacts produced by a supply chain.
+These Signed Statements (and corresponding Statement payload) make claims about the Artifacts produced by a supply chain.
 A Transparency Service endorses specific and well-defined metadata about these Artifacts that is captured in Statements.
 Some metadata is selected (and signed) by the Issuer, indicating, e.g., "who issued the Statement" or "what type of Artifact is described" or "what is the Artifact's version"; whereas additional metadata is selected (and countersigned) by the Transparency Services, indicating, e.g., "when was the Signed Statement about the Artifact registered in the Registry".
-Producing a Transparent Statement is also referred to as a form of notarization.
+Producing a Transparent Statement may be considered a form of notarization.
 A Statements payload content MAY be encrypted and opaque to the Transparency Services, if so desired: however the metadata MUST be transparent in order to warrant trust for later processing.
 Transparent Statements provide a common basis for holding Issuers accountable for the Statement payload about Artifacts they release and (more generally) principals accountable for auxiliary Signed Statements from other Issuers about the original Signed Statement about an Artifact.
 Issuers may Register new Signed Statements about Artifacts, but they cannot delete or alter Signed Statements previously added to the append-only Log.
-A Transparency Service may restrict access to Signed Statements through access control policies. However, third parties (such as Auditors) would be granted access as needed to attest to the validity of the Artifact, Feed or the entirety of the Transparency Service.
 
-Trust in the Transparency Service itself is supported both by protecting their implementation (using, for instance, replication, trusted hardware, and remote attestation of systems) and by enabling independent audits of the correctness and consistency of its Registry, thereby holding the organization accountable that operates it.
+A Transparency Service may restrict access to Signed Statements through access control policies, however third parties such as Auditors should be granted access as needed to attest to the validity of the Artifact, Feed or completeness of the Transparency Service.
+
+Trust in the Transparency Service itself is supported both by protecting their implementation (using, for instance, replication, trusted hardware, and remote attestation of system state) and by enabling independent audits of the correctness and consistency of its Registry, thereby holding the organization that operates it accountable.
 Unlike CT, where independent Auditors are responsible for enforcing the consistency of multiple independent instances of the same global Registry, each Transparency Service is required to guarantee the consistency of its own Registry (for instance, through the use of a consensus algorithm between replicas of the Registry), but assume no consistency between different Transparency Services.
 
-The Transparency Services specified in this architecture caters to two types of audiences:
+The Transparency Services specified in this architecture cater to two types of audiences:
 
 1. Producers: organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers; and
 2. Consumers: organizations, stakeholders, and users involved in validating supply chain artifacts, but can only do so if the Statements are known to be authentic.
 Consumers MAY be producers, providing additional Signed Statements, attesting to conformance of various compliance requirements.
 
 Signed Statement Issuers rely on being discoverable and represented as the responsible parties for their registered Signed Statements via Transparency Services in a believable manner.
-The issuer of a Signed Statement should be authenticated and authorized according to the registration policy of the transparency service.
+The issuer of a Signed Statement should be authenticated and authorized according to the registration policy of the Transparency Service.
 Analogously, Transparent Statement Consumers rely on verifiable trustworthiness assertions associated with Transparent Statements and their processing provenance in a believable manner.
-If trust can be put into the operations that record Signed Statements in a secure, append-only log via online operations, the same trust can be put into the resulting transparent statement,
-issued by the Transparency Services and that can be validated in offline operations.
+If trust can be put into the operations that record Signed Statements in a secure, append-only log via _online_ operations, the same trust can be put into the resulting transparent statement issued by the Transparency Service that can be validated in _offline_ operations.
 
-The Transparency Services specified in this architecture can be implemented by various different types of services in various types of languages provided via various variants of API layouts.
+Breadth of access is critical so the Transparency Services specified in this architecture can be implemented by various different types of services in various types of languages provided via various variants of API layouts.
 
-The interoperability guaranteed by the Transparency Services is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs).
-The core components are based on the Concise Signing and Encryption standard specified in {{-COSE}}, which is used to produce Signed Statements about Artifacts and to build and maintain a Merkle tree that functions as an append-only Log for corresponding Signed Statements.
+The interoperability guaranteed by the Transparency Services is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs but can be relied upon as non functional requirements).
+Much of the data processed by the core components are based on the Concise Signing and Encryption standard specified in {{-COSE}}, which is used to produce Signed Statements about Artifacts and to build and maintain a Merkle tree that functions as an append-only Log for corresponding Signed Statements.
 
 ## Requirements Notation
 
@@ -193,7 +202,7 @@ Especially in early links of the supply chain, Internet connection or sophistica
 # Terminology
 
 The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust throughout this document.
-When used in text, the corresponding terms are capitalized.
+When used in text, defined terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.
 
 Artifact:
@@ -225,8 +234,8 @@ In COSE, Feed is a dedicated header attribute in the protected header of the Env
 
 Issuer:
 
-: an entity that creates Signed Statements about software Artifacts in the supply chain.
-An Issuer may be the owner or author of software Artifacts, or an independent third party such as a reviewer or an endorser.
+: an entity that creates Signed Statements in Feeds.
+An Issuer may be the owner or author of Artifacts, or an independent third party such as a security researcher, reviewer or endorser.
 
 Append-only Log (converges Ledger and Registry):
 
@@ -243,9 +252,7 @@ Registration:
 
 Registration Policy:
 
-: the pre-condition enforced by the Transparency Service before registering a Signed Statement, rendering it a Signed Statement,
-based on metadata contained in its COSE Envelope (notably the identity of its Issuer)
-and on prior Signed Statements already added to a Registry.
+: the pre-condition enforced by the Transparency Service before registering a Signed Statement, rendering it a Signed Statement, based on metadata contained in its COSE Envelope (notably the identity of its Issuer) and on prior Signed Statements already added to a Registry.
 
 Registry:
 
@@ -283,7 +290,7 @@ Verifier:
 
 # Definition of Transparency
 
-In this document, the definition of transparency is indented to build over abstract notions of Registry and Receipts.
+In this document, the definition of transparency is intended to build over abstract notions of Registry and Receipts.
 Existing transparency systems such as Certificate Transparency are instances of this definition.
 
 A Signed Statement is an identifiable and non-repudiable Statement made by an Issuer.
@@ -294,7 +301,7 @@ By extension, the document may say an Artifact (e.g., a firmware binary) is tran
 Transparency does not prevent dishonest or compromised Issuers, but it holds them accountable: any Artifact that may be used to target a particular user that checks for Receipts must have been recorded in the tamper-proof Registry, and will be subject to scrutiny and auditing by other parties.
 
 Transparency is implemented by a Registry that provides a consistent, append-only, cryptographically verifiable, publicly available record of entries.
-Implementations of Transparency Service may protect their Registry using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence.
+Implementations of Transparency Services may protect their Registry using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence.
 A Receipt is an offline, universally-verifiable proof that an entry is recorded in the Registry.
 Receipts do not expire, but it is possible to append new entries (more recent Signed Statements) that subsume older entries (less recent Signed Statements).
 
@@ -397,7 +404,7 @@ The role of Transparency Service can be decomposed into several major functions.
 The most important is maintaining a Registry, the verifiable data structure that records Signed Statements, and enforcing a Registration Policy.
 It also maintains a service key, which is used to endorse the state of the Registry in Receipts.
 All Transparency Services MUST expose standard endpoints for Registration of Signed Statements and Receipt issuance, which is described in {{sec-messages}}.
-Each Transparency Services also defines its Registration Policy, which MUST apply to all entries in the Registry.
+Each Transparency Service also defines its Registration Policy, which MUST apply to all entries in the Registry.
 
 The combination of Registry, identity, Registration Policy evaluation, and Registration endpoint constitute the trusted part of the Transparency Service.
 Each of these components SHOULD be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the Transparency Service.
@@ -408,7 +415,7 @@ Implementations of Transparency Services SHOULD avoid using the service identity
 
 ### Service Identity, Remote Attestation, and Keying
 
-Every Transparency Services MUST have a public service identity,
+Every Transparency Service MUST have a public service identity,
 associated with public/private key pairs for signing on behalf of the service.
 In particular, this identity must be known by Verifiers when validating a Receipt.
 
@@ -420,25 +427,25 @@ A Transparency Services SHOULD provide evidence that it is securely implemented 
 This additional evidence SHOULD be recorded in the Registry and presented on demand to Verifiers and Auditors.
 Examples for Statements that can improve trustworthy assessments of Transparency Services are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see {{-rats-arch}}.
 
-For example, consider a Transparency Services implemented using a set of replicas, each running within its own hardware-protected trusted execution environments (TEEs).
+For example, consider a Transparency Service implemented using a set of replicas, each running within its own hardware-protected trusted execution environments (TEEs).
 Each replica SHOULD provide a recent attestation report for its TEE, binding their hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts.
 This attestation evidence SHOULD be supplemented with transparency Receipts for the software and configuration of the service, as measured in its attestation report.
 
 ### Registration Policies
 
-A Transparency Services that accepts to register any valid Signed
-Statement offered by anonymous Issuers would only provide
+A Transparency Service that accepts to register any valid Signed
+Statement (particularly from anonymous Issuers) would only provide
 limited value, or no value, to verifiers. As a consequence, some form of
-"authorization" is needed before registration of Signed Statements to
-ensure completeness of audit. More advanced use case will rely on the
-Transparency Service performing additional domain-specific checks before
-a Signed Statement is accepted. For example, some Transparency Services
+authorization is needed prior to registration of Signed Statements in order to
+ensure completeness of audit. More advanced implementations will rely on the
+Transparency Service performing additional checks before
+a Signed Statement is accepted. For example, some domain-specific Transparency Services
 may validate the content of Signed Statements.
 
 We use the term "registration policies" to refer to the checks that are
 performed before a Signed Statement is registered given a set of input
 values. This baseline specification leaves the implementation of the
-registration policy to the provider of the Transparency Services and its
+Registration Policy to the provider of the Transparency Services and its
 users.
 
 As a minimum we expect that a deployment authenticates the Issuer of the
@@ -452,7 +459,7 @@ structure, as appropriate. It can be a non-root certificate when it is a
 certificate.
 
 A provider of a Transparency Service is, however, expected to indicate
-what registration policy is used in a given deployment and inform its
+what Registration Policy is used in a given deployment and inform its
 users about changes to the registration policy.
 
 ### Registry Security Requirements
@@ -460,7 +467,7 @@ users about changes to the registration policy.
 There are many different candidate verifiable data structures that may be used to implement the Registry, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants.
 The Registry is only required to support concise Receipts (i.e., whose size grows at most logarithmically in the number of entries in the Registry) that can be encoded as a COSE Signed Merkle Tree Proof.
 
-It is possible to offer multiple signature algorithms for the COSE signature of receipts' Signed Merkle Tree, or to change the signing algorithm at a later points. However, the Merkle Tree algorithm (including its internal hash function) cannot easily be changed without beaking the consistency of the Registry. It is possible to maintain separate Registries for each algorithm in parallel but the Transparency Service is then responsible for proving their mutual consistency.
+It is possible to offer multiple signature algorithms for the COSE signature of receipts' Signed Merkle Tree, or to change the signing algorithm at later points. However, the Merkle Tree algorithm (including its internal hash function) cannot easily be changed without breaking the consistency of the Registry. It is possible to maintain separate Registries for each algorithm in parallel but the Transparency Service is then responsible for proving their mutual consistency.
 
 #### Finality
 
@@ -481,7 +488,7 @@ In particular,
 
 - the ordering of entries, their cryptographic contents, and the Registry governance may be non-deterministic, but they must be verifiable.
 
-- a Transparency Services SHOULD store evidence about the resolution of distributed identifiers into manifests.
+- a Transparency Service SHOULD store evidence about the resolution of distributed identifiers into manifests.
 
 - a Transparency Service MAY additionally support verifiability of client authentication and access control.
 
@@ -527,7 +534,7 @@ The formats of Signed Statements and Receipts are based on CBOR Object Signing a
 The choice of CBOR {{-CBOR}} is a trade-off between safety (in particular, non-malleability: each Signed Statement has a unique serialization), ease of processing and availability of implementations.
 
 At a high-level that is the context of this architecture, a Signed Statement is a COSE single-signed object (i.e., a `COSE_Sign1`) that contains the correct set of protected headers.
-Although Issuers and relaying parties may attach unprotected headers to Signed Statements, Transparency Services and Verifiers MUST NOT rely on the presence or value of additional unprotected headers in Signed Statements during Registration and validation.
+Although Issuers and relying parties may attach unprotected headers to Signed Statements, Transparency Services and Verifiers MUST NOT rely on the presence or value of additional unprotected headers in Signed Statements during Registration and validation.
 
 All Signed Statements MUST include the following protected headers:
 
@@ -705,7 +712,6 @@ Conversely, the service MAY re-issue Receipts for the Registry content, for inst
 
 ## Validation of Transparent Statements
 
-This section provides additional implementation considerations.
 The high-level validation algorithm is described in {{validation}}; the Registry-specific details of checking Receipts are covered in {{-COMETRE}}.
 
 Before checking a Transparent Statement, the Verifier must be configured with one or more identities of trusted Transparency Services.
@@ -897,7 +903,7 @@ The retrieved Receipt may be embedded in the corresponding COSE_Sign1 document i
 # Privacy Considerations
 
 Unless advertised by a Transparency Service, every Issuer should treat Signed Statements it registered (rendering them Transparent Statements) as public.
-In particular, Signed Statement's Envelopes and Statement payload should not carry any private information in plaintext.
+In particular, Signed Statements' Envelopes and Statement payloads should not carry any private information in plaintext.
 
 # Security Considerations
 
@@ -911,7 +917,7 @@ Similarly, the fact that an Issuer can be held accountable for its Transparent S
 
 Issuers SHOULD ensure that the Statement payloads in their Signed Statements are correct and unambiguous, for example by avoiding ill-defined or ambiguous formats that may cause Verifiers to interpret the Signed Statement as valid for some other purpose.
 
-Issuers and Transparency Services SHOULD carefully protect their private signing keys and avoid these keys for any purpose not described in this architecture document.
+Issuers and Transparency Services SHOULD carefully protect their private signing keys and avoid these keys being used for any purpose not described in this architecture document.
 In cases where key re-use is unavoidable, keys MUST NOT sign any other message that may be verified as an Envelope as part of a Signed Statement.
 
 ## Threat Model
@@ -923,12 +929,12 @@ This model may need to be refined to account for specific supply chains and use 
 ### Signed Statement Authentication and Transparency.
 
 SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency).
-These guarantees are meant to hold for the extensive periods of time, possibly decades.
+These guarantees are meant to hold for extensive periods of time, possibly decades.
 
 It can never be assumed that some Issuers and some Transparency Services will not be corrupt.
 
-SCITT entities explicitly trust one another on the basis of their long-term identity, which maps to shorter-lived cryptographic credentials.
-Hence, a Verifier would usually validate a Transparent Statement originating from a given Issuer, registered at a given Transparency Service (both identified in the Verifier's local authorization policy) and would not depend on any other Issuer or Transparency Services.
+SCITT Entities explicitly trust one another on the basis of their long-term identity, which maps to shorter-lived cryptographic credentials.
+Hence, a Verifier would usually validate a Transparent Statement originating from a given Issuer, registered at a given Transparency Service (both identified in the Verifier's local authorization policy) and would not depend on any other Issuer or Transparency Service.
 
 Authorized supply chain actors (Issuers) cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a trustworthy Transparency Service.
 
@@ -938,11 +944,11 @@ In contrast Transparency Services can be hold accountable and they can be called
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service: different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
 
 In both cases, the SCITT Architecture provides generic, universally-verifiable cryptographic proof to individually blame Issuers or the Transparency Service.
-On the one hand, this enables valid actors to detect and disambiguate malicious actors who issue contradictory Signed Statements to different entities (Verifiers, Auditors, Issuers).
+On the one hand, this enables valid actors to detect and disambiguate malicious actors who issue contradictory Signed Statements to different entities (Verifiers, Auditors, Issuers), otherwise known as 'equivocation'.
 On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT Architecture.
 
 Verifiers and Auditors need not be trusted by other actors.
-In particular, they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.
+In particular, so long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.
 
 #### Append-only Log
 
@@ -961,7 +967,7 @@ Due to the operational challenge of maintaining a globally consistent append-onl
 some Transparency Services may provide limited support for historical queries on the Transparent Statements they have registered,
 and accept the risk of being blamed for inconsistent Registration or Issuer equivocation.
 
-Verifier and Auditors may also witness (1,4) but may not be able to collect verifiable evidence for it.
+Verifiers and Auditors may also witness (1,4) but may not be able to collect verifiable evidence for it.
 
 #### Availability of Transparent Signed Statement
 
@@ -983,7 +989,7 @@ All contents exchanged between actors is protected using secure authenticated ch
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
 Some Transparency Services may publish every Transparent Statement in their logs, to facilitate their dissemination and auditing.
-Others may just return Receipts to clients that present Singed Statements for Registration, and disclose the Append-only Log only to Auditors trusted with the confidentiality of its contents.
+Others may just return Receipts to clients that present Signed Statements for Registration, and disclose the Append-only Log only to Auditors trusted with the confidentiality of its contents.
 
 A collection of Transparent Statements must not leak information about the contents of other Transparent Statements registered on the Transparency Service.
 
@@ -994,7 +1000,7 @@ Alternatively, Issuers may include opaque cryptographic statements, such as hash
 #### Queries to the Registry
 
 The confidentiality of queries is implementation-specific, and generally not guaranteed.
-For example, while offline Envelope validation of Signed Statements is private, a Transparency Services may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.
+For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.
 
 ### Cryptographic Assumptions
 
@@ -1007,7 +1013,7 @@ This enables the gradual transition to stronger algorithms, including e.g. post-
 
 Trust in clients that submit Signed Statements for Registration is implementation-specific.
 Hence, an attacker may attempt to register any Signed Statement it has obtained, at any Transparency Service that accepts them, possibly multiple times and out of order.
-This may be mitigated by a Transparency Services that enforces restrictive access control and Registration Policies.
+This may be mitigated by a Transparency Service that enforces restrictive access control and Registration Policies.
 
 ### Identity
 
