@@ -372,8 +372,9 @@ They MAY update their DID manifest, for instance to refresh their signing keys o
 This DID appears in the Issuer protected header of Signed Statements' Envelopes, while the version of the key from the manifest used to sign the Signed Statement is written in the `kid` header.
 
 `kid` MUST either be an absolute URL,
-or `iss` MUST also be present in the protected header,
-and `kid` MUST be a URL relative to `iss`.
+or a relative URL. Relative URL MUST be
+relative to an `iss` value. When relative URL is used,
+`iss` MUST also be present in the protected header.
 
 Resolving `kid` MUST return an identity document of a registered content type (a set of public keys).
 In the case of `kid` being an absolute DID URL, the identity document is called a DID Document,
