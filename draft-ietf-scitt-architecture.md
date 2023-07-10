@@ -959,7 +959,7 @@ An Auditor granted (partial) access to a Registry and to a collection of dispute
 This ensures any Verifier that trusts at least one such Auditor that (2,3) will be blamed to the Transparency Service.
 
 Due to the operational challenge of maintaining a globally consistent append-only Log,
-some Transparency Services may provide limited support for historical queries on the Signed 
+some Transparency Services may provide limited support for historical queries on the Signed
 Statements they have registered, and accept the risk of being blamed for inconsistent
 Registration or Issuer equivocation.
 
