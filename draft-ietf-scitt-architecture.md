@@ -382,7 +382,7 @@ and is expected ot have content type `application/did+json`.
 To dereference a DID URL, it first MUST be resolved. After that the fragment is processed according to the media type.
 
 For example, when resolving `did:example:123#key-42`,
-first the identity document for `did:example:123` is resolved as content type `application/did+json`,
+first, the identity document for `did:example:123` is resolved as content type `application/did+json`,
 next, the fragment `#key-2` is dereferenced to a verification method that contains a `publicKeyJwk` property in JSON.
 
 The content type of `publicKeyJwk` is expected to be `application/jwk+json`.
