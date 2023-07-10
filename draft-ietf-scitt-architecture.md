@@ -1025,7 +1025,7 @@ In contrast Transparency Services can be hold accountable and they can be called
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service: different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
 
 In both cases, the SCITT Architecture provides generic, universally-verifiable cryptographic proof to individually blame Issuers or the Transparency Service.
-On the one hand, this enables valid actors to detect and disambiguate malicious actors who issue contradictory Signed Statements to different entities (Verifiers, Auditors, Issuers), otherwise known as 'equivocation'.
+On one hand, this enables valid actors to detect and disambiguate malicious actors who issue contradictory Signed Statements to different entities (Verifiers, Auditors, Issuers), otherwise known as 'equivocation'.
 On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT Architecture.
 
 Verifiers and Auditors need not be trusted by other actors.
