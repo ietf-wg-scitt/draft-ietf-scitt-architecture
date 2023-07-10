@@ -514,7 +514,7 @@ The role of Transparency Service can be decomposed into several major functions.
 The most important is maintaining a Registry, the verifiable data structure that records Signed Statements, and enforcing a Registration Policy.
 It also maintains a service key, which is used to endorse the state of the Registry in Receipts.
 All Transparency Services MUST expose standard endpoints for Registration of Signed Statements and Receipt issuance, which is described in {{sec-messages}}.
-Each Transparency Service also defines its Registration Policies, which MUST apply to all entries in the Registry.
+Each Transparency Service also defines its own Registration Policies, which MUST apply to all entries in the Registry.
 
 The combination of Registry, identity, Registration Policy evaluation, and Registration endpoint constitute the trusted part of the Transparency Service.
 Each of these components SHOULD be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the Transparency Service.
