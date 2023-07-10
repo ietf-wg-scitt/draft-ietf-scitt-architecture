@@ -375,7 +375,7 @@ This DID appears in the Issuer protected header of Signed Statements' Envelopes,
 or `iss` MUST also be present in the protected header,
 and `kid` MUST be a URL relative to `iss`.
 
-Resolving `kid` MUST return an Identity Document of a registered content type (a set of public keys).
+Resolving `kid` MUST return an identity document of a registered content type (a set of public keys).
 In the case of `kid` being an absolute DID URL, the identity document is called a DID Document,
 and is expected ot have content type `application/did+json`.
 
