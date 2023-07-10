@@ -379,7 +379,7 @@ Resolving `kid` MUST return an identity document of a registered content type (a
 In the case of `kid` being an absolute DID URL, the identity document is called a DID Document,
 and is expected ot have content type `application/did+json`.
 
-Dereferencing a DID URL requires that it first be resolved, and then the fragment processed according to the media type.
+To dereference a DID URL, it first MUST be resolved. After that the fragment is processed according to the media type.
 
 For example, when resolving `did:example:123#key-42`,
 first the identity document for `did:example:123` is resolved as content type `application/did+json`,
