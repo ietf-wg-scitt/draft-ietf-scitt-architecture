@@ -504,7 +504,7 @@ dereference = (id: string, accept: content_type = 'application/jwk+json') =>
 publicKeyJwk (of content type application/jwk+json).
 ```
 
-For example:
+For example, when DIDs are used:
 
 ```
 did:example:123#key-42
