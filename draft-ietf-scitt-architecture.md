@@ -150,6 +150,12 @@ The core components are based on the Concise Signing and Encryption standard spe
 
 {::boilerplate bcp14-tagged}
 
+- # Use Cases
+
+The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.
+
+Detailed use cases are maintained in a separate document: https://datatracker.ietf.org/doc/draft-ietf-scitt-software-use-cases/
+
 # Terminology
 
 The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust throughout this document.
