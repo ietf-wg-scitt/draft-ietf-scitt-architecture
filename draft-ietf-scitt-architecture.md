@@ -173,9 +173,7 @@ Auditor:
 
 Consumer of Signed Statements:
 
-: [^definehere]
-
-[^definehere]: Define here.
+: Define here.
 
 Envelope:
 
@@ -567,7 +565,7 @@ We also introduce the following requirements for the COSE signature of the Merkl
 The following registration policies are built-in and MAY be used by verifiers to help decide the trustworthiness of the Transparent Statement:
 
 - Registration time: the timestamp at which the TS has added this Signed Claim to its Registry
-- [TODO]: Discuss and add additional policies
+- TBD: Discuss and add additional policies
 
 ~~~ cddl
 Receipt = [
@@ -766,7 +764,7 @@ One of the following:
 
 - Status 400 - Registration was unsuccessful due to invalid input.
   - Error code `badSignatureAlgorithm`
-  - [TODO]: more error codes to be defined, see [#17](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17)
+  - TBD: more error codes to be defined, see [#17](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17)
 
 If 202 is returned, then clients should wait until Registration succeeded or failed by polling the Registration status using the Operation ID returned in the response.
 Clients should always obtain a Receipt as a proof that Registration has succeeded.
@@ -988,8 +986,9 @@ TBD; {{mybody}}.
 
 IANA is requested to register the URN sub-namespace `urn:ietf:params:scitt`
 in the "IETF URN Sub-namespace for Registered Protocol Parameter Identifiers"
-Registry {{!IANA.params}}, following the template in {{!RFC3553}}:
+Registry {{IANA.params}}, following the template in {{RFC3553}}:
 
+~~~
    Registry name:  scitt
 
    Specification:  [RFCthis]
@@ -997,6 +996,7 @@ Registry {{!IANA.params}}, following the template in {{!RFC3553}}:
    Repository:  http://www.iana.org/assignments/scitt
 
    Index value:  No transformation needed.
+~~~
 
 --- back
 
