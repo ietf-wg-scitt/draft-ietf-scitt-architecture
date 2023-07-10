@@ -720,12 +720,9 @@ Such policies may use as input all information in the Envelope, the Receipt, and
 
 Verifiers SHOULD offer options to store or share Receipts in case they are needed to audit the Transparency Services in case of a dispute.
 
-# Federation[^1]
+# Federation
 
-[^1]: This section needs work.
-{: source="Henk"}
-
-Editor's note: This section needs work.
+This topic is still under discussion, see [issue 79](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/79)
 
 Multiple, independently-operated Transparency Services can help secure distributed supply chains, without the need for a single, centralized service trusted by all parties.
 For example, multiple Transparency Service instances may be governed and operated by different organizations that do not trust one another.
@@ -737,12 +734,7 @@ For example,
 a supplier's Transparency Service may provide a complete, authoritative Registry for some kind of Signed Statements, whereas a Consumer's Transparency Service may collect different kinds of Signed Statements
 to ensure complete auditing for a specific use case, and possibly require additional reviews before registering some of these Signed Statements.
 
-# Transparency Service API[^2]
-
-[^2]: This may be moved to appendix.
-{: source="Henk"}
-
-Editor's Note: This may be moved to appendix.
+# Transparency Service API
 
 ## Messages
 
