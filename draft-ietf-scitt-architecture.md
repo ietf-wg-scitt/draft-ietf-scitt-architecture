@@ -272,7 +272,7 @@ The identity of a Transparency Service is captured by a public key that must be 
 
 Transparent Statement:
 
-: a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service( the receipt is stored in the unprotected header of COSE Envelope of the Signed Statement).
+: a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service (the receipt is stored in the unprotected header of COSE Envelope of the Signed Statement).
 A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.
 
 Verifier:
