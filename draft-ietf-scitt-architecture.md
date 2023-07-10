@@ -600,7 +600,7 @@ RegistrationInfo = {
 
 There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
 An Issuer must first decide on a suitable format to serialize a Statement payload. For a software supply chain, payloads describing the software artifacts may,
-for example, include 
+for example, include
 
 - JSON-SPDX
 - CBOR-SPDX
