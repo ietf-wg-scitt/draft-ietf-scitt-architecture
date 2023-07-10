@@ -715,6 +715,8 @@ Verifiers SHOULD offer options to store or share Receipts in case they are neede
 
 # Federation
 
+This topic is still under discussion, see [issue 79](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/79)
+
 Multiple, independently-operated Transparency Services can help secure distributed supply chains, without the need for a single, centralized service trusted by all parties.
 For example, multiple Transparency Service instances may be governed and operated by different organizations that do not trust one another.
 
