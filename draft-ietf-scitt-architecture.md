@@ -338,6 +338,157 @@ Issuers SHOULD use consistent decentralized identifiers for all their Statements
 They MAY update their DID manifest, for instance to refresh their signing keys or algorithms, but they SHOULD NOT remove or change any prior keys unless they intend to revoke all Signed Statements that are registered as Transparent Statements issued with those keys.
 This DID appears in the Issuer protected header of Signed Statements' Envelopes, while the version of the key from the manifest used to sign the Signed Statement is written in the `kid` header.
 
+`kid` MUST either be an absolute URL,
+or a relative URL. Relative URL MUST be
+relative to an `iss` value. When relative URL is used,
+`iss` MUST also be present in the protected header.
+
+Resolving `kid` MUST return an identity document of a registered content type (a set of public keys).
+In the case of `kid` being an absolute DID URL, the identity document is called a DID Document,
+and is expected ot have content type `application/did+json`.
+
+To dereference a DID URL, it first MUST be resolved. After that the fragment is processed according to the media type.
+
+For example, when resolving `did:example:123#key-42`,
+first, the identity document for `did:example:123` is resolved as content type `application/did+json`,
+next, the fragment `#key-2` is dereferenced to a verification method that contains a `publicKeyJwk` property.
+
+The content type of `publicKeyJwk` is expected to be `application/jwk+json`.
+
+The details of both `DID resolution` and `DID dereferencing` are out of scope for this document.
+
+The `iss` or `kid`, might not be DID URLs, however the following interfaces MUST be satisfied in order to ensure
+issuer identity documents, and associated keys are discoverable in a consistent manner.
+
+#### Resolving Identity Documents
+
+The value of `id` might be found the `iss` or `sub` claims if they are present in the protected header or payload.
+
+```
+resolve = (id: string, accept: content_type = 'application/did+json') =>
+idDocument (of content type application/did+json).
+```
+
+For example:
+
+```
+did:example:123
+```
+
+Might resolve to:
+
+```
+{
+  "id": "did:example:123",
+  "verificationMethod": [{
+    "id": "#key-42",
+    "type": "JsonWebkey",
+    "controller": "did:example:123",
+    "publicKeyJwk": {
+      "kty": "EC",
+      "crv": "P-384",
+      "alg": "ES384",
+      "x": "LCeAt2sW36j94wuFP0gNEIHDzqR6Nh_Udu2ObLer3cKFBCaAHY1svmbPV69bP3RH",
+      "y": "zz2SkcOGYM6PbYlw19tcbpzo6bEMYHIwGBnN5rd8QWykAprstPdxx4U0uScvDcYd"
+    }
+  }]
+}
+```
+
+Editor note, we might wish to eliminate this intermediate identity document content type,
+by treating it as an alterative encoding of `application/jwk-set+json` or `application/cose-key-set`.
+
+However, there is no media type fragment processing directive
+that would enable dereferencing the known key set content types, listed above.
+
+##### Comment on OIDC
+
+For well known token types, such as `id_token` or `access_token`.
+
+`iss` MUST be a URL, and it MUST have keys discoverable in the following way:
+
+`iss` can be used to build a `.well-known` URL to discovery the issuer's configuration.
+
+For example, `iss` `contoso.example` will have the following open id connect configuration URL.
+
+`https://contoso.example/.well-known/openid-configuration`.
+
+This URL will resolve to a JSON document which contains the property:
+
+`jwks_uri`, for example `https://contoso.example/.well-known/jwks.json`
+
+This URL will resolve to a JSON document of content type `application/jwk-set+json`,
+which will contain specific keys... for example:
+
+```json
+{
+  "keys": [
+    {
+      "alg": "RS256",
+      "kty": "RSA",
+      "use": "sig",
+      "n": "wW9TkSbcn5FV3iUJ-812sqTvwTGCFrDm6vD2U-g23gn6rrBdFZQbf2bgEnSkolph6CanOYTQ1lKVhKjHLd6Q4MDVGidbVBhESxib2YIzJVUS-0oQgizkBEJxyHI4Zl3xX_sdA_yegLUi-Ykt_gaMPSw_vpxe-pBxu-jd14i-jDfwoPJUdF8ZJGS9orCPRiHCYLDgOscC9XibH9rUbTvG8q4bAPx9Ox6malx4OLvU3pXVjew6LG3iBi2YhpCWe6voMvZJYXqC1n5Mk_KOdGcCFtDgu3I56SGSfsF7-tI7qG1ZO8RMuzqH0LkJVirujYzXrnMZ7WgbMPXmHU8i4z04zw",
+      "e": "AQAB",
+      "kid": "NTBGNTJEMDc3RUE3RUVEOTM4NDcyOEFDNzEyOTY5NDNGOUQ4OEU5OA",
+      "x5t": "NTBGNTJEMDc3RUE3RUVEOTM4NDcyOEFDNzEyOTY5NDNGOUQ4OEU5OA",
+      "x5c": [
+        "MIIDCzCCAfOgAwIBAgIJANPng0XRWwsdMA0GCSqGSIb3DQEBBQUAMBwxGjAYBgNVBAMMEWNvbnRvc28uYXV0aDAuY29tMB4XDTE0MDcxMTE2NTQyN1oXDTI4MDMxOTE2NTQyN1owHDEaMBgGA1UEAwwRY29udG9zby5hdXRoMC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDBb1ORJtyfkVXeJQn7zXaypO/BMYIWsObq8PZT6DbeCfqusF0VlBt/ZuASdKSiWmHoJqc5hNDWUpWEqMct3pDgwNUaJ1tUGERLGJvZgjMlVRL7ShCCLOQEQnHIcjhmXfFf+x0D/J6AtSL5iS3+Bow9LD++nF76kHG76N3XiL6MN/Cg8lR0XxkkZL2isI9GIcJgsOA6xwL1eJsf2tRtO8byrhsA/H07HqZqXHg4u9TeldWN7DosbeIGLZiGkJZ7q+gy9klheoLWfkyT8o50ZwIW0OC7cjnpIZJ+wXv60juobVk7xEy7OofQuQlWKu6NjNeucxntaBsw9eYdTyLjPTjPAgMBAAGjUDBOMB0GA1UdDgQWBBTLarHdkNa5CzPyiKJU51t8JWn9WTAfBgNVHSMEGDAWgBTLarHdkNa5CzPyiKJU51t8JWn9WTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4IBAQA2FOjm+Bpbqk59rQBC0X6ops1wBcXH8clnXfG1G9qeRwLEwSef5HPz4TTh1f2lcf4Pcq2vF0HbVNJFnLVV+PjR9ACkto+v1n84i/U4BBezZyYuX2ZpEbv7hV/PWxg8tcVrtyPaj60UaA/pUA86CfYy+LckY4NRKmD7ZrcCzjxW2hFGNanfm2FEryxXA3RMNf6IiW7tbJ9ZGTEfA/DhVnZgh/e82KVX7EZnkB4MjCQrwj9QsWSMBtBiYp0/vRi9cxDFHlUwnYAUeZdHWTW+Rp2JX7Qwf0YycxgyjkGAUEZc4WpdNiQlwYf5G5epfOtHGiwiJS+u/nSYvqCFt57+g3R+"
+      ]
+    },
+    {
+      "alg": "RS256",
+      "kty": "RSA",
+      "use": "sig",
+      "n": "ylgVZbNR4nlsU_AbU8Zd7ZhVfmYuwq-RB1_YQWHY362pAed-qgSXV1QmKwCukQ2WDsPHWgpPuEf3O_acmJcCiSxhctpBr5WKkji5o50YX2FqC3xymGkYW5NilvFznKaKU45ulBVByrcb3Vt8BqqBAhaD4YywZZKo7mMudcq_M__f0_tB4fHsHHe7ehWobWtzAW7_NRP0_FjB4Kw4PiqJnChPvfbuxTCEUcIYrshRwD6GF4D_oLdeR44dwx4wtEgvPOtkQ5XIGrhQC_sgWcb2jh7YXauVUjuPezP-VkK7Wm9mZRe758q43SWxwT3afo5BLa3_YLWazqcpWRXn9QEDWw",
+      "e": "AQAB",
+      "kid": "aMIKy_brQk3nLd0PKd9ln",
+      "x5t": "-xcTyx47q3ddycG7LtE6QCcETbs",
+      "x5c": [
+        "MIIC/TCCAeWgAwIBAgIJH62yWyX7VxxQMA0GCSqGSIb3DQEBCwUAMBwxGjAYBgNVBAMTEWNvbnRvc28uYXV0aDAuY29tMB4XDTIwMDMxMTE5Mjk0N1oXDTMzMTExODE5Mjk0N1owHDEaMBgGA1UEAxMRY29udG9zby5hdXRoMC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDKWBVls1HieWxT8BtTxl3tmFV+Zi7Cr5EHX9hBYdjfrakB536qBJdXVCYrAK6RDZYOw8daCk+4R/c79pyYlwKJLGFy2kGvlYqSOLmjnRhfYWoLfHKYaRhbk2KW8XOcpopTjm6UFUHKtxvdW3wGqoECFoPhjLBlkqjuYy51yr8z/9/T+0Hh8ewcd7t6Fahta3MBbv81E/T8WMHgrDg+KomcKE+99u7FMIRRwhiuyFHAPoYXgP+gt15Hjh3DHjC0SC8862RDlcgauFAL+yBZxvaOHthdq5VSO497M/5WQrtab2ZlF7vnyrjdJbHBPdp+jkEtrf9gtZrOpylZFef1AQNbAgMBAAGjQjBAMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFPVdE4SPvuhlODV0GOcPE4QZ7xNuMA4GA1UdDwEB/wQEAwIChDANBgkqhkiG9w0BAQsFAAOCAQEAu2nhfiJk/Sp49LEsR1bliuVMP9nycbSz0zdp2ToAy0DZffTd0FKk/wyFtmbb0UFTD2aOg/WZJLDc+3dYjWQ15SSLDRh6LV45OHU8Dkrc2qLjiRdoh2RI+iQFakDn2OgPNgquL+3EEIpbBDA/uVoOYCbkqJNaNM/egN/s2vZ6Iq7O+BprWX/eM25xw8PMi+MU4K2sJpkcDRwoK9Wy8eeSSRIGYnpKO42g/3QI9+BRa5uD+9shG6n7xgzAPGeldUXajCThomwO8vInp6VqY8k3IeLEYoboJj5KMfJgOWUkmaoh6ZBJHnCogvSXI35jbxCxmHAbK+KdTka/Yg2MadFZdA=="
+      ]
+    }
+  ]
+}
+
+```
+
+If SCITT wanted to be interoperable with OIDC, we would define key dereferencing in a way that was compatible with how OIDC handles it today.
+
+
+#### Dereferencing Public Keys
+
+`kid` is always present in the protected header.
+
+If `iss` is also present, `kid` MUST be a relative URL to `iss`,
+otherwise `kid` MUST be an absolute URL that starts with `iss`.
+
+`id` = `kid` if `iss` is undefined, or `iss` + `#` + `kid` when `iss` is defined.
+
+See also [draft-ietf-cose-cwt-claims-in-headers](https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/).
+
+```
+dereference = (id: string, accept: content_type = 'application/jwk+json') =>
+publicKeyJwk (of content type application/jwk+json).
+```
+
+For example, when DIDs are used:
+
+```
+did:example:123#key-42
+```
+
+Might dereference to:
+
+```
+{
+  "kty": "EC",
+  "crv": "P-384",
+  "alg": "ES384",
+  "x": "LCeAt2sW36j94wuFP0gNEIHDzqR6Nh_Udu2ObLer3cKFBCaAHY1svmbPV69bP3RH",
+  "y": "zz2SkcOGYM6PbYlw19tcbpzo6bEMYHIwGBnN5rd8QWykAprstPdxx4U0uScvDcYd"
+}
+```
+
 ### Naming Artifacts
 
 Many Issuers issue Signed Statements about different Artifacts under the same DID, so it is important for everyone to be able to immediately recognize by looking at the Envelope of a Signed Statements what Artifact it is referring to.
