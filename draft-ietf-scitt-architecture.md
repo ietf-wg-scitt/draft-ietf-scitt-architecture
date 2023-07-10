@@ -387,7 +387,7 @@ next, the fragment `#key-2` is dereferenced to a verification method that contai
 
 The content type of `publicKeyJwk` is expected to be `application/jwk+json`.
 
-The details of both `did resolution` and `did dereferencing` are out of scope for this document.
+The details of both `DID resolution` and `DID dereferencing` are out of scope for this document.
 
 The `iss` or `kid`, might not be DID URLs, however the following interfaces MUST be satisfied in order to ensure
 issuer identity documents, and associated keys are discoverable in a consistent manner.
