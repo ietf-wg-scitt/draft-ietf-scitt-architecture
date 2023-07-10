@@ -580,7 +580,7 @@ Protected_Header = {
   ; Additional standard COSE headers
   2 => [+ label]            ; Critical headers
   ? 4 => bstr               ; Key ID (optional)
-  ? 33 => COSE_X509	    ; X.509 chain (optional)
+  ? 33 => COSE_X509         ; X.509 chain (optional)
 }
 
 ; Details of the registration policies applied by the TS
