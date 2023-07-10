@@ -626,7 +626,15 @@ RegistrationInfo = {
 
 There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
 An Issuer must first decide on a suitable format to serialize a Statement payload. For a software supply chain, payloads describing the software artifacts may,
-for example, include JSON-SPDX, CBOR-SPDX, SWID, CoSWID, CycloneDX, in-toto, SLSA or others.
+for example, include 
+
+- JSON-SPDX
+- CBOR-SPDX
+- SWID
+- CoSWID
+- CycloneDX
+- in-toto
+- SLSA
 
 Once the Statement is serialized with the correct media-type/content-format, an Issuer should fill in the attributes for the Registration Policy information header.
 From the Issuer's perspective, using attributes from named policies ensures that the Signed Statement may only be registered on Transparency Services that implement the associated policy.
