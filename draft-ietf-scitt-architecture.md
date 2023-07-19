@@ -977,7 +977,7 @@ All contents exchanged between actors is protected using secure authenticated ch
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for registration. The act of registration will always record in the
 logs the Signed Statement.  There is a use case where the logs are completely publicly accessible, and another where the audit requires elevated permission (this could be for privacy or for mitigation of servicing expensive operations). In either case the returned Receipts to the client will both facilitate simple evaluation of meeting the identity policy bar and act as a key to allow query during the elevated deep audit.
 
-A collection of Transparent Statements must not leak information about the contents of other Transparent Statements registered on the Transparency Service.
+A collection of Transparent Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.
 
 Nonetheless, Issuers should carefully review the inclusion of private/confidential materials in their issued Signed Statements; they may for instance remove any PII, or include instead opaque cryptographic commitments, such as hashes.  The pattern of leveraging detached signatures with an embedded URL results in a situation where the envelope content is on the log (and viewable) and a different access policy can be used for the confidential content.  Furthermore, the content may have aged off, leaving just the record of registration.
 
