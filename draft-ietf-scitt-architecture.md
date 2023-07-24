@@ -351,7 +351,7 @@ To dereference a DID URL, it first MUST be resolved. After that the fragment is 
 
 For example, when resolving `did:example:123#key-42`,
 first, the identity document for `did:example:123` is resolved as content type `application/did+json`,
-next, the fragment `#key-2` is dereferenced to a verification method that contains a `publicKeyJwk` property.
+next, the fragment `#key-42` is dereferenced to a verification method that contains a `publicKeyJwk` property.
 
 The content type of `publicKeyJwk` is expected to be `application/jwk+json`.
 
