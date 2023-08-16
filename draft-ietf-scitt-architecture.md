@@ -641,7 +641,7 @@ This section details the interoperability requirements for implementers of Signe
 
 ##  Issuing Signed Statements
 
-Signed Statements are CBOR encoded {{-CBOR}} and protected by CBOR Object Signing and Encryption (COSE {{-COSE}}). Additionally, it contains a minimum amount of headers and Statements as its payload.
+Signed Statements are CBOR encoded {{-CBOR}} and protected by CBOR Object Signing and Encryption (COSE {{-COSE}}). Additionally, it contains at least one or more headers and a set of statements as its payload.
 Although Issuers and other parties MAY attach unprotected headers to Signed Statements, Transparency Services and Verifiers MUST NOT rely on the presence or value of additional unprotected headers in Signed Statements during Registration and validation.
 
 All Signed Statements MUST include the following protected headers:
