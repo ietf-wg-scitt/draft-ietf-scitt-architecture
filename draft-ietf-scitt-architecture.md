@@ -337,7 +337,7 @@ For instance, if the Issuer publishes its manifest at `https://sample.issuer/use
 Issuers SHOULD use consistent decentralized identifiers for all their Statements about Artifacts, to simplify authorization by Verifiers and auditing.
 If an issuer uses multiple DIDs (for instance, because their clients support different resolution methods), they MUST ensure that statements signed under each DID are consistent.
 
-Issuers MAY update their DID manifest at any time, for instance to refresh their signing keys or algorithms, but they SHOULD NOT remove or change any of their previous keys unless they intend to revoke all Signed Statements that are registered as Transparent Statements issued with those keys.
+Issuers MAY update their DID Document at any time, for instance to refresh their signing keys or algorithms, but they SHOULD NOT remove or change any of their previous keys unless they intend to revoke all Signed Statements that are registered as Transparent Statements issued with those keys.
 
 The Issuer's DID appears in the protected header of Signed Statements' Envelopes, while the version of the key from the manifest used to sign the Signed Statement is written in the `kid` header.
 
