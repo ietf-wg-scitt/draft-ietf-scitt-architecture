@@ -727,12 +727,13 @@ For named policies, the Transparency Service MUST check that the required Regist
 5. Register the Signed Statement to the append-only log.
 
 6. Return the Transparent Statement, which includes the Receipt.
-The details of 
+Details about generating Receipts are described in {{Receipt}}.
+
 The last two steps may be shared between a batch of Signed Statements recorded in the Registry.
 
 A Transparency Service MUST ensure that a Signed Statement is registered before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry (the now Transparent Statement) in the Registry. Conversely, the Transparency Service MAY re-issue Receipts for the Registry content, for instance after a transient fault during Signed Statement registration.
 
-## Transparent Statements and Receipts
+## Transparent Statements and Receipts {#Receipt}
 
 When a Signed Statement is registered by a TS a Transparent Statement is created. This Transparent Statement consists of the Signed Statement and a Receipt.
 Receipts are based on COSE Signed Merkle Tree Proofs ({{-COMETRE}}) with an additional wrapper structure that adds the following information:
