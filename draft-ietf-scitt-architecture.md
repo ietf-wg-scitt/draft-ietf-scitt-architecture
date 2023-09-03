@@ -531,7 +531,7 @@ Beyond the trusted components, Transparency Services may operate additional endp
 Every Transparency Service MUST have a public service identity, associated with public/private key pairs for signing on behalf of the service.
 In particular, this identity must be known by Verifiers when validating a Receipt.
 
-This identity MUST be stable for the lifetime of the service, so that all Receipts remain valid and consistent. 
+This identity MUST be stable for the lifetime of the service, so that all Receipts remain valid and consistent.
 The Transparency Service operator MAY use a distributed identifier as their public service identity if they wish to rotate their keys, if the Registry algorithm they use for their Receipt supports it.
 Other types of cryptographic identities, such as parameters for non-interactive zero-knowledge proof systems, may also be used in the future.
 
