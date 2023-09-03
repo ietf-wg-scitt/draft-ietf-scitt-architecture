@@ -727,15 +727,61 @@ For named policies, the Transparency Service MUST check that the required Regist
 5. Register the Signed Statement to the append-only log.
 
 6. Return the Transparent Statement, which includes the Receipt.
-
+The details of 
 The last two steps may be shared between a batch of Signed Statements recorded in the Registry.
 
 A Transparency Service MUST ensure that a Signed Statement is registered before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry (the now Transparent Statement) in the Registry. Conversely, the Transparency Service MAY re-issue Receipts for the Registry content, for instance after a transient fault during Signed Statement registration.
 
+## Transparent Statements and Receipts
+
+When a Signed Statement is registered by a TS a Transparent Statement is created. This Transparent Statement consists of the Signed Statement and a Receipt.
+Receipts are based on COSE Signed Merkle Tree Proofs ({{-COMETRE}}) with an additional wrapper structure that adds the following information:
+
+- version: Receipt version number; this should be set to `0` for implementation of this document.
+- ts_identifier: The DID of the Transparency Service that issued the claim. Verifiers MAY use this DID as a key discovery mechanism to verify the COSE Merkle Root signature; in this case the verification is the same as for Signed Claims and the signer should include the Key ID header. Verifiers MUST support the `did:web` method, all other methods are optional.
+
+We also introduce the following requirements for the COSE signature of the Merkle Root:
+
+- The SCITT version header MUST be included and its value match the `version` field of the Receipt stucture.
+- The DID of issuer header (like in Signed Claims) MUST be included and its value match the `ts_identifier` field of the Receipt structure.
+- TS MAY include the Registration policy info header to indicate to verifiers what policies have been applied at the registration of this claim.
+- Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of TS and Registration Policy) MUST be marked critical.
+
+The TS may include the registration time to help verifiers decide about the trustworthiness of the Transparent Statement.
+The registration time is defined as the timestamp at which the TS has added this Signed Statement to its Registry.
+
+~~~ cddl
+Receipt = [
+    version: int,
+    ts_identifier: tstr,
+    proof: SignedMerkleTreeProof
+]
+
+; Additional protected headers in the COSE signed_tree_root of the SignedMerkleTreeProof
+Protected_Header = {
+  390 => int                 ; SCITT Receipt Version
+  394 => tstr                ; DID of Transparency Service (required)
+  ? 395 => RegistrationInfo  ; Registration policy information (optional)
+
+  ; Other COSE Signed Merkle Tree headers
+  ; (e.g. tree algorithm, tree size)
+
+  ; Additional standard COSE headers
+  2 => [+ label]            ; Critical headers
+  ? 4 => bstr               ; Key ID (optional)
+  ? 33 => COSE_X509         ; X.509 chain (optional)
+}
+
+; Details of the registration info, as provided by the TS
+RegistrationInfo = {
+  ? "registration_time": uint .within (~time),
+  * tstr => any
+}
+~~~
+
 ## Validation of Transparent Statements
 
-This section provides additional implementation considerations.
-The high-level validation algorithm is described in {{validation}}; the Registry-specific details of checking Receipts are covered in {{-COMETRE}}.
+The high-level validation algorithm is described in {{validation}}; the algorithm-specific details of checking Receipts are covered in {{-COMETRE}}.
 
 Before checking a Transparent Statement, the Verifier must be configured with one or more identities of trusted Transparency Services.
 If more than one service is configured, the Verifier MUST return which service the Transparent Statement is registered on.
