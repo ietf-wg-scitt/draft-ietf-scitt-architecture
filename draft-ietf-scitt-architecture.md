@@ -541,7 +541,7 @@ Examples for Statements that can improve trustworthy assessments of Transparency
 
 For example, consider a Transparency Service implemented using a set of replicas, each running within its own hardware-protected trusted execution environments (TEEs).
 Each replica MAY provide a recent attestation report for its TEE, binding their hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts.
-This attestation evidence can be supplemented with transparency Receipts for the software and configuration of the service, as measured in its attestation report.
+This attestation evidence can be supplemented with Receipts for the software and configuration of the service, as measured in its attestation report.
 
 ### Registration Policies
 
