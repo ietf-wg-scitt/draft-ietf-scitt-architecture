@@ -601,7 +601,7 @@ In particular,
 
 - the ordering of entries, their cryptographic contents, and the Registry governance may be non-deterministic, but they must be verifiable.
 
-- a Transparency Service MAY store evidence about the resolution of distributed identifiers into manifests.
+- a Transparency Service MAY store evidence about the resolution of DIDs into DID Documents.
 
 - a Transparency Service MAY additionally support verifiability of client authentication and access control.
 
