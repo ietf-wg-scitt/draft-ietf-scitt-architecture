@@ -47,8 +47,8 @@ author:
   country: UK
 - ins: S. Lasker
   name: Steve Lasker
-  org: Lasker Consulting
-  email: stevenlasker@hotmail.com
+  org: RKVST
+  email: steve.lasker@rkvst.com
   city: Seattle
   country: United States
 
