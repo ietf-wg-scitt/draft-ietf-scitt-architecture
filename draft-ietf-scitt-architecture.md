@@ -807,7 +807,7 @@ Before checking a Transparent Statement, the Verifier must be configured with on
 If more than one service is configured, the Verifier MUST return which service the Transparent Statement is registered on.
 
 In some scenarios, the Verifier already expects a specific Issuer and Feed for the Transparent Statement, while in other cases they are not known in advance and can be an output of validation.
-Verifiers MAY be configured to re-verify the Issuer's signature locally, but this requires a fresh resolution of the Issuer's DID, which MAY fail if the manifest is not available or if the statement's signing key has been revoked. Otherwise, the Verifier trusts the validation done by the Transparency Service during Registration.
+Verifiers MAY be configured to re-verify the Issuer's signature locally, but this requires a fresh resolution of the Issuer's DID, which MAY fail if the DID Document is not available or if the statement's signing key has been revoked. Otherwise, the Verifier trusts the validation done by the Transparency Service during Registration.
 
 Some Verifiers MAY decide to locally re-apply some or all of the Registration Policies, if they have limited trust in the Transparency Services.
 In addition, Verifiers MAY apply arbitrary validation policies after the signature and Receipt have been checked.
