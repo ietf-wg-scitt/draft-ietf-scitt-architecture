@@ -339,7 +339,7 @@ If an issuer uses multiple DIDs (for instance, because their clients support dif
 
 Issuers MAY update their DID Document at any time, for instance to refresh their signing keys or algorithms, but they SHOULD NOT remove or change any of their previous keys unless they intend to revoke all Signed Statements that are registered as Transparent Statements issued with those keys.
 
-The Issuer's DID appears in the protected header of Signed Statements' Envelopes, while the version of the key from the manifest used to sign the Signed Statement is written in the `kid` header.
+The Issuer's DID appears in the protected header of Signed Statements' Envelopes, while the version of the key from the DID Document used to sign the Signed Statement is written in the `kid` header.
 
 `kid` MUST either be an absolute URL,
 or a relative URL. Relative URL MUST be
