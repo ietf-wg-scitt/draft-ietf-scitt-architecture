@@ -639,31 +639,24 @@ Although this weakens their guarantees against key revocation, or against a corr
 
 This section details the interoperability requirements for implementers of Signed Statements issuance and validation libraries, and of Transparency Services.
 
-##  Envelope and Signed Statement Format
+##  Signed Statement Envelope
 
-The formats of Signed Statements and Receipts are based on CBOR Object Signing and Encryption (COSE {{-COSE}}).
-The choice of CBOR {{-CBOR}} is a trade-off between safety (in particular, non-malleability: each Signed Statement has a unique serialization), ease of processing and availability of implementations.
-
-At a high-level that is the context of this architecture, a Signed Statement is a COSE single-signed object (i.e., a `COSE_Sign1`) that contains the correct set of protected headers.
-Although Issuers and relying parties may attach unprotected headers to Signed Statements, Transparency Services and Verifiers MUST NOT rely on the presence or value of additional unprotected headers in Signed Statements during Registration and validation.
+Signed Statements are CBOR encoded {{-CBOR}} and protected by CBOR Object Signing and Encryption (COSE {{-COSE}}). Additionally, it contains at least one or more headers and a set of statements as its payload.
+Although Issuers and other parties MAY attach unprotected headers to Signed Statements, Transparency Services and Verifiers MUST NOT rely on the presence or value of additional unprotected headers in Signed Statements during Registration and validation.
 
 All Signed Statements MUST include the following protected headers:
 
-- algorithm (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer, for example `-35` for ECDSA with SHA-384, see [COSE Algorithms Registry](#IANA.cose);
-- Issuer (label: `TBD`, temporary: `391`): DID (Decentralized Identifier {{DID-CORE}}) of the signer, as a string, for example `did:web:example.com`;
-- Feed (label: `TBD`, temporary: `392`): the Issuer's name for the Artifact, as a string;
-- payload type (label: `3`): media-type of Statement payload as a string, for example `application/spdx+json`
-- Registration Policy info (label: `TBD`, temporary: `393`): a map of additional attributes to help enforce Registration Policies;
+- algorithm (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer. For example, `-35` is the registered algorithm identifier for ECDSA with SHA-384, see [COSE Algorithms Registry](#IANA.cose).
+- Issuer (label: `TBD`, temporary: `391`): DID (Decentralized Identifier {{DID-CORE}}) of the signer, as a string. `did:web:example.com` is an example of a DID.
+- Feed (label: `TBD`, temporary: `392`): The Issuer's name for the Artifact, as a string.
+- Content type (label: `3`): Media type of payload, as a string. For example, `application/spdx+json` is the media type of SDPX in JSON encoding.
+- Registration Policy info (label: `TBD`, temporary: `393`): A map of additional attributes to help enforce Registration Policies.
 - Key ID (label: `4`): Key ID, as a bytestring.
 
-Additionally, Signed Statements MAY carry the following unprotected headers:
-
-- Receipts (label: `TBD`, temporary: `394`): Array of Receipts, defined below. This allows the Receipt to be attached to the Signed Statement, thus making a Transparent Statement.
-
-In CDDL {{-CDDL}} notation, the Envelope is defined as follows:
+In CDDL {{-CDDL}} notation, a Signed_Statement is defined as follows:
 
 ~~~~ cddl
-SCITT_Envelope = COSE_Sign1_Tagged
+Signed_Statement = COSE_Sign1_Tagged
 
 COSE_Sign1_Tagged = #6.18(COSE_Sign1)
 
@@ -682,8 +675,6 @@ Reg_Info = {
   * tstr => any
 }
 
-; All protected headers are mandatory, to protect against faulty implementations of COSE
-; that may accidentally read a missing protected header from the unprotected headers.
 Protected_Header = {
   1 => int               ; algorithm identifier
   3 => tstr              ; payload type
@@ -700,8 +691,51 @@ Unprotected_Header = {
 }
 ~~~~
 
-## Receipts
+There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
+An Issuer must first decide what Statements to include. For a software supply chain, payloads describing the software artifacts may, for example, include
 
+- JSON-SPDX
+- CBOR-SPDX
+- SWID
+- CoSWID
+- CycloneDX
+- in-toto
+- SLSA
+
+Once the Statement is serialized with the correct media-type/content-format, an Issuer should fill in the attributes for the Registration Policy information header.
+From the Issuer's perspective, using attributes from named policies ensures that the Signed Statement may only be registered on Transparency Services that implement the associated policy.
+For instance, if a Signed Statement is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers SHOULD use the `sequence_no` or `issuer_ts` attributes.
+
+## Registering Signed Statements
+
+The same Signed Statement may be independently registered by multiple Transparency Services.
+To register a Signed Statement, the Transparency Service performs the following steps:
+
+1. Issuer Key Discovery
+The Transparency Service MUST perform DID resolution of the Issuer's key and store evidence of the lookup. This step may require that the service retrieves the Issuer DID in real-time, or relies on retrieving cached resolution.
+
+2. Signature verification
+The Transparency Service MUST verify the signature of the Signed Statement, as described in RFC 9360, using the signature algorithm and verification key of the Issuer DID document.
+
+3. Signed Statement validation
+The Transparency Service MUST check that the Signed Statement includes a Statement payload and the protected headers listed above.
+The Transparency Service MAY additionally verify the Statement payload format and content.
+
+4. Apply Registration Policy
+For named policies, the Transparency Service MUST check that the required Registration info attributes are present in the headers and apply the check described in Table 1. A Transparency Service MUST reject Signed Statements that contain an attribute used for a named policy that is not enforced by the service. Custom Signed Statements are evaluated given the current Registry state and the entire Envelope, and may use information contained in the attributes of named policies.
+
+5. Register the Signed Statement to the append-only log.
+
+6. Return the Transparent Statement, which includes the Receipt.
+Details about generating Receipts are described in {{Receipt}}.
+
+The last two steps may be shared between a batch of Signed Statements recorded in the Registry.
+
+A Transparency Service MUST ensure that a Signed Statement is registered before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry (the now Transparent Statement) in the Registry. Conversely, the Transparency Service MAY re-issue Receipts for the Registry content, for instance after a transient fault during Signed Statement registration.
+
+## Transparent Statements and Receipts {#Receipt}
+
+When a Signed Statement is registered by a TS a Transparent Statement is created. This Transparent Statement consists of the Signed Statement and a Receipt.
 Receipts are based on COSE Signed Merkle Tree Proofs ({{-COMETRE}}) with an additional wrapper structure that adds the following information:
 
 - version: Receipt version number; MUST be set to `0` for implementation of this document.
@@ -745,7 +779,6 @@ RegistrationInfo = {
   * tstr => any
 }
 ~~~
-
 
 ## Signed Statement Issuance
 
@@ -800,8 +833,7 @@ Conversely, the service MAY re-issue Receipts for the Registry content, for inst
 
 ## Validation of Transparent Statements
 
-This section provides additional implementation considerations.
-The high-level validation algorithm is described in {{validation}}; the Registry-specific details of checking Receipts are covered in {{-COMETRE}}.
+The high-level validation algorithm is described in {{validation}}; the algorithm-specific details of checking Receipts are covered in {{-COMETRE}}.
 
 Before checking a Transparent Statement, the Verifier must be configured with one or more identities of trusted Transparency Services.
 If more than one service is configured, the Verifier MUST return which service the Transparent Statement is registered on.
