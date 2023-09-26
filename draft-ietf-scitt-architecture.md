@@ -649,7 +649,7 @@ All Signed Statements MUST include the following protected headers:
 - algorithm (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer. For example, `-35` is the registered algorithm identifier for ECDSA with SHA-384, see [COSE Algorithms Registry](#IANA.cose).
 - Issuer (label: `TBD`, temporary: `391`): DID (Decentralized Identifier {{DID-CORE}}) of the signer, as a string. `did:web:example.com` is an example of a DID.
 - Feed (label: `TBD`, temporary: `392`): The Issuer's name for the Artifact, as a string.
-- Payload type (label: `3`): Media type of payload, as a string. For example, `application/spdx+json` is the media type of SDPX in JSON encoding.
+- Content type (label: `3`): Media type of payload, as a string. For example, `application/spdx+json` is the media type of SDPX in JSON encoding.
 - Registration Policy info (label: `TBD`, temporary: `393`): A map of additional attributes to help enforce Registration Policies.
 - Key ID (label: `4`): Key ID, as a bytestring.
 
