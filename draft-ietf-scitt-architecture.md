@@ -274,7 +274,7 @@ Failure to produce this proof can indicate that the Transparency Services operat
 
 # Architecture Overview
 
-~~~~ aasvg
+~~~aasvg
                     .----------.
                    |  Artifact  |
                     '----+-----'
@@ -314,7 +314,7 @@ Verifier      -->               |   / Verify Transparent /   |
                        .--------+---------.      .-----------+-----.
 Auditor       -->     / Collect Receipts /      /   Replay Log    /
                      '------------------'      '-----------------'
-~~~~
+~~~
 
 The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements, and auditing Transparent Statements.
 
@@ -367,20 +367,23 @@ issuer identity documents, and associated keys are discoverable in a consistent 
 
 The value of `id` might be found the `iss` or `sub` claims if they are present in the protected header or payload.
 
-```
+~~~sh
+
 resolve = (id: string, accept: content_type = 'application/did+json') =>
 idDocument (of content type application/did+json).
-```
+~~~
 
 For example:
 
-```
+~~~sh
+
 did:example:123
-```
+~~~
 
 Might resolve to:
 
-```
+~~~json
+
 {
   "id": "did:example:123",
   "verificationMethod": [{
@@ -396,7 +399,7 @@ Might resolve to:
     }
   }]
 }
-```
+~~~
 
 Editor note, we might wish to eliminate this intermediate identity document content type,
 by treating it as an alterative encoding of `application/jwk-set+json` or `application/cose-key-set`.
@@ -423,7 +426,7 @@ This URL will resolve to a JSON document which contains the property:
 This URL will resolve to a JSON document of content type `application/jwk-set+json`,
 which will contain specific keys... for example:
 
-```json
+~~~json
 {
   "keys": [
     {
@@ -452,11 +455,9 @@ which will contain specific keys... for example:
     }
   ]
 }
-
-```
+~~~
 
 If SCITT wanted to be interoperable with OIDC, we would define key dereferencing in a way that was compatible with how OIDC handles it today.
-
 
 #### Dereferencing Public Keys
 
@@ -469,20 +470,20 @@ otherwise `kid` MUST be an absolute URL that starts with `iss`.
 
 See also [draft-ietf-cose-cwt-claims-in-headers](https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/).
 
-```
+~~~sh
 dereference = (id: string, accept: content_type = 'application/jwk+json') =>
 publicKeyJwk (of content type application/jwk+json).
-```
+~~~
 
 For example, when DIDs are used:
 
-```
+~~~ http
 did:example:123#key-42
-```
+~~~
 
 Might dereference to:
 
-```
+~~~json
 {
   "kty": "EC",
   "crv": "P-384",
@@ -490,7 +491,7 @@ Might dereference to:
   "x": "LCeAt2sW36j94wuFP0gNEIHDzqR6Nh_Udu2ObLer3cKFBCaAHY1svmbPV69bP3RH",
   "y": "zz2SkcOGYM6PbYlw19tcbpzo6bEMYHIwGBnN5rd8QWykAprstPdxx4U0uScvDcYd"
 }
-```
+~~~
 
 ### Naming Artifacts
 
@@ -574,7 +575,6 @@ A provider of a Transparency Service is, however, expected to indicate
 what registration policy is used in a given deployment and inform its
 users about changes to the registration policy.
 
-
 ### Registry Security Requirements
 
 There are many different candidate verifiable data structures that may be used to implement the Registry, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants.
@@ -598,11 +598,8 @@ Everyone with access to the Registry can check the correctness of its contents.
 In particular,
 
 - the Transparency Service defines and enforces deterministic Registration Policies that can be re-evaluated based solely on the contents of the Registry at the time of Registration, and must then yield the same result.
-
 - the ordering of entries, their cryptographic contents, and the Registry governance may be non-deterministic, but they must be verifiable.
-
 - a Transparency Service MAY store evidence about the resolution of DIDs into DID Documents.
-
 - a Transparency Service MAY additionally support verifiability of client authentication and access control.
 
 #### Governance and Bootstrapping
@@ -622,8 +619,8 @@ Hence, the Registry may contain both Transparent Statements and governance entri
 For a given Artifact, Verifiers take as trusted inputs:
 
 1. the distributed identifier of the Issuer (or its resolved key manifest),
-2. the expected name of the Artifact (i.e., the Feed),
-3. the list of service identities of trusted Transparency Services.
+1. the expected name of the Artifact (i.e., the Feed),
+1. the list of service identities of trusted Transparency Services.
 
 When presented with a Transparent Statement for an Artifact, Consumers verify its Issuer identity, signature, and Receipt.
 They may additionally apply a validation policy based on the protected headers present both in the Envelope, the Receipt, or the Statement itself, which may include security-critical or Artifact-specific details.
@@ -639,7 +636,7 @@ Although this weakens their guarantees against key revocation, or against a corr
 
 This section details the interoperability requirements for implementers of Signed Statements issuance and validation libraries, and of Transparency Services.
 
-##  Signed Statement Envelope
+## Signed Statement Envelope
 
 Signed Statements are CBOR encoded {{-CBOR}} and protected by CBOR Object Signing and Encryption (COSE {{-COSE}}). Additionally, it contains at least one or more headers and a set of statements as its payload.
 Although Issuers and other parties MAY attach unprotected headers to Signed Statements, Transparency Services and Verifiers MUST NOT rely on the presence or value of additional unprotected headers in Signed Statements during Registration and validation.
@@ -655,7 +652,7 @@ All Signed Statements MUST include the following protected headers:
 
 In CDDL {{-CDDL}} notation, a Signed_Statement is defined as follows:
 
-~~~~ cddl
+~~~ cddl
 Signed_Statement = COSE_Sign1_Tagged
 
 COSE_Sign1_Tagged = #6.18(COSE_Sign1)
@@ -689,7 +686,7 @@ Unprotected_Header = {
   ; TBD, Labels are temporary
   ? 394 => [+ Receipt]
 }
-~~~~
+~~~
 
 There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
 An Issuer must first decide what Statements to include. For a software supply chain, payloads describing the software artifacts may, for example, include
@@ -711,22 +708,13 @@ For instance, if a Signed Statement is frequently updated, and it is important f
 The same Signed Statement may be independently registered by multiple Transparency Services.
 To register a Signed Statement, the Transparency Service performs the following steps:
 
-1. Issuer Key Discovery
-The Transparency Service MUST perform DID resolution of the Issuer's key and store evidence of the lookup. This step may require that the service retrieves the Issuer DID in real-time, or relies on retrieving cached resolution.
-
-2. Signature verification
-The Transparency Service MUST verify the signature of the Signed Statement, as described in RFC 9360, using the signature algorithm and verification key of the Issuer DID document.
-
-3. Signed Statement validation
-The Transparency Service MUST check that the Signed Statement includes a Statement payload and the protected headers listed above.
+1. **Issuer Key Discovery:** The Transparency Service MUST perform DID resolution of the Issuer's key and store evidence of the lookup. This step may require that the service retrieves the Issuer DID in real-time, or relies on retrieving cached resolution.
+1. **Signature verification:** The Transparency Service MUST verify the signature of the Signed Statement, as described in RFC 9360, using the signature algorithm and verification key of the Issuer DID document.
+1. **Signed Statement validation:** The Transparency Service MUST check that the Signed Statement includes a Statement payload and the protected headers listed above.
 The Transparency Service MAY additionally verify the Statement payload format and content.
-
-4. Apply Registration Policy
-For named policies, the Transparency Service MUST check that the required Registration info attributes are present in the headers and apply the check described in Table 1. A Transparency Service MUST reject Signed Statements that contain an attribute used for a named policy that is not enforced by the service. Custom Signed Statements are evaluated given the current Registry state and the entire Envelope, and may use information contained in the attributes of named policies.
-
-5. Register the Signed Statement to the append-only log.
-
-6. Return the Transparent Statement, which includes the Receipt.
+1. **Apply Registration Policy:** For named policies, the Transparency Service MUST check that the required Registration info attributes are present in the headers and apply the check described in Table 1. A Transparency Service MUST reject Signed Statements that contain an attribute used for a named policy that is not enforced by the service. Custom Signed Statements are evaluated given the current Registry state and the entire Envelope, and may use information contained in the attributes of named policies.
+1. Register the Signed Statement to the append-only log
+1. Return the Transparent Statement, which includes the Receipt
 Details about generating Receipts are described in {{Receipt}}.
 
 The last two steps may be shared between a batch of Signed Statements recorded in the Registry.
@@ -739,13 +727,13 @@ When a Signed Statement is registered by a TS a Transparent Statement is created
 Receipts are based on COSE Signed Merkle Tree Proofs ({{-COMETRE}}) with an additional wrapper structure that adds the following information:
 
 - version: Receipt version number; MUST be set to `0` for implementation of this document.
-- ts_identifier: The DID of the Transparency Service that issued the Receipt. Verifiers MAY use this DID as a key discovery mechanism to verify the Receipt; in this case the verification is the same as for Signed Claims and the signer MAY include the `kid` header parameter. Verifiers MUST support the `did:web` method, all other methods are optional.
+- ts_identifier: The DID of the Transparency Service that issued the Receipt. Verifiers MAY use this DID as a key discovery mechanism to verify the Receipt; in this case the verification is the same as for Signed Statement and the signer MAY include the `kid` header parameter. Verifiers MUST support the `did:web` method, all other methods are optional.
 
 We also introduce the following requirements for the COSE signature of the Merkle Root:
 
-- The SCITT version header MUST be included and its value match the `version` field of the Receipt stucture.
-- The DID of issuer header (like in Signed Claims) MUST be included and its value match the `ts_identifier` field of the Receipt structure.
-- TS MAY include the Registration policy info header to indicate to verifiers what policies have been applied at the registration of this claim.
+- The SCITT version header MUST be included and its value match the `version` field of the Receipt structure.
+- The DID of issuer header (like in Signed Statements) MUST be included and its value match the `ts_identifier` field of the Receipt structure.
+- TS MAY include the Registration policy info header to indicate to verifiers what policies have been applied at the registration of this Statement.
 - Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of TS and Registration Policy) MUST be marked critical.
 
 The TS may include the registration time to help verifiers decide about the trustworthiness of the Transparent Statement.
@@ -804,27 +792,18 @@ Once all the Envelope headers are set, an Issuer MUST use a standard COSE implem
 The same Signed Statement may be independently registered in multiple Transparency Services.
 To register a Signed Statement, the service performs the following steps:
 
-1. Client authentication.
-This is implementation-specific and MAY be unrelated to the Issuer identity.
+1. **Client authentication:** This is implementation-specific and MAY be unrelated to the Issuer identity.
 Signed Statements may be registered by a different party than their Issuer.
-
-2. Issuer identification.
-The Transparency Service MUST store evidence of the DID resolution for the Issuer protected header of the Envelope and the resolved key manifest at the time of Registration for auditing.
+1. **Issuer identification:** The Transparency Service MUST store evidence of the DID resolution for the Issuer protected header of the Envelope and the resolved key manifest at the time of Registration for auditing.
 This MAY require that the service resolves the Issuer DID and record the resulting document, or rely on a cache of recent resolutions.
-
-3. Envelope signature verification, as described in COSE signature, using the signature algorithm and verification key of the Issuer DID document.
-
-4. Envelope validation.
-The service MUST check that the Envelope includes a Statement payload and the protected headers listed above.
+1. **Envelope signature verification:** As described in COSE signature, using the signature algorithm and verification key of the Issuer DID document
+1. **Envelope validation:** The service MUST check that the Envelope includes a Statement payload and the protected headers listed above
 The service MAY additionally verify the Statement payload format and content.
-
-5. Apply Registration Policy: for named policies, the Transparency Service must check that the required Registration info attributes are present in the Envelope and apply the check described in Table 1.
+1. **Apply Registration Policy:** for named policies, the Transparency Service must check that the required Registration info attributes are present in the Envelope and apply the check described in Table 1.
 A Transparency Service MUST reject Signed Statements that contain an attribute used for a named policy that is not enforced by the service.
 Custom Signed Statements are evaluated given the current Registry state and the entire Envelope, and MAY use information contained in the attributes of named policies.
-
-6. Commit (register) the new Signed Statement to the Registry
-
-7. Sign and return the Receipt.
+1. Commit (register) the new Signed Statement to the Registry
+1. Sign and return the Receipt
 
 The last two steps MAY be shared between a batch of Signed Statements recorded in the Registry.
 
@@ -871,7 +850,6 @@ If the Transparency Service cannot process a client's request, it MUST return an
 
 - type: A URI reference identifying the problem.
 To facilitate automated response to errors, this document defines a set of standard tokens for use in the type field within the URN namespace of: "urn:ietf:params:scitt:error:".
-
 - detail: A human-readable string describing the error that prevented the Transparency Service from processing the request, ideally with sufficient detail to enable the error to be rectified.
 
 Error responses MUST be sent with the `Content-Type: application/problem+json` HTTP header.
@@ -879,6 +857,7 @@ Error responses MUST be sent with the `Content-Type: application/problem+json` H
 As an example, submitting a Signed Statement with an unsupported signature algorithm would return a `400 Bad Request` status code and the following body:
 
 ~~~json
+
 {
   "type": "urn:ietf:params:scitt:error:badSignatureAlgorithm",
   "detail": "The Statement was signed with an algorithm the server does not support"
@@ -898,7 +877,8 @@ In the absence of this header field, this document does not specify a minimum.
 
 #### Request
 
-~~~
+~~~http
+
 POST <Base URL>/entries
 ~~~
 
@@ -916,13 +896,11 @@ One of the following:
   - Header `Location: <Base URL>/entries/<Entry ID>`
   - Header `Content-Type: application/json`
   - Body `{ "entryId": "<Entry ID"> }`
-
 - Status 202 - Registration is running.
   - Header `Location: <Base URL>/operations/<Operation ID>`
   - Header `Content-Type: application/json`
   - (Optional) Header: `Retry-After: <seconds>`
   - Body `{ "operationId": "<Operation ID>", "status": "running" }`
-
 - Status 400 - Registration was unsuccessful due to invalid input.
   - Error code `badSignatureAlgorithm`
   - TBD: more error codes to be defined, see [#17](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17)
@@ -934,7 +912,7 @@ Clients MUST NOT report registration is complete until an HTTP code 202 response
 
 #### Request
 
-~~~
+~~~http
 GET <Base URL>/operations/<Operation ID>
 ~~~
 
@@ -943,24 +921,24 @@ GET <Base URL>/operations/<Operation ID>
 One of the following:
 
 - Status 200 - Registration is running
-    - Header: `Content-Type: application/json`
-    - (Optional) Header: `Retry-After: <seconds>`
-    - Body: `{ "operationId": "<Operation ID>", "status": "running" }`
+  - Header: `Content-Type: application/json`
+  - (Optional) Header: `Retry-After: <seconds>`
+  - Body: `{ "operationId": "<Operation ID>", "status": "running" }`
 
 - Status 200 - Registration was successful
-    - Header: `Location: <Base URL>/entries/<Entry ID>`
-    - Header: `Content-Type: application/json`
-    - Body: `{ "operationId": "<Operation ID>", "status": "succeeded", "entryId": "<Entry ID>" }`
+  - Header: `Location: <Base URL>/entries/<Entry ID>`
+  - Header: `Content-Type: application/json`
+  - Body: `{ "operationId": "<Operation ID>", "status": "succeeded", "entryId": "<Entry ID>" }`
 
 - Status 200 - Registration failed
-    - Header `Content-Type: application/json`
-    - Body: `{ "operationId": "<Operation ID>", "status": "failed", "error": { "type": "<type>", "detail": "<detail>" } }`
-    - Error code: `badSignatureAlgorithm`
-    - [TODO]: more error codes to be defined, see [#17](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17)
+  - Header `Content-Type: application/json`
+  - Body: `{ "operationId": "<Operation ID>", "status": "failed", "error": { "type": "<type>", "detail": "<detail>" } }`
+  - Error code: `badSignatureAlgorithm`
+  - TODO: more error codes to be defined, see [#17](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17)
 
 - Status 404 - Unknown Operation ID
-    - Error code: `operationNotFound`
-    - This can happen if the operation ID has expired and been deleted.
+  - Error code: `operationNotFound`
+  - This can happen if the operation ID has expired and been deleted.
 
 If an operation failed, then error details MUST be embedded as a JSON problem details object in the `"error"` field.
 
@@ -971,7 +949,7 @@ This is because differentiating between the two may not be possible in an eventu
 
 #### Request
 
-~~~
+~~~http
 GET <Base URL>/entries/<Entry ID>
 ~~~
 
@@ -996,7 +974,7 @@ One of the following:
 
 #### Request
 
-~~~
+~~~http
 GET <Base URL>/entries/<Entry ID>/receipt
 ~~~
 
@@ -1011,7 +989,6 @@ One of the following:
   - Error code: `entryNotFound`
 
 The retrieved Receipt may be embedded in the corresponding COSE_Sign1 document in the unprotected header.
-
 
 # Privacy Considerations
 
@@ -1039,7 +1016,7 @@ The document provides a generic threat model for SCITT, describing its residual 
 
 This model may need to be refined to account for specific supply chains and use cases.
 
-### Signed Statement Authentication and Transparency.
+### Signed Statement Authentication and Transparency
 
 SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency).
 These guarantees are meant to hold for extensive periods of time, possibly decades.
@@ -1068,10 +1045,11 @@ In particular, so long as actors maintain proper control of their signing keys a
 If a Transparency Service is honest, then a Transparent Statement including a correct Receipt ensures that the associated Signed Statement passed its Registration Policy and was recorded appropriately.
 
 Conversely, a corrupt Transparency Service may
+
 1. refuse or delay the Registration of Signed Statements,
-2. register Signed Statements that do not pass its Registration Policy (e.g., Signed Statement with Issuer identities and signatures that do not verify),
-3. issue verifiable Receipts for Signed Statements that do not match its Registry, or
-4. refuse access to its Registry (e.g., to Auditors, possibly after storage loss).
+1. register Signed Statements that do not pass its Registration Policy (e.g., Signed Statement with Issuer identities and signatures that do not verify),
+1. issue verifiable Receipts for Signed Statements that do not match its Registry, or
+1. refuse access to its Registry (e.g., to Auditors, possibly after storage loss).
 
 An Auditor granted (partial) access to a Registry and to a collection of disputed Receipts will be able to replay it, detect any invalid Registration (2) or incorrect Receipt in this collection (3), and blame the Transparency Service for them.
 This ensures any Verifier that trusts at least one such Auditor that (2,3) will be blamed to the Transparency Service.
@@ -1094,7 +1072,7 @@ Resistance to denial-of-service is implementation specific.
 
 Actors may want to independently keep their own record of the Signed Statements they issue, endorse, verify, or audit.
 
-### Confidentiality and privacy.
+### Confidentiality and Privacy
 
 According to Zero Trust Principles any location in a network is never trusted.
 All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but, as usual, this may not exclude network traffic analysis.
@@ -1149,7 +1127,8 @@ IANA is requested to register the URN sub-namespace `urn:ietf:params:scitt`
 in the "IETF URN Sub-namespace for Registered Protocol Parameter Identifiers"
 Registry {{IANA.params}}, following the template in {{RFC3553}}:
 
-~~~
+~~~output
+
    Registry name:  scitt
 
    Specification:  [RFCthis]
