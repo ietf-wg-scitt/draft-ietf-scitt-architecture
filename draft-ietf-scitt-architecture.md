@@ -115,7 +115,7 @@ As the Issuer of the Signed Statement and conformance to the Registration Policy
 The guarantees and techniques used in this document generalize those of Certificate Transparency {{-CT}}, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates.
 However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each Transparency Service is implemented and operates.
 Each service MAY enforce its own Registration Policies for authorizing entities to register their Signed Statements to the append-only Log.
-Some Transparency Services may also enforce authorization policies limiting who can write, read and audit specific Feeds or the full registry.
+Some Transparency Services may also enforce authorization policies limiting who can write, read and audit specific representations of the full registry.
 It is critical to provide interoperability for all Transparency Services instances as the composition and configuration of involved supply chain entities and their system components is ever-changing and always in flux, so it is implausible to expect all participants to choose a single vendor or registry.
 
 A Transparency Service provides visibility into Signed Statements associated with various supply chains and their sub-systems.
@@ -126,7 +126,8 @@ Producing a Transparent Statement may be considered a form of notarization.
 A Statements payload content MAY be encrypted and opaque to the Transparency Services, if so desired: however the metadata MUST be transparent in order to warrant trust for later processing.
 Transparent Statements provide a common basis for holding Issuers accountable for the Statement payload about Artifacts they release and (more generally) principals accountable for auxiliary Signed Statements from other Issuers about the original Signed Statement about an Artifact.
 Issuers may Register new Signed Statements about Artifacts, but they cannot delete or alter Signed Statements previously added to the append-only Log.
-A Transparency Service may restrict access to Signed Statements through access control policies. However, third parties (such as Auditors) would be granted access as needed to attest to the validity of the Artifact, Feed or the entirety of the Transparency Service.
+A Transparency Service may restrict access to Signed Statements through access control policies. 
+However, third parties (such as Auditors) would be granted access as needed to attest to the validity of the registries contents.
 
 Trust in the Transparency Service itself is supported both by protecting their implementation (using, for instance, replication, trusted hardware, and remote attestation of a system's operational state) and by enabling independent audits of the correctness and consistency of its Registry, thereby holding the organization that operates it accountable.
 Unlike CT, where independent Auditors are responsible for enforcing the consistency of multiple independent instances of the same global Registry, each Transparency Service is required to guarantee the consistency of its own Registry (for instance, through the use of a consensus algorithm between replicas of the Registry), but assume no consistency between different Transparency Services.
@@ -182,12 +183,6 @@ Envelope:
 An Envelope contains the identity of the Issuer and other information to help components responsible for validation that are part of a Transparency Services to identify the software Artifact referred to in a Signed Statement.
 In essence, a Signed Statement is a COSE Envelope wrapped around a Statement binding the metadata included in the Envelope to a Statement.
 In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).
-
-Feed:
-
-: an identifier chosen by the Issuer for the Artifact.
-For every Issuer and Feed, the Registry on a Transparency Service contains a sequence of Signed Statements about the same Artifact.
-In COSE, Feed is a dedicated header attribute in the protected header of the Envelope.
 
 Issuer:
 
@@ -494,13 +489,14 @@ Might dereference to:
 
 ### Naming Artifacts
 
-Many Issuers issue Signed Statements about different Artifacts under the same DID, so it is important for everyone to be able to immediately recognize by looking at the Envelope of a Signed Statements what Artifact it is referring to.
-This information is stored in the Feed header of the Envelope.
+Many Issuers issue Signed Statements about different Artifacts under the same issuer identifier, 
+so it is important for everyone to be able to immediately recognize by looking at the Envelope of a Signed Statements what Artifact it is referring to.
+Issuers MUST use `Reg_Info` to distinguish statements about different artifacts.
 Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
 
 ### Signed Statement Metadata
 
-Besides Issuer, Feed and kid, the only other mandatory metadata in a Signed Statement is the type of the Payload, indicated in the `cty` (content type) Envelope header.
+Aside from protected header parameters including `Reg_Info`, the only other mandatory metadata in a Signed Statement is the type of the Payload, indicated in the `cty` (content type) Envelope header.
 However, this set of mandatory metadata is not sufficient to express many important Registration Policies.
 For example, a Registry may only allow a Signed Statement to be registered, if it was signed recently.
 While the Issuer is free to add any information in the payload of the Signed Statements, the Transparency Services (and most of its Auditors) can only be expected to interpret information in the Envelope.
@@ -524,7 +520,7 @@ The combination of Registry, identity, Registration Policy evaluation, and Regis
 Each of these components MUST be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the Transparency Service.
 For instance, the code for policy evaluation, Registry extension and endorsement may be protected by running in a TEE; the Registry may be replicated and a consensus algorithm such as Practical Byzantine Fault Tolerance (pBFT {{PBFT}}) may be used to protect against malicious or vulnerable replicas; threshold signatures may be use to protect the service key, etc.
 
-Beyond the trusted components, Transparency Services may operate additional endpoints for auditing, for instance to query for the history of Signed Statements registered by a given Issuer via a certain Feed. Implementations of Transparency Services SHOULD avoid using the service identity and extending the Registry in auditing endpoints, except if it is necessary to compute a Registry consistency proofs. Other evidence to support the correctness and completeness of the audit response MUST be computed from the Registry.
+Beyond the trusted components, Transparency Services may operate additional endpoints for auditing, for instance to query for the history of Signed Statements registered by a given Issuer via a certain `Reg_Info`. Implementations of Transparency Services SHOULD avoid using the service identity and extending the Registry in auditing endpoints, except if it is necessary to compute a Registry consistency proofs. Other evidence to support the correctness and completeness of the audit response MUST be computed from the Registry.
 
 ### Service Identity, Remote Attestation, and Keying
 
@@ -622,7 +618,7 @@ Hence, the Registry may contain both Transparent Statements and governance entri
 For a given Artifact, Verifiers take as trusted inputs:
 
 1. the distributed identifier of the Issuer (or its resolved key manifest),
-2. the expected name of the Artifact (i.e., the Feed),
+2. the expected name of the Artifact (i.e., as described in `Reg_Info`),
 3. the list of service identities of trusted Transparency Services.
 
 When presented with a Transparent Statement for an Artifact, Consumers verify its Issuer identity, signature, and Receipt.
@@ -648,7 +644,6 @@ All Signed Statements MUST include the following protected headers:
 
 - algorithm (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer. For example, `-35` is the registered algorithm identifier for ECDSA with SHA-384, see [COSE Algorithms Registry](#IANA.cose).
 - Issuer (label: `TBD`, temporary: `391`): DID (Decentralized Identifier {{DID-CORE}}) of the signer, as a string. `did:web:example.com` is an example of a DID.
-- Feed (label: `TBD`, temporary: `392`): The Issuer's name for the Artifact, as a string.
 - Content type (label: `3`): Media type of payload, as a string. For example, `application/spdx+json` is the media type of SDPX in JSON encoding.
 - Registration Policy info (label: `TBD`, temporary: `393`): A map of additional attributes to help enforce Registration Policies.
 - Key ID (label: `4`): Key ID, as a bytestring.
@@ -680,8 +675,7 @@ Protected_Header = {
   3 => tstr              ; payload type
   4 => bstr              ; Key ID
   ; TBD, Labels are temporary
-  391 => tstr            ; DID of Issuer
-  392 => tstr            ; Feed
+  13 => CWT Claims       ; DID of Issuer, see https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/ and https://www.iana.org/assignments/cwt/cwt.xhtml
   393 => Reg_Info        ; Registration Policy info
 }
 
@@ -838,7 +832,7 @@ The high-level validation algorithm is described in {{validation}}; the algorith
 Before checking a Transparent Statement, the Verifier must be configured with one or more identities of trusted Transparency Services.
 If more than one service is configured, the Verifier MUST return which service the Transparent Statement is registered on.
 
-In some scenarios, the Verifier already expects a specific Issuer and Feed for the Transparent Statement, while in other cases they are not known in advance and can be an output of validation.
+In some scenarios, the Verifier already expects a specific Issuer and associated `Reg_info` for the Transparent Statement, while in other cases they are not known in advance and can be an output of validation.
 Verifiers MAY be configured to re-verify the Issuer's signature locally, but this requires a fresh resolution of the Issuer's DID, which MAY fail if the DID Document is not available or if the statement's signing key has been revoked. Otherwise, the Verifier trusts the validation done by the Transparency Service during Registration.
 
 Some Verifiers MAY decide to locally re-apply some or all of the Registration Policies, if they have limited trust in the Transparency Services.
