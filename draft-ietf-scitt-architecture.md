@@ -126,7 +126,7 @@ Producing a Transparent Statement may be considered a form of notarization.
 A Statements payload content MAY be encrypted and opaque to the Transparency Services, if so desired: however the metadata MUST be transparent in order to warrant trust for later processing.
 Transparent Statements provide a common basis for holding Issuers accountable for the Statement payload about Artifacts they release and (more generally) principals accountable for auxiliary Signed Statements from other Issuers about the original Signed Statement about an Artifact.
 Issuers may Register new Signed Statements about Artifacts, but they cannot delete or alter Signed Statements previously added to the append-only Log.
-A Transparency Service may restrict access to Signed Statements through access control policies. 
+A Transparency Service may restrict access to Signed Statements through access control policies.
 However, third parties (such as Auditors) would be granted access as needed to attest to the validity of the registries contents.
 
 Trust in the Transparency Service itself is supported both by protecting their implementation (using, for instance, replication, trusted hardware, and remote attestation of a system's operational state) and by enabling independent audits of the correctness and consistency of its Registry, thereby holding the organization that operates it accountable.
@@ -489,7 +489,7 @@ Might dereference to:
 
 ### Naming Artifacts
 
-Many Issuers issue Signed Statements about different Artifacts under the same issuer identifier, 
+Many Issuers issue Signed Statements about different Artifacts under the same issuer identifier,
 so it is important for everyone to be able to immediately recognize by looking at the Envelope of a Signed Statements what Artifact it is referring to.
 Issuers MUST use `Reg_Info` to distinguish statements about different artifacts.
 Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
