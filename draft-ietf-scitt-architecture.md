@@ -667,7 +667,7 @@ Reg_Info = {
   ? "sequence_no": uint,
   ? "issuance_ts": uint .within (~time),
   ? "no_replay": null,
-  * tstr => any
+  * tstr => any ; feed identifiers, optic identifiers, or other implementation specific details go here.
 }
 
 Protected_Header = {
