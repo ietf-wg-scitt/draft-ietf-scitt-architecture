@@ -1,4 +1,4 @@
----
+
 v: 3
 
 title: An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -179,19 +179,19 @@ Consumer of Signed Statements:
 Envelope:
 
 : metadata and an Issuer's signature is added to a Statement via a COSE Envelope by the Issuer to produce a Signed Statement.
-An Envelope contains the identity of the Issuer and other information to help components responsible for validation that are part of a Transparency Services to identify the software Artifact referred to in a Signed Statement.
+The Envelope contains the identity of the Issuer and information about the Artifact to help Transparency Services to properly validate and process the Signed Statement.
 In essence, a Signed Statement is a COSE Envelope wrapped around a Statement binding the metadata included in the Envelope to a Statement.
 In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).
 
 Feed:
 
-: an identifier chosen by the Issuer for the Artifact.
-For every Issuer and Feed, the Registry on a Transparency Service contains a sequence of Signed Statements about the same Artifact.
+: a logical collection of Statements about the same Artifact.
+For any step or set of steps in a supply chain there will be multiple statements made about the same Artifact. Issuers use the Feed to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Feed to ensure completeness and non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
 In COSE, Feed is a dedicated header attribute in the protected header of the Envelope.
 
 Issuer:
 
-: an entity that creates Signed Statements about software Artifacts in the supply chain.
+: an entity that creates Signed Statements about Artifacts in the supply chain.
 An Issuer may be the owner or author of Artifacts, or an independent third party such as a reviewer or an endorser.
 
 Append-only Log (converges Ledger and Registry):
@@ -492,25 +492,23 @@ Might dereference to:
 }
 ```
 
-### Naming Artifacts
+### Support for multiple Artifacts
 
-Many Issuers issue Signed Statements about different Artifacts under the same DID, so it is important for everyone to be able to immediately recognize by looking at the Envelope of a Signed Statements what Artifact it is referring to.
+Many Issuers produce Signed Statements about various Artifacts under the same Identity. Issuers and Verifiers must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
 This information is stored in the Feed header of the Envelope.
 Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
 
-### Signed Statement Metadata
+### Registration Policy Metadata
 
-Besides Issuer, Feed and kid, the only other mandatory metadata in a Signed Statement is the type of the Payload, indicated in the `cty` (content type) Envelope header.
-However, this set of mandatory metadata is not sufficient to express many important Registration Policies.
-For example, a Registry may only allow a Signed Statement to be registered, if it was signed recently.
-While the Issuer is free to add any information in the payload of the Signed Statements, the Transparency Services (and most of its Auditors) can only be expected to interpret information in the Envelope.
+SCITT payloads are opaque to Transparency Services, so Registration Policy decisions can only be based on interpretation of information in the Envelope.
 
-Such metadata, meant to be interpreted by the Transparency Services during Registration Policy evaluation, SHOULD be added to the `reg_info` header, unless the data is private (in which case, it MAY be sent to the Transparency Service as an additional input during registration).
+The small mandatory set of metadata in the envelope of a Signed Statement is neither intended nor sufficient to express the information required for the processing of Registration Policies in a Transparency Service.
 
-While the header MUST be present in all Signed Statements, its contents consist of a map of named attributes.
-Some attributes (such as the Issuer's timestamp) are standardized with a defined type, to help uniformize their semantics across Transparency Services.
-Others are completely customizable and may have arbitrary types.
-In any case, all attributes are optional; so the map MAY be empty.
+For example, a Registry may only allow a Signed Statement to be registered if it was signed recently very recently, or may reject a Signed Statement if it arrives out of order in some sequenced protocol.
+
+Any metadata meant to be interpreted by the Transparency Service during Registration Policy evaluation, SHOULD be added to the `reg_info` header, unless the data is private (in which case, it MAY be sent to the Transparency Service as an additional input during registration).
+
+While the header MUST be present in all Signed Statements, all attributes are optional and so the map MAY be empty.
 
 ## Transparency Service
 
@@ -619,14 +617,16 @@ Hence, the Registry may contain both Transparent Statements and governance entri
 
 ## Verifying Transparent Statements {#validation}
 
-For a given Artifact, Verifiers take as trusted inputs:
+For a given Transparent Statement, Verifiers take as trusted inputs:
 
 1. the distributed identifier of the Issuer (or its resolved key manifest),
-2. the expected name of the Artifact (i.e., the Feed),
+2. the collection of Transparent Statements to which this Statement about the Artifact belongs (i.e., the Feed),
 3. the list of service identities of trusted Transparency Services.
 
 When presented with a Transparent Statement for an Artifact, Consumers verify its Issuer identity, signature, and Receipt.
 They may additionally apply a validation policy based on the protected headers present both in the Envelope, the Receipt, or the Statement itself, which may include security-critical or Artifact-specific details.
+
+Some Verifiers may systematically fetch all Transparent Statements from the Feed and assess them alongside the Transparent Statement they are verifying to ensure freshness, completeness of evidence, and the promise of non-equivocation.
 
 Some Verifiers may systematically resolve Issuer DIDs to fetch the latest corresponding DID documents.
 This behavior strictly enforces the revocation of compromised keys: once the Issuer has updated its Statement to remove a key identifier, all Signed Statements include the corresponding `kid` will be rejected.
@@ -648,7 +648,7 @@ All Signed Statements MUST include the following protected headers:
 
 - algorithm (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer. For example, `-35` is the registered algorithm identifier for ECDSA with SHA-384, see [COSE Algorithms Registry](#IANA.cose).
 - Issuer (label: `TBD`, temporary: `391`): DID (Decentralized Identifier {{DID-CORE}}) of the signer, as a string. `did:web:example.com` is an example of a DID.
-- Feed (label: `TBD`, temporary: `392`): The Issuer's name for the Artifact, as a string.
+- Feed (label: `TBD`, temporary: `392`): The Feed to which the Statement belongs, as a string, chosen by the Issuer.
 - Content type (label: `3`): Media type of payload, as a string. For example, `application/spdx+json` is the media type of SDPX in JSON encoding.
 - Registration Policy info (label: `TBD`, temporary: `393`): A map of additional attributes to help enforce Registration Policies.
 - Key ID (label: `4`): Key ID, as a bytestring.
