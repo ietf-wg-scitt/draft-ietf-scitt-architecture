@@ -739,13 +739,13 @@ When a Signed Statement is registered by a TS a Transparent Statement is created
 Receipts are based on COSE Signed Merkle Tree Proofs ({{-COMETRE}}) with an additional wrapper structure that adds the following information:
 
 - version: Receipt version number; MUST be set to `0` for implementation of this document.
-- ts_identifier: The DID of the Transparency Service that issued the Receipt. Verifiers MAY use this DID as a key discovery mechanism to verify the Receipt; in this case the verification is the same as for Signed Claims and the signer MAY include the `kid` header parameter. Verifiers MUST support the `did:web` method, all other methods are optional.
+- ts_identifier: The DID of the Transparency Service that issued the Receipt. Verifiers MAY use this DID as a key discovery mechanism to verify the Receipt; in this case the verification is the same as for Signed Statment and the signer MAY include the `kid` header parameter. Verifiers MUST support the `did:web` method, all other methods are optional.
 
 We also introduce the following requirements for the COSE signature of the Merkle Root:
 
 - The SCITT version header MUST be included and its value match the `version` field of the Receipt stucture.
-- The DID of issuer header (like in Signed Claims) MUST be included and its value match the `ts_identifier` field of the Receipt structure.
-- TS MAY include the Registration policy info header to indicate to verifiers what policies have been applied at the registration of this claim.
+- The DID of issuer header (like in Signed Statements) MUST be included and its value match the `ts_identifier` field of the Receipt structure.
+- TS MAY include the Registration policy info header to indicate to verifiers what policies have been applied at the registration of this Statement.
 - Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of TS and Registration Policy) MUST be marked critical.
 
 The TS may include the registration time to help verifiers decide about the trustworthiness of the Transparent Statement.
