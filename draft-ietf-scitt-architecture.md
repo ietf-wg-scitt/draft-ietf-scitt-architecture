@@ -1,4 +1,4 @@
-
+---
 v: 3
 
 title: An Architecture for Trustworthy and Transparent Digital Supply Chains
