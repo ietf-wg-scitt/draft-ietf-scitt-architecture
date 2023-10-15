@@ -678,7 +678,7 @@ Protected_Header = {
   4 => bstr              ; Key ID
   ; TBD, Labels are temporary
   391 => tstr            ; DID of Issuer
-  392 => tstr            ; Feed
+  392 => bstr            ; Feed
   393 => Reg_Info        ; Registration Policy info
 }
 
