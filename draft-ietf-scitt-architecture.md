@@ -102,9 +102,9 @@ Producers can register their Signed Statements on any Transparency Service, with
 This document describes a scalable and flexible, decentralized architecture to enhance auditability and accountability across various existing and emerging supply chains.
 It achieves this goal by enforcing the following complementary security guarantees:
 
-1. Statements made by Issuers about supply chain Artifacts must be identifiable, authentic, and non-repudiable;
-2. such Statements must be registered on a secure append-only Log, so that their provenance and history can be independently and consistently audited;
-3. Issuers can efficiently prove to any other party the Registration of their Signed Statements; verifying this proof ensures that the Issuer is consistent and non-equivocal when producing Signed Statements.
+1. Statements made by Issuers about supply chain Artifacts must be identifiable, authentic, and non-repudiable
+2. Such Statements must be registered on a secure append-only Log, so that their provenance and history can be independently and consistently audited
+3. Issuers can efficiently prove to any other party the Registration of their Signed Statements; verifying this proof ensures that the Issuer is consistent and non-equivocal when producing Signed Statements
 
 The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
 The second guarantee is achieved by storing the Signed Statement on an immutable, append-only Log.
@@ -126,7 +126,8 @@ Producing a Transparent Statement may be considered a form of notarization.
 A Statements payload content MAY be encrypted and opaque to the Transparency Services, if so desired: however the metadata MUST be transparent in order to warrant trust for later processing.
 Transparent Statements provide a common basis for holding Issuers accountable for the Statement payload about Artifacts they release and (more generally) principals accountable for auxiliary Signed Statements from other Issuers about the original Signed Statement about an Artifact.
 Issuers may Register new Signed Statements about Artifacts, but they cannot delete or alter Signed Statements previously added to the append-only Log.
-A Transparency Service may restrict access to Signed Statements through access control policies. However, third parties (such as Auditors) would be granted access as needed to attest to the validity of the Artifact, Feed or the entirety of the Transparency Service.
+A Transparency Service may restrict access to Signed Statements through access control policies.
+However, third parties (such as Auditors) would be granted access as needed to attest to the validity of the Artifact, Feed or the entirety of the Transparency Service.
 
 Trust in the Transparency Service itself is supported both by protecting their implementation (using, for instance, replication, trusted hardware, and remote attestation of a system's operational state) and by enabling independent audits of the correctness and consistency of its Registry, thereby holding the organization that operates it accountable.
 Unlike CT, where independent Auditors are responsible for enforcing the consistency of multiple independent instances of the same global Registry, each Transparency Service is required to guarantee the consistency of its own Registry (for instance, through the use of a consensus algorithm between replicas of the Registry), but assume no consistency between different Transparency Services.
@@ -140,8 +141,7 @@ Consumers MAY be producers, providing additional Signed Statements, attesting to
 Signed Statement Issuers rely on being discoverable and represented as the responsible parties for their registered Signed Statements via Transparency Services in a believable manner.
 The issuer of a Signed Statement must be authenticated and authorized according to the registration policy of the Transparency Service.
 Analogously, Transparent Statement Consumers rely on verifiable trustworthiness assertions associated with Transparent Statements and their processing provenance in a believable manner.
-If trust can be put into the operations that record Signed Statements in a secure, append-only log via online operations, the same trust can be put into the resulting transparent statement,
-issued by the Transparency Services and that can be validated in offline operations.
+If trust can be put into the operations that record Signed Statements in a secure, append-only log via online operations, the same trust can be put into the resulting transparent statement, issued by the Transparency Services and that can be validated in offline operations.
 
 The Transparency Services specified in this architecture can be implemented by various different types of services in various types of languages provided via various variants of API layouts.
 
@@ -209,9 +209,7 @@ Registration:
 
 Registration Policy:
 
-: the pre-condition enforced by the Transparency Service before registering a Signed Statement, rendering it a Signed Statement,
-based on metadata contained in its COSE Envelope (notably the identity of its Issuer)
-and on prior Signed Statements already added to a Registry.
+: the pre-condition enforced by the Transparency Service before registering a Signed Statement, rendering it a Signed Statement, based on metadata contained in its COSE Envelope (notably the identity of its Issuer) and on prior Signed Statements already added to a Registry.
 
 Registry:
 
@@ -275,45 +273,45 @@ Failure to produce this proof can indicate that the Transparency Services operat
 # Architecture Overview
 
 ~~~aasvg
-                    .----------.
-                   |  Artifact  |
-                    '----+-----'
-                         v
-                    .----+----.  .----------.    Decentralized Identifier
-Issuer       -->   | Statement ||  Envelope  +<------------------.
-                    '----+----'  '-----+----'                     |
-                         |             |           +--------------+---+
-                          '----. .----'            | DID Key Manifest |
-                                |                  |                  |
-                                v                  +-------+------+---+
-                           .----+----.                     |      |
-                          |  Signed   |    COSE Signing    |      |
-                          | Statement +<-------------------'      |
-                           '----+----'                            |
-                                |               +--------------+  |
-                             .-' '------------->+ Transparency |  |
-                            |   .-------.       |              |  |
-Transparency -->            |  | Receipt +<-----+   Service    |  |
-     Service                |   '---+---'       +------------+-+  |
-                             '-. .-'                         |    |
-                                |                            |    |
-                                v                            |    |
-                          .-----+-----.                      |    |
-                         | Transparent |                     |    |
-                         |  Statement  |                     |    |
-                          '-----+-----'                      |    |
-                                |                            |    |
-                                |'-------.     .-------------)---'
-                                |         |   |              |
-                                |         v   v              |
-                                |    .----+---+-----------.  |
-Verifier      -->               |   / Verify Transparent /   |
-                                |  /      Statement     /    |
-                                | '--------------------'     |
-                                v                            v
-                       .--------+---------.      .-----------+-----.
-Auditor       -->     / Collect Receipts /      /   Replay Log    /
-                     '------------------'      '-----------------'
+                 .----------.
+                |  Artifact  |
+                 '----+-----'
+                      v
+                 .----+----.  .----------.  Decentralized Identifier
+Issuer      --> | Statement ||  Envelope  +<------------------.
+                 '----+----'  '-----+----'                     |
+                      |             |           +--------------+---+
+                       '----. .----'            | DID Key Manifest |
+                             |                  |                  |
+                             v                  +-------+------+---+
+                        .----+----.                     |      |
+                       |  Signed   |    COSE Signing    |      |
+                       | Statement +<-------------------'      |
+                        '----+----'                            |
+                             |               +--------------+  |
+                          .-' '------------->+ Transparency |  |
+                         |   .-------.       |              |  |
+Transparency -->         |  | Receipt +<-----+   Service    |  |
+     Service             |   '---+---'       +------------+-+  |
+                          '-. .-'                         |    |
+                             |                            |    |
+                             v                            |    |
+                       .-----+-----.                      |    |
+                      | Transparent |                     |    |
+                      |  Statement  |                     |    |
+                       '-----+-----'                      |    |
+                             |                            |    |
+                             |'-------.     .-------------)---'
+                             |         |   |              |
+                             |         v   v              |
+                             |    .----+---+-----------.  |
+Verifier     -->             |   / Verify Transparent /   |
+                             |  /      Statement     /    |
+                             | '--------------------'     |
+                             v                            v
+                    .--------+---------.      .-----------+-----.
+Auditor      -->   / Collect Receipts /      /   Replay Log    /
+                  '------------------'      '-----------------'
 ~~~
 
 The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements, and auditing Transparent Statements.
@@ -341,27 +339,20 @@ Issuers MAY update their DID Document at any time, for instance to refresh their
 
 The Issuer's DID appears in the protected header of Signed Statements' Envelopes, while the version of the key from the DID Document used to sign the Signed Statement is written in the `kid` header.
 
-`kid` MUST either be an absolute URL,
-or a relative URL. Relative URL MUST be
-relative to an `iss` value. When relative URL is used,
-`iss` MUST also be present in the protected header.
+`kid` MUST either be an absolute URL, or a relative URL. Relative URL MUST be relative to an `iss` value. When relative URL is used, `iss` MUST also be present in the protected header.
 
 Resolving `kid` MUST return an identity document of a registered content type (a set of public keys).
-In the case of `kid` being an absolute DID URL, the identity document is called a DID Document,
-and is expected ot have content type `application/did+json`.
+In the case of `kid` being an absolute DID URL, the identity document is called a DID Document, and is expected ot have content type `application/did+json`.
 
 To dereference a DID URL, it first MUST be resolved. After that the fragment is processed according to the media type.
 
-For example, when resolving `did:example:123#key-42`,
-first, the identity document for `did:example:123` is resolved as content type `application/did+json`,
-next, the fragment `#key-42` is dereferenced to a verification method that contains a `publicKeyJwk` property.
+For example, when resolving `did:example:123#key-42`, first, the identity document for `did:example:123` is resolved as content type `application/did+json`, next, the fragment `#key-42` is dereferenced to a verification method that contains a `publicKeyJwk` property.
 
 The content type of `publicKeyJwk` is expected to be `application/jwk+json`.
 
 The details of both `DID resolution` and `DID dereferencing` are out of scope for this document.
 
-The `iss` or `kid`, might not be DID URLs, however the following interfaces MUST be satisfied in order to ensure
-issuer identity documents, and associated keys are discoverable in a consistent manner.
+The `iss` or `kid`, might not be DID URLs, however the following interfaces MUST be satisfied in order to ensure issuer identity documents, and associated keys are discoverable in a consistent manner.
 
 #### Resolving Identity Documents
 
@@ -369,8 +360,9 @@ The value of `id` might be found the `iss` or `sub` claims if they are present i
 
 ~~~sh
 
-resolve = (id: string, accept: content_type = 'application/did+json') =>
-idDocument (of content type application/did+json).
+resolve = (id: string, accept: \
+  content_type = 'application/did+json') =>
+  idDocument (of content type application/did+json)
 ~~~
 
 For example:
@@ -394,18 +386,16 @@ Might resolve to:
       "kty": "EC",
       "crv": "P-384",
       "alg": "ES384",
-      "x": "LCeAt2sW36j94wuFP0gNEIHDzqR6Nh_Udu2ObLer3cKFBCaAHY1svmbPV69bP3RH",
-      "y": "zz2SkcOGYM6PbYlw19tcbpzo6bEMYHIwGBnN5rd8QWykAprstPdxx4U0uScvDcYd"
+      "x": "LCeAt2sW36j94wuFP0gN...Ler3cKFBCaAHY1svmbPV69bP3RH",
+      "y": "zz2SkcOGYM6PbYlw19tc...rd8QWykAprstPdxx4U0uScvDcYd"
     }
   }]
 }
 ~~~
 
-Editor note, we might wish to eliminate this intermediate identity document content type,
-by treating it as an alterative encoding of `application/jwk-set+json` or `application/cose-key-set`.
+Editor note, we might wish to eliminate this intermediate identity document content type, by treating it as an alterative encoding of `application/jwk-set+json` or `application/cose-key-set`.
 
-However, there is no media type fragment processing directive
-that would enable dereferencing the known key set content types, listed above.
+However, there is no media type fragment processing directive that would enable dereferencing the known key set content types, listed above.
 
 ##### Comment on OIDC
 
@@ -423,8 +413,7 @@ This URL will resolve to a JSON document which contains the property:
 
 `jwks_uri`, for example `https://contoso.example/.well-known/jwks.json`
 
-This URL will resolve to a JSON document of content type `application/jwk-set+json`,
-which will contain specific keys... for example:
+This URL will resolve to a JSON document of content type `application/jwk-set+json`, which will contain specific keys... for example:
 
 ~~~json
 {
@@ -433,24 +422,24 @@ which will contain specific keys... for example:
       "alg": "RS256",
       "kty": "RSA",
       "use": "sig",
-      "n": "wW9TkSbcn5FV3iUJ-812sqTvwTGCFrDm6vD2U-g23gn6rrBdFZQbf2bgEnSkolph6CanOYTQ1lKVhKjHLd6Q4MDVGidbVBhESxib2YIzJVUS-0oQgizkBEJxyHI4Zl3xX_sdA_yegLUi-Ykt_gaMPSw_vpxe-pBxu-jd14i-jDfwoPJUdF8ZJGS9orCPRiHCYLDgOscC9XibH9rUbTvG8q4bAPx9Ox6malx4OLvU3pXVjew6LG3iBi2YhpCWe6voMvZJYXqC1n5Mk_KOdGcCFtDgu3I56SGSfsF7-tI7qG1ZO8RMuzqH0LkJVirujYzXrnMZ7WgbMPXmHU8i4z04zw",
+      "n": "wW9TkSbcn5FV3iUJ-812sqTvwT...YzXrnMZ7WgbMPXmHU8i4z04zw",
       "e": "AQAB",
-      "kid": "NTBGNTJEMDc3RUE3RUVEOTM4NDcyOEFDNzEyOTY5NDNGOUQ4OEU5OA",
-      "x5t": "NTBGNTJEMDc3RUE3RUVEOTM4NDcyOEFDNzEyOTY5NDNGOUQ4OEU5OA",
+      "kid": "NTBGNTJEMDc3RUE3RUVEOTM4NDcEFDNzEyOTY5NDNGOUQ4OEU5OA",
+      "x5t": "NTBGNTJEMDc3RUE3RUVEOTM4NDcEFDNzEyOTY5NDNGOUQ4OEU5OA",
       "x5c": [
-        "MIIDCzCCAfOgAwIBAgIJANPng0XRWwsdMA0GCSqGSIb3DQEBBQUAMBwxGjAYBgNVBAMMEWNvbnRvc28uYXV0aDAuY29tMB4XDTE0MDcxMTE2NTQyN1oXDTI4MDMxOTE2NTQyN1owHDEaMBgGA1UEAwwRY29udG9zby5hdXRoMC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDBb1ORJtyfkVXeJQn7zXaypO/BMYIWsObq8PZT6DbeCfqusF0VlBt/ZuASdKSiWmHoJqc5hNDWUpWEqMct3pDgwNUaJ1tUGERLGJvZgjMlVRL7ShCCLOQEQnHIcjhmXfFf+x0D/J6AtSL5iS3+Bow9LD++nF76kHG76N3XiL6MN/Cg8lR0XxkkZL2isI9GIcJgsOA6xwL1eJsf2tRtO8byrhsA/H07HqZqXHg4u9TeldWN7DosbeIGLZiGkJZ7q+gy9klheoLWfkyT8o50ZwIW0OC7cjnpIZJ+wXv60juobVk7xEy7OofQuQlWKu6NjNeucxntaBsw9eYdTyLjPTjPAgMBAAGjUDBOMB0GA1UdDgQWBBTLarHdkNa5CzPyiKJU51t8JWn9WTAfBgNVHSMEGDAWgBTLarHdkNa5CzPyiKJU51t8JWn9WTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4IBAQA2FOjm+Bpbqk59rQBC0X6ops1wBcXH8clnXfG1G9qeRwLEwSef5HPz4TTh1f2lcf4Pcq2vF0HbVNJFnLVV+PjR9ACkto+v1n84i/U4BBezZyYuX2ZpEbv7hV/PWxg8tcVrtyPaj60UaA/pUA86CfYy+LckY4NRKmD7ZrcCzjxW2hFGNanfm2FEryxXA3RMNf6IiW7tbJ9ZGTEfA/DhVnZgh/e82KVX7EZnkB4MjCQrwj9QsWSMBtBiYp0/vRi9cxDFHlUwnYAUeZdHWTW+Rp2JX7Qwf0YycxgyjkGAUEZc4WpdNiQlwYf5G5epfOtHGiwiJS+u/nSYvqCFt57+g3R+"
+        "MIIDCzCCAfOgAwIBAgIPng0XRWwsd...f5GOGwJS+u/nSYvqCFt57+g3R+"
       ]
     },
     {
       "alg": "RS256",
       "kty": "RSA",
       "use": "sig",
-      "n": "ylgVZbNR4nlsU_AbU8Zd7ZhVfmYuwq-RB1_YQWHY362pAed-qgSXV1QmKwCukQ2WDsPHWgpPuEf3O_acmJcCiSxhctpBr5WKkji5o50YX2FqC3xymGkYW5NilvFznKaKU45ulBVByrcb3Vt8BqqBAhaD4YywZZKo7mMudcq_M__f0_tB4fHsHHe7ehWobWtzAW7_NRP0_FjB4Kw4PiqJnChPvfbuxTCEUcIYrshRwD6GF4D_oLdeR44dwx4wtEgvPOtkQ5XIGrhQC_sgWcb2jh7YXauVUjuPezP-VkK7Wm9mZRe758q43SWxwT3afo5BLa3_YLWazqcpWRXn9QEDWw",
+      "n": "ylgVZbNR4nlsU_AbU8Zd7ZhVfm...fo5BLa3_YLWazqcpWRXn9QEDWw",
       "e": "AQAB",
       "kid": "aMIKy_brQk3nLd0PKd9ln",
       "x5t": "-xcTyx47q3ddycG7LtE6QCcETbs",
       "x5c": [
-        "MIIC/TCCAeWgAwIBAgIJH62yWyX7VxxQMA0GCSqGSIb3DQEBCwUAMBwxGjAYBgNVBAMTEWNvbnRvc28uYXV0aDAuY29tMB4XDTIwMDMxMTE5Mjk0N1oXDTMzMTExODE5Mjk0N1owHDEaMBgGA1UEAxMRY29udG9zby5hdXRoMC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDKWBVls1HieWxT8BtTxl3tmFV+Zi7Cr5EHX9hBYdjfrakB536qBJdXVCYrAK6RDZYOw8daCk+4R/c79pyYlwKJLGFy2kGvlYqSOLmjnRhfYWoLfHKYaRhbk2KW8XOcpopTjm6UFUHKtxvdW3wGqoECFoPhjLBlkqjuYy51yr8z/9/T+0Hh8ewcd7t6Fahta3MBbv81E/T8WMHgrDg+KomcKE+99u7FMIRRwhiuyFHAPoYXgP+gt15Hjh3DHjC0SC8862RDlcgauFAL+yBZxvaOHthdq5VSO497M/5WQrtab2ZlF7vnyrjdJbHBPdp+jkEtrf9gtZrOpylZFef1AQNbAgMBAAGjQjBAMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFPVdE4SPvuhlODV0GOcPE4QZ7xNuMA4GA1UdDwEB/wQEAwIChDANBgkqhkiG9w0BAQsFAAOCAQEAu2nhfiJk/Sp49LEsR1bliuVMP9nycbSz0zdp2ToAy0DZffTd0FKk/wyFtmbb0UFTD2aOg/WZJLDc+3dYjWQ15SSLDRh6LV45OHU8Dkrc2qLjiRdoh2RI+iQFakDn2OgPNgquL+3EEIpbBDA/uVoOYCbkqJNaNM/egN/s2vZ6Iq7O+BprWX/eM25xw8PMi+MU4K2sJpkcDRwoK9Wy8eeSSRIGYnpKO42g/3QI9+BRa5uD+9shG6n7xgzAPGeldUXajCThomwO8vInp6VqY8k3IeLEYoboJj5KMfJgOWUkmaoh6ZBJHnCogvSXI35jbxCxmHAbK+KdTka/Yg2MadFZdA=="
+        "MIIC/TCCAeWgAwIBAgIJH62ygzAPG...xCxmHAbK+KdTka/Yg2MadFZdA=="
       ]
     }
   ]
@@ -463,16 +452,16 @@ If SCITT wanted to be interoperable with OIDC, we would define key dereferencing
 
 `kid` is always present in the protected header.
 
-If `iss` is also present, `kid` MUST be a relative URL to `iss`,
-otherwise `kid` MUST be an absolute URL that starts with `iss`.
+If `iss` is also present, `kid` MUST be a relative URL to `iss`, otherwise `kid` MUST be an absolute URL that starts with `iss`.
 
 `id` = `kid` if `iss` is undefined, or `iss` + `#` + `kid` when `iss` is defined.
 
 See also [draft-ietf-cose-cwt-claims-in-headers](https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/).
 
 ~~~sh
-dereference = (id: string, accept: content_type = 'application/jwk+json') =>
-publicKeyJwk (of content type application/jwk+json).
+dereference = (id: string, accept: \
+  content_type = 'application/jwk+json') =>
+  publicKeyJwk (of content type application/jwk+json)
 ~~~
 
 For example, when DIDs are used:
@@ -488,8 +477,8 @@ Might dereference to:
   "kty": "EC",
   "crv": "P-384",
   "alg": "ES384",
-  "x": "LCeAt2sW36j94wuFP0gNEIHDzqR6Nh_Udu2ObLer3cKFBCaAHY1svmbPV69bP3RH",
-  "y": "zz2SkcOGYM6PbYlw19tcbpzo6bEMYHIwGBnN5rd8QWykAprstPdxx4U0uScvDcYd"
+  "x": "LCeAt2sW36j94wuFP0gNEIHDzqR6Nh...er3cKFBCaAHY1svmbPV69bP3RH",
+  "y": "zz2SkcOGYM6PbYlw19tcbpzo6bEMYH...d8QWykAprstPdxx4U0uScvDcYd"
 }
 ~~~
 
@@ -546,41 +535,29 @@ This attestation evidence can be supplemented with Receipts for the software and
 
 ### Registration Policies
 
-A Transparency Service that accepts to register any valid Signed
-Statement offered by anonymous Issuers would only provide
-limited value, or no value, to verifiers. As a consequence, some form of
-authorization is needed prior to registration of Signed Statements to
-ensure completeness of audit. More advanced use case will rely on the
-Transparency Service performing additional domain-specific checks before
-a Signed Statement is accepted. For example, some Transparency Services
-may validate the content of Signed Statements.
+A Transparency Service that accepts to register any valid Signed Statement offered by anonymous Issuers would only provide limited value, or no value, to verifiers.
+As a consequence, some form of authorization is needed prior to registration of Signed Statements to ensure completeness of audit.
+More advanced use case will rely on the Transparency Service performing additional domain-specific checks before a Signed Statement is accepted.
+For example, some Transparency Services may validate the content of Signed Statements.
 
-We use the term "registration policies" to refer to the checks that are
-performed before a Signed Statement is registered given a set of input
-values. This baseline specification leaves the implementation of the
-registration policy to the provider of the Transparency Services and its
-users.
+We use the term "registration policies" to refer to the checks that are performed before a Signed Statement is registered given a set of input values.
+This baseline specification leaves the implementation of the registration policy to the provider of the Transparency Services and its users.
 
-As a minimum we expect that a deployment authenticates the Issuer of the
-Signed Statement, which requires some form of trust anchor. As defined
-in {{RFC6024}}, "A trust anchor represents an authoritative
-entity via a public key and associated data. The public key is used to
-verify digital signatures, and the associated data is used to constrain
-the types of information for which the trust anchor is authoritative."
-The Trust Anchor may be a certificate, a raw public key or other
-structure, as appropriate. It can be a non-root certificate when it is a
-certificate.
+As a minimum we expect that a deployment authenticates the Issuer of the Signed Statement, which requires some form of trust anchor.
+As defined in {{RFC6024}}, "A trust anchor represents an authoritative entity via a public key and associated data.
+The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
+The Trust Anchor may be a certificate, a raw public key or other structure, as appropriate. It can be a non-root certificate when it is a certificate.
 
-A provider of a Transparency Service is, however, expected to indicate
-what registration policy is used in a given deployment and inform its
-users about changes to the registration policy.
+A provider of a Transparency Service is, however, expected to indicate what registration policy is used in a given deployment and inform its users about changes to the registration policy.
 
 ### Registry Security Requirements
 
 There are many different candidate verifiable data structures that may be used to implement the Registry, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants.
 The Registry is only required to support concise Receipts (i.e., whose size grows at most logarithmically in the number of entries in the Registry) that can be encoded as a COSE Signed Merkle Tree Proof.
 
-It is possible to offer multiple signature algorithms for the COSE signature of receipts' Signed Merkle Tree, or to change the signing algorithm at later points. However, the Merkle Tree algorithm (including its internal hash function) cannot easily be changed without breaking the consistency of the Registry. It is possible to maintain separate Registries for each algorithm in parallel but the Transparency Service is then responsible for proving their mutual consistency.
+It is possible to offer multiple signature algorithms for the COSE signature of receipts' Signed Merkle Tree, or to change the signing algorithm at later points.
+However, the Merkle Tree algorithm (including its internal hash function) cannot easily be changed without breaking the consistency of the Registry.
+It is possible to maintain separate Registries for each algorithm in parallel but the Transparency Service is then responsible for proving their mutual consistency.
 
 #### Finality
 
@@ -746,11 +723,12 @@ Receipt = [
     proof: SignedMerkleTreeProof
 ]
 
-; Additional protected headers in the COSE signed_tree_root of the SignedMerkleTreeProof
+; Additional protected headers
+; in the COSE signed_tree_root of the SignedMerkleTreeProof
 Protected_Header = {
-  390 => int                 ; SCITT Receipt Version
-  394 => tstr                ; DID of Transparency Service (required)
-  ? 395 => RegistrationInfo  ; Registration policy information (optional)
+  390 => int         ; SCITT Receipt Version
+  394 => tstr        ; DID of Transparency Service (required)
+  ? 395 => Reg_info  ; Registration policy information (optional)
 
   ; Other COSE Signed Merkle Tree headers
   ; (e.g. tree algorithm, tree size)
@@ -860,7 +838,7 @@ As an example, submitting a Signed Statement with an unsupported signature algor
 
 {
   "type": "urn:ietf:params:scitt:error:badSignatureAlgorithm",
-  "detail": "The Statement was signed with an algorithm the server does not support"
+  "detail": "The Statement was signed with an unsupported algorithm"
 }
 ~~~
 
