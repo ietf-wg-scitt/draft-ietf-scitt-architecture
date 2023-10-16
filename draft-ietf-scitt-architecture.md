@@ -103,8 +103,8 @@ This document describes a scalable and flexible, decentralized architecture to e
 It achieves this goal by enforcing the following complementary security guarantees:
 
 1. Statements made by Issuers about supply chain Artifacts must be identifiable, authentic, and non-repudiable
-1. Such Statements must be registered on a secure append-only Log, so that their provenance and history can be independently and consistently audited
-1. Issuers can efficiently prove to any other party the Registration of their Signed Statements; verifying this proof ensures that the Issuer is consistent and non-equivocal when producing Signed Statements
+2. Such Statements must be registered on a secure append-only Log, so that their provenance and history can be independently and consistently audited
+3. Issuers can efficiently prove to any other party the Registration of their Signed Statements; verifying this proof ensures that the Issuer is consistent and non-equivocal when producing Signed Statements
 
 The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
 The second guarantee is achieved by storing the Signed Statement on an immutable, append-only Log.
