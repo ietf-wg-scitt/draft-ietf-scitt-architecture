@@ -205,7 +205,7 @@ Receipt:
 
 Registration:
 
-: the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, storing it in the Registry, producing a Receipt, and returning it to the submitting Issuer.
+: the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, storing the Signed Statement in the Registry, and producing a Receipt.
 
 Registration Policy:
 
@@ -626,11 +626,6 @@ All Signed Statements MUST include the following protected headers:
 - Content type (label: `3`): Media type of payload, as a string. For example, `application/spdx+json` is the media type of SDPX in JSON encoding.
 - Registration Policy info (label: `TBD`, temporary: `393`): A map containing key/value pairs set by the Issuer which are sealed on Registration and non-opaque to the Transparency Service. The key/value pair semantics are specified by each Issuer or are specific to the Issuer and Feed tuple. Examples include: the sequence number of signed statements on a feed, Issuer metadata, or a reference to other transparent statements (e.g., augments, replaces, new-version, CPE-for).
 - Key ID (label: `4`): Key ID, as a bytestring.
-
-
-Registration:
-
-: the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, storing the Signed Statement in the Registry, and producing a Receipt.
 
 In CDDL {{-CDDL}} notation, a Signed_Statement is defined as follows:
 
