@@ -624,8 +624,15 @@ All Signed Statements MUST include the following protected headers:
 - Issuer (label: `TBD`, temporary: `391`): DID (Decentralized Identifier {{DID-CORE}}) of the signer, as a string. `did:web:example.com` is an example of a DID.
 - Feed (label: `TBD`, temporary: `392`): The Issuer's name for the Artifact, as a string.
 - Content type (label: `3`): Media type of payload, as a string. For example, `application/spdx+json` is the media type of SDPX in JSON encoding.
-- Registration Policy info (label: `TBD`, temporary: `393`): A map of additional attributes to help enforce Registration Policies.
+- Registration Policy info (label: `TBD`, temporary: `393`): A map containing key/value pairs provided and controlled by the Issuer that are sealed on Registration and non-opaque to the Transparency Service. The key/value pair semantics are specified by each individual Issuer or are specific to the Issuer and Feed tupel. Examples include: sequence number of signed statement on feed, Issuer metadata, or reference to other transparent statements (e.g., augments, replaces, new-version, CPE-for).
 - Key ID (label: `4`): Key ID, as a bytestring.
+
+
+Registration:
+
+: the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, storing it in the Registry, producing a Receipt, and returning it to the submitting Issuer.
+
+
 
 In CDDL {{-CDDL}} notation, a Signed_Statement is defined as follows:
 
