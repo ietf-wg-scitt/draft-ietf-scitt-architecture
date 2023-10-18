@@ -633,15 +633,15 @@ All Signed Statements MUST include the following protected headers:
 
 - **algorithm** (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer. For example, `-35` is the registered algorithm identifier for ECDSA with SHA-384, see [COSE Algorithms Registry](#IANA.cose).
 - **Key ID** (label: `4`): Key ID, as a bytestring
-- **CWT_Claims** (label: `13` pending {{CWT_CLAIM_COSE}}): A CWT_Claim representing the Issuer (`iss`) making the statement, and the Subject (`sub`) to correlate a collection of statements about an Artifact.  
+- **CWT_Claims** (label: `13` pending {{CWT_CLAIM_COSE}}): A CWT_Claim representing the Issuer (`iss`) making the statement, and the Subject (`sub`) to correlate a collection of statements about an Artifact.
   Additional {{CWT_CLAIMS}} MAY be used, while `iss` and `sub` MUST be provided
-  - **iss** (CWT_Claim Key `1`): The Identifier of the signer, as a string  
+  - **iss** (CWT_Claim Key `1`): The Identifier of the signer, as a string
     example: `did:web:example.com`
   - **sub** (CWT_Claim Key `2`): The Subject to which the Statement refers, chosen by the Issuer
 - **Registration Policy** (label: `TBD`, temporary: `393`): A map containing key/value pairs set by the Issuer which are sealed on Registration and non-opaque to the Transparency Service.
-  The key/value pair semantics are specified by the Issuer or are specific to the `CWT_Claims iss` and `CWT_Claims sub` tuple.  
+  The key/value pair semantics are specified by the Issuer or are specific to the `CWT_Claims iss` and `CWT_Claims sub` tuple.
   Examples include: the sequence number of signed statements on a `CWT_Claims Subject`, Issuer metadata, or a reference to other transparent statements (e.g., augments, replaces, new-version, CPE-for)
-- **Content type** (label: `3`): Media type of payload, as a string  
+- **Content type** (label: `3`): Media type of payload, as a string
     example, `application/spdx+json` as the media type of SDPX in JSON encoding
 
 In CDDL {{-CDDL}} notation, a Signed_Statement is defined as follows:
@@ -700,7 +700,7 @@ For a software supply chain, payloads describing the software artifacts may incl
 - SLSA
 - SWID
 
-Once the Statement is serialized with the correct media-type/content-format, an Issuer MUST fill in the attributes for the Registration Policy information header.
+Once the Statement is serialized with the correct media-type/content-format, an Issuer should fill in the attributes for the Registration Policy information header.
 From the Issuer's perspective, using attributes from named policies ensures that the Signed Statement may only be registered on Transparency Services that implement the associated policy.
 
 For instance, if a Signed Statement is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers may use the `sequence_no` or `issuer_ts` attributes.
