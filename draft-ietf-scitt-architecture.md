@@ -626,18 +626,22 @@ This section details the interoperability requirements for implementers of Signe
 
 ## Signed Statement Envelope
 
-Signed Statements are CBOR encoded {{-CBOR}} and protected by CBOR Object Signing and Encryption (COSE {{-COSE}}). Additionally, it contains at least one or more headers and a set of statements as its payload.
-Although Issuers and other parties MAY attach unprotected headers to Signed Statements, Transparency Services and Verifiers MUST NOT rely on the presence or value of additional unprotected headers in Signed Statements during Registration and validation.
+Signed Statements are CBOR encoded {{-CBOR}} and protected by CBOR Object Signing and Encryption (COSE {{-COSE}}). Signed Statements contain a protected, an unprotected header and a payload.
 
 All Signed Statements MUST include the following protected headers:
 
-- algorithm (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer. For example, `-35` is the registered algorithm identifier for ECDSA with SHA-384, see [COSE Algorithms Registry](#IANA.cose).
-- CWT_Claims (label: `13` pending): A container representing the issuer (`iss`) making the statement, and the subject (`sub`) to correlate a collection of statements about an Artifact.
-- Issuer (label: `TBD`, temporary: `391`): DID (Decentralized Identifier {{DID-CORE}}) of the signer, as a string. `did:web:example.com` is an example of a DID.
-- Subject (label: `TBD`, temporary: `392`): The Subject to which the Statement refers, as a property of `CWT_Claims``, chosen by the Issuer. (TODO: reconcile with CWT_Claims)
-- Content type (label: `3`): Media type of payload, as a string. For example, `application/spdx+json` is the media type of SDPX in JSON encoding.
-- Registration Policy info (label: `TBD`, temporary: `393`): A map containing key/value pairs set by the Issuer which are sealed on Registration and non-opaque to the Transparency Service. The key/value pair semantics are specified by each Issuer or are specific to the `CWT_Claims => Issuer` and `CWT_Claims => Subject` tuple. Examples include: the sequence number of signed statements on a `CWT_Claims => Subject`, Issuer metadata, or a reference to other transparent statements (e.g., augments, replaces, new-version, CPE-for).
-- Key ID (label: `4`): Key ID, as a bytestring.
+- **algorithm** (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer. For example, `-35` is the registered algorithm identifier for ECDSA with SHA-384, see [COSE Algorithms Registry](#IANA.cose).
+- **Key ID** (label: `4`): Key ID, as a bytestring
+- **CWT_Claims** (label: `13` pending {{CWT_CLAIM_COSE}}): A CWT_Claim representing the Issuer (`iss`) making the statement, and the Subject (`sub`) to correlate a collection of statements about an Artifact.  
+  Additional {{CWT_CLAIMS}} MAY be used, while `iss` and `sub` MUST be provided
+  - **iss** (CWT_Claim Key `1`): The Identifier of the signer, as a string  
+    example: `did:web:example.com`
+  - **sub** (CWT_Claim Key `2`): The Subject to which the Statement refers, chosen by the Issuer
+- **Registration Policy** (label: `TBD`, temporary: `393`): A map containing key/value pairs set by the Issuer which are sealed on Registration and non-opaque to the Transparency Service.
+  The key/value pair semantics are specified by the Issuer or are specific to the `CWT_Claims iss` and `CWT_Claims sub` tuple.  
+  Examples include: the sequence number of signed statements on a `CWT_Claims Subject`, Issuer metadata, or a reference to other transparent statements (e.g., augments, replaces, new-version, CPE-for)
+- **Content type** (label: `3`): Media type of payload, as a string  
+    example, `application/spdx+json` as the media type of SDPX in JSON encoding
 
 In CDDL {{-CDDL}} notation, a Signed_Statement is defined as follows:
 
@@ -654,8 +658,8 @@ COSE_Sign1 = [
 ]
 
 CWT_Claims = {
-  1 => tstr; iss, REQUIRED the issuer making statements
-  2 => tstr; sub, REQUIRED the subject of the statements
+  1 => tstr; iss, the issuer making statements,
+  2 => tstr; sub, the subject of the statements,
   * tstr => any
 }
 
@@ -668,34 +672,34 @@ Reg_Info = {
 }
 
 Protected_Header = {
-  1 => int               ; algorithm identifier
-  3 => tstr              ; payload type
-  4 => bstr              ; Key ID
-  13 => CWT_Claims       ; CBOR Web Token Registered Claims
-  ; TBD, Labels are temporary
-  393 => Reg_Info        ; Registration Policy info
+  1   => int             ; algorithm identifier,
+  4   => bstr            ; Key ID,
+  13  => CWT_Claims      ; CBOR Web Token Claims,
+  393 => Reg_Info        ; Registration Policy info,
+  3   => tstr            ; payload type
 }
 
 Unprotected_Header = {
-  ; TBD, Labels are temporary
+  ; TBD, Labels are temporary,
   ? 394 => [+ Receipt]
 }
 ~~~
 
 There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
-An Issuer must first decide what Statements to include. For a software supply chain, payloads describing the software artifacts may, for example, include
+An Issuer must first decide what Statements to include. For a software supply chain, payloads describing the software artifacts may include
 
-- JSON-SPDX
 - CBOR-SPDX
-- SWID
 - CoSWID
 - CycloneDX
 - in-toto
+- JSON-SPDX
 - SLSA
+- SWID
 
 Once the Statement is serialized with the correct media-type/content-format, an Issuer should fill in the attributes for the Registration Policy information header.
 From the Issuer's perspective, using attributes from named policies ensures that the Signed Statement may only be registered on Transparency Services that implement the associated policy.
-For instance, if a Signed Statement is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers SHOULD use the `sequence_no` or `issuer_ts` attributes.
+
+For example, if a Signed Statement is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers SHOULD use the `sequence_no` or `issuer_ts` attributes.
 
 ## Registering Signed Statements
 
