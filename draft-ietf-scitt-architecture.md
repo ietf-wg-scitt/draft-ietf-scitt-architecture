@@ -93,7 +93,9 @@ The rise in popularity of verifiable data structures as a mechanism to make acto
 
 This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
-Producers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers will be able to verify them.
+Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers will be able to verify them.
+
+Within the SCITT Architecture, a producer is known as an Issuer, and a Consumer is known as a Verifier.
 
 --- middle
 
@@ -134,13 +136,13 @@ Unlike CT, where independent Auditors are responsible for enforcing the consiste
 
 Breadth of access is critical so the Transparency Service specified in this architecture cater to two types of audiences:
 
-1. Producers: organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers; and
-2. Consumers: organizations, stakeholders, and users involved in validating supply chain artifacts, but can only do so if the Statements are known to be authentic.
-Consumers MAY be producers, providing additional Signed Statements, attesting to conformance of various compliance requirements.
+1. Issuers: organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers; and
+1. Verifiers: organizations, stakeholders, and users involved in validating supply chain artifacts, but can only do so if the Statements are known to be authentic.
+Verifiers MAY be Issuers, providing additional Signed Statements, attesting to conformance of various compliance requirements.
 
 Signed Statement Issuers rely on being discoverable and represented as the responsible parties for their registered Signed Statements via Transparency Services in a believable manner.
 The issuer of a Signed Statement must be authenticated and authorized according to the registration policy of the Transparency Service.
-Analogously, Transparent Statement Consumers rely on verifiable trustworthiness assertions associated with Transparent Statements and their processing provenance in a believable manner.
+Analogously, Transparent Statement Verifiers rely on verifiable trustworthiness assertions associated with Transparent Statements and their processing provenance in a believable manner.
 If trust can be put into the operations that record Signed Statements in a secure, append-only log via online operations, the same trust can be put into the resulting transparent statement, issued by the Transparency Services and that can be validated in offline operations.
 
 The Transparency Services specified in this architecture can be implemented by various different types of services in various types of languages provided via various variants of API layouts.
@@ -172,7 +174,7 @@ Auditor:
 
 : an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.
 
-Consumer of Signed Statements:
+Verifiers of Signed Statements:
 
 : Define here.
 
@@ -186,8 +188,8 @@ In COSE, an Envelope consists of a protected header (included in the Issuer's si
 Subject:
 
 : a logical collection of Statements about the same Artifact.
-For any step or set of steps in a supply chain there will be multiple statements made about the same Artifact. Issuers use the Feed to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Feed to ensure completeness and non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
-In COSE, Subject is a dedicated header attribute in the protected header of the Envelope.
+For any step or set of steps in a supply chain there will be multiple statements made about the same Artifact. Issuers use the Subject to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
+In COSE, Subject is a property of the dedicated, protected header attribute `13: CWT_Claims` of the Envelope.
 
 Issuer:
 
@@ -241,7 +243,7 @@ A Transparent Statement remains a valid Signed Statement, and may be registered 
 
 Verifier:
 
-: an entity that consumes Transparent Statements (a specialization of Signed Statement Consumer), verifying their proofs and inspecting their Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.
+: an entity that consumes Transparent Statements, verifying their proofs and inspecting their Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.
 
 {: #mybody}
 
@@ -593,14 +595,16 @@ Hence, the Registry may contain both Transparent Statements and governance entri
 
 For a given Transparent Statement, Verifiers take as trusted inputs:
 
-1. the distributed identifier of the Issuer (or its resolved key manifest)
-1. the collection of Transparent Statements to which this Statement about the Artifact belongs (i.e., the CWT_Claims Subject)
-1. the list of service identities of trusted Transparency Services
+1. the CWT_Claims Issuer (or its resolved key manifest)
+2. the collection of Transparent Statements to which this Statement about the Artifact belongs (i.e., the CWT_Claims Subject)
+3. the list of service identities of trusted Transparency Services
 
-When presented with a Transparent Statement for an Artifact, Consumers verify its Issuer identity, signature, and Receipt.
+When presented with a Transparent Statement for an Artifact, Verifiers verify the CWT_Claims Issuer identity, signature, and Receipt.
 They may additionally apply a validation policy based on the protected headers present both in the Envelope, the Receipt, or the Statement itself, which may include security-critical or Artifact-specific details.
 
-Some Verifiers may systematically fetch all Transparent Statements from the Feed and assess them alongside the Transparent Statement they are verifying to ensure freshness, completeness of evidence, and the promise of non-equivocation.
+Some Verifiers may systematically fetch all Transparent Statements using the CWT_Claims Subject and assess them alongside the Transparent Statement they are verifying to ensure freshness, completeness of evidence, and the promise of non-equivocation.
+
+Some Verifiers may choose subset the collection of Statements, filtering on the payload type, the CWT_Claims Issuer or other non-opaque properties.
 
 Some Verifiers may systematically resolve Issuer DIDs to fetch the latest corresponding DID documents.
 This behavior strictly enforces the revocation of compromised keys: once the Issuer has updated its Statement to remove a key identifier, all Signed Statements include the corresponding `kid` will be rejected.
@@ -622,9 +626,9 @@ All Signed Statements MUST include the following protected headers:
 
 - algorithm (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer. For example, `-35` is the registered algorithm identifier for ECDSA with SHA-384, see [COSE Algorithms Registry](#IANA.cose).
 - Issuer (label: `TBD`, temporary: `391`): DID (Decentralized Identifier {{DID-CORE}}) of the signer, as a string. `did:web:example.com` is an example of a DID.
-- Subject (label: `TBD`, temporary: `392`): The Subject to which the Statement refers, as a property of CTW_Clians, chosen by the Issuer. (TODO: reconcile with CWT_Claims)
+- Subject (label: `TBD`, temporary: `392`): The Subject to which the Statement refers, as a property of `CWT_Claims``, chosen by the Issuer. (TODO: reconcile with CWT_Claims)
 - Content type (label: `3`): Media type of payload, as a string. For example, `application/spdx+json` is the media type of SDPX in JSON encoding.
-- Registration Policy info (label: `TBD`, temporary: `393`): A map containing key/value pairs set by the Issuer which are sealed on Registration and non-opaque to the Transparency Service. The key/value pair semantics are specified by each Issuer or are specific to the Issuer and Feed tuple. Examples include: the sequence number of signed statements on a feed, Issuer metadata, or a reference to other transparent statements (e.g., augments, replaces, new-version, CPE-for).
+- Registration Policy info (label: `TBD`, temporary: `393`): A map containing key/value pairs set by the Issuer which are sealed on Registration and non-opaque to the Transparency Service. The key/value pair semantics are specified by each Issuer or are specific to the `CWT_Claims => Issuer` and `CWT_Claims => Subject` tuple. Examples include: the sequence number of signed statements on a `CWT_Claims => Subject`, Issuer metadata, or a reference to other transparent statements (e.g., augments, replaces, new-version, CPE-for).
 - Key ID (label: `4`): Key ID, as a bytestring.
 
 In CDDL {{-CDDL}} notation, a Signed_Statement is defined as follows:
@@ -643,8 +647,8 @@ COSE_Sign1 = [
 <!-- https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/ -->
 <!-- https://www.iana.org/assignments/cwt/cwt.xhtml -->
 CWT_Claims = {
-  1 => tstr; iss, the issuer that is making statements
-  2 => tstr; sub, the subject about which the statements are made, throughout this spec, this is also called feed.
+  1 => tstr; iss, REQUIRED the issuer that is making statements
+  2 => tstr; sub, REQUIRED the subject about which the statements are made
   * tstr => any
 }
 
@@ -820,9 +824,7 @@ For example, multiple Transparency Service instances may be governed and operate
 This may involve registering the same Signed Statements at different Transparency Services, each with their own purpose and Registration Policy.
 This may also involve attaching multiple Receipts to the same Signed Statements, each Receipt endorsing the Issuer signature and a subset of prior Receipts, and each Transparency Service verifying prior Receipts as part of their Registration Policy.
 
-For example,
-a supplier's Transparency Service may provide a complete, authoritative Registry for some kind of Signed Statements, whereas a Consumer's Transparency Service may collect different kinds of Signed Statements
-to ensure complete auditing for a specific use case, and possibly require additional reviews before registering some of these Signed Statements.
+For example, a supplier's Transparency Service may provide a complete, authoritative Registry for Signed Statements, whereas a Verifiers's Transparency Service may collect different kinds of Signed Statements to ensure complete auditing for a specific use case, and possibly require additional reviews before registering some of these Signed Statements.
 
 # Transparency Service API
 
