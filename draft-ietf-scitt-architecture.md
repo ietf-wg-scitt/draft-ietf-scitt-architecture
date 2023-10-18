@@ -492,7 +492,7 @@ Might dereference to:
 }
 ```
 
-### Support for multiple Artifacts
+### Support for Multiple Artifacts
 
 Many Issuers produce Signed Statements about various Artifacts under the same Identity. Issuers and Verifiers must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
 This information is stored in the Feed header of the Envelope.
