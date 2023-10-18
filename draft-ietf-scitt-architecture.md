@@ -630,7 +630,7 @@ All Signed Statements MUST include the following protected headers:
 
 Registration:
 
-: the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, storing the Signed Statement in the Registry, producing a Receipt, and returning it to the submitting Issuer.
+: the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, storing the Signed Statement in the Registry, and producing a Receipt.
 
 In CDDL {{-CDDL}} notation, a Signed_Statement is defined as follows:
 
