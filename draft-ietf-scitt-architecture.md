@@ -686,8 +686,11 @@ Unprotected_Header = {
 }
 ~~~
 
+## Creating Signed Statement
+
 There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
-An Issuer must first decide what Statements to include. For a software supply chain, payloads describing the software artifacts may include
+An Issuer must first decide on a suitable format to serialize the Statement payload.
+For a software supply chain, payloads describing the software artifacts may include:
 
 - CBOR-SPDX
 - CoSWID
@@ -697,10 +700,12 @@ An Issuer must first decide what Statements to include. For a software supply ch
 - SLSA
 - SWID
 
-Once the Statement is serialized with the correct media-type/content-format, an Issuer should fill in the attributes for the Registration Policy information header.
+Once the Statement is serialized with the correct media-type/content-format, an Issuer MUST fill in the attributes for the Registration Policy information header.
 From the Issuer's perspective, using attributes from named policies ensures that the Signed Statement may only be registered on Transparency Services that implement the associated policy.
 
-For example, if a Signed Statement is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers SHOULD use the `sequence_no` or `issuer_ts` attributes.
+For instance, if a Signed Statement is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers may use the `sequence_no` or `issuer_ts` attributes.
+
+Once all the Envelope headers are set, an Issuer MUST use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).
 
 ## Registering Signed Statements
 
@@ -728,21 +733,23 @@ A Transparency Service MUST ensure that a Signed Statement is registered before 
 
 ## Transparent Statements and Receipts {#Receipt}
 
-When a Signed Statement is registered by a TS a Transparent Statement is created. This Transparent Statement consists of the Signed Statement and a Receipt.
+When a Signed Statement is registered by a Transparency Service a Transparent Statement is created. This Transparent Statement consists of the Signed Statement and a Receipt.
 Receipts are based on COSE Signed Merkle Tree Proofs ({{-COMETRE}}) with an additional wrapper structure that adds the following information:
 
-- version: Receipt version number; MUST be set to `0` for implementation of this document.
-- ts_identifier: The DID of the Transparency Service that issued the Receipt. Verifiers MAY use this DID as a key discovery mechanism to verify the Receipt; in this case the verification is the same as for Signed Statement and the signer MAY include the `kid` header parameter. Verifiers MUST support the `did:web` method, all other methods are optional.
+- version: Receipt version number; MUST be set to `0` for the current implementation of this document
+- ts_identifier: The DID of the Transparency Service that issued the Receipt.
+Verifiers MAY use this DID as a key discovery mechanism to verify the Receipt.
+The verification is the same for Signed Statement and the signer MAY include the `kid` header parameter. Verifiers MUST support the `did:web` method, all other methods are optional.
 
-We also introduce the following requirements for the COSE signature of the Merkle Root:
+The following requirements for the COSE signature of the Merkle Root are added:
 
-- The SCITT version header MUST be included and its value match the `version` field of the Receipt structure.
-- The DID of issuer header (like in Signed Statements) MUST be included and its value match the `ts_identifier` field of the Receipt structure.
-- TS MAY include the Registration policy info header to indicate to verifiers what policies have been applied at the registration of this Statement.
-- Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of TS and Registration Policy) MUST be marked critical.
+- The SCITT version header MUST be included and its value match the `version` field of the Receipt structure
+- The DID of issuer header (in Signed Statements) MUST be included and its value match the `ts_identifier` field of the Receipt structure
+- Transparency Service MAY include the Registration policy info header to indicate to verifiers what policies have been applied at the registration of this Statement
+- Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of Transparency Service and Registration Policy) MUST be marked critical
 
-The TS may include the registration time to help verifiers decide about the trustworthiness of the Transparent Statement.
-The registration time is defined as the timestamp at which the TS has added this Signed Statement to its Registry.
+The Transparency Service may include the registration time to help verifiers decide about the trustworthiness of the Transparent Statement.
+The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Registry.
 
 ~~~ cddl
 Receipt = [
@@ -773,25 +780,6 @@ RegistrationInfo = {
   * tstr => any
 }
 ~~~
-
-## Signed Statement Issuance
-
-There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
-An Issuer must first decide on a suitable format to serialize the Statement payload. For a software supply chain, payloads describing the software artifacts may, for example, include
-
-- JSON-SPDX
-- CBOR-SPDX
-- SWID
-- CoSWID
-- CycloneDX
-- in-toto
-- SLSA
-
-Once the Statement is serialized with the correct media-type/content-format, an Issuer MUST fill in the attributes for the Registration Policy information header.
-From the Issuer's perspective, using attributes from named policies ensures that the Signed Statement may only be registered on Transparency Services that implement the associated policy.
-For instance, if a Signed Statement is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers may use the `sequence_no` or `issuer_ts` attributes.
-
-Once all the Envelope headers are set, an Issuer MUST use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).
 
 ## Validation of Transparent Statements
 
