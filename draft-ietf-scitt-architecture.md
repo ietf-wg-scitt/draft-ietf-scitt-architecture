@@ -64,6 +64,7 @@ normative:
   RFC7231:
   RFC6838:
   RFC3553:
+  RFC9360:
   IANA.params:
   IANA.cose:
   DID-CORE:
@@ -703,17 +704,23 @@ For example, if a Signed Statement is frequently updated, and it is important fo
 
 ## Registering Signed Statements
 
-The same Signed Statement may be independently registered by multiple Transparency Services.
+The same Signed Statement may be independently registered in multiple Transparency Services.
 To register a Signed Statement, the Transparency Service performs the following steps:
 
-1. **Issuer Key Discovery:** The Transparency Service MUST perform DID resolution of the Issuer's key and store evidence of the lookup. This step may require that the service retrieves the Issuer DID in real-time, or relies on retrieving cached resolution.
-1. **Signature verification:** The Transparency Service MUST verify the signature of the Signed Statement, as described in RFC 9360, using the signature algorithm and verification key of the Issuer DID document.
-1. **Signed Statement validation:** The Transparency Service MUST check that the Signed Statement includes a Statement payload and the protected headers listed above.
-The Transparency Service MAY additionally verify the Statement payload format and content.
-1. **Apply Registration Policy:** For named policies, the Transparency Service MUST check that the required Registration info attributes are present in the headers and apply the check described in Table 1. A Transparency Service MUST reject Signed Statements that contain an attribute used for a named policy that is not enforced by the service. Custom Signed Statements are evaluated given the current Registry state and the entire Envelope, and may use information contained in the attributes of named policies.
-1. Register the Signed Statement to the append-only log
-1. Return the Transparent Statement, which includes the Receipt
-Details about generating Receipts are described in {{Receipt}}.
+1. **Client authentication:** This is implementation-specific and MAY be unrelated to the Issuer identity.
+Signed Statements may be registered by a different party than their Issuer.
+1. **Issuer Verification:** The Transparency Service MUST perform resolution of the Issuer's identity.
+  This step may require that the service retrieves the Issuer ID in real-time, or rely on a cache of recent resolutions.
+  For auditing, during Registration, the Transparency Service MUST store evidence of the lookup, including if it was resolved from a cache.
+1. **Signature verification:** The Transparency Service MUST verify the signature of the Signed Statement, as described in {{RFC9360}}, using the signature algorithm and verification key of the Issuer.
+1. **Signed Statement validation:** The Transparency Service MUST check that the Signed Statement includes the required protected headers listed above.
+The Transparency Service MAY verify the Statement payload format, content and other optional properties.
+1. **Apply Registration Policy:** For named policies, the Transparency Service MUST check that the required Registration Policy attributes are present in the protected headers and apply the check described in Table 1.
+  A Transparency Service MUST reject Signed Statements that contain an attribute used for a named policy that is not enforced by the service.
+  Custom Signed Statements are evaluated given the current Registry state and the entire Envelope, and may use information contained in the attributes of named policies.
+1. **Register the Signed Statement** to the append-only log
+1. **Return the Transparent Statement**, which includes the Receipt
+  Details about generating Receipts are described in {{Receipt}}.
 
 The last two steps may be shared between a batch of Signed Statements recorded in the Registry.
 
@@ -785,29 +792,6 @@ From the Issuer's perspective, using attributes from named policies ensures that
 For instance, if a Signed Statement is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers may use the `sequence_no` or `issuer_ts` attributes.
 
 Once all the Envelope headers are set, an Issuer MUST use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).
-
-## Registering Signed Statements
-
-The same Signed Statement may be independently registered in multiple Transparency Services.
-To register a Signed Statement, the service performs the following steps:
-
-1. **Client authentication:** This is implementation-specific and MAY be unrelated to the Issuer identity.
-Signed Statements may be registered by a different party than their Issuer.
-1. **Issuer identification:** The Transparency Service MUST store evidence of the DID resolution for the Issuer protected header of the Envelope and the resolved key manifest at the time of Registration for auditing.
-This MAY require that the service resolves the Issuer DID and record the resulting document, or rely on a cache of recent resolutions.
-1. **Envelope signature verification:** As described in COSE signature, using the signature algorithm and verification key of the Issuer DID document
-1. **Envelope validation:** The service MUST check that the Envelope includes a Statement payload and the protected headers listed above
-The service MAY additionally verify the Statement payload format and content.
-1. **Apply Registration Policy:** for named policies, the Transparency Service must check that the required Registration info attributes are present in the Envelope and apply the check described in Table 1.
-A Transparency Service MUST reject Signed Statements that contain an attribute used for a named policy that is not enforced by the service.
-Custom Signed Statements are evaluated given the current Registry state and the entire Envelope, and MAY use information contained in the attributes of named policies.
-1. Commit (register) the new Signed Statement to the Registry
-1. Sign and return the Receipt
-
-The last two steps MAY be shared between a batch of Signed Statements recorded in the Registry.
-
-A Transparency Service MUST ensure that a Signed Statement is registered before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry (the now Transparent Statement) in the Registry.
-Conversely, the service MAY re-issue Receipts for the Registry content, for instance after a transient fault during Signed Statement Registration.
 
 ## Validation of Transparent Statements
 
