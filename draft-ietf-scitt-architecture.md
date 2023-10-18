@@ -624,7 +624,7 @@ All Signed Statements MUST include the following protected headers:
 - Issuer (label: `TBD`, temporary: `391`): DID (Decentralized Identifier {{DID-CORE}}) of the signer, as a string. `did:web:example.com` is an example of a DID.
 - Feed (label: `TBD`, temporary: `392`): The Issuer's name for the Artifact, as a string.
 - Content type (label: `3`): Media type of payload, as a string. For example, `application/spdx+json` is the media type of SDPX in JSON encoding.
-- Registration Policy info (label: `TBD`, temporary: `393`): A map containing key/value pairs set by the Issuer which are sealed on Registration and non-opaque to the Transparency Service. The key/value pair semantics are specified by each Issuer or are specific to the Issuer and Feed tupel. Examples include: the sequence number of signed statements on a feed, Issuer metadata, or a reference to other transparent statements (e.g., augments, replaces, new-version, CPE-for).
+- Registration Policy info (label: `TBD`, temporary: `393`): A map containing key/value pairs set by the Issuer which are sealed on Registration and non-opaque to the Transparency Service. The key/value pair semantics are specified by each Issuer or are specific to the Issuer and Feed tuple. Examples include: the sequence number of signed statements on a feed, Issuer metadata, or a reference to other transparent statements (e.g., augments, replaces, new-version, CPE-for).
 - Key ID (label: `4`): Key ID, as a bytestring.
 
 
