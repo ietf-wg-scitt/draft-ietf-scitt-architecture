@@ -205,7 +205,7 @@ Receipt:
 
 Registration:
 
-: the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, storing the Signed Statement in the Registry, and producing a Receipt.
+: the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, and producing a Receipt.
 
 Registration Policy:
 
