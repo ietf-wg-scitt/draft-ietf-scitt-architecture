@@ -170,7 +170,7 @@ The building blocks defined in SCITT are intended to support applications in any
 
 Detailed use cases are maintained in a separate document {{I-D.ietf-scitt-software-use-cases}}.
 
-# Terminology
+# Terminology {#terminology}
 
 The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust throughout this document.
 When used in text, the corresponding terms are capitalized.
@@ -251,7 +251,7 @@ A Transparent Statement remains a valid Signed Statement, and may be registered 
 Verifier:
 
 : organizations, stakeholders, and users involved in validating supply chain artifacts.
-Verifiers consume Transparent Signed Statements, verifying their proofs and inspecting their Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.
+Verifiers consume Transparent Statements, verifying their proofs and inspecting their Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.
 
 {: #mybody}
 
@@ -263,7 +263,7 @@ Existing transparency systems such as Certificate Transparency are instances of 
 A Signed Statement is an identifiable and non-repudiable Statement made by an Issuer.
 The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata.
 Signed Statements can be made transparent by attaching a proof of Registration by a Transparency Service, in the form of a Receipt that countersigns the Signed Statement and witnesses its inclusion in the Registry of a Transparency Service.
-By extension, the document may say an Artifact (e.g., a firmware binary) is transparent if it comes with one or more Transparent Signed Statements from its author or owner, though the context should make it clear what type of Signed Statements is expected for a given Artifact.
+By extension, the document may say an Artifact (e.g., a firmware binary) is transparent if it comes with one or more Transparent Statements from its author or owner, though the context should make it clear what type of Signed Statements is expected for a given Artifact.
 
 Transparency does not prevent dishonest or compromised Issuers, but it holds them accountable: any Artifact that may be used to target a particular user that checks for Receipts must have been recorded in the tamper-proof Registry, and will be subject to scrutiny and auditing by other parties.
 
@@ -338,18 +338,37 @@ This section describes at a high level, the three main roles and associated proc
 Before an Issuer is able to produce Signed Statements, it must first create its [decentralized identifier](#DID-CORE) (also known as a DID).
 A DID can be *resolved* into a *key manifest* (a list of public keys indexed by a *key identifier*) using many different DID methods.
 
-Issuers MAY choose the DID method they prefer, but with no guarantee that all Transparency Services will be able to register their Signed Statements.
+Issuers MAY choose the DID method they prefer, but with no guarantee that all Transparency Services will register their Signed Statements, as each Transparency Service may implement registration Policies.
 To facilitate interoperability, all Transparency Service implementations MUST support the `did:web` method {{DID-WEB}}.
-For instance, if the Issuer publishes its manifest at `https://sample.issuer/user/alice/did.json`, the DID of the Issuer is `did:web:sample.issuer:user:alice`.
+For example, if the Issuer publishes its manifest at `https://sample.issuer/user/alice/did.json`, the DID of the Issuer is `did:web:sample.issuer:user:alice`.
 
 Issuers SHOULD use consistent decentralized identifiers for all their Statements about Artifacts, to simplify authorization by Verifiers and auditing.
-If an issuer uses multiple DIDs (for instance, because their clients support different resolution methods), they MUST ensure that statements signed under each DID are consistent.
+If an issuer uses multiple DIDs (for instance, their clients support different resolution methods), they MUST ensure that statements signed under each DID are consistent.
 
-Issuers MAY update their DID Document at any time, for instance to refresh their signing keys or algorithms, but they SHOULD NOT remove or change any of their previous keys unless they intend to revoke all Signed Statements that are registered as Transparent Statements issued with those keys.
+Issuers MAY update their DID Document at any time, for instance to refresh their signing keys or algorithms.
+Issuers SHOULD NOT remove or change any of their previous keys unless they intend to revoke all Signed Statements that are registered as Transparent Statements issued with those keys.
 
-The Issuer's DID appears in the protected header of Signed Statements' Envelopes, while the version of the key from the DID Document used to sign the Signed Statement is written in the `kid` header.
+The Issuer's DID is required and appears in the `1 iss` claim of the `13 CWT_Claims` protected header of the Signed Statements' Envelope.
+The version of the key from the DID Document used to sign the Signed Statement is written in the `4 kid` protected header.
 
-`kid` MUST either be an absolute URL, or a relative URL. Relative URL MUST be relative to an `iss` value. When relative URL is used, `iss` MUST also be present in the protected header.
+~~~ cddl
+CWT_Claims = {
+  1 => tstr; iss, the issuer making statements,
+  2 => tstr; sub, the subject of the statements,
+  * tstr => any
+}
+
+Protected_Header = {
+  1   => int             ; algorithm identifier,
+  4   => bstr            ; Key ID (kid),
+  13  => CWT_Claims      ; CBOR Web Token Claims,
+  393 => Reg_Info        ; Registration Policy info,
+  3   => tstr            ; payload type
+}
+~~~
+
+`4 kid` MUST either be an absolute URL, or a relative URL.
+Relative URL MUST be relative to an `iss` value.
 
 Resolving `kid` MUST return an identity document of a registered content type (a set of public keys).
 In the case of `kid` being an absolute DID URL, the identity document is called a DID Document, and is expected ot have content type `application/did+json`.
@@ -456,7 +475,7 @@ This URL will resolve to a JSON document of content type `application/jwk-set+js
 }
 ~~~
 
-If SCITT wanted to be interoperable with OIDC, we would define key dereferencing in a way that was compatible with how OIDC handles it today.
+TODO: For SCITT to be interoperable with OIDC, it would define key dereferencing compatible with OIDC dereferencing.
 
 #### Dereferencing Public Keys
 
@@ -494,8 +513,12 @@ Might dereference to:
 
 ### Support for Multiple Artifacts
 
-Many Issuers produce Signed Statements about various Artifacts under the same Identity. Issuers and Verifiers must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
-This information is stored in the Subject header of the Envelope.
+Issuers may produce Signed Statements about different Artifacts under the same Identity.
+Issuers and Verifiers must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
+The `iss` and `sub` claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.
+
+See Subject under {{terminology}} Terminology.
+
 Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
 
 ### Registration Policy Metadata
@@ -612,7 +635,7 @@ They may additionally apply a validation policy based on the protected headers p
 
 Some Verifiers may systematically fetch all Transparent Statements using the CWT_Claims Subject and assess them alongside the Transparent Statement they are verifying to ensure freshness, completeness of evidence, and the promise of non-equivocation.
 
-Some Verifiers may choose subset the collection of Statements, filtering on the payload type, the CWT_Claims Issuer or other non-opaque properties.
+Some Verifiers may choose to subset the collection of Statements, filtering on the payload type, the CWT_Claims Issuer or other non-opaque properties.
 
 Some Verifiers may systematically resolve Issuer DIDs to fetch the latest corresponding DID documents.
 This behavior strictly enforces the revocation of compromised keys: once the Issuer has updated its Statement to remove a key identifier, all Signed Statements include the corresponding `kid` will be rejected.
@@ -631,18 +654,19 @@ Signed Statements are CBOR encoded {{-CBOR}} and protected by CBOR Object Signin
 
 All Signed Statements MUST include the following protected headers:
 
-- **algorithm** (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer. For example, `-35` is the registered algorithm identifier for ECDSA with SHA-384, see [COSE Algorithms Registry](#IANA.cose).
+- **algorithm** (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer.<br>
+  Example: `-35` is the registered algorithm identifier for ECDSA with SHA-384, see [COSE Algorithms Registry](#IANA.cose).
 - **Key ID** (label: `4`): Key ID, as a bytestring
 - **CWT_Claims** (label: `13` pending {{CWT_CLAIM_COSE}}): A CWT_Claim representing the Issuer (`iss`) making the statement, and the Subject (`sub`) to correlate a collection of statements about an Artifact.
   Additional {{CWT_CLAIMS}} MAY be used, while `iss` and `sub` MUST be provided
-  - **iss** (CWT_Claim Key `1`): The Identifier of the signer, as a string
-    example: `did:web:example.com`
+  - **iss** (CWT_Claim Key `1`): The Identifier of the signer, as a string<br>
+    Example: `did:web:example.com`
   - **sub** (CWT_Claim Key `2`): The Subject to which the Statement refers, chosen by the Issuer
 - **Registration Policy** (label: `TBD`, temporary: `393`): A map containing key/value pairs set by the Issuer which are sealed on Registration and non-opaque to the Transparency Service.
-  The key/value pair semantics are specified by the Issuer or are specific to the `CWT_Claims iss` and `CWT_Claims sub` tuple.
-  Examples include: the sequence number of signed statements on a `CWT_Claims Subject`, Issuer metadata, or a reference to other transparent statements (e.g., augments, replaces, new-version, CPE-for)
-- **Content type** (label: `3`): Media type of payload, as a string
-    example, `application/spdx+json` as the media type of SDPX in JSON encoding
+  The key/value pair semantics are specified by the Issuer or are specific to the `CWT_Claims iss` and `CWT_Claims sub` tuple.<br>
+  Examples: the sequence number of signed statements on a `CWT_Claims Subject`, Issuer metadata, or a reference to other transparent statements (e.g., augments, replaces, new-version, CPE-for)
+- **Content type** (label: `3`): The media type of the payload, as a string.<br>
+  Example: `application/spdx+json` as the media type of SDPX in JSON encoding
 
 In CDDL {{-CDDL}} notation, a Signed_Statement is defined as follows:
 
@@ -736,8 +760,8 @@ A Transparency Service MUST ensure that a Signed Statement is registered before 
 When a Signed Statement is registered by a Transparency Service a Transparent Statement is created. This Transparent Statement consists of the Signed Statement and a Receipt.
 Receipts are based on COSE Signed Merkle Tree Proofs ({{-COMETRE}}) with an additional wrapper structure that adds the following information:
 
-- version: Receipt version number; MUST be set to `0` for the current implementation of this document
-- ts_identifier: The DID of the Transparency Service that issued the Receipt.
+- **version**: Receipt version number; MUST be set to `0` for the current implementation of this document
+- **ts_identifier**: The DID of the Transparency Service that issued the Receipt.
 Verifiers MAY use this DID as a key discovery mechanism to verify the Receipt.
 The verification is the same for Signed Statement and the signer MAY include the `kid` header parameter. Verifiers MUST support the `did:web` method, all other methods are optional.
 
@@ -763,15 +787,15 @@ Receipt = [
 Protected_Header = {
   390 => int         ; SCITT Receipt Version
   394 => tstr        ; DID of Transparency Service (required)
-  ? 395 => Reg_info  ; Registration policy information (optional)
+  ? 393 => Reg_info  ; Registration policy information (optional)
 
   ; Other COSE Signed Merkle Tree headers
   ; (e.g. tree algorithm, tree size)
 
   ; Additional standard COSE headers
-  2 => [+ label]            ; Critical headers
-  ? 4 => bstr               ; Key ID (optional)
-  ? 33 => COSE_X509         ; X.509 chain (optional)
+  2 => [+ label]     ; Critical headers
+  ? 4 => bstr        ; Key ID (optional)
+  ? 33 => COSE_X509  ; X.509 chain (optional)
 }
 
 ; Details of the registration info, as provided by the TS
@@ -799,10 +823,10 @@ Verifiers MAY offer options to store or share the Receipt of the Transparent Sta
 
 # Federation
 
-This topic is still under discussion, see [issue 79](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/79)
+**Note**: This topic is still under discussion, see [issue 79](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/79)
 
 Multiple, independently-operated Transparency Services can help secure distributed supply chains, without the need for a single, centralized service trusted by all parties.
-For example, multiple Transparency Service instances may be governed and operated by different organizations that do not trust one another.
+For example, multiple Transparency Service instances may be governed and operated by different organizations that are either unaware of the other or do not trust one another.
 
 This may involve registering the same Signed Statements at different Transparency Services, each with their own purpose and Registration Policy.
 This may also involve attaching multiple Receipts to the same Signed Statements, each Receipt endorsing the Issuer signature and a subset of prior Receipts, and each Transparency Service verifying prior Receipts as part of their Registration Policy.
@@ -817,9 +841,9 @@ All messages are sent as HTTP GET or POST requests.
 
 If the Transparency Service cannot process a client's request, it MUST return an HTTP 4xx or 5xx status code, and the body MAY contain a JSON problem details object ({{RFC7807}}) with the following fields:
 
-- type: A URI reference identifying the problem.
+- **type**: A URI reference identifying the problem.
 To facilitate automated response to errors, this document defines a set of standard tokens for use in the type field within the URN namespace of: "urn:ietf:params:scitt:error:".
-- detail: A human-readable string describing the error that prevented the Transparency Service from processing the request, ideally with sufficient detail to enable the error to be rectified.
+- **detail**: A human-readable string describing the error that prevented the Transparency Service from processing the request, ideally with sufficient detail to enable the error to be rectified.
 
 Error responses MUST be sent with the `Content-Type: application/problem+json` HTTP header.
 
@@ -961,18 +985,19 @@ The retrieved Receipt may be embedded in the corresponding COSE_Sign1 document i
 
 # Privacy Considerations
 
-Unless advertised by a Transparency Service, every Issuer must treat Signed Statements it registered (rendering them Transparent Statements) as public.
+Unless advertised by a Transparency Service, every Issuer must treat Signed Statements it registered (rendering them as Transparent Statements) as public.
 In particular, Signed Statements' Envelopes and Statement payload MUST NOT carry any private information in plaintext.
 
 # Security Considerations
 
-On its own, verifying a Transparent Statement does not guarantee that its Envelope or contents are trustworthy---just that they have been signed by the apparent Issuer and counter-signed by the
-Transparency Service.
+On its own, verifying a Transparent Statement does not guarantee that its Envelope or contents are trustworthy.
+Just that they have been signed by the apparent Issuer and counter-signed by the Transparency Service.
 If the Verifier trusts the Issuer, it can infer that an Issuer's Signed Statement was issued with this Envelope and contents, which may be interpreted as the Issuer saying the Artifact is fit for its intended purpose.
 If the Verifier trusts the Transparency Service, it can independently infer that the Signed Statement passed the Transparency Service Registration Policy and that has been persisted in the Registry.
 Unless advertised in the Transparency Service Registration Policy, the Verifier cannot assume that the ordering of Signed Statements in the Registry matches the ordering of their issuance.
 
-Similarly, the fact that an Issuer can be held accountable for its Transparent Statements does not on its own provide any mitigation or remediation mechanism in case one of these Transparent Statements turned out to be misleading or malicious---just that signed evidence will be available to support them.
+Similarly, the fact that an Issuer can be held accountable for its Transparent Statements does not on its own provide any mitigation or remediation mechanism in case one of these Transparent Statements turned out to be misleading or malicious.
+Just that signed evidence will be available to support them.
 
 Issuers MUST ensure that the Statement payloads in their Signed Statements are correct and unambiguous, for example by avoiding ill-defined or ambiguous formats that may cause Verifiers to interpret the Signed Statement as valid for some other purpose.
 
@@ -1015,22 +1040,19 @@ If a Transparency Service is honest, then a Transparent Statement including a co
 
 Conversely, a corrupt Transparency Service may
 
-1. refuse or delay the Registration of Signed Statements,
-1. register Signed Statements that do not pass its Registration Policy (e.g., Signed Statement with Issuer identities and signatures that do not verify),
-1. issue verifiable Receipts for Signed Statements that do not match its Registry, or
-1. refuse access to its Registry (e.g., to Auditors, possibly after storage loss).
+1. refuse or delay the Registration of Signed Statements
+1. register Signed Statements that do not pass its Registration Policy (e.g., Signed Statement with Issuer identities and signatures that do not verify)
+1. issue verifiable Receipts for Signed Statements that do not match its Registry
+1. refuse access to its Registry (e.g., to Auditors, possibly after storage loss)
 
 An Auditor granted (partial) access to a Registry and to a collection of disputed Receipts will be able to replay it, detect any invalid Registration (2) or incorrect Receipt in this collection (3), and blame the Transparency Service for them.
-This ensures any Verifier that trusts at least one such Auditor that (2,3) will be blamed to the Transparency Service.
+This ensures any Verifier that trusts at least one such Auditor that (2, 3) will be blamed to the Transparency Service.
 
-Due to the operational challenge of maintaining a globally consistent append-only Log,
-some Transparency Services may provide limited support for historical queries on the Signed
-Statements they have registered, and accept the risk of being blamed for inconsistent
-Registration or Issuer equivocation.
+Due to the operational challenge of maintaining a globally consistent append-only Log, some Transparency Services may provide limited support for historical queries on the Signed Statements they have registered, and accept the risk of being blamed for inconsistent Registration or Issuer equivocation.
 
-Verifiers and Auditors may also witness (1,4) but may not be able to collect verifiable evidence for it.
+Verifiers and Auditors may also witness (1, 4) but may not be able to collect verifiable evidence for it.
 
-#### Availability of Transparent Signed Statement
+#### Availability of Transparent Statement
 
 Networking and Storage are trusted only for availability.
 
