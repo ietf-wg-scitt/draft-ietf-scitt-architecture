@@ -205,7 +205,7 @@ Receipt:
 
 Registration:
 
-: the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, storing it in the Registry, producing a Receipt, and returning it to the submitting Issuer.
+: the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, and producing a Receipt.
 
 Registration Policy:
 
@@ -624,7 +624,7 @@ All Signed Statements MUST include the following protected headers:
 - Issuer (label: `TBD`, temporary: `391`): DID (Decentralized Identifier {{DID-CORE}}) of the signer, as a string. `did:web:example.com` is an example of a DID.
 - Subject (label: `TBD`, temporary: `392`): The Subject to which the Statement refers, as a bytestring, chosen by the Issuer.
 - Content type (label: `3`): Media type of payload, as a string. For example, `application/spdx+json` is the media type of SDPX in JSON encoding.
-- Registration Policy info (label: `TBD`, temporary: `393`): A map of additional attributes to help enforce Registration Policies.
+- Registration Policy info (label: `TBD`, temporary: `393`): A map containing key/value pairs set by the Issuer which are sealed on Registration and non-opaque to the Transparency Service. The key/value pair semantics are specified by each Issuer or are specific to the Issuer and Feed tuple. Examples include: the sequence number of signed statements on a feed, Issuer metadata, or a reference to other transparent statements (e.g., augments, replaces, new-version, CPE-for).
 - Key ID (label: `4`): Key ID, as a bytestring.
 
 In CDDL {{-CDDL}} notation, a Signed_Statement is defined as follows:
@@ -640,6 +640,13 @@ COSE_Sign1 = [
   payload : bstr,
   signature : bstr
 ]
+<!-- https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/ -->
+<!-- https://www.iana.org/assignments/cwt/cwt.xhtml -->
+CWT_Claims = {
+  1 => tstr; iss, the issuer that is making statements
+  2 => tstr; sub, the subject about which the statements are made, throughout this spec, this is also called feed.
+  * tstr => any
+}
 
 Reg_Info = {
   ? "register_by": uint .within (~time),
@@ -653,9 +660,8 @@ Protected_Header = {
   1 => int               ; algorithm identifier
   3 => tstr              ; payload type
   4 => bstr              ; Key ID
+  13 => CWT_Claims       ; CBOR Web Token Registered Claims
   ; TBD, Labels are temporary
-  391 => tstr            ; DID of Issuer
-  392 => bstr            ; Subject
   393 => Reg_Info        ; Registration Policy info
 }
 
