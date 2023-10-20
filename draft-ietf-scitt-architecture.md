@@ -61,7 +61,6 @@ contributor:
     contribution: >
       Orie contributed to improving the generalization of COSE building blocks and document consistency.
 
-
 normative:
   RFC8610: CDDL
   RFC9052: COSE
