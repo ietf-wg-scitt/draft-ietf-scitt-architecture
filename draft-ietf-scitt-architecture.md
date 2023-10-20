@@ -688,7 +688,6 @@ Protected_Header = {
   4 => bstr              ; Key ID
   13 => CWT_Claims       ; CBOR Web Token Registered Claims
   ; TBD, Labels are temporary
-  391 => tstr            ; DID of Issuer // redundant
   392 => tstr            ; Feed // redundant
   393 => Reg_Info        ; Registration Policy info
 }
