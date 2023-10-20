@@ -494,7 +494,7 @@ SCITT payloads are opaque to Transparency Services, so Registration Policy decis
 
 The small mandatory set of metadata in the envelope of a Signed Statement is neither intended nor sufficient to express the information required for the processing of Registration Policies in a Transparency Service.
 
-For example, a Registry may only allow a Signed Statement to be registered if it was signed recently very recently, or may reject a Signed Statement if it arrives out of order in some sequenced protocol.
+For example, a Registry may only allow a Signed Statement to be registered if it was signed very recently, or may reject a Signed Statement if it arrives out of order in some sequenced protocol.
 
 Any metadata meant to be interpreted by the Transparency Service during Registration Policy evaluation, SHOULD be added to the `reg_info` header, unless the data is private (in which case, it MAY be sent to the Transparency Service as an additional input during registration).
 
