@@ -640,6 +640,13 @@ COSE_Sign1 = [
   payload : bstr,
   signature : bstr
 ]
+<!-- https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/ -->
+<!-- https://www.iana.org/assignments/cwt/cwt.xhtml -->
+CWT_Claims = {
+  1 => tstr; iss, the issuer that is making statements
+  2 => tstr; sub, the subject about which the statements are made, throughout this spec, this is also called feed.
+  * tstr => any
+}
 
 Reg_Info = {
   ? "register_by": uint .within (~time),
@@ -653,9 +660,8 @@ Protected_Header = {
   1 => int               ; algorithm identifier
   3 => tstr              ; payload type
   4 => bstr              ; Key ID
+  13 => CWT_Claims       ; CBOR Web Token Registered Claims
   ; TBD, Labels are temporary
-  391 => tstr            ; DID of Issuer
-  392 => tstr            ; Feed
   393 => Reg_Info        ; Registration Policy info
 }
 
