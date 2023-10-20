@@ -670,7 +670,7 @@ COSE_Sign1 = [
 <!-- https://www.iana.org/assignments/cwt/cwt.xhtml -->
 CWT_Claims = {
   1 => tstr; iss, the issuer that is making statements
-  2 -> tstr; sub, the subject about which the statements are made, throughout this spec, this is also called feed.
+  2 => tstr; sub, the subject about which the statements are made, throughout this spec, this is also called feed.
   * tstr => any
 }
 
