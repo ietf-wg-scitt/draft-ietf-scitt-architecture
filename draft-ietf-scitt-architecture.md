@@ -74,25 +74,25 @@ normative:
     date: 2022-07-22
   DID-WEB:
     target: https://w3c-ccg.github.io/did-method-web/
-    title: did:web Decentralized Identifiers Method Spec
+    title:  did:web Decentralized Identifiers Method Spec
   SPDX:
     target: https://spdx.dev/use/specifications/
     title:  SPDX Specification
   SWID:
     target: https://csrc.nist.gov/projects/software-identification-swid/
-    title: SWID Specification
+    title:  SWID Specification
   COSWID:
     target: https://www.rfc-editor.org/rfc/rfc9393.pdf
     title:  COSWID Specification
   CycloneDX:
     target: https://cyclonedx.org/specification/overview/
-    title: CycloneDX
+    title:  CycloneDX
   Intoto:
     target: https://in-toto.io/
-    title: in-toto
+    title:  in-toto
   SLSA:
     target: https://slsa.dev/
-    title SLSA
+    title:  SLSA
 informative:
   I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
   PBFT: DOI.10.1145/571637.571640
