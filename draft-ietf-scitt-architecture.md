@@ -79,7 +79,7 @@ normative:
     target: https://spdx.dev/use/specifications/
     title:  SPDX Specification
   SWID:
-    target: https://csrc.nist.gov/projects/software-identification-swid/
+    target: https://csrc.nist.gov/Projects/Software-Identification-SWID/guidelines
     title:  SWID Specification
   COSWID:
     target: https://www.rfc-editor.org/rfc/rfc9393.pdf
