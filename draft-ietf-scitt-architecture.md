@@ -87,7 +87,7 @@ normative:
   CycloneDX:
     target: https://cyclonedx.org/specification/overview/
     title:  CycloneDX
-  Intoto:
+  in-toto:
     target: https://in-toto.io/
     title:  in-toto
   SLSA:
