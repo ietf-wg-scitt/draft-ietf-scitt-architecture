@@ -75,6 +75,24 @@ normative:
   DID-WEB:
     target: https://w3c-ccg.github.io/did-method-web/
     title: did:web Decentralized Identifiers Method Spec
+  SPDX:
+    target: https://spdx.dev/use/specifications/
+    title:  SPDX Specification
+  SWID:
+    target: https://csrc.nist.gov/projects/software-identification-swid/
+    title: SWID Specification
+  COSWID: 
+    target: https://www.rfc-editor.org/rfc/rfc9393.pdf
+    title:  COSWID Specification
+  CycloneDX: 
+    target: https://cyclonedx.org/specification/overview/
+    title: CycloneDX
+  Intoto:
+    target: https://in-toto.io/
+    title: in-toto
+  SLSA:
+    target: https://slsa.dev/
+    title SLSA
 informative:
   I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
   PBFT: DOI.10.1145/571637.571640
@@ -674,13 +692,14 @@ Unprotected_Header = {
 There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
 An Issuer must first decide what Statements to include. For a software supply chain, payloads describing the software artifacts may, for example, include
 
-- JSON-SPDX
-- CBOR-SPDX
-- SWID
-- CoSWID
-- CycloneDX
-- in-toto
-- SLSA
+- [JSON-SPDX](#SPDX)
+- [CBOR-SPDX](#SPDX)
+- [SWID](#SWID)
+- [CoSWID](#COSWID)
+- [CycloneDX](#CycloneDX)
+- [in-toto](#Intoto)
+- [SLSA](#SLSA)
+
 
 Once the Statement is serialized with the correct media-type/content-format, an Issuer should fill in the attributes for the Registration Policy information header.
 From the Issuer's perspective, using attributes from named policies ensures that the Signed Statement may only be registered on Transparency Services that implement the associated policy.
