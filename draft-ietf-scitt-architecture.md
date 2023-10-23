@@ -67,6 +67,18 @@ normative:
   RFC9360:
   IANA.params:
   IANA.cose:
+  COSWID:
+    target: https://www.rfc-editor.org/rfc/rfc9393.pdf
+    title:  COSWID Specification
+  CWT_CLAIM_COSE:
+    target: https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/
+    title: CBOR Web Token (CWT) Claims in COSE Headers
+  CWT_CLAIMS:
+    target: https://www.iana.org/assignments/cwt/cwt.xhtml
+    title: CBOR Web Token (CWT) Claims
+  CycloneDX:
+    target: https://cyclonedx.org/specification/overview/
+    title:  CycloneDX
   DID-CORE:
     target: https://www.w3.org/TR/did-core/
     title: Decentralized Identifiers (DIDs) v1.0
@@ -76,12 +88,21 @@ normative:
   DID-WEB:
     target: https://w3c-ccg.github.io/did-method-web/
     title: did:web Decentralized Identifiers Method Spec
-  CWT_CLAIM_COSE:
-    target: https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/
-    title: CBOR Web Token (CWT) Claims in COSE Headers
-  CWT_CLAIMS:
-    target: https://www.iana.org/assignments/cwt/cwt.xhtml
-    title: CBOR Web Token (CWT) Claims
+  in-toto:
+    target: https://in-toto.io/
+    title:  in-toto
+  SLSA:
+    target: https://slsa.dev/
+    title:  SLSA
+  SPDX-JSON:
+    target: https://spdx.dev/use/specifications/
+    title:  SPDX Specification
+  SPDX-CBOR:
+    target: https://spdx.dev/use/specifications/
+    title:  SPDX Specification
+  SWID:
+    target: https://csrc.nist.gov/Projects/Software-Identification-SWID/guidelines
+    title:  SWID Specification
 informative:
   I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
   PBFT: DOI.10.1145/571637.571640
@@ -747,13 +768,13 @@ There are many types of Statements (such as SBOMs, malware scans, audit reports,
 An Issuer must first decide on a suitable format (`3`: payload type) to serialize the Statement payload.
 For a software supply chain, payloads describing the software artifacts may include:
 
-- CBOR-SPDX
-- CoSWID
-- CycloneDX
-- in-toto
-- JSON-SPDX
-- SLSA
-- SWID
+- {{COSWID}}
+- {{CycloneDX}}
+- {{in-toto}}
+- {{SPDX-CBOR}}
+- {{SPDX-JSON}}
+- {{SLSA}}
+- {{SWID}}
 
 Once the Statement is serialized with the correct media-type/content-format, an Issuer should fill in the attributes for the Registration Policy information header.
 From the Issuer's perspective, using attributes from named policies ensures that the Signed Statement may only be registered on Transparency Services that implement the associated policy.
