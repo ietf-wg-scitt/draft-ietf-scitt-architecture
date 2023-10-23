@@ -67,10 +67,8 @@ normative:
   RFC8949: CBOR
 #  RFC9053: COSE-ALGS
 #  RFC9054: COSE-HASH
-  RFC9162: CT
-  RFC6024:
-  RFC7807:
-  RFC7231:
+  RFC9457:
+  RFC9110:
   RFC6838:
   RFC3553:
   RFC9360:
@@ -82,6 +80,14 @@ normative:
   CWT_CLAIM_COSE:
     target: https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/
     title: CBOR Web Token (CWT) Claims in COSE Headers
+informative:
+  I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
+  PBFT: DOI.10.1145/571637.571640
+  MERKLE: DOI.10.1007/3-540-48184-2_32
+  RFC6024:
+  RFC9162: CT
+  RFC9334: rats-arch
+  I-D.ietf-scitt-software-use-cases:
   CWT_CLAIMS:
     target: https://www.iana.org/assignments/cwt/cwt.xhtml
     title: CBOR Web Token (CWT) Claims
@@ -112,12 +118,6 @@ normative:
   SWID:
     target: https://csrc.nist.gov/Projects/Software-Identification-SWID/guidelines
     title:  SWID Specification
-informative:
-  I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
-  PBFT: DOI.10.1145/571637.571640
-  MERKLE: DOI.10.1007/3-540-48184-2_32
-  RFC9334: rats-arch
-  I-D.ietf-scitt-software-use-cases:
 
 venue:
   mail: scitt@ietf.org
@@ -908,7 +908,7 @@ Verifiers choose which independent entities they trust, just as entities choose 
 
 All messages are sent as HTTP GET or POST requests.
 
-If the Transparency Service cannot process a client's request, it MUST return an HTTP 4xx or 5xx status code, and the body MAY contain a JSON problem details object ({{RFC7807}}) with the following fields:
+If the Transparency Service cannot process a client's request, it MUST return an HTTP 4xx or 5xx status code, and the body MAY contain a JSON problem details object ({{RFC9457}}) with the following fields:
 
 - **type**: A URI reference identifying the problem.
 To facilitate automated response to errors, this document defines a set of standard tokens for use in the type field within the URN namespace of: "urn:ietf:params:scitt:error:".
@@ -932,7 +932,7 @@ The one exception is the "malformed" error type, which indicates that the Transp
 - Error code: `malformed` (The request could not be parsed).
 
 Clients MUST treat 500 and 503 HTTP status code responses as transient failures and MAY retry the same request without modification at a later date.
-Note that in the case of a 503 response, the Transparency Service MAY include a `Retry-After` header field per {{RFC7231}} in order to request a minimum time for the client to wait before retrying the request.
+Note that in the case of a 503 response, the Transparency Service MAY include a `Retry-After` header field per {{RFC9110}} in order to request a minimum time for the client to wait before retrying the request.
 In the absence of this header field, this document does not specify a minimum.
 
 ### Register Signed Statement
