@@ -122,17 +122,19 @@ Lastly, the Transparency Service verifies the identity of the Issuer, and confor
 As the Issuer of the Signed Statement and conformance to the Registration Policy are confirmed, an endorsement is made as the Signed Statement is added to the Append-only Log.
 
 The guarantees and techniques used in this document generalize those of Certificate Transparency {{-CT}}, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates.
-However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each Transparency Service is implemented and operates.
+However, the range of use cases and applications in this document are broader, which requires more flexibility in how each Transparency Service is implemented and operates.
+
 Each service MAY enforce its own Registration Policies for authorizing entities to register their Signed Statements to the Append-only Log.
-Some Transparency Services may also enforce authorization policies limiting who can write, read and audit the Append-only Long.
+Some Transparency Services may also enforce authorization policies limiting who can write, read and audit the Append-only Log.
 It is critical to provide interoperability for all Transparency Services instances as the composition of supply chain entities is ever-changing.
-It is implausible to expect all participants to choose a single vendor or Append-only Long.
+It is implausible to expect all participants to choose a single vendor or Append-only Log.
 
 A Transparency Service provides visibility into Signed Statements associated with various supply chains and their sub-systems.
-These Signed Statements (and corresponding Statement payload) make claims about the Artifacts produced by a supply chain.
-A Transparency Service endorses specific and well-defined metadata about these Artifacts that is captured in the envelope of the Statements.
-Some metadata is selected (and signed) by the Issuer, indicating, e.g., "who issued the Statement" or "what type of Artifact is described" or "what is the Artifact's version"; whereas additional metadata is selected (and countersigned) by the Transparency Services, indicating, e.g., "when was the Signed Statement about the Artifact registered in the Transparency Service".
-Producing a Transparent Statement is considered a form of notarization.
+The Signed Statements (and inner payload) make claims about the Artifacts produced by a supply chain.
+A Transparency Service endorses specific and well-defined metadata about Artifacts which are captured in the envelope of the Statements.
+Some metadata is selected (and signed) by the Issuer ("who issued the Statement", "what type of Artifact is described", "what is the Artifact's version").
+Whereas additional metadata is selected (and countersigned) by the Transparency Services ("when was the Signed Statement about an Artifact registered in the Transparency Service", "which registration policy was used").
+Evaluating and Registering a Signed Statement, adding it to the Append-only Log, and producing a Transparent Statement is considered a form of counter-signed notarization.
 
 A Statements payload content is always opaque and MAY be encrypted when submitted to the Transparency Services.
 However the header metadata MUST be transparent in order to warrant trust for later processing.
@@ -143,7 +145,7 @@ The ability for the original Issuer to make additional Statements about an Artif
 The ability of other Issuers to make Statements about an Artifact, produced from another Issuer, provides for third party validations.
 A Transparency Service may restrict access to Signed Statements through access control or Registration policies.
 However, third parties (such as Auditors) would be granted access as needed to attest to the validity of the Artifact, Subject or the entirety of the Transparency Service.
-Independent third parties may also make Statements about an Artifact on other Transparency Services.
+Independent third parties may also make Statements about an Artifact, published on other Transparency Services.
 
 Trust in the Transparency Service itself is supported both by protecting their implementation (using replication, trusted hardware, and remote attestation of a system's operational state) and by enabling independent audits of the correctness and consistency of its Append-only Log, thereby holding the organization that operates it accountable.
 Unlike CT, where independent Auditors are responsible for enforcing the consistency of multiple independent instances of the same global Transparency Service, each Transparency Service is required to guarantee the consistency of its own Append-only Log (through the use of a consensus algorithm between replicas of the Transparency Service), but assume no consistency between different Transparency Services.
@@ -176,7 +178,7 @@ Detailed use cases are maintained in a separate document {{I-D.ietf-scitt-softwa
 
 # Terminology {#terminology}
 
-The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust throughout this document.
+The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust, which are used throughout this document.
 When used in text, the corresponding terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.
 
@@ -211,7 +213,7 @@ An Issuer may be the owner or author of Artifacts, or an independent third party
 
 Receipt:
 
-: a Receipt is a cryptographic proof that a Signed Statement is recorded in the Append-Only Log. Receipts are based on COSE Signed Merkle Tree Proofs {{-COMETRE}}.
+: a Receipt is a cryptographic proof that a Signed Statement is recorded in the Append-only Log. Receipts are based on COSE Signed Merkle Tree Proofs {{-COMETRE}}.
 Receipts consist of Transparency Service-specific inclusion proofs, a signature by the Transparency Service of the state of the Append-only Log, and additional metadata (contained in the signature's protected headers) to assist in auditing.
 
 Registration:
@@ -237,14 +239,15 @@ Statement:
 
 : any serializable information about an Artifact.
 To help interpretation of Statements, they must be tagged with a media type (as specified in {{RFC6838}}).
-A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, some endorsement or attestation about an Artifact, or any content an issuer wishes to publish.
-The statement is opaque to Transparency Service, and MAY be encrypted.
+A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version,  or any content an Issuer wishes to publish about an Artifact.
+The additional Statements about an artifact are correlated by the Subject defined in the CWT_Claims protected header.
+The Statement is considered opaque to Transparency Service, and MAY be encrypted.
 
 Subject:
 
 : (Previously named Feed) a logical collection of Statements about the same Artifact.
-For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact. Issuers use the CWT `sub` claim to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
-In SCITT, Subject is a property of the dedicated, protected header attribute `13: CWT_Claims` within the Envelope.
+For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact. Issuers use Subject to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
+In SCITT, Subject is a property of the dedicated, protected header attribute `13: CWT_Claims` within the protected header of the COSE envelope.
 
 Transparency Service:
 
@@ -274,14 +277,14 @@ Existing transparency systems such as Certificate Transparency are instances of 
 A Signed Statement is an identifiable and non-repudiable Statement made by an Issuer.
 The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata.
 Signed Statements can be made transparent by attaching a proof of Registration by a Transparency Service, in the form of a Receipt that countersigns the Signed Statement and witnesses its inclusion in the Append-only Log of a Transparency Service.
-By extension, the document may say an Artifact (e.g., a firmware binary) is transparent if it comes with one or more Transparent Statements from its author or owner, though the context should make it clear what type of Signed Statements is expected for a given Artifact.
+By extension, the document may say an Artifact (a firmware binary) is transparent if it comes with one or more Transparent Statements from its author or owner, though the context should make it clear what type of Signed Statements is expected for a given Artifact.
 
 Transparency does not prevent dishonest or compromised Issuers, but it holds them accountable.
 Any Artifact that may be verified, is subject to scrutiny and auditing by other parties.
 The Transparency Service provides a history of Statements, which may be made by multiple Issuers, enabling Verifiers to make informed decisions.
 
 Transparency is implemented by providing a consistent, append-only, cryptographically verifiable, publicly available record of entries.
-An SCITT instance is referred to as Transparency Service.
+A SCITT instance is referred to as a Transparency Service.
 Implementations of Transparency Services may protect their Append-only Log using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence.
 A Receipt is an offline, universally-verifiable proof that an entry is recorded in the Append-only Log.
 Receipts do not expire, but it is possible to append new entries (more recent Signed Statements) that subsume older entries (less recent Signed Statements).
@@ -352,7 +355,7 @@ This section describes at a high level, the three main roles and associated proc
 Before an Issuer is able to produce Signed Statements, it must first create its [decentralized identifier](#DID-CORE) (also known as a DID).
 A DID can be *resolved* into a *key manifest* (a list of public keys indexed by a *key identifier*) using many different DID methods.
 
-Issuers MAY choose the DID method they prefer, but with no guarantee that all Transparency Services will register their Signed Statements, as each Transparency Service may implement registration Policies.
+Issuers MAY choose the DID method they prefer, but with no guarantee that all Transparency Services will register their Signed Statements, as each Transparency Service may implement different registration Policies.
 To facilitate interoperability, all Transparency Service implementations MUST support the `did:web` method {{DID-WEB}}.
 For example, if the Issuer publishes its manifest at `https://sample.issuer/user/alice/did.json`, the DID of the Issuer is `did:web:sample.issuer:user:alice`.
 
@@ -436,7 +439,7 @@ Might resolve to:
 }
 ~~~
 
-Editor note, we might wish to eliminate this intermediate identity document content type, by treating it as an alterative encoding of `application/jwk-set+json` or `application/cose-key-set`.
+**Editor note**: we might wish to eliminate this intermediate identity document content type, by treating it as an alterative encoding of `application/jwk-set+json` or `application/cose-key-set`.
 
 However, there is no media type fragment processing directive that would enable dereferencing the known key set content types, listed above.
 
@@ -545,7 +548,7 @@ For example, a Transparency Service may only allow a Signed Statement to be regi
 
 Any metadata meant to be interpreted by the Transparency Service during Registration Policy evaluation, SHOULD be added to the `reg_info` header, unless the data is private (in which case, it MAY be sent to the Transparency Service as an additional input during registration).
 
-While the header MUST be present in all Signed Statements, all attributes are optional and so the map MAY be empty.
+While the header MUST be present in all Signed Statements, all attributes are optional, and the map MAY be empty.
 
 ## Transparency Service
 
@@ -557,11 +560,11 @@ Each Transparency Service also defines its own Registration Policies, which MUST
 
 The combination of Identity, Registration Policy evaluation, and the Transparency Service endpoint constitute the trusted part of the Transparency Service.
 Each of these components MUST be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the Transparency Service.
-For instance, the code for the Registration Policy evaluation and endorsement may be protected by running in a TEE.
+For instance, the code for the Registration Policy evaluation and endorsement may be protected by running in a Trusted Execution Environment (TEE).
 The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance (pBFT {{PBFT}}) and may be used to protect against malicious or vulnerable replicas.
 Threshold signatures may be use to protect the service key, etc.
 
-Beyond the trusted components, Transparency Services may operate additional endpoints for auditing, for instance to query for the history of Signed Statements registered by a given Issuer via a certain Subject. Implementations of Transparency Services SHOULD avoid using the service identity and extending the Transparency Service in auditing endpoints, except if it is necessary to compute an Append-Only Log consistency proofs. Other evidence to support the correctness and completeness of the audit response MUST be computed from the Append-only Log.
+Beyond the trusted components, Transparency Services may operate additional endpoints for auditing, for instance to query the history of Signed Statements registered by a given Issuer via a certain Subject. Implementations of Transparency Services SHOULD avoid using the service identity and extending the Transparency Service in auditing endpoints, except if it is necessary to compute an Append-only Log consistency proofs. Other evidence to support the correctness and completeness of the audit response MUST be computed from the Append-only Log.
 
 ### Service Identity, Remote Attestation, and Keying
 
