@@ -52,6 +52,15 @@ author:
   city: Seattle
   country: United States
 
+contributor:
+  - ins: O. Steele
+    name: Orie Steele
+    organization: Transmute
+    email: orie@transmute.industries
+    country: United States
+    contribution: >
+      Orie contributed to improving the generalization of COSE building blocks and document consistency.
+
 normative:
   RFC8610: CDDL
   RFC9052: COSE
