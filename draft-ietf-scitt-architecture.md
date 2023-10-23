@@ -74,7 +74,7 @@ normative:
     date: 2022-07-22
   DID-WEB:
     target: https://w3c-ccg.github.io/did-method-web/
-    title:  did:web Decentralized Identifiers Method Spec
+    title: did:web Decentralized Identifiers Method Spec
   SPDX:
     target: https://spdx.dev/use/specifications/
     title:  SPDX Specification
