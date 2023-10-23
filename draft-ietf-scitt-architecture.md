@@ -122,7 +122,7 @@ Lastly, the Transparency Service verifies the identity of the Issuer, and confor
 As the Issuer of the Signed Statement and conformance to the Registration Policy are confirmed, an endorsement is made as the Signed Statement is added to the Append-only Log.
 
 The guarantees and techniques used in this document generalize those of Certificate Transparency {{-CT}}, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates.
-However, the range of use cases and applications in this document are broader, which requires more flexibility in how each Transparency Service is implemented and operates.
+However, the range of use cases and applications in this document is broader, which requires more flexibility in how each Transparency Service is implemented and operates.
 
 Each service MAY enforce its own Registration Policies for authorizing entities to register their Signed Statements to the Append-only Log.
 Some Transparency Services may also enforce authorization policies limiting who can write, read and audit the Append-only Log.
