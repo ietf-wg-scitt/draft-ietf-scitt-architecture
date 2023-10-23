@@ -697,7 +697,7 @@ An Issuer must first decide what Statements to include. For a software supply ch
 - [SWID](#SWID)
 - [CoSWID](#COSWID)
 - [CycloneDX](#CycloneDX)
-- [in-toto](#Intoto)
+- [in-toto](#in-toto)
 - [SLSA](#SLSA)
 
 
