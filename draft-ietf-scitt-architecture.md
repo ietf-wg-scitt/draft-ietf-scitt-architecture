@@ -153,8 +153,8 @@ Unlike CT, where independent Auditors are responsible for enforcing the consiste
 Breadth of verifier access is critical.
 As a result, the Transparency Service specified in this architecture caters to two types of audiences:
 
-1. **Issuers**: organizations, consumers, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers
-1. **Verifiers**: organizations, stakeholders, and users involved in validating supply chain artifacts, but can only do so if the Statements are known to be authentic.
+1. **Issuers**: organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers
+1. **Verifiers**: organizations, stakeholders, consumers, and users involved in validating supply chain artifacts, but can only do so if the Statements are known to be authentic.
 Verifiers MAY be Issuers, providing additional Signed Statements, attesting to conformance of various compliance requirements.
 
 The Issuer of a Signed Statement must be authenticated and authorized according to the Registration Policy of the Transparency Service.
