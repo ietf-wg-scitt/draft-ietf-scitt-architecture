@@ -81,10 +81,10 @@ normative:
   SWID:
     target: https://csrc.nist.gov/projects/software-identification-swid/
     title: SWID Specification
-  COSWID: 
+  COSWID:
     target: https://www.rfc-editor.org/rfc/rfc9393.pdf
     title:  COSWID Specification
-  CycloneDX: 
+  CycloneDX:
     target: https://cyclonedx.org/specification/overview/
     title: CycloneDX
   Intoto:
