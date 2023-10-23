@@ -102,7 +102,7 @@ This document defines a generic, interoperable and scalable architecture to enab
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
 Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers will be able to verify them.
 
-Within the SCITT Architecture, a producer is known as an Issuer, and a Consumer is known as a Verifier.
+Within the SCITT Architecture, a Producer is known as an Issuer, and a Consumer is known as a Verifier.
 
 --- middle
 
