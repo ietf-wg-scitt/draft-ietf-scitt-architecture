@@ -153,7 +153,7 @@ Unlike CT, where independent Auditors are responsible for enforcing the consiste
 Breadth of verifier access is critical.
 As a result, the Transparency Service specified in this architecture caters to two types of audiences:
 
-1. **Issuers**: organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers
+1. **Issuers**: organizations, consumers, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers
 1. **Verifiers**: organizations, stakeholders, and users involved in validating supply chain artifacts, but can only do so if the Statements are known to be authentic.
 Verifiers MAY be Issuers, providing additional Signed Statements, attesting to conformance of various compliance requirements.
 
@@ -164,7 +164,7 @@ If trust can be put into the operations that record Signed Statements in a secur
 The Transparency Services specified in this architecture are language independent and can be implemented alongside or within existing services.
 
 The interoperability guaranteed by the Transparency Services is enabled via core components (architectural constituents).
-Many of the data elements processed by the core components are based on the Concise Signing and Encryption (COSE) standard specified in {{-COSE}}, which is used to produce Signed Statements about Artifacts and to build and maintain a Merkle tree that functions as an Append-only Log for corresponding Signed Statements.
+Many of the data elements processed by the core components are based on the CBOR Signing and Encryption (COSE) standard specified in {{-COSE}}, which is used to produce Signed Statements about Artifacts and to build and maintain a Merkle tree that functions as an Append-only Log for corresponding Signed Statements.
 
 ## Requirements Notation
 
