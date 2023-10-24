@@ -194,7 +194,7 @@ If trust can be put into the operations that record Signed Statements in a secur
 The Transparency Services specified in this architecture are language independent and can be implemented alongside or within existing services.
 
 The interoperability guaranteed by the Transparency Services is enabled via core components (architectural constituents).
-Many of the data elements processed by the core components are based on the CBOR Signing and Encryption (COSE) standard specified in {{-COSE}}, which is used to produce Signed Statements about Artifacts and to build and maintain a Merkle tree that functions as an Append-only Log for corresponding Signed Statements.
+Many of the data elements processed by the core components are based on the CBOR Signing and Encryption (COSE) standard specified in {{-COSE}}, which is used to produce Signed Statements about Artifacts and to build and maintain an Append-only Log for corresponding Signed Statements.
 
 ## Requirements Notation
 
@@ -215,7 +215,7 @@ To ensure readability, only a core set of terms is included in this section.
 Append-only Log (converges Ledger and Registry):
 
 : the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym, Registry, Log or Ledger.
-SCITT supports multiple Log and Receipt formats to accommodate different Transparency Service implementations, such as historical Merkle Trees and sparse Merkle Trees.
+SCITT supports multiple Log and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Log.
 
 Artifact:
 
@@ -244,7 +244,8 @@ An Issuer may be the owner or author of Artifacts, or an independent third party
 Receipt:
 
 : a Receipt is a cryptographic proof that a Signed Statement is recorded in the Append-only Log.
-Receipts are based on COSE Signed Merkle Tree Proofs {{-COMETRE}}.
+Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs {{-COMETRE}}.
+Receipts can be built on different verifiable data structures, not just binary merkle trees.
 Receipts consist of Transparency Service-specific inclusion proofs, a signature by the Transparency Service of the state of the Append-only Log, and additional metadata (contained in the signature's protected headers) to assist in auditing.
 
 Registration:
@@ -375,7 +376,7 @@ Auditor      -->   / Collect Receipts /      /   Replay Log    /
 
 The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements, and auditing Transparent Statements.
 
-In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Merkle Tree Proof.
+In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
 
 This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and the Signed Statement issuance process, Transparency Service and the Signed Statement Registration process, as well as Verifiers of the Transparent Statements and the Receipt validation process.
@@ -640,10 +641,10 @@ A provider of a Transparency Service is, however, expected to indicate what Regi
 ### Append-only Log Security Requirements
 
 There are many different candidate verifiable data structures that may be used to implement an Append-only Log, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants.
-The Transparency Service is only required to support concise Receipts (i.e., whose size grows at most logarithmically in the number of entries in the Append-only Log) that can be encoded as a COSE Signed Merkle Tree Proof.
+The Transparency Service is only required to support concise Receipts (i.e., whose size grows at most logarithmically in the number of entries in the Append-only Log) that can be encoded as a Signed Inclusion Proof.
 
-It is possible to offer multiple signature algorithms for the COSE signature of receipts' Signed Merkle Tree, or to change the signing algorithm at later points.
-However, the Merkle Tree algorithm (including its internal hash function) cannot easily be changed without breaking the consistency of the Append-only Log.
+It is possible to offer multiple signature algorithms for the COSE signature of receipts' Signed Inclusion Proofs, or to change the signing algorithm at later points.
+However, the verifiable data structure cannot easily be changed without breaking the consistency of the Append-only Log.
 It is possible to maintain separate Registries for each algorithm in parallel but the Transparency Service is then responsible for proving their mutual consistency.
 
 #### Finality
@@ -821,7 +822,7 @@ Conversely, the Transparency Service MAY re-issue Receipts for the Append-only L
 
 When a Signed Statement is registered by a Transparency Service a Transparent Statement is created.
 This Transparent Statement consists of the Signed Statement and a Receipt.
-Receipts are based on COSE Signed Merkle Tree Proofs ({{-COMETRE}}) with an additional wrapper structure that adds the following information:
+Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}) with an additional wrapper structure that adds the following information:
 
 - **version**: Receipt version number MUST be set to `0` for the current implementation of this document
 - **ts_identifier**: The DID of the Transparency Service that issued the Receipt.
@@ -829,7 +830,7 @@ Verifiers MAY use this DID as a key discovery mechanism to verify the Receipt.
 The verification is the same for Signed Statement and the signer MAY include the `kid` header parameter.
 Verifiers MUST support the `did:web` method, all other methods are optional.
 
-The following requirements for the COSE signature of the Merkle Root are added:
+The following requirements for the Receipt are added:
 
 - The SCITT version header MUST be included and its value match the `version` field of the Receipt structure
 - The DID of Issuer header (in Signed Statements) MUST be included and its value match the `ts_identifier` field of the Receipt structure
@@ -840,26 +841,20 @@ The Transparency Service may include the registration time to help Verifiers dec
 The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.
 
 ~~~ cddl
-Receipt = [
-    version: int,
-    ts_identifier: tstr,
-    proof: SignedMerkleTreeProof
-]
 
-; Additional protected headers
-; in the COSE signed_tree_root of the SignedMerkleTreeProof
-Protected_Header = {
-  390 => int         ; SCITT Receipt Version
-  394 => tstr        ; DID of Transparency Service (required)
-  ? 393 => Reg_info  ; Registration policy information (optional)
+Inclusion_Proofs = [ + bstr ]
 
-  ; Other COSE Signed Merkle Tree headers
-  ; (e.g. tree algorithm, tree size)
+Verifiable_Data_Proof = {
+  &(inclusion-proof: 1) => Inclusion_Proofs
+}
 
-  ; Additional standard COSE headers
-  2 => [+ label]     ; Critical headers
-  ? 4 => bstr        ; Key ID (optional)
-  ? 33 => COSE_X509  ; X.509 chain (optional)
+Receipt_Unprotected_Header = {
+  &(proofs: -22222) => Verifiable_Data_Proof
+}
+
+Receipt_CWT_Claims = {
+  1 => tstr; iss, the issuer signing the receipt (the identifier for the transparency service),
+  * tstr => any
 }
 
 ; Details of the registration info, as provided by the TS
@@ -867,6 +862,33 @@ RegistrationInfo = {
   ? "registration_time": uint .within (~time),
   * tstr => any
 }
+
+Receipt_Protected_Header = {
+    -11111 => int             ; Type of Verifiable Data Structure, 
+                              ; for example "RFC9162_SHA256", or "CCF"
+
+    2 => [+ label]            ; Critical headers
+    13  => Receipt_CWT_Claims ; CBOR Web Token Claims
+    390 => int                ; SCITT Receipt Version
+
+    ? 4 => bstr        ; Key ID (optional)
+    ? 33 => COSE_X509  ; X.509 chain (optional)
+    ? 393 => Reg_info  ; Registration policy information (optional)
+}
+
+Receipt_Headers = (
+    protected : *serialized* Receipt_Protected_Header,
+    unprotected : Receipt_Unprotected_Header
+)
+
+Receipt_as_COSE_Sign1 = [
+    Receipt_Headers,
+    payload : bstr / nil,
+    signature : bstr
+]
+
+Receipt = #6.18(Receipt_as_COSE_Sign1)
+
 ~~~
 
 ## Validation of Transparent Statements
