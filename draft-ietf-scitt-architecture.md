@@ -870,7 +870,7 @@ Receipt_Protected_Header = {
 
     ? 4 => bstr        ; Key ID (optional)
     ? 33 => COSE_X509  ; X.509 chain (optional)
-    ? 393 => Reg_info  ; Registration policy information (optional)
+    ? 393 => Reg_info  ; Registration policy information (optional in Receipts)
 }
 
 Receipt_Headers = (
@@ -885,6 +885,40 @@ Receipt_as_COSE_Sign1 = [
 ]
 
 Receipt = #6.18(Receipt_as_COSE_Sign1)
+
+; A Transparent Statement is a Signed Statement 
+; with one or more Receipts in it's unprotected header.
+
+Signed_Statement_CWT_Claims = {
+  1 => tstr; iss, the issuer
+  1 => tstr; sub, the subject
+  * tstr => any
+}
+
+Signed_Statement_Headers = {
+    1 => int                            ; Signing Algorithm
+    13  => Signed_Statement_CWT_Claims  ; CBOR Web Token Claims
+    ? 4 => bstr         ; Key ID (optional)
+    ? 33 => COSE_X509   ; X.509 chain (optional)
+    393 => Reg_info     ; Registration policy information (mandatory in Signed_Statement)
+}
+
+Receipt_Unprotected_Header = {
+  &(receipts: -55555) => [+ Receipt]
+}
+
+Signed_Statement_Headers = (
+    protected : *serialized* Signed_Statement_Protected_Header,
+    unprotected : Signed_Statement_Unprotected_Header
+)
+
+Transparent_Signed_Statement_as_COSE_Sign1 = [
+    Signed_Statement_Headers,
+    payload : bstr / nil,
+    signature : bstr
+]
+
+Transparent_Signed_Statement = #6.18(Transparent_Signed_Statement_as_COSE_Sign1)
 
 ~~~
 
