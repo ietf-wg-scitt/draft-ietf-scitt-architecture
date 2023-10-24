@@ -864,7 +864,7 @@ RegistrationInfo = {
 }
 
 Receipt_Protected_Header = {
-    -11111 => int             ; Type of Verifiable Data Structure, 
+    -11111 => int             ; Type of Verifiable Data Structure,
                               ; for example "RFC9162_SHA256", or "CCF"
 
     2 => [+ label]            ; Critical headers
