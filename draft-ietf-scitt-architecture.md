@@ -828,7 +828,7 @@ Receipts protected headers have additional mandatory fields:
 
 - **crit**: The `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of Transparency Service and Registration Policy) MUST be marked critical
 - **version**: Receipt version number MUST be set to `0` for the current implementation of this document
-- **Reg_info**: The Transparency Service MAY include the Registration policy info header to indicate to 
+- **Reg_info**: The Transparency Service MAY include the Registration policy info header to indicate to
  Verifiers what policies have been applied at the registration of this Statement
 
 Inside Reg_info, the Transparency Service may include the registration time to help Verifiers decide about the trustworthiness of the Transparent Statement.
@@ -886,7 +886,7 @@ Receipt_as_COSE_Sign1 = [
 
 Receipt = #6.18(Receipt_as_COSE_Sign1)
 
-; A Transparent Statement is a Signed Statement 
+; A Transparent Statement is a Signed Statement
 ; with one or more Receipts in it's unprotected header.
 
 Signed_Statement_CWT_Claims = {
@@ -929,7 +929,7 @@ The algorithm-specific details of checking Receipts are covered in {{-COMETRE}}.
 
 Before checking a Transparent Statement, the Verifier must be configured with one or more identities of trusted Transparency Services.
 
-Verifiers MAY be configured to re-verify the Issuer's Signed Statment locally, 
+Verifiers MAY be configured to re-verify the Issuer's Signed Statment locally,
 but this requires a fresh resolution of the Issuer's verificaton keys, which MAY fail if the key has been revoked.
 
 Some Verifiers MAY decide to locally re-apply some or all of the Registration Policies, if they have limited trust in the Transparency Services.
