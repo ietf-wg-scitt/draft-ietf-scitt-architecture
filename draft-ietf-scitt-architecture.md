@@ -818,27 +818,24 @@ The last two steps may be shared between a batch of Signed Statements recorded i
 A Transparency Service MUST ensure that a Signed Statement is registered before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry (the now Transparent Statement) in the Append-only Log.
 Conversely, the Transparency Service MAY re-issue Receipts for the Append-only Log content, for instance after a transient fault during Signed Statement registration.
 
-## Transparent Statements and Receipts {#Receipt}
+## Receipts & Transparent Statements  {#Receipt}
 
-When a Signed Statement is registered by a Transparency Service a Transparent Statement is created.
-This Transparent Statement consists of the Signed Statement and a Receipt.
-Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}) with an additional wrapper structure that adds the following information:
+When a Signed Statement is registered by a Transparency Service a Receipt becomes available.
+When a Receipt is included in a Signed Statement a Transparent Statement is produced.
 
+Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}).
+Receipts protected headers have additional mandatory fields:
+
+- **crit**: The `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of Transparency Service and Registration Policy) MUST be marked critical
 - **version**: Receipt version number MUST be set to `0` for the current implementation of this document
-- **ts_identifier**: The DID of the Transparency Service that issued the Receipt.
-Verifiers MAY use this DID as a key discovery mechanism to verify the Receipt.
-The verification is the same for Signed Statement and the signer MAY include the `kid` header parameter.
-Verifiers MUST support the `did:web` method, all other methods are optional.
+- **Reg_info**: The Transparency Service MAY include the Registration policy info header to indicate to 
+ Verifiers what policies have been applied at the registration of this Statement
 
-The following requirements for the Receipt are added:
+Inside Reg_info, the Transparency Service may include the registration time to help Verifiers decide about the trustworthiness of the Transparent Statement.
 
-- The SCITT version header MUST be included and its value match the `version` field of the Receipt structure
-- The DID of Issuer header (in Signed Statements) MUST be included and its value match the `ts_identifier` field of the Receipt structure
-- Transparency Service MAY include the Registration policy info header to indicate to Verifiers what policies have been applied at the registration of this Statement
-- Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of Transparency Service and Registration Policy) MUST be marked critical
-
-The Transparency Service may include the registration time to help Verifiers decide about the trustworthiness of the Transparent Statement.
 The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.
+
+Editor's Note: The WG is discussing if existing CWT claims might better support these design principles.
 
 ~~~ cddl
 
@@ -897,14 +894,12 @@ The high-level validation algorithm is described in {{validation}}.
 The algorithm-specific details of checking Receipts are covered in {{-COMETRE}}.
 
 Before checking a Transparent Statement, the Verifier must be configured with one or more identities of trusted Transparency Services.
-If more than one service is configured, the Verifier MUST return which service the Transparent Statement is registered on.
 
-In some scenarios, the Verifier already expects a specific Issuer and Subject for the Transparent Statement, while in other cases they are not known in advance and can be an output of validation.
-Verifiers MAY be configured to re-verify the Issuer's signature locally, but this requires a fresh resolution of the Issuer's DID, which MAY fail if the DID document is not available or if the Statement's signing key has been revoked.
-Otherwise, the Verifier trusts the validation done by the Transparency Service during Registration.
+Verifiers MAY be configured to re-verify the Issuer's Signed Statment locally, 
+but this requires a fresh resolution of the Issuer's verificaton keys, which MAY fail if the key has been revoked.
 
 Some Verifiers MAY decide to locally re-apply some or all of the Registration Policies, if they have limited trust in the Transparency Services.
-In addition, Verifiers MAY apply arbitrary validation policies after the signature and Receipt have been checked.
+In addition, Verifiers MAY apply arbitrary validation policies after the Transparent Statement has been verified and validated.
 Such policies may use as input all information in the Envelope, the Receipt, and the Statement payload, as well as any local state.
 
 Verifiers MAY offer options to store or share the Receipt of the Transparent Statement for auditing the Transparency Services in case a dispute arises.
@@ -917,12 +912,11 @@ Multiple, independently-operated Transparency Services can help secure distribut
 For example, multiple Transparency Service instances may be governed and operated by different organizations that are either unaware of the other or do not trust one another.
 
 This may involve registering the same Signed Statements at different Transparency Services, each with their own purpose and Registration Policy.
-This may also involve attaching multiple Receipts to the same Signed Statements, each Receipt endorsing the Issuer signature and a subset of prior Receipts, and each Transparency Service verifying prior Receipts as part of their Registration Policy.
 
-For example, a supplier may provide a complete, authoritative Transparency Service for its Signed Statements, whereas a Verifiers's Transparency Service may collect different kinds of Signed Statements to ensure complete auditing for a specific use case, and possibly require additional reviews before registering some of these Signed Statements.
+This may also involve attaching multiple Receipts to the same Signed Statements.
 
-An independent entities (security companies) may Issue statements of quality about different artifacts on their own Transparency Service.
-Verifiers choose which independent entities they trust, just as entities choose different security companies today.
+For example, a software producer of a supply chain artifact might rely on multiple independent software producers operating transparency services for their upstream artifacts.
+Downstream producers benefit from upstream producers providing higher transparency regarding their artifacts.
 
 # Transparency Service API
 
