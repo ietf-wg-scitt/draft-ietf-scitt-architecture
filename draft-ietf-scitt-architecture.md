@@ -944,9 +944,9 @@ Here is an example transparent statement:
 )
 ~~~~
 
-Notice the payload is detached, 
+Notice the payload is detached,
 this is to support very large supply chain artifacts, and to
-ensure that Transparent Statements can integrate with 
+ensure that Transparent Statements can integrate with
 existing file systems.
 
 Notice the unprotected header can contain multiple receipts.
@@ -965,12 +965,12 @@ Notice the unprotected header can contain multiple receipts.
 }
 ~~~~
 
-Notice the content type, transparency services might support only 
+Notice the content type, transparency services might support only
 certain content types from certain issuers, per their registration
 policies.
 
-Notice the CWT Claims, transparency services might support only 
-statements about certain artifacts from certain issuers, 
+Notice the CWT Claims, transparency services might support only
+statements about certain artifacts from certain issuers,
 per their registration policies.
 
 #### Receipt
@@ -1029,8 +1029,8 @@ RFC9162_SHA256 is value 1, and that it supports -1 (inclusion proofs) and
 ]
 ~~~~
 
-This is a decoded inclusion proof for RFC9162_SHA256, other 
-verifiable data structures might encode inclusion proofs 
+This is a decoded inclusion proof for RFC9162_SHA256, other
+verifiable data structures might encode inclusion proofs
 differently.
 
 
