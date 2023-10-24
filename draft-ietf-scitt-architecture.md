@@ -842,11 +842,11 @@ Editor's Note: The WG is discussing if existing CWT claims might better support 
 Inclusion_Proofs = [ + bstr ]
 
 Verifiable_Data_Proof = {
-  &(inclusion-proof: 1) => Inclusion_Proofs
+  &(inclusion-proof: -1) => Inclusion_Proofs
 }
 
 Receipt_Unprotected_Header = {
-  &(proofs: -22222) => Verifiable_Data_Proof
+  &(proofs: -222) => Verifiable_Data_Proof
 }
 
 Receipt_CWT_Claims = {
@@ -861,7 +861,7 @@ RegistrationInfo = {
 }
 
 Receipt_Protected_Header = {
-    -11111 => int             ; Type of Verifiable Data Structure,
+    -111 => int               ; Type of Verifiable Data Structure,
                               ; for example "RFC9162_SHA256", or "CCF"
 
     2 => [+ label]            ; Critical headers
@@ -904,7 +904,7 @@ Signed_Statement_Headers = {
 }
 
 Receipt_Unprotected_Header = {
-  &(receipts: -55555) => [+ Receipt]
+  &(receipts: -333) => [+ Receipt]
 }
 
 Signed_Statement_Headers = (
@@ -921,6 +921,118 @@ Transparent_Signed_Statement_as_COSE_Sign1 = [
 Transparent_Signed_Statement = #6.18(Transparent_Signed_Statement_as_COSE_Sign1)
 
 ~~~
+
+
+Here is an example transparent statement:
+
+### Example
+
+#### Signed Statement
+
+~~~~ cbor-diag
+18(                                 / COSE Sign 1                   /
+    [
+      h'a4012603...6d706c65',       / Protected                     /
+      {                             / Unprotected                   /
+        -333: [                     / Receipts (1)                  /
+          h'd284586c...4191f9d2'    / Receipt 1                     /
+        ]
+      },
+      h'',                          / Detached payload              /
+      h'79ada558...3a28bae4'        / Signature                     /
+    ]
+)
+~~~~
+
+Notice the payload is detached, 
+this is to support very large supply chain artifacts, and to
+ensure that Transparent Statements can integrate with 
+existing file systems.
+
+Notice the unprotected header can contain multiple receipts.
+
+#### Signed Statement Protected Header
+
+~~~~ cbor-diag
+{                                   / Protected                     /
+  1: -7,                            / Algorithm                     /
+  3: application/example+json,      / Content type                  /
+  4: h'50685f55...50523255',        / Key identifier                /
+  13: {                             / CWT Claims                    /
+    1: software.vendor.example,     / Issuer                        /
+    2: vendor.product.example,      / Subject                       /
+  }
+}
+~~~~
+
+Notice the content type, transparency services might support only 
+certain content types from certain issuers, per their registration
+policies.
+
+Notice the CWT Claims, transparency services might support only 
+statements about certain artifacts from certain issuers, 
+per their registration policies.
+
+#### Receipt
+
+~~~~ cbor-diag
+18(                                 / COSE Sign 1                   /
+    [
+      h'a4012604...6d706c65',       / Protected                     /
+      {                             / Unprotected                   /
+        -222: {                     / Proofs                        /
+          -1: [                     / Inclusion proofs (1)          /
+            h'83080783...32568964', / Inclusion proof 1             /
+          ]
+        },
+      },
+      h'',                          / Detached payload              /
+      h'10f6b12a...4191f9d2'        / Signature                     /
+    ]
+)
+~~~~
+
+Notice the unprotected header contains verifiable data structure
+proofs, see the protected header for details regarding the specific
+verifiable data structure used.
+
+#### Receipt Protected Header
+
+~~~~ cbor-diag
+{                                   / Protected                     /
+  1: -7,                            / Algorithm                     /
+  4: h'50685f55...50523255',        / Key identifier                /
+  -111: 1,                          / Verifiable Data Structure     /
+  13: {                             / CWT Claims                    /
+    1: transparency.vendor.example, / Issuer                        /
+    2: vendor.product.example,      / Subject                       /
+  }
+}
+~~~~
+
+Notice the verifiable data structure used is RFC9162_SHA256 in this case.
+We know from the COSE Verifiable Data Structure Registry that
+RFC9162_SHA256 is value 1, and that it supports -1 (inclusion proofs) and
+-2 (consistency proofs).
+
+#### Inclusion Proof
+
+~~~~ cbor-diag
+[                                   / Inclusion proof 1             /
+  8,                                / Tree size                     /
+  7,                                / Leaf index                    /
+  [                                 / Inclusion hashes (3)          /
+     h'c561d333...f9850597'         / Intermediate hash 1           /
+     h'75f177fd...2e73a8ab'         / Intermediate hash 2           /
+     h'0bdaaed3...32568964'         / Intermediate hash 3           /
+  ]
+]
+~~~~
+
+This is a decoded inclusion proof for RFC9162_SHA256, other 
+verifiable data structures might encode inclusion proofs 
+differently.
+
 
 ## Validation of Transparent Statements
 
