@@ -908,7 +908,7 @@ Receipt_Unprotected_Header = {
 }
 
 Signed_Statement_Headers = (
-    protected : *serialized* Signed_Statement_Protected_Header,
+    protected : bstr .cbor Signed_Statement_Protected_Header / bstr .size 0 
     unprotected : Signed_Statement_Unprotected_Header
 )
 
