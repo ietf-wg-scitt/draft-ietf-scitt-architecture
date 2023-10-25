@@ -839,6 +839,10 @@ Editor's Note: The WG is discussing if existing CWT claims might better support 
 
 ~~~ cddl
 
+
+label = int / tstr
+value = any
+
 Inclusion_Proofs = [ + bstr ]
 
 Verifiable_Data_Proof = {
