@@ -895,7 +895,7 @@ Signed_Statement_CWT_Claims = {
   * tstr => any
 }
 
-Signed_Statement_Headers = {
+Signed_Statement_Protected_Header = {
     1 => int                            ; Signing Algorithm
     13  => Signed_Statement_CWT_Claims  ; CBOR Web Token Claims
     ? 4 => bstr         ; Key ID (optional)
