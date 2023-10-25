@@ -855,7 +855,7 @@ Receipt_Unprotected_Header = {
 
 Receipt_CWT_Claims = {
   1 => tstr; iss, the issuer signing the receipt (the identifier for the transparency service),
-  * tstr => any
+  * label => value
 }
 
 ; Details of the registration info, as provided by the TS
