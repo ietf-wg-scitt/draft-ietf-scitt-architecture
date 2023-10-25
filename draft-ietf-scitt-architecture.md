@@ -891,7 +891,7 @@ Receipt = #6.18(Receipt_as_COSE_Sign1)
 
 Signed_Statement_CWT_Claims = {
   1 => tstr; iss, the issuer
-  1 => tstr; sub, the subject
+  2 => tstr; sub, the subject
   * tstr => any
 }
 
