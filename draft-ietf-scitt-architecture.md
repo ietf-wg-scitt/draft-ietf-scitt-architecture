@@ -878,7 +878,7 @@ Receipt_Protected_Header = {
 }
 
 Receipt_Headers = (
-    protected : *serialized* Receipt_Protected_Header,
+    protected : bstr .cbor Receipt_Protected_Header,
     unprotected : Receipt_Unprotected_Header
 )
 
