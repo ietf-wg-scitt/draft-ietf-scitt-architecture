@@ -925,7 +925,7 @@ Transparent_Statement_as_COSE_Sign1 = [
 Transparent_Statement = #6.18(Transparent_Statement_as_COSE_Sign1)
 ~~~
 
-Here is an example transparent statement:
+Example transparent statement:
 
 ### Example
 
