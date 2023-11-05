@@ -627,7 +627,8 @@ The registration policy for statements with this media type is implementation-sp
 The implementation SHOULD document them, for example defining the Issuers authorized to register configuration Signed Statements. 
 
 The Transparency Service is configured by the last Transparent Statement of this type. 
-The Transparency Service MUST register a Signed Statement that defines its initial configuration before registering any other Signed Statement. The Transparency Service MAY register additional Signed Statement that updates its configuration. 
+The Transparency Service MUST register a Signed Statement that defines its initial configuration before registering any other Signed Statement.
+The Transparency Service MAY register an additional Signed Statement that updates its configuration. 
 
 The Transparency Service provides an endpoint that returns the Transparency Statement 
 that describes its current configuration.
