@@ -831,7 +831,7 @@ Receipts protected headers have additional mandatory fields:
 - **registration-info**: The Transparency Service MAY include the Registration policy info header to indicate to
  Verifiers what policies have been applied at the registration of this Statement;
 - **kccs**: A CWT Claim Set representing the issuance of the receipt. Only a subset of all CWT claims can be used in a SCITT receipt.
- - **crit**: The `crit` header (id: 2) MUST be included and the following headers MUST be marked critical: (`scitt-version`, `verifiable-data-structure`, `kccs`).
+- **crit**: The `crit` header (id: 2) MUST be included and the following headers MUST be marked critical: (`scitt-version`, `verifiable-data-structure`, `kccs`).
 
 Inside Reg_info, the Transparency Service may include the registration time to help Verifiers decide about the trustworthiness of the Transparent Statement.
 
@@ -946,12 +946,9 @@ Here is an example transparent statement:
 )
 ~~~~
 
-Notice the payload is detached,
-this is to support very large supply chain artifacts, and to
-ensure that Transparent Statements can integrate with
-existing file systems.
+The payload is detached, this is to support very large supply chain artifacts, and to ensure that Transparent Statements can integrate with existing file systems.
 
-Notice the unprotected header can contain multiple receipts.
+The unprotected header can contain multiple receipts.
 
 #### Signed Statement Protected Header
 
@@ -967,13 +964,9 @@ Notice the unprotected header can contain multiple receipts.
 }
 ~~~~
 
-Notice the content type, transparency services might support only
-certain content types from certain issuers, per their registration
-policies.
+The content type, transparency services might support only certain content types from certain issuers, per their registration policies.
 
-Notice the CWT Claims, transparency services might support only
-statements about certain artifacts from certain issuers,
-per their registration policies.
+The CWT Claims, transparency services might support only statements about certain artifacts from certain issuers, per their registration policies.
 
 #### Receipt
 
@@ -1012,10 +1005,7 @@ verifiable data structure used.
 }
 ~~~~
 
-Notice the verifiable data structure used is RFC9162_SHA256 in this case.
-We know from the COSE Verifiable Data Structure Registry that
-RFC9162_SHA256 is value 1, and that it supports -1 (inclusion proofs) and
--2 (consistency proofs).
+Notice the verifiable data structure used is RFC9162_SHA256 in this case. We know from the COSE Verifiable Data Structure Registry that RFC9162_SHA256 is value 1, and that it supports -1 (inclusion proofs) and -2 (consistency proofs).
 
 #### Inclusion Proof
 
@@ -1031,10 +1021,7 @@ RFC9162_SHA256 is value 1, and that it supports -1 (inclusion proofs) and
 ]
 ~~~~
 
-This is a decoded inclusion proof for RFC9162_SHA256, other
-verifiable data structures might encode inclusion proofs
-differently.
-
+This is a decoded inclusion proof for RFC9162_SHA256, other verifiable data structures might encode inclusion proofs differently.
 
 ## Validation of Transparent Statements
 
@@ -1062,8 +1049,7 @@ let verify_transparent_statement(t) =
 
 Before checking a Transparent Statement, the Verifier must be configured with one or more identities of trusted Transparency Services.
 
-Verifiers MAY be configured to re-verify the Issuer's Signed Statment locally,
-but this requires a fresh resolution of the Issuer's verificaton keys, which MAY fail if the key has been revoked.
+Verifiers MAY be configured to re-verify the Issuer's Signed Statement locally, but this requires a fresh resolution of the Issuer's verification keys, which MAY fail if the key has been revoked.
 
 Some Verifiers MAY decide to locally re-apply some or all of the Registration Policies, if they have limited trust in the Transparency Services.
 In addition, Verifiers MAY apply arbitrary validation policies after the Transparent Statement has been verified and validated.
