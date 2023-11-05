@@ -761,7 +761,7 @@ Reg_Info = {
 Protected_Header = {
   1   => int             ; algorithm identifier,
   4   => bstr            ; Key ID,
-  13  => CWT_Claims      ; CBOR Web Token Claims,
+  14  => CWT_Claims      ; CBOR Web Token Claims,
   393 => Reg_Info        ; Registration Policy info,
   3   => tstr            ; payload type
 }
@@ -826,10 +826,12 @@ When a Receipt is included in a Signed Statement a Transparent Statement is prod
 Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}).
 Receipts protected headers have additional mandatory fields:
 
-- **crit**: The `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of Transparency Service and Registration Policy) MUST be marked critical
-- **version**: Receipt version number MUST be set to `0` for the current implementation of this document
-- **Reg_info**: The Transparency Service MAY include the Registration policy info header to indicate to
- Verifiers what policies have been applied at the registration of this Statement
+- **scitt-version**: Receipt version number MUST be set to `0` for the current implementation of this document;
+- **verifiable-data-structure**: the verifiable data structure used in the inclusion proof of the receipt;
+- **registration-info**: The Transparency Service MAY include the Registration policy info header to indicate to
+ Verifiers what policies have been applied at the registration of this Statement;
+- **kccs**: A CWT Claim Set representing the issuance of the receipt. Only a subset of all CWT claims can be used in a SCITT receipt.
+ - **crit**: The `crit` header (id: 2) MUST be included and the following headers MUST be marked critical: (`scitt-version`, `verifiable-data-structure`, `kccs`).
 
 Inside Reg_info, the Transparency Service may include the registration time to help Verifiers decide about the trustworthiness of the Transparent Statement.
 
@@ -838,53 +840,69 @@ The registration time is defined as the timestamp at which the Transparency Serv
 Editor's Note: The WG is discussing if existing CWT claims might better support these design principles.
 
 ~~~ cddl
-
-
 label = int / tstr
 value = any
 
-Inclusion_Proofs = [ + bstr ]
-
-Verifiable_Data_Proof = {
-  &(inclusion-proof: -1) => Inclusion_Proofs
-}
-
 Receipt_Unprotected_Header = {
-  &(proofs: -222) => Verifiable_Data_Proof
+  &(scitt-inclusion-proof: 396) => bstr .cbor inclusion-proof
 }
 
+; Only a subset of valid CWT headers are allowed in SCITT
 Receipt_CWT_Claims = {
-  1 => tstr; iss, the issuer signing the receipt (the identifier for the transparency service),
-  * label => value
+  1 => tstr,                    ; iss, the issuer signing the receipt (the identifier for the transparency service),
+  ? 3 => tstr,                  ; aud, target audience of the receipt
+  ? 4 => uint .within (~time),  ; exp, receipt expiration timestamp
+  ? 6 => uint .within (~time),  ; iat, receipt issuance timestamp
+  * label => value ; label MUST be less than -65536
 }
 
-; Details of the registration info, as provided by the TS
-RegistrationInfo = {
-  ? "registration_time": uint .within (~time),
+; Statement-agnostic information about registration
+; These are authenticated by the receipt signature
+Registration_Info = {
   * tstr => any
 }
 
-Receipt_Protected_Header = {
-    -111 => int               ; Type of Verifiable Data Structure,
-                              ; for example "RFC9162_SHA256", or "CCF"
-
-    2 => [+ label]            ; Critical headers
-    13  => Receipt_CWT_Claims ; CBOR Web Token Claims
-    390 => int                ; SCITT Receipt Version
-
-    ? 4 => bstr        ; Key ID (optional)
-    ? 33 => COSE_X509  ; X.509 chain (optional)
-    ? 393 => Reg_info  ; Registration policy information (optional in Receipts)
+; Statement-specific information about statment registration
+; These are authenticated through the inclusion proof of the receipt
+Statement_Registration_Info = {
+    &(statement-unique-id: 0) => tstr
+    &(registration-policy-id: 1) => tstr
+    * label => value
 }
 
-Receipt_Headers = (
-    protected : bstr .cbor Receipt_Protected_Header,
-    unprotected : Receipt_Unprotected_Header
-)
+Receipt_Protected_Header = {
+    ; SCITT Receipt Version
+    &(scitt-version: 390) => int,
 
+    ; Type of Verifiable Data Structure, e.g. RFC9162_SHA256
+    &(verifiable-data-structure: -111) => int,
+
+    ; CBOR Web Tokoken claim set (CCS)
+    &(kccs: 14)  => Receipt_CWT_Claims,
+
+    ; Critical headers
+    &(crit: 2) => [+ label],
+
+    ; Key ID (optional)
+    ? &(kid: 4) => bstr,
+
+    ; X.509 chain (optional)
+    ? &(x5chain: 33) => COSE_X509,
+
+    ; Statement-agnostic registration information
+    ? &(registration-info: 395) => Registration_Info
+}
+
+Receipt_Unprotected_Header = {
+    &(statement-registration-info: 396) => Statement_Registration_Info
+}
+
+; Please note that receipts cannot carry a payload, ensuring that verifiers
+; have to recompute the root from the inclusion proof to verify the signature
 Receipt_as_COSE_Sign1 = [
-    Receipt_Headers,
-    payload : bstr / nil,
+    protected : bstr .cbor Receipt_Protected_Header,
+    unprotected : Receipt_Unprotected_Header,
+    payload: nil,
     signature : bstr
 ]
 
@@ -892,40 +910,20 @@ Receipt = #6.18(Receipt_as_COSE_Sign1)
 
 ; A Transparent Statement is a Signed Statement
 ; with one or more Receipts in it's unprotected header.
-
-Signed_Statement_CWT_Claims = {
-  1 => tstr; iss, the issuer
-  2 => tstr; sub, the subject
-  * label => value
+Transparent_Statement_Unprotected_Header = {
+    &(receipts: 394) => [+ Receipt],
+    * label => any
 }
 
-Signed_Statement_Protected_Header = {
-    1 => int                            ; Signing Algorithm
-    13  => Signed_Statement_CWT_Claims  ; CBOR Web Token Claims
-    ? 4 => bstr         ; Key ID (optional)
-    ? 33 => COSE_X509   ; X.509 chain (optional)
-    393 => Reg_info     ; Registration policy information (mandatory in Signed_Statement)
-}
-
-Receipt_Unprotected_Header = {
-  &(receipts: -333) => [+ Receipt]
-}
-
-Signed_Statement_Headers = (
-    protected : bstr .cbor Signed_Statement_Protected_Header / bstr .size 0 
-    unprotected : Signed_Statement_Unprotected_Header
-)
-
-Transparent_Signed_Statement_as_COSE_Sign1 = [
-    Signed_Statement_Headers,
+Transparent_Statement_as_COSE_Sign1 = [
+    protected : bstr .cbor Signed_Statement_Protected_Header,
+    unprotected : Transparent_Statement_Unprotected_Header,
     payload : bstr / nil,
     signature : bstr
 ]
 
-Transparent_Signed_Statement = #6.18(Transparent_Signed_Statement_as_COSE_Sign1)
-
+Transparent_Statement = #6.18(Transparent_Statement_as_COSE_Sign1)
 ~~~
-
 
 Here is an example transparent statement:
 
@@ -1040,8 +1038,27 @@ differently.
 
 ## Validation of Transparent Statements
 
-The high-level validation algorithm is described in {{validation}}.
-The algorithm-specific details of checking Receipts are covered in {{-COMETRE}}.
+The algorithm-specific details of checking inclusion proofs are covered in {{-COMETRE}}.
+The pseudo-code for validation of a transparent statement is as follows:
+
+~~~python
+let verify_transparent_statement(t) =
+  let receipt = t.unprotected.scitt-receipt
+  let version = receipt.protected.scitt-version or fail "Missing SCITT Receipt version"
+  assert(version == 1)
+
+  let leaf = COSE.serialize(t with .unprotected = {
+    334 => receipt.unprotected.scitt-statement-registration-info
+  })
+
+  let vds = receipt.protected.verifiable-data-structure of fail "Missing verifiable data structure"
+  let root = verify_inclusion_proof(vds, receipt.unprotected.scitt-inclusion-proof, leaf)
+    or fail "Failed to verify inclusion proof"
+
+  // Statement registration info has been authenticated by the inclusion proof
+  receipt.protected.scitt-statement-registration-info = receipt.unprotected.scitt-statement-info
+  return COSE.verify(receipt, detached_payload=root)
+~~~
 
 Before checking a Transparent Statement, the Verifier must be configured with one or more identities of trusted Transparency Services.
 
@@ -1085,7 +1102,6 @@ Error responses MUST be sent with the `Content-Type: application/problem+json` H
 As an example, submitting a Signed Statement with an unsupported signature algorithm would return a `400 Bad Request` status code and the following body:
 
 ~~~json
-
 {
   "type": "urn:ietf:params:scitt:error:badSignatureAlgorithm",
   "detail": "The Statement was signed with an unsupported algorithm"
