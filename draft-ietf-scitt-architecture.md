@@ -635,6 +635,7 @@ The Transparency Service provides an endpoint that returns the Transparency Stat
 The configuration `reg_info` SHOULD include a secure version number and a timestamp.
 
 The configuration payload uses the CDDL below [TBC].
+
 ~~~ cddl
 Signature_Algorithms = [ int ]
 
