@@ -630,7 +630,7 @@ The Transparency Service is configured by the last Transparent Statement of this
 The Transparency Service MUST register a Signed Statement that defines its initial configuration before registering any other Signed Statement.
 The Transparency Service MAY register an additional Signed Statement that updates its configuration.
 
-The Transparency Service provides an endpoint that returns the Transparency Statement that describes its current configuration.
+The Transparency Service provides an endpoint that returns the Transparent Statement that describes its current configuration.
 
 The configuration `reg_info` SHOULD include a secure version number and a timestamp.
 
