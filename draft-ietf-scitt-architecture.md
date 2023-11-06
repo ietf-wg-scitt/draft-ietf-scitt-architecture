@@ -621,7 +621,7 @@ This attestation evidence can be supplemented with Receipts for the software and
 
 ### Configuration
 
-The Transparency Service records its configuration in the Append-Only Log using Transparent Statements with distinguished media type `application/x-scitt-configuration`.
+The Transparency Service records its configuration in the Append-Only Log using Transparent Statements with distinguished media type `application/scitt-configuration`.
 
 The registration policy for statements with this media type is implementation-specific.
 The implementation SHOULD document them, for example defining the Issuers authorized to register configuration Signed Statements.
