@@ -1035,7 +1035,7 @@ let verify_transparent_statement(t) =
   assert(version == 1)
 
   let leaf = COSE.serialize(t with .unprotected = {
-    334 => receipt.unprotected.scitt-statement-registration-info
+    334 => receipt.unprotected.statement-registration-info
   })
 
   let vds = receipt.protected.verifiable-data-structure of fail "Missing verifiable data structure"
@@ -1043,7 +1043,7 @@ let verify_transparent_statement(t) =
     or fail "Failed to verify inclusion proof"
 
   // Statement registration info has been authenticated by the inclusion proof
-  receipt.protected.scitt-statement-registration-info = receipt.unprotected.scitt-statement-info
+  receipt.protected.statement-registration-info = receipt.unprotected.statement-registration-info
   return COSE.verify(receipt, detached_payload=root)
 ~~~
 
