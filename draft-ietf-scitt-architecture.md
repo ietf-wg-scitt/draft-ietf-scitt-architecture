@@ -47,8 +47,8 @@ author:
   country: UK
 - ins: S. Lasker
   name: Steve Lasker
-  org: RKVST
-  email: steve.lasker@rkvst.com
+  org: DataTrails
+  email: steve.lasker@datatrails.ai
   city: Seattle
   country: United States
 
