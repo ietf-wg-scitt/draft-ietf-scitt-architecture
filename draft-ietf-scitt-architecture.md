@@ -620,6 +620,40 @@ For example, consider a Transparency Service implemented using a set of replicas
 Each replica MAY provide a recent attestation report for its TEE, binding their hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts.
 This attestation evidence can be supplemented with Receipts for the software and configuration of the service, as measured in its attestation report.
 
+### Configuration
+
+The Transparency Service records its configuration in the Append-Only Log using Transparent Statements with distinguished media type `application/scitt-configuration`.
+
+The registration policy for statements with the media type suffix (`+<format>` is implementation-specific.
+The implementation SHOULD document them, for example defining the Issuers authorized to register configuration Signed Statements.
+
+The Transparency Service is configured by the last Transparent Statement of this type.
+The Transparency Service MUST register a Signed Statement that defines its initial configuration before registering any other Signed Statement.
+The Transparency Service MAY register an additional Signed Statement that updates its configuration.
+
+The Transparency Service provides an endpoint that returns the Transparent Statement that describes its current configuration.
+
+The configuration `reg_info` SHOULD include a secure version number and a timestamp.
+
+The sample configuration payload uses the CDDL
+
+~~~ cddl
+Signature_Algorithms = [ int ]
+
+Registration_Policy = {
+  * tstr => any
+}
+
+SCITT_Configuration = [
+  supported_signature_algs: Signature_Algorithms ; supported algorithms for signing Statement
+  ledger_alg: int ; type of verifiable data structure
+  service_uri: tstr; base URI of the transparency service, will be the issuer in the receipt CWT claim set
+  root_certificates: [ COSE_X509 ]
+  supported_apis: [ SCITT_Endpoint ]
+  registration_policies : Registration_Policy
+]
+~~~
+
 ### Registration Policies
 
 Authorization is needed prior to registration of Signed Statements to ensure completeness of an audit.
@@ -630,13 +664,13 @@ For example, some Transparency Services may validate the non-opaque content (pay
 Registration Policies refers to the checks that are performed before a Signed Statement is registered given a set of input values.
 This specification leaves the implementation of the Registration Policy to the provider of the Transparency Services and its users.
 
+A provider of a Transparency Service indicates what Registration Policy is used in a given deployment and inform its users about changes to the Registration Policy by issuing and registering configuration statements.
+
 As a minimum, a Transparency Service MUST authenticate the Issuer of the Signed Statement, which requires some form of trust anchor.
 As defined in {{RFC6024}}, "A trust anchor represents an authoritative entity via a public key and associated data.
 The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
 The Trust Anchor may be a certificate, a raw public key or other structure, as appropriate.
 It can be a non-root certificate when it is a certificate.
-
-A provider of a Transparency Service is, however, expected to indicate what Registration Policy is used in a given deployment and inform its users about changes to the Registration Policy.
 
 ### Append-only Log Security Requirements
 
