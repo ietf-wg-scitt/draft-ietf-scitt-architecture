@@ -75,7 +75,7 @@ normative:
   IANA.params:
   IANA.cose:
   COSWID:
-    target: https://www.rfc-editor.org/rfc/rfc9393.pdf
+    target: https://www.rfc-editor.org/rfc/rfc9393
     title:  COSWID Specification
   CWT_CLAIM_COSE:
     target: https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/
