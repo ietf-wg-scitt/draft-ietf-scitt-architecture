@@ -1414,7 +1414,7 @@ Registry {{IANA.params}}, following the template in {{RFC3553}}:
 ...
 
 
-```` mermaid
+~~~ mermaid
 sequenceDiagram
     participant Issuer
-````
+~~~
