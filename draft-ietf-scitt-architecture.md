@@ -1411,21 +1411,4 @@ Registry {{IANA.params}}, following the template in {{RFC3553}}:
 
 # Sequence Diagram
 
-~~~ mermaid
-sequenceDiagram
-    participant Issuer
-    participant TransparencyService
-    Note left of Issuer: I take responsibility for the artifacts I produce
-    Issuer ->> TransparencyService: These are the policies I am committed to meeting
-    Issuer ->> TransparencyService: I stand by my claims about my artifact
-    loop Claims Check
-        TransparencyService ->> TransparencyService: Review relevant claims and policies
-    end
-    TransparencyService ->> Issuer: Here is my endorsement and receipt
-    Consumer->>TransparencyService: Is this artifact safe to use?
-    loop Endorsement Check
-        TransparencyService->>TransparencyService: Review relevant claims and endorsements
-    end
-     TransparencyService ->> Consumer: You can trust this artifact, the endorsement is still valid
-     Note right of Consumer: I have confidence in the artifacts I consume
-~~~
+...
