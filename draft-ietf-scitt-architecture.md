@@ -795,7 +795,7 @@ Reg_Info = {
 Protected_Header = {
   1   => int             ; algorithm identifier,
   4   => bstr            ; Key ID,
-  14  => CWT_Claims      ; CBOR Web Token Claims,
+  15  => CWT_Claims      ; CBOR Web Token Claims,
   393 => Reg_Info        ; Registration Policy info,
   3   => tstr            ; payload type
 }
@@ -912,7 +912,7 @@ Receipt_Protected_Header = {
     &(verifiable-data-structure: -111) => int,
 
     ; CBOR Web Tokoken claim set (CCS)
-    &(kccs: 14)  => Receipt_CWT_Claims,
+    &(kccs: 15)  => Receipt_CWT_Claims,
 
     ; Critical headers
     &(crit: 2) => [+ label],
