@@ -280,7 +280,7 @@ Subject:
 : (Previously named Feed) a logical collection of Statements about the same Artifact.
 For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact.
 Issuers use Subject to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
-In SCITT, Subject is a property of the dedicated, protected header attribute `13: CWT_Claims` within the protected header of the COSE envelope.
+In SCITT, Subject is a property of the dedicated, protected header attribute `15: CWT_Claims` within the protected header of the COSE envelope.
 
 Transparency Service:
 
@@ -398,7 +398,7 @@ If an Issuer uses multiple DIDs (for instance, their clients support different r
 Issuers MAY update their DID Document at any time, for instance to refresh their signing keys or algorithms.
 Issuers SHOULD NOT remove or change any of their previous keys unless they intend to revoke all Signed Statements that are registered as Transparent Statements issued with those keys.
 
-The Issuer's DID is required and appears in the `1 iss` claim of the `13 CWT_Claims` protected header of the Signed Statements' Envelope.
+The Issuer's DID is required and appears in the `1 iss` claim of the `15 CWT_Claims` protected header of the Signed Statements' Envelope.
 The version of the key from the DID Document used to sign the Signed Statement is written in the `4 kid` protected header.
 
 ~~~ cddl
@@ -411,7 +411,7 @@ CWT_Claims = {
 Protected_Header = {
   1   => int             ; algorithm identifier,
   4   => bstr            ; Key ID (kid),
-  13  => CWT_Claims      ; CBOR Web Token Claims,
+  15  => CWT_Claims      ; CBOR Web Token Claims,
   393 => Reg_Info        ; Registration Policy info,
   3   => tstr            ; payload type
 }
@@ -728,7 +728,7 @@ They may additionally apply a validation policy based on the protected headers p
 
 Some Verifiers may systematically fetch all Transparent Statements using the CWT_Claims Subject and assess them alongside the Transparent Statement they are verifying to ensure freshness, completeness of evidence, and the promise of non-equivocation.
 
-Some Verifiers may choose to subset the collection of Statements, filtering on the payload type (Protected Header `3`), the CWT (Protected Header `13`) Issuer claim, or other non-opaque properties.
+Some Verifiers may choose to subset the collection of Statements, filtering on the payload type (Protected Header `3`), the CWT (Protected Header `15`) Issuer claim, or other non-opaque properties.
 
 Some Verifiers may systematically resolve Issuer DIDs to fetch the latest corresponding DID documents.
 This behavior strictly enforces the revocation of compromised keys.
@@ -752,7 +752,7 @@ All Signed Statements MUST include the following protected headers:
 - **algorithm** (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer.<br>
   Example: `-35` is the registered algorithm identifier for ECDSA with SHA-384, see [COSE Algorithms Registry](#IANA.cose).
 - **Key ID** (label: `4`): Key ID, as a bytestring
-- **CWT_Claims** (label: `13` pending {{CWT_CLAIM_COSE}}): A CWT representing the Issuer (`iss`) making the statement, and the Subject (`sub`) to correlate a collection of statements about an Artifact.
+- **CWT_Claims** (label: `15` pending {{CWT_CLAIM_COSE}}): A CWT representing the Issuer (`iss`) making the statement, and the Subject (`sub`) to correlate a collection of statements about an Artifact.
   Additional {{CWT_CLAIMS}} MAY be used, while `iss` and `sub` MUST be provided
   - **iss** (CWT_Claim Key `1`): The Identifier of the signer, as a string<br>
     Example: `did:web:example.com`
@@ -991,7 +991,7 @@ The unprotected header can contain multiple receipts.
   1: -7,                            / Algorithm                     /
   3: application/example+json,      / Content type                  /
   4: h'50685f55...50523255',        / Key identifier                /
-  13: {                             / CWT Claims                    /
+  15: {                             / CWT Claims                    /
     1: software.vendor.example,     / Issuer                        /
     2: vendor.product.example,      / Subject                       /
   }
@@ -1032,7 +1032,7 @@ verifiable data structure used.
   1: -7,                            / Algorithm                     /
   4: h'50685f55...50523255',        / Key identifier                /
   -111: 1,                          / Verifiable Data Structure     /
-  13: {                             / CWT Claims                    /
+  15: {                             / CWT Claims                    /
     1: transparency.vendor.example, / Issuer                        /
     2: vendor.product.example,      / Subject                       /
   }
@@ -1271,7 +1271,7 @@ Unless advertised in the Transparency Service Registration Policy, the Verifier 
 Similarly, the fact that an Issuer can be held accountable for its Transparent Statements does not on its own provide any mitigation or remediation mechanism in case one of these Transparent Statements turned out to be misleading or malicious.
 Just that signed evidence will be available to support them.
 
-An Issuer that knows of a changed state of quality for an Artifact, SHOULD Register a new Signed Statement, using the same `13` CWT `iss` and `sub` claims.
+An Issuer that knows of a changed state of quality for an Artifact, SHOULD Register a new Signed Statement, using the same `15` CWT `iss` and `sub` claims.
 
 Issuers MUST ensure that the Statement payloads in their Signed Statements are correct and unambiguous, for example by avoiding ill-defined or ambiguous formats that may cause Verifiers to interpret the Signed Statement as valid for some other purpose.
 
@@ -1381,7 +1381,7 @@ Transparency Services and other parties may record identity-resolution evidence 
 
 If one of the credentials of an Issuer gets compromised, the SCITT Architecture still guarantees the authenticity of all Signed Statements signed with this credential that have been registered on a Transparency Service before the compromise.
 It is up to the Issuer to notify Transparency Services of credential revocation to stop Verifiers from accepting Signed Statements signed with compromised credentials.
-Issuers SHOULD register new Signed Statements indicating the revocation, using the same `13` CWT `iss` and `sub` claims.
+Issuers SHOULD register new Signed Statements indicating the revocation, using the same `15` CWT `iss` and `sub` claims.
 
 The confidentiality of any identity lookup during Signed Statement Registration or Transparent Statement Verification is out of scope.
 
