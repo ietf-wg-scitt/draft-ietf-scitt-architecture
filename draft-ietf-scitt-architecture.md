@@ -235,7 +235,7 @@ In COSE, an Envelope consists of a protected header (included in the Issuer's si
 
 Equivocation:
 
-: a state where it is possible for a Transparency Service to publish different, contradictory Signed Statements to different Issuers and Verifiers about the same Artifact {{EQUIVOCATION}}.
+: a state where it is possible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact {{EQUIVOCATION}}.
 
 Feed:
 
@@ -248,7 +248,8 @@ An Issuer may be the owner or author of Artifacts, or an independent third party
 
 Non-equivocation:
 
-: a state where Equivocation cannot or does not exist.
+: a state where it is impossible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact.
+Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Verifiers.
 
 Receipt:
 
