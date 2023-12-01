@@ -411,7 +411,6 @@ Protected_Header = {
   1   => int             ; algorithm identifier,
   4   => bstr            ; Key ID (kid),
   13  => CWT_Claims      ; CBOR Web Token Claims,
-  393 => Reg_Info        ; Registration Policy info,
   3   => tstr            ; payload type
 }
 ~~~
@@ -574,15 +573,9 @@ Issuers MAY use different signing keys (identified by `kid` in the resolved key 
 ### Registration Policy Metadata
 
 SCITT payloads are opaque to Transparency Services.
-For interoperability, Registration Policy decisions should be based on interpretation of information in the non-opaque Envelope.
+For interoperability, Registration Policy decisions should be based on interpretation of the mandatory metadata in the non-opaque Envelope of a Signed Statement.
 
-The small mandatory set of metadata in the envelope of a Signed Statement is neither intended nor sufficient to express the information required for the processing of Registration Policies in a Transparency Service.
-
-For example, a Transparency Service may only allow a Signed Statement to be registered if it was signed very recently, or may reject a Signed Statement if it arrives out of order in some sequenced protocol.
-
-Any metadata meant to be interpreted by the Transparency Service during Registration Policy evaluation, SHOULD be added to the `reg_info` header, unless the data is private, in which case it MAY be sent to the Transparency Service as an additional input during registration.
-
-While the `Reg_Info` header MUST be present in all Signed Statements, all attributes are optional, and the map MAY be empty.
+Each implementation of a Transparency Service MAY support additional metadata, specific to its implementation through additional ["Reserved for Private Use"](https://www.iana.org/assignments/cwt/cwt.xhtml#claims-registry) keys within the `CWT_Claims` header.
 
 ## Transparency Service
 
@@ -723,9 +716,6 @@ All Signed Statements MUST include the following protected headers:
     Example: `did:web:example.com`
   - **sub** (CWT_Claim Key `2`): The Subject to which the Statement refers, chosen by the Issuer<br>
     Example: `github.com/opensbom-generator/spdx-sbom-generator/releases/tag/v0.0.13`
-- **Registration Policy** (label: `TBD`, temporary: `393`): A map containing key/value pairs set by the Issuer which are sealed on Registration and non-opaque to the Transparency Service.
-  The key/value pair semantics are specified by the Issuer or are specific to the `CWT_Claims iss` and `CWT_Claims sub` tuple.<br>
-  Examples: the sequence number of signed statements on a `CWT_Claims Subject`, Issuer metadata, or a reference to other Transparent Statements (e.g., augments, replaces, new-version, CPE-for)
 - **Content type** (label: `3`): The media type of the payload, as a string.<br>
   Example: `application/spdx+json` as the media type of SDPX in JSON encoding
 
@@ -749,19 +739,10 @@ CWT_Claims = {
   * tstr => any
 }
 
-Reg_Info = {
-  ? "register_by": uint .within (~time),
-  ? "sequence_no": uint,
-  ? "issuance_ts": uint .within (~time),
-  ? "no_replay": null,
-  * tstr => any
-}
-
 Protected_Header = {
   1   => int             ; algorithm identifier,
   4   => bstr            ; Key ID,
   13  => CWT_Claims      ; CBOR Web Token Claims,
-  393 => Reg_Info        ; Registration Policy info,
   3   => tstr            ; payload type
 }
 
@@ -785,11 +766,6 @@ For a software supply chain, payloads describing the software artifacts may incl
 - {{SLSA}}
 - {{SWID}}
 
-Once the Statement is serialized with the correct media-type/content-format, an Issuer should fill in the attributes for the Registration Policy information header.
-From the Issuer's perspective, using attributes from named policies ensures that the Signed Statement may only be registered on Transparency Services that implement the associated policy.
-
-For instance, if a Signed Statement is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers may use the `sequence_no` or `issuer_ts` attributes.
-
 Once all the Envelope headers are set, an Issuer MUST use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).
 
 ## Registering Signed Statements
@@ -805,8 +781,7 @@ Signed Statements may be registered by a different party than their Issuer.
 1. **Signature verification:** The Transparency Service MUST verify the signature of the Signed Statement, as described in {{RFC9360}}, using the signature algorithm and verification key of the Issuer.
 1. **Signed Statement validation:** The Transparency Service MUST check that the Signed Statement includes the required protected headers listed above.
 The Transparency Service MAY verify the Statement payload format, content and other optional properties.
-1. **Apply Registration Policy:** For named policies, the Transparency Service MUST check that the required Registration Policy attributes are present in the protected headers and apply the check described in Table 1.
-  A Transparency Service MUST reject Signed Statements that contain an attribute used for a named policy that is not enforced by the service.
+1. **Apply Registration Policy:** For named policies, the Transparency Service MUST check the attributes required by the policy are present in the protected headers.
   Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.
 1. **Register the Signed Statement** to the append-only log
 1. **Return the Transparent Statement**, which includes the Receipt
@@ -833,7 +808,7 @@ The following requirements for the COSE signature of the Merkle Root are added:
 
 - The SCITT version header MUST be included and its value match the `version` field of the Receipt structure
 - The DID of Issuer header (in Signed Statements) MUST be included and its value match the `ts_identifier` field of the Receipt structure
-- Transparency Service MAY include the Registration policy info header to indicate to Verifiers what policies have been applied at the registration of this Statement
+- Transparency Service MUST include the Registration policy info header to indicate to Verifiers what policies have been applied at the registration of this Statement
 - Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of Transparency Service and Registration Policy) MUST be marked critical
 
 The Transparency Service may include the registration time to help Verifiers decide about the trustworthiness of the Transparent Statement.
@@ -851,7 +826,6 @@ Receipt = [
 Protected_Header = {
   390 => int         ; SCITT Receipt Version
   394 => tstr        ; DID of Transparency Service (required)
-  ? 393 => Reg_info  ; Registration policy information (optional)
 
   ; Other COSE Signed Merkle Tree headers
   ; (e.g. tree algorithm, tree size)
@@ -860,12 +834,6 @@ Protected_Header = {
   2 => [+ label]     ; Critical headers
   ? 4 => bstr        ; Key ID (optional)
   ? 33 => COSE_X509  ; X.509 chain (optional)
-}
-
-; Details of the registration info, as provided by the TS
-RegistrationInfo = {
-  ? "registration_time": uint .within (~time),
-  * tstr => any
 }
 ~~~
 
