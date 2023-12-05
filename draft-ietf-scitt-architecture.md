@@ -573,7 +573,7 @@ Issuers MAY use different signing keys (identified by `kid` in the resolved key 
 ### Registration Policy Metadata
 
 SCITT payloads are opaque to Transparency Services.
-For interoperability, Registration Policy decisions should be based on interpretation of the mandatory metadata in the non-opaque Envelope of a Signed Statement.
+For interoperability, Registration Policy decisions should be based on interpretation of the mandatory metadata in the protected header of a Signed Statement.
 
 Each implementation of a Transparency Service MAY support additional metadata, specific to its implementation through additional ["Reserved for Private Use"](https://www.iana.org/assignments/cwt/cwt.xhtml#claims-registry) keys within the `CWT_Claims` header.
 
