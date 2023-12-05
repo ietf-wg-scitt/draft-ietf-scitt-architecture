@@ -787,7 +787,7 @@ CWT_Claims = {
 Protected_Header = {
   1   => int             ; algorithm identifier,
   4   => bstr            ; Key ID,
-  13  => CWT_Claims      ; CBOR Web Token Claims,
+  15  => CWT_Claims      ; CBOR Web Token Claims,
   3   => tstr            ; payload type
 }
 
