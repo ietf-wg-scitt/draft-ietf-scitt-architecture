@@ -862,9 +862,6 @@ The registration time is defined as the timestamp at which the Transparency Serv
 Editor's Note: The WG is discussing if existing CWT claims might better support these design principles.
 
 ~~~ cddl
-label = int / tstr
-value = any
-
 Receipt_Unprotected_Header = {
   &(scitt-inclusion-proof: 396) => bstr .cbor inclusion-proof
 }
