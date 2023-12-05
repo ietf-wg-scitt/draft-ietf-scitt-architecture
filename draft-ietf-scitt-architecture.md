@@ -808,7 +808,7 @@ The following requirements for the COSE signature of the Merkle Root are added:
 
 - The SCITT version header MUST be included and its value match the `version` field of the Receipt structure
 - The DID of Issuer header (in Signed Statements) MUST be included and its value match the `ts_identifier` field of the Receipt structure
-- Transparency Service MUST include the Registration policy info header to indicate to Verifiers what policies have been applied at the registration of this Statement
+- Transparency Service MUST include additional claims in the protected header of Receipts to indicate the policies evaluated during the registration of a Statement
 - Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, DID of Transparency Service and Registration Policy) MUST be marked critical
 
 The Transparency Service may include the registration time to help Verifiers decide about the trustworthiness of the Transparent Statement.
