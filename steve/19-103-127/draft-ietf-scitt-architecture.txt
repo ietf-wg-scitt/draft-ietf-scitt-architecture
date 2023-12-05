@@ -1219,20 +1219,26 @@ Table of Contents
    Editor's Note: The WG is discussing if existing CWT claims might
    better support these design principles.
 
-   ; Additional protected headers ; in the COSE signed_tree_root of the
-   SignedMerkleTreeProof Protected_Header = { 390 => int ; SCITT Receipt
-   Version 394 => tstr ; DID of Transparency Service (required)
+   label = int / tstr
+   value = any
+   ; Additional protected headers
+   ; in the COSE signed_tree_root of the SignedMerkleTreeProof
+   Protected_Header = {
+     390 => int         ; SCITT Receipt Version
+     394 => tstr        ; DID of Transparency Service (required)
 
-   Receipt_Unprotected_Header = { &(scitt-inclusion-proof: 396) => bstr
-   .cbor inclusion-proof }
+   Receipt_Unprotected_Header = {
+     &(scitt-inclusion-proof: 396) => bstr .cbor inclusion-proof
+   }
 
    ; Only a subset of valid CWT headers are allowed in SCITT
-   Receipt_CWT_Claims = { 1 => tstr, ; iss, the issuer signing the
-   receipt (the identifier for the transparency service), ? 3 => tstr, ;
-   aud, target audience of the receipt ? 4 => uint .within (~time), ;
-   exp, receipt expiration timestamp ? 6 => uint .within (~time), ; iat,
-   receipt issuance timestamp * label => value ; label MUST be less than
-   -65536 } ~~~
+   Receipt_CWT_Claims = {
+     1 => tstr,                    ; iss, the issuer signing the receipt (the identifier for the transparency service),
+     ? 3 => tstr,                  ; aud, target audience of the receipt
+     ? 4 => uint .within (~time),  ; exp, receipt expiration timestamp
+     ? 6 => uint .within (~time),  ; iat, receipt issuance timestamp
+     * label => value ; label MUST be less than -65536
+   }
 
    Example transparent statement:
 

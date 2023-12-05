@@ -2313,24 +2313,31 @@ Receipts protected headers have additional mandatory fields:<a href="#section-6.
         </ul>
 <p id="section-6.4-4">The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.<a href="#section-6.4-4" class="pilcrow">¶</a></p>
 <p id="section-6.4-5">Editor's Note: The WG is discussing if existing CWT claims might better support these design principles.<a href="#section-6.4-5" class="pilcrow">¶</a></p>
-<p id="section-6.4-6">; Additional protected headers
+<div class="lang-cddl sourcecode" id="section-6.4-6">
+<pre>
+label = int / tstr
+value = any
+; Additional protected headers
 ; in the COSE signed_tree_root of the SignedMerkleTreeProof
 Protected_Header = {
   390 =&gt; int         ; SCITT Receipt Version
-  394 =&gt; tstr        ; DID of Transparency Service (required)<a href="#section-6.4-6" class="pilcrow">¶</a></p>
-<p id="section-6.4-7">Receipt_Unprotected_Header = {
+  394 =&gt; tstr        ; DID of Transparency Service (required)
+
+Receipt_Unprotected_Header = {
   &amp;(scitt-inclusion-proof: 396) =&gt; bstr .cbor inclusion-proof
-}<a href="#section-6.4-7" class="pilcrow">¶</a></p>
-<p id="section-6.4-8">; Only a subset of valid CWT headers are allowed in SCITT
+}
+
+; Only a subset of valid CWT headers are allowed in SCITT
 Receipt_CWT_Claims = {
   1 =&gt; tstr,                    ; iss, the issuer signing the receipt (the identifier for the transparency service),
   ? 3 =&gt; tstr,                  ; aud, target audience of the receipt
   ? 4 =&gt; uint .within (~time),  ; exp, receipt expiration timestamp
   ? 6 =&gt; uint .within (~time),  ; iat, receipt issuance timestamp
-  * label =&gt; value ; label <span class="bcp14">MUST</span> be less than -65536
+  * label =&gt; value ; label MUST be less than -65536
 }
-~~~<a href="#section-6.4-8" class="pilcrow">¶</a></p>
-<p id="section-6.4-9">Example transparent statement:<a href="#section-6.4-9" class="pilcrow">¶</a></p>
+</pre><a href="#section-6.4-6" class="pilcrow">¶</a>
+</div>
+<p id="section-6.4-7">Example transparent statement:<a href="#section-6.4-7" class="pilcrow">¶</a></p>
 <div id="sec-example">
 <section id="section-6.4.1">
           <h4 id="name-example">
