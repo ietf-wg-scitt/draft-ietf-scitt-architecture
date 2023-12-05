@@ -1088,12 +1088,12 @@ Table of Contents
        headers listed above.  The Transparency Service MAY verify the
        Statement payload format, content and other optional properties.
 
-   5.  *Apply Registration Policy:* For named policies, the Transparency
-       Service MUST check the attributes required by the policy are
-       present in the protected headers.  Custom Signed Statements are
-       evaluated given the current Transparency Service state and the
-       entire Envelope, and may use information contained in the
-       attributes of named policies.
+   5.  *Apply Registration Policy:* The Transparency Service MUST check
+       the attributes required by a policy are present in the protected
+       headers.  Custom Signed Statements are evaluated given the
+       current Transparency Service state and the entire Envelope, and
+       may use information contained in the attributes of named
+       policies.
 
    6.  *Register the Signed Statement* to the append-only log
 
