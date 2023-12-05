@@ -118,6 +118,7 @@ informative:
   SWID:
     target: https://csrc.nist.gov/Projects/Software-Identification-SWID/guidelines
     title:  SWID Specification
+  EQUIVOCATION: DOI.10.1145/1323293.1294280
 
 venue:
   mail: scitt@ietf.org
@@ -232,6 +233,10 @@ The Envelope contains the identity of the Issuer and information about the Artif
 A Signed Statement is a COSE Envelope wrapped around a Statement, binding the metadata in the Envelope to the Statement.
 In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).
 
+Equivocation:
+
+: a state where it is possible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact {{EQUIVOCATION}}.
+
 Feed:
 
 : see Subject
@@ -240,6 +245,11 @@ Issuer:
 
 : organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers.
 An Issuer may be the owner or author of Artifacts, or an independent third party such as an auditor, reviewer or an endorser.
+
+Non-equivocation:
+
+: a state where it is impossible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact.
+Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Verifiers.
 
 Receipt:
 
@@ -279,7 +289,7 @@ Subject:
 
 : (Previously named Feed) a logical collection of Statements about the same Artifact.
 For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact.
-Issuers use Subject to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
+Issuers use Subject to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
 In SCITT, Subject is a property of the dedicated, protected header attribute `15: CWT_Claims` within the protected header of the COSE envelope.
 
 Transparency Service:
@@ -726,7 +736,7 @@ For a given Transparent Statement, Verifiers take as trusted inputs:
 When presented with a Transparent Statement for an Artifact, Verifiers verify the CWT_Claims Issuer identity, signature, and Receipt.
 They may additionally apply a validation policy based on the protected headers present both in the Envelope, the Receipt, or the Statement itself, which may include security-critical or Artifact-specific details.
 
-Some Verifiers may systematically fetch all Transparent Statements using the CWT_Claims Subject and assess them alongside the Transparent Statement they are verifying to ensure freshness, completeness of evidence, and the promise of non-equivocation.
+Some Verifiers may systematically fetch all Transparent Statements using the CWT_Claims Subject and assess them alongside the Transparent Statement they are verifying to ensure freshness, completeness of evidence, and Non-equivocation.
 
 Some Verifiers may choose to subset the collection of Statements, filtering on the payload type (Protected Header `3`), the CWT (Protected Header `15`) Issuer claim, or other non-opaque properties.
 
@@ -1303,7 +1313,7 @@ Note that the SCITT Architecture does not require trust in a single centralized 
 Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
 
 In both cases, the SCITT Architecture provides generic, universally-verifiable cryptographic proof to individually blame Issuers or the Transparency Service.
-On one hand, this enables valid actors to detect and disambiguate malicious actors who issue contradictory Signed Statements to different entities (Verifiers, Auditors, Issuers), otherwise known as 'equivocation'.
+On one hand, this enables valid actors to detect and disambiguate malicious actors who employ Equivocation with Signed Statements to different entities.
 On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT Architecture.
 
 Verifiers and Auditors need not be trusted by other actors.
@@ -1323,7 +1333,7 @@ Conversely, a corrupt Transparency Service may:
 An Auditor granted (partial) access to a Transparency Service and to a collection of disputed Receipts will be able to replay it, detect any invalid Registration (2) or incorrect Receipt in this collection (3), and blame the Transparency Service for them.
 This ensures any Verifier that trusts at least one such Auditor that (2, 3) will be blamed to the Transparency Service.
 
-Due to the operational challenge of maintaining a globally consistent Append-only Log, some Transparency Services may provide limited support for historical queries on the Signed Statements they have registered, and accept the risk of being blamed for inconsistent Registration or Issuer equivocation.
+Due to the operational challenge of maintaining a globally consistent Append-only Log, some Transparency Services may provide limited support for historical queries on the Signed Statements they have registered, and accept the risk of being blamed for inconsistent Registration or Issuer Equivocation.
 
 Verifiers and Auditors may also witness (1, 4) but may not be able to collect verifiable evidence for it.
 
