@@ -861,6 +861,9 @@ The registration time is defined as the timestamp at which the Transparency Serv
 
 Editor's Note: The WG is discussing if existing CWT claims might better support these design principles.
 
+~~~ cddl
+label = int / tstr
+value = any
 ; Additional protected headers
 ; in the COSE signed_tree_root of the SignedMerkleTreeProof
 Protected_Header = {
