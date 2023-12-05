@@ -1755,7 +1755,6 @@ Protected_Header = {
   1   =&gt; int             ; algorithm identifier,
   4   =&gt; bstr            ; Key ID (kid),
   15  =&gt; CWT_Claims      ; CBOR Web Token Claims,
-  393 =&gt; Reg_Info        ; Registration Policy info,
   3   =&gt; tstr            ; payload type
 }
 </pre><a href="#section-5.1.1-6" class="pilcrow">¶</a>
@@ -1917,11 +1916,8 @@ The <code>iss</code> and <code>sub</code> claims, within the CWT_Claims protecte
 <a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-registration-policy-metadat" class="section-name selfRef">Registration Policy Metadata</a>
           </h4>
 <p id="section-5.1.3-1">SCITT payloads are opaque to Transparency Services.
-For interoperability, Registration Policy decisions should be based on interpretation of information in the non-opaque Envelope.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.1.3-2">The small mandatory set of metadata in the envelope of a Signed Statement is neither intended nor sufficient to express the information required for the processing of Registration Policies in a Transparency Service.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
-<p id="section-5.1.3-3">For example, a Transparency Service may only allow a Signed Statement to be registered if it was signed very recently, or may reject a Signed Statement if it arrives out of order in some sequenced protocol.<a href="#section-5.1.3-3" class="pilcrow">¶</a></p>
-<p id="section-5.1.3-4">Any metadata meant to be interpreted by the Transparency Service during Registration Policy evaluation, <span class="bcp14">SHOULD</span> be added to the <code>reg_info</code> header, unless the data is private, in which case it <span class="bcp14">MAY</span> be sent to the Transparency Service as an additional input during registration.<a href="#section-5.1.3-4" class="pilcrow">¶</a></p>
-<p id="section-5.1.3-5">While the <code>Reg_Info</code> header <span class="bcp14">MUST</span> be present in all Signed Statements, all attributes are optional, and the map <span class="bcp14">MAY</span> be empty.<a href="#section-5.1.3-5" class="pilcrow">¶</a></p>
+For interoperability, Registration Policy decisions should be based on interpretation of the mandatory metadata in the protected header of a Signed Statement.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-2">Each implementation of a Transparency Service <span class="bcp14">MAY</span> support additional metadata, specific to its implementation through additional <a href="https://www.iana.org/assignments/cwt/cwt.xhtml#claims-registry">"Reserved for Private Use"</a> keys within the <code>CWT_Claims</code> header.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2162,13 +2158,8 @@ Example: <code>github.com/opensbom-generator/spdx-sbom-generator/releases/tag/v0
             </ul>
 </li>
           <li class="normal" id="section-6.1-3.4">
-            <p id="section-6.1-3.4.1"><strong>Registration Policy</strong> (label: <code>TBD</code>, temporary: <code>393</code>): A map containing key/value pairs set by the Issuer which are sealed on Registration and non-opaque to the Transparency Service.
-The key/value pair semantics are specified by the Issuer or are specific to the <code>CWT_Claims iss</code> and <code>CWT_Claims sub</code> tuple.<br>
-Examples: the sequence number of signed statements on a <code>CWT_Claims Subject</code>, Issuer metadata, or a reference to other Transparent Statements (e.g., augments, replaces, new-version, CPE-for)<a href="#section-6.1-3.4.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-6.1-3.5">
-            <p id="section-6.1-3.5.1"><strong>Content type</strong> (label: <code>3</code>): The media type of the payload, as a string.<br>
-Example: <code>application/spdx+json</code> as the media type of SDPX in JSON encoding<a href="#section-6.1-3.5.1" class="pilcrow">¶</a></p>
+            <p id="section-6.1-3.4.1"><strong>Content type</strong> (label: <code>3</code>): The media type of the payload, as a string.<br>
+Example: <code>application/spdx+json</code> as the media type of SDPX in JSON encoding<a href="#section-6.1-3.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-6.1-4">In CDDL <span>[<a href="#RFC8610" class="cite xref">RFC8610</a>]</span> notation, a Signed_Statement is defined as follows:<a href="#section-6.1-4" class="pilcrow">¶</a></p>
@@ -2191,19 +2182,10 @@ CWT_Claims = {
   * tstr =&gt; any
 }
 
-Reg_Info = {
-  ? "register_by": uint .within (~time),
-  ? "sequence_no": uint,
-  ? "issuance_ts": uint .within (~time),
-  ? "no_replay": null,
-  * tstr =&gt; any
-}
-
 Protected_Header = {
   1   =&gt; int             ; algorithm identifier,
   4   =&gt; bstr            ; Key ID,
   15  =&gt; CWT_Claims      ; CBOR Web Token Claims,
-  393 =&gt; Reg_Info        ; Registration Policy info,
   3   =&gt; tstr            ; payload type
 }
 
@@ -2246,10 +2228,7 @@ For a software supply chain, payloads describing the software artifacts may incl
             <p id="section-6.2-2.7.1"><span>[<a href="#SWID" class="cite xref">SWID</a>]</span><a href="#section-6.2-2.7.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-6.2-3">Once the Statement is serialized with the correct media-type/content-format, an Issuer should fill in the attributes for the Registration Policy information header.
-From the Issuer's perspective, using attributes from named policies ensures that the Signed Statement may only be registered on Transparency Services that implement the associated policy.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
-<p id="section-6.2-4">For instance, if a Signed Statement is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers may use the <code>sequence_no</code> or <code>issuer_ts</code> attributes.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
-<p id="section-6.2-5">Once all the Envelope headers are set, an Issuer <span class="bcp14">MUST</span> use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of <code>COSE_Sign1_Tagged</code> is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).<a href="#section-6.2-5" class="pilcrow">¶</a></p>
+<p id="section-6.2-3">Once all the Envelope headers are set, an Issuer <span class="bcp14">MUST</span> use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of <code>COSE_Sign1_Tagged</code> is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).<a href="#section-6.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-registering-signed-statements">
@@ -2277,8 +2256,7 @@ Signed Statements may be registered by a different party than their Issuer.<a hr
 The Transparency Service <span class="bcp14">MAY</span> verify the Statement payload format, content and other optional properties.<a href="#section-6.3-2.4.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-6.3-2.5">
-            <p id="section-6.3-2.5.1"><strong>Apply Registration Policy:</strong> For named policies, the Transparency Service <span class="bcp14">MUST</span> check that the required Registration Policy attributes are present in the protected headers and apply the check described in Table 1.
-  A Transparency Service <span class="bcp14">MUST</span> reject Signed Statements that contain an attribute used for a named policy that is not enforced by the service.
+            <p id="section-6.3-2.5.1"><strong>Apply Registration Policy:</strong> The Transparency Service <span class="bcp14">MUST</span> check the attributes required by a policy are present in the protected headers.
   Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.<a href="#section-6.3-2.5.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-6.3-2.6">
@@ -2320,11 +2298,22 @@ Receipts protected headers have additional mandatory fields:<a href="#section-6.
           <li class="normal" id="section-6.4-3.5">
             <p id="section-6.4-3.5.1"><strong>crit</strong>: The <code>crit</code> header (id: 2) <span class="bcp14">MUST</span> be included and the following headers <span class="bcp14">MUST</span> be marked critical: (<code>scitt-version</code>, <code>verifiable-data-structure</code>, <code>kccs</code>).<a href="#section-6.4-3.5.1" class="pilcrow">¶</a></p>
 </li>
+          <li class="normal" id="section-6.4-3.6">
+            <p id="section-6.4-3.6.1">The SCITT version header <span class="bcp14">MUST</span> be included and its value match the <code>version</code> field of the Receipt structure<a href="#section-6.4-3.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.4-3.7">
+            <p id="section-6.4-3.7.1">The DID of Issuer header (in Signed Statements) <span class="bcp14">MUST</span> be included and its value match the <code>ts_identifier</code> field of the Receipt structure<a href="#section-6.4-3.7.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.4-3.8">
+            <p id="section-6.4-3.8.1">Transparency Service <span class="bcp14">MUST</span> include additional claims in the protected header of Receipts to indicate the policies evaluated during the registration of a Statement<a href="#section-6.4-3.8.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.4-3.9">
+            <p id="section-6.4-3.9.1">Since <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span> uses optional headers, the <code>crit</code> header (id: 2) <span class="bcp14">MUST</span> be included and all SCITT-specific headers (version, DID of Transparency Service and Registration Policy) <span class="bcp14">MUST</span> be marked critical<a href="#section-6.4-3.9.1" class="pilcrow">¶</a></p>
+</li>
         </ul>
-<p id="section-6.4-4">Inside Reg_info, the Transparency Service may include the registration time to help Verifiers decide about the trustworthiness of the Transparent Statement.<a href="#section-6.4-4" class="pilcrow">¶</a></p>
-<p id="section-6.4-5">The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.<a href="#section-6.4-5" class="pilcrow">¶</a></p>
-<p id="section-6.4-6">Editor's Note: The WG is discussing if existing CWT claims might better support these design principles.<a href="#section-6.4-6" class="pilcrow">¶</a></p>
-<div class="breakable lang-cddl sourcecode" id="section-6.4-7">
+<p id="section-6.4-4">The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.<a href="#section-6.4-4" class="pilcrow">¶</a></p>
+<p id="section-6.4-5">Editor's Note: The WG is discussing if existing CWT claims might better support these design principles.<a href="#section-6.4-5" class="pilcrow">¶</a></p>
+<div class="lang-cddl sourcecode" id="section-6.4-6">
 <pre>
 label = int / tstr
 value = any
@@ -2341,77 +2330,9 @@ Receipt_CWT_Claims = {
   ? 6 =&gt; uint .within (~time),  ; iat, receipt issuance timestamp
   * label =&gt; value ; label MUST be less than -65536
 }
-
-; Statement-agnostic information about registration
-; These are authenticated by the receipt signature
-Registration_Info = {
-  * tstr =&gt; any
-}
-
-; Statement-specific information about statment registration
-; These are authenticated through the inclusion proof of the receipt
-Statement_Registration_Info = {
-    &amp;(statement-unique-id: 0) =&gt; tstr
-    &amp;(registration-policy-id: 1) =&gt; tstr
-    * label =&gt; value
-}
-
-Receipt_Protected_Header = {
-    ; SCITT Receipt Version
-    &amp;(scitt-version: 390) =&gt; int,
-
-    ; Type of Verifiable Data Structure, e.g. RFC9162_SHA256
-    &amp;(verifiable-data-structure: -111) =&gt; int,
-
-    ; CBOR Web Tokoken claim set (CCS)
-    &amp;(kccs: 15)  =&gt; Receipt_CWT_Claims,
-
-    ; Critical headers
-    &amp;(crit: 2) =&gt; [+ label],
-
-    ; Key ID (optional)
-    ? &amp;(kid: 4) =&gt; bstr,
-
-    ; X.509 chain (optional)
-    ? &amp;(x5chain: 33) =&gt; COSE_X509,
-
-    ; Statement-agnostic registration information
-    ? &amp;(registration-info: 395) =&gt; Registration_Info
-}
-
-Receipt_Unprotected_Header = {
-    &amp;(statement-registration-info: 396) =&gt; Statement_Registration_Info
-}
-
-; Please note that receipts cannot carry a payload, ensuring that verifiers
-; have to recompute the root from the inclusion proof to verify the signature
-Receipt_as_COSE_Sign1 = [
-    protected : bstr .cbor Receipt_Protected_Header,
-    unprotected : Receipt_Unprotected_Header,
-    payload: nil,
-    signature : bstr
-]
-
-Receipt = #6.18(Receipt_as_COSE_Sign1)
-
-; A Transparent Statement is a Signed Statement
-; with one or more Receipts in it's unprotected header.
-Transparent_Statement_Unprotected_Header = {
-    &amp;(receipts: 394) =&gt; [+ Receipt],
-    * label =&gt; any
-}
-
-Transparent_Statement_as_COSE_Sign1 = [
-    protected : bstr .cbor Signed_Statement_Protected_Header,
-    unprotected : Transparent_Statement_Unprotected_Header,
-    payload : bstr / nil,
-    signature : bstr
-]
-
-Transparent_Statement = #6.18(Transparent_Statement_as_COSE_Sign1)
-</pre><a href="#section-6.4-7" class="pilcrow">¶</a>
+</pre><a href="#section-6.4-6" class="pilcrow">¶</a>
 </div>
-<p id="section-6.4-8">Example transparent statement:<a href="#section-6.4-8" class="pilcrow">¶</a></p>
+<p id="section-6.4-7">Example transparent statement:<a href="#section-6.4-7" class="pilcrow">¶</a></p>
 <div id="sec-example">
 <section id="section-6.4.1">
           <h4 id="name-example">
