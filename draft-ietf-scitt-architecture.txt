@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 3 June 2024                                          C. Fournet
+Expires: 7 June 2024                                          C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         1 December 2023
+                                                         5 December 2023
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 June 2024.
+   This Internet-Draft will expire on 7 June 2024.
 
 Copyright Notice
 
@@ -315,6 +315,10 @@ Table of Contents
       signature) and an unprotected header (not included in the Issuer's
       signature).
 
+   Equivocation:  a state where it is possible for a Transparency
+      Service to provide different views of its append-only log to
+      Verifiers about the same Artifact [EQUIVOCATION].
+
    Feed:  see Subject
 
    Issuer:  organizations, stakeholders, and users involved in creating
@@ -322,6 +326,14 @@ Table of Contents
       Statements to a definable set of peers.  An Issuer may be the
       owner or author of Artifacts, or an independent third party such
       as an auditor, reviewer or an endorser.
+
+   Non-equivocation:  a state where it is impossible for a Transparency
+      Service to provide different views of its append-only log to
+      Verifiers about the same Artifact.  Over time, an Issuer may
+      register new Signed Statements about an Artifact in a Transparency
+      Service with new information.  However, the consistency of a
+      collection of Signed Statements about the Artifact can be checked
+      by all Verifiers.
 
    Receipt:  a Receipt is a cryptographic proof that a Signed Statement
       is recorded in the Append-only Log. Receipts are based on Signed
@@ -369,7 +381,7 @@ Table of Contents
       chain there may be multiple statements made about the same
       Artifact.  Issuers use Subject to create a coherent sequence of
       Signed Statements about the same Artifact and Verifiers use the
-      Subject to ensure completeness and non-equivocation in supply
+      Subject to ensure completeness and Non-equivocation in supply
       chain evidence by identifying all Transparent Statements linked to
       the one(s) they are evaluating.  In SCITT, Subject is a property
       of the dedicated, protected header attribute 15: CWT_Claims within
@@ -1001,7 +1013,7 @@ Table of Contents
    Some Verifiers may systematically fetch all Transparent Statements
    using the CWT_Claims Subject and assess them alongside the
    Transparent Statement they are verifying to ensure freshness,
-   completeness of evidence, and the promise of non-equivocation.
+   completeness of evidence, and Non-equivocation.
 
    Some Verifiers may choose to subset the collection of Statements,
    filtering on the payload type (Protected Header 3), the CWT
@@ -1791,10 +1803,9 @@ Table of Contents
    In both cases, the SCITT Architecture provides generic, universally-
    verifiable cryptographic proof to individually blame Issuers or the
    Transparency Service.  On one hand, this enables valid actors to
-   detect and disambiguate malicious actors who issue contradictory
-   Signed Statements to different entities (Verifiers, Auditors,
-   Issuers), otherwise known as 'equivocation'.  On the other hand,
-   their liability and the resulting damage to their reputation are
+   detect and disambiguate malicious actors who employ Equivocation with
+   Signed Statements to different entities.  On the other hand, their
+   liability and the resulting damage to their reputation are
    application specific, and out of scope of the SCITT Architecture.
 
    Verifiers and Auditors need not be trusted by other actors.  In
@@ -1835,7 +1846,7 @@ Table of Contents
    Append-only Log, some Transparency Services may provide limited
    support for historical queries on the Signed Statements they have
    registered, and accept the risk of being blamed for inconsistent
-   Registration or Issuer equivocation.
+   Registration or Issuer Equivocation.
 
    Verifiers and Auditors may also witness (1, 4) but may not be able to
    collect verifiable evidence for it.
@@ -2035,6 +2046,14 @@ Table of Contents
 
    [DID-WEB]  "did:web Decentralized Identifiers Method Spec", n.d.,
               <https://w3c-ccg.github.io/did-method-web/>.
+
+   [EQUIVOCATION]
+              Chun, B., Maniatis, P., Shenker, S., and J. Kubiatowicz,
+              "Attested append-only memory: making adversaries stick to
+              their word", Association for Computing Machinery (ACM),
+              ACM SIGOPS Operating Systems Review vol. 41, no. 6, pp.
+              189-204, DOI 10.1145/1323293.1294280, October 2007,
+              <https://doi.org/10.1145/1323293.1294280>.
 
    [I-D.draft-steele-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
