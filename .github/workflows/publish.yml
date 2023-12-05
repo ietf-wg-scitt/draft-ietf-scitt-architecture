@@ -34,12 +34,12 @@ jobs:
         restore-keys: i-d-
 
     - name: "Build Drafts"
-      uses: martinthomson/i-d-template@v1
+      uses: martinthomson/i-d-template@v1m
       with:
         token: ${{ github.token }}
 
     - name: "Upload to Datatracker"
-      uses: martinthomson/i-d-template@v1
+      uses: martinthomson/i-d-template@v1m
       with:
         make: upload
 
