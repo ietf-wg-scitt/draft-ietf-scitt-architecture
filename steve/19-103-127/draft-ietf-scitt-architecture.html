@@ -2317,11 +2317,6 @@ Receipts protected headers have additional mandatory fields:<a href="#section-6.
 <pre>
 label = int / tstr
 value = any
-; Additional protected headers
-; in the COSE signed_tree_root of the SignedMerkleTreeProof
-Protected_Header = {
-  390 =&gt; int         ; SCITT Receipt Version
-  394 =&gt; tstr        ; DID of Transparency Service (required)
 
 Receipt_Unprotected_Header = {
   &amp;(scitt-inclusion-proof: 396) =&gt; bstr .cbor inclusion-proof
