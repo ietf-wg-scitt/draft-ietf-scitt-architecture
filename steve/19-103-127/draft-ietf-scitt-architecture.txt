@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 4 June 2024                                          C. Fournet
+Expires: 7 June 2024                                          C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                                    RKVST
-                                                         2 December 2023
+                                                         5 December 2023
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 June 2024.
+   This Internet-Draft will expire on 7 June 2024.
 
 Copyright Notice
 
@@ -729,8 +729,8 @@ Table of Contents
 
    SCITT payloads are opaque to Transparency Services.  For
    interoperability, Registration Policy decisions should be based on
-   interpretation of the mandatory metadata in the non-opaque Envelope
-   of a Signed Statement.
+   interpretation of the mandatory metadata in the protected header of a
+   Signed Statement.
 
    Each implementation of a Transparency Service MAY support additional
    metadata, specific to its implementation through additional "Reserved
