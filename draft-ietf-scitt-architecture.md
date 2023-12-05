@@ -81,7 +81,7 @@ normative:
     target: https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/
     title: CBOR Web Token (CWT) Claims in COSE Headers
   I-D.draft-birkholz-scitt-scrapi: scrapi
-  
+
 informative:
   I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
   PBFT: DOI.10.1145/571637.571640
