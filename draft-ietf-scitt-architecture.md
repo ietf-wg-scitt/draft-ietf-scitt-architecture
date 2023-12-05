@@ -1123,21 +1123,4 @@ To indicate that the content is an scitt configuration represented as JSON:
 * Change Controller: IETF
 * Provisional registration?  No
 
-## URN Sub-namespace for SCITT (urn:ietf:params:scitt)
-
-IANA is requested to register the URN sub-namespace `urn:ietf:params:scitt`
-in the "IETF URN Sub-namespace for Registered Protocol Parameter Identifiers"
-Registry {{IANA.params}}, following the template in {{RFC3553}}:
-
-~~~output
-
-   Registry name:  scitt
-
-   Specification:  [RFCthis]
-
-   Repository:  http://www.iana.org/assignments/scitt
-
-   Index value:  No transformation needed.
-~~~
-
 --- back
