@@ -2246,7 +2246,7 @@ Verifiers <span class="bcp14">MUST</span> support the <code>did:web</code> metho
             <p id="section-6.4-4.2.1">The DID of Issuer header (in Signed Statements) <span class="bcp14">MUST</span> be included and its value match the <code>ts_identifier</code> field of the Receipt structure<a href="#section-6.4-4.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-6.4-4.3">
-            <p id="section-6.4-4.3.1">Transparency Service <span class="bcp14">MUST</span> include the Registration policy info header to indicate to Verifiers what policies have been applied at the registration of this Statement<a href="#section-6.4-4.3.1" class="pilcrow">¶</a></p>
+            <p id="section-6.4-4.3.1">Transparency Service <span class="bcp14">MUST</span> include additional claims in the protected header of Receipts to indicate the policies evaluated during the registration of a Statement<a href="#section-6.4-4.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-6.4-4.4">
             <p id="section-6.4-4.4.1">Since <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span> uses optional headers, the <code>crit</code> header (id: 2) <span class="bcp14">MUST</span> be included and all SCITT-specific headers (version, DID of Transparency Service and Registration Policy) <span class="bcp14">MUST</span> be marked critical<a href="#section-6.4-4.4.1" class="pilcrow">¶</a></p>

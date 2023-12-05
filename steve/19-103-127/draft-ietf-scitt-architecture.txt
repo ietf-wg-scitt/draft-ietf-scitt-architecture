@@ -1140,9 +1140,9 @@ Table of Contents
       and its value match the ts_identifier field of the Receipt
       structure
 
-   *  Transparency Service MUST include the Registration policy info
-      header to indicate to Verifiers what policies have been applied at
-      the registration of this Statement
+   *  Transparency Service MUST include additional claims in the
+      protected header of Receipts to indicate the policies evaluated
+      during the registration of a Statement
 
    *  Since [I-D.draft-steele-cose-merkle-tree-proofs] uses optional
       headers, the crit header (id: 2) MUST be included and all SCITT-
