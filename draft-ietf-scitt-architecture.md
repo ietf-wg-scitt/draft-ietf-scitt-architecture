@@ -94,15 +94,6 @@ informative:
   CycloneDX:
     target: https://cyclonedx.org/specification/overview/
     title:  CycloneDX
-  DID-CORE:
-    target: https://www.w3.org/TR/did-core/
-    title: Decentralized Identifiers (DIDs) v1.0
-    author:
-      org: W3C
-    date: 2022-07-22
-  DID-WEB:
-    target: https://w3c-ccg.github.io/did-method-web/
-    title: did:web Decentralized Identifiers Method Spec
   in-toto:
     target: https://in-toto.io/
     title:  in-toto
@@ -347,18 +338,18 @@ Failure to produce this proof can indicate that the Transparency Services operat
                 |  Artifact  |
                  '----+-----'
                       v
-                 .----+----.  .----------.  Decentralized Identifier
+                 .----+----.  .----------.  Identifiers
 Issuer      --> | Statement ||  Envelope  +<------------------.
                  '----+----'  '-----+----'                     |
                       |             |           +--------------+---+
-                       '----. .----'            | DID Key Manifest |
-                             |                  |                  |
+                       '----. .----'            | Identity         |
+                             |                  | Documents        |
                              v                  +-------+------+---+
                         .----+----.                     |      |
                        |  Signed   |    COSE Signing    |      |
-                       | Statement +<-------------------'      |
-                        '----+----'                            |
-                             |               +--------------+  |
+                       | Statement +<-------------------+      |
+                        '----+----'                     |      |
+                             |               +----------+---+  |
                           .-' '------------->+ Transparency |  |
                          |   .-------.       |              |  |
 Transparency -->         |  | Receipt +<-----+   Service    |  |
@@ -395,21 +386,19 @@ This section describes at a high level, the three main roles and associated proc
 
 ### Issuer Identity
 
-Before an Issuer is able to produce Signed Statements, it must first create its [decentralized identifier](#DID-CORE) (also known as a DID).
-A DID can be *resolved* into a *key manifest* (a list of public keys indexed by a *key identifier*) using many different DID methods.
+Before an Issuer is able to produce Signed Statements, it must first create an identifier and obtain an identity document, that is acceptable to the Transparency Service.
+Transparency Services MAY support many different identity document formats.
 
-Issuers MAY choose the DID method they prefer, but with no guarantee that all Transparency Services will register their Signed Statements, as each Transparency Service may implement different Registration Policies.
-To facilitate interoperability, all Transparency Service implementations MUST support the `did:web` method {{DID-WEB}}.
-For example, if the Issuer publishes its manifest at `https://sample.issuer/user/alice/did.json`, the DID of the Issuer is `did:web:sample.issuer:user:alice`.
+Issuers SHOULD use consistent identifiers for all their Statements about Artifacts, to simplify authorization by Verifiers and auditing.
+If an Issuer uses multiple identifiers, they MUST ensure that statements signed under each identifier are consistent.
 
-Issuers SHOULD use consistent decentralized identifiers for all their Statements about Artifacts, to simplify authorization by Verifiers and auditing.
-If an Issuer uses multiple DIDs (for instance, their clients support different resolution methods), they MUST ensure that statements signed under each DID are consistent.
+Issuers MAY rotate verification keys at any time, or at a consistent cryptoperiod.
+Issuers MAY migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting signed statements that match its policies.
 
-Issuers MAY update their DID Document at any time, for instance to refresh their signing keys or algorithms.
-Issuers SHOULD NOT remove or change any of their previous keys unless they intend to revoke all Signed Statements that are registered as Transparent Statements issued with those keys.
+The Issuer's identifier is required and appears in the `1 iss` claim of the `15 CWT_Claims` protected header of the Signed Statements' Envelope.
+The version of the key used to sign the Signed Statement is written in the `4 kid` protected header.
 
-The Issuer's DID is required and appears in the `1 iss` claim of the `15 CWT_Claims` protected header of the Signed Statements' Envelope.
-The version of the key from the DID Document used to sign the Signed Statement is written in the `4 kid` protected header.
+Key discovery protocols are out of scope for this document.
 
 ~~~ cddl
 CWT_Claims = {
@@ -424,151 +413,6 @@ Protected_Header = {
   15  => CWT_Claims      ; CBOR Web Token Claims,
   393 => Reg_Info        ; Registration Policy info,
   3   => tstr            ; payload type
-}
-~~~
-
-`4 kid` MUST either be an absolute URL, or a relative URL.
-Relative URL MUST be relative to an `iss` value.
-
-Resolving `kid` MUST return an identity document of a registered content type (a set of public keys).
-In the case of `kid` being an absolute DID URL, the identity document is called a DID Document, and is expected ot have content type `application/did+json`.
-
-To dereference a DID URL, it first MUST be resolved.
-After that the fragment is processed according to the media type.
-
-For example, when resolving `did:example:123#key-42`, first, the identity document for `did:example:123` is resolved as content type `application/did+json`, next, the fragment `#key-42` is dereferenced to a verification method that contains a `publicKeyJwk` property.
-
-The content type of `publicKeyJwk` is expected to be `application/jwk+json`.
-
-The details of both `DID resolution` and `DID dereferencing` are out of scope for this document.
-
-The `iss` or `kid`, might not be DID URLs, however the following interfaces MUST be satisfied in order to ensure Issuer identity documents, and associated keys are discoverable in a consistent manner.
-
-#### Resolving Identity Documents
-
-The value of `id` might be found the `iss` or `sub` claims if they are present in the protected header or payload.
-
-~~~sh
-
-resolve = (id: string, accept: \
-  content_type = 'application/did+json') =>
-  idDocument (of content type application/did+json)
-~~~
-
-For example:
-
-~~~sh
-
-did:example:123
-~~~
-
-Might resolve to:
-
-~~~json
-
-{
-  "id": "did:example:123",
-  "verificationMethod": [{
-    "id": "#key-42",
-    "type": "JsonWebkey",
-    "controller": "did:example:123",
-    "publicKeyJwk": {
-      "kty": "EC",
-      "crv": "P-384",
-      "alg": "ES384",
-      "x": "LCeAt2sW36j94wuFP0gN...Ler3cKFBCaAHY1svmbPV69bP3RH",
-      "y": "zz2SkcOGYM6PbYlw19tc...rd8QWykAprstPdxx4U0uScvDcYd"
-    }
-  }]
-}
-~~~
-
-**Editor note**: we might wish to eliminate this intermediate identity document content type, by treating it as an alterative encoding of `application/jwk-set+json` or `application/cose-key-set`.
-
-However, there is no media type fragment processing directive that would enable dereferencing the known key set content types, listed above.
-
-##### Comment on OIDC
-
-For well known token types, such as `id_token` or `access_token`.
-
-`iss` MUST be a URL, and it MUST have keys discoverable in the following way:
-
-`iss` can be used to build a `.well-known` URL to discovery the Issuer's configuration.
-
-For example, `iss` `contoso.example` will have the following open id connect configuration URL.
-
-`https://contoso.example/.well-known/openid-configuration`.
-
-This URL will resolve to a JSON document which contains the property:
-
-`jwks_uri`, for example `https://contoso.example/.well-known/jwks.json`
-
-This URL will resolve to a JSON document of content type `application/jwk-set+json`, which will contain specific keys... for example:
-
-~~~json
-{
-  "keys": [
-    {
-      "alg": "RS256",
-      "kty": "RSA",
-      "use": "sig",
-      "n": "wW9TkSbcn5FV3iUJ-812sqTvwT...YzXrnMZ7WgbMPXmHU8i4z04zw",
-      "e": "AQAB",
-      "kid": "NTBGNTJEMDc3RUE3RUVEOTM4NDcEFDNzEyOTY5NDNGOUQ4OEU5OA",
-      "x5t": "NTBGNTJEMDc3RUE3RUVEOTM4NDcEFDNzEyOTY5NDNGOUQ4OEU5OA",
-      "x5c": [
-        "MIIDCzCCAfOgAwIBAgIPng0XRWwsd...f5GOGwJS+u/nSYvqCFt57+g3R+"
-      ]
-    },
-    {
-      "alg": "RS256",
-      "kty": "RSA",
-      "use": "sig",
-      "n": "ylgVZbNR4nlsU_AbU8Zd7ZhVfm...fo5BLa3_YLWazqcpWRXn9QEDWw",
-      "e": "AQAB",
-      "kid": "aMIKy_brQk3nLd0PKd9ln",
-      "x5t": "-xcTyx47q3ddycG7LtE6QCcETbs",
-      "x5c": [
-        "MIIC/TCCAeWgAwIBAgIJH62ygzAPG...xCxmHAbK+KdTka/Yg2MadFZdA=="
-      ]
-    }
-  ]
-}
-~~~
-
-TODO: For SCITT to be interoperable with OIDC, it would define key dereferencing compatible with OIDC dereferencing.
-
-#### Dereferencing Public Keys
-
-`kid` is always present in the protected header.
-
-If `iss` is also present, `kid` MUST be a relative URL to `iss`, otherwise `kid` MUST be an absolute URL that starts with `iss`.
-
-`id` = `kid` if `iss` is undefined, or `iss` + `#` + `kid` when `iss` is defined.
-
-See also [draft-ietf-cose-cwt-claims-in-headers](https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/).
-
-~~~sh
-dereference = (id: string, accept: \
-  content_type = 'application/jwk+json') =>
-  publicKeyJwk (of content type application/jwk+json)
-~~~
-
-For example, when DIDs are used:
-
-~~~ http
-did:example:123#key-42
-~~~
-
-Might dereference to:
-
-~~~json
-{
-  "kty": "EC",
-  "crv": "P-384",
-  "alg": "ES384",
-  "x": "LCeAt2sW36j94wuFP0gNEIHDzqR6Nh...er3cKFBCaAHY1svmbPV69bP3RH",
-  "y": "zz2SkcOGYM6PbYlw19tcbpzo6bEMYH...d8QWykAprstPdxx4U0uScvDcYd"
 }
 ~~~
 
@@ -710,7 +554,7 @@ In particular:
 
 - the Transparency Service defines and enforces deterministic Registration Policies that can be re-evaluated based solely on the contents of the Append-only Log at the time of Registration, and must then yield the same result
 - the ordering of entries, their cryptographic contents, and the Transparency Services' governance may be non-deterministic, but they must be verifiable
-- a Transparency Service MAY store evidence about the resolution of DIDs into DID Documents
+- a Transparency Service MAY store evidence about the resolution of identifiers, identity documents, and key material.
 - a Transparency Service MAY additionally support verifiability of client authentication and access control
 
 #### Governance and Bootstrapping
@@ -740,12 +584,11 @@ Some Verifiers may systematically fetch all Transparent Statements using the CWT
 
 Some Verifiers may choose to subset the collection of Statements, filtering on the payload type (Protected Header `3`), the CWT (Protected Header `15`) Issuer claim, or other non-opaque properties.
 
-Some Verifiers may systematically resolve Issuer DIDs to fetch the latest corresponding DID documents.
+Some Verifiers may systematically resolve Issuer identifiers to fetch the latest corresponding verification keys.
 This behavior strictly enforces the revocation of compromised keys.
 Once the Issuer has updated its Statement to remove a key identifier, all Signed Statements include the corresponding `kid` will be rejected.
-However, others may delegate DID resolution to a trusted third party and/or cache its results.
 
-Some Verifiers may decide to skip the DID-based signature verification, relying on the Transparency Service's Registration Policy and the scrutiny of other Verifiers.
+Some Verifiers may decide to skip the identifier-based signature verification, relying on the Transparency Service's Registration Policy and the scrutiny of other Verifiers.
 Although this weakens their guarantees against key revocation, or against a corrupt Transparency Services, they can still keep the Receipt and blame the Issuer or the Transparency Services at a later point.
 
 # Signed Statement Issuance, Registration, and Verification
@@ -765,7 +608,7 @@ All Signed Statements MUST include the following protected headers:
 - **CWT_Claims** (label: `15` pending {{CWT_CLAIM_COSE}}): A CWT representing the Issuer (`iss`) making the statement, and the Subject (`sub`) to correlate a collection of statements about an Artifact.
   Additional {{CWT_CLAIMS}} MAY be used, while `iss` and `sub` MUST be provided
   - **iss** (CWT_Claim Key `1`): The Identifier of the signer, as a string<br>
-    Example: `did:web:example.com`
+    Example: `https://software.vendor.example`
   - **sub** (CWT_Claim Key `2`): The Subject to which the Statement refers, chosen by the Issuer<br>
     Example: `github.com/opensbom-generator/spdx-sbom-generator/releases/tag/v0.0.13`
 - **Registration Policy** (label: `TBD`, temporary: `393`): A map containing key/value pairs set by the Issuer which are sealed on Registration and non-opaque to the Transparency Service.
@@ -1248,6 +1091,35 @@ The confidentiality of any identity lookup during Signed Statement Registration 
 # IANA Considerations
 
 TBD; {{mybody}}.
+
+## Media Type Registration
+
+This section requests registration of the following media types [@RFC2046] in
+the "Media Types" registry [@IANA.MediaTypes] in the manner described
+in [@RFC6838].
+
+To indicate that the content is an scitt configuration represented as JSON:
+
+* Type name: application
+* Subtype name: scitt-configuration+json
+* Required parameters: n/a
+* Optional parameters: n/a
+* Encoding considerations: binary; application/scitt-configuration+json values are represented as a JSON Object; UTF-8 encoding SHOULD be employed for the JSON object.
+* Security considerations: See the Security Considerations section of [[ this specification ]].
+* Interoperability considerations: n/a
+* Published specification: [[ this specification ]]
+* Applications that use this media type: TBD
+* Fragment identifier considerations: n/a
+* Additional information:
+   * Magic number(s): n/a
+   * File extension(s): n/a
+   * Macintosh file type code(s): n/a
+* Person & email address to contact for further information: TBD
+* Intended usage: COMMON
+* Restrictions on usage: none
+* Author: TBD
+* Change Controller: IETF
+* Provisional registration?  No
 
 ## URN Sub-namespace for SCITT (urn:ietf:params:scitt)
 
