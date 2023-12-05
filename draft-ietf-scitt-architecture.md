@@ -864,11 +864,6 @@ Editor's Note: The WG is discussing if existing CWT claims might better support 
 ~~~ cddl
 label = int / tstr
 value = any
-; Additional protected headers
-; in the COSE signed_tree_root of the SignedMerkleTreeProof
-Protected_Header = {
-  390 => int         ; SCITT Receipt Version
-  394 => tstr        ; DID of Transparency Service (required)
 
 Receipt_Unprotected_Header = {
   &(scitt-inclusion-proof: 396) => bstr .cbor inclusion-proof
