@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-05T00:36:47.035771+00:00",
+  "timestamp": "2023-12-07T00:36:02.432841+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -749,7 +749,7 @@
       "id": "I_kwDOIvmHss5fj1KR",
       "title": "Review Registration Policy",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/19",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -761,8 +761,8 @@
       ],
       "body": "Discussion on the functionality of the registration policy, as defined in the architecture.",
       "createdAt": "2023-02-28T14:55:21Z",
-      "updatedAt": "2023-11-28T15:52:19Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-05T17:24:43Z",
+      "closedAt": "2023-12-05T17:24:43Z",
       "comments": [
         {
           "author": "raylutz",
@@ -1587,7 +1587,7 @@
       "id": "I_kwDOIvmHss5gcInY",
       "title": "Clarification: What options exist for registration policies that don't get published on the ledger?",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/45",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -1599,8 +1599,8 @@
       ],
       "body": "              Maybe it would be better if the information owner is expected to apply privacy protections before contributing a Statement?\r\n\r\n_Originally posted by @nedmsmith in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/16#discussion_r1123624264_\r\n            ",
       "createdAt": "2023-03-09T20:59:51Z",
-      "updatedAt": "2023-11-28T15:58:25Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-05T15:49:10Z",
+      "closedAt": "2023-12-05T15:49:09Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -1629,6 +1629,13 @@
           "body": "At 118, we've decided a registration policy will exist as a Feed, implemented through the `CWT_Claims subject`, however we have not yet documented that discussion. ",
           "createdAt": "2023-11-28T15:58:17Z",
           "updatedAt": "2023-11-28T15:58:17Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as all registration policies must be referenced by the receipt. See: [Mandatory references to policy feeds in receipts #136](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/136) for remaining actions",
+          "createdAt": "2023-12-05T15:49:09Z",
+          "updatedAt": "2023-12-05T15:49:09Z"
         }
       ]
     },
@@ -1866,15 +1873,15 @@
       "id": "I_kwDOIvmHss5h0XKR",
       "title": "using media types for errors",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/62",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "`application/problem+json` vs `application/json`\r\n\r\nhttps://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/60#discussion_r1148486103\r\n\r\nWhy?\r\n\r\nAre there any references for this design choice I can review?",
       "createdAt": "2023-03-26T22:20:37Z",
-      "updatedAt": "2023-10-23T23:50:06Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-05T15:38:53Z",
+      "closedAt": "2023-12-05T15:38:52Z",
       "comments": [
         {
           "author": "pdxjohnny",
@@ -1889,6 +1896,13 @@
           "body": "Should this move to [SCRAPI](https://github.com/ietf-scitt/draft-birkholz-scitt-scrapi/)",
           "createdAt": "2023-10-23T23:49:42Z",
           "updatedAt": "2023-10-23T23:49:42Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing, with a link to the copied issue in SCRAPI: [using media types for errors #4](https://github.com/ietf-scitt/draft-birkholz-scitt-scrapi/issues/4)",
+          "createdAt": "2023-12-05T15:38:52Z",
+          "updatedAt": "2023-12-05T15:38:52Z"
         }
       ]
     },
@@ -1928,7 +1942,7 @@
       "id": "I_kwDOIvmHss5iQqXQ",
       "title": "Issuer identity and key transparency",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/65",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -1937,8 +1951,8 @@
       ],
       "body": "Consider the case where an issuer of a signed statement has used a decentralized identifier method such as `did:web`.\r\n\r\nSimilar to OIDC, this issuer identity may rotate keys, and we want to know which keys were authoritative at the time of the evaluation of the registration policy.\r\n\r\nThis can be accomplished by having the transparency service leverage its own log to record a \"self notarized did resolution result\".\r\n\r\nHere is an example:\r\n\r\n#### Issuer Signed Statement\r\n\r\n{ iss: did:web:issuer.example, kid: key-0, ctyp: application/vnd.sbom+json } { ...sbom.json }\r\n\r\n#### Notarized Issuer Decentralized Identity Document\r\n\r\n{ iss: did:web:transparency.example, kid: key-1, ctyp: ***application/did+json*** } { ...did.json  }\r\n\r\nexample did document:\r\n\r\n```json\r\n{\r\n  \"@context\": [\r\n    \"https://www.w3.org/ns/did/v1\",\r\n    \"https://w3id.org/security/suites/jws-2020/v1\"\r\n  ],\r\n  \"id\": \"did:web:issuer.example\",\r\n  \"verificationMethod\": [\r\n    {\r\n      \"id\": \"#assertion-key\",\r\n      \"type\": \"JsonWebKey2020\",\r\n      \"controller\": \"did:web:issuer.example\",\r\n      \"publicKeyJwk\": {\r\n        \"kty\": \"EC\",\r\n        \"crv\": \"P-256\",\r\n        \"x\": \"SWlPDkBj-70Ys9Bm3sXw8rycgnfREDrYZIOYX-zegB0\",\r\n        \"y\": \"zYBAHi-xaSyrxy-QhnsrqrgzrLVO60NJUh3tcEwtp0g\"\r\n      }\r\n    },\r\n    {\r\n      \"id\": \"#authentication-key\",\r\n      \"type\": \"JsonWebKey2020\",\r\n      \"controller\": \"did:web:issuer.example\",\r\n      \"publicKeyJwk\": {\r\n        \"kid\": \"did:passkey:W29iamVjdCBBcnJheUJ1ZmZlcl0=\",\r\n        \"kty\": \"EC\",\r\n        \"crv\": \"P-256\",\r\n        \"x\": \"xNk9EZmfryirhVUVsD7lhX6QnRN4C8L-aWBePDODA3I\",\r\n        \"y\": \"LfRm9DlSNtJ0-7vy8UJsIqimAawi04h9gnz66srwxzM\",\r\n        \"key_ops\": [\r\n          \"verify\"\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  \"assertionMethod\": [\r\n    \"did:web:issuer.example#assertion-key\"\r\n  ],\r\n  \"authentication\": [\r\n    \"did:web:issuer.example#authentication-key\"\r\n  ]\r\n}\r\n```",
       "createdAt": "2023-03-31T01:36:26Z",
-      "updatedAt": "2023-09-06T00:12:03Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-05T16:29:06Z",
+      "closedAt": "2023-12-05T15:53:53Z",
       "comments": [
         {
           "author": "OR13",
@@ -1953,6 +1967,13 @@
           "body": "I like the general ideal. This is particularly useful with did:web; in fact we implemented something similar in our CCF-based SCITT prototype.\r\n\r\nAn interesting question is how to record this information. It could be in a separate  statement (shared by all statements signed with the resulting key) and/or as an additional registration-time header (possibly referring to a prior resolution statement if we have them). In our prototype, we used a separate enclave to fetch the DID document to sign and attest its correct resolution at the time of registration in a CCF transaction (but not in a custom statement). ",
           "createdAt": "2023-05-16T14:05:50Z",
           "updatedAt": "2023-05-16T14:05:50Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as we've copied to [SCRAPI](https://github.com/ietf-scitt/draft-birkholz-scitt-scrapi/issues/5)",
+          "createdAt": "2023-12-05T15:53:53Z",
+          "updatedAt": "2023-12-05T16:29:06Z"
         }
       ]
     },
@@ -2339,15 +2360,15 @@
       "id": "I_kwDOIvmHss5rlelm",
       "title": "Document key discovery for OIDC",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/87",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "@Sakurann mentioned we should reference more, and repeat or \"redefine\" less.... I agree.\r\n\r\nWe can possibly refer to this: \r\n\r\n- https://openid.net/specs/openid-connect-userinfo-vc-1_0.html#name-userinfo-vc-verification",
       "createdAt": "2023-07-14T14:32:30Z",
-      "updatedAt": "2023-11-04T09:57:52Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-05T16:34:36Z",
+      "closedAt": "2023-12-05T16:07:36Z",
       "comments": [
         {
           "author": "pdxjohnny",
@@ -2355,6 +2376,13 @@
           "body": "How do we see OIDC working with SCITT other than for auth? I'm having trouble understanding how we could use a token as the issuer of a claim. It seems like that would immediately leak the token upon insertion to the log.\r\n\r\nEdit:\r\n\r\n```console\r\n$ scitt-emulator client create-claim --issuer did:web:token.actions.githubusercontent.com --content-type application/json --payload '{\"sun\": \"yellow\"}' --out claim.cose\r\n```",
           "createdAt": "2023-09-12T16:23:21Z",
           "updatedAt": "2023-11-04T09:57:52Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Moved to https://github.com/ietf-scitt/draft-birkholz-scitt-scrapi/issues/6 in SCRAPI",
+          "createdAt": "2023-12-05T16:07:09Z",
+          "updatedAt": "2023-12-05T16:34:36Z"
         }
       ]
     },
@@ -2864,15 +2892,15 @@
       "id": "I_kwDOIvmHss50hYBT",
       "title": "Add non-equivocation to terminology",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/116",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "aj-stein-nist",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Define the term non-equivocation formally as it relates to this architecture document, per https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/107#discussion_r1367393803.\r\n            ",
       "createdAt": "2023-10-20T19:26:50Z",
-      "updatedAt": "2023-11-27T21:16:23Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-05T15:08:43Z",
+      "closedAt": "2023-12-05T15:08:43Z",
       "comments": []
     },
     {
@@ -3015,6 +3043,62 @@
           "updatedAt": "2023-11-16T02:42:40Z"
         }
       ]
+    },
+    {
+      "number": 136,
+      "id": "I_kwDOIvmHss54yZmy",
+      "title": "Mandatory references to policy feeds in receipts",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/136",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Should the policy be committed to in the registration of the signed statement?\r\n\r\nShould the policy be committed to in the issuance of the receipt?\r\n\r\nDoes the commitment need to be in the ledger, or simply in the protected header?",
+      "createdAt": "2023-12-05T15:28:26Z",
+      "updatedAt": "2023-12-05T15:46:56Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "related issue: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/66",
+          "createdAt": "2023-12-05T15:46:54Z",
+          "updatedAt": "2023-12-05T15:46:54Z"
+        }
+      ]
+    },
+    {
+      "number": 137,
+      "id": "I_kwDOIvmHss54ymRb",
+      "title": "Issuer identity and key transparency",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/137",
+      "state": "CLOSED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Copied to the wrong repo \ud83d\ude1e ",
+      "createdAt": "2023-12-05T15:53:39Z",
+      "updatedAt": "2023-12-05T16:16:12Z",
+      "closedAt": "2023-12-05T16:16:12Z",
+      "comments": []
+    },
+    {
+      "number": 138,
+      "id": "I_kwDOIvmHss54ytNn",
+      "title": " Document key discovery for OIDC",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/138",
+      "state": "CLOSED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Copied to the wrong repo \ud83d\ude1e ",
+      "createdAt": "2023-12-05T16:06:40Z",
+      "updatedAt": "2023-12-05T16:35:06Z",
+      "closedAt": "2023-12-05T16:35:06Z",
+      "comments": []
     }
   ],
   "pulls": [
@@ -14385,24 +14469,26 @@
       "id": "PR_kwDOIvmHss5gE06b",
       "title": "Define Non-equivocation",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/131",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aj-stein-nist",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Define equivocation and non-equivocation and cite the article that coined the term in analyzing Lamport. Closes ietf-wg-scitt/draft-ietf-scitt-architecture#116.",
       "createdAt": "2023-11-21T23:10:32Z",
-      "updatedAt": "2023-12-01T22:10:41Z",
+      "updatedAt": "2023-12-05T15:08:42Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "9950b34ce4e4a02c5fc80daa9262a6733fdfd153",
       "headRepository": "aj-stein-nist/draft-ietf-scitt-architecture",
       "headRefName": "116-non-equivocation",
       "headRefOid": "af4e3b8093a4d7b063eceb074edf21ed96d11781",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2023-12-05T15:08:42Z",
+      "mergedAt": "2023-12-05T15:08:42Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "cd61a58ed50603fc6cf74a00dbd029762ab6764d"
+      },
       "comments": [
         {
           "author": "robinbryce",
@@ -14730,6 +14816,19 @@
           "createdAt": "2023-12-01T21:21:51Z",
           "updatedAt": "2023-12-01T21:21:51Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5pOPur",
+          "commit": {
+            "abbreviatedOid": "af4e3b8"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-12-05T15:07:15Z",
+          "updatedAt": "2023-12-05T15:07:15Z",
+          "comments": []
         }
       ]
     },
@@ -14869,13 +14968,13 @@
       "labels": [],
       "body": "Per the docs from the template repo we use, we need to enable this explicitly by adding the proper npm configuration and it will just work.\r\n\r\nhttps://github.com/martinthomson/i-d-template/blob/c448265276fd30235326955c459fccf28f7bc364/doc/TOOLS.md?plain=1#L72-L75",
       "createdAt": "2023-12-01T16:31:37Z",
-      "updatedAt": "2023-12-01T16:35:34Z",
+      "updatedAt": "2023-12-06T14:59:04Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "feat/13-add-sequence-diagram",
       "baseRefOid": "02be59db1a2e975dae6f5da81bbac9acfb21dc91",
       "headRepository": "aj-stein-nist/draft-ietf-scitt-architecture",
       "headRefName": "13-support-markdown-diagrams",
-      "headRefOid": "70236b90e43d02453fd089d3f2c30bec3efccfed",
+      "headRefOid": "8f0fcdc8644910cadeaa740fbac5a2353f7e062f",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -14896,24 +14995,26 @@
       "id": "PR_kwDOIvmHss5g8j3R",
       "title": "Remove Reg_Info",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/135",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Based on discussions at IETF and subsequent editors meetings, this proposal removes `reg_info` as not required by all Transparency Service implementations. \r\nTransparency Services MAY implement optional information using `CWT_Claims` and the [\"private use\" implementation keys](https://www.iana.org/assignments/cwt/cwt.xhtml#claims-registry) available\r\n\r\nFixes #19, #103, #127",
       "createdAt": "2023-12-02T00:37:37Z",
-      "updatedAt": "2023-12-02T15:19:32Z",
+      "updatedAt": "2023-12-05T17:24:42Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
-      "baseRefOid": "9950b34ce4e4a02c5fc80daa9262a6733fdfd153",
+      "baseRefOid": "cd61a58ed50603fc6cf74a00dbd029762ab6764d",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/19-103-127",
-      "headRefOid": "8413f94d1675019fe40e3a1dcb1b9c7ac4bb3d07",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "4301c8d1399189ef64e58f7a8124dbf1b7d7e84b",
+      "closedAt": "2023-12-05T17:24:42Z",
+      "mergedAt": "2023-12-05T17:24:42Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "2e3d01fdde3c4ba9b9a3e27bbc8afd16756821e9"
+      },
       "comments": [],
       "reviews": [
         {
@@ -14990,9 +15091,9 @@
           "comments": [
             {
               "originalPosition": 83,
-              "body": "```suggestion\r\n- Transparency Service MAY include additional claims in the protected header of Receipts to indicate the policies evaluated during the registration of a Statement\r\n```\r\n\r\nI don't think we should force transparency services to disclose such information.",
+              "body": "```suggestion\r\n- Transparency Service MUST include additional claims in the protected header of Receipts to indicate the policies evaluated during the registration of a Statement\r\n```\r\n\r\nI don't think we should force transparency services to disclose such information.",
               "createdAt": "2023-12-02T15:18:45Z",
-              "updatedAt": "2023-12-02T15:22:04Z"
+              "updatedAt": "2023-12-05T15:24:38Z"
             }
           ]
         },
@@ -15010,11 +15111,152 @@
           "comments": [
             {
               "originalPosition": 83,
-              "body": "also with the CDDL removed, this cannot be a MUST.",
+              "body": "also with the CDDL removed, this cannot be a MUST, without some additional specification, which will need to be handled in a separate PR.\r\n\r\nTracked in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/136",
               "createdAt": "2023-12-02T15:19:32Z",
-              "updatedAt": "2023-12-02T15:19:32Z"
+              "updatedAt": "2023-12-05T15:28:39Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5pOeo5",
+          "commit": {
+            "abbreviatedOid": "b6ec5f8"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-12-05T15:29:25Z",
+          "updatedAt": "2023-12-05T15:29:25Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5pOetq",
+          "commit": {
+            "abbreviatedOid": "b6ec5f8"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-12-05T15:29:32Z",
+          "updatedAt": "2023-12-05T15:29:32Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5pOs5h",
+          "commit": {
+            "abbreviatedOid": "8413f94"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-12-05T15:53:50Z",
+          "updatedAt": "2023-12-05T15:53:51Z",
+          "comments": [
+            {
+              "originalPosition": 74,
+              "body": "resolving, outdated",
+              "createdAt": "2023-12-05T15:53:50Z",
+              "updatedAt": "2023-12-05T15:53:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5pPXqS",
+          "commit": {
+            "abbreviatedOid": "3d0c259"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "fix accidental reversal due to merge resolution",
+          "createdAt": "2023-12-05T16:50:58Z",
+          "updatedAt": "2023-12-05T16:52:23Z",
+          "comments": [
+            {
+              "originalPosition": 55,
+              "body": "```suggestion\r\n  15  => CWT_Claims      ; CBOR Web Token Claims,\r\n```",
+              "createdAt": "2023-12-05T16:50:58Z",
+              "updatedAt": "2023-12-05T16:52:23Z"
+            },
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\n  15  => CWT_Claims      ; CBOR Web Token Claims,\r\n```",
+              "createdAt": "2023-12-05T16:51:49Z",
+              "updatedAt": "2023-12-05T16:52:23Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 139,
+      "id": "PR_kwDOIvmHss5hM6sl",
+      "title": "Prepare for SCRAPI",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/139",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR removes implementation details from the architecture, many of which are specific to SCRAPI.",
+      "createdAt": "2023-12-05T16:34:38Z",
+      "updatedAt": "2023-12-05T18:34:18Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "cd61a58ed50603fc6cf74a00dbd029762ab6764d",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "scrapi-adoption-prep",
+      "headRefOid": "f89382c56071323c3ebb9e08770f9b61e64c8ce7",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Re the SCRAPI I-D reference, it does not appear to be in the IETF Datatracker system at all and noticed when it wasn't listed or clicked on a link to search by I-D name and it returned no results, @OR13. That is why I asked about this on the mailing list.\r\n\r\nhttps://datatracker.ietf.org/doc/search?name=draft-birkholz-scitt-scrapi&rfcs=on&activedrafts=on&olddrafts=on\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/AqHH6OUrc2Xzj81JI-fD4IUB91U/\r\n\r\nDon't we need to take care of that issue for the short-hand references to work at all? Can it not be added to the tracker in advance of being adopted by the WG? (It seems some are added and \"owned\" by authors and not associated with the target WG in advance in some or not all cases. Sorry, I am new here.\r\n\r\n**UPDATE:** I had encountered this problem before and I guess I misread this output from [the previous run](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/actions/runs/7104011455/job/19338031440). It seems whitespace is an issue but not dangling links. Disregard!\r\n\r\n```sh\r\n /github/workspace/.refcache/reference.I-D.draft-birkholz-scitt-scrapi.xml: fetching from https://datatracker.ietf.org/doc/bibxml3/draft-birkholz-scitt-scrapi.xml\r\n*** Can't get with persistent HTTP: Status code 404 while fetching https://datatracker.ietf.org/doc/bibxml3/draft-birkholz-scitt-scrapi.xml\r\n*** 404 Not Found while fetching https://datatracker.ietf.org/doc/bibxml3/draft-birkholz-scitt-scrapi.xml\r\n*** No such file or directory @ rb_sysopen - /github/workspace/.refcache/reference.I-D.draft-birkholz-scitt-scrapi.xml for /github/workspace/.refcache/reference.I-D.draft-birkholz-scitt-scrapi.xml\r\n```",
+          "createdAt": "2023-12-05T17:15:24Z",
+          "updatedAt": "2023-12-05T17:21:25Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@aj-stein-nist hmm, you are right... seems scrapi is not published well enough to be referenced... I will have to fix that, but apparently its not blocking the PR... which is weird.\r\n\r\n- https://datatracker.ietf.org/doc/search?name=draft-birkholz-scitt-scrapi&rfcs=on&activedrafts=on&olddrafts=on",
+          "createdAt": "2023-12-05T17:22:15Z",
+          "updatedAt": "2023-12-05T17:22:55Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> apparently its not blocking the PR... which is weird.\r\n\r\nI too thought it was weird, I'll look into the i-d template action and consider if there is a bug to report or enhancement to file.\r\n",
+          "createdAt": "2023-12-05T17:33:07Z",
+          "updatedAt": "2023-12-05T17:33:07Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "PR against SCRAPI which can take some of these changes, but which I am intentionally leaving light.\r\n\r\nhttps://github.com/ietf-scitt/draft-birkholz-scitt-scrapi/pull/7",
+          "createdAt": "2023-12-05T18:34:17Z",
+          "updatedAt": "2023-12-05T18:34:17Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5pPqEn",
+          "commit": {
+            "abbreviatedOid": "2cd602b"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-12-05T17:22:02Z",
+          "updatedAt": "2023-12-05T17:22:02Z",
+          "comments": []
         }
       ]
     }
