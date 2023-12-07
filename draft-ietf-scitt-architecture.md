@@ -15,6 +15,11 @@ submissiontype: IETF
 kramdown_options:
   auto_id_prefix: sec-
 
+venue:
+  group: SCITT
+  mail: scitt@ietf.org
+  github: ietf-wg-scitt/draft-ietf-scitt-architecture
+
 author:
 - name: Henk Birkholz
   org: Fraunhofer SIT
@@ -74,12 +79,9 @@ normative:
   RFC9360:
   IANA.params:
   IANA.cose:
-  COSWID:
-    target: https://www.rfc-editor.org/rfc/rfc9393
-    title:  COSWID Specification
-  CWT_CLAIM_COSE:
-    target: https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/
-    title: CBOR Web Token (CWT) Claims in COSE Headers
+  RFC9393: COSWID
+  I-D.ietf-cose-cwt-claims-in-headers: CWT-CLAIMS-COSE  
+
 informative:
   I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
   PBFT: DOI.10.1145/571637.571640
@@ -93,7 +95,7 @@ informative:
     title: CBOR Web Token (CWT) Claims
   CycloneDX:
     target: https://cyclonedx.org/specification/overview/
-    title:  CycloneDX
+    title: CycloneDX
   DID-CORE:
     target: https://www.w3.org/TR/did-core/
     title: Decentralized Identifiers (DIDs) v1.0
@@ -105,24 +107,20 @@ informative:
     title: did:web Decentralized Identifiers Method Spec
   in-toto:
     target: https://in-toto.io/
-    title:  in-toto
+    title: in-toto
   SLSA:
     target: https://slsa.dev/
-    title:  SLSA
+    title: SLSA
   SPDX-JSON:
     target: https://spdx.dev/use/specifications/
-    title:  SPDX Specification
+    title: SPDX Specification
   SPDX-CBOR:
     target: https://spdx.dev/use/specifications/
-    title:  SPDX Specification
+    title: SPDX Specification
   SWID:
     target: https://csrc.nist.gov/Projects/Software-Identification-SWID/guidelines
-    title:  SWID Specification
+    title: SWID Specification
   EQUIVOCATION: DOI.10.1145/1323293.1294280
-
-venue:
-  mail: scitt@ietf.org
-  github: ietf-wg-scitt/draft-ietf-scitt-architecture
 
 --- abstract
 
@@ -755,7 +753,7 @@ All Signed Statements MUST include the following protected headers:
 - **algorithm** (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer.<br>
   Example: `-35` is the registered algorithm identifier for ECDSA with SHA-384, see [COSE Algorithms Registry](#IANA.cose).
 - **Key ID** (label: `4`): Key ID, as a bytestring
-- **CWT_Claims** (label: `15` pending {{CWT_CLAIM_COSE}}): A CWT representing the Issuer (`iss`) making the statement, and the Subject (`sub`) to correlate a collection of statements about an Artifact.
+- **CWT_Claims** (label: `15` pending {{CWT_CLAIMS_COSE}}): A CWT representing the Issuer (`iss`) making the statement, and the Subject (`sub`) to correlate a collection of statements about an Artifact.
   Additional {{CWT_CLAIMS}} MAY be used, while `iss` and `sub` MUST be provided
   - **iss** (CWT_Claim Key `1`): The Identifier of the signer, as a string<br>
     Example: `did:web:example.com`
