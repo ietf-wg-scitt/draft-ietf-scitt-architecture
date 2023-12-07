@@ -80,7 +80,7 @@ normative:
   IANA.params:
   IANA.cose:
   RFC9393: COSWID
-  I-D.ietf-cose-cwt-claims-in-headers: CWT-CLAIMS-COSE  
+  I-D.ietf-cose-cwt-claims-in-headers: CWT-CLAIMS-COSE
 
 informative:
   I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
