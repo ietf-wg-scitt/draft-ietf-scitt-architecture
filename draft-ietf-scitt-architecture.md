@@ -1418,3 +1418,4 @@ Registry {{IANA.params}}, following the template in {{RFC3553}}:
 sequenceDiagram
     participant Issuer
 ~~~
+{: artwork-svg-options="-p puppeteer-config.json"}
