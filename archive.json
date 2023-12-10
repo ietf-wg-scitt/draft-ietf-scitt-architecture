@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-07T00:36:02.432841+00:00",
+  "timestamp": "2023-12-10T00:39:06.322858+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -3025,7 +3025,7 @@
       "labels": [],
       "body": "It would be nice to show that a single signed statement can have multiple receipts.... and elaborate on what \"transparent statement\" means when multiple receipts are present.\r\n\r\n```mermaid\r\nflowchart\r\n    transparency_service_1(Transparency Service 1)\r\n    transparency_service_2(Transparency Service 2)\r\n    transparent_statement(transparent statement) \r\n\r\n    signed_statement[signed statement]\r\n\r\n    signed_statement --> transparency_service_1\r\n    signed_statement --> transparency_service_2\r\n    transparency_service_1 --> receipt_1{{receipt 1}}\r\n    transparency_service_2 --> receipt_2{{receipt 2}}\r\n    signed_statement -.-> transparent_statement\r\n    receipt_1 --> transparent_statement\r\n    receipt_2 --> transparent_statement\r\n```\r\n\r\nIt would be nice to show that a single transparent statements can be split out into a single signed statement and at least 1 receipt.\r\n\r\n```mermaid\r\nflowchart\r\n    transparent_statement(transparent statement) \r\n    transparent_statement --> signed_statement(signed statement)\r\n    transparent_statement --> receipt_1{{receipt 1}}\r\n    transparent_statement --> receipt_2{{receipt 2}}\r\n    transparent_statement --> receipt_3{{receipt 3}}\r\n```",
       "createdAt": "2023-11-14T15:44:56Z",
-      "updatedAt": "2023-11-16T02:42:40Z",
+      "updatedAt": "2023-12-07T02:23:43Z",
       "closedAt": null,
       "comments": [
         {
@@ -3041,6 +3041,13 @@
           "body": "But we have to turn it into a positive case (multiple receipts confirming the same artifacts) not the negative (not so happy path) case, yes? This is is easy, I can add.\r\n\r\n> Here is a markdown snippet that could be modified to clarify multiple receipts:\r\n> ...\r\n",
           "createdAt": "2023-11-16T02:42:40Z",
           "updatedAt": "2023-11-16T02:42:40Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "This still need to be done (with `aasvg`)? I will pick this up by end of week or soon thereafter when I am back from leave.",
+          "createdAt": "2023-12-07T02:23:42Z",
+          "updatedAt": "2023-12-07T02:23:42Z"
         }
       ]
     },
@@ -14961,21 +14968,21 @@
       "id": "PR_kwDOIvmHss5g6sYs",
       "title": "Mermaid Diagram Support",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/134",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "aj-stein-nist",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Per the docs from the template repo we use, we need to enable this explicitly by adding the proper npm configuration and it will just work.\r\n\r\nhttps://github.com/martinthomson/i-d-template/blob/c448265276fd30235326955c459fccf28f7bc364/doc/TOOLS.md?plain=1#L72-L75",
       "createdAt": "2023-12-01T16:31:37Z",
-      "updatedAt": "2023-12-06T14:59:04Z",
+      "updatedAt": "2023-12-07T02:26:45Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "feat/13-add-sequence-diagram",
       "baseRefOid": "02be59db1a2e975dae6f5da81bbac9acfb21dc91",
       "headRepository": "aj-stein-nist/draft-ietf-scitt-architecture",
       "headRefName": "13-support-markdown-diagrams",
-      "headRefOid": "8f0fcdc8644910cadeaa740fbac5a2353f7e062f",
-      "closedAt": null,
+      "headRefOid": "fcbcad059406cf49badd4fea1604f2dc04849f32",
+      "closedAt": "2023-12-07T02:22:48Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -14986,6 +14993,27 @@
           "body": "Ugh, you need puppeteer for this? It will be enjoyable for all @OR13 (GitHub CI will be ok, others will need to configure Chrome for local draft building, I forgot this fact).\r\n\r\nhttps://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/actions/runs/7062624270/job/19226846223?pr=134",
           "createdAt": "2023-12-01T16:35:33Z",
           "updatedAt": "2023-12-01T16:35:33Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I presume @OR13 stopped caring long ago, but if I figure a way to clean up the actual SVG output this might be usable and have general appeal amongst IETF WG authors, but the result has been a nice nothing burger in the end.\r\n\r\nI got it to work, then this from [`svgcheck`](https://github.com/ietf-tools/svgcheck) in [GHA CI run](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/actions/runs/7122905900/job/19394663503#step:6:73):\r\n\r\n```sh\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'max-width' removed\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'background-color' removed\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'text-anchor' promoted to attribute\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'font-size' promoted to attribute\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'font-weight' promoted to attribute\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'text-anchor' promoted to attribute\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'font-size' promoted to attribute\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'font-weight' promoted to attribute\r\n*** [svgcheck:] ERROR: File does not conform to SVG requirements\r\nlib/trace.sh draft-ietf-scitt-architecture.txt -s xml2rfc-txt xml2rfc -q --rfc-base-url https://www.rfc-editor.org/rfc/ --id-base-url https://datatracker.ietf.org/doc/html/ --cache=/github/workspace/.refcache --text --no-pagination draft-ietf-scitt-architecture.xml -o draft-ietf-scitt-architecture.txt\r\ndraft-ietf-scitt-architecture.xml(2016): Error: Invalid attribute font-weight for element text, at /rfc/back/section[1]/artset/artwork[1]/*/*[1]/*[2]\r\ndraft-ietf-scitt-architecture.xml(2024): Error: Invalid attribute font-weight for element text, at /rfc/back/section[1]/artset/artwork[1]/*/*[2]/*[2]/*[2]\r\n/github/workspace/draft-ietf-scitt-architecture.xml(10): Error: Invalid document before running preptool.\r\nUnable to complete processing draft-ietf-scitt-architecture.xml\r\nmake[1]: *** [lib/main.mk:116: draft-ietf-scitt-architecture.txt] Error 1\r\nlib/trace.sh draft-ietf-scitt-architecture.html -s xml2rfc-html xml2rfc -q --rfc-base-url https://www.rfc-editor.org/rfc/ --id-base-url https://datatracker.ietf.org/doc/html/ --cache=/github/workspace/.refcache --html --css=lib/v3.css --metadata-js-url=/dev/null draft-ietf-scitt-architecture.xml -o draft-ietf-scitt-architecture.html\r\ndraft-ietf-scitt-architecture.xml(2016): Error: Invalid attribute font-weight for element text, at /rfc/back/section[1]/artset/artwork[1]/*/*[1]/*[2]\r\ndraft-ietf-scitt-architecture.xml(2024): Error: Invalid attribute font-weight for element text, at /rfc/back/section[1]/artset/artwork[1]/*/*[2]/*[2]/*[2]\r\n/github/workspace/draft-ietf-scitt-architecture.xml(10): Error: Invalid document before running preptool.\r\nUnable to complete processing draft-ietf-scitt-architecture.xml\r\nmake[1]: *** [lib/main.mk:111: draft-ietf-scitt-architecture.html] Error 1\r\nmake[1]: Target 'latest' not remade because of errors.\r\ndraft-ietf-scitt-architecture.md has no newline on the last line\r\n*** Run 'make fix-lint' to automatically fix some errors\r\nmake[1]: *** [lib/main.mk:199: lint-whitespace] Error 1\r\nmake[1]: Target 'lint' not remade because of errors.\r\nrm draft-ietf-scitt-architecture.xml\r\nmake: *** [lib/main.mk:16: all] Error 2\r\n```\r\n\r\nEt fin. \ud83e\udd26 ",
+          "createdAt": "2023-12-07T02:22:48Z",
+          "updatedAt": "2023-12-07T02:22:48Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "It turns out it's easier to learn aasvg, than it is to get mermaid to work ",
+          "createdAt": "2023-12-07T02:24:17Z",
+          "updatedAt": "2023-12-07T02:24:17Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> It turns out it's easier to learn aasvg, than it is to get mermaid to work\r\n\r\nThe main challenge is we will need to \"transmogrify\" (to be a smart alec) the resulting SVG, but I too see the appeal. I am closing here but as a side project for when core project work is hard kind of routine I will look into this, but it is not in scope for upstream `mmdc` fixing or a filter script. I have been meaning to learn more about our favorite vector graphics format, and I know people into it.\r\n\r\nBut again, not in scope for convo here. More to follow and I will reach out if/when I make progress.",
+          "createdAt": "2023-12-07T02:26:44Z",
+          "updatedAt": "2023-12-07T02:26:44Z"
         }
       ],
       "reviews": []
@@ -15257,6 +15285,66 @@
           "createdAt": "2023-12-05T17:22:02Z",
           "updatedAt": "2023-12-05T17:22:02Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 140,
+      "id": "PR_kwDOIvmHss5hY_7A",
+      "title": "Some Header Re-Shuffeling",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/140",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "simplified a few references & added a WG, some reordering",
+      "createdAt": "2023-12-07T08:31:13Z",
+      "updatedAt": "2023-12-07T14:56:27Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "1720d0b8ce4a10658ba2361712c0e3089c2dcb4b",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "henks-editorials-1",
+      "headRefOid": "7329b259f7672237f67f959ef2f8758870e0fd86",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5peqwk",
+          "commit": {
+            "abbreviatedOid": "7329b25"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2023-12-07T09:33:02Z",
+          "updatedAt": "2023-12-07T09:33:02Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5phW5p",
+          "commit": {
+            "abbreviatedOid": "7329b25"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "A small fix and then it will be ready to \ud83d\udea2 it.",
+          "createdAt": "2023-12-07T14:55:00Z",
+          "updatedAt": "2023-12-07T14:56:27Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "Per the [`kramdown-rfc` docs](https://github.com/cabo/kramdown-rfc/blob/367553a4f2994ca167e8e659ffb92e74febe76a0/README.md#References) and local testing, you need to flip the key and value.\r\n\r\n```suggestion\r\n  COSWID: RFC9393\r\n  CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers\r\n```\r\n\r\nTested this locally in the same container as GHA by using this branch, running `make clean`, then `make`. This suggestion will remove [the relevant build failures](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/actions/runs/7125650198/job/19401978042#step:6:35) and allow it to publish once reviewed and merged by others.",
+              "createdAt": "2023-12-07T14:55:00Z",
+              "updatedAt": "2023-12-07T14:57:20Z"
+            }
+          ]
         }
       ]
     }
