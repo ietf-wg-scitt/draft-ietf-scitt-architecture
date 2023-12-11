@@ -67,12 +67,8 @@ normative:
   RFC8949: CBOR
 #  RFC9053: COSE-ALGS
 #  RFC9054: COSE-HASH
-  RFC9457:
-  RFC9110:
   RFC6838:
-  RFC3553:
   RFC9360:
-  IANA.params:
   IANA.cose:
   COSWID:
     target: https://www.rfc-editor.org/rfc/rfc9393
@@ -751,7 +747,7 @@ Registration_Info = {
   * tstr => any
 }
 
-; Statement-specific information about statment registration
+; Statement-specific information about statement registration
 ; These are authenticated through the inclusion proof of the receipt
 Statement_Registration_Info = {
     &(statement-unique-id: 0) => tstr
@@ -1102,25 +1098,24 @@ in [@RFC6838].
 
 To indicate that the content is an scitt configuration represented as JSON:
 
-* Type name: application
-* Subtype name: scitt-configuration+json
-* Required parameters: n/a
-* Optional parameters: n/a
-* Encoding considerations: binary; application/scitt-configuration+json values are represented as a JSON Object; UTF-8 encoding SHOULD be employed for the JSON object.
-* Security considerations: See the Security Considerations section of [[ this specification ]].
-* Interoperability considerations: n/a
-* Published specification: [[ this specification ]]
-* Applications that use this media type: TBD
-* Fragment identifier considerations: n/a
-* Additional information:
-   * Magic number(s): n/a
-   * File extension(s): n/a
-   * Macintosh file type code(s): n/a
-* Person & email address to contact for further information: TBD
-* Intended usage: COMMON
-* Restrictions on usage: none
-* Author: TBD
-* Change Controller: IETF
-* Provisional registration?  No
-
+- Type name: application
+- Subtype name: scitt-configuration+json
+- Required parameters: n/a
+- Optional parameters: n/a
+- Encoding considerations: binary; application/scitt-configuration+json values are represented as a JSON Object; UTF-8 encoding SHOULD be employed for the JSON object.
+- Security considerations: See the Security Considerations section of [[ this specification ]].
+- Interoperability considerations: n/a
+- Published specification: [[ this specification ]]
+- Applications that use this media type: TBD
+- Fragment identifier considerations: n/a
+- Additional information:
+  - Magic number(s): n/a
+  - File extension(s): n/a
+  - Macintosh file type code(s): n/a
+- Person & email address to contact for further information: TBD
+- Intended usage: COMMON
+- Restrictions on usage: none
+- Author: TBD
+- Change Controller: IETF
+- Provisional registration?  No
 --- back
