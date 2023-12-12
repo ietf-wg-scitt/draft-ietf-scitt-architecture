@@ -70,19 +70,17 @@ normative:
   RFC8610: CDDL
   RFC9052: COSE
   RFC8949: CBOR
+# TODO: scrapi
 #  RFC9053: COSE-ALGS
 #  RFC9054: COSE-HASH
-  RFC9457:
-  RFC9110:
   RFC6838:
-  RFC3553:
   RFC9360:
-  IANA.params:
   IANA.cose:
   COSWID: RFC9393
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
 
 informative:
+
   I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
   PBFT: DOI.10.1145/571637.571640
   MERKLE: DOI.10.1007/3-540-48184-2_32
@@ -96,15 +94,6 @@ informative:
   CycloneDX:
     target: https://cyclonedx.org/specification/overview/
     title: CycloneDX
-  DID-CORE:
-    target: https://www.w3.org/TR/did-core/
-    title: Decentralized Identifiers (DIDs) v1.0
-    author:
-      org: W3C
-    date: 2022-07-22
-  DID-WEB:
-    target: https://w3c-ccg.github.io/did-method-web/
-    title: did:web Decentralized Identifiers Method Spec
   in-toto:
     target: https://in-toto.io/
     title: in-toto
@@ -345,18 +334,18 @@ Failure to produce this proof can indicate that the Transparency Services operat
                 |  Artifact  |
                  '----+-----'
                       v
-                 .----+----.  .----------.  Decentralized Identifier
+                 .----+----.  .----------.  Identifiers
 Issuer      --> | Statement ||  Envelope  +<------------------.
                  '----+----'  '-----+----'                     |
                       |             |           +--------------+---+
-                       '----. .----'            | DID Key Manifest |
-                             |                  |                  |
+                       '----. .----'            | Identity         |
+                             |                  | Documents        |
                              v                  +-------+------+---+
                         .----+----.                     |      |
                        |  Signed   |    COSE Signing    |      |
-                       | Statement +<-------------------'      |
-                        '----+----'                            |
-                             |               +--------------+  |
+                       | Statement +<-------------------+      |
+                        '----+----'                     |      |
+                             |               +----------+---+  |
                           .-' '------------->+ Transparency |  |
                          |   .-------.       |              |  |
 Transparency -->         |  | Receipt +<-----+   Service    |  |
@@ -393,21 +382,19 @@ This section describes at a high level, the three main roles and associated proc
 
 ### Issuer Identity
 
-Before an Issuer is able to produce Signed Statements, it must first create its [decentralized identifier](#DID-CORE) (also known as a DID).
-A DID can be *resolved* into a *key manifest* (a list of public keys indexed by a *key identifier*) using many different DID methods.
+Before an Issuer is able to produce Signed Statements, it must first create an identifier and obtain an identity document, that is acceptable to the Transparency Service.
+Transparency Services MAY support many different identity document formats.
 
-Issuers MAY choose the DID method they prefer, but with no guarantee that all Transparency Services will register their Signed Statements, as each Transparency Service may implement different Registration Policies.
-To facilitate interoperability, all Transparency Service implementations MUST support the `did:web` method {{DID-WEB}}.
-For example, if the Issuer publishes its manifest at `https://sample.issuer/user/alice/did.json`, the DID of the Issuer is `did:web:sample.issuer:user:alice`.
+Issuers SHOULD use consistent identifiers for all their Statements about Artifacts, to simplify authorization by Verifiers and auditing.
+If an Issuer uses multiple identifiers, they MUST ensure that statements signed under each identifier are consistent.
 
-Issuers SHOULD use consistent decentralized identifiers for all their Statements about Artifacts, to simplify authorization by Verifiers and auditing.
-If an Issuer uses multiple DIDs (for instance, their clients support different resolution methods), they MUST ensure that statements signed under each DID are consistent.
+Issuers MAY rotate verification keys at any time, or at a consistent cryptoperiod.
+Issuers MAY migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting signed statements that match its policies.
 
-Issuers MAY update their DID Document at any time, for instance to refresh their signing keys or algorithms.
-Issuers SHOULD NOT remove or change any of their previous keys unless they intend to revoke all Signed Statements that are registered as Transparent Statements issued with those keys.
+The Issuer's identifier is required and appears in the `1 iss` claim of the `15 CWT_Claims` protected header of the Signed Statements' Envelope.
+The version of the key used to sign the Signed Statement is written in the `4 kid` protected header.
 
-The Issuer's DID is required and appears in the `1 iss` claim of the `15 CWT_Claims` protected header of the Signed Statements' Envelope.
-The version of the key from the DID Document used to sign the Signed Statement is written in the `4 kid` protected header.
+Key discovery protocols are out of scope for this document.
 
 ~~~ cddl
 CWT_Claims = {
@@ -421,151 +408,6 @@ Protected_Header = {
   4   => bstr            ; Key ID (kid),
   15  => CWT_Claims      ; CBOR Web Token Claims,
   3   => tstr            ; payload type
-}
-~~~
-
-`4 kid` MUST either be an absolute URL, or a relative URL.
-Relative URL MUST be relative to an `iss` value.
-
-Resolving `kid` MUST return an identity document of a registered content type (a set of public keys).
-In the case of `kid` being an absolute DID URL, the identity document is called a DID Document, and is expected ot have content type `application/did+json`.
-
-To dereference a DID URL, it first MUST be resolved.
-After that the fragment is processed according to the media type.
-
-For example, when resolving `did:example:123#key-42`, first, the identity document for `did:example:123` is resolved as content type `application/did+json`, next, the fragment `#key-42` is dereferenced to a verification method that contains a `publicKeyJwk` property.
-
-The content type of `publicKeyJwk` is expected to be `application/jwk+json`.
-
-The details of both `DID resolution` and `DID dereferencing` are out of scope for this document.
-
-The `iss` or `kid`, might not be DID URLs, however the following interfaces MUST be satisfied in order to ensure Issuer identity documents, and associated keys are discoverable in a consistent manner.
-
-#### Resolving Identity Documents
-
-The value of `id` might be found the `iss` or `sub` claims if they are present in the protected header or payload.
-
-~~~sh
-
-resolve = (id: string, accept: \
-  content_type = 'application/did+json') =>
-  idDocument (of content type application/did+json)
-~~~
-
-For example:
-
-~~~sh
-
-did:example:123
-~~~
-
-Might resolve to:
-
-~~~json
-
-{
-  "id": "did:example:123",
-  "verificationMethod": [{
-    "id": "#key-42",
-    "type": "JsonWebkey",
-    "controller": "did:example:123",
-    "publicKeyJwk": {
-      "kty": "EC",
-      "crv": "P-384",
-      "alg": "ES384",
-      "x": "LCeAt2sW36j94wuFP0gN...Ler3cKFBCaAHY1svmbPV69bP3RH",
-      "y": "zz2SkcOGYM6PbYlw19tc...rd8QWykAprstPdxx4U0uScvDcYd"
-    }
-  }]
-}
-~~~
-
-**Editor note**: we might wish to eliminate this intermediate identity document content type, by treating it as an alterative encoding of `application/jwk-set+json` or `application/cose-key-set`.
-
-However, there is no media type fragment processing directive that would enable dereferencing the known key set content types, listed above.
-
-##### Comment on OIDC
-
-For well known token types, such as `id_token` or `access_token`.
-
-`iss` MUST be a URL, and it MUST have keys discoverable in the following way:
-
-`iss` can be used to build a `.well-known` URL to discovery the Issuer's configuration.
-
-For example, `iss` `contoso.example` will have the following open id connect configuration URL.
-
-`https://contoso.example/.well-known/openid-configuration`.
-
-This URL will resolve to a JSON document which contains the property:
-
-`jwks_uri`, for example `https://contoso.example/.well-known/jwks.json`
-
-This URL will resolve to a JSON document of content type `application/jwk-set+json`, which will contain specific keys... for example:
-
-~~~json
-{
-  "keys": [
-    {
-      "alg": "RS256",
-      "kty": "RSA",
-      "use": "sig",
-      "n": "wW9TkSbcn5FV3iUJ-812sqTvwT...YzXrnMZ7WgbMPXmHU8i4z04zw",
-      "e": "AQAB",
-      "kid": "NTBGNTJEMDc3RUE3RUVEOTM4NDcEFDNzEyOTY5NDNGOUQ4OEU5OA",
-      "x5t": "NTBGNTJEMDc3RUE3RUVEOTM4NDcEFDNzEyOTY5NDNGOUQ4OEU5OA",
-      "x5c": [
-        "MIIDCzCCAfOgAwIBAgIPng0XRWwsd...f5GOGwJS+u/nSYvqCFt57+g3R+"
-      ]
-    },
-    {
-      "alg": "RS256",
-      "kty": "RSA",
-      "use": "sig",
-      "n": "ylgVZbNR4nlsU_AbU8Zd7ZhVfm...fo5BLa3_YLWazqcpWRXn9QEDWw",
-      "e": "AQAB",
-      "kid": "aMIKy_brQk3nLd0PKd9ln",
-      "x5t": "-xcTyx47q3ddycG7LtE6QCcETbs",
-      "x5c": [
-        "MIIC/TCCAeWgAwIBAgIJH62ygzAPG...xCxmHAbK+KdTka/Yg2MadFZdA=="
-      ]
-    }
-  ]
-}
-~~~
-
-TODO: For SCITT to be interoperable with OIDC, it would define key dereferencing compatible with OIDC dereferencing.
-
-#### Dereferencing Public Keys
-
-`kid` is always present in the protected header.
-
-If `iss` is also present, `kid` MUST be a relative URL to `iss`, otherwise `kid` MUST be an absolute URL that starts with `iss`.
-
-`id` = `kid` if `iss` is undefined, or `iss` + `#` + `kid` when `iss` is defined.
-
-See also [draft-ietf-cose-cwt-claims-in-headers](https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/).
-
-~~~sh
-dereference = (id: string, accept: \
-  content_type = 'application/jwk+json') =>
-  publicKeyJwk (of content type application/jwk+json)
-~~~
-
-For example, when DIDs are used:
-
-~~~ http
-did:example:123#key-42
-~~~
-
-Might dereference to:
-
-~~~json
-{
-  "kty": "EC",
-  "crv": "P-384",
-  "alg": "ES384",
-  "x": "LCeAt2sW36j94wuFP0gNEIHDzqR6Nh...er3cKFBCaAHY1svmbPV69bP3RH",
-  "y": "zz2SkcOGYM6PbYlw19tcbpzo6bEMYH...d8QWykAprstPdxx4U0uScvDcYd"
 }
 ~~~
 
@@ -591,7 +433,7 @@ Each implementation of a Transparency Service MAY support additional metadata, s
 The role of Transparency Service can be decomposed into several major functions.
 The most important is maintaining an Append-only Log, the verifiable data structure that records Signed Statements, and enforcing a Registration Policy.
 It also maintains a service key, which is used to endorse the state of the Append-only Log in Receipts.
-All Transparency Services MUST expose standard endpoints for Registration of Signed Statements and Receipt issuance, which is described in {{sec-messages}}.
+All Transparency Services MUST expose standard endpoints for Registration of Signed Statements and Receipt issuance, which is described in TODO: scrapi.
 Each Transparency Service also defines its own Registration Policies, which MUST apply to all entries in the Append-only Log.
 
 The combination of Identity, Registration Policy evaluation, and the Transparency Service endpoint constitute the trusted part of the Transparency Service.
@@ -701,7 +543,7 @@ In particular:
 
 - the Transparency Service defines and enforces deterministic Registration Policies that can be re-evaluated based solely on the contents of the Append-only Log at the time of Registration, and must then yield the same result
 - the ordering of entries, their cryptographic contents, and the Transparency Services' governance may be non-deterministic, but they must be verifiable
-- a Transparency Service MAY store evidence about the resolution of DIDs into DID Documents
+- a Transparency Service MAY store evidence about the resolution of identifiers, identity documents, and key material.
 - a Transparency Service MAY additionally support verifiability of client authentication and access control
 
 #### Governance and Bootstrapping
@@ -731,12 +573,11 @@ Some Verifiers may systematically fetch all Transparent Statements using the CWT
 
 Some Verifiers may choose to subset the collection of Statements, filtering on the payload type (Protected Header `3`), the CWT (Protected Header `15`) Issuer claim, or other non-opaque properties.
 
-Some Verifiers may systematically resolve Issuer DIDs to fetch the latest corresponding DID documents.
+Some Verifiers may systematically resolve Issuer identifiers to fetch the latest corresponding verification keys.
 This behavior strictly enforces the revocation of compromised keys.
 Once the Issuer has updated its Statement to remove a key identifier, all Signed Statements include the corresponding `kid` will be rejected.
-However, others may delegate DID resolution to a trusted third party and/or cache its results.
 
-Some Verifiers may decide to skip the DID-based signature verification, relying on the Transparency Service's Registration Policy and the scrutiny of other Verifiers.
+Some Verifiers may decide to skip the identifier-based signature verification, relying on the Transparency Service's Registration Policy and the scrutiny of other Verifiers.
 Although this weakens their guarantees against key revocation, or against a corrupt Transparency Services, they can still keep the Receipt and blame the Issuer or the Transparency Services at a later point.
 
 # Signed Statement Issuance, Registration, and Verification
@@ -756,7 +597,7 @@ All Signed Statements MUST include the following protected headers:
 - **CWT_Claims** (label: `15` pending {{CWT_CLAIMS_COSE}}): A CWT representing the Issuer (`iss`) making the statement, and the Subject (`sub`) to correlate a collection of statements about an Artifact.
   Additional {{CWT_CLAIMS}} MAY be used, while `iss` and `sub` MUST be provided
   - **iss** (CWT_Claim Key `1`): The Identifier of the signer, as a string<br>
-    Example: `did:web:example.com`
+    Example: `https://software.vendor.example`
   - **sub** (CWT_Claim Key `2`): The Subject to which the Statement refers, chosen by the Issuer<br>
     Example: `github.com/opensbom-generator/spdx-sbom-generator/releases/tag/v0.0.13`
 - **Content type** (label: `3`): The media type of the payload, as a string.<br>
@@ -872,6 +713,73 @@ Receipt_CWT_Claims = {
   ? 6 => uint .within (~time),  ; iat, receipt issuance timestamp
   * label => value ; label MUST be less than -65536
 }
+
+; Statement-agnostic information about registration
+; These are authenticated by the receipt signature
+Registration_Info = {
+  * tstr => any
+}
+
+; Statement-specific information about statement registration
+; These are authenticated through the inclusion proof of the receipt
+Statement_Registration_Info = {
+    &(statement-unique-id: 0) => tstr
+    &(registration-policy-id: 1) => tstr
+    * label => value
+}
+
+Receipt_Protected_Header = {
+    ; SCITT Receipt Version
+    &(scitt-version: 390) => int,
+
+    ; Type of Verifiable Data Structure, e.g. RFC9162_SHA256
+    &(verifiable-data-structure: -111) => int,
+
+    ; CBOR Web Tokoken claim set (CCS)
+    &(kccs: 15)  => Receipt_CWT_Claims,
+
+    ; Critical headers
+    &(crit: 2) => [+ label],
+
+    ; Key ID (optional)
+    ? &(kid: 4) => bstr,
+
+    ; X.509 chain (optional)
+    ? &(x5chain: 33) => COSE_X509,
+
+    ; Statement-agnostic registration information
+    ? &(registration-info: 395) => Registration_Info
+}
+
+Receipt_Unprotected_Header = {
+    &(statement-registration-info: 396) => Statement_Registration_Info
+}
+
+; Please note that receipts cannot carry a payload, ensuring that verifiers
+; have to recompute the root from the inclusion proof to verify the signature
+Receipt_as_COSE_Sign1 = [
+    protected : bstr .cbor Receipt_Protected_Header,
+    unprotected : Receipt_Unprotected_Header,
+    payload: nil,
+    signature : bstr
+]
+
+Receipt = #6.18(Receipt_as_COSE_Sign1)
+
+; A Transparent Statement is a Signed Statement
+; with one or more Receipts in it's unprotected header.
+Transparent_Statement_Unprotected_Header = {
+    &(receipts: 394) => [+ Receipt],
+    * label => any
+}
+
+Transparent_Statement_as_COSE_Sign1 = [
+    protected : bstr .cbor Signed_Statement_Protected_Header,
+    unprotected : Transparent_Statement_Unprotected_Header,
+    payload : bstr / nil,
+    signature : bstr
+]
+
 ~~~
 
 Example transparent statement:
@@ -1020,156 +928,6 @@ This may also involve attaching multiple Receipts to the same Signed Statements.
 For example, a software producer of a supply chain artifact might rely on multiple independent software producers operating transparency services for their upstream artifacts.
 Downstream producers benefit from upstream producers providing higher transparency regarding their artifacts.
 
-# Transparency Service API
-
-## Messages
-
-All messages are sent as HTTP GET or POST requests.
-
-If the Transparency Service cannot process a client's request, it MUST return an HTTP 4xx or 5xx status code, and the body MAY contain a JSON problem details object ({{RFC9457}}) with the following fields:
-
-- **type**: A URI reference identifying the problem.
-To facilitate automated response to errors, this document defines a set of standard tokens for use in the type field within the URN namespace of: "urn:ietf:params:scitt:error:".
-- **detail**: A human-readable string describing the error that prevented the Transparency Service from processing the request, ideally with sufficient detail to enable the error to be rectified.
-
-Error responses MUST be sent with the `Content-Type: application/problem+json` HTTP header.
-
-As an example, submitting a Signed Statement with an unsupported signature algorithm would return a `400 Bad Request` status code and the following body:
-
-~~~json
-{
-  "type": "urn:ietf:params:scitt:error:badSignatureAlgorithm",
-  "detail": "The Statement was signed with an unsupported algorithm"
-}
-~~~
-
-Most error types are specific to the type of request and are defined in the respective subsections below.
-The one exception is the "malformed" error type, which indicates that the Transparency Service could not parse the client's request because it did not comply with this document:
-
-- Error code: `malformed` (The request could not be parsed).
-
-Clients MUST treat 500 and 503 HTTP status code responses as transient failures and MAY retry the same request without modification at a later date.
-Note that in the case of a 503 response, the Transparency Service MAY include a `Retry-After` header field per {{RFC9110}} in order to request a minimum time for the client to wait before retrying the request.
-In the absence of this header field, this document does not specify a minimum.
-
-### Register Signed Statement
-
-#### Request
-
-~~~http
-
-POST <Base URL>/entries
-~~~
-
-Headers:
-
-- `Content-Type: application/cose`
-
-Body: SCITT COSE_Sign1 message
-
-#### Response
-
-One of the following:
-
-- Status 201 - Registration is successful.
-  - Header `Location: <Base URL>/entries/<Entry ID>`
-  - Header `Content-Type: application/json`
-  - Body `{ "entryId": "<Entry ID"> }`
-- Status 202 - Registration is running.
-  - Header `Location: <Base URL>/operations/<Operation ID>`
-  - Header `Content-Type: application/json`
-  - (Optional) Header: `Retry-After: <seconds>`
-  - Body `{ "operationId": "<Operation ID>", "status": "running" }`
-- Status 400 - Registration was unsuccessful due to invalid input.
-  - Error code `badSignatureAlgorithm`
-  - TBD: more error codes to be defined, see [#17](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17)
-
-If HTTP code 202 is returned, then clients must wait until Registration succeeded or failed by polling the Registration status using the Operation ID returned in the response.
-Clients MUST NOT report registration is complete until an HTTP code 202 response has been received.
-A time out of the Client MUST be treated as a registration failure, even though the transparency service may eventually complete the registration.
-
-### Retrieve Operation Status
-
-#### Request
-
-~~~http
-GET <Base URL>/operations/<Operation ID>
-~~~
-
-#### Response
-
-One of the following:
-
-- Status 200 - Registration is running
-  - Header: `Content-Type: application/json`
-  - (Optional) Header: `Retry-After: <seconds>`
-  - Body: `{ "operationId": "<Operation ID>", "status": "running" }`
-
-- Status 200 - Registration was successful
-  - Header: `Location: <Base URL>/entries/<Entry ID>`
-  - Header: `Content-Type: application/json`
-  - Body: `{ "operationId": "<Operation ID>", "status": "succeeded", "entryId": "<Entry ID>" }`
-
-- Status 200 - Registration failed
-  - Header `Content-Type: application/json`
-  - Body: `{ "operationId": "<Operation ID>", "status": "failed", "error": { "type": "<type>", "detail": "<detail>" } }`
-  - Error code: `badSignatureAlgorithm`
-  - TODO: more error codes to be defined, see [#17](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17)
-
-- Status 404 - Unknown Operation ID
-  - Error code: `operationNotFound`
-  - This can happen if the operation ID has expired and been deleted.
-
-If an operation failed, then error details MUST be embedded as a JSON problem details object in the `"error"` field.
-
-If an operation ID is invalid (i.e., it does not correspond to any submit operation), a service may return either a 404 or a `running` status.
-This is because differentiating between the two may not be possible in an eventually consistent system.
-
-### Retrieve Signed Statement
-
-#### Request
-
-~~~http
-GET <Base URL>/entries/<Entry ID>
-~~~
-
-Query parameters:
-
-- (Optional) `embedReceipt=true`
-
-If the query parameter `embedReceipt=true` is provided, then the Signed Statement is returned with the corresponding Registration Receipt embedded in the COSE unprotected header.
-
-#### Response
-
-One of the following:
-
-- Status 200.
-  - Header: `Content-Type: application/cose`
-  - Body: COSE_Sign1
-
-- Status 404 - Entry not found.
-  - Error code: `entryNotFound`
-
-### Retrieve Registration Receipt
-
-#### Request
-
-~~~http
-GET <Base URL>/entries/<Entry ID>/receipt
-~~~
-
-#### Response
-
-One of the following:
-
-- Status 200.
-  - Header: `Content-Type: application/cbor`
-  - Body: SCITT_Receipt
-- Status 404 - Entry not found.
-  - Error code: `entryNotFound`
-
-The retrieved Receipt may be embedded in the corresponding COSE_Sign1 document in the unprotected header.
-
 # Privacy Considerations
 
 Unless advertised by a Transparency Service, every Issuer must treat Signed Statements it registered (rendering them as Transparent Statements) as public.
@@ -1304,21 +1062,32 @@ The confidentiality of any identity lookup during Signed Statement Registration 
 
 TBD; {{mybody}}.
 
-## URN Sub-namespace for SCITT (urn:ietf:params:scitt)
+## Media Type Registration
 
-IANA is requested to register the URN sub-namespace `urn:ietf:params:scitt`
-in the "IETF URN Sub-namespace for Registered Protocol Parameter Identifiers"
-Registry {{IANA.params}}, following the template in {{RFC3553}}:
+This section requests registration of the following media types [@RFC2046] in
+the "Media Types" registry [@IANA.MediaTypes] in the manner described
+in [@RFC6838].
 
-~~~output
+To indicate that the content is an scitt configuration represented as JSON:
 
-   Registry name:  scitt
-
-   Specification:  [RFCthis]
-
-   Repository:  http://www.iana.org/assignments/scitt
-
-   Index value:  No transformation needed.
-~~~
-
+- Type name: application
+- Subtype name: scitt-configuration+json
+- Required parameters: n/a
+- Optional parameters: n/a
+- Encoding considerations: binary; application/scitt-configuration+json values are represented as a JSON Object; UTF-8 encoding SHOULD be employed for the JSON object.
+- Security considerations: See the Security Considerations section of [[ this specification ]].
+- Interoperability considerations: n/a
+- Published specification: [[ this specification ]]
+- Applications that use this media type: TBD
+- Fragment identifier considerations: n/a
+- Additional information:
+  - Magic number(s): n/a
+  - File extension(s): n/a
+  - Macintosh file type code(s): n/a
+- Person & email address to contact for further information: TBD
+- Intended usage: COMMON
+- Restrictions on usage: none
+- Author: TBD
+- Change Controller: IETF
+- Provisional registration?  No
 --- back
