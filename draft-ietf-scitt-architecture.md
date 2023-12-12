@@ -94,15 +94,6 @@ informative:
   CycloneDX:
     target: https://cyclonedx.org/specification/overview/
     title: CycloneDX
-  DID-CORE:
-    target: https://www.w3.org/TR/did-core/
-    title: Decentralized Identifiers (DIDs) v1.0
-    author:
-      org: W3C
-    date: 2022-07-22
-  DID-WEB:
-    target: https://w3c-ccg.github.io/did-method-web/
-    title: did:web Decentralized Identifiers Method Spec
   in-toto:
     target: https://in-toto.io/
     title: in-toto
