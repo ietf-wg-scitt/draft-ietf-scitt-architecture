@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 7 June 2024                                          C. Fournet
+Expires: 14 June 2024                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         5 December 2023
+                                                        12 December 2023
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -45,7 +45,7 @@ About This Document
    Status information for this document may be found at
    https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/.
 
-   Discussion of this document takes place on the scitt Working Group
+   Discussion of this document takes place on the SCITT Working Group
    mailing list (mailto:scitt@ietf.org), which is archived at
    https://mailarchive.ietf.org/arch/browse/scitt/.  Subscribe at
    https://www.ietf.org/mailman/listinfo/scitt/.
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 June 2024.
+   This Internet-Draft will expire on 14 June 2024.
 
 Copyright Notice
 
@@ -558,7 +558,6 @@ Table of Contents
      1   => int             ; algorithm identifier,
      4   => bstr            ; Key ID (kid),
      15  => CWT_Claims      ; CBOR Web Token Claims,
-     393 => Reg_Info        ; Registration Policy info,
      3   => tstr            ; payload type
    }
 
@@ -580,26 +579,13 @@ Table of Contents
 
    SCITT payloads are opaque to Transparency Services.  For
    interoperability, Registration Policy decisions should be based on
-   interpretation of information in the non-opaque Envelope.
+   interpretation of the mandatory metadata in the protected header of a
+   Signed Statement.
 
-   The small mandatory set of metadata in the envelope of a Signed
-   Statement is neither intended nor sufficient to express the
-   information required for the processing of Registration Policies in a
-   Transparency Service.
-
-   For example, a Transparency Service may only allow a Signed Statement
-   to be registered if it was signed very recently, or may reject a
-   Signed Statement if it arrives out of order in some sequenced
-   protocol.
-
-   Any metadata meant to be interpreted by the Transparency Service
-   during Registration Policy evaluation, SHOULD be added to the
-   reg_info header, unless the data is private, in which case it MAY be
-   sent to the Transparency Service as an additional input during
-   registration.
-
-   While the Reg_Info header MUST be present in all Signed Statements,
-   all attributes are optional, and the map MAY be empty.
+   Each implementation of a Transparency Service MAY support additional
+   metadata, specific to its implementation through additional "Reserved
+   for Private Use" (https://www.iana.org/assignments/cwt/
+   cwt.xhtml#claims-registry) keys within the CWT_Claims header.
 
 5.2.  Transparency Service
 
@@ -610,9 +596,9 @@ Table of Contents
    which is used to endorse the state of the Append-only Log in
    Receipts.  All Transparency Services MUST expose standard endpoints
    for Registration of Signed Statements and Receipt issuance, which is
-   described in [I-D.draft-birkholz-scitt-scrapi].  Each Transparency
-   Service also defines its own Registration Policies, which MUST apply
-   to all entries in the Append-only Log.
+   described in TODO: scrapi.  Each Transparency Service also defines
+   its own Registration Policies, which MUST apply to all entries in the
+   Append-only Log.
 
    The combination of Identity, Registration Policy evaluation, and the
    Transparency Service endpoint constitute the trusted part of the
@@ -887,7 +873,7 @@ Table of Contents
 
    *  *Key ID* (label: 4): Key ID, as a bytestring
 
-   *  *CWT_Claims* (label: 15 pending [CWT_CLAIM_COSE]): A CWT
+   *  *CWT_Claims* (label: 15 pending [CWT_CLAIMS_COSE]): A CWT
       representing the Issuer (iss) making the statement, and the
       Subject (sub) to correlate a collection of statements about an
       Artifact.  Additional [CWT_CLAIMS] MAY be used, while iss and sub
@@ -901,15 +887,6 @@ Table of Contents
          refers, chosen by the Issuer
          Example: github.com/opensbom-generator/spdx-sbom-
          generator/releases/tag/v0.0.13
-
-   *  *Registration Policy* (label: TBD, temporary: 393): A map
-      containing key/value pairs set by the Issuer which are sealed on
-      Registration and non-opaque to the Transparency Service.  The key/
-      value pair semantics are specified by the Issuer or are specific
-      to the CWT_Claims iss and CWT_Claims sub tuple.
-      Examples: the sequence number of signed statements on a CWT_Claims
-      Subject, Issuer metadata, or a reference to other Transparent
-      Statements (e.g., augments, replaces, new-version, CPE-for)
 
    *  *Content type* (label: 3): The media type of the payload, as a
       string.
@@ -935,19 +912,10 @@ Table of Contents
      * tstr => any
    }
 
-   Reg_Info = {
-     ? "register_by": uint .within (~time),
-     ? "sequence_no": uint,
-     ? "issuance_ts": uint .within (~time),
-     ? "no_replay": null,
-     * tstr => any
-   }
-
    Protected_Header = {
      1   => int             ; algorithm identifier,
      4   => bstr            ; Key ID,
      15  => CWT_Claims      ; CBOR Web Token Claims,
-     393 => Reg_Info        ; Registration Policy info,
      3   => tstr            ; payload type
    }
 
@@ -977,17 +945,6 @@ Table of Contents
    *  [SLSA]
 
    *  [SWID]
-
-   Once the Statement is serialized with the correct media-type/content-
-   format, an Issuer should fill in the attributes for the Registration
-   Policy information header.  From the Issuer's perspective, using
-   attributes from named policies ensures that the Signed Statement may
-   only be registered on Transparency Services that implement the
-   associated policy.
-
-   For instance, if a Signed Statement is frequently updated, and it is
-   important for Verifiers to always consider the latest version,
-   Issuers may use the sequence_no or issuer_ts attributes.
 
    Once all the Envelope headers are set, an Issuer MUST use a standard
    COSE implementation to produce an appropriately serialized Signed
@@ -1021,15 +978,12 @@ Table of Contents
        headers listed above.  The Transparency Service MAY verify the
        Statement payload format, content and other optional properties.
 
-   5.  *Apply Registration Policy:* For named policies, the Transparency
-       Service MUST check that the required Registration Policy
-       attributes are present in the protected headers and apply the
-       check described in Table 1.  A Transparency Service MUST reject
-       Signed Statements that contain an attribute used for a named
-       policy that is not enforced by the service.  Custom Signed
-       Statements are evaluated given the current Transparency Service
-       state and the entire Envelope, and may use information contained
-       in the attributes of named policies.
+   5.  *Apply Registration Policy:* The Transparency Service MUST check
+       the attributes required by a policy are present in the protected
+       headers.  Custom Signed Statements are evaluated given the
+       current Transparency Service state and the entire Envelope, and
+       may use information contained in the attributes of named
+       policies.
 
    6.  *Register the Signed Statement* to the append-only log
 
@@ -1075,9 +1029,21 @@ Table of Contents
       headers MUST be marked critical: (scitt-version, verifiable-data-
       structure, kccs).
 
-   Inside Reg_info, the Transparency Service may include the
-   registration time to help Verifiers decide about the trustworthiness
-   of the Transparent Statement.
+   *  The SCITT version header MUST be included and its value match the
+      version field of the Receipt structure
+
+   *  The DID of Issuer header (in Signed Statements) MUST be included
+      and its value match the ts_identifier field of the Receipt
+      structure
+
+   *  Transparency Service MUST include additional claims in the
+      protected header of Receipts to indicate the policies evaluated
+      during the registration of a Statement
+
+   *  Since [I-D.draft-steele-cose-merkle-tree-proofs] uses optional
+      headers, the crit header (id: 2) MUST be included and all SCITT-
+      specific headers (version, DID of Transparency Service and
+      Registration Policy) MUST be marked critical
 
    The registration time is defined as the timestamp at which the
    Transparency Service has added this Signed Statement to its Append-
@@ -1085,9 +1051,6 @@ Table of Contents
 
    Editor's Note: The WG is discussing if existing CWT claims might
    better support these design principles.
-
-   label = int / tstr
-   value = any
 
    Receipt_Unprotected_Header = {
      &(scitt-inclusion-proof: 396) => bstr .cbor inclusion-proof
@@ -1108,7 +1071,7 @@ Table of Contents
      * tstr => any
    }
 
-   ; Statement-specific information about statment registration
+   ; Statement-specific information about statement registration
    ; These are authenticated through the inclusion proof of the receipt
    Statement_Registration_Info = {
        &(statement-unique-id: 0) => tstr
@@ -1167,8 +1130,6 @@ Table of Contents
        payload : bstr / nil,
        signature : bstr
    ]
-
-   Transparent_Statement = #6.18(Transparent_Statement_as_COSE_Sign1)
 
    Example transparent statement:
 
@@ -1632,34 +1593,26 @@ Table of Contents
 
 11.1.  Normative References
 
-   [COSWID]   "COSWID Specification", n.d.,
+   [COSWID]   Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D.
+              Waltermire, "Concise Software Identification Tags",
+              RFC 9393, DOI 10.17487/RFC9393, June 2023,
               <https://www.rfc-editor.org/rfc/rfc9393>.
 
-   [CWT_CLAIM_COSE]
-              "CBOR Web Token (CWT) Claims in COSE Headers", n.d.,
-              <https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-
-              claims-in-headers/>.
-
-   [I-D.draft-birkholz-scitt-scrapi]
-              "*** BROKEN REFERENCE ***".
+   [CWT_CLAIMS_COSE]
+              Looker, T. and M. B. Jones, "CBOR Web Token (CWT) Claims
+              in COSE Headers", Work in Progress, Internet-Draft, draft-
+              ietf-cose-cwt-claims-in-headers-10, 29 November 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-cose-
+              cwt-claims-in-headers-10>.
 
    [IANA.cose]
               IANA, "CBOR Object Signing and Encryption (COSE)",
               <http://www.iana.org/assignments/cose>.
 
-   [IANA.params]
-              IANA, "Uniform Resource Name (URN) Namespace for IETF
-              Use", <http://www.iana.org/assignments/params>.
-
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
-
-   [RFC3553]  Mealling, M., Masinter, L., Hardie, T., and G. Klyne, "An
-              IETF URN Sub-namespace for Registered Protocol
-              Parameters", BCP 73, RFC 3553, DOI 10.17487/RFC3553, June
-              2003, <https://www.rfc-editor.org/rfc/rfc3553>.
 
    [RFC6838]  Freed, N., Klensin, J., and T. Hansen, "Media Type
               Specifications and Registration Procedures", BCP 13,
@@ -1686,19 +1639,10 @@ Table of Contents
               DOI 10.17487/RFC9052, August 2022,
               <https://www.rfc-editor.org/rfc/rfc9052>.
 
-   [RFC9110]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
-              Ed., "HTTP Semantics", STD 97, RFC 9110,
-              DOI 10.17487/RFC9110, June 2022,
-              <https://www.rfc-editor.org/rfc/rfc9110>.
-
    [RFC9360]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
               Header Parameters for Carrying and Referencing X.509
               Certificates", RFC 9360, DOI 10.17487/RFC9360, February
               2023, <https://www.rfc-editor.org/rfc/rfc9360>.
-
-   [RFC9457]  Nottingham, M., Wilde, E., and S. Dalal, "Problem Details
-              for HTTP APIs", RFC 9457, DOI 10.17487/RFC9457, July 2023,
-              <https://www.rfc-editor.org/rfc/rfc9457>.
 
 11.2.  Informative References
 
@@ -1709,6 +1653,12 @@ Table of Contents
    [CycloneDX]
               "CycloneDX", n.d.,
               <https://cyclonedx.org/specification/overview/>.
+
+   [DID-CORE] W3C, "Decentralized Identifiers (DIDs) v1.0", 22 July
+              2022, <https://www.w3.org/TR/did-core/>.
+
+   [DID-WEB]  "did:web Decentralized Identifiers Method Spec", n.d.,
+              <https://w3c-ccg.github.io/did-method-web/>.
 
    [EQUIVOCATION]
               Chun, B., Maniatis, P., Shenker, S., and J. Kubiatowicz,

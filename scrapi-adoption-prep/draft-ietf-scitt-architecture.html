@@ -24,16 +24,16 @@ Issuers can register their Signed Statements on any Transparency Service, with t
 <!-- Generator version information:
   xml2rfc 3.18.2
     Python 3.11.6
-    ConfigArgParse 1.5.3
+    ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.3
-    platformdirs 4.0.0
+    platformdirs 4.1.0
     pycountry 22.3.5
-    PyYAML 6.0
+    PyYAML 6.0.1
     requests 2.31.0
-    setuptools 67.7.2
+    setuptools 68.2.2
     six 1.16.0
     wcwidth 0.2.12
 -->
@@ -1038,7 +1038,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 7 June 2024</td>
+<td class="center">Expires 14 June 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1051,12 +1051,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-12-05" class="published">5 December 2023</time>
+<time datetime="2023-12-12" class="published">12 December 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-06-07">7 June 2024</time></dd>
+<dd class="expires"><time datetime="2024-06-14">14 June 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1101,7 +1101,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/">https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 <p id="section-note.1-3">
         Discussion of this document takes place on the
-        scitt Working Group mailing list (<span><a href="mailto:scitt@ietf.org">mailto:scitt@ietf.org</a></span>),
+        SCITT Working Group mailing list (<span><a href="mailto:scitt@ietf.org">mailto:scitt@ietf.org</a></span>),
         which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/scitt/">https://mailarchive.ietf.org/arch/browse/scitt/</a></span>.
         Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/scitt/">https://www.ietf.org/mailman/listinfo/scitt/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 <p id="section-note.1-4">Source for this draft and an issue tracker can be found at
@@ -1126,7 +1126,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 7 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 14 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1729,7 +1729,6 @@ Protected_Header = {
   1   =&gt; int             ; algorithm identifier,
   4   =&gt; bstr            ; Key ID (kid),
   15  =&gt; CWT_Claims      ; CBOR Web Token Claims,
-  393 =&gt; Reg_Info        ; Registration Policy info,
   3   =&gt; tstr            ; payload type
 }
 </pre><a href="#section-5.1.1-6" class="pilcrow">¶</a>
@@ -1754,11 +1753,8 @@ The <code>iss</code> and <code>sub</code> claims, within the CWT_Claims protecte
 <a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-registration-policy-metadat" class="section-name selfRef">Registration Policy Metadata</a>
           </h4>
 <p id="section-5.1.3-1">SCITT payloads are opaque to Transparency Services.
-For interoperability, Registration Policy decisions should be based on interpretation of information in the non-opaque Envelope.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.1.3-2">The small mandatory set of metadata in the envelope of a Signed Statement is neither intended nor sufficient to express the information required for the processing of Registration Policies in a Transparency Service.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
-<p id="section-5.1.3-3">For example, a Transparency Service may only allow a Signed Statement to be registered if it was signed very recently, or may reject a Signed Statement if it arrives out of order in some sequenced protocol.<a href="#section-5.1.3-3" class="pilcrow">¶</a></p>
-<p id="section-5.1.3-4">Any metadata meant to be interpreted by the Transparency Service during Registration Policy evaluation, <span class="bcp14">SHOULD</span> be added to the <code>reg_info</code> header, unless the data is private, in which case it <span class="bcp14">MAY</span> be sent to the Transparency Service as an additional input during registration.<a href="#section-5.1.3-4" class="pilcrow">¶</a></p>
-<p id="section-5.1.3-5">While the <code>Reg_Info</code> header <span class="bcp14">MUST</span> be present in all Signed Statements, all attributes are optional, and the map <span class="bcp14">MAY</span> be empty.<a href="#section-5.1.3-5" class="pilcrow">¶</a></p>
+For interoperability, Registration Policy decisions should be based on interpretation of the mandatory metadata in the protected header of a Signed Statement.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-2">Each implementation of a Transparency Service <span class="bcp14">MAY</span> support additional metadata, specific to its implementation through additional <a href="https://www.iana.org/assignments/cwt/cwt.xhtml#claims-registry">"Reserved for Private Use"</a> keys within the <code>CWT_Claims</code> header.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1771,7 +1767,7 @@ For interoperability, Registration Policy decisions should be based on interpret
 <p id="section-5.2-1">The role of Transparency Service can be decomposed into several major functions.
 The most important is maintaining an Append-only Log, the verifiable data structure that records Signed Statements, and enforcing a Registration Policy.
 It also maintains a service key, which is used to endorse the state of the Append-only Log in Receipts.
-All Transparency Services <span class="bcp14">MUST</span> expose standard endpoints for Registration of Signed Statements and Receipt issuance, which is described in <span>[<a href="#I-D.draft-birkholz-scitt-scrapi" class="cite xref">I-D.draft-birkholz-scitt-scrapi</a>]</span>.
+All Transparency Services <span class="bcp14">MUST</span> expose standard endpoints for Registration of Signed Statements and Receipt issuance, which is described in TODO: scrapi.
 Each Transparency Service also defines its own Registration Policies, which <span class="bcp14">MUST</span> apply to all entries in the Append-only Log.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2-2">The combination of Identity, Registration Policy evaluation, and the Transparency Service endpoint constitute the trusted part of the Transparency Service.
 Each of these components <span class="bcp14">MUST</span> be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the Transparency Service.
@@ -1984,7 +1980,7 @@ Example: <code>-35</code> is the registered algorithm identifier for ECDSA with 
             <p id="section-6.1-3.2.1"><strong>Key ID</strong> (label: <code>4</code>): Key ID, as a bytestring<a href="#section-6.1-3.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-6.1-3.3">
-            <p id="section-6.1-3.3.1"><strong>CWT_Claims</strong> (label: <code>15</code> pending <span>[<a href="#CWT_CLAIM_COSE" class="cite xref">CWT_CLAIM_COSE</a>]</span>): A CWT representing the Issuer (<code>iss</code>) making the statement, and the Subject (<code>sub</code>) to correlate a collection of statements about an Artifact.
+            <p id="section-6.1-3.3.1"><strong>CWT_Claims</strong> (label: <code>15</code> pending <span>[<a href="#CWT_CLAIMS_COSE" class="cite xref">CWT_CLAIMS_COSE</a>]</span>): A CWT representing the Issuer (<code>iss</code>) making the statement, and the Subject (<code>sub</code>) to correlate a collection of statements about an Artifact.
 Additional <span>[<a href="#CWT_CLAIMS" class="cite xref">CWT_CLAIMS</a>]</span> <span class="bcp14">MAY</span> be used, while <code>iss</code> and <code>sub</code> <span class="bcp14">MUST</span> be provided<a href="#section-6.1-3.3.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-6.1-3.3.2.1">
@@ -1998,13 +1994,8 @@ Example: <code>github.com/opensbom-generator/spdx-sbom-generator/releases/tag/v0
             </ul>
 </li>
           <li class="normal" id="section-6.1-3.4">
-            <p id="section-6.1-3.4.1"><strong>Registration Policy</strong> (label: <code>TBD</code>, temporary: <code>393</code>): A map containing key/value pairs set by the Issuer which are sealed on Registration and non-opaque to the Transparency Service.
-The key/value pair semantics are specified by the Issuer or are specific to the <code>CWT_Claims iss</code> and <code>CWT_Claims sub</code> tuple.<br>
-Examples: the sequence number of signed statements on a <code>CWT_Claims Subject</code>, Issuer metadata, or a reference to other Transparent Statements (e.g., augments, replaces, new-version, CPE-for)<a href="#section-6.1-3.4.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-6.1-3.5">
-            <p id="section-6.1-3.5.1"><strong>Content type</strong> (label: <code>3</code>): The media type of the payload, as a string.<br>
-Example: <code>application/spdx+json</code> as the media type of SDPX in JSON encoding<a href="#section-6.1-3.5.1" class="pilcrow">¶</a></p>
+            <p id="section-6.1-3.4.1"><strong>Content type</strong> (label: <code>3</code>): The media type of the payload, as a string.<br>
+Example: <code>application/spdx+json</code> as the media type of SDPX in JSON encoding<a href="#section-6.1-3.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-6.1-4">In CDDL <span>[<a href="#RFC8610" class="cite xref">RFC8610</a>]</span> notation, a Signed_Statement is defined as follows:<a href="#section-6.1-4" class="pilcrow">¶</a></p>
@@ -2027,19 +2018,10 @@ CWT_Claims = {
   * tstr =&gt; any
 }
 
-Reg_Info = {
-  ? "register_by": uint .within (~time),
-  ? "sequence_no": uint,
-  ? "issuance_ts": uint .within (~time),
-  ? "no_replay": null,
-  * tstr =&gt; any
-}
-
 Protected_Header = {
   1   =&gt; int             ; algorithm identifier,
   4   =&gt; bstr            ; Key ID,
   15  =&gt; CWT_Claims      ; CBOR Web Token Claims,
-  393 =&gt; Reg_Info        ; Registration Policy info,
   3   =&gt; tstr            ; payload type
 }
 
@@ -2082,10 +2064,7 @@ For a software supply chain, payloads describing the software artifacts may incl
             <p id="section-6.2-2.7.1"><span>[<a href="#SWID" class="cite xref">SWID</a>]</span><a href="#section-6.2-2.7.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-6.2-3">Once the Statement is serialized with the correct media-type/content-format, an Issuer should fill in the attributes for the Registration Policy information header.
-From the Issuer's perspective, using attributes from named policies ensures that the Signed Statement may only be registered on Transparency Services that implement the associated policy.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
-<p id="section-6.2-4">For instance, if a Signed Statement is frequently updated, and it is important for Verifiers to always consider the latest version, Issuers may use the <code>sequence_no</code> or <code>issuer_ts</code> attributes.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
-<p id="section-6.2-5">Once all the Envelope headers are set, an Issuer <span class="bcp14">MUST</span> use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of <code>COSE_Sign1_Tagged</code> is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).<a href="#section-6.2-5" class="pilcrow">¶</a></p>
+<p id="section-6.2-3">Once all the Envelope headers are set, an Issuer <span class="bcp14">MUST</span> use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of <code>COSE_Sign1_Tagged</code> is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).<a href="#section-6.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-registering-signed-statements">
@@ -2113,8 +2092,7 @@ Signed Statements may be registered by a different party than their Issuer.<a hr
 The Transparency Service <span class="bcp14">MAY</span> verify the Statement payload format, content and other optional properties.<a href="#section-6.3-2.4.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-6.3-2.5">
-            <p id="section-6.3-2.5.1"><strong>Apply Registration Policy:</strong> For named policies, the Transparency Service <span class="bcp14">MUST</span> check that the required Registration Policy attributes are present in the protected headers and apply the check described in Table 1.
-  A Transparency Service <span class="bcp14">MUST</span> reject Signed Statements that contain an attribute used for a named policy that is not enforced by the service.
+            <p id="section-6.3-2.5.1"><strong>Apply Registration Policy:</strong> The Transparency Service <span class="bcp14">MUST</span> check the attributes required by a policy are present in the protected headers.
   Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.<a href="#section-6.3-2.5.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-6.3-2.6">
@@ -2156,15 +2134,23 @@ Receipts protected headers have additional mandatory fields:<a href="#section-6.
           <li class="normal" id="section-6.4-3.5">
             <p id="section-6.4-3.5.1"><strong>crit</strong>: The <code>crit</code> header (id: 2) <span class="bcp14">MUST</span> be included and the following headers <span class="bcp14">MUST</span> be marked critical: (<code>scitt-version</code>, <code>verifiable-data-structure</code>, <code>kccs</code>).<a href="#section-6.4-3.5.1" class="pilcrow">¶</a></p>
 </li>
+          <li class="normal" id="section-6.4-3.6">
+            <p id="section-6.4-3.6.1">The SCITT version header <span class="bcp14">MUST</span> be included and its value match the <code>version</code> field of the Receipt structure<a href="#section-6.4-3.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.4-3.7">
+            <p id="section-6.4-3.7.1">The DID of Issuer header (in Signed Statements) <span class="bcp14">MUST</span> be included and its value match the <code>ts_identifier</code> field of the Receipt structure<a href="#section-6.4-3.7.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.4-3.8">
+            <p id="section-6.4-3.8.1">Transparency Service <span class="bcp14">MUST</span> include additional claims in the protected header of Receipts to indicate the policies evaluated during the registration of a Statement<a href="#section-6.4-3.8.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.4-3.9">
+            <p id="section-6.4-3.9.1">Since <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span> uses optional headers, the <code>crit</code> header (id: 2) <span class="bcp14">MUST</span> be included and all SCITT-specific headers (version, DID of Transparency Service and Registration Policy) <span class="bcp14">MUST</span> be marked critical<a href="#section-6.4-3.9.1" class="pilcrow">¶</a></p>
+</li>
         </ul>
-<p id="section-6.4-4">Inside Reg_info, the Transparency Service may include the registration time to help Verifiers decide about the trustworthiness of the Transparent Statement.<a href="#section-6.4-4" class="pilcrow">¶</a></p>
-<p id="section-6.4-5">The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.<a href="#section-6.4-5" class="pilcrow">¶</a></p>
-<p id="section-6.4-6">Editor's Note: The WG is discussing if existing CWT claims might better support these design principles.<a href="#section-6.4-6" class="pilcrow">¶</a></p>
-<div class="breakable lang-cddl sourcecode" id="section-6.4-7">
+<p id="section-6.4-4">The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.<a href="#section-6.4-4" class="pilcrow">¶</a></p>
+<p id="section-6.4-5">Editor's Note: The WG is discussing if existing CWT claims might better support these design principles.<a href="#section-6.4-5" class="pilcrow">¶</a></p>
+<div class="breakable lang-cddl sourcecode" id="section-6.4-6">
 <pre>
-label = int / tstr
-value = any
-
 Receipt_Unprotected_Header = {
   &amp;(scitt-inclusion-proof: 396) =&gt; bstr .cbor inclusion-proof
 }
@@ -2184,7 +2170,7 @@ Registration_Info = {
   * tstr =&gt; any
 }
 
-; Statement-specific information about statment registration
+; Statement-specific information about statement registration
 ; These are authenticated through the inclusion proof of the receipt
 Statement_Registration_Info = {
     &amp;(statement-unique-id: 0) =&gt; tstr
@@ -2244,10 +2230,9 @@ Transparent_Statement_as_COSE_Sign1 = [
     signature : bstr
 ]
 
-Transparent_Statement = #6.18(Transparent_Statement_as_COSE_Sign1)
-</pre><a href="#section-6.4-7" class="pilcrow">¶</a>
+</pre><a href="#section-6.4-6" class="pilcrow">¶</a>
 </div>
-<p id="section-6.4-8">Example transparent statement:<a href="#section-6.4-8" class="pilcrow">¶</a></p>
+<p id="section-6.4-7">Example transparent statement:<a href="#section-6.4-7" class="pilcrow">¶</a></p>
 <div id="sec-example">
 <section id="section-6.4.1">
           <h4 id="name-example">
@@ -2684,31 +2669,19 @@ in [@RFC6838].<a href="#section-10.1-1" class="pilcrow">¶</a></p>
 <dl class="references">
 <dt id="COSWID">[COSWID]</dt>
         <dd>
-<span class="refTitle">"COSWID Specification"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9393">https://www.rfc-editor.org/rfc/rfc9393</a>&gt;</span>. </dd>
+<span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Fitzgerald-McKay, J.</span>, <span class="refAuthor">Schmidt, C.</span>, and <span class="refAuthor">D. Waltermire</span>, <span class="refTitle">"Concise Software Identification Tags"</span>, <span class="seriesInfo">RFC 9393</span>, <span class="seriesInfo">DOI 10.17487/RFC9393</span>, <time datetime="2023-06" class="refDate">June 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9393">https://www.rfc-editor.org/rfc/rfc9393</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="CWT_CLAIM_COSE">[CWT_CLAIM_COSE]</dt>
+<dt id="CWT_CLAIMS_COSE">[CWT_CLAIMS_COSE]</dt>
         <dd>
-<span class="refTitle">"CBOR Web Token (CWT) Claims in COSE Headers"</span>, <span>n.d.</span>, <span>&lt;<a href="https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/">https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.draft-birkholz-scitt-scrapi">[I-D.draft-birkholz-scitt-scrapi]</dt>
-        <dd>
-<span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
+<span class="refAuthor">Looker, T.</span> and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"CBOR Web Token (CWT) Claims in COSE Headers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cose-cwt-claims-in-headers-10</span>, <time datetime="2023-11-29" class="refDate">29 November 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10">https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IANA.cose">[IANA.cose]</dt>
         <dd>
 <span class="refAuthor">IANA</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE)"</span>, <span>&lt;<a href="http://www.iana.org/assignments/cose">http://www.iana.org/assignments/cose</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="IANA.params">[IANA.params]</dt>
-        <dd>
-<span class="refAuthor">IANA</span>, <span class="refTitle">"Uniform Resource Name (URN) Namespace for IETF Use"</span>, <span>&lt;<a href="http://www.iana.org/assignments/params">http://www.iana.org/assignments/params</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC3553">[RFC3553]</dt>
-        <dd>
-<span class="refAuthor">Mealling, M.</span>, <span class="refAuthor">Masinter, L.</span>, <span class="refAuthor">Hardie, T.</span>, and <span class="refAuthor">G. Klyne</span>, <span class="refTitle">"An IETF URN Sub-namespace for Registered Protocol Parameters"</span>, <span class="seriesInfo">BCP 73</span>, <span class="seriesInfo">RFC 3553</span>, <span class="seriesInfo">DOI 10.17487/RFC3553</span>, <time datetime="2003-06" class="refDate">June 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3553">https://www.rfc-editor.org/rfc/rfc3553</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6838">[RFC6838]</dt>
         <dd>
@@ -2730,17 +2703,9 @@ in [@RFC6838].<a href="#section-10.1-1" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Structures and Process"</span>, <span class="seriesInfo">STD 96</span>, <span class="seriesInfo">RFC 9052</span>, <span class="seriesInfo">DOI 10.17487/RFC9052</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9052">https://www.rfc-editor.org/rfc/rfc9052</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC9110">[RFC9110]</dt>
-        <dd>
-<span class="refAuthor">Fielding, R., Ed.</span>, <span class="refAuthor">Nottingham, M., Ed.</span>, and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="seriesInfo">STD 97</span>, <span class="seriesInfo">RFC 9110</span>, <span class="seriesInfo">DOI 10.17487/RFC9110</span>, <time datetime="2022-06" class="refDate">June 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9110">https://www.rfc-editor.org/rfc/rfc9110</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC9360">[RFC9360]</dt>
-        <dd>
-<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Header Parameters for Carrying and Referencing X.509 Certificates"</span>, <span class="seriesInfo">RFC 9360</span>, <span class="seriesInfo">DOI 10.17487/RFC9360</span>, <time datetime="2023-02" class="refDate">February 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9360">https://www.rfc-editor.org/rfc/rfc9360</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC9457">[RFC9457]</dt>
       <dd>
-<span class="refAuthor">Nottingham, M.</span>, <span class="refAuthor">Wilde, E.</span>, and <span class="refAuthor">S. Dalal</span>, <span class="refTitle">"Problem Details for HTTP APIs"</span>, <span class="seriesInfo">RFC 9457</span>, <span class="seriesInfo">DOI 10.17487/RFC9457</span>, <time datetime="2023-07" class="refDate">July 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9457">https://www.rfc-editor.org/rfc/rfc9457</a>&gt;</span>. </dd>
+<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Header Parameters for Carrying and Referencing X.509 Certificates"</span>, <span class="seriesInfo">RFC 9360</span>, <span class="seriesInfo">DOI 10.17487/RFC9360</span>, <time datetime="2023-02" class="refDate">February 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9360">https://www.rfc-editor.org/rfc/rfc9360</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2758,6 +2723,14 @@ in [@RFC6838].<a href="#section-10.1-1" class="pilcrow">¶</a></p>
 <dt id="CycloneDX">[CycloneDX]</dt>
         <dd>
 <span class="refTitle">"CycloneDX"</span>, <span>n.d.</span>, <span>&lt;<a href="https://cyclonedx.org/specification/overview/">https://cyclonedx.org/specification/overview/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="DID-CORE">[DID-CORE]</dt>
+        <dd>
+<span class="refAuthor">W3C</span>, <span class="refTitle">"Decentralized Identifiers (DIDs) v1.0"</span>, <time datetime="2022-07-22" class="refDate">22 July 2022</time>, <span>&lt;<a href="https://www.w3.org/TR/did-core/">https://www.w3.org/TR/did-core/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="DID-WEB">[DID-WEB]</dt>
+        <dd>
+<span class="refTitle">"did:web Decentralized Identifiers Method Spec"</span>, <span>n.d.</span>, <span>&lt;<a href="https://w3c-ccg.github.io/did-method-web/">https://w3c-ccg.github.io/did-method-web/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="EQUIVOCATION">[EQUIVOCATION]</dt>
         <dd>
