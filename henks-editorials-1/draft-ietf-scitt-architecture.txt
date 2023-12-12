@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 9 May 2024                                           C. Fournet
+Expires: 14 June 2024                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                                   RKVST
-                                                         6 November 2023
+                                                              DataTrails
+                                                        12 December 2023
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -45,7 +45,7 @@ About This Document
    Status information for this document may be found at
    https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/.
 
-   Discussion of this document takes place on the scitt Working Group
+   Discussion of this document takes place on the SCITT Working Group
    mailing list (mailto:scitt@ietf.org), which is archived at
    https://mailarchive.ietf.org/arch/browse/scitt/.  Subscribe at
    https://www.ietf.org/mailman/listinfo/scitt/.
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 May 2024.
+   This Internet-Draft will expire on 14 June 2024.
 
 Copyright Notice
 
@@ -98,8 +98,9 @@ Table of Contents
        5.1.3.  Registration Policy Metadata
      5.2.  Transparency Service
        5.2.1.  Service Identity, Remote Attestation, and Keying
-       5.2.2.  Registration Policies
-       5.2.3.  Append-only Log Security Requirements
+       5.2.2.  Configuration
+       5.2.3.  Registration Policies
+       5.2.4.  Append-only Log Security Requirements
      5.3.  Verifying Transparent Statements
    6.  Signed Statement Issuance, Registration, and Verification
      6.1.  Signed Statement Envelope
@@ -314,6 +315,10 @@ Table of Contents
       signature) and an unprotected header (not included in the Issuer's
       signature).
 
+   Equivocation:  a state where it is possible for a Transparency
+      Service to provide different views of its append-only log to
+      Verifiers about the same Artifact [EQUIVOCATION].
+
    Feed:  see Subject
 
    Issuer:  organizations, stakeholders, and users involved in creating
@@ -321,6 +326,14 @@ Table of Contents
       Statements to a definable set of peers.  An Issuer may be the
       owner or author of Artifacts, or an independent third party such
       as an auditor, reviewer or an endorser.
+
+   Non-equivocation:  a state where it is impossible for a Transparency
+      Service to provide different views of its append-only log to
+      Verifiers about the same Artifact.  Over time, an Issuer may
+      register new Signed Statements about an Artifact in a Transparency
+      Service with new information.  However, the consistency of a
+      collection of Signed Statements about the Artifact can be checked
+      by all Verifiers.
 
    Receipt:  a Receipt is a cryptographic proof that a Signed Statement
       is recorded in the Append-only Log. Receipts are based on Signed
@@ -368,10 +381,10 @@ Table of Contents
       chain there may be multiple statements made about the same
       Artifact.  Issuers use Subject to create a coherent sequence of
       Signed Statements about the same Artifact and Verifiers use the
-      Subject to ensure completeness and non-equivocation in supply
+      Subject to ensure completeness and Non-equivocation in supply
       chain evidence by identifying all Transparent Statements linked to
       the one(s) they are evaluating.  In SCITT, Subject is a property
-      of the dedicated, protected header attribute 13: CWT_Claims within
+      of the dedicated, protected header attribute 15: CWT_Claims within
       the protected header of the COSE envelope.
 
    Transparency Service:  an entity that maintains and extends the
@@ -448,7 +461,7 @@ Table of Contents
    their Append-only Log, as any inconsistency can easily be pinpointed
    by any Auditor with read access to the Transparency Service.  Some
    Append-only Log formats may also support consistency auditing
-   (Section 5.2.3.2) through Receipts, that is, given two valid Receipts
+   (Section 5.2.4.2) through Receipts, that is, given two valid Receipts
    the Transparency Service may be asked to produce a cryptographic
    proof that they are consistent.  Failure to produce this proof can
    indicate that the Transparency Services operator misbehaved.
@@ -545,7 +558,7 @@ Table of Contents
    Signed Statements that are registered as Transparent Statements
    issued with those keys.
 
-   The Issuer's DID is required and appears in the 1 iss claim of the 13
+   The Issuer's DID is required and appears in the 1 iss claim of the 15
    CWT_Claims protected header of the Signed Statements' Envelope.  The
    version of the key from the DID Document used to sign the Signed
    Statement is written in the 4 kid protected header.
@@ -559,8 +572,7 @@ Table of Contents
    Protected_Header = {
      1   => int             ; algorithm identifier,
      4   => bstr            ; Key ID (kid),
-     13  => CWT_Claims      ; CBOR Web Token Claims,
-     393 => Reg_Info        ; Registration Policy info,
+     15  => CWT_Claims      ; CBOR Web Token Claims,
      3   => tstr            ; payload type
    }
 
@@ -733,26 +745,13 @@ Table of Contents
 
    SCITT payloads are opaque to Transparency Services.  For
    interoperability, Registration Policy decisions should be based on
-   interpretation of information in the non-opaque Envelope.
+   interpretation of the mandatory metadata in the protected header of a
+   Signed Statement.
 
-   The small mandatory set of metadata in the envelope of a Signed
-   Statement is neither intended nor sufficient to express the
-   information required for the processing of Registration Policies in a
-   Transparency Service.
-
-   For example, a Transparency Service may only allow a Signed Statement
-   to be registered if it was signed very recently, or may reject a
-   Signed Statement if it arrives out of order in some sequenced
-   protocol.
-
-   Any metadata meant to be interpreted by the Transparency Service
-   during Registration Policy evaluation, SHOULD be added to the
-   reg_info header, unless the data is private, in which case it MAY be
-   sent to the Transparency Service as an additional input during
-   registration.
-
-   While the Reg_Info header MUST be present in all Signed Statements,
-   all attributes are optional, and the map MAY be empty.
+   Each implementation of a Transparency Service MAY support additional
+   metadata, specific to its implementation through additional "Reserved
+   for Private Use" (https://www.iana.org/assignments/cwt/
+   cwt.xhtml#claims-registry) keys within the CWT_Claims header.
 
 5.2.  Transparency Service
 
@@ -825,7 +824,48 @@ Table of Contents
    Receipts for the software and configuration of the service, as
    measured in its attestation report.
 
-5.2.2.  Registration Policies
+5.2.2.  Configuration
+
+   The Transparency Service records its configuration in the Append-Only
+   Log using Transparent Statements with distinguished media type
+   application/scitt-configuration.
+
+   The registration policy for statements with the media type suffix
+   (+<format> is implementation-specific.  The implementation SHOULD
+   document them, for example defining the Issuers authorized to
+   register configuration Signed Statements.
+
+   The Transparency Service is configured by the last Transparent
+   Statement of this type.  The Transparency Service MUST register a
+   Signed Statement that defines its initial configuration before
+   registering any other Signed Statement.  The Transparency Service MAY
+   register an additional Signed Statement that updates its
+   configuration.
+
+   The Transparency Service provides an endpoint that returns the
+   Transparent Statement that describes its current configuration.
+
+   The configuration reg_info SHOULD include a secure version number and
+   a timestamp.
+
+   The sample configuration payload uses the CDDL
+
+   Signature_Algorithms = [ int ]
+
+   Registration_Policy = {
+     * tstr => any
+   }
+
+   SCITT_Configuration = [
+     supported_signature_algs: Signature_Algorithms ; supported algorithms for signing Statement
+     ledger_alg: int ; type of verifiable data structure
+     service_uri: tstr; base URI of the transparency service, will be the issuer in the receipt CWT claim set
+     root_certificates: [ COSE_X509 ]
+     supported_apis: [ SCITT_Endpoint ]
+     registration_policies : Registration_Policy
+   ]
+
+5.2.3.  Registration Policies
 
    Authorization is needed prior to registration of Signed Statements to
    ensure completeness of an audit.  A Transparency Service that
@@ -841,6 +881,11 @@ Table of Contents
    specification leaves the implementation of the Registration Policy to
    the provider of the Transparency Services and its users.
 
+   A provider of a Transparency Service indicates what Registration
+   Policy is used in a given deployment and inform its users about
+   changes to the Registration Policy by issuing and registering
+   configuration statements.
+
    As a minimum, a Transparency Service MUST authenticate the Issuer of
    the Signed Statement, which requires some form of trust anchor.  As
    defined in [RFC6024], "A trust anchor represents an authoritative
@@ -851,11 +896,7 @@ Table of Contents
    key or other structure, as appropriate.  It can be a non-root
    certificate when it is a certificate.
 
-   A provider of a Transparency Service is, however, expected to
-   indicate what Registration Policy is used in a given deployment and
-   inform its users about changes to the Registration Policy.
-
-5.2.3.  Append-only Log Security Requirements
+5.2.4.  Append-only Log Security Requirements
 
    There are many different candidate verifiable data structures that
    may be used to implement an Append-only Log, such as chronological
@@ -873,7 +914,7 @@ Table of Contents
    Registries for each algorithm in parallel but the Transparency
    Service is then responsible for proving their mutual consistency.
 
-5.2.3.1.  Finality
+5.2.4.1.  Finality
 
    A Transparency Service is append-only.  Once a Signed Statement is
    registered and becomes a Transparent Statement, it cannot be
@@ -883,7 +924,7 @@ Table of Contents
    Append-only Log becomes immutable, and the Receipt provides
    universally-verifiable evidence of this property.
 
-5.2.3.2.  Consistency
+5.2.4.2.  Consistency
 
    There is no fork in the Append-only Log. Everyone with access to its
    contents sees the same sequence of entries, and can check its
@@ -892,7 +933,7 @@ Table of Contents
    state of the Append-only Log, encoded in an old Receipt, is
    consistent with the current Append-only Log state.
 
-5.2.3.3.  Replayability and Auditing
+5.2.4.3.  Replayability and Auditing
 
    Everyone with access to the Transparency Service can check the
    correctness of its contents.  In particular:
@@ -912,7 +953,7 @@ Table of Contents
    *  a Transparency Service MAY additionally support verifiability of
       client authentication and access control
 
-5.2.3.4.  Governance and Bootstrapping
+5.2.4.4.  Governance and Bootstrapping
 
    Transparency Services MAY document their governance rules and
    procedures for operating the Transparency Service and updating its
@@ -958,11 +999,11 @@ Table of Contents
    Some Verifiers may systematically fetch all Transparent Statements
    using the CWT_Claims Subject and assess them alongside the
    Transparent Statement they are verifying to ensure freshness,
-   completeness of evidence, and the promise of non-equivocation.
+   completeness of evidence, and Non-equivocation.
 
    Some Verifiers may choose to subset the collection of Statements,
    filtering on the payload type (Protected Header 3), the CWT
-   (Protected Header 13) Issuer claim, or other non-opaque properties.
+   (Protected Header 15) Issuer claim, or other non-opaque properties.
 
    Some Verifiers may systematically resolve Issuer DIDs to fetch the
    latest corresponding DID documents.  This behavior strictly enforces
@@ -999,7 +1040,7 @@ Table of Contents
 
    *  *Key ID* (label: 4): Key ID, as a bytestring
 
-   *  *CWT_Claims* (label: 13 pending [CWT_CLAIM_COSE]): A CWT
+   *  *CWT_Claims* (label: 15 pending [CWT_CLAIMS_COSE]): A CWT
       representing the Issuer (iss) making the statement, and the
       Subject (sub) to correlate a collection of statements about an
       Artifact.  Additional [CWT_CLAIMS] MAY be used, while iss and sub
@@ -1013,15 +1054,6 @@ Table of Contents
          refers, chosen by the Issuer
          Example: github.com/opensbom-generator/spdx-sbom-
          generator/releases/tag/v0.0.13
-
-   *  *Registration Policy* (label: TBD, temporary: 393): A map
-      containing key/value pairs set by the Issuer which are sealed on
-      Registration and non-opaque to the Transparency Service.  The key/
-      value pair semantics are specified by the Issuer or are specific
-      to the CWT_Claims iss and CWT_Claims sub tuple.
-      Examples: the sequence number of signed statements on a CWT_Claims
-      Subject, Issuer metadata, or a reference to other Transparent
-      Statements (e.g., augments, replaces, new-version, CPE-for)
 
    *  *Content type* (label: 3): The media type of the payload, as a
       string.
@@ -1047,19 +1079,10 @@ Table of Contents
      * tstr => any
    }
 
-   Reg_Info = {
-     ? "register_by": uint .within (~time),
-     ? "sequence_no": uint,
-     ? "issuance_ts": uint .within (~time),
-     ? "no_replay": null,
-     * tstr => any
-   }
-
    Protected_Header = {
      1   => int             ; algorithm identifier,
      4   => bstr            ; Key ID,
-     14  => CWT_Claims      ; CBOR Web Token Claims,
-     393 => Reg_Info        ; Registration Policy info,
+     15  => CWT_Claims      ; CBOR Web Token Claims,
      3   => tstr            ; payload type
    }
 
@@ -1089,17 +1112,6 @@ Table of Contents
    *  [SLSA]
 
    *  [SWID]
-
-   Once the Statement is serialized with the correct media-type/content-
-   format, an Issuer should fill in the attributes for the Registration
-   Policy information header.  From the Issuer's perspective, using
-   attributes from named policies ensures that the Signed Statement may
-   only be registered on Transparency Services that implement the
-   associated policy.
-
-   For instance, if a Signed Statement is frequently updated, and it is
-   important for Verifiers to always consider the latest version,
-   Issuers may use the sequence_no or issuer_ts attributes.
 
    Once all the Envelope headers are set, an Issuer MUST use a standard
    COSE implementation to produce an appropriately serialized Signed
@@ -1133,15 +1145,12 @@ Table of Contents
        headers listed above.  The Transparency Service MAY verify the
        Statement payload format, content and other optional properties.
 
-   5.  *Apply Registration Policy:* For named policies, the Transparency
-       Service MUST check that the required Registration Policy
-       attributes are present in the protected headers and apply the
-       check described in Table 1.  A Transparency Service MUST reject
-       Signed Statements that contain an attribute used for a named
-       policy that is not enforced by the service.  Custom Signed
-       Statements are evaluated given the current Transparency Service
-       state and the entire Envelope, and may use information contained
-       in the attributes of named policies.
+   5.  *Apply Registration Policy:* The Transparency Service MUST check
+       the attributes required by a policy are present in the protected
+       headers.  Custom Signed Statements are evaluated given the
+       current Transparency Service state and the entire Envelope, and
+       may use information contained in the attributes of named
+       policies.
 
    6.  *Register the Signed Statement* to the append-only log
 
@@ -1187,9 +1196,21 @@ Table of Contents
       headers MUST be marked critical: (scitt-version, verifiable-data-
       structure, kccs).
 
-   Inside Reg_info, the Transparency Service may include the
-   registration time to help Verifiers decide about the trustworthiness
-   of the Transparent Statement.
+   *  The SCITT version header MUST be included and its value match the
+      version field of the Receipt structure
+
+   *  The DID of Issuer header (in Signed Statements) MUST be included
+      and its value match the ts_identifier field of the Receipt
+      structure
+
+   *  Transparency Service MUST include additional claims in the
+      protected header of Receipts to indicate the policies evaluated
+      during the registration of a Statement
+
+   *  Since [I-D.draft-steele-cose-merkle-tree-proofs] uses optional
+      headers, the crit header (id: 2) MUST be included and all SCITT-
+      specific headers (version, DID of Transparency Service and
+      Registration Policy) MUST be marked critical
 
    The registration time is defined as the timestamp at which the
    Transparency Service has added this Signed Statement to its Append-
@@ -1197,9 +1218,6 @@ Table of Contents
 
    Editor's Note: The WG is discussing if existing CWT claims might
    better support these design principles.
-
-   label = int / tstr
-   value = any
 
    Receipt_Unprotected_Header = {
      &(scitt-inclusion-proof: 396) => bstr .cbor inclusion-proof
@@ -1213,74 +1231,6 @@ Table of Contents
      ? 6 => uint .within (~time),  ; iat, receipt issuance timestamp
      * label => value ; label MUST be less than -65536
    }
-
-   ; Statement-agnostic information about registration
-   ; These are authenticated by the receipt signature
-   Registration_Info = {
-     * tstr => any
-   }
-
-   ; Statement-specific information about statment registration
-   ; These are authenticated through the inclusion proof of the receipt
-   Statement_Registration_Info = {
-       &(statement-unique-id: 0) => tstr
-       &(registration-policy-id: 1) => tstr
-       * label => value
-   }
-
-   Receipt_Protected_Header = {
-       ; SCITT Receipt Version
-       &(scitt-version: 390) => int,
-
-       ; Type of Verifiable Data Structure, e.g. RFC9162_SHA256
-       &(verifiable-data-structure: -111) => int,
-
-       ; CBOR Web Tokoken claim set (CCS)
-       &(kccs: 14)  => Receipt_CWT_Claims,
-
-       ; Critical headers
-       &(crit: 2) => [+ label],
-
-       ; Key ID (optional)
-       ? &(kid: 4) => bstr,
-
-       ; X.509 chain (optional)
-       ? &(x5chain: 33) => COSE_X509,
-
-       ; Statement-agnostic registration information
-       ? &(registration-info: 395) => Registration_Info
-   }
-
-   Receipt_Unprotected_Header = {
-       &(statement-registration-info: 396) => Statement_Registration_Info
-   }
-
-   ; Please note that receipts cannot carry a payload, ensuring that verifiers
-   ; have to recompute the root from the inclusion proof to verify the signature
-   Receipt_as_COSE_Sign1 = [
-       protected : bstr .cbor Receipt_Protected_Header,
-       unprotected : Receipt_Unprotected_Header,
-       payload: nil,
-       signature : bstr
-   ]
-
-   Receipt = #6.18(Receipt_as_COSE_Sign1)
-
-   ; A Transparent Statement is a Signed Statement
-   ; with one or more Receipts in it's unprotected header.
-   Transparent_Statement_Unprotected_Header = {
-       &(receipts: 394) => [+ Receipt],
-       * label => any
-   }
-
-   Transparent_Statement_as_COSE_Sign1 = [
-       protected : bstr .cbor Signed_Statement_Protected_Header,
-       unprotected : Transparent_Statement_Unprotected_Header,
-       payload : bstr / nil,
-       signature : bstr
-   ]
-
-   Transparent_Statement = #6.18(Transparent_Statement_as_COSE_Sign1)
 
    Example transparent statement:
 
@@ -1313,7 +1263,7 @@ Table of Contents
      1: -7,                            / Algorithm                     /
      3: application/example+json,      / Content type                  /
      4: h'50685f55...50523255',        / Key identifier                /
-     13: {                             / CWT Claims                    /
+     15: {                             / CWT Claims                    /
        1: software.vendor.example,     / Issuer                        /
        2: vendor.product.example,      / Subject                       /
      }
@@ -1353,7 +1303,7 @@ Table of Contents
      1: -7,                            / Algorithm                     /
      4: h'50685f55...50523255',        / Key identifier                /
      -111: 1,                          / Verifiable Data Structure     /
-     13: {                             / CWT Claims                    /
+     15: {                             / CWT Claims                    /
        1: transparency.vendor.example, / Issuer                        /
        2: vendor.product.example,      / Subject                       /
      }
@@ -1684,7 +1634,7 @@ Table of Contents
    will be available to support them.
 
    An Issuer that knows of a changed state of quality for an Artifact,
-   SHOULD Register a new Signed Statement, using the same 13 CWT iss and
+   SHOULD Register a new Signed Statement, using the same 15 CWT iss and
    sub claims.
 
    Issuers MUST ensure that the Statement payloads in their Signed
@@ -1748,10 +1698,9 @@ Table of Contents
    In both cases, the SCITT Architecture provides generic, universally-
    verifiable cryptographic proof to individually blame Issuers or the
    Transparency Service.  On one hand, this enables valid actors to
-   detect and disambiguate malicious actors who issue contradictory
-   Signed Statements to different entities (Verifiers, Auditors,
-   Issuers), otherwise known as 'equivocation'.  On the other hand,
-   their liability and the resulting damage to their reputation are
+   detect and disambiguate malicious actors who employ Equivocation with
+   Signed Statements to different entities.  On the other hand, their
+   liability and the resulting damage to their reputation are
    application specific, and out of scope of the SCITT Architecture.
 
    Verifiers and Auditors need not be trusted by other actors.  In
@@ -1792,7 +1741,7 @@ Table of Contents
    Append-only Log, some Transparency Services may provide limited
    support for historical queries on the Signed Statements they have
    registered, and accept the risk of being blamed for inconsistent
-   Registration or Issuer equivocation.
+   Registration or Issuer Equivocation.
 
    Verifiers and Auditors may also witness (1, 4) but may not be able to
    collect verifiable evidence for it.
@@ -1884,7 +1833,7 @@ Table of Contents
    to notify Transparency Services of credential revocation to stop
    Verifiers from accepting Signed Statements signed with compromised
    credentials.  Issuers SHOULD register new Signed Statements
-   indicating the revocation, using the same 13 CWT iss and sub claims.
+   indicating the revocation, using the same 15 CWT iss and sub claims.
 
    The confidentiality of any identity lookup during Signed Statement
    Registration or Transparent Statement Verification is out of scope.
@@ -1912,13 +1861,17 @@ Table of Contents
 
 12.1.  Normative References
 
-   [COSWID]   "COSWID Specification", n.d.,
-              <https://www.rfc-editor.org/rfc/rfc9393.pdf>.
+   [COSWID]   Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D.
+              Waltermire, "Concise Software Identification Tags",
+              RFC 9393, DOI 10.17487/RFC9393, June 2023,
+              <https://www.rfc-editor.org/rfc/rfc9393>.
 
-   [CWT_CLAIM_COSE]
-              "CBOR Web Token (CWT) Claims in COSE Headers", n.d.,
-              <https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-
-              claims-in-headers/>.
+   [CWT_CLAIMS_COSE]
+              Looker, T. and M. B. Jones, "CBOR Web Token (CWT) Claims
+              in COSE Headers", Work in Progress, Internet-Draft, draft-
+              ietf-cose-cwt-claims-in-headers-10, 29 November 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-cose-
+              cwt-claims-in-headers-10>.
 
    [IANA.cose]
               IANA, "CBOR Object Signing and Encryption (COSE)",
@@ -1992,6 +1945,14 @@ Table of Contents
 
    [DID-WEB]  "did:web Decentralized Identifiers Method Spec", n.d.,
               <https://w3c-ccg.github.io/did-method-web/>.
+
+   [EQUIVOCATION]
+              Chun, B., Maniatis, P., Shenker, S., and J. Kubiatowicz,
+              "Attested append-only memory: making adversaries stick to
+              their word", Association for Computing Machinery (ACM),
+              ACM SIGOPS Operating Systems Review vol. 41, no. 6, pp.
+              189-204, DOI 10.1145/1323293.1294280, October 2007,
+              <https://doi.org/10.1145/1323293.1294280>.
 
    [I-D.draft-steele-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
@@ -2101,7 +2062,7 @@ Authors' Addresses
 
 
    Steve Lasker
-   RKVST
+   DataTrails
    Seattle,
    United States
-   Email: steve.lasker@rkvst.com
+   Email: steve.lasker@datatrails.ai
