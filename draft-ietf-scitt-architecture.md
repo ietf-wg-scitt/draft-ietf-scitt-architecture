@@ -72,12 +72,8 @@ normative:
   RFC8949: CBOR
 #  RFC9053: COSE-ALGS
 #  RFC9054: COSE-HASH
-  RFC9457:
-  RFC9110:
   RFC6838:
-  RFC3553:
   RFC9360:
-  IANA.params:
   IANA.cose:
   COSWID: RFC9393
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
@@ -724,6 +720,73 @@ Receipt_CWT_Claims = {
   ? 6 => uint .within (~time),  ; iat, receipt issuance timestamp
   * label => value ; label MUST be less than -65536
 }
+
+; Statement-agnostic information about registration
+; These are authenticated by the receipt signature
+Registration_Info = {
+  * tstr => any
+}
+
+; Statement-specific information about statement registration
+; These are authenticated through the inclusion proof of the receipt
+Statement_Registration_Info = {
+    &(statement-unique-id: 0) => tstr
+    &(registration-policy-id: 1) => tstr
+    * label => value
+}
+
+Receipt_Protected_Header = {
+    ; SCITT Receipt Version
+    &(scitt-version: 390) => int,
+
+    ; Type of Verifiable Data Structure, e.g. RFC9162_SHA256
+    &(verifiable-data-structure: -111) => int,
+
+    ; CBOR Web Tokoken claim set (CCS)
+    &(kccs: 15)  => Receipt_CWT_Claims,
+
+    ; Critical headers
+    &(crit: 2) => [+ label],
+
+    ; Key ID (optional)
+    ? &(kid: 4) => bstr,
+
+    ; X.509 chain (optional)
+    ? &(x5chain: 33) => COSE_X509,
+
+    ; Statement-agnostic registration information
+    ? &(registration-info: 395) => Registration_Info
+}
+
+Receipt_Unprotected_Header = {
+    &(statement-registration-info: 396) => Statement_Registration_Info
+}
+
+; Please note that receipts cannot carry a payload, ensuring that verifiers
+; have to recompute the root from the inclusion proof to verify the signature
+Receipt_as_COSE_Sign1 = [
+    protected : bstr .cbor Receipt_Protected_Header,
+    unprotected : Receipt_Unprotected_Header,
+    payload: nil,
+    signature : bstr
+]
+
+Receipt = #6.18(Receipt_as_COSE_Sign1)
+
+; A Transparent Statement is a Signed Statement
+; with one or more Receipts in it's unprotected header.
+Transparent_Statement_Unprotected_Header = {
+    &(receipts: 394) => [+ Receipt],
+    * label => any
+}
+
+Transparent_Statement_as_COSE_Sign1 = [
+    protected : bstr .cbor Signed_Statement_Protected_Header,
+    unprotected : Transparent_Statement_Unprotected_Header,
+    payload : bstr / nil,
+    signature : bstr
+]
+
 ~~~
 
 Example transparent statement:
@@ -1014,25 +1077,24 @@ in [@RFC6838].
 
 To indicate that the content is an scitt configuration represented as JSON:
 
-* Type name: application
-* Subtype name: scitt-configuration+json
-* Required parameters: n/a
-* Optional parameters: n/a
-* Encoding considerations: binary; application/scitt-configuration+json values are represented as a JSON Object; UTF-8 encoding SHOULD be employed for the JSON object.
-* Security considerations: See the Security Considerations section of [[ this specification ]].
-* Interoperability considerations: n/a
-* Published specification: [[ this specification ]]
-* Applications that use this media type: TBD
-* Fragment identifier considerations: n/a
-* Additional information:
-   * Magic number(s): n/a
-   * File extension(s): n/a
-   * Macintosh file type code(s): n/a
-* Person & email address to contact for further information: TBD
-* Intended usage: COMMON
-* Restrictions on usage: none
-* Author: TBD
-* Change Controller: IETF
-* Provisional registration?  No
-
+- Type name: application
+- Subtype name: scitt-configuration+json
+- Required parameters: n/a
+- Optional parameters: n/a
+- Encoding considerations: binary; application/scitt-configuration+json values are represented as a JSON Object; UTF-8 encoding SHOULD be employed for the JSON object.
+- Security considerations: See the Security Considerations section of [[ this specification ]].
+- Interoperability considerations: n/a
+- Published specification: [[ this specification ]]
+- Applications that use this media type: TBD
+- Fragment identifier considerations: n/a
+- Additional information:
+  - Magic number(s): n/a
+  - File extension(s): n/a
+  - Macintosh file type code(s): n/a
+- Person & email address to contact for further information: TBD
+- Intended usage: COMMON
+- Restrictions on usage: none
+- Author: TBD
+- Change Controller: IETF
+- Provisional registration?  No
 --- back
