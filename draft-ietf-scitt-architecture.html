@@ -24,16 +24,16 @@ Issuers can register their Signed Statements on any Transparency Service, with t
 <!-- Generator version information:
   xml2rfc 3.18.2
     Python 3.11.6
-    ConfigArgParse 1.5.3
+    ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.3
-    platformdirs 4.0.0
+    platformdirs 4.1.0
     pycountry 22.3.5
-    PyYAML 6.0
+    PyYAML 6.0.1
     requests 2.31.0
-    setuptools 67.7.2
+    setuptools 68.2.2
     six 1.16.0
     wcwidth 0.2.12
 -->
@@ -1038,7 +1038,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 7 June 2024</td>
+<td class="center">Expires 14 June 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1051,12 +1051,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-12-05" class="published">5 December 2023</time>
+<time datetime="2023-12-12" class="published">12 December 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-06-07">7 June 2024</time></dd>
+<dd class="expires"><time datetime="2024-06-14">14 June 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1101,7 +1101,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/">https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 <p id="section-note.1-3">
         Discussion of this document takes place on the
-        scitt Working Group mailing list (<span><a href="mailto:scitt@ietf.org">mailto:scitt@ietf.org</a></span>),
+        SCITT Working Group mailing list (<span><a href="mailto:scitt@ietf.org">mailto:scitt@ietf.org</a></span>),
         which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/scitt/">https://mailarchive.ietf.org/arch/browse/scitt/</a></span>.
         Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/scitt/">https://www.ietf.org/mailman/listinfo/scitt/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 <p id="section-note.1-4">Source for this draft and an issue tracker can be found at
@@ -1126,7 +1126,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 7 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 14 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2144,7 +2144,7 @@ Example: <code>-35</code> is the registered algorithm identifier for ECDSA with 
             <p id="section-6.1-3.2.1"><strong>Key ID</strong> (label: <code>4</code>): Key ID, as a bytestring<a href="#section-6.1-3.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-6.1-3.3">
-            <p id="section-6.1-3.3.1"><strong>CWT_Claims</strong> (label: <code>15</code> pending <span>[<a href="#CWT_CLAIM_COSE" class="cite xref">CWT_CLAIM_COSE</a>]</span>): A CWT representing the Issuer (<code>iss</code>) making the statement, and the Subject (<code>sub</code>) to correlate a collection of statements about an Artifact.
+            <p id="section-6.1-3.3.1"><strong>CWT_Claims</strong> (label: <code>15</code> pending <span>[<a href="#CWT_CLAIMS_COSE" class="cite xref">CWT_CLAIMS_COSE</a>]</span>): A CWT representing the Issuer (<code>iss</code>) making the statement, and the Subject (<code>sub</code>) to correlate a collection of statements about an Artifact.
 Additional <span>[<a href="#CWT_CLAIMS" class="cite xref">CWT_CLAIMS</a>]</span> <span class="bcp14">MAY</span> be used, while <code>iss</code> and <code>sub</code> <span class="bcp14">MUST</span> be provided<a href="#section-6.1-3.3.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-6.1-3.3.2.1">
@@ -3030,11 +3030,11 @@ Registry <span>[<a href="#IANA.params" class="cite xref">IANA.params</a>]</span>
 <dl class="references">
 <dt id="COSWID">[COSWID]</dt>
         <dd>
-<span class="refTitle">"COSWID Specification"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9393">https://www.rfc-editor.org/rfc/rfc9393</a>&gt;</span>. </dd>
+<span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Fitzgerald-McKay, J.</span>, <span class="refAuthor">Schmidt, C.</span>, and <span class="refAuthor">D. Waltermire</span>, <span class="refTitle">"Concise Software Identification Tags"</span>, <span class="seriesInfo">RFC 9393</span>, <span class="seriesInfo">DOI 10.17487/RFC9393</span>, <time datetime="2023-06" class="refDate">June 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9393">https://www.rfc-editor.org/rfc/rfc9393</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="CWT_CLAIM_COSE">[CWT_CLAIM_COSE]</dt>
+<dt id="CWT_CLAIMS_COSE">[CWT_CLAIMS_COSE]</dt>
         <dd>
-<span class="refTitle">"CBOR Web Token (CWT) Claims in COSE Headers"</span>, <span>n.d.</span>, <span>&lt;<a href="https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/">https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-claims-in-headers/</a>&gt;</span>. </dd>
+<span class="refAuthor">Looker, T.</span> and <span class="refAuthor">M. B. Jones</span>, <span class="refTitle">"CBOR Web Token (CWT) Claims in COSE Headers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cose-cwt-claims-in-headers-10</span>, <time datetime="2023-11-29" class="refDate">29 November 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10">https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IANA.cose">[IANA.cose]</dt>
         <dd>

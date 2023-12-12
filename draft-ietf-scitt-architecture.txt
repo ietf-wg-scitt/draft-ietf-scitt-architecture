@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 7 June 2024                                          C. Fournet
+Expires: 14 June 2024                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         5 December 2023
+                                                        12 December 2023
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -45,7 +45,7 @@ About This Document
    Status information for this document may be found at
    https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/.
 
-   Discussion of this document takes place on the scitt Working Group
+   Discussion of this document takes place on the SCITT Working Group
    mailing list (mailto:scitt@ietf.org), which is archived at
    https://mailarchive.ietf.org/arch/browse/scitt/.  Subscribe at
    https://www.ietf.org/mailman/listinfo/scitt/.
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 June 2024.
+   This Internet-Draft will expire on 14 June 2024.
 
 Copyright Notice
 
@@ -1040,7 +1040,7 @@ Table of Contents
 
    *  *Key ID* (label: 4): Key ID, as a bytestring
 
-   *  *CWT_Claims* (label: 15 pending [CWT_CLAIM_COSE]): A CWT
+   *  *CWT_Claims* (label: 15 pending [CWT_CLAIMS_COSE]): A CWT
       representing the Issuer (iss) making the statement, and the
       Subject (sub) to correlate a collection of statements about an
       Artifact.  Additional [CWT_CLAIMS] MAY be used, while iss and sub
@@ -1861,13 +1861,17 @@ Table of Contents
 
 12.1.  Normative References
 
-   [COSWID]   "COSWID Specification", n.d.,
+   [COSWID]   Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D.
+              Waltermire, "Concise Software Identification Tags",
+              RFC 9393, DOI 10.17487/RFC9393, June 2023,
               <https://www.rfc-editor.org/rfc/rfc9393>.
 
-   [CWT_CLAIM_COSE]
-              "CBOR Web Token (CWT) Claims in COSE Headers", n.d.,
-              <https://datatracker.ietf.org/doc/draft-ietf-cose-cwt-
-              claims-in-headers/>.
+   [CWT_CLAIMS_COSE]
+              Looker, T. and M. B. Jones, "CBOR Web Token (CWT) Claims
+              in COSE Headers", Work in Progress, Internet-Draft, draft-
+              ietf-cose-cwt-claims-in-headers-10, 29 November 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-cose-
+              cwt-claims-in-headers-10>.
 
    [IANA.cose]
               IANA, "CBOR Object Signing and Encryption (COSE)",
