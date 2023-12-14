@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-12T00:36:49.127257+00:00",
+  "timestamp": "2023-12-14T00:35:52.668333+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -514,7 +514,7 @@
       "id": "I_kwDOIvmHss5e_jL3",
       "title": "Add a sequence diagram",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/13",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -525,8 +525,8 @@
       ],
       "body": "Copied over from: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/27\r\n\r\n##  Compound User Story / Sequence Diagram\r\n\r\nAs a consumer, I want to understand if I should trust an artifact\r\nAs a producer, I want to be assured that the integrity of my artifacts has been reviewed by a trusted 3rd party.\r\n\r\n```mermaid\r\nsequenceDiagram\r\n    participant Issuer\r\n    participant Notary\r\n    Note left of Issuer: I take responsibility for the artifacts I produce\r\n    Issuer ->> Notary: These are the policies I am committed to meeting\r\n    Issuer ->> Notary: I stand by my claims about my artifact\r\n    loop Claims Check\r\n        Notary ->> Notary: Review relevant claims and policies\r\n    end\r\n    Notary ->> Issuer: Here is my endorsement and receipt\r\n    Consumer->>Notary: Is this artifact safe to use?\r\n    loop Endorsement Check\r\n        Notary->>Notary: Review relevant claims and endorsements\r\n    end\r\n     Notary ->> Consumer: You can trust this artifact, the endorsement is still valid\r\n     Note right of Consumer: I have confidence in the artifacts I consume\r\n```\r\n",
       "createdAt": "2023-02-21T15:53:11Z",
-      "updatedAt": "2023-12-02T18:49:37Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-12T15:40:52Z",
+      "closedAt": "2023-12-12T15:40:51Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -590,6 +590,13 @@
           "body": "Re #132 I am willing to take this up and do it with aasvg if my other PR in the i-d-template project if that would be helpful.",
           "createdAt": "2023-12-02T18:49:36Z",
           "updatedAt": "2023-12-02T18:49:36Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Cost-benefit call - until IETF docs can support a mermaid-like drawing, we'll punt this one. ",
+          "createdAt": "2023-12-12T15:40:51Z",
+          "updatedAt": "2023-12-12T15:40:51Z"
         }
       ]
     },
@@ -1982,7 +1989,7 @@
       "id": "I_kwDOIvmHss5kVZhk",
       "title": "Policy Identifiers",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/66",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -1992,8 +1999,8 @@
       ],
       "body": "Purpose of this issue is to disambiguate.\r\n\r\n### Policy\r\n\r\nA file that decides on registration,  (OPA /  REGO / JSON SCHEMA / CDDL, etc...)\r\n\r\n### Content ID for Policy\r\n\r\nA content identifier, such as `urn:sha256:digest(file)`, where file is a Policy.\r\n\r\n### Proposed Policy\r\n\r\nThis is a signed statement, where the statement is a Policy or a Content ID for a Policy\r\n\r\n(Registration policies apply to this object, sorta meta / recursive).\r\n\r\n### Transparent Policy\r\n\r\nA Proposed Policy with a receipt.\r\n\r\nThis is the same as a Transparent Statement for a content type that is a Policy or a Policy Content ID.\r\n\r\nWe think there is utility in defining a URN scheme for this, something like:\r\n\r\nurn + location of transparency service + identifiers for statement or identifiers for policy.\r\n\r\nFor example:\r\n\r\n- `did:web:transparency.example/policy/hash` -> resolves to a policy file\r\n- `did:web:transparency.example/statement-hashes/hash` -> resolves to a signed statement\r\n- `did:web:transparency.example/transparent-statement/hash` -> resolves to a transparent statement\r\n\r\n^ or some combined identifier built form combinations of these.\r\n\r\nIf you don't want DIDs, you can replace `did:web` with `urn:scitt`.",
       "createdAt": "2023-04-25T14:52:31Z",
-      "updatedAt": "2023-10-23T23:48:01Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-12T15:46:12Z",
+      "closedAt": "2023-12-12T15:46:12Z",
       "comments": [
         {
           "author": "OR13",
@@ -2535,11 +2542,13 @@
       "state": "OPEN",
       "author": "pdxjohnny",
       "authorAssociation": "CONTRIBUTOR",
-      "assignees": [],
+      "assignees": [
+        "SteveLasker"
+      ],
       "labels": [],
       "body": "Knowledge of SCITT's tree algorithm and parameters for that tree algorithm are required for a client to verify receipts. It seems like we need to have an endpoint to enable discovery of those parameters.",
       "createdAt": "2023-09-12T14:18:47Z",
-      "updatedAt": "2023-11-19T07:10:56Z",
+      "updatedAt": "2023-12-12T15:48:46Z",
       "closedAt": null,
       "comments": [
         {
@@ -2569,6 +2578,13 @@
           "body": "The document currently states:\r\n\r\n> The Transparency Service provides an endpoint that returns the Transparent Statement that describes its current configuration.\"\r\n>\r\n> The Transparency Service records its configuration in the Append-Only Log using Transparent Statements with distinguished media type `application/scitt-configuration`.\r\n>\r\n> From: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/930a0cd38a92dd6079bda2ed3c675019ee9b0aa3/draft-ietf-scitt-architecture.md#configuration\r\n\r\nPining based on #126 discussion comments: @fournet, @SteveLasker: I read this to mean the endpoint is a subject/feed, what is that subject/feed? Is it the issuer `did:web:` combined with the mentioned media type? How should we register these so that they are discoverable in a consistent way?",
           "createdAt": "2023-11-19T07:10:55Z",
           "updatedAt": "2023-11-19T07:10:55Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Queue to move to the SCRAPI repo ",
+          "createdAt": "2023-12-12T15:48:40Z",
+          "updatedAt": "2023-12-12T15:48:40Z"
         }
       ]
     },
@@ -2706,7 +2722,7 @@
       "id": "I_kwDOIvmHss5xcA7c",
       "title": "Review all COSE parameters and normalize text and integers",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/100",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2715,8 +2731,8 @@
       "labels": [],
       "body": "All our text references should look like:\r\n\r\n![Screen Shot 2023-09-19 at 9 51 01 AM](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/8295856/fc7507bc-dd37-4e8c-b68e-a5d5c65270ba)\r\n",
       "createdAt": "2023-09-19T14:51:19Z",
-      "updatedAt": "2023-10-23T23:47:25Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-12T15:49:40Z",
+      "closedAt": "2023-12-12T15:49:39Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -2731,6 +2747,13 @@
           "body": "Missed this one, although we did get some updates. in for 118",
           "createdAt": "2023-10-23T23:47:21Z",
           "updatedAt": "2023-10-23T23:47:21Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as subsequent PRs are adopting the formating ",
+          "createdAt": "2023-12-12T15:49:39Z",
+          "updatedAt": "2023-12-12T15:49:39Z"
         }
       ]
     },
@@ -2786,15 +2809,15 @@
       "id": "I_kwDOIvmHss5yEQGq",
       "title": "Refine Definition of Reg_Info",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/103",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "```\r\nReg_Info = {\r\n  ? \"register_by\": uint .within (~time),\r\n  ? \"sequence_no\": uint,\r\n  ? \"issuance_ts\": uint .within (~time),\r\n  ? \"no_replay\": null,\r\n  * tstr => any\r\n}\r\n```\r\n\r\nhttps://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/0383ec2b5a23f11d1a42800aebbe38368e12376d/draft-ietf-scitt-architecture.md?plain=1#L670\r\n\r\nIMO these are parameters on the issuer's view of the feed identifier.\r\n\r\nsequence number is meaningless unless you know what topic you are trying to order.",
       "createdAt": "2023-09-26T15:00:22Z",
-      "updatedAt": "2023-10-23T23:40:06Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-12T15:52:59Z",
+      "closedAt": "2023-12-12T15:52:59Z",
       "comments": [
         {
           "author": "OR13",
@@ -2816,6 +2839,13 @@
           "body": "to furnish something essential to the development, sustenance, maintenance, or operation of...\r\n\r\nb\r\n: to supply (material to be operated on) to a machine\r\nc\r\n(1)\r\n: to insert and deposit (something) repeatedly or continuously\r\n(2)\r\n: to insert and deposit something into (something)\r\n\r\n- https://www.merriam-webster.com/dictionary/feed\r\n\r\nA feed is what you put into or get out of a transparency service... feeds are \"about subjects\", which are identified via \"sub\".\r\n\r\nThe input feed is the set of all signed statements accepted or rejected by a transparency service\r\n\r\nThe output feed is the set of all signed statements for which a receipt exists because a registration policy has been met.\r\n\r\nThis is what a feed looks like in factorio (input is iron ore and coal, output is steel plates):\r\n\r\n![862972621_preview_Belt Smelter 3](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/8295856/92ce71f2-7b7b-4180-987c-7f02097825b1)\r\n\r\nThe subject of each input might be \"iron ore\", \"hematite\", \"https://www.ebi.ac.uk/chebi/searchId.do?chebiId=50818\", or \"chebi:50818\"...\r\n\r\nThe subject of each output might be \"steel plate 123\", \"ASTM709 Plate 456\", or \"urn:epc:tag:sgtin-96:1.7332402.026591.1234567890\" ... \r\n\r\nCWT Claims can also be present in the protected headers of receipts.\r\n\r\nThe \"logical grouping of all elements\", is not the same as \"the structured identifier chosen by an issuer to identify an element of a set\".",
           "createdAt": "2023-10-09T18:43:47Z",
           "updatedAt": "2023-10-09T18:45:43Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "closing as resolved with #135",
+          "createdAt": "2023-12-12T15:52:59Z",
+          "updatedAt": "2023-12-12T15:52:59Z"
         }
       ]
     },
@@ -2824,15 +2854,15 @@
       "id": "I_kwDOIvmHss5zYAoV",
       "title": "Adjust CDDL for Receipts",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/109",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "```\r\n~~~~ cddl\r\nclaim-label = int / text\r\n\r\n; https://www.iana.org/assignments/cwt\r\nclaims = {\r\n  &(iss: 1) => tstr \r\n  ; https://software.vendor or \r\n  ; did:web:software.vendor\r\n  &(sub: 2) => tstr \r\n  ; https://software.vendor or \r\n  ; did:web:software.vendor\r\n  ; https://software.vendor/products/456 or \r\n  ; did:web:software.vendor:products:456 or \r\n  ; did:web:software.vendor/products/456 or \r\n  ; urn:epc:tag:sgtin-96:1.7332402.026591.1234567890\r\n  * claim-label => any\r\n}\r\n\r\nstatement-protected-header-map = {\r\n  &(alg-id: 1) => int\r\n  &(content-type: 3) => tstr\r\n  &(issuer-key-id: 4) => bstr\r\n  &(issuer-claims: 13) => claims\r\n  * cose-label => cose-value\r\n}\r\n\r\nreceipt-protected-header-map = {\r\n  &(alg-id: 1) => int\r\n  &(issuer-key-id: 4) => bstr\r\n  &(issuer-claims: 13) => claims\r\n  * cose-label => cose-value\r\n}\r\n\r\n~~~~\r\n```",
       "createdAt": "2023-10-10T15:43:17Z",
-      "updatedAt": "2023-11-28T15:21:15Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-12T15:54:28Z",
+      "closedAt": "2023-12-12T15:54:27Z",
       "comments": [
         {
           "author": "henkbirkholz",
@@ -2868,6 +2898,13 @@
           "body": "Ready for transplant into PR, I think",
           "createdAt": "2023-10-10T16:55:40Z",
           "updatedAt": "2023-10-10T16:55:40Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "closing as stale with addition work to be done",
+          "createdAt": "2023-12-12T15:54:27Z",
+          "updatedAt": "2023-12-12T15:54:27Z"
         }
       ]
     },
@@ -2908,16 +2945,24 @@
       "id": "I_kwDOIvmHss50hpJA",
       "title": "Remap did to cwt_claims iss",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/117",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "PR #108 converged issuer and feed into the CTW_Claims iss and sub. \r\nThe doc needs a scrub to remap these properties\r\n",
       "createdAt": "2023-10-20T20:30:57Z",
-      "updatedAt": "2023-10-23T23:39:56Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2023-12-12T15:53:48Z",
+      "closedAt": "2023-12-12T15:53:47Z",
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as getting resolved with #139 ",
+          "createdAt": "2023-12-12T15:53:48Z",
+          "updatedAt": "2023-12-12T15:53:48Z"
+        }
+      ]
     },
     {
       "number": 120,
@@ -2931,9 +2976,17 @@
       "labels": [],
       "body": "As discussed on today's call.\r\n\r\nFolks expressed concern that \"Verifier\" was not friendly enough to \"Consumers or Relying Parties\", that are supposed to process receipts.",
       "createdAt": "2023-10-23T15:22:39Z",
-      "updatedAt": "2023-10-23T15:23:54Z",
+      "updatedAt": "2023-12-12T16:02:48Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@mwiseman-byid wanted to take a look for a proposal",
+          "createdAt": "2023-12-12T16:02:47Z",
+          "updatedAt": "2023-12-12T16:02:47Z"
+        }
+      ]
     },
     {
       "number": 124,
@@ -2985,7 +3038,7 @@
       "labels": [],
       "body": "For signed statements and receipts.",
       "createdAt": "2023-10-25T18:37:30Z",
-      "updatedAt": "2023-10-25T18:37:30Z",
+      "updatedAt": "2023-12-12T15:54:48Z",
       "closedAt": null,
       "comments": []
     },
@@ -2994,15 +3047,15 @@
       "id": "I_kwDOIvmHss51-2CK",
       "title": "Registration and Config statements MUST specify ",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/127",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "[Line 635](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/126/files#diff-585fb424519b79cf000445f3425fa56d328cbaca5d2a622740ddc4e5ca91dbe1R635) in PR #126 indicates: \r\n\r\n> The configuration `reg_info` SHOULD include a secure version number and a timestamp.\r\n\r\nAs these values are considered critical to the stability of the Transparency Service, I made the [comment \"To avoid rollbacks, we SHOULD likely make this a MUST, specific to configuration.\"](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/126/files#r1382909297)\r\n\r\nThis issue tracks the proposed change",
       "createdAt": "2023-11-06T15:16:45Z",
-      "updatedAt": "2023-11-22T14:31:42Z",
-      "closedAt": null,
+      "updatedAt": "2023-12-12T16:45:59Z",
+      "closedAt": "2023-12-12T16:45:59Z",
       "comments": [
         {
           "author": "aj-stein-nist",
@@ -3010,6 +3063,13 @@
           "body": "If we take this proposed change, which one is it?\r\n\r\n> The configuration `reg_info` MUST include a secure version number and a timestamp.\r\n\r\nor\r\n\r\n> The configuration `reg_info` MUST include a secure version number or timestamp.\r\n\r\nI do not really know what a \"secure version number\" could be (do we mean incrementing sequence number?), but just switching SHOULD to MUST and requiring both seems like it could be tedious for the implementer, confusing for a TS Service API client consumer. Barring any guidance, which one is the primary one in the presence of both?",
           "createdAt": "2023-11-22T14:31:42Z",
           "updatedAt": "2023-11-22T14:31:42Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Resolved with #135 ",
+          "createdAt": "2023-12-12T16:45:59Z",
+          "updatedAt": "2023-12-12T16:45:59Z"
         }
       ]
     },
@@ -13255,7 +13315,7 @@
       "labels": [],
       "body": "This PR makes it clearer that merkle trees are not required, and what the structure of a receipt is.",
       "createdAt": "2023-10-24T14:55:48Z",
-      "updatedAt": "2023-11-06T15:19:49Z",
+      "updatedAt": "2023-12-12T03:54:10Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d0fb2231337ef6b4c499b98e585e86a5adf7013b",
@@ -14851,7 +14911,7 @@
       "labels": [],
       "body": "This PR addresses https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/13",
       "createdAt": "2023-11-28T15:44:04Z",
-      "updatedAt": "2023-12-02T16:51:12Z",
+      "updatedAt": "2023-12-12T03:54:15Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "f70576e324b93b9b7c1d8c605d8f33c0bdfa1063",
@@ -15030,7 +15090,7 @@
       "labels": [],
       "body": "Based on discussions at IETF and subsequent editors meetings, this proposal removes `reg_info` as not required by all Transparency Service implementations. \r\nTransparency Services MAY implement optional information using `CWT_Claims` and the [\"private use\" implementation keys](https://www.iana.org/assignments/cwt/cwt.xhtml#claims-registry) available\r\n\r\nFixes #19, #103, #127",
       "createdAt": "2023-12-02T00:37:37Z",
-      "updatedAt": "2023-12-05T17:24:42Z",
+      "updatedAt": "2023-12-12T03:54:07Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cd61a58ed50603fc6cf74a00dbd029762ab6764d",
@@ -15224,24 +15284,26 @@
       "id": "PR_kwDOIvmHss5hM6sl",
       "title": "Prepare for SCRAPI",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/139",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This PR removes implementation details from the architecture, many of which are specific to SCRAPI.",
       "createdAt": "2023-12-05T16:34:38Z",
-      "updatedAt": "2023-12-05T18:34:18Z",
+      "updatedAt": "2023-12-12T17:10:15Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
-      "baseRefOid": "cd61a58ed50603fc6cf74a00dbd029762ab6764d",
+      "baseRefOid": "bd1f91d34ba54ef0c064e44d2fe72a482bc9ea54",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "scrapi-adoption-prep",
-      "headRefOid": "f89382c56071323c3ebb9e08770f9b61e64c8ce7",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "a4e15641877cd578e7d391e0aeaf26582bedd2d9",
+      "closedAt": "2023-12-12T17:09:41Z",
+      "mergedAt": "2023-12-12T17:09:41Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "0580ad7de21d197f02379b6d02741d192d8fe96d"
+      },
       "comments": [
         {
           "author": "aj-stein-nist",
@@ -15270,6 +15332,13 @@
           "body": "PR against SCRAPI which can take some of these changes, but which I am intentionally leaving light.\r\n\r\nhttps://github.com/ietf-scitt/draft-birkholz-scitt-scrapi/pull/7",
           "createdAt": "2023-12-05T18:34:17Z",
           "updatedAt": "2023-12-05T18:34:17Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "fixes #117 ",
+          "createdAt": "2023-12-12T04:19:05Z",
+          "updatedAt": "2023-12-12T04:19:05Z"
         }
       ],
       "reviews": [
@@ -15285,6 +15354,45 @@
           "createdAt": "2023-12-05T17:22:02Z",
           "updatedAt": "2023-12-05T17:22:02Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5p5DFF",
+          "commit": {
+            "abbreviatedOid": "0b8c06e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Will be LGTM with merger of #141 ",
+          "createdAt": "2023-12-12T04:20:55Z",
+          "updatedAt": "2023-12-12T04:20:55Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5p-d1d",
+          "commit": {
+            "abbreviatedOid": "a4e1564"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM\r\n\r\nPer the editors call, there was a few open questions that @fournet was going to open new issues and prs for tracking. \r\nThis PR completes the previous decision to segment the APIs into: https://github.com/ietf-scitt/draft-birkholz-scitt-scrapi/",
+          "createdAt": "2023-12-12T16:40:44Z",
+          "updatedAt": "2023-12-12T16:40:44Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5p-lgP",
+          "commit": {
+            "abbreviatedOid": "a4e1564"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM. Clarity is good.",
+          "createdAt": "2023-12-12T16:56:30Z",
+          "updatedAt": "2023-12-12T16:56:30Z",
+          "comments": []
         }
       ]
     },
@@ -15293,25 +15401,35 @@
       "id": "PR_kwDOIvmHss5hY_7A",
       "title": "Some Header Re-Shuffeling",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/140",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "simplified a few references & added a WG, some reordering",
       "createdAt": "2023-12-07T08:31:13Z",
-      "updatedAt": "2023-12-07T14:56:27Z",
+      "updatedAt": "2023-12-12T03:53:48Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "1720d0b8ce4a10658ba2361712c0e3089c2dcb4b",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "henks-editorials-1",
-      "headRefOid": "7329b259f7672237f67f959ef2f8758870e0fd86",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "headRefOid": "d8d8695de57b593c0e30a39751dcc48ba7483759",
+      "closedAt": "2023-12-12T03:53:44Z",
+      "mergedAt": "2023-12-12T03:53:43Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "bd1f91d34ba54ef0c064e44d2fe72a482bc9ea54"
+      },
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> A small fix and then it will be ready to \ud83d\udea2 it.\r\n\r\nThanks, @aj-stein-nist ",
+          "createdAt": "2023-12-12T03:53:01Z",
+          "updatedAt": "2023-12-12T03:53:01Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss5peqwk",
@@ -15345,6 +15463,61 @@
               "updatedAt": "2023-12-07T14:57:20Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5p4-wy",
+          "commit": {
+            "abbreviatedOid": "d8d8695"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2023-12-12T03:53:38Z",
+          "updatedAt": "2023-12-12T03:53:38Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 141,
+      "id": "PR_kwDOIvmHss5hwAE6",
+      "title": "Format and spellcheck fixes to #139",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/141",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "A few kramdown and markdown fixes and a spellcheck",
+      "createdAt": "2023-12-12T04:18:32Z",
+      "updatedAt": "2023-12-12T16:14:43Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "scrapi-adoption-prep",
+      "baseRefOid": "0b8c06e1b24d62c7f648a16bc27e8da1a3af9e45",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/scrapi-updates",
+      "headRefOid": "4af1cefd021f257e073304bdbd8f0f64eea8b371",
+      "closedAt": "2023-12-12T15:11:38Z",
+      "mergedAt": "2023-12-12T15:11:38Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "cd9eb59d0d84d907db1e304568b8e3ffa0d4f33d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5p9hPv",
+          "commit": {
+            "abbreviatedOid": "d5eeb26"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-12-12T15:09:33Z",
+          "updatedAt": "2023-12-12T15:09:33Z",
+          "comments": []
         }
       ]
     }
