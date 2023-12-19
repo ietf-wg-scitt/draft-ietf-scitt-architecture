@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-17T00:39:16.426308+00:00",
+  "timestamp": "2023-12-19T00:36:17.494691+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -2771,7 +2771,7 @@
       ],
       "body": "In section 5.2.3.3 `client` appears out of the blue. It is not clear what a `client` is. ",
       "createdAt": "2023-09-20T07:46:53Z",
-      "updatedAt": "2023-11-21T17:59:18Z",
+      "updatedAt": "2023-12-18T16:43:51Z",
       "closedAt": null,
       "comments": [
         {
@@ -2801,6 +2801,13 @@
           "body": "In that vein, I would support clarifying it with a \"an Issue or Verifier's Transparency Service API client\" in the applicable areas of the draft. Would that be more helpful or does it not reduce ambiguity?",
           "createdAt": "2023-11-21T17:59:17Z",
           "updatedAt": "2023-11-21T17:59:17Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Just an update, I plan to send a PR with proposed changes this week.",
+          "createdAt": "2023-12-18T16:43:50Z",
+          "updatedAt": "2023-12-18T16:43:50Z"
         }
       ]
     },
@@ -2976,7 +2983,7 @@
       "labels": [],
       "body": "As discussed on today's call.\r\n\r\nFolks expressed concern that \"Verifier\" was not friendly enough to \"Consumers or Relying Parties\", that are supposed to process receipts.",
       "createdAt": "2023-10-23T15:22:39Z",
-      "updatedAt": "2023-12-12T16:02:48Z",
+      "updatedAt": "2023-12-18T18:13:52Z",
       "closedAt": null,
       "comments": [
         {
@@ -2985,6 +2992,27 @@
           "body": "@mwiseman-byid wanted to take a look for a proposal",
           "createdAt": "2023-12-12T16:02:47Z",
           "updatedAt": "2023-12-12T16:02:47Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Just an update, I plan to send a PR with proposed changes this week. @mwiseman-byid, shall we sync up in the comments or out of band elsewhere?",
+          "createdAt": "2023-12-18T16:48:33Z",
+          "updatedAt": "2023-12-18T16:48:33Z"
+        },
+        {
+          "author": "mwiseman-byid",
+          "authorAssociation": "NONE",
+          "body": "A.J.\r\n\r\nYes, let\u2019s get together and work out a proposal. I\u2019m booked today but\r\ntomorrow is open except for 07:00-08:00 and 14:00-15:00 PST (10:00-11:00\r\nand 17:00-18:00 EST)\r\n\r\n\r\n\r\nMonty\r\n\r\n\r\n\r\n*From:* A.J. Stein ***@***.***>\r\n*Sent:* Monday, December 18, 2023 10:49\r\n*To:* ietf-wg-scitt/draft-ietf-scitt-architecture <\r\n***@***.***>\r\n*Cc:* Monty Wiseman ***@***.***>; Mention <\r\n***@***.***>\r\n*Subject:* Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Consider\r\nreplacing \"Verifier\" with \"Relying Party\" (Issue #120)\r\n\r\n\r\n\r\nJust an update, I plan to send a PR with proposed changes this week.\r\n@mwiseman-byid <https://github.com/mwiseman-byid>, shall we sync up in the\r\ncomments or out of band elsewhere?\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub\r\n<https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/120#issuecomment-1861029077>,\r\nor unsubscribe\r\n<https://github.com/notifications/unsubscribe-auth/AYBDCU5Q4UK2ZM4P4NVU4Z3YKBXWZAVCNFSM6AAAAAA6MIII6KVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMYTQNRRGAZDSMBXG4>\r\n.\r\nYou are receiving this because you were mentioned.Message ID: <\r\n***@***.***\r\n>\r\n",
+          "createdAt": "2023-12-18T16:56:46Z",
+          "updatedAt": "2023-12-18T16:56:46Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Sorry, @mwiseman-byid I had to dig a bit to find your email in my inbox from the mailing lists but I found it. Invite sent. I think we can make quick progress and draft a PR tomorrow. ",
+          "createdAt": "2023-12-18T18:13:51Z",
+          "updatedAt": "2023-12-18T18:13:51Z"
         }
       ]
     },
