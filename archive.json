@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-19T00:36:17.494691+00:00",
+  "timestamp": "2023-12-21T00:35:41.548087+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -2765,13 +2765,16 @@
       "state": "OPEN",
       "author": "nikosft",
       "authorAssociation": "NONE",
-      "assignees": [],
+      "assignees": [
+        "aj-stein-nist",
+        "mwiseman-byid"
+      ],
       "labels": [
         "terminology"
       ],
       "body": "In section 5.2.3.3 `client` appears out of the blue. It is not clear what a `client` is. ",
       "createdAt": "2023-09-20T07:46:53Z",
-      "updatedAt": "2023-12-18T16:43:51Z",
+      "updatedAt": "2023-12-20T23:38:05Z",
       "closedAt": null,
       "comments": [
         {
@@ -2808,6 +2811,34 @@
           "body": "Just an update, I plan to send a PR with proposed changes this week.",
           "createdAt": "2023-12-18T16:43:50Z",
           "updatedAt": "2023-12-18T16:43:50Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "From the architecture/editors meeting\r\nDifferentiating:\r\n- **Issuer** who signs the statement (The identity of the software component - Wabbit Networks)\r\n- **Client** who initiates the registration operation, which encompasses RBAC which is not part of the spec, beyond being authenticated (the build system's identity for access control. The build system has a role to perform operations) - possibly refer to OAuth's definition of client\r\n- **Verifier** who evaluates a statement. The verifier cares about the issuer, to know it was signed by a particular issuer. The audit of a supply chain will check the identities involved in the operations.",
+          "createdAt": "2023-12-19T15:39:25Z",
+          "updatedAt": "2023-12-19T15:39:25Z"
+        },
+        {
+          "author": "mwiseman-byid",
+          "authorAssociation": "NONE",
+          "body": "AJ and I will review this\r\n",
+          "createdAt": "2023-12-19T15:43:12Z",
+          "updatedAt": "2023-12-19T15:43:12Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@mwiseman-byid and I met today to discuss a recap of the authors/editorial meeting (sorry I missed) and how we need to think about 1) a better alternative name and 2) provide a rationale to why we need to have 1, terminology change or not (part of that is the subject of this issue and pending work that should come up in #120 for the latter).\r\n\r\nFor 1, Monty and I are leaning towards agent for now, but we need to brainstorm on adjusted architecture to reflect 2 and \"the way\" and how it relates to requested edits for the relying party issue in #120.\r\n\r\nWe will post in progress work and continue to collaborate and sync, updating the WG via mailing list when it is ready for review and feedback across the WG. More to follow.",
+          "createdAt": "2023-12-19T17:06:15Z",
+          "updatedAt": "2023-12-20T23:38:05Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks, @aj-stein-nist, @mwiseman-byid for the focused discussion.  ",
+          "createdAt": "2023-12-19T23:15:54Z",
+          "updatedAt": "2023-12-19T23:15:54Z"
         }
       ]
     },
@@ -2974,16 +3005,19 @@
     {
       "number": 120,
       "id": "I_kwDOIvmHss50rAoh",
-      "title": "Consider replacing \"Verifier\" with \"Relying Party\"",
+      "title": "Consider clarifying \"Verifier\" and \"Relying Party\"",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/120",
       "state": "OPEN",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "aj-stein-nist",
+        "mwiseman-byid"
+      ],
       "labels": [],
       "body": "As discussed on today's call.\r\n\r\nFolks expressed concern that \"Verifier\" was not friendly enough to \"Consumers or Relying Parties\", that are supposed to process receipts.",
       "createdAt": "2023-10-23T15:22:39Z",
-      "updatedAt": "2023-12-18T18:13:52Z",
+      "updatedAt": "2023-12-19T19:27:03Z",
       "closedAt": null,
       "comments": [
         {
@@ -3013,6 +3047,20 @@
           "body": "Sorry, @mwiseman-byid I had to dig a bit to find your email in my inbox from the mailing lists but I found it. Invite sent. I think we can make quick progress and draft a PR tomorrow. ",
           "createdAt": "2023-12-18T18:13:51Z",
           "updatedAt": "2023-12-18T18:13:51Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Met with @mwiseman-byid and we discussed perspectives and work on this in the near-term, summarized with https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/102#issuecomment-1863163215. More to follow.",
+          "createdAt": "2023-12-19T17:07:00Z",
+          "updatedAt": "2023-12-19T17:07:00Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Adding some more notes to plot out the work, Monty and I discussed aligning the diagram with the separate/distinct RATS architecture, but the separate call out of a distinct Relying Party role and how it pertains to agent was discussed when we met, per discussion I missed in today's author/editor meeting. For my future reference, I need to re-review the doc, as well as compare/contrast [the architecture diagram in Section 3](https://www.rfc-editor.org/rfc/rfc9334.html#name-architectural-overview),",
+          "createdAt": "2023-12-19T19:27:02Z",
+          "updatedAt": "2023-12-19T19:27:02Z"
         }
       ]
     },
