@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-21T00:35:41.548087+00:00",
+  "timestamp": "2023-12-24T00:38:18.708668+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -2774,7 +2774,7 @@
       ],
       "body": "In section 5.2.3.3 `client` appears out of the blue. It is not clear what a `client` is. ",
       "createdAt": "2023-09-20T07:46:53Z",
-      "updatedAt": "2023-12-20T23:38:05Z",
+      "updatedAt": "2023-12-21T00:39:34Z",
       "closedAt": null,
       "comments": [
         {
@@ -2839,6 +2839,13 @@
           "body": "Thanks, @aj-stein-nist, @mwiseman-byid for the focused discussion.  ",
           "createdAt": "2023-12-19T23:15:54Z",
           "updatedAt": "2023-12-19T23:15:54Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "OK, my work on #120 also led me to be confused and think maybe we have meant agent/client when we said verifier. I made some strawman diagrams to discuss this WG members in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/120#issuecomment-1865318043.\r\n\r\n/cc @mwiseman-byid ",
+          "createdAt": "2023-12-21T00:39:34Z",
+          "updatedAt": "2023-12-21T00:39:34Z"
         }
       ]
     },
@@ -3017,7 +3024,7 @@
       "labels": [],
       "body": "As discussed on today's call.\r\n\r\nFolks expressed concern that \"Verifier\" was not friendly enough to \"Consumers or Relying Parties\", that are supposed to process receipts.",
       "createdAt": "2023-10-23T15:22:39Z",
-      "updatedAt": "2023-12-19T19:27:03Z",
+      "updatedAt": "2023-12-21T00:37:41Z",
       "closedAt": null,
       "comments": [
         {
@@ -3061,6 +3068,13 @@
           "body": "Adding some more notes to plot out the work, Monty and I discussed aligning the diagram with the separate/distinct RATS architecture, but the separate call out of a distinct Relying Party role and how it pertains to agent was discussed when we met, per discussion I missed in today's author/editor meeting. For my future reference, I need to re-review the doc, as well as compare/contrast [the architecture diagram in Section 3](https://www.rfc-editor.org/rfc/rfc9334.html#name-architectural-overview),",
           "createdAt": "2023-12-19T19:27:02Z",
           "updatedAt": "2023-12-19T19:27:02Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "# Background\r\n\r\nSo I did not make as much tangible progress today and have spent a lot of time thinking and reading as I re-read this SCITT Architecture draft and related WG drafts (RATS, OAuth) where Relying Party is defined. So, before I spend a significant effort in drawing this with aasvg, I would like to quickly highlight the gaps in my understanding via Mermaid so I can quickly iterate. I have tried reading the mailing list but it not 100% clear where the dichotomy between Auditor and Verifier occurred, but they seem overlapping and redundant *to me* unless Verifier is, in fact, some non-person entity, like the software doing the verification itself (so this goes to what should we rename client to in #102, separate of this), but does that not in fact mean Auditor is the Relying Party of sorts? It seems Auditor is just giving a specific name to a general kind of consumer and that is not what a Verifier is.\r\n\r\nSo on that note, this is the current version of the SVG diagram in Mermaid (\ud83e\udd1e I hope I got this right, I cannot just have labels like \"Issuer\" on the left-hand side so I use subgraphs to box those and not do something clever with dotted lines and cause more problems).\r\n\r\n# Current State\r\n\r\n```mermaid\r\nflowchart TD\r\n  \r\n  A([Artifact])\r\n  S([Statement])\r\n  E([Envelope])\r\n  SS([Signed Statement])\r\n  R([Receipt])\r\n  DIDKM[DID Key Manifest]\r\n  TServ[Transparency Service]\r\n  R([Receipt])\r\n  TStat([Transparent Statement])\r\n  VTStat[/Verify Transparent Statement/]\r\n  RLog[/Replay Log/]\r\n  CR[/Collect Receipts/]\r\n  subgraph Issuer\r\n  A-->S\r\n  S-->SS\r\n  E-->SS\r\n  end\r\n  subgraph Transparency Service\r\n  DIDKM--COSE Signing-->SS\r\n  DIDKM--Decentralized Identifier-->E\r\n  SS-->TServ\r\n  TServ-->R\r\n  R-->TStat\r\n  end\r\n  subgraph Verifier\r\n  TStat-->VTStat\r\n  DIDKM-->VTStat\r\n  end\r\n  subgraph Auditor\r\n  TStat-->CR\r\n  TServ-->RLog\r\n  end\r\n```\r\n\r\n(Source: https://gist.github.com/aj-stein-nist/c4630d197608350f738a6d9fea058efc)\r\n\r\n# Edit 1: Change Auditor to Relying Party\r\n\r\nIt would seem we really need to change the diagram and the terminology to get rid of Auditor altogether, so first, we would move to this.\r\n\r\n```mermaid\r\nflowchart TD\r\n  \r\n  A([Artifact])\r\n  S([Statement])\r\n  E([Envelope])\r\n  SS([Signed Statement])\r\n  R([Receipt])\r\n  DIDKM[DID Key Manifest]\r\n  TServ[Transparency Service]\r\n  RP[Relying Party]\r\n  R([Receipt])\r\n  V[Verifier]\r\n  TStat([Transparent Statement])\r\n  VTStat[/Verify Transparent Statement/]\r\n  RLog[/Replay Log/]\r\n  CR[/Collect Receipts/]\r\n  subgraph Issuer\r\n  A-->S\r\n  S-->SS\r\n  E-->SS\r\n  end\r\n  subgraph Transparency Service\r\n  DIDKM--COSE Signing-->SS\r\n  DIDKM--Decentralized Identifier-->E\r\n  SS-->TServ\r\n  TServ-->R\r\n  R-->TStat\r\n  end\r\n  subgraph Verifier Owner\r\n  TStat-->VTStat-->V\r\n  DIDKM-->VTStat-->V\r\n  end\r\n  subgraph Relying Party Owner\r\n  TStat-->CR-->RP\r\n  TServ-->RLog-->RP\r\n  end\r\n```\r\n\r\n(Source: https://gist.github.com/aj-stein-nist/c5bf7d5e3675e5149c897453fe5b1b6e)\r\n\r\n# Questions and Confusion\r\n\r\n1. I was going to do a subsequent edit, but at this point I will have to ask the group: what is a verifier doing that is different from a relying party owner with a relying party? Could you separate one from the other? (Don't you need to replay the log to verify the sequence of statements?) For reference, there is so much overlap with [the RATS Architecture terminology and diagram](https://datatracker.ietf.org/doc/html/rfc9334#dataflow) I think we need to either add compare statements to terminology and touch up the current state diagram to disambiguate the use of these terms. Screenshot below.\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/94922603/ffd60b0b-35dd-4e63-b7dd-addc7d7e3df4)\r\n\r\n2. So would that mean, if they are in fact separate, Edit 2 incrementing after Edit 1 to reflect my understanding would be ... this?\r\n\r\n```mermaid\r\nflowchart TD\r\n  \r\n  A([Artifact])\r\n  S([Statement])\r\n  E([Envelope])\r\n  SS([Signed Statement])\r\n  R([Receipt])\r\n  DIDKM[DID Key Manifest]\r\n  TServ[Transparency Service]\r\n  RP[Relying Party]\r\n  R([Receipt])\r\n  V[Verifier]\r\n  TStat([Transparent Statement])\r\n  VTStat[/Verify Transparent Statement/]\r\n  RLog[/Replay Log/]\r\n  CR[/Collect Receipts/]\r\n  subgraph Issuer\r\n  A-->S\r\n  S-->SS\r\n  E-->SS\r\n  end\r\n  subgraph Transparency Service\r\n  DIDKM--COSE Signing-->SS\r\n  DIDKM--Decentralized Identifier-->E\r\n  SS-->TServ\r\n  TServ-->R\r\n  R-->TStat\r\n  end\r\n  subgraph Verifier Owner\r\n  TStat-->VTStat-->V\r\n  DIDKM-->VTStat-->V\r\n  end\r\n  subgraph Relying Party Owner\r\n  TStat-->CR-->RP\r\n  TServ-->RLog-->RP\r\n  RP-->V\r\n  end\r\n```\r\n\r\n(Source: https://gist.github.com/aj-stein-nist/89a5068e10da05193d531762bf75ba67)\r\n\r\n\r\n3. If we start to think this way, do we consider the software (client/agent/what have you) used by the Issuer to be distinct? Similar but with one of two functionalities (an agent/client/what have you can be for Issuers to get receipts of signed statements *or* a verifier that reads all of them)?\r\n\r\n/cc @mwiseman-byid I am not sure this update at the end of the day reflects our discussion, but I feel like I lost the thread of what we discussed and seemed concrete in discussion. Translating it into diagram and wording updates has left me scratching my head.\r\n\r\n\r\n\r\n\r\n",
+          "createdAt": "2023-12-21T00:37:18Z",
+          "updatedAt": "2023-12-21T00:37:41Z"
         }
       ]
     },
