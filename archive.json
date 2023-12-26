@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-24T00:38:18.708668+00:00",
+  "timestamp": "2023-12-26T00:34:45.160150+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -15610,6 +15610,40 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 142,
+      "id": "PR_kwDOIvmHss5itk8Q",
+      "title": "Add package.json with aasvg",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/142",
+      "state": "OPEN",
+      "author": "thgoebel",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "As suggested in https://github.com/martinthomson/i-d-template/issues/385#issuecomment-1564100412, there should be a `package.json`. Then running `make` will automatically install aasvg (assuming that npm is installed, which I am documenting in https://github.com/martinthomson/i-d-template/pull/419).\r\n\r\nWithout this (and without aasvg installed otherwise), running `make` will throw an error:\r\n\r\n```\r\n/usr/lib/ruby/3.1.0/open3.rb:222:in `spawn': No such file or directory - aasvg (Errno::ENOENT)\r\n        from /usr/lib/ruby/3.1.0/open3.rb:222:in `popen_run'\r\n        from /usr/lib/ruby/3.1.0/open3.rb:103:in `popen3'\r\n        from /usr/lib/ruby/3.1.0/open3.rb:290:in `capture3'\r\n        from /draft-ietf-scitt-architecture/lib/.gems/ruby/3.1.0/gems/kramdown-rfc2629-1.7.4/lib/kramdown-rfc2629.rb:557:in `svg_tool_process'\r\n        from /draft-ietf-scitt-architecture/lib/.gems/ruby/3.1.0/gems/kramdown-rfc2629-1.7.4/lib/kramdown-rfc2629.rb:506:in `call'\r\n[...]\r\n```",
+      "createdAt": "2023-12-24T13:18:08Z",
+      "updatedAt": "2023-12-24T14:08:25Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "0580ad7de21d197f02379b6d02741d192d8fe96d",
+      "headRepository": "thgoebel/draft-ietf-scitt-architecture",
+      "headRefName": "package-json",
+      "headRefOid": "a81c96409b9b149c51866e674caa31b9ebc7b1f1",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Thanks for the contribution. I actually completed the supporting work, with package.json and other requirements, and it works partly. The SVG can be output by the CLI but Mermaid itself makes not-so-standard SVG files and fails tests later in the pipeline. That's why I voluntarily closed #134. More details there.\n\nIn the coming weeks I am more than happy to work with you on determining how hard it is to make upstream fixes to Mermaid but it won't be trivial.",
+          "createdAt": "2023-12-24T14:08:24Z",
+          "updatedAt": "2023-12-24T14:08:24Z"
+        }
+      ],
+      "reviews": []
     }
   ]
 }
