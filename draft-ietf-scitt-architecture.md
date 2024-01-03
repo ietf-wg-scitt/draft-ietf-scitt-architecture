@@ -130,8 +130,6 @@ This document defines a generic, interoperable and scalable architecture to enab
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
 Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers will be able to verify them.
 
-Within the SCITT Architecture, a producer is known as an Issuer, and a consumer is known as a Verifier.
-
 --- middle
 
 # Introduction
@@ -139,44 +137,17 @@ Within the SCITT Architecture, a producer is known as an Issuer, and a consumer 
 This document describes the scalable, flexible, and decentralized SCITT architecture.
 Its goal is to enhance auditability and accountability across supply chains.
 
-In supply chains, there are producers and consumers of items.
-Consumers may like to have information about the items that they consume, such as an item's provenance.
-SCITT provides a way for consumers to obtain this information in a way that is "transparent", that is, producers cannot lie about the information without it being detected.
-SCITT achieves this by having producers (also called Issuers) publish information in a Transparency Service, where consumers (also called Verifiers) can check the information.
+In supply chains, items travel down the chain until they are eventually consumed by someone.
+Consumers like to have information about the items that they consume.
+There are many parties who publish information about an item:
+For example, the original manufacturer may provide information about the state of the item when it left the factory.
+The shipping company may add information about the transport environment of the item.
+Compliance auditors may provide information about their compliance assessment of the item.
+Security companies may publish vulnerability information about an item.
+Consumers may even publish the fact that they consume an item.
 
-SCITT consists of the following roles: Issuers, Transparency Services, Verifiers, and Auditors.
-The process works as follows:
-
-1. Issuers make Statements about Artifacts they release, for example: "Issuer name", "Artifact type", "Artifact version".
-1. Issuers sign the Statements, producing Signed Statements.
-1. Issuers submit the Signed Statements to Transparency Services.
-1. Transparency Services take the submitted Signed Statements and insert them into an Append-only Log, producing Transparent Statements.
-They may add their own metadata such as: "Transparency Service name", "Artifact registration time", "registration policy used".
-This process can be thought of as Transparency Services counter-signing Issuers' Signed Statements.
-Transparency Services have a Registration Policy controlling what can be submitted.
-They may also have an authorization policy controlling who can access their service.
-1. Verifiers consume the Transparent Statements, verifying them in order to be convinced of the Statement about the Artifact.
-1. Auditors verify the correctness and consistency of the Transparent Statements.
-
-An entity can take on multiple roles, for example, an entity can act both as an Issuer and as a Verifier.
-An Issuer can make multiple Statements about the same Artifact.
-Multiple Issuers can issue Statements about the same Artifact.
-
-SCITT provides the following security guarantees:
-
-1. Statements made by Issuers about supply chain Artifacts are identifiable, authentic, and non-repudiable.
-1. Statement provenance and history can be independently and consistently audited.
-1. Issuers can efficiently prove that their Statement is logged by a Transparency Service.
-
-The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
-The second guarantee is achieved by storing the Signed Statement on an Append-only Log.
-The third guarantee is achieved by implementing the Append-only Log using a verifiable data structure (such as a Merkle Tree {{MERKLE}}).
-
-SCITT is a generalisation of Certificate Transparency {{-CT}}, which can be interpreted as a transparency architecture for the supply chain of X.509 certificates.
-CAs (Issuers) sign X.509 TBSCertificates (Artifacts) to produce X.509 certificates (Signed Statements).
-CAs then submit the certificates to one or more CT logs (Transparency Services).
-The CT logs produce Signed Certificate Timestamps (Transparent Statements).
-The SCTs are checked by browsers (Verifiers), and the Append-only Log can be checked by Auditors.
+SCITT provides a way for consumers to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
+SCITT achieves this by having producers, auditors, etc. (also called Issuers) publish information in a Transparency Service, where consumers (also called Verifiers) can check the information.
 
 ## Requirements Notation
 
@@ -185,6 +156,19 @@ The SCTs are checked by browsers (Verifiers), and the Append-only Log can be che
 # Use Cases
 
 The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.
+
+## Relation to Certificate Transparency
+
+SCITT is a generalization of Certificate Transparency {{-CT}}, which can be interpreted as a transparency architecture for the supply chain of X.509 certificates.
+Considering CT in terms of SCITT:
+
+- CAs (Issuers) sign X.509 TBSCertificates (Artifacts) to produce X.509 certificates (Signed Statements)
+- CAs submit the certificates to one or more CT logs (Transparency Services)
+- CT logs produce Signed Certificate Timestamps (Transparent Statements)
+- SCTs are checked by browsers (Verifiers)
+- The Append-only Log can be checked by Auditors
+
+Note that just like CT logs are independent and their contents need not be consistent, Transparency Services are similarly independent of each other.
 
 # Terminology {#terminology}
 
@@ -938,6 +922,18 @@ Issuers MUST ensure that the Statement payloads in their Signed Statements are c
 
 Issuers and Transparency Services MUST carefully protect their private signing keys and avoid these keys being used for any purpose not described in this architecture document.
 In cases where key re-use is unavoidable, keys MUST NOT sign any other message that may be verified as an Envelope as part of a Signed Statement.
+
+## Security Guarantees
+
+SCITT provides the following security guarantees:
+
+1. Statements made by Issuers about supply chain Artifacts are identifiable, authentic, and non-repudiable
+1. Statement provenance and history can be independently and consistently audited
+1. Issuers can efficiently prove that their Statement is logged by a Transparency Service
+
+The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
+The second guarantee is achieved by storing the Signed Statement on an Append-only Log.
+The third guarantee is achieved by implementing the Append-only Log using a verifiable data structure (such as a Merkle Tree {{MERKLE}}).
 
 ## Threat Model
 
