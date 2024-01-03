@@ -930,8 +930,15 @@ Downstream producers benefit from upstream producers providing higher transparen
 
 # Privacy Considerations
 
-Unless advertised by a Transparency Service, every Issuer must treat Signed Statements it registered (rendering them as Transparent Statements) as public.
-In particular, a Signed Statement Envelope and Statement payload MUST NOT carry any private information in plaintext.
+Usually Transparency Services are publicly accessible, hence Issuers should treat Signed Statements that they register (rendering them as Transparent Statements) as public.
+In particular, a Signed Statement Envelope and Statement payload should not carry any private information in plaintext.
+
+Transparency Services can have an authorization policy controlling who can access the Log.
+While this can be used to limit who can read the Log, it may also limit the usefulness of the system.
+
+Some jurisdictions have a Right to be Forgotten.
+However, once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.
+The only way to delete the Signed Statement is to delete the entire Log and start a new one.
 
 # Security Considerations
 
