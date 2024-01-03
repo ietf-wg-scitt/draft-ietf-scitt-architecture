@@ -1097,7 +1097,6 @@ To indicate that the content is an scitt configuration represented as JSON:
 - Provisional registration?  No
 --- back
 
-
 # Identifiers
 
 This section provides informative examples of identifiers for statements, signed statements and receipts.
