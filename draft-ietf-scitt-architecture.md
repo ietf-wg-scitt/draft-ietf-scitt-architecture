@@ -1104,7 +1104,7 @@ This section provides informative examples of identifiers for statements, signed
 
 SCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats. TODO add normative reference for how this is done.
 
-For each scitt conceptual message, we define a Data URL format according to {{-DataURL}}, a URN format according to {{-URNs}} and a URL format according to {{URLs}}.
+For each scitt conceptual message, we define a Data URL format according to {{-DataURLs}}, a URN format according to {{-URNs}} and a URL format according to {{URLs}}.
 
 Note that Data URLs require base64 encoding, but the URN definitions require base64url encoding.
 
