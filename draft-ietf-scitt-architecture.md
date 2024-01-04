@@ -1101,7 +1101,8 @@ To indicate that the content is an scitt configuration represented as JSON:
 
 This section provides informative examples of identifiers for statements, signed statements, and receipts.
 
-SCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats. TODO add normative reference for how this is done.
+SCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats.
+TODO add a normative reference for how this is done.
 
 For each SCITT conceptual message, we define a Data URL format according to {{-DataURLs}}, a URN format according to {{-URNs}} and a URL format according to {{URLs}}.
 
