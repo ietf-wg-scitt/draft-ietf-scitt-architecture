@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-02T00:35:22.947439+00:00",
+  "timestamp": "2024-01-04T00:36:27.738677+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -2058,11 +2058,10 @@
       "id": "I_kwDOIvmHss5magEo",
       "title": "URLs for Transparent Statements",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/69",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "fournet",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
-        "OR13",
         "henkbirkholz"
       ],
       "labels": [
@@ -2070,8 +2069,8 @@
       ],
       "body": "This issue summarizes discussions so far on references between transparent statements---see also slide 22 at the last IETF SCITT session. I am using \"reference\" below but identifier or URL may be better.  \r\n  \r\n**Motivation:** We need a standard way to refer to previously-registered statements. In particular, references to transparent statements may be included in new statements (in headers or payloads or receipts) to point, for example, to a policy statement, to some keying information, to a prior statement it replaces on a given stream, or to statements for artifacts it depends on in the supply chain. \r\n- Using a reference instead of a full transparent statement (or a full receipt) is more efficient (compact, enabling sharing/caching of common statements) and more transparent (everyone benefits from reviews/audits of common statements).\r\n- A reference to a transparent statement is more informative than a reference to its signed statement or its payload.\r\n- References enable federation and advanced registration policies. \r\n \r\n**Goals:**\r\n1. Given a transparent statement, we can compute its reference.\r\n2. Given a reference, we can discover its TS and transparent statement.\r\n3. A reference commits to a unique transparent statement.\r\n \r\n**Syntax:** references include both a locator and a commitment. Concretely, we may use DID URLs of the form \r\n \r\n`did:web:ts.software.org/42&digest=4ce2320130450...` \r\n \r\nwhere `42` is the serial registration index in the log of this TS and `digest` is the SHA256 hash of the transparent statement. \r\n\r\nWe may provide a more compact format by making the DID optional for local references within a TS, and making the digest optional when the transparent statement is attached.  \r\n\r\nWe may even just use the raw digest `4ce2320130450` as an opaque identifier (since the hash already authenticates the locator) and separately deal with locators.  \r\n \r\n**Discoverability** The TS, or an auxiliary database of transparent claims, may support transparent-statement lookups given their reference. This auxiliary lookup service is not a requirement (random access is hard to guarantee) and it need not be trusted (since clients can easily verify the receipt of the resulting transparent statement against their reference). Alternatively, a transparent statement may be distributed together with supporting transparent statements it refers to. This facilitates offline verification and auditing but is more verbose. Or it may include auxiliary headers to help retrieve the supporting statements from any other location.   \r\n\r\n**Open issues:**\r\n- A TS may produce multiple receipts for the same registered statement, hence multiple commitments with different digests. We could simply ignore the problem, and assume the \u201cprimary\u201d receipt is the first one produced by the TS. We could also provide flexibility, using something of the form \r\n  \r\n  `did:web:ts.software.org/42&registered=SHA256(signed statement)&digest=SHA256(receipt)`\r\n- Do we need different formats for different implementations? For example, we may use `digest-sha256=...` for agility; we also argued about a TS federating multiple logs, in which case we may need more than a serial registration index.\r\n \r\n",
       "createdAt": "2023-05-20T16:41:19Z",
-      "updatedAt": "2023-10-23T23:50:54Z",
-      "closedAt": null,
+      "updatedAt": "2024-01-02T15:59:39Z",
+      "closedAt": "2024-01-02T15:53:00Z",
       "comments": [
         {
           "author": "henkbirkholz",
@@ -2100,6 +2099,20 @@
           "body": "@cabo string encodings for this table: https://github.com/multiformats/multicodec/blob/master/table.csv\r\n\r\nnotice the hash functions, public keys, and other \"binary types\", they get a byte prefix that is uvarint, and then they get a byte prefix for base encoding, such as base64url, base64, base32, base16, base2, base8, base32hex, base32z, base58btc, base58flickr, base64pad.... and of course my favorite: base256emoji\r\n\r\n",
           "createdAt": "2023-06-02T14:00:46Z",
           "updatedAt": "2023-06-02T14:00:46Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I am removing myself from this issue, I don't believe it is actionable.\r\n\r\nA simpler and more direct issue should be raised.\r\n\r\nThe new issue, should describe spec text suggestions only.\r\n\r\nFor example:\r\n\r\n1. the spec SHALL include an example\r\n2. the spec SHALL include a specific syntax for indentifiers\r\n3. the spec SHALL address first order and second order receipts.\r\n4. the spec SHALL address multiple receipts for a single statement, and show unique URLs / identifiers for each.",
+          "createdAt": "2024-01-02T15:48:57Z",
+          "updatedAt": "2024-01-02T15:59:39Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing this issue as it's a bit dated as the terminology has evolved a bit, and we've had subsequent PRs to clarify portions.\r\n@fournet, please open new issues to the remaining gaps. ",
+          "createdAt": "2024-01-02T15:53:01Z",
+          "updatedAt": "2024-01-02T15:53:01Z"
         }
       ]
     },
@@ -15616,33 +15629,771 @@
       "id": "PR_kwDOIvmHss5itk8Q",
       "title": "Add package.json with aasvg",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/142",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "thgoebel",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "As suggested in https://github.com/martinthomson/i-d-template/issues/385#issuecomment-1564100412, there should be a `package.json`. Then running `make` will automatically install aasvg (assuming that npm is installed, which I am documenting in https://github.com/martinthomson/i-d-template/pull/419).\r\n\r\nWithout this (and without aasvg installed otherwise), running `make` will throw an error:\r\n\r\n```\r\n/usr/lib/ruby/3.1.0/open3.rb:222:in `spawn': No such file or directory - aasvg (Errno::ENOENT)\r\n        from /usr/lib/ruby/3.1.0/open3.rb:222:in `popen_run'\r\n        from /usr/lib/ruby/3.1.0/open3.rb:103:in `popen3'\r\n        from /usr/lib/ruby/3.1.0/open3.rb:290:in `capture3'\r\n        from /draft-ietf-scitt-architecture/lib/.gems/ruby/3.1.0/gems/kramdown-rfc2629-1.7.4/lib/kramdown-rfc2629.rb:557:in `svg_tool_process'\r\n        from /draft-ietf-scitt-architecture/lib/.gems/ruby/3.1.0/gems/kramdown-rfc2629-1.7.4/lib/kramdown-rfc2629.rb:506:in `call'\r\n[...]\r\n```",
       "createdAt": "2023-12-24T13:18:08Z",
-      "updatedAt": "2023-12-24T14:08:25Z",
+      "updatedAt": "2024-01-03T16:55:17Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "0580ad7de21d197f02379b6d02741d192d8fe96d",
       "headRepository": "thgoebel/draft-ietf-scitt-architecture",
       "headRefName": "package-json",
       "headRefOid": "a81c96409b9b149c51866e674caa31b9ebc7b1f1",
+      "closedAt": "2024-01-03T01:42:24Z",
+      "mergedAt": "2024-01-03T01:42:24Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "1fa26e514a52d4bbb8f035183be0834230a4b2e4"
+      },
+      "comments": [
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Thanks for the contribution. I actually completed the supporting work, with package.json and other requirements, and it works partly. The SVG can be output by the CLI but Mermaid itself makes not-so-standard SVG files and fails tests later in the pipeline. That's why I voluntarily closed #134. More details there.\r\n\r\nIn the coming weeks I am more than happy to work with you on determining how hard it is to make upstream fixes to Mermaid but it won't be trivial.\r\n\r\n**EDIT:** People wisely told me I am being silly and this is a very different issue and I conflated two. That's very correct! Easy to test and review PR, apologies, @thgoebel.",
+          "createdAt": "2023-12-24T14:08:24Z",
+          "updatedAt": "2024-01-02T15:14:44Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I cloned fresh, and ran make, and I see several errors on the main branch... including this one.\r\n\r\n```\r\ncat draft-ietf-scitt-architecture.md  | kramdown-rfc --v3 | lib/trace.sh draft-ietf-scitt-architecture.xml -s venue /.../draft-ietf-scitt-architecture/lib/.venv/bin/python lib/add-note.py | lib/trace.sh draft-ietf-scitt-architecture.xml -s v2v3 /.../draft-ietf-scitt-architecture/lib/.venv/bin/xml2rfc -q --rfc-base-url https://www.rfc-editor.org/rfc/ --id-base-url https://datatracker.ietf.org/doc/html/ --cache=/.../.cache/xml2rfc --v2v3 /dev/stdin -o /dev/stdout >draft-ietf-scitt-architecture.xml\r\n---\r\n- No link definition for link ID '@rfc2046' found on line 1098\r\n- No link definition for link ID '@iana.mediatypes' found on line 1099\r\n- No link definition for link ID '@rfc6838' found on line 1100\r\n- No link definition for link ID '[ this specification ]' found on line 1109\r\n- No link definition for link ID ' this specification ' found on line 1109\r\n- No link definition for link ID '[ this specification ]' found on line 1111\r\n- No link definition for link ID ' this specification ' found on line 1111\r\n/opt/homebrew/Cellar/ruby/3.2.2/lib/ruby/3.2.0/open3.rb:222:in `spawn': No such file or directory - aasvg (Errno::ENOENT)\r\n\tfrom /opt/homebrew/Cellar/ruby/3.2.2/lib/ruby/3.2.0/open3.rb:222:in `popen_run'\r\n\tfrom /opt/homebrew/Cellar/ruby/3.2.2/lib/ruby/3.2.0/open3.rb:103:in `popen3'\r\n\tfrom /opt/homebrew/Cellar/ruby/3.2.2/lib/ruby/3.2.0/open3.rb:290:in `capture3'\r\n\r\n```\r\n\r\nThis PR should be merged, and the other errors should be addressed before other PRs are accepted.",
+          "createdAt": "2024-01-02T15:15:50Z",
+          "updatedAt": "2024-01-02T15:16:27Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Yeah I am confused as when working on previous PRs, I only knew things were not working because I got errors from SVGs rendered from `aasvg` but I am confused what the deal was, but I must not have been paying too close attention. Thanks, @OR13.",
+          "createdAt": "2024-01-02T15:24:32Z",
+          "updatedAt": "2024-01-02T15:24:32Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The majority of other drafts I viewed didn't include package.json, which does require additional setup for the user. \r\nThis is an annoyance, and with Martin's comment, anything that can make the creation and testing of the specs prior to making a PR, the better.",
+          "createdAt": "2024-01-03T01:42:07Z",
+          "updatedAt": "2024-01-03T01:42:07Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5rUpIC",
+          "commit": {
+            "abbreviatedOid": "a81c964"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-02T15:11:19Z",
+          "updatedAt": "2024-01-02T15:11:19Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rUwRR",
+          "commit": {
+            "abbreviatedOid": "a81c964"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-02T15:31:04Z",
+          "updatedAt": "2024-01-02T15:31:08Z",
+          "comments": [
+            {
+              "originalPosition": 3,
+              "body": "We may want the latest stable release. Although I used the NPMJS Semver calculator, I didn't know you could use the two values of a SemVer version, so I guess it is the same thing. Nice!\r\n\r\n```suggestion\r\n    \"aasvg\": \"0.3.9\"\r\n```",
+              "createdAt": "2024-01-02T15:31:04Z",
+              "updatedAt": "2024-01-02T15:31:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rVBSQ",
+          "commit": {
+            "abbreviatedOid": "a81c964"
+          },
+          "author": "thgoebel",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-02T16:16:01Z",
+          "updatedAt": "2024-01-02T16:16:01Z",
+          "comments": [
+            {
+              "originalPosition": 3,
+              "body": "I can also do \"0.3.x\" to be more explicit. My reasoning (here, and in other software projects) is that any patch version will work (assuming semver). Any new checkout can just use the latest 0.3.x. On the other hand pinning an explicit patch version just means that you have to update, commit, and push it more often to stay up-to-date. And if you want that level of detailed control, you might as well commit the lock file.",
+              "createdAt": "2024-01-02T16:16:01Z",
+              "updatedAt": "2024-01-02T16:16:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rVC1F",
+          "commit": {
+            "abbreviatedOid": "a81c964"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-02T16:20:35Z",
+          "updatedAt": "2024-01-02T16:20:36Z",
+          "comments": [
+            {
+              "originalPosition": 3,
+              "body": "You're all good, this is a personal preference thing. You actually made me read the `package.json` docs on this since I actually had never done it this way, and you are right (this is why I said \"I guess it is the same thing\") and approved also. I guess I can't \"resolve comment\" on this repo/org, but you can safely ignore this then, it will get merged shortly I have no doubt.\r\n\r\n(Sorry for the cross wires before, I am not sure how I conflated different issues in your very clear PR, but oh well, next time I will read better.)",
+              "createdAt": "2024-01-02T16:20:35Z",
+              "updatedAt": "2024-01-02T16:20:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rXVlw",
+          "commit": {
+            "abbreviatedOid": "a81c964"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-01-03T01:42:19Z",
+          "updatedAt": "2024-01-03T01:42:19Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 143,
+      "id": "PR_kwDOIvmHss5jETZ5",
+      "title": "Improve introduction",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/143",
+      "state": "OPEN",
+      "author": "thgoebel",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The previous introduction was very long, contained too much detail, and did not follow a clear logical structure (i.e. no clear chain-of-thought).\r\n\r\nTherefore here is my attempt at improving that:\r\n\r\n- start with a high-level scenario to motivate the problem\r\n- then provide a rough sketch of how the protocol works\r\n  -  This may be moved to Section 5 \"Architecture Overview\"? On the other hand, we do need the terminology to compare SCITT with CT, and the steps are a good way to introduce them concisely.\r\n- then state the security guarantees\r\n- end with comparing SCITT to CT (as per https://mailarchive.ietf.org/arch/msg/scitt/1oW4DRFFb1g230VmZVQVgj_Mdw8/ )\r\n  - Shameless plug: see [my blog](https://thore.io/posts/2023/07/how-certificates-are-born-data-structure-edition/) for an overview of X.509 certs, SCTs, and how they are constructed.\r\n\r\nI'm sure my attempt isn't perfect either, but I hope it's an incremental improvement and I welcome feedback :)\r\n\r\nClick below to expand the detailed analysis of why I dislike the old introduction:\r\n\r\n<details>\r\n\r\nA general pattern that I dislike across the introduction (but also in the rest of the document) is a tendancy to write long sentences. Sentences, that when rendered as TXT, are up to seven lines long. I consciously tried to keep it shorter.\r\nImho technical standards should be short, concise, approachable, and easily skimmable.\r\n\r\nAnother general pattern I dislike is the use of keywords (MAY, MUST) in the introduction. Imho that's bad practice -- the introduction should provide a rough overview, not specify anything binding.\r\n\r\nMore specific points (quote from the old text, followed by my comment/assessment, in order of appearance):\r\n\r\n> The second guarantee is achieved by storing the Signed Statement on an immutable, Append-only Log.\r\n\r\nEither the log is immutable or append-only (i.e., mutable with restrictions). It can't be both. => Remove \"immutable\".\r\n\r\n> Lastly, the Transparency Service verifies the identity of the Issuer, [...] Signed Statement is added to the Append-only Log.\r\n\r\nHow does this relate to the security guarantees?? I removed this sentence.\r\n\r\n> However, the range of use cases and applications in this document is broader, which requires more flexibility in how each Transparency Service is implemented and operates.\r\n\r\nStating the obvious, might as well delete.\r\n\r\n> Each service MAY enforce its own Registration Policies for authorizing entities to register their Signed Statements to the Append-only Log.\r\n\r\nWhy use the BCP 14 keywords in the introduction (here: MAY)? The purpose of an introduction should be to give a high level overview, not to specify something. This MAY-statement would better belong to Section 5.2.2.\r\n\r\nAlso, is this entire paragraph necessary for an introduction? Eight lines, just to say that Transparency Services can have policies. Imho policies are a detail that doesn't need to be in the introduction.\r\n\r\n> It is critical to provide interoperability for all Transparency Services instances as the composition of supply chain entities is ever-changing.\r\n\r\nRedundant. The whole points of IETF is to provide interoperability.\r\n\r\n> A Statements payload content is always opaque and MAY be encrypted when submitted to the Transparency Services. However the header metadata MUST be transparent in order to warrant trust for later processing.\r\n\r\nAgain, why use BCP 14 keywords (especially a binding MUST) in the introduction??\r\n\r\nAlso, this is again too much detail for the introduction.\r\n\r\n> However, third parties (such as Auditors) would be granted access as needed to attest to the validity of the Artifact, Subject or the entirety of the Transparency Service.\r\n\r\nStating the obvious. No access, no audit.\r\n\r\n> Independent third parties may also make Statements about an Artifact, published on other Transparency Services.\r\n\r\nRedundant, repeats what the same paragraph says earlier.\r\n\r\n> Breadth of verifier access is critical.\r\n\r\nStating the obvious. If there are no verifiers, we don't need SCITT.\r\n\r\n> As a result, the Transparency Service specified in this architecture caters to two types of audiences: [...]\r\n\r\nHow does this link to the previous sentence??\r\nWhy suddenly talk about issuers after starting the paragraph with  \"verifier access is critical\"?\r\n\r\n> The Transparency Services specified in this architecture are language independent and can be implemented alongside or within existing services.\r\n\r\nObvious. Of course it doesn't matter whether I implement it in C, Rust, or Python. This is why we write RFCs, to define standard interfaces.\r\n\r\n> The interoperability guaranteed by the Transparency Services is enabled via core components (architectural constituents).\r\n\r\nObvious. Again, IETF is all about interoperability.\r\n\r\n> Many of the data elements processed by the core components are based on the CBOR Signing and Encryption (COSE) standard specified in [RFC9052], which is used to produce Signed Statements about Artifacts and to build and maintain a Merkle tree that functions as an Append-only Log for corresponding Signed Statements.\r\n\r\nToo much detail for an introduction.\r\n\r\n</details>",
+      "createdAt": "2024-01-02T16:57:53Z",
+      "updatedAt": "2024-01-03T16:39:25Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "1fa26e514a52d4bbb8f035183be0834230a4b2e4",
+      "headRepository": "thgoebel/draft-ietf-scitt-architecture",
+      "headRefName": "improve-introduction",
+      "headRefOid": "8bb7e24a0798b7b30dfdf48d92000315a01fbf1c",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [
         {
-          "author": "aj-stein-nist",
+          "author": "thgoebel",
           "authorAssociation": "CONTRIBUTOR",
-          "body": "Thanks for the contribution. I actually completed the supporting work, with package.json and other requirements, and it works partly. The SVG can be output by the CLI but Mermaid itself makes not-so-standard SVG files and fails tests later in the pipeline. That's why I voluntarily closed #134. More details there.\n\nIn the coming weeks I am more than happy to work with you on determining how hard it is to make upstream fixes to Mermaid but it won't be trivial.",
-          "createdAt": "2023-12-24T14:08:24Z",
-          "updatedAt": "2023-12-24T14:08:24Z"
+          "body": "Thanks a lot for your feedback!\r\n\r\nEspecially the points on producers vs consumers, the point that Issuers may not just be producers but also compliance auditors, pentesters, etc, and the point that Issuers merely commit to/endorse a value are good points.\r\nI tried to work this in.\r\n\r\nI moved the part on CT under \"Use cases\" where I thing it fits nicely.\r\n\r\nThe last paragraphs on the security guarantees could be moved into the \"Security Considerations\" section, I think? Maybe that's a future PR, I'm leaving it in the introduction for now.\r\n",
+          "createdAt": "2024-01-03T16:39:24Z",
+          "updatedAt": "2024-01-03T16:39:24Z"
         }
       ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5rVT2-",
+          "commit": {
+            "abbreviatedOid": "c297587"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-02T17:13:41Z",
+          "updatedAt": "2024-01-02T17:13:41Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "```suggestion\r\n1. Verifiers consume the Transparent Statements, and by verifying them, are convinced of the authenticity and integrity of Statements about an Artifact.\r\n```",
+              "createdAt": "2024-01-02T17:13:41Z",
+              "updatedAt": "2024-01-02T17:14:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rVUg5",
+          "commit": {
+            "abbreviatedOid": "c297587"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-02T17:15:21Z",
+          "updatedAt": "2024-01-02T17:15:22Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "trying to adjust the \"order\" comment, this currently reads as \"verify in [sequential] order\", instead of \"verify in order to\"",
+              "createdAt": "2024-01-02T17:15:21Z",
+              "updatedAt": "2024-01-02T17:15:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rVVtL",
+          "commit": {
+            "abbreviatedOid": "c297587"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-02T17:19:03Z",
+          "updatedAt": "2024-01-02T17:19:04Z",
+          "comments": [
+            {
+              "originalPosition": 95,
+              "body": "```suggestion\r\n## Relation to Certificate Transparency\r\n\r\nSCITT is a generalisation of Certificate Transparency {{-CT}}, which can be interpreted as a transparency architecture for the supply chain of X.509 certificates.\r\n```",
+              "createdAt": "2024-01-02T17:19:03Z",
+              "updatedAt": "2024-01-02T17:19:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rVWRC",
+          "commit": {
+            "abbreviatedOid": "c297587"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-02T17:20:57Z",
+          "updatedAt": "2024-01-02T17:20:57Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "In my current mental model, the issuer is the entity that commits to the statement, not necessarily the entity that first made the statement... I don't know if this distinction is worth preserving.",
+              "createdAt": "2024-01-02T17:20:57Z",
+              "updatedAt": "2024-01-02T17:20:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rVa4H",
+          "commit": {
+            "abbreviatedOid": "c297587"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-02T17:35:46Z",
+          "updatedAt": "2024-01-02T17:35:46Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "That's an interesting point, given that there are many derivative software components from different entities, I think it is important to distinguish then (an Issuer can be the entity who made the software, someone who made a derivative, neither of those and someone who runs conformity/quality testing on software, etc).\r\n\r\nThanks for pointing this out, because I had not internalized this important distinction until now.",
+              "createdAt": "2024-01-02T17:35:46Z",
+              "updatedAt": "2024-01-02T17:36:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rV1NM",
+          "commit": {
+            "abbreviatedOid": "c297587"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-02T19:10:26Z",
+          "updatedAt": "2024-01-02T19:10:27Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "Yes, I agree with @OR13 on this one: the only thing we can prove for certain is that the Issuer committed the statement to the TS (and even that's not certain if you want to get all Red Team on us, but we have to draw a line at some point so in the model we assume use of the Issuer Signing Key is foolproof).\r\n\r\nAs Orie says, they might simply be endorsing a statement made by someone else.\r\nBut more importantly it's absolutely not necessarily the case that that Issuer released the Artifact: they might be making observations about someone else's work. \r\n\r\nI'll make a suggestion to this effect",
+              "createdAt": "2024-01-02T19:10:26Z",
+              "updatedAt": "2024-01-02T19:10:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rV2vD",
+          "commit": {
+            "abbreviatedOid": "c297587"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "A handful of things I think needed to go back (in suggestions in this review). There's a lot removed that I winced slightly at but on reflection think it's fine to remove, since the more formal parts of the spec should either make them clear or drop them.",
+          "createdAt": "2024-01-02T19:15:34Z",
+          "updatedAt": "2024-01-02T19:40:00Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "```suggestion\r\n1. Issuers make Statements about Artifacts, for example: \"Issuer name\", \"Artifact type\", \"Artifact version\".\r\n```",
+              "createdAt": "2024-01-02T19:15:34Z",
+              "updatedAt": "2024-01-02T19:40:00Z"
+            },
+            {
+              "originalPosition": 13,
+              "body": "```suggestion\r\n```\r\n\r\nI would remove this line: it adds nothing and is arguably asking for trouble over definition of 'consumer' in particular. Plus what about the stages in the middle? Some people are fine calling these producers and consumers but many aren't.  The next line covers all of this without getting into trouble. ",
+              "createdAt": "2024-01-02T19:30:11Z",
+              "updatedAt": "2024-01-02T19:40:00Z"
+            },
+            {
+              "originalPosition": 95,
+              "body": "```suggestion\r\nSCITT is a generalisation of Certificate Transparency {{-CT}}, which can be interpreted as a transparency architecture for the supply chain of X.509 certificates.\r\n\r\nHowever, the range of use cases and applications in this document is broader, which requires more flexibility in how each Transparency Service is implemented and operates.\r\n\r\nConsidering CT in terms of SCITT:\r\n```",
+              "createdAt": "2024-01-02T19:34:02Z",
+              "updatedAt": "2024-01-02T19:40:00Z"
+            },
+            {
+              "originalPosition": 96,
+              "body": "```suggestion\r\n * CAs (Issuers) sign X.509 TBSCertificates (Artifacts) to produce X.509 certificates (Signed Statements).\r\n```",
+              "createdAt": "2024-01-02T19:34:10Z",
+              "updatedAt": "2024-01-02T19:40:00Z"
+            },
+            {
+              "originalPosition": 97,
+              "body": "```suggestion\r\n * CAs then submit the certificates to one or more CT logs (Transparency Services).\r\n```",
+              "createdAt": "2024-01-02T19:34:19Z",
+              "updatedAt": "2024-01-02T19:40:00Z"
+            },
+            {
+              "originalPosition": 98,
+              "body": "```suggestion\r\n * The CT logs produce Signed Certificate Timestamps (Transparent Statements).\r\n```",
+              "createdAt": "2024-01-02T19:34:25Z",
+              "updatedAt": "2024-01-02T19:40:00Z"
+            },
+            {
+              "originalPosition": 99,
+              "body": "```suggestion\r\n* The SCTs are checked by browsers (Verifiers), and the Append-only Log can be checked by Auditors.\r\n\r\nUnlike CT, where independent Auditors are responsible for enforcing the consistency of multiple independent instances of the same global Transparency Service, each Transparency Service is required to guarantee the consistency of its own Append-only Log (through the use of a consensus algorithm between replicas of the Transparency Service), but assume no consistency between different Transparency Services.\r\n```",
+              "createdAt": "2024-01-02T19:34:31Z",
+              "updatedAt": "2024-01-02T19:40:00Z"
+            },
+            {
+              "originalPosition": 75,
+              "body": "Note I have reinstated this line in the 'relation to CT' section",
+              "createdAt": "2024-01-02T19:37:15Z",
+              "updatedAt": "2024-01-02T19:40:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rW2xN",
+          "commit": {
+            "abbreviatedOid": "c297587"
+          },
+          "author": "thgoebel",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-02T22:08:17Z",
+          "updatedAt": "2024-01-02T22:08:17Z",
+          "comments": [
+            {
+              "originalPosition": 99,
+              "body": "> Unlike CT, where independent Auditors are responsible for enforcing the consistency of multiple independent instances of the same global Transparency Service, each Transparency Service is required to guarantee the consistency of its own Append-only Log (through the use of a consensus algorithm between replicas of the Transparency Service), but assume no consistency between different Transparency Services.\r\n\r\nI already asked about this sentence [on the list](https://mailarchive.ietf.org/arch/msg/scitt/1oW4DRFFb1g230VmZVQVgj_Mdw8/) because it doesn't make sense to me.\r\nAlso it's one of these monster sentences that I don't like.\r\n\r\n> multiple independent instances of the same global Transparency Service,\r\n\r\nI thought every CT log was a single TS? I.e. there are many independent TS, not \"the same global\" one.\r\n\r\n> each Transparency Service is required to guarantee the consistency of its own Append-only Log\r\n\r\nThis seems to be true for both CT and SCITT? In both cases we hope that the tree is correctly constructed, but if we want to verify it, the auditors can check the consistency proofs. Note that \"consistency proofs\" only prove the append-only property of a specific tree, they say nothing about the \"consistency\" between the tree of CT log 1 and the tree of CT log 2.\r\n\r\n> through the use of a consensus algorithm between replicas of the Transparency Service\r\n\r\nFrom [Orie's reply](https://mailarchive.ietf.org/arch/msg/scitt/8IwqR-mw8lKwUHg5YT04CIlGrgQ/), this seems to be an implementation detail of a given TS implementation (that chooses to build it as a distributed system rather than a single DB on a single host).\r\n\r\nThis whole confusing sentence is what prompted me to ask about the CT--SCITT mapping in the first place :)\r\nWhat are \"instances\", what are \"replicas\", what's the difference? Again, see [the list](https://mailarchive.ietf.org/arch/msg/scitt/1oW4DRFFb1g230VmZVQVgj_Mdw8/).\r\n\r\nIf anything, we could add a sentence that CT consists of many *independent* TS, and that Verifiers may want to query all of them? Or there would need to be a federation mechanism, which isn't fully spec'ed I believe? Or maybe I still understand this wrong?",
+              "createdAt": "2024-01-02T22:08:17Z",
+              "updatedAt": "2024-01-02T22:14:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rXWMq",
+          "commit": {
+            "abbreviatedOid": "c297587"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-03T01:49:36Z",
+          "updatedAt": "2024-01-03T01:49:36Z",
+          "comments": [
+            {
+              "originalPosition": 95,
+              "body": "spelling\r\n```suggestion\r\nSCITT is a generalization of Certificate Transparency {{-CT}}, which can be interpreted as a transparency architecture for the supply chain of X.509 certificates.\r\n```",
+              "createdAt": "2024-01-03T01:49:36Z",
+              "updatedAt": "2024-01-03T01:49:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rXXXL",
+          "commit": {
+            "abbreviatedOid": "c297587"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Thanks @thgoebel for the PR to reduce and clarify the spec.\r\nAs you can see from the reviews, the clarity is appreciated, while trying to preserve the intent. \r\n\r\nI would normally [commit] suggestions to bring closure to this more quickly. \r\nIf you'd like to work through the comments, I can review again tomorrow and start applying some of the suggestions. \r\n\r\nI agree with your \"details\" comment to merge with the Architecture Overview. I don't know if we need to reiterate all the terminology first, as it becomes a long read just to get started. Rather, leave it for reference, the user can choose to jump ahead and read the first time. Subsequently, they can quickly point to the architecture overview. ",
+          "createdAt": "2024-01-03T02:03:18Z",
+          "updatedAt": "2024-01-03T02:55:16Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "If we trim line 132 above, the following 3 lines become orphaned. That may, or may not be a bad thing in the spirit of reduction to create focus, while still maintaining enough context for the goal",
+              "createdAt": "2024-01-03T02:03:18Z",
+              "updatedAt": "2024-01-03T02:55:16Z"
+            },
+            {
+              "originalPosition": 21,
+              "body": "agreeing with the points that the issuer is simply \"owing\" the statement being made about an artifact, not limited to a producer\r\n- Producers of artifacts make statements about their artifacts (Wabbit Networks (issuer) produced some software)\r\n- Auditors make statements about artifacts produced by others (\"ScanAuditing\" (issuer) attested to an artifact's release process )\r\n- Security companies make statements about the current known quality of artifacts (\"CogsWell Security\" (issuer) found the net-montior (artifact) shipped by Wabbit Networks is now known to have a vulnerability and no longer meets X123 compliance requirements)\r\n- Consumers make statements about the artifacts they consume, creating a history of their decisions (ACME Rockets (issuer) evaluated the net-monitor software on January 2nd 2024, found it met their security requirements and deployed it)",
+              "createdAt": "2024-01-03T02:12:31Z",
+              "updatedAt": "2024-01-03T02:55:16Z"
+            },
+            {
+              "originalPosition": 21,
+              "body": "I would elaborate \"Issuer name\", \"Artifact type\", \"Artifact version\" as these read like placeholders.",
+              "createdAt": "2024-01-03T02:14:43Z",
+              "updatedAt": "2024-01-03T02:55:16Z"
+            },
+            {
+              "originalPosition": 29,
+              "body": "minor consistency nit: \r\n- when creating single-sentence bullets, we haven't ended with periods",
+              "createdAt": "2024-01-03T02:19:15Z",
+              "updatedAt": "2024-01-03T02:55:16Z"
+            },
+            {
+              "originalPosition": 22,
+              "body": "When reviewing the document, we often skip to the [architectural overview (visual)](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-architecture-overview)\r\nRather than split a textual flow with the visual flow, could these be merged?\r\nMove the visual up to the introduction and provide a textual summary?",
+              "createdAt": "2024-01-03T02:22:27Z",
+              "updatedAt": "2024-01-03T02:55:16Z"
+            },
+            {
+              "originalPosition": 24,
+              "body": "I'm assuming lines 144-147 are additional text to the numbered bullet on line 143, rather than additional numbered lines? Could the numbered items be summarized more succinctly? ",
+              "createdAt": "2024-01-03T02:25:00Z",
+              "updatedAt": "2024-01-03T02:55:16Z"
+            },
+            {
+              "originalPosition": 32,
+              "body": "I wonder if this could be changed to a bulleted list:\r\n```suggestion\r\nAn entity can take on multiple roles, for example:\r\n\r\n- A Verifier may make new Statements for what they verified\r\n- An Issuer can make multiple Statements about the same Artifact\r\n- An Issuer can make amended Statements about the same Artifact as their view changes over time\r\n- Multiple Issuers can make different, even conflicting Statements, about the same Artifact where another verifier may choose which Issuers they trust\r\n- Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree\r\n```",
+              "createdAt": "2024-01-03T02:29:23Z",
+              "updatedAt": "2024-01-03T02:55:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rbv74",
+          "commit": {
+            "abbreviatedOid": "c297587"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-03T15:32:04Z",
+          "updatedAt": "2024-01-03T15:32:04Z",
+          "comments": [
+            {
+              "originalPosition": 99,
+              "body": "I suggest we remove any reference to concrete deployment models from the architecture.\r\n\r\nThe transparency service is a single logical entity that maintains a log.\r\n\r\nhow that is implemented behind the scenes is not relevant to the architecture.",
+              "createdAt": "2024-01-03T15:32:04Z",
+              "updatedAt": "2024-01-03T15:32:09Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 144,
+      "id": "PR_kwDOIvmHss5jKM3w",
+      "title": "Add more details to Privacy Considerations",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/144",
+      "state": "OPEN",
+      "author": "thgoebel",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR elaborates on the privacy analysis a bit.\r\n\r\n1. Describe why it is important (because we cannot delete items from the log)\r\n2. Remove the BCP 14 keyword (MUST NOT). \r\n    - Both the Privacy and Security Considerations sections should have the character of an analysis. They should be recommendations, or highlight gotchas to implementors. Anything binding should be in the main body of the RFC.\r\n    - Yes, this would need to be fixed in the Security Considerations, too.\r\n3. Expand the \"Unless advertised by a Transparency Service\" phrase into a paragraph about access control. This way it's more actionable. (Why would you advertise it? When would it be okay to advertise?)\r\n\r\n",
+      "createdAt": "2024-01-03T17:48:22Z",
+      "updatedAt": "2024-01-03T23:10:25Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "1fa26e514a52d4bbb8f035183be0834230a4b2e4",
+      "headRepository": "thgoebel/draft-ietf-scitt-architecture",
+      "headRefName": "privacy",
+      "headRefOid": "def5eb6c2119bce8de09598363e6c7dc5bf230bb",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5rdO9p",
+          "commit": {
+            "abbreviatedOid": "4d73126"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-03T17:53:00Z",
+          "updatedAt": "2024-01-03T17:53:00Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nOnce a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.\r\n```",
+              "createdAt": "2024-01-03T17:53:00Z",
+              "updatedAt": "2024-01-03T17:53:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rdSSb",
+          "commit": {
+            "abbreviatedOid": "1c6f34d"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-03T18:03:09Z",
+          "updatedAt": "2024-01-03T18:03:09Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "I am not particularly clear about the connect between line 936 start and end of 934, so I recommend avoiding Therefore and because.",
+              "createdAt": "2024-01-03T18:03:09Z",
+              "updatedAt": "2024-01-03T18:03:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rdS2c",
+          "commit": {
+            "abbreviatedOid": "1c6f34d"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-03T18:04:55Z",
+          "updatedAt": "2024-01-03T18:04:55Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nUsually Transparency Services are publicly accessible, hence Issuers should treat Signed Statements that they registered (rendering them as Transparent Statements) as public.\r\n```",
+              "createdAt": "2024-01-03T18:04:55Z",
+              "updatedAt": "2024-01-03T18:04:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rdT1r",
+          "commit": {
+            "abbreviatedOid": "1c6f34d"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-03T18:08:00Z",
+          "updatedAt": "2024-01-03T18:08:01Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "```suggestion\r\nWhile this can be used to limit who can read the Log, however it may also limit the usefulness of the system.\r\n```",
+              "createdAt": "2024-01-03T18:08:01Z",
+              "updatedAt": "2024-01-03T18:08:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rdZ8J",
+          "commit": {
+            "abbreviatedOid": "1c6f34d"
+          },
+          "author": "thgoebel",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-03T18:25:56Z",
+          "updatedAt": "2024-01-03T18:25:56Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "True. Reordered and clarified (Right to be Forgotten, hence need for deletion if private data is inserted).",
+              "createdAt": "2024-01-03T18:25:56Z",
+              "updatedAt": "2024-01-03T18:27:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5reqLf",
+          "commit": {
+            "abbreviatedOid": "def5eb6"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Thanks, @thgoebel \r\nI few nits before approving.",
+          "createdAt": "2024-01-03T22:57:56Z",
+          "updatedAt": "2024-01-03T23:10:25Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nTransparency Services are often publicly accessible.\r\nIssuers should treat Signed Statements (rendering them as Transparent Statements) as publicly accessible.\r\n```",
+              "createdAt": "2024-01-03T22:57:56Z",
+              "updatedAt": "2024-01-03T23:10:25Z"
+            },
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nTransparency Services can have an authorization policy controlling who can access the Append Only Log.\r\n```",
+              "createdAt": "2024-01-03T23:05:32Z",
+              "updatedAt": "2024-01-03T23:10:25Z"
+            },
+            {
+              "originalPosition": 14,
+              "body": "I would remove this sentence as there are multiple ways to remediate this scenario, including redaction, which may be implementation-specific. \r\nWhile important to highlight information should be assumed public, we also want to avoid analysis paralysis of not publishing information, because it can't be recalled.\r\nYou might want to highlight detached payloads, or encryption as better ways ensure a Transparency Service is enabling verification of content, without actually containing the content. ",
+              "createdAt": "2024-01-03T23:09:32Z",
+              "updatedAt": "2024-01-03T23:10:25Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 145,
+      "id": "PR_kwDOIvmHss5jK6FF",
+      "title": "Add identifier examples",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/145",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-03T20:55:08Z",
+      "updatedAt": "2024-01-04T00:16:13Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "1fa26e514a52d4bbb8f035183be0834230a4b2e4",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "feat/identifiers-examples",
+      "headRefOid": "da753a2ec9a116f4d14b3a1c062e481ae382b942",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Some additional details on the construction and use can be found here: https://github.com/transmute-industries/cose/blob/47e85916346af8560f3559ac28e98ad796dd0d34/src/scitt/identifiers/scitt-identifiers.test.ts\r\n\r\nI'm not including these in the PR, because I don't understand the security properties required by \"SCITT Identifiers\", but if the code I wrote covers the security properties, I am happy to do a follow up PR, after this one is merged.",
+          "createdAt": "2024-01-03T21:23:13Z",
+          "updatedAt": "2024-01-03T21:23:13Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5rezf_",
+          "commit": {
+            "abbreviatedOid": "ffbea42"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-03T23:47:57Z",
+          "updatedAt": "2024-01-03T23:47:57Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-01-03T23:47:57Z",
+              "updatedAt": "2024-01-03T23:47:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5re6El",
+          "commit": {
+            "abbreviatedOid": "1a44233"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-04T00:13:45Z",
+          "updatedAt": "2024-01-04T00:13:46Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "```suggestion\r\nSCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats.\r\nTODO add a normative reference for how this is done.\r\n```",
+              "createdAt": "2024-01-04T00:13:46Z",
+              "updatedAt": "2024-01-04T00:14:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5re6Jz",
+          "commit": {
+            "abbreviatedOid": "1a44233"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-04T00:14:23Z",
+          "updatedAt": "2024-01-04T00:14:23Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "```suggestion\r\nFor each SCITT conceptual message, we define a Data URL format according to {{-DataURLs}}, a URN format according to {{-URNs}} and a URL format according to {{URLs}}.\r\n```",
+              "createdAt": "2024-01-04T00:14:23Z",
+              "updatedAt": "2024-01-04T00:14:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5re7t9",
+          "commit": {
+            "abbreviatedOid": "1a44233"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM\r\n\r\nI pushed several markdown and spelling fixes",
+          "createdAt": "2024-01-04T00:15:59Z",
+          "updatedAt": "2024-01-04T00:15:59Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 146,
+      "id": "PR_kwDOIvmHss5jLfC2",
+      "title": "Markdown and spelling fixes",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/146",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-04T00:11:19Z",
+      "updatedAt": "2024-01-04T00:19:31Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "feat/identifiers-examples",
+      "baseRefOid": "81cf90bf7aaa210216a26bba5e7a10cd2b13bd68",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/identifers-examples",
+      "headRefOid": "0e261ec4489157589e46b38b9932ddd7de0572f6",
+      "closedAt": "2024-01-04T00:11:56Z",
+      "mergedAt": "2024-01-04T00:11:56Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "1a442337bb4a52425023c2716f6535382418eda7"
+      },
+      "comments": [],
       "reviews": []
     }
   ]
