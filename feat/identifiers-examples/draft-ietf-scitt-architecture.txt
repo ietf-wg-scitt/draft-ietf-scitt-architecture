@@ -1675,6 +1675,13 @@ Table of Contents
               189-204, DOI 10.1145/1323293.1294280, October 2007,
               <https://doi.org/10.1145/1323293.1294280>.
 
+   [I-D.draft-ietf-core-href]
+              Bormann, C. and H. Birkholz, "Constrained Resource
+              Identifiers", Work in Progress, Internet-Draft, draft-
+              ietf-core-href-13, 10 July 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-core-
+              href-13>.
+
    [I-D.draft-steele-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "Concise Encoding of Signed Merkle Tree Proofs",
@@ -1754,8 +1761,10 @@ Appendix A.  Identifiers
    secondarily meant to be understood by machines, as such we define
    text encodings for message identifiers first, and then provide binary
    translations according to standard transformations for URLs and URNs
-   to binary formats.  TODO add a normative reference for how this is
-   done.
+   to binary formats.
+
+   SCITT Identifiers for URLs and URNs that are not Data URLs MUST be
+   represented in binary using [I-D.draft-ietf-core-href].
 
    For each SCITT conceptual message, we define a Data URL format
    according to [RFC2397], a URN format according to [RFC8141] and a URL

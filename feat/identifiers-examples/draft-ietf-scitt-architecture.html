@@ -2775,6 +2775,10 @@ in [@RFC6838].<a href="#section-10.1-1" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">Chun, B.</span>, <span class="refAuthor">Maniatis, P.</span>, <span class="refAuthor">Shenker, S.</span>, and <span class="refAuthor">J. Kubiatowicz</span>, <span class="refTitle">"Attested append-only memory: making adversaries stick to their word"</span>, <span class="refContent">Association for Computing Machinery (ACM)</span>, <span class="seriesInfo">ACM SIGOPS Operating Systems Review vol. 41, no. 6, pp. 189-204</span>, <span class="seriesInfo">DOI 10.1145/1323293.1294280</span>, <time datetime="2007-10" class="refDate">October 2007</time>, <span>&lt;<a href="https://doi.org/10.1145/1323293.1294280">https://doi.org/10.1145/1323293.1294280</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="I-D.draft-ietf-core-href">[I-D.draft-ietf-core-href]</dt>
+        <dd>
+<span class="refAuthor">Bormann, C.</span> and <span class="refAuthor">H. Birkholz</span>, <span class="refTitle">"Constrained Resource Identifiers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-core-href-13</span>, <time datetime="2023-07-10" class="refDate">10 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-href-13">https://datatracker.ietf.org/doc/html/draft-ietf-core-href-13</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.draft-steele-cose-merkle-tree-proofs">[I-D.draft-steele-cose-merkle-tree-proofs]</dt>
         <dd>
 <span class="refAuthor">Steele, O.</span>, <span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Delignat-Lavaud, A.</span>, and <span class="refAuthor">C. Fournet</span>, <span class="refTitle">"Concise Encoding of Signed Merkle Tree Proofs"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-steele-cose-merkle-tree-proofs-01</span>, <time datetime="2023-07-10" class="refDate">10 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-steele-cose-merkle-tree-proofs-01">https://datatracker.ietf.org/doc/html/draft-steele-cose-merkle-tree-proofs-01</a>&gt;</span>. </dd>
@@ -2845,19 +2849,19 @@ in [@RFC6838].<a href="#section-10.1-1" class="pilcrow">¶</a></p>
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-identifiers" class="section-name selfRef">Identifiers</a>
       </h2>
 <p id="appendix-A-1">This section provides informative examples of identifiers for statements, signed statements, and receipts.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
-<p id="appendix-A-2">SCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats.
-TODO add a normative reference for how this is done.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
-<p id="appendix-A-3">For each SCITT conceptual message, we define a Data URL format according to <span>[<a href="#RFC2397" class="cite xref">RFC2397</a>]</span>, a URN format according to <span>[<a href="#RFC8141" class="cite xref">RFC8141</a>]</span> and a URL format according to <span>[<a href="#URLs" class="cite xref">URLs</a>]</span>.<a href="#appendix-A-3" class="pilcrow">¶</a></p>
-<p id="appendix-A-4">Note that Data URLs require base64 encoding, but the URN definitions require base64url encoding.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
-<p id="appendix-A-5">Resolution and dereferencing of these identifiers is out of scope for this document, and can be implemented by any concrete api implementing the abstract interface defined as follows:<a href="#appendix-A-5" class="pilcrow">¶</a></p>
-<div class="lang-http sourcecode" id="appendix-A-6">
+<p id="appendix-A-2">SCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+<p id="appendix-A-3">SCITT Identifiers for URLs and URNs that are not Data URLs <span class="bcp14">MUST</span> be represented in binary using <span>[<a href="#I-D.draft-ietf-core-href" class="cite xref">I-D.draft-ietf-core-href</a>]</span>.<a href="#appendix-A-3" class="pilcrow">¶</a></p>
+<p id="appendix-A-4">For each SCITT conceptual message, we define a Data URL format according to <span>[<a href="#RFC2397" class="cite xref">RFC2397</a>]</span>, a URN format according to <span>[<a href="#RFC8141" class="cite xref">RFC8141</a>]</span> and a URL format according to <span>[<a href="#URLs" class="cite xref">URLs</a>]</span>.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
+<p id="appendix-A-5">Note that Data URLs require base64 encoding, but the URN definitions require base64url encoding.<a href="#appendix-A-5" class="pilcrow">¶</a></p>
+<p id="appendix-A-6">Resolution and dereferencing of these identifiers is out of scope for this document, and can be implemented by any concrete api implementing the abstract interface defined as follows:<a href="#appendix-A-6" class="pilcrow">¶</a></p>
+<div class="lang-http sourcecode" id="appendix-A-7">
 <pre>
 resource: content-type = dereference(identifier: identifier-type)
-</pre><a href="#appendix-A-6" class="pilcrow">¶</a>
+</pre><a href="#appendix-A-7" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A-7">These identifiers <span class="bcp14">MAY</span> be present in a <code>tstr</code> field that does not otherwise restrict the string in ways that prevent a URN or URL from being present.<a href="#appendix-A-7" class="pilcrow">¶</a></p>
-<p id="appendix-A-8">This includes <code>iss</code>, and <code>sub</code> which are used to express the issuer and subject of a signed statement or receipt.<a href="#appendix-A-8" class="pilcrow">¶</a></p>
-<p id="appendix-A-9">This also includes <code>kid</code> which is used to express a hint for which public key should be used to verify a signature.<a href="#appendix-A-9" class="pilcrow">¶</a></p>
+<p id="appendix-A-8">These identifiers <span class="bcp14">MAY</span> be present in a <code>tstr</code> field that does not otherwise restrict the string in ways that prevent a URN or URL from being present.<a href="#appendix-A-8" class="pilcrow">¶</a></p>
+<p id="appendix-A-9">This includes <code>iss</code>, and <code>sub</code> which are used to express the issuer and subject of a signed statement or receipt.<a href="#appendix-A-9" class="pilcrow">¶</a></p>
+<p id="appendix-A-10">This also includes <code>kid</code> which is used to express a hint for which public key should be used to verify a signature.<a href="#appendix-A-10" class="pilcrow">¶</a></p>
 <div id="sec-statements">
 <section id="appendix-A.1">
         <h3 id="name-statements">
