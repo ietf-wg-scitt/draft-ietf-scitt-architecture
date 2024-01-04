@@ -1099,24 +1099,25 @@ To indicate that the content is an scitt configuration represented as JSON:
 - Provisional registration?  No
 --- back
 
-
 # Identifiers
 
-This section provides informative examples of identifiers for statements, signed statements and receipts.
+This section provides informative examples of identifiers for statements, signed statements, and receipts.
 
-SCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats. SCITT Identifiers for URLs and URNs that are not Data URLs MUST be represented in binary using {{-CURIs}}.
+SCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats.
 
-For each scitt conceptual message, we define a Data URL format according to {{-DataURLs}}, a URN format according to {{-URNs}} and a URL format according to {{URLs}}.
+SCITT Identifiers for URLs and URNs that are not Data URLs MUST be represented in binary using {{-CURIs}}.
+
+For each SCITT conceptual message, we define a Data URL format according to {{-DataURLs}}, a URN format according to {{-URNs}} and a URL format according to {{URLs}}.
 
 Note that Data URLs require base64 encoding, but the URN definitions require base64url encoding.
 
-Resolution and dereferencing of these identifiers is out of scope for this document, and can be implemented by any concrete api implementing the abtract interface defined as follows:
+Resolution and dereferencing of these identifiers is out of scope for this document, and can be implemented by any concrete api implementing the abstract interface defined as follows:
 
-~~~
+~~~http
 resource: content-type = dereference(identifier: identifier-type)
 ~~~
 
-These identifers MAY be present in an `tstr` field that does not otherwise restrict the string in ways that prevent a URN or URL from being present.
+These identifiers MAY be present in a `tstr` field that does not otherwise restrict the string in ways that prevent a URN or URL from being present.
 
 This includes `iss`, and `sub` which are used to express the issuer and subject of a signed statement or receipt.
 
@@ -1126,45 +1127,44 @@ This also includes `kid` which is used to express a hint for which public key sh
 
 ### Statement URN
 
-~~~
+~~~http
 urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 ~~~
 {: #example-statement-urn align="left" title="Example Statement URN"}
 
 ### Statement URL
 
-~~~
+~~~http
 https://transparency.example/api/identifiers/urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 ~~~
 {: #example-statement-url align="left" title="Example Statement URL"}
 
 ### Statement Data URL
 
-~~~
+~~~http
 data:application/json;base64,SGVsb...xkIQ==
 ~~~
 {: #example-statement-data-url align="left" title="Example Statement Data URL"}
-
 
 ## Signed Statements
 
 ### Signed Statement URN
 
-~~~
+~~~http
 urn:ietf:params:scitt:signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 ~~~
 {: #example-signed-statement-urn align="left" title="Example Signed Statement URN"}
 
 ### Signed Statement URL
 
-~~~
+~~~http
 https://transparency.example/api/identifiers/urn:ietf:params:scitt:signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 ~~~
 {: #example-signed-statement-url align="left" title="Example Signed Statement URL"}
 
 ### Signed Statement Data URL
 
-~~~
+~~~http
 data:application/cose;base64,SGVsb...xkIQ==
 ~~~
 {: #example-signed-statement-data-url align="left" title="Example Signed Statement Data URL"}
@@ -1173,24 +1173,21 @@ data:application/cose;base64,SGVsb...xkIQ==
 
 ### Receipt URN
 
-~~~
+~~~http
 urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 ~~~
 {: #example-receipt-urn align="left" title="Example Receipt URN"}
 
-
 ### Receipt URL
 
-~~~
+~~~http
 https://transparency.example/api/identifiers/urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 ~~~
 {: #example-receipt-url align="left" title="Example Receipt URL"}
 
 ### Receipt Data URL
 
-~~~
+~~~http
 data:application/cose;base64,SGVsb...xkIQ==
 ~~~
 {: #example-receipt-data-url align="left" title="Example Receipt Data URL"}
-
-
