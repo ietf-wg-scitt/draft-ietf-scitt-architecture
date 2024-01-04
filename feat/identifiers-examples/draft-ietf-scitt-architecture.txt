@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 6 July 2024                                          C. Fournet
+Expires: 7 July 2024                                          C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                          3 January 2024
+                                                          4 January 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 July 2024.
+   This Internet-Draft will expire on 7 July 2024.
 
 Copyright Notice
 
@@ -1748,7 +1748,7 @@ Table of Contents
 Appendix A.  Identifiers
 
    This section provides informative examples of identifiers for
-   statements, signed statements and receipts.
+   statements, signed statements, and receipts.
 
    SCITT Identifiers are primarily meant to be understood by humans and
    secondarily meant to be understood by machines, as such we define
@@ -1766,11 +1766,11 @@ Appendix A.  Identifiers
 
    Resolution and dereferencing of these identifiers is out of scope for
    this document, and can be implemented by any concrete api
-   implementing the abtract interface defined as follows:
+   implementing the abstract interface defined as follows:
 
    resource: content-type = dereference(identifier: identifier-type)
 
-   These identifers MAY be present in an tstr field that does not
+   These identifiers MAY be present in a tstr field that does not
    otherwise restrict the string in ways that prevent a URN or URL from
    being present.
 
@@ -1790,9 +1790,9 @@ A.1.1.  Statement URN
 
 A.1.2.  Statement URL
 
-https://transparency.example/api/identifiers/urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   https://transparency.example/api/identifiers/urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                   Figure 2: Example Statement URL
+                      Figure 2: Example Statement URL
 
 A.1.3.  Statement Data URL
 
@@ -1804,15 +1804,15 @@ A.2.  Signed Statements
 
 A.2.1.  Signed Statement URN
 
-urn:ietf:params:scitt:signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   urn:ietf:params:scitt:signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                Figure 4: Example Signed Statement URN
+                   Figure 4: Example Signed Statement URN
 
 A.2.2.  Signed Statement URL
 
-https://transparency.example/api/identifiers/urn:ietf:params:scitt:signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   https://transparency.example/api/identifiers/urn:ietf:params:scitt:signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                Figure 5: Example Signed Statement URL
+                   Figure 5: Example Signed Statement URL
 
 A.2.3.  Signed Statement Data URL
 
@@ -1830,9 +1830,9 @@ A.3.1.  Receipt URN
 
 A.3.2.  Receipt URL
 
-https://transparency.example/api/identifiers/urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   https://transparency.example/api/identifiers/urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                    Figure 8: Example Receipt URL
+                       Figure 8: Example Receipt URL
 
 A.3.3.  Receipt Data URL
 
