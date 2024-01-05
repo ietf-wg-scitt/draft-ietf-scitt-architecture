@@ -70,12 +70,15 @@ normative:
   RFC8610: CDDL
   RFC9052: COSE
   RFC8949: CBOR
+  RFC2046:
+  RFC6838:
 # TODO: scrapi
 #  RFC9053: COSE-ALGS
 #  RFC9054: COSE-HASH
   RFC6838:
   RFC9360:
   IANA.cose:
+  IANA.media-types:
   COSWID: RFC9393
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
 
@@ -1071,9 +1074,9 @@ TBD; {{mybody}}.
 
 ## Media Type Registration
 
-This section requests registration of the following media types [@RFC2046] in
-the "Media Types" registry [@IANA.MediaTypes] in the manner described
-in [@RFC6838].
+This section requests registration of the following media types {{RFC2046}} in
+the "Media Types" registry {{IANA.media-types}} in the manner described
+in {{RFC6838}}.
 
 To indicate that the content is an scitt configuration represented as JSON:
 
@@ -1082,9 +1085,9 @@ To indicate that the content is an scitt configuration represented as JSON:
 - Required parameters: n/a
 - Optional parameters: n/a
 - Encoding considerations: binary; application/scitt-configuration+json values are represented as a JSON Object; UTF-8 encoding SHOULD be employed for the JSON object.
-- Security considerations: See the Security Considerations section of [[ this specification ]].
+- Security considerations: See the Security Considerations section of TBD.
 - Interoperability considerations: n/a
-- Published specification: [[ this specification ]]
+- Published specification: TBD
 - Applications that use this media type: TBD
 - Fragment identifier considerations: n/a
 - Additional information:
