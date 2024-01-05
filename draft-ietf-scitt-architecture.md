@@ -933,7 +933,7 @@ Downstream producers benefit from upstream producers providing higher transparen
 Usually Transparency Services are publicly accessible, hence Issuers should treat Signed Statements that they register (rendering them as Transparent Statements) as public.
 In particular, a Signed Statement Envelope and Statement payload should not carry any private information in plaintext.
 
-Transparency Services can have an authorization policy controlling who can access the Log.
+Transparency Services can have an authorization policy controlling who can access the Append-only Log.
 While this can be used to limit who can read the Log, it may also limit the usefulness of the system.
 
 Some jurisdictions have a Right to be Forgotten.
