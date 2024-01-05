@@ -73,7 +73,7 @@ normative:
   RFC8949: CBOR
   RFC9052: COSE
   RFC9360:
-  COSWID: RFC9393:
+  COSWID: RFC9393
 
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
   IANA.cose:
@@ -212,9 +212,9 @@ The terms defined in this section have special meaning in the context of Supply 
 When used in text, the corresponding terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.
 
-Append-only Log (converges Ledger and Registry):
+Append-only Log (Ledger):
 
-: the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym, Registry, Log or Ledger.
+: the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym, Log or Ledger.
 SCITT supports multiple Log and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Log.
 
 Artifact:
@@ -267,10 +267,6 @@ Registration Policy:
 A Transparency Service MAY implement any range of policies that meets their needs.
 However a Transparency Service can not alter the contents of the Signed Statements.
 
-Registry:
-
-: See Append-only Log
-
 Signed Statement:
 
 : an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
@@ -286,7 +282,7 @@ The Statement is considered opaque to Transparency Service, and MAY be encrypted
 
 Subject:
 
-: (Previously named Feed) a logical collection of Statements about the same Artifact.
+: a logical collection of Statements about the same Artifact.
 For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact.
 Issuers use Subject to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
 In SCITT, Subject is a property of the dedicated, protected header attribute `15: CWT_Claims` within the protected header of the COSE envelope.
