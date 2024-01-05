@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 7 July 2024                                          C. Fournet
+Expires: 8 July 2024                                          C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                          4 January 2024
+                                                          5 January 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 July 2024.
+   This Internet-Draft will expire on 8 July 2024.
 
 Copyright Notice
 
@@ -1553,8 +1553,8 @@ Table of Contents
 10.1.  Media Type Registration
 
    This section requests registration of the following media types
-   [@RFC2046] in the "Media Types" registry [@IANA.MediaTypes] in the
-   manner described in [@RFC6838].
+   [RFC2046] in the "Media Types" registry [IANA.media-types] in the
+   manner described in [RFC6838].
 
    To indicate that the content is an scitt configuration represented as
    JSON:
@@ -1572,11 +1572,11 @@ Table of Contents
       encoding SHOULD be employed for the JSON object.
 
    *  Security considerations: See the Security Considerations section
-      of [[ this specification ]].
+      of TBD.
 
    *  Interoperability considerations: n/a
 
-   *  Published specification: [[ this specification ]]
+   *  Published specification: TBD
 
    *  Applications that use this media type: TBD
 
@@ -1621,6 +1621,15 @@ Table of Contents
    [IANA.cose]
               IANA, "CBOR Object Signing and Encryption (COSE)",
               <http://www.iana.org/assignments/cose>.
+
+   [IANA.media-types]
+              IANA, "Media Types",
+              <http://www.iana.org/assignments/media-types>.
+
+   [RFC2046]  Freed, N. and N. Borenstein, "Multipurpose Internet Mail
+              Extensions (MIME) Part Two: Media Types", RFC 2046,
+              DOI 10.17487/RFC2046, November 1996,
+              <https://www.rfc-editor.org/rfc/rfc2046>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
