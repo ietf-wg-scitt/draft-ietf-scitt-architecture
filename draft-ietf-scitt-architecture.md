@@ -67,52 +67,61 @@ contributor:
       Orie contributed to improving the generalization of COSE building blocks and document consistency.
 
 normative:
-  RFC8610: CDDL
-  RFC9052: COSE
-  RFC8949: CBOR
   RFC2046:
   RFC6838:
-# TODO: scrapi
-#  RFC9053: COSE-ALGS
-#  RFC9054: COSE-HASH
-  RFC6838:
+  RFC8610: CDDL
+  RFC8949: CBOR
+  RFC9052: COSE
   RFC9360:
+  COSWID: RFC9393:
+
+  CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
   IANA.cose:
   IANA.media-types:
-  COSWID: RFC9393
-  CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
+# TODO: scrapi
 
 informative:
 
   I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
-  PBFT: DOI.10.1145/571637.571640
-  MERKLE: DOI.10.1007/3-540-48184-2_32
+  I-D.ietf-scitt-software-use-cases:
+
   RFC6024:
   RFC9162: CT
   RFC9334: rats-arch
-  I-D.ietf-scitt-software-use-cases:
+
   CWT_CLAIMS:
     target: https://www.iana.org/assignments/cwt/cwt.xhtml
     title: CBOR Web Token (CWT) Claims
+
   CycloneDX:
     target: https://cyclonedx.org/specification/overview/
     title: CycloneDX
+
+  EQUIVOCATION: DOI.10.1145/1323293.1294280
+
   in-toto:
     target: https://in-toto.io/
     title: in-toto
+
+  MERKLE: DOI.10.1007/3-540-48184-2_32
+
+  PBFT: DOI.10.1145/571637.571640
+
   SLSA:
     target: https://slsa.dev/
     title: SLSA
-  SPDX-JSON:
-    target: https://spdx.dev/use/specifications/
-    title: SPDX Specification
+
   SPDX-CBOR:
     target: https://spdx.dev/use/specifications/
     title: SPDX Specification
+
+  SPDX-JSON:
+    target: https://spdx.dev/use/specifications/
+    title: SPDX Specification
+
   SWID:
     target: https://csrc.nist.gov/Projects/Software-Identification-SWID/guidelines
     title: SWID Specification
-  EQUIVOCATION: DOI.10.1145/1323293.1294280
 
 --- abstract
 
@@ -272,7 +281,7 @@ Statement:
 : any serializable information about an Artifact.
 To help interpretation of Statements, they must be tagged with a media type (as specified in {{RFC6838}}).
 A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version,  or any content an Issuer wishes to publish about an Artifact.
-The additional Statements about an artifact are correlated by the Subject defined in the CWT_Claims protected header.
+The additional Statements about an artifact are correlated by the Subject defined in the {{CWT_CLAIMS}} protected header.
 The Statement is considered opaque to Transparency Service, and MAY be encrypted.
 
 Subject:
@@ -436,7 +445,7 @@ Each implementation of a Transparency Service MAY support additional metadata, s
 The role of Transparency Service can be decomposed into several major functions.
 The most important is maintaining an Append-only Log, the verifiable data structure that records Signed Statements, and enforcing a Registration Policy.
 It also maintains a service key, which is used to endorse the state of the Append-only Log in Receipts.
-All Transparency Services MUST expose standard endpoints for Registration of Signed Statements and Receipt issuance, which is described in TODO: scrapi.
+All Transparency Services MUST expose standard endpoints for Registration of Signed Statements and Receipt issuance, which is described in TODO: SCRAPI.
 Each Transparency Service also defines its own Registration Policies, which MUST apply to all entries in the Append-only Log.
 
 The combination of Identity, Registration Policy evaluation, and the Transparency Service endpoint constitute the trusted part of the Transparency Service.
@@ -481,7 +490,7 @@ The Transparency Service provides an endpoint that returns the Transparent State
 
 The configuration `reg_info` SHOULD include a secure version number and a timestamp.
 
-The sample configuration payload uses the CDDL
+The sample configuration payload uses the CDDL {{-CDDL}}
 
 ~~~ cddl
 Signature_Algorithms = [ int ]
@@ -738,7 +747,7 @@ Receipt_Protected_Header = {
     ; Type of Verifiable Data Structure, e.g. RFC9162_SHA256
     &(verifiable-data-structure: -111) => int,
 
-    ; CBOR Web Tokoken claim set (CCS)
+    ; CBOR Web Token claim set (CCS)
     &(kccs: 15)  => Receipt_CWT_Claims,
 
     ; Critical headers
