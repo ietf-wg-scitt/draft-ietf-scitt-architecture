@@ -930,7 +930,8 @@ Downstream producers benefit from upstream producers providing higher transparen
 
 # Privacy Considerations
 
-Usually Transparency Services are publicly accessible, hence Issuers should treat Signed Statements that they register (rendering them as Transparent Statements) as public.
+Transparency Services are often publicly accessible.
+Issuers should treat Signed Statements (rendering them as Transparent Statements) as publicly accessible.
 In particular, a Signed Statement Envelope and Statement payload should not carry any private information in plaintext.
 
 Transparency Services can have an authorization policy controlling who can access the Append-only Log.
