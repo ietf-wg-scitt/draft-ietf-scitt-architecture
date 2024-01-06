@@ -274,9 +274,6 @@ Table of Contents
    artifacts, from the build and supply of software and IoT devices to
    advanced manufacturing and food supply.
 
-   Detailed use cases are maintained in a separate document
-   [I-D.ietf-scitt-software-use-cases].
-
 3.  Terminology
 
    The terms defined in this section have special meaning in the context
@@ -285,13 +282,12 @@ Table of Contents
    are capitalized.  To ensure readability, only a core set of terms is
    included in this section.
 
-   Append-only Log (converges Ledger and Registry):  the verifiable
-      append-only data structure that stores Signed Statements in a
-      Transparency Service often referred to by the synonym, Registry,
-      Log or Ledger.  SCITT supports multiple Log and Receipt formats to
-      accommodate different Transparency Service implementations, and
-      the proof types associated with different types of Append-only
-      Log.
+   Append-only Log (Ledger):  the verifiable append-only data structure
+      that stores Signed Statements in a Transparency Service often
+      referred to by the synonym, Log or Ledger.  SCITT supports
+      multiple Log and Receipt formats to accommodate different
+      Transparency Service implementations, and the proof types
+      associated with different types of Append-only Log.
 
    Artifact:  a physical or non-physical item that is moving along a
       supply chain.
@@ -351,8 +347,6 @@ Table of Contents
       policies that meets their needs.  However a Transparency Service
       can not alter the contents of the Signed Statements.
 
-   Registry:  See Append-only Log
-
    Signed Statement:  an identifiable and non-repudiable Statement about
       an Artifact signed by an Issuer.  In SCITT, Signed Statements are
       encoded as COSE signed objects; the payload of the COSE structure
@@ -366,20 +360,20 @@ Table of Contents
       Artifact, indicate the End of Life (EOL), redirection to a newer
       version, or any content an Issuer wishes to publish about an
       Artifact.  The additional Statements about an artifact are
-      correlated by the Subject defined in the CWT_Claims protected
+      correlated by the Subject defined in the [CWT_CLAIMS] protected
       header.  The Statement is considered opaque to Transparency
       Service, and MAY be encrypted.
 
-   Subject:  (Previously named Feed) a logical collection of Statements
-      about the same Artifact.  For any step or set of steps in a supply
-      chain there may be multiple statements made about the same
-      Artifact.  Issuers use Subject to create a coherent sequence of
-      Signed Statements about the same Artifact and Verifiers use the
-      Subject to ensure completeness and Non-equivocation in supply
-      chain evidence by identifying all Transparent Statements linked to
-      the one(s) they are evaluating.  In SCITT, Subject is a property
-      of the dedicated, protected header attribute 15: CWT_Claims within
-      the protected header of the COSE envelope.
+   Subject:  a logical collection of Statements about the same Artifact.
+      For any step or set of steps in a supply chain there may be
+      multiple statements made about the same Artifact.  Issuers use
+      Subject to create a coherent sequence of Signed Statements about
+      the same Artifact and Verifiers use the Subject to ensure
+      completeness and Non-equivocation in supply chain evidence by
+      identifying all Transparent Statements linked to the one(s) they
+      are evaluating.  In SCITT, Subject is a property of the dedicated,
+      protected header attribute 15: CWT_Claims within the protected
+      header of the COSE envelope.
 
    Transparency Service:  an entity that maintains and extends the
       Append-only Log, and endorses its state.  A Transparency Service
@@ -681,7 +675,7 @@ Table of Contents
    The configuration reg_info SHOULD include a secure version number and
    a timestamp.
 
-   The sample configuration payload uses the CDDL
+   The sample configuration payload uses the CDDL [RFC8610]
 
    Signature_Algorithms = [ int ]
 
@@ -1085,7 +1079,7 @@ Table of Contents
        ; Type of Verifiable Data Structure, e.g. RFC9162_SHA256
        &(verifiable-data-structure: -111) => int,
 
-       ; CBOR Web Tokoken claim set (CCS)
+       ; CBOR Web Token claim set (CCS)
        &(kccs: 15)  => Receipt_CWT_Claims,
 
        ; Critical headers
@@ -1677,14 +1671,6 @@ Table of Contents
               merkle-tree-proofs-01, 10 July 2023,
               <https://datatracker.ietf.org/doc/html/draft-steele-cose-
               merkle-tree-proofs-01>.
-
-   [I-D.ietf-scitt-software-use-cases]
-              Birkholz, H., Deshpande, Y., Brooks, D., Martin, B., and
-              B. Knight, "Detailed Software Supply Chain Uses Cases for
-              SCITT", Work in Progress, Internet-Draft, draft-ietf-
-              scitt-software-use-cases-02, 16 October 2023,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-scitt-
-              software-use-cases-02>.
 
    [in-toto]  "in-toto", n.d., <https://in-toto.io/>.
 

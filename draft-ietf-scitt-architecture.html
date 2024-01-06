@@ -1378,7 +1378,6 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-use-cases" class="section-name selfRef">Use Cases</a>
       </h2>
 <p id="section-2-1">The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">Detailed use cases are maintained in a separate document <span>[<a href="#I-D.ietf-scitt-software-use-cases" class="cite xref">I-D.ietf-scitt-software-use-cases</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology">
@@ -1390,9 +1389,9 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
 When used in text, the corresponding terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-3-2">
-        <dt id="section-3-2.1">Append-only Log (converges Ledger and Registry):</dt>
+        <dt id="section-3-2.1">Append-only Log (Ledger):</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.2">
-          <p id="section-3-2.2.1">the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym, Registry, Log or Ledger.
+          <p id="section-3-2.2.1">the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym, Log or Ledger.
 SCITT supports multiple Log and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Log.<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
@@ -1456,53 +1455,48 @@ A Transparency Service <span class="bcp14">MAY</span> implement any range of pol
 However a Transparency Service can not alter the contents of the Signed Statements.<a href="#section-3-2.22.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.23">Registry:</dt>
+<dt id="section-3-2.23">Signed Statement:</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.24">
-          <p id="section-3-2.24.1">See Append-only Log<a href="#section-3-2.24.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.24.1">an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
+In SCITT, Signed Statements are encoded as COSE signed objects; the payload of the COSE structure contains the issued Statement.<a href="#section-3-2.24.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.25">Signed Statement:</dt>
+<dt id="section-3-2.25">Statement:</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.26">
-          <p id="section-3-2.26.1">an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
-In SCITT, Signed Statements are encoded as COSE signed objects; the payload of the COSE structure contains the issued Statement.<a href="#section-3-2.26.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-2.27">Statement:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.28">
-          <p id="section-3-2.28.1">any serializable information about an Artifact.
+          <p id="section-3-2.26.1">any serializable information about an Artifact.
 To help interpretation of Statements, they must be tagged with a media type (as specified in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>).
 A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version,  or any content an Issuer wishes to publish about an Artifact.
-The additional Statements about an artifact are correlated by the Subject defined in the CWT_Claims protected header.
-The Statement is considered opaque to Transparency Service, and <span class="bcp14">MAY</span> be encrypted.<a href="#section-3-2.28.1" class="pilcrow">¶</a></p>
+The additional Statements about an artifact are correlated by the Subject defined in the <span>[<a href="#CWT_CLAIMS" class="cite xref">CWT_CLAIMS</a>]</span> protected header.
+The Statement is considered opaque to Transparency Service, and <span class="bcp14">MAY</span> be encrypted.<a href="#section-3-2.26.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.29">Subject:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.30">
-          <p id="section-3-2.30.1">(Previously named Feed) a logical collection of Statements about the same Artifact.
+<dt id="section-3-2.27">Subject:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.28">
+          <p id="section-3-2.28.1">a logical collection of Statements about the same Artifact.
 For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact.
 Issuers use Subject to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
-In SCITT, Subject is a property of the dedicated, protected header attribute <code>15: CWT_Claims</code> within the protected header of the COSE envelope.<a href="#section-3-2.30.1" class="pilcrow">¶</a></p>
+In SCITT, Subject is a property of the dedicated, protected header attribute <code>15: CWT_Claims</code> within the protected header of the COSE envelope.<a href="#section-3-2.28.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.31">Transparency Service:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.32">
-          <p id="section-3-2.32.1">an entity that maintains and extends the Append-only Log, and endorses its state.
+<dt id="section-3-2.29">Transparency Service:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.30">
+          <p id="section-3-2.30.1">an entity that maintains and extends the Append-only Log, and endorses its state.
 A Transparency Service <span class="bcp14">MAY</span> implement a Registration Policy, often referred to by its synonym Notary.
 A Transparency Service can be a complex distributed system, and SCITT requires the Transparency Service to provide many security guarantees about its Append-only Log.
-The identity of a Transparency Service is captured by a public key that must be known by Verifiers in order to validate Receipts.<a href="#section-3-2.32.1" class="pilcrow">¶</a></p>
+The identity of a Transparency Service is captured by a public key that must be known by Verifiers in order to validate Receipts.<a href="#section-3-2.30.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.33">Transparent Statement:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.34">
-          <p id="section-3-2.34.1">a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
+<dt id="section-3-2.31">Transparent Statement:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.32">
+          <p id="section-3-2.32.1">a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
 The receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
-A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.<a href="#section-3-2.34.1" class="pilcrow">¶</a></p>
+A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.<a href="#section-3-2.32.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.35">Verifier:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.36">
-          <p id="section-3-2.36.1">organizations, stakeholders, and users involved in validating supply chain Artifacts.
-Verifiers consume Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.<a href="#section-3-2.36.1" class="pilcrow">¶</a></p>
+<dt id="section-3-2.33">Verifier:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-2.34">
+          <p id="section-3-2.34.1">organizations, stakeholders, and users involved in validating supply chain Artifacts.
+Verifiers consume Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.<a href="#section-3-2.34.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -1808,7 +1802,7 @@ The Transparency Service <span class="bcp14">MUST</span> register a Signed State
 The Transparency Service <span class="bcp14">MAY</span> register an additional Signed Statement that updates its configuration.<a href="#section-5.2.2-3" class="pilcrow">¶</a></p>
 <p id="section-5.2.2-4">The Transparency Service provides an endpoint that returns the Transparent Statement that describes its current configuration.<a href="#section-5.2.2-4" class="pilcrow">¶</a></p>
 <p id="section-5.2.2-5">The configuration <code>reg_info</code> <span class="bcp14">SHOULD</span> include a secure version number and a timestamp.<a href="#section-5.2.2-5" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-6">The sample configuration payload uses the CDDL<a href="#section-5.2.2-6" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-6">The sample configuration payload uses the CDDL <span>[<a href="#RFC8610" class="cite xref">RFC8610</a>]</span><a href="#section-5.2.2-6" class="pilcrow">¶</a></p>
 <div class="lang-cddl sourcecode" id="section-5.2.2-7">
 <pre>
 Signature_Algorithms = [ int ]
@@ -2185,7 +2179,7 @@ Receipt_Protected_Header = {
     ; Type of Verifiable Data Structure, e.g. RFC9162_SHA256
     &amp;(verifiable-data-structure: -111) =&gt; int,
 
-    ; CBOR Web Tokoken claim set (CCS)
+    ; CBOR Web Token claim set (CCS)
     &amp;(kccs: 15)  =&gt; Receipt_CWT_Claims,
 
     ; Critical headers
@@ -2739,10 +2733,6 @@ in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#sec
 <dt id="I-D.draft-steele-cose-merkle-tree-proofs">[I-D.draft-steele-cose-merkle-tree-proofs]</dt>
         <dd>
 <span class="refAuthor">Steele, O.</span>, <span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Delignat-Lavaud, A.</span>, and <span class="refAuthor">C. Fournet</span>, <span class="refTitle">"Concise Encoding of Signed Merkle Tree Proofs"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-steele-cose-merkle-tree-proofs-01</span>, <time datetime="2023-07-10" class="refDate">10 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-steele-cose-merkle-tree-proofs-01">https://datatracker.ietf.org/doc/html/draft-steele-cose-merkle-tree-proofs-01</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.ietf-scitt-software-use-cases">[I-D.ietf-scitt-software-use-cases]</dt>
-        <dd>
-<span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Deshpande, Y.</span>, <span class="refAuthor">Brooks, D.</span>, <span class="refAuthor">Martin, B.</span>, and <span class="refAuthor">B. Knight</span>, <span class="refTitle">"Detailed Software Supply Chain Uses Cases for SCITT"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-scitt-software-use-cases-02</span>, <time datetime="2023-10-16" class="refDate">16 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-scitt-software-use-cases-02">https://datatracker.ietf.org/doc/html/draft-ietf-scitt-software-use-cases-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="in-toto">[in-toto]</dt>
         <dd>
