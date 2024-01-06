@@ -78,7 +78,6 @@ normative:
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
   IANA.cose:
   IANA.media-types:
-# TODO: scrapi
 
 informative:
 
@@ -438,7 +437,7 @@ Each implementation of a Transparency Service MAY support additional metadata, s
 The role of Transparency Service can be decomposed into several major functions.
 The most important is maintaining an Append-only Log, the verifiable data structure that records Signed Statements, and enforcing a Registration Policy.
 It also maintains a service key, which is used to endorse the state of the Append-only Log in Receipts.
-All Transparency Services MUST expose standard endpoints for Registration of Signed Statements and Receipt issuance, which is described in TODO: SCRAPI.
+All Transparency Services MUST expose standard endpoints for Registration of Signed Statements and Receipt issuance.
 Each Transparency Service also defines its own Registration Policies, which MUST apply to all entries in the Append-only Log.
 
 The combination of Identity, Registration Policy evaluation, and the Transparency Service endpoint constitute the trusted part of the Transparency Service.
