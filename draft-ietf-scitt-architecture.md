@@ -376,6 +376,25 @@ The SCITT architecture consists of a very loose federation of Transparency Servi
 In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
 
+SCITT consists of the following roles: Issuers, Transparency Services, Verifiers, and Auditors.
+The process works as follows:
+
+1. Issuers make Statements about Artifacts
+1. Issuers sign the Statements, producing Signed Statements
+1. Issuers submit the Signed Statements to Transparency Services
+1. Transparency Services evaluate the Signed Statements against Registration Policies,
+and counter-sign them if accepted, producing Transparent Statements
+1. Verifiers obtain a Transparent Statement, for example directly from an Issuer, or by querying a Transparency Service
+1. By verifying the Transparent Statement, Verifiers may be convinced to the authenticity and integrity of an Artifact
+1. Auditors verify the correctness and consistency of the Transparent Statements
+
+Issuers commit to a Statement by signing it and by registering it with a Transparency Service.
+The same Statement can be signed and registered by multiple different Issuers with multiple different Transparency Services.
+
+An entity can perform multiple roles.
+For example, a transport provider in the food supply chain can first act as a Verifier to check that the cold chain was uninterrupted, and later act as an Issuer to make a Statement about the temperature data from its transport section.
+Similarly, an entity can first act as a Verifier, and later act as an Auditor to perform a detailed audit of the Append-Only Log looking for related Artifact Statements.
+
 This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and the Signed Statement issuance process, Transparency Service and the Signed Statement Registration process, as well as Verifiers of the Transparent Statements and the Receipt validation process.
 
 ## Signed Statement Issuance and Registration
