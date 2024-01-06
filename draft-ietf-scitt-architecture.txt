@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 8 July 2024                                          C. Fournet
+Expires: 9 July 2024                                          C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                          5 January 2024
+                                                          6 January 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 July 2024.
+   This Internet-Draft will expire on 9 July 2024.
 
 Copyright Notice
 
@@ -595,10 +595,9 @@ Table of Contents
    enforcing a Registration Policy.  It also maintains a service key,
    which is used to endorse the state of the Append-only Log in
    Receipts.  All Transparency Services MUST expose standard endpoints
-   for Registration of Signed Statements and Receipt issuance, which is
-   described in TODO: scrapi.  Each Transparency Service also defines
-   its own Registration Policies, which MUST apply to all entries in the
-   Append-only Log.
+   for Registration of Signed Statements and Receipt issuance.  Each
+   Transparency Service also defines its own Registration Policies,
+   which MUST apply to all entries in the Append-only Log.
 
    The combination of Identity, Registration Policy evaluation, and the
    Transparency Service endpoint constitute the trusted part of the
