@@ -83,8 +83,7 @@ normative:
 informative:
 
   I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
-  I-D.ietf-scitt-software-use-cases:
-
+  
   RFC6024:
   RFC9162: CT
   RFC9334: rats-arch
@@ -203,8 +202,6 @@ Many of the data elements processed by the core components are based on the CBOR
 # Use Cases
 
 The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.
-
-Detailed use cases are maintained in a separate document {{I-D.ietf-scitt-software-use-cases}}.
 
 # Terminology {#terminology}
 
