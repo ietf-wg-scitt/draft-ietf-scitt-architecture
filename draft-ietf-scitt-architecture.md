@@ -72,7 +72,6 @@ normative:
   RFC8949: CBOR
   RFC2046:
   RFC6838:
-# TODO: scrapi
 #  RFC9053: COSE-ALGS
 #  RFC9054: COSE-HASH
   RFC6838:
@@ -436,7 +435,7 @@ Each implementation of a Transparency Service MAY support additional metadata, s
 The role of Transparency Service can be decomposed into several major functions.
 The most important is maintaining an Append-only Log, the verifiable data structure that records Signed Statements, and enforcing a Registration Policy.
 It also maintains a service key, which is used to endorse the state of the Append-only Log in Receipts.
-All Transparency Services MUST expose standard endpoints for Registration of Signed Statements and Receipt issuance, which is described in TODO: scrapi.
+All Transparency Services MUST expose standard endpoints for Registration of Signed Statements and Receipt issuance.
 Each Transparency Service also defines its own Registration Policies, which MUST apply to all entries in the Append-only Log.
 
 The combination of Identity, Registration Policy evaluation, and the Transparency Service endpoint constitute the trusted part of the Transparency Service.
