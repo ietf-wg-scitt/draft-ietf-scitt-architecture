@@ -1761,7 +1761,7 @@ For interoperability, Registration Policy decisions should be based on interpret
 <p id="section-5.2-1">The role of Transparency Service can be decomposed into several major functions.
 The most important is maintaining an Append-only Log, the verifiable data structure that records Signed Statements, and enforcing a Registration Policy.
 It also maintains a service key, which is used to endorse the state of the Append-only Log in Receipts.
-All Transparency Services <span class="bcp14">MUST</span> expose standard endpoints for Registration of Signed Statements and Receipt issuance, which is described in TODO: SCRAPI.
+All Transparency Services <span class="bcp14">MUST</span> expose standard endpoints for Registration of Signed Statements and Receipt issuance.
 Each Transparency Service also defines its own Registration Policies, which <span class="bcp14">MUST</span> apply to all entries in the Append-only Log.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2-2">The combination of Identity, Registration Policy evaluation, and the Transparency Service endpoint constitute the trusted part of the Transparency Service.
 Each of these components <span class="bcp14">MUST</span> be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the Transparency Service.
