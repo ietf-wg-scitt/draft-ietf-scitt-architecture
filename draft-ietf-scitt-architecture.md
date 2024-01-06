@@ -83,7 +83,7 @@ normative:
 informative:
 
   I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
-  
+
   RFC6024:
   RFC9162: CT
   RFC9334: rats-arch
