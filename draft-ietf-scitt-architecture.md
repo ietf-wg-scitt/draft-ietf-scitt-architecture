@@ -67,54 +67,62 @@ contributor:
       Orie contributed to improving the generalization of COSE building blocks and document consistency.
 
 normative:
-  RFC8610: CDDL
-  RFC9052: COSE
-  RFC8949: CBOR
   RFC2046:
   RFC6838:
-# TODO: scrapi
-#  RFC9053: COSE-ALGS
-#  RFC9054: COSE-HASH
-  RFC6838:
+  RFC8610: CDDL
+  RFC8949: CBOR
+  RFC9052: COSE
   RFC9360:
+  COSWID: RFC9393
+
+  CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
   IANA.cose:
   IANA.media-types:
-  COSWID: RFC9393
-  CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
 
 informative:
 
   I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
-  PBFT: DOI.10.1145/571637.571640
-  MERKLE: DOI.10.1007/3-540-48184-2_32
+
+  RFC2397: DataURLs
   RFC6024:
+  RFC8141: URNs
   RFC9162: CT
   RFC9334: rats-arch
-  I-D.ietf-scitt-software-use-cases:
+
   CWT_CLAIMS:
     target: https://www.iana.org/assignments/cwt/cwt.xhtml
     title: CBOR Web Token (CWT) Claims
+
   CycloneDX:
     target: https://cyclonedx.org/specification/overview/
     title: CycloneDX
+
+  EQUIVOCATION: DOI.10.1145/1323293.1294280
+
   in-toto:
     target: https://in-toto.io/
     title: in-toto
+
+  MERKLE: DOI.10.1007/3-540-48184-2_32
+
+  PBFT: DOI.10.1145/571637.571640
+
   SLSA:
     target: https://slsa.dev/
     title: SLSA
-  SPDX-JSON:
-    target: https://spdx.dev/use/specifications/
-    title: SPDX Specification
+
   SPDX-CBOR:
     target: https://spdx.dev/use/specifications/
     title: SPDX Specification
+
+  SPDX-JSON:
+    target: https://spdx.dev/use/specifications/
+    title: SPDX Specification
+
   SWID:
     target: https://csrc.nist.gov/Projects/Software-Identification-SWID/guidelines
     title: SWID Specification
-  EQUIVOCATION: DOI.10.1145/1323293.1294280
-  RFC2397: DataURLs
-  RFC8141: URNs
+
   URLs:
     target: https://url.spec.whatwg.org/
     title: URL Living Standard
@@ -202,17 +210,15 @@ Many of the data elements processed by the core components are based on the CBOR
 
 The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.
 
-Detailed use cases are maintained in a separate document {{I-D.ietf-scitt-software-use-cases}}.
-
 # Terminology {#terminology}
 
 The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust, which are used throughout this document.
 When used in text, the corresponding terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.
 
-Append-only Log (converges Ledger and Registry):
+Append-only Log (Ledger):
 
-: the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym, Registry, Log or Ledger.
+: the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym, Log or Ledger.
 SCITT supports multiple Log and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Log.
 
 Artifact:
@@ -265,10 +271,6 @@ Registration Policy:
 A Transparency Service MAY implement any range of policies that meets their needs.
 However a Transparency Service can not alter the contents of the Signed Statements.
 
-Registry:
-
-: See Append-only Log
-
 Signed Statement:
 
 : an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
@@ -279,12 +281,12 @@ Statement:
 : any serializable information about an Artifact.
 To help interpretation of Statements, they must be tagged with a media type (as specified in {{RFC6838}}).
 A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version,  or any content an Issuer wishes to publish about an Artifact.
-The additional Statements about an artifact are correlated by the Subject defined in the CWT_Claims protected header.
+The additional Statements about an artifact are correlated by the Subject defined in the {{CWT_CLAIMS}} protected header.
 The Statement is considered opaque to Transparency Service, and MAY be encrypted.
 
 Subject:
 
-: (Previously named Feed) a logical collection of Statements about the same Artifact.
+: a logical collection of Statements about the same Artifact.
 For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact.
 Issuers use Subject to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
 In SCITT, Subject is a property of the dedicated, protected header attribute `15: CWT_Claims` within the protected header of the COSE envelope.
@@ -443,7 +445,7 @@ Each implementation of a Transparency Service MAY support additional metadata, s
 The role of Transparency Service can be decomposed into several major functions.
 The most important is maintaining an Append-only Log, the verifiable data structure that records Signed Statements, and enforcing a Registration Policy.
 It also maintains a service key, which is used to endorse the state of the Append-only Log in Receipts.
-All Transparency Services MUST expose standard endpoints for Registration of Signed Statements and Receipt issuance, which is described in TODO: scrapi.
+All Transparency Services MUST expose standard endpoints for Registration of Signed Statements and Receipt issuance.
 Each Transparency Service also defines its own Registration Policies, which MUST apply to all entries in the Append-only Log.
 
 The combination of Identity, Registration Policy evaluation, and the Transparency Service endpoint constitute the trusted part of the Transparency Service.
@@ -488,7 +490,7 @@ The Transparency Service provides an endpoint that returns the Transparent State
 
 The configuration `reg_info` SHOULD include a secure version number and a timestamp.
 
-The sample configuration payload uses the CDDL
+The sample configuration payload uses the CDDL {{-CDDL}}
 
 ~~~ cddl
 Signature_Algorithms = [ int ]
@@ -745,7 +747,7 @@ Receipt_Protected_Header = {
     ; Type of Verifiable Data Structure, e.g. RFC9162_SHA256
     &(verifiable-data-structure: -111) => int,
 
-    ; CBOR Web Tokoken claim set (CCS)
+    ; CBOR Web Token claim set (CCS)
     &(kccs: 15)  => Receipt_CWT_Claims,
 
     ; Critical headers
