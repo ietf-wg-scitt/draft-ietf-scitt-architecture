@@ -78,6 +78,9 @@ normative:
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
   IANA.cose:
   IANA.media-types:
+  IANA.named-information:
+  RFC6570: URITemplate
+  RFC4648: Base64Url
 
 informative:
 
@@ -1118,7 +1121,7 @@ Note that Data URLs require base64 encoding, but the URN definitions require bas
 
 Resolution and dereferencing of these identifiers is out of scope for this document, and can be implemented by any concrete api implementing the abstract interface defined as follows:
 
-~~~http
+~~~
 resource: content-type = dereference(identifier: identifier-type)
 ~~~
 
@@ -1128,18 +1131,72 @@ This includes `iss`, and `sub` which are used to express the issuer and subject 
 
 This also includes `kid` which is used to express a hint for which public key should be used to verify a signature.
 
+All SCITT identifiers share common parameters to promote interoperability:
+
+Let hash-name be an algorithm name registered in {{IANA.named-information}}.
+
+To promote interoperability, the hash-name MUST be "sha-256".
+
+Let base-encoding, be a base encoding defined in {{-Base64Url}}.
+
+To promote interoperability, the base encoding MUST be "base64url".
+
+## For Binary Content
+
+Identifiers for binary content, such as Statements, or even Artifacts themselves are computed as follows:
+
+Let the `base64url-encoded-bytes-digest` for the messsage be the base64url encoded digest with the chosen hash algorithm of bytes / octets.
+
+Let the SCITT name for the message be the URN constructed from the following URI templatem, according to {{-URITemplate}}:
+
+Let the `message-type`, be "statement" for Statements and Artifacts.
+
+~~~
+urn:ietf:params:scitt:{message-type}:{hash-name}:{base-encoding}:{base64url-encoded-bytes-digest}
+~~~
+
+## For SCITT Messages
+
+Identifiers for COSE Sign 1 based messages, such as identifiers for Signed Statements and Receipts are computed as follows:
+
+Let the `base64url-encoded-to-be-signed-bytes-digest` for the messsage be the base64url encoded digest with the chosen hash algorithm of the "to-be-signed bytes", according to {{Section 8.1 of RFC9082}}.
+
+Let the SCITT name for the message be the URN constructed from the following URI templatem, according to {{-URITemplate}}:
+
+Let the `message-type`, be "signed-statement" for Signed Statements, and "receipt" for Receipts.
+
+~~~
+urn:ietf:params:scitt:{message-type}:{hash-name}:{base-encoding}:{base64url-encoded-to-be-signed-bytes-digest}
+~~~
+
+Note that this means the content of the signature is not included in the identifer, even though signature related claims, such as activation or expiration information in protected headers are included.
+
+As a result, an attacker may construct a new signed statement that has the same identifier as a previous signed statement, but has a different signature.
+
+## For Transparent Statements
+
+Identifiers for Transparent Statements are defined as identifiers for binary content, but with "transparent-statement" as the `message-type`.
+
+~~~
+urn:ietf:params:scitt:{message-type}:{hash-name}:{base-encoding}:{base64url-encoded-bytes-digest}
+~~~
+
+Note that because this identifier is computed over the unprotected header of the Signed Statement, any changes to the unprotected header, such as changing the order of the unprotected header map key value pairs, adding additional receipts, or adding additional proofs to a receipt, will change the identifier of a transparent statement.
+
+Note that because this identifier is computed over the signatures of the signed statement and signatures in each receipt, any cannonicalization of the signatures after the fact will produce a distinct identifier.
+
 ## Statements
 
 ### Statement URN
 
-~~~http
+~~~
 urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 ~~~
 {: #example-statement-urn align="left" title="Example Statement URN"}
 
 ### Statement URL
 
-~~~http
+~~~
 https://transparency.example/api/identifiers/urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 ~~~
 {: #example-statement-url align="left" title="Example Statement URL"}
@@ -1155,21 +1212,21 @@ data:application/json;base64,SGVsb...xkIQ==
 
 ### Signed Statement URN
 
-~~~http
+~~~
 urn:ietf:params:scitt:signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 ~~~
 {: #example-signed-statement-urn align="left" title="Example Signed Statement URN"}
 
 ### Signed Statement URL
 
-~~~http
+~~~
 https://transparency.example/api/identifiers/urn:ietf:params:scitt:signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 ~~~
 {: #example-signed-statement-url align="left" title="Example Signed Statement URL"}
 
 ### Signed Statement Data URL
 
-~~~http
+~~~
 data:application/cose;base64,SGVsb...xkIQ==
 ~~~
 {: #example-signed-statement-data-url align="left" title="Example Signed Statement Data URL"}
@@ -1178,21 +1235,45 @@ data:application/cose;base64,SGVsb...xkIQ==
 
 ### Receipt URN
 
-~~~http
+~~~
 urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 ~~~
 {: #example-receipt-urn align="left" title="Example Receipt URN"}
 
 ### Receipt URL
 
-~~~http
+~~~
 https://transparency.example/api/identifiers/urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 ~~~
 {: #example-receipt-url align="left" title="Example Receipt URL"}
 
 ### Receipt Data URL
 
-~~~http
+~~~
 data:application/cose;base64,SGVsb...xkIQ==
 ~~~
 {: #example-receipt-data-url align="left" title="Example Receipt Data URL"}
+
+
+## Transparent Statements
+
+### Transparent Statement URN
+
+~~~
+urn:ietf:params:scitt:transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+~~~
+{: #example-transparent-statement-urn align="left" title="Example Transparent Statement URN"}
+
+### Transparent Statement URL
+
+~~~
+https://transparency.example/api/identifiers/urn:ietf:params:scitt:transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+~~~
+{: #example-transparent-statement-url align="left" title="Example Transparent Statement URL"}
+
+### Transparent Statement Data URL
+
+~~~
+data:application/cose;base64,SGVsb...xkIQ==
+~~~
+{: #example-transparent-statement-data-url align="left" title="Example Transparent Statement Data URL"}
