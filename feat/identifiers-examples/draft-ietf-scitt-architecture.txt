@@ -124,18 +124,25 @@ Table of Contents
      11.1.  Normative References
      11.2.  Informative References
    Appendix A.  Identifiers
-     A.1.  Statements
-       A.1.1.  Statement URN
-       A.1.2.  Statement URL
-       A.1.3.  Statement Data URL
-     A.2.  Signed Statements
-       A.2.1.  Signed Statement URN
-       A.2.2.  Signed Statement URL
-       A.2.3.  Signed Statement Data URL
-     A.3.  Receipts
-       A.3.1.  Receipt URN
-       A.3.2.  Receipt URL
-       A.3.3.  Receipt Data URL
+     A.1.  For Binary Content
+     A.2.  For SCITT Messages
+     A.3.  For Transparent Statements
+     A.4.  Statements
+       A.4.1.  Statement URN
+       A.4.2.  Statement URL
+       A.4.3.  Statement Data URL
+     A.5.  Signed Statements
+       A.5.1.  Signed Statement URN
+       A.5.2.  Signed Statement URL
+       A.5.3.  Signed Statement Data URL
+     A.6.  Receipts
+       A.6.1.  Receipt URN
+       A.6.2.  Receipt URL
+       A.6.3.  Receipt Data URL
+     A.7.  Transparent Statements
+       A.7.1.  Transparent Statement URN
+       A.7.2.  Transparent Statement URL
+       A.7.3.  Transparent Statement Data URL
    Contributors
    Authors' Addresses
 
@@ -1619,6 +1626,10 @@ Table of Contents
               IANA, "Media Types",
               <http://www.iana.org/assignments/media-types>.
 
+   [IANA.named-information]
+              IANA, "Named Information",
+              <http://www.iana.org/assignments/named-information>.
+
    [RFC2046]  Freed, N. and N. Borenstein, "Multipurpose Internet Mail
               Extensions (MIME) Part Two: Media Types", RFC 2046,
               DOI 10.17487/RFC2046, November 1996,
@@ -1628,6 +1639,15 @@ Table of Contents
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC4648]  Josefsson, S., "The Base16, Base32, and Base64 Data
+              Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
+              <https://www.rfc-editor.org/rfc/rfc4648>.
+
+   [RFC6570]  Gregorio, J., Fielding, R., Hadley, M., Nottingham, M.,
+              and D. Orchard, "URI Template", RFC 6570,
+              DOI 10.17487/RFC6570, March 2012,
+              <https://www.rfc-editor.org/rfc/rfc6570>.
 
    [RFC6838]  Freed, N., Klensin, J., and T. Hansen, "Media Type
               Specifications and Registration Procedures", BCP 13,
@@ -1783,65 +1803,177 @@ Appendix A.  Identifiers
    This also includes kid which is used to express a hint for which
    public key should be used to verify a signature.
 
-A.1.  Statements
+   All SCITT identifiers share common parameters to promote
+   interoperability:
 
-A.1.1.  Statement URN
+   Let hash-name be an algorithm name registered in
+   [IANA.named-information].
+
+   To promote interoperability, the hash-name MUST be "sha-256".
+
+   Let base-encoding, be a base encoding defined in [RFC4648].
+
+   To promote interoperability, the base encoding MUST be "base64url".
+
+   In the blocks and examples that follow, NOTE: '' line wrapping per
+   RFC 8792.
+
+A.1.  For Binary Content
+
+   Identifiers for binary content, such as Statements, or even Artifacts
+   themselves are computed as follows:
+
+   Let the base64url-encoded-bytes-digest for the messsage be the
+   base64url encoded digest with the chosen hash algorithm of bytes /
+   octets.
+
+   Let the SCITT name for the message be the URN constructed from the
+   following URI templatem, according to [RFC6570]:
+
+   Let the message-type, be "statement" for Statements and Artifacts.
+
+   urn:ietf:params:scitt:\
+   {message-type}:\
+   {hash-name}:{base-encoding}:\
+   {base64url-encoded-bytes-digest}
+
+A.2.  For SCITT Messages
+
+   Identifiers for COSE Sign 1 based messages, such as identifiers for
+   Signed Statements and Receipts are computed as follows:
+
+   Let the base64url-encoded-to-be-signed-bytes-digest for the messsage
+   be the base64url encoded digest with the chosen hash algorithm of the
+   "to-be-signed bytes", according to Section 8.1 of [RFC9052].
+
+   Let the SCITT name for the message be the URN constructed from the
+   following URI templatem, according to [RFC6570]:
+
+   Let the message-type, be "signed-statement" for Signed Statements,
+   and "receipt" for Receipts.
+
+   urn:ietf:params:scitt:\
+   {message-type}:\
+   {hash-name}:{base-encoding}:\
+   {base64url-encoded-to-be-signed-bytes-digest}
+
+   Note that this means the content of the signature is not included in
+   the identifer, even though signature related claims, such as
+   activation or expiration information in protected headers are
+   included.
+
+   As a result, an attacker may construct a new signed statement that
+   has the same identifier as a previous signed statement, but has a
+   different signature.
+
+A.3.  For Transparent Statements
+
+   Identifiers for Transparent Statements are defined as identifiers for
+   binary content, but with "transparent-statement" as the message-type.
+
+   urn:ietf:params:scitt:\
+   {message-type}:\
+   {hash-name}:{base-encoding}:\
+   {base64url-encoded-bytes-digest}
+
+   Note that because this identifier is computed over the unprotected
+   header of the Signed Statement, any changes to the unprotected
+   header, such as changing the order of the unprotected header map key
+   value pairs, adding additional receipts, or adding additional proofs
+   to a receipt, will change the identifier of a transparent statement.
+
+   Note that because this identifier is computed over the signatures of
+   the signed statement and signatures in each receipt, any
+   cannonicalization of the signatures after the fact will produce a
+   distinct identifier.
+
+A.4.  Statements
+
+A.4.1.  Statement URN
 
    urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
                       Figure 1: Example Statement URN
 
-A.1.2.  Statement URL
+A.4.2.  Statement URL
 
-   https://transparency.example/api/identifiers/urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+  https://transparency.example/api/identifiers\
+  /urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                      Figure 2: Example Statement URL
+                     Figure 2: Example Statement URL
 
-A.1.3.  Statement Data URL
+A.4.3.  Statement Data URL
 
    data:application/json;base64,SGVsb...xkIQ==
 
                     Figure 3: Example Statement Data URL
 
-A.2.  Signed Statements
+A.5.  Signed Statements
 
-A.2.1.  Signed Statement URN
+A.5.1.  Signed Statement URN
 
-   urn:ietf:params:scitt:signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   urn:ietf:params:scitt:\
+   signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
                    Figure 4: Example Signed Statement URN
 
-A.2.2.  Signed Statement URL
+A.5.2.  Signed Statement URL
 
-   https://transparency.example/api/identifiers/urn:ietf:params:scitt:signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   https://transparency.example/api/identifiers\
+   /urn:ietf:params:scitt:\
+   signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
                    Figure 5: Example Signed Statement URL
 
-A.2.3.  Signed Statement Data URL
+A.5.3.  Signed Statement Data URL
 
    data:application/cose;base64,SGVsb...xkIQ==
 
                 Figure 6: Example Signed Statement Data URL
 
-A.3.  Receipts
+A.6.  Receipts
 
-A.3.1.  Receipt URN
+A.6.1.  Receipt URN
 
    urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
                        Figure 7: Example Receipt URN
 
-A.3.2.  Receipt URL
+A.6.2.  Receipt URL
 
-   https://transparency.example/api/identifiers/urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   https://transparency.example/api/identifiers\
+   /urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
                        Figure 8: Example Receipt URL
 
-A.3.3.  Receipt Data URL
+A.6.3.  Receipt Data URL
 
    data:application/cose;base64,SGVsb...xkIQ==
 
                      Figure 9: Example Receipt Data URL
+
+A.7.  Transparent Statements
+
+A.7.1.  Transparent Statement URN
+
+   urn:ietf:params:scitt:\
+   transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+
+                Figure 10: Example Transparent Statement URN
+
+A.7.2.  Transparent Statement URL
+
+   https://transparency.example/api/identifiers\
+   /urn:ietf:params:scitt:\
+   transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+
+                Figure 11: Example Transparent Statement URL
+
+A.7.3.  Transparent Statement Data URL
+
+   data:application/cose;base64,SGVsb...xkIQ==
+
+             Figure 12: Example Transparent Statement Data URL
 
 Contributors
 
