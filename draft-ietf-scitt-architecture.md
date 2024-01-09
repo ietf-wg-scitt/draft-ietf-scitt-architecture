@@ -412,7 +412,7 @@ This document specifies the format of Signed Statements and Receipts.
 
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
 
-The details regarding Artifact Repositories, and Identity Document infrastructure, such as OIDC or x509 are out of scope.
+The details regarding Artifact Repositories, such as package managers or container registries, and Identity Document infrastructure, such as OIDC or x509 are out of scope.
 
 This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and the Signed Statement issuance process, Transparency Service and the Signed Statement Registration process, as well as Verifiers of the Transparent Statements and the Receipt validation process.
 
