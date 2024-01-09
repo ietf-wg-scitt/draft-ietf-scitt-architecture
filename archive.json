@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-07T00:39:49.880264+00:00",
+  "timestamp": "2024-01-09T00:36:58.657485+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -3051,7 +3051,7 @@
       "labels": [],
       "body": "As discussed on today's call.\r\n\r\nFolks expressed concern that \"Verifier\" was not friendly enough to \"Consumers or Relying Parties\", that are supposed to process receipts.",
       "createdAt": "2023-10-23T15:22:39Z",
-      "updatedAt": "2024-01-06T01:21:48Z",
+      "updatedAt": "2024-01-08T16:27:26Z",
       "closedAt": null,
       "comments": [
         {
@@ -3123,6 +3123,13 @@
           "body": "> unless Verifier is, in fact, some non-person entity\r\n\r\nA verifier can be a person or automation that was configured by a person. \r\n\r\nThis is likely a great conversation for the [next SCITT Meeting on Jan 8, 2024](https://datatracker.ietf.org/doc/agenda-interim-2024-scitt-01-scitt-01/)\r\n\r\n@aj-stein-nist would you be able to lead that discussion with @mwiseman-byid?",
           "createdAt": "2024-01-06T00:28:00Z",
           "updatedAt": "2024-01-06T00:28:00Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "> ```mermaid\r\n> \r\n> flowchart \r\n>     \r\n> RP\r\n> Verifier\r\n> \r\n> RP -- has or is a --> Verifier\r\n> ```\r\n\r\nhm... if we are talking RATS an entity can take on both the Roles of Verifier and Relying Party at the same time (rendering the creation and conveyance of Attestation Results moot)",
+          "createdAt": "2024-01-08T16:27:25Z",
+          "updatedAt": "2024-01-08T16:27:25Z"
         }
       ]
     },
@@ -3336,9 +3343,9 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "This issue is a living description of the references that block the architecture from becoming an RFC.\r\n\r\n```mermaid\r\nflowchart \r\n    \r\nsubgraph COSE\r\n    cometre[draft-ietf-cose-merkle-tree-proofs]\r\n    hash-envelope{{draft-steele-cose-hash-envelope}}\r\nend\r\n\r\nsubgraph SCITT\r\n    architecture[draft-ietf-scitt-architecture]\r\n    scrapi{{draft-birkholz-scitt-scrapi}}\r\n    cometre-ccf{{draft-birkholz-cose-cometre-ccf-profile}}\r\nend\r\n\r\narchitecture --> scrapi\r\narchitecture -->  cometre\r\narchitecture --> hash-envelope\r\ncometre-ccf --> cometre\r\n```\r\n\r\nCurrently, the `draft-ietf-scitt-architecture` is blocked by `draft-ietf-cose-merkle-tree-proofs`, `draft-birkholz-scitt-scrapi`.\r\n\r\n`draft-steele-cose-hash-envelope` is not blocking anything because it is just a special kind of signed statement, its possible it might block `draft-birkholz-scitt-scrapi` in the future.\r\n\r\n`draft-birkholz-cose-cometre-ccf-profile` is blocked by `draft-ietf-cose-merkle-tree-proofs`\r\n\r\nI would recommend making `draft-ietf-cose-merkle-tree-proofs` the only blocker for the architecture, as quickly as possible, and then I would recommend helping `draft-ietf-cose-merkle-tree-proofs` close out so the architecture can be published.\r\n\r\nI would then make `draft-birkholz-scitt-scrapi` adopted by SCITT, and make it be blocked by the architecture.\r\n\r\n\r\n",
+      "body": "This issue is a living description of the references that block the architecture from becoming an RFC.\r\n\r\n```mermaid\r\nflowchart \r\n    \r\nsubgraph COSE\r\n    cometre[draft-ietf-cose-merkle-tree-proofs]\r\n    hash-envelope{{draft-steele-cose-hash-envelope}}\r\nend\r\n\r\nsubgraph SCITT\r\n    architecture[draft-ietf-scitt-architecture]\r\n    scrapi{{draft-birkholz-scitt-scrapi}}\r\n    cometre-ccf{{draft-birkholz-cose-cometre-ccf-profile}}\r\nend\r\n\r\nscrapi --> architecture\r\narchitecture -->  cometre\r\narchitecture --> hash-envelope\r\ncometre-ccf --> cometre\r\n```\r\n\r\nCurrently, the `draft-ietf-scitt-architecture` is blocked by `draft-ietf-cose-merkle-tree-proofs`.\r\n\r\n`draft-steele-cose-hash-envelope` is not blocking anything because it is just a special kind of signed statement, its possible it might block `draft-birkholz-scitt-scrapi` in the future.\r\n\r\n`draft-birkholz-cose-cometre-ccf-profile` is blocked by `draft-ietf-cose-merkle-tree-proofs`\r\n\r\nI recommend helping `draft-ietf-cose-merkle-tree-proofs` close out so the architecture can be published.\r\n\r\nI would then make `draft-birkholz-scitt-scrapi` adopted by SCITT, and make it be blocked by the architecture.\r\n\r\n\r\n",
       "createdAt": "2024-01-05T17:50:36Z",
-      "updatedAt": "2024-01-06T01:21:09Z",
+      "updatedAt": "2024-01-08T15:41:40Z",
       "closedAt": null,
       "comments": [
         {
@@ -3347,6 +3354,27 @@
           "body": "Thanks, @OR13\r\nWhile I believe `draft-steele-cose-hash-envelope` is important to support, it's not clear it needs to be in the architecture, although it's currently tied to the identity discussion. #145\r\n\r\nWith #149 complete, we can now invert SCRAPI to be dependent on the Architecture.\r\n\r\n```mermaid\r\nflowchart \r\n    \r\nsubgraph COSE\r\n    cometre[draft-ietf-cose-merkle-tree-proofs]\r\n    hash-envelope{{draft-steele-cose-hash-envelope}}\r\nend\r\n\r\nsubgraph SCITT\r\n    scrapi{{draft-birkholz-scitt-scrapi}}\r\n    architecture[draft-ietf-scitt-architecture]\r\n    cometre-ccf{{draft-birkholz-cose-cometre-ccf-profile}}\r\nend\r\n\r\nscrapi --> architecture\r\narchitecture -->  cometre\r\narchitecture --> hash-envelope\r\ncometre-ccf --> cometre\r\n```\r\n",
           "createdAt": "2024-01-06T01:12:19Z",
           "updatedAt": "2024-01-06T01:12:19Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I updated the issue description diagram to reflect the current state.\r\n\r\nIf folks like I can add blockers to the architecture based on major open issues next, so we can see how \"identifiers\" and \"configuration\" are related to finishing the architecture.",
+          "createdAt": "2024-01-08T14:37:53Z",
+          "updatedAt": "2024-01-08T14:37:53Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> If folks like I can add blockers to the architecture based on major open issues next, so we can see how \"identifiers\" and \"configuration\" are related to finishing the architecture.\r\n\r\nTracking the blockers is goodness. I've added #151 as one of the blockers. ",
+          "createdAt": "2024-01-08T15:37:39Z",
+          "updatedAt": "2024-01-08T15:37:51Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "> If folks like I can add blockers to the architecture based on major open issues next, so we can see how \"identifiers\" and \"configuration\" are related to finishing the architecture.\r\n\r\nMy individual summary of potential content/decision blockers (in contrast to reference blockers) as far as I am aware of them. Some of them might already have consensus, but it is not reflected, I think:\r\n\r\n* Text on identity document use in SCITT. My assumption is: agnostic expositional text and at least one example how to use x.509 wrt Signed Statements and Receipts\r\n* Text on statement identification. My assumption is that we need at least abstract exopsitional text. I am not sure, if this can/will be part of the first iteration of the architecture document.\r\n* Meaning of subject tstr composition (formerly known as feed). My assumption is: we are only providing the tstr in the CDDL definition of the Receipt structure and highlight in English text that SCITT CoMETRE profiles, such as https://datatracker.ietf.org/doc/draft-birkholz-cose-cometre-ccf-profile/ to remove that burden from the architecture I-D",
+          "createdAt": "2024-01-08T15:41:39Z",
+          "updatedAt": "2024-01-08T15:41:39Z"
         }
       ]
     },
