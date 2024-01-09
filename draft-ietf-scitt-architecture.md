@@ -1146,7 +1146,7 @@ https://transparency.example/api/identifiers/urn:ietf:params:scitt:statement:sha
 
 ### Statement Data URL
 
-~~~http
+~~~
 data:application/json;base64,SGVsb...xkIQ==
 ~~~
 {: #example-statement-data-url align="left" title="Example Statement Data URL"}
