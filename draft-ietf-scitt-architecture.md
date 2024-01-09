@@ -425,6 +425,16 @@ See Subject under {{terminology}} Terminology.
 
 Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
 
+### Support for Multiple Statements
+
+An Issuer can make multiple Statements about the same Artifact.
+For example, an Issuer can make amended Statements about the same Artifact as their view changes over time.
+
+Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
+Verifiers can choose which Issuers they trust.
+
+Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.
+
 ### Registration Policy Metadata
 
 SCITT payloads are opaque to Transparency Services.
