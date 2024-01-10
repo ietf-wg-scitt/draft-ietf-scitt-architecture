@@ -1038,7 +1038,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 9 July 2024</td>
+<td class="center">Expires 13 July 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1051,12 +1051,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-01-06" class="published">6 January 2024</time>
+<time datetime="2024-01-10" class="published">10 January 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-07-09">9 July 2024</time></dd>
+<dd class="expires"><time datetime="2024-07-13">13 July 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1126,7 +1126,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 13 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2409,8 +2409,13 @@ Downstream producers benefit from upstream producers providing higher transparen
       <h2 id="name-privacy-considerations">
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>
       </h2>
-<p id="section-8-1">Unless advertised by a Transparency Service, every Issuer must treat Signed Statements it registered (rendering them as Transparent Statements) as public.
-In particular, a Signed Statement Envelope and Statement payload <span class="bcp14">MUST NOT</span> carry any private information in plaintext.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-1">Transparency Services are often publicly accessible.
+Issuers should treat Signed Statements (rendering them as Transparent Statements) as publicly accessible.
+In particular, a Signed Statement Envelope and Statement payload should not carry any private information in plaintext.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">Transparency Services can have an authorization policy controlling who can access the Append-only Log.
+While this can be used to limit who can read the Log, it may also limit the usefulness of the system.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<p id="section-8-3">Some jurisdictions have a Right to be Forgotten.
+However, once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.<a href="#section-8-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-security-considerations">
