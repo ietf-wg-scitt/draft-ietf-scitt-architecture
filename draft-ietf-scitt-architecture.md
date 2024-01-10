@@ -78,12 +78,17 @@ normative:
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
   IANA.cose:
   IANA.media-types:
+  IANA.named-information:
+  RFC6570: URITemplate
+  RFC4648: Base64Url
 
 informative:
 
   I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
 
+  RFC2397: DataURLs
   RFC6024:
+  RFC8141: URNs
   RFC9162: CT
   RFC9334: rats-arch
 
@@ -120,6 +125,12 @@ informative:
   SWID:
     target: https://csrc.nist.gov/Projects/Software-Identification-SWID/guidelines
     title: SWID Specification
+
+  URLs:
+    target: https://url.spec.whatwg.org/
+    title: URL Living Standard
+
+  I-D.draft-ietf-core-href: CURIs
 
 --- abstract
 
@@ -1102,3 +1113,194 @@ To indicate that the content is an scitt configuration represented as JSON:
 - Change Controller: IETF
 - Provisional registration?  No
 --- back
+
+# Identifiers
+
+This section provides informative examples of identifiers for statements, signed statements, and receipts.
+
+SCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats.
+
+SCITT Identifiers for URLs and URNs that are not Data URLs MUST be represented in binary using {{-CURIs}}.
+
+For each SCITT conceptual message, we define a Data URL format according to {{-DataURLs}}, a URN format according to {{-URNs}} and a URL format according to {{URLs}}.
+
+Note that Data URLs require base64 encoding, but the URN definitions require base64url encoding.
+
+Resolution and dereferencing of these identifiers is out of scope for this document, and can be implemented by any concrete api implementing the abstract interface defined as follows:
+
+~~~
+resource: content-type = dereference(identifier: identifier-type)
+~~~
+
+These identifiers MAY be present in a `tstr` field that does not otherwise restrict the string in ways that prevent a URN or URL from being present.
+
+This includes `iss`, and `sub` which are used to express the issuer and subject of a signed statement or receipt.
+
+This also includes `kid` which is used to express a hint for which public key should be used to verify a signature.
+
+All SCITT identifiers share common parameters to promote interoperability:
+
+Let hash-name be an algorithm name registered in {{IANA.named-information}}.
+
+To promote interoperability, the hash-name MUST be "sha-256".
+
+Let base-encoding, be a base encoding defined in {{-Base64Url}}.
+
+To promote interoperability, the base encoding MUST be "base64url".
+
+In the blocks and examples that follow, NOTE: '\' line wrapping per RFC 8792.
+
+## For Binary Content
+
+Identifiers for binary content, such as Statements, or even Artifacts themselves are computed as follows:
+
+Let the `base64url-encoded-bytes-digest` for the messsage be the base64url encoded digest with the chosen hash algorithm of bytes / octets.
+
+Let the SCITT name for the message be the URN constructed from the following URI templatem, according to {{-URITemplate}}:
+
+Let the `message-type`, be "statement" for Statements and Artifacts.
+
+~~~
+urn:ietf:params:scitt:\
+{message-type}:\
+{hash-name}:{base-encoding}:\
+{base64url-encoded-bytes-digest}
+~~~
+
+## For SCITT Messages
+
+Identifiers for COSE Sign 1 based messages, such as identifiers for Signed Statements and Receipts are computed as follows:
+
+Let the `base64url-encoded-to-be-signed-bytes-digest` for the messsage be the base64url encoded digest with the chosen hash algorithm of the "to-be-signed bytes", according to {{Section 8.1 of RFC9052}}.
+
+Let the SCITT name for the message be the URN constructed from the following URI templatem, according to {{-URITemplate}}:
+
+Let the `message-type`, be "signed-statement" for Signed Statements, and "receipt" for Receipts.
+
+~~~
+urn:ietf:params:scitt:\
+{message-type}:\
+{hash-name}:{base-encoding}:\
+{base64url-encoded-to-be-signed-bytes-digest}
+~~~
+
+Note that this means the content of the signature is not included in the identifer, even though signature related claims, such as activation or expiration information in protected headers are included.
+
+As a result, an attacker may construct a new signed statement that has the same identifier as a previous signed statement, but has a different signature.
+
+## For Transparent Statements
+
+Identifiers for Transparent Statements are defined as identifiers for binary content, but with "transparent-statement" as the `message-type`.
+
+~~~
+urn:ietf:params:scitt:\
+{message-type}:\
+{hash-name}:{base-encoding}:\
+{base64url-encoded-bytes-digest}
+~~~
+
+Note that because this identifier is computed over the unprotected header of the Signed Statement, any changes to the unprotected header, such as changing the order of the unprotected header map key value pairs, adding additional receipts, or adding additional proofs to a receipt, will change the identifier of a transparent statement.
+
+Note that because this identifier is computed over the signatures of the signed statement and signatures in each receipt, any cannonicalization of the signatures after the fact will produce a distinct identifier.
+
+
+## Statements
+
+### Statement URN
+
+~~~
+urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+~~~
+{: #example-statement-urn align="left" title="Example Statement URN"}
+
+### Statement URL
+
+~~~
+https://transparency.example/api/identifiers\
+/urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+~~~
+{: #example-statement-url align="left" title="Example Statement URL"}
+
+### Statement Data URL
+
+~~~
+data:application/json;base64,SGVsb...xkIQ==
+~~~
+{: #example-statement-data-url align="left" title="Example Statement Data URL"}
+
+## Signed Statements
+
+### Signed Statement URN
+
+~~~
+urn:ietf:params:scitt:\
+signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+~~~
+{: #example-signed-statement-urn align="left" title="Example Signed Statement URN"}
+
+### Signed Statement URL
+
+~~~
+https://transparency.example/api/identifiers\
+/urn:ietf:params:scitt:\
+signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+~~~
+{: #example-signed-statement-url align="left" title="Example Signed Statement URL"}
+
+### Signed Statement Data URL
+
+~~~
+data:application/cose;base64,SGVsb...xkIQ==
+~~~
+{: #example-signed-statement-data-url align="left" title="Example Signed Statement Data URL"}
+
+## Receipts
+
+### Receipt URN
+
+~~~
+urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
+~~~
+{: #example-receipt-urn align="left" title="Example Receipt URN"}
+
+### Receipt URL
+
+~~~
+https://transparency.example/api/identifiers\
+/urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
+~~~
+{: #example-receipt-url align="left" title="Example Receipt URL"}
+
+### Receipt Data URL
+
+~~~
+data:application/cose;base64,SGVsb...xkIQ==
+~~~
+{: #example-receipt-data-url align="left" title="Example Receipt Data URL"}
+
+
+## Transparent Statements
+
+### Transparent Statement URN
+
+~~~
+urn:ietf:params:scitt:\
+transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+~~~
+{: #example-transparent-statement-urn align="left" title="Example Transparent Statement URN"}
+
+### Transparent Statement URL
+
+~~~
+https://transparency.example/api/identifiers\
+/urn:ietf:params:scitt:\
+transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+~~~
+{: #example-transparent-statement-url align="left" title="Example Transparent Statement URL"}
+
+### Transparent Statement Data URL
+
+~~~
+data:application/cose;base64,SGVsb...xkIQ==
+~~~
+{: #example-transparent-statement-data-url align="left" title="Example Transparent Statement Data URL"}
