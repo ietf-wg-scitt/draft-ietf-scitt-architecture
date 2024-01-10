@@ -16,7 +16,6 @@ The rise in popularity of verifiable data structures as a mechanism to make acto
        This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
 Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers will be able to verify them. 
-       Within the SCITT Architecture, a producer is known as an Issuer, and a consumer is known as a Verifier. 
     " name="description">
 <meta content="xml2rfc 3.19.0" name="generator">
 <meta content="Internet-Draft" name="keyword">
@@ -1090,7 +1089,6 @@ The rise in popularity of verifiable data structures as a mechanism to make acto
 <p id="section-abstract-2">This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
 Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers will be able to verify them.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
-<p id="section-abstract-3">Within the SCITT Architecture, a producer is known as an Issuer, and a consumer is known as a Verifier.<a href="#section-abstract-3" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1164,7 +1162,12 @@ Issuers can register their Signed Statements on any Transparency Service, with t
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-use-cases" class="internal xref">Use Cases</a></p>
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-use-cases" class="internal xref">Use Cases</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-relation-to-certificate-tra" class="internal xref">Relation to Certificate Transparency</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
@@ -1249,22 +1252,25 @@ Issuers can register their Signed Statements on any Transparency Service, with t
             <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
-                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-threat-model" class="internal xref">Threat Model</a></p>
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-security-guarantees" class="internal xref">Security Guarantees</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-threat-model" class="internal xref">Threat Model</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.1">
-                    <p id="section-toc.1-1.9.2.1.2.1.1"><a href="#section-9.1.1" class="auto internal xref">9.1.1</a>.  <a href="#name-signed-statement-authentica" class="internal xref">Signed Statement Authentication and Transparency</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.1">
+                    <p id="section-toc.1-1.9.2.2.2.1.1"><a href="#section-9.2.1" class="auto internal xref">9.2.1</a>.  <a href="#name-signed-statement-authentica" class="internal xref">Signed Statement Authentication and Transparency</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.2">
-                    <p id="section-toc.1-1.9.2.1.2.2.1"><a href="#section-9.1.2" class="auto internal xref">9.1.2</a>.  <a href="#name-confidentiality-and-privacy" class="internal xref">Confidentiality and Privacy</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.2">
+                    <p id="section-toc.1-1.9.2.2.2.2.1"><a href="#section-9.2.2" class="auto internal xref">9.2.2</a>.  <a href="#name-confidentiality-and-privacy" class="internal xref">Confidentiality and Privacy</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.3">
-                    <p id="section-toc.1-1.9.2.1.2.3.1"><a href="#section-9.1.3" class="auto internal xref">9.1.3</a>.  <a href="#name-cryptographic-assumptions" class="internal xref">Cryptographic Assumptions</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.3">
+                    <p id="section-toc.1-1.9.2.2.2.3.1"><a href="#section-9.2.3" class="auto internal xref">9.2.3</a>.  <a href="#name-cryptographic-assumptions" class="internal xref">Cryptographic Assumptions</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.4">
-                    <p id="section-toc.1-1.9.2.1.2.4.1"><a href="#section-9.1.4" class="auto internal xref">9.1.4</a>.  <a href="#name-transparency-service-client" class="internal xref">Transparency Service Clients</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.4">
+                    <p id="section-toc.1-1.9.2.2.2.4.1"><a href="#section-9.2.4" class="auto internal xref">9.2.4</a>.  <a href="#name-transparency-service-client" class="internal xref">Transparency Service Clients</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.5">
-                    <p id="section-toc.1-1.9.2.1.2.5.1"><a href="#section-9.1.5" class="auto internal xref">9.1.5</a>.  <a href="#name-identity" class="internal xref">Identity</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.5">
+                    <p id="section-toc.1-1.9.2.2.2.5.1"><a href="#section-9.2.5" class="auto internal xref">9.2.5</a>.  <a href="#name-identity" class="internal xref">Identity</a></p>
 </li>
                 </ul>
 </li>
@@ -1374,64 +1380,18 @@ Issuers can register their Signed Statements on any Transparency Service, with t
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">This document describes a scalable and flexible, decentralized architecture to enhance auditability and accountability across various existing and emerging supply chains.
-It achieves this goal by enforcing the following complementary security guarantees:<a href="#section-1-1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-1-2">
-<li id="section-1-2.1">
-          <p id="section-1-2.1.1">Statements made by Issuers about supply chain Artifacts must be identifiable, authentic, and non-repudiable<a href="#section-1-2.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li id="section-1-2.2">
-          <p id="section-1-2.2.1">Such Statements must be registered on a secure Append-only Log, enabling provenance and history to be independently and consistently audited<a href="#section-1-2.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li id="section-1-2.3">
-          <p id="section-1-2.3.1">Issuers can efficiently prove to any other party the Registration of their Signed Statements; verifying this proof ensures that the Issuer is consistent and non-equivocal when producing Signed Statements<a href="#section-1-2.3.1" class="pilcrow">¶</a></p>
-</li>
-      </ol>
-<p id="section-1-3">The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
-The second guarantee is achieved by storing the Signed Statement on an immutable, Append-only Log.
-The next guarantee is achieved by implementing the Append-only Log using a verifiable data structure (such as a Merkle Tree <span>[<a href="#MERKLE" class="cite xref">MERKLE</a>]</span>).
-Lastly, the Transparency Service verifies the identity of the Issuer, and conformance to a Registration Policy associated with the instance of the Transparency Service.
-As the Issuer of the Signed Statement and conformance to the Registration Policy are confirmed, an endorsement is made as the Signed Statement is added to the Append-only Log.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">The guarantees and techniques used in this document generalize those of Certificate Transparency <span>[<a href="#RFC9162" class="cite xref">RFC9162</a>]</span>, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates.
-However, the range of use cases and applications in this document is broader, which requires more flexibility in how each Transparency Service is implemented and operates.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">Each service <span class="bcp14">MAY</span> enforce its own Registration Policies for authorizing entities to register their Signed Statements to the Append-only Log.
-Some Transparency Services may also enforce authorization policies limiting who can write, read and audit the Append-only Log.
-It is critical to provide interoperability for all Transparency Services instances as the composition of supply chain entities is ever-changing.
-It is implausible to expect all participants to choose a single vendor or Append-only Log.<a href="#section-1-5" class="pilcrow">¶</a></p>
-<p id="section-1-6">A Transparency Service provides visibility into Signed Statements associated with various supply chains and their sub-systems.
-The Signed Statements (and inner payload) make claims about the Artifacts produced by a supply chain.
-A Transparency Service endorses specific and well-defined metadata about Artifacts which are captured in the envelope of the Statements.
-Some metadata is selected (and signed) by the Issuer ("who issued the Statement", "what type of Artifact is described", "what is the Artifact's version").
-Whereas additional metadata is selected (and countersigned) by the Transparency Services ("when was the Signed Statement about an Artifact registered in the Transparency Service", "which registration policy was used").
-Evaluating and Registering a Signed Statement, adding it to the Append-only Log, and producing a Transparent Statement is considered a form of counter-signed notarization.<a href="#section-1-6" class="pilcrow">¶</a></p>
-<p id="section-1-7">A Statements payload content is always opaque and <span class="bcp14">MAY</span> be encrypted when submitted to the Transparency Services.
-However the header metadata <span class="bcp14">MUST</span> be transparent in order to warrant trust for later processing.<a href="#section-1-7" class="pilcrow">¶</a></p>
-<p id="section-1-8">Transparent Statements provide a common basis for holding Issuers accountable for the Statement payload about Artifacts they release.
-Multiple Issuers may Register additional Signed Statements about the same Artifact, but they cannot delete or alter Signed Statements previously added to the Append-only Log.
-The ability for the original Issuer to make additional Statements about an Artifact provides for updated information to be shared, such as new positive or negative validations of quality.
-The ability of other Issuers to make Statements about an Artifact, produced from another Issuer, provides for third party validations.
-A Transparency Service may restrict access to Signed Statements through access control or Registration policies.
-However, third parties (such as Auditors) would be granted access as needed to attest to the validity of the Artifact, Subject or the entirety of the Transparency Service.
-Independent third parties may also make Statements about an Artifact, published on other Transparency Services.<a href="#section-1-8" class="pilcrow">¶</a></p>
-<p id="section-1-9">Trust in the Transparency Service itself is supported both by protecting their implementation (using replication, trusted hardware, and remote attestation of a system's operational state) and by enabling independent audits of the correctness and consistency of its Append-only Log, thereby holding the organization that operates it accountable.
-Unlike CT, where independent Auditors are responsible for enforcing the consistency of multiple independent instances of the same global Transparency Service, each Transparency Service is required to guarantee the consistency of its own Append-only Log (through the use of a consensus algorithm between replicas of the Transparency Service), but assume no consistency between different Transparency Services.<a href="#section-1-9" class="pilcrow">¶</a></p>
-<p id="section-1-10">Breadth of verifier access is critical.
-As a result, the Transparency Service specified in this architecture caters to two types of audiences:<a href="#section-1-10" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-1-11">
-<li id="section-1-11.1">
-          <p id="section-1-11.1.1"><strong>Issuers</strong>: organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers<a href="#section-1-11.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li id="section-1-11.2">
-          <p id="section-1-11.2.1"><strong>Verifiers</strong>: organizations, stakeholders, consumers, and users involved in validating supply chain artifacts, but can only do so if the Statements are known to be authentic.
-Verifiers <span class="bcp14">MAY</span> be Issuers, providing additional Signed Statements, attesting to conformance of various compliance requirements.<a href="#section-1-11.2.1" class="pilcrow">¶</a></p>
-</li>
-      </ol>
-<p id="section-1-12">The Issuer of a Signed Statement must be authenticated and authorized according to the Registration Policy of the Transparency Service.
-Analogously, Transparent Statement Verifiers rely on verifiable trustworthiness assertions associated with Transparent Statements and their processing provenance in a believable manner.
-If trust can be put into the operations that record Signed Statements in a secure, Append-only Log via online operations, the same trust can be put into the resulting Transparent Statement, issued by the Transparency Services and that can be validated in offline operations.<a href="#section-1-12" class="pilcrow">¶</a></p>
-<p id="section-1-13">The Transparency Services specified in this architecture are language independent and can be implemented alongside or within existing services.<a href="#section-1-13" class="pilcrow">¶</a></p>
-<p id="section-1-14">The interoperability guaranteed by the Transparency Services is enabled via core components (architectural constituents).
-Many of the data elements processed by the core components are based on the CBOR Signing and Encryption (COSE) standard specified in <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>, which is used to produce Signed Statements about Artifacts and to build and maintain an Append-only Log for corresponding Signed Statements.<a href="#section-1-14" class="pilcrow">¶</a></p>
+<p id="section-1-1">This document describes the scalable, flexible, and decentralized SCITT architecture.
+Its goal is to enhance auditability and accountability across supply chains.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">In supply chains, items travel down the chain until they are eventually consumed by someone.
+Consumers like to have information about the items that they consume.
+There are many parties who publish information about an item:
+For example, the original manufacturer may provide information about the state of the item when it left the factory.
+The shipping company may add information about the transport environment of the item.
+Compliance auditors may provide information about their compliance assessment of the item.
+Security companies may publish vulnerability information about an item.
+Consumers may even publish the fact that they consume an item.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">SCITT provides a way for consumers to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
+SCITT achieves this by having producers, auditors, etc. (also called Issuers) publish information in a Transparency Service, where consumers (also called Verifiers) can check the information.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <div id="sec-requirements-notation">
 <section id="section-1.1">
         <h3 id="name-requirements-notation">
@@ -1451,6 +1411,33 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-use-cases" class="section-name selfRef">Use Cases</a>
       </h2>
 <p id="section-2-1">The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<div id="sec-relation-to-certificate-transparency">
+<section id="section-2.1">
+        <h3 id="name-relation-to-certificate-tra">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-relation-to-certificate-tra" class="section-name selfRef">Relation to Certificate Transparency</a>
+        </h3>
+<p id="section-2.1-1">SCITT is a generalization of Certificate Transparency <span>[<a href="#RFC9162" class="cite xref">RFC9162</a>]</span>, which can be interpreted as a transparency architecture for the supply chain of X.509 certificates.
+Considering CT in terms of SCITT:<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.1-2.1">
+            <p id="section-2.1-2.1.1">CAs (Issuers) sign X.509 TBSCertificates (Artifacts) to produce X.509 certificates (Signed Statements)<a href="#section-2.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-2.2">
+            <p id="section-2.1-2.2.1">CAs submit the certificates to one or more CT logs (Transparency Services)<a href="#section-2.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-2.3">
+            <p id="section-2.1-2.3.1">CT logs produce Signed Certificate Timestamps (Transparent Statements)<a href="#section-2.1-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-2.4">
+            <p id="section-2.1-2.4.1">SCTs are checked by browsers (Verifiers)<a href="#section-2.1-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.1-2.5">
+            <p id="section-2.1-2.5.1">The Append-only Log can be checked by Auditors<a href="#section-2.1-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-2.1-3">Note that just like CT logs are independent and their contents need not be consistent, Transparency Services are similarly independent of each other.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="terminology">
@@ -2519,139 +2506,161 @@ Just that signed evidence will be available to support them.<a href="#section-9-
 <p id="section-9-4">Issuers <span class="bcp14">MUST</span> ensure that the Statement payloads in their Signed Statements are correct and unambiguous, for example by avoiding ill-defined or ambiguous formats that may cause Verifiers to interpret the Signed Statement as valid for some other purpose.<a href="#section-9-4" class="pilcrow">¶</a></p>
 <p id="section-9-5">Issuers and Transparency Services <span class="bcp14">MUST</span> carefully protect their private signing keys and avoid these keys being used for any purpose not described in this architecture document.
 In cases where key re-use is unavoidable, keys <span class="bcp14">MUST NOT</span> sign any other message that may be verified as an Envelope as part of a Signed Statement.<a href="#section-9-5" class="pilcrow">¶</a></p>
-<div id="sec-threat-model">
+<div id="sec-security-guarantees">
 <section id="section-9.1">
-        <h3 id="name-threat-model">
-<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-threat-model" class="section-name selfRef">Threat Model</a>
+        <h3 id="name-security-guarantees">
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-security-guarantees" class="section-name selfRef">Security Guarantees</a>
         </h3>
-<p id="section-9.1-1">The document provides a generic threat model for SCITT, describing its residual security properties when some of its actors (identity providers, Issuers, Transparency Services, and Auditors) are corrupt or compromised.<a href="#section-9.1-1" class="pilcrow">¶</a></p>
-<p id="section-9.1-2">This model may need to be refined to account for specific supply chains and use cases.<a href="#section-9.1-2" class="pilcrow">¶</a></p>
+<p id="section-9.1-1">SCITT provides the following security guarantees:<a href="#section-9.1-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-9.1-2">
+<li id="section-9.1-2.1">
+            <p id="section-9.1-2.1.1">Statements made by Issuers about supply chain Artifacts are identifiable, authentic, and non-repudiable<a href="#section-9.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-9.1-2.2">
+            <p id="section-9.1-2.2.1">Statement provenance and history can be independently and consistently audited<a href="#section-9.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-9.1-2.3">
+            <p id="section-9.1-2.3.1">Issuers can efficiently prove that their Statement is logged by a Transparency Service<a href="#section-9.1-2.3.1" class="pilcrow">¶</a></p>
+</li>
+        </ol>
+<p id="section-9.1-3">The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
+The second guarantee is achieved by storing the Signed Statement on an Append-only Log.
+The third guarantee is achieved by implementing the Append-only Log using a verifiable data structure (such as a Merkle Tree <span>[<a href="#MERKLE" class="cite xref">MERKLE</a>]</span>).<a href="#section-9.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-threat-model">
+<section id="section-9.2">
+        <h3 id="name-threat-model">
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-threat-model" class="section-name selfRef">Threat Model</a>
+        </h3>
+<p id="section-9.2-1">The document provides a generic threat model for SCITT, describing its residual security properties when some of its actors (identity providers, Issuers, Transparency Services, and Auditors) are corrupt or compromised.<a href="#section-9.2-1" class="pilcrow">¶</a></p>
+<p id="section-9.2-2">This model may need to be refined to account for specific supply chains and use cases.<a href="#section-9.2-2" class="pilcrow">¶</a></p>
 <div id="sec-signed-statement-authentication-and-transparency">
-<section id="section-9.1.1">
+<section id="section-9.2.1">
           <h4 id="name-signed-statement-authentica">
-<a href="#section-9.1.1" class="section-number selfRef">9.1.1. </a><a href="#name-signed-statement-authentica" class="section-name selfRef">Signed Statement Authentication and Transparency</a>
+<a href="#section-9.2.1" class="section-number selfRef">9.2.1. </a><a href="#name-signed-statement-authentica" class="section-name selfRef">Signed Statement Authentication and Transparency</a>
           </h4>
-<p id="section-9.1.1-1">SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency).
-These guarantees are meant to hold for extensive periods of time, possibly decades.<a href="#section-9.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-9.1.1-2">It can never be assumed that some Issuers and some Transparency Services will not be corrupt.<a href="#section-9.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-9.1.1-3">SCITT entities explicitly trust one another on the basis of their long-term identity, which maps to shorter-lived cryptographic credentials.
-A Verifier <span class="bcp14">SHOULD</span> validate a Transparent Statement originating from a given Issuer, registered at a given Transparency Service (both identified in the Verifier's local authorization policy) and would not depend on any other Issuer or Transparency Services.<a href="#section-9.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-9.1.1-4">Authorized supply chain actors (Issuers) cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a trustworthy Transparency Service.<a href="#section-9.1.1-4" class="pilcrow">¶</a></p>
-<p id="section-9.1.1-5">Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal.
+<p id="section-9.2.1-1">SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency).
+These guarantees are meant to hold for extensive periods of time, possibly decades.<a href="#section-9.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-9.2.1-2">It can never be assumed that some Issuers and some Transparency Services will not be corrupt.<a href="#section-9.2.1-2" class="pilcrow">¶</a></p>
+<p id="section-9.2.1-3">SCITT entities explicitly trust one another on the basis of their long-term identity, which maps to shorter-lived cryptographic credentials.
+A Verifier <span class="bcp14">SHOULD</span> validate a Transparent Statement originating from a given Issuer, registered at a given Transparency Service (both identified in the Verifier's local authorization policy) and would not depend on any other Issuer or Transparency Services.<a href="#section-9.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-9.2.1-4">Authorized supply chain actors (Issuers) cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a trustworthy Transparency Service.<a href="#section-9.2.1-4" class="pilcrow">¶</a></p>
+<p id="section-9.2.1-5">Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal.
 Preventing a Transparency Service from registering Signed Statements that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their Append-only Log is not possible.
 In contrast Transparency Services can be held accountable and they can be called out by any Auditor that replays their Append-only Log against any contested Receipt.
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service.
-Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.<a href="#section-9.1.1-5" class="pilcrow">¶</a></p>
-<p id="section-9.1.1-6">In both cases, the SCITT Architecture provides generic, universally-verifiable cryptographic proof to individually blame Issuers or the Transparency Service.
+Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.<a href="#section-9.2.1-5" class="pilcrow">¶</a></p>
+<p id="section-9.2.1-6">In both cases, the SCITT Architecture provides generic, universally-verifiable cryptographic proof to individually blame Issuers or the Transparency Service.
 On one hand, this enables valid actors to detect and disambiguate malicious actors who employ Equivocation with Signed Statements to different entities.
-On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT Architecture.<a href="#section-9.1.1-6" class="pilcrow">¶</a></p>
-<p id="section-9.1.1-7">Verifiers and Auditors need not be trusted by other actors.
-In particular, so long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.<a href="#section-9.1.1-7" class="pilcrow">¶</a></p>
+On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT Architecture.<a href="#section-9.2.1-6" class="pilcrow">¶</a></p>
+<p id="section-9.2.1-7">Verifiers and Auditors need not be trusted by other actors.
+In particular, so long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.<a href="#section-9.2.1-7" class="pilcrow">¶</a></p>
 <div id="sec-append-only-log">
-<section id="section-9.1.1.1">
+<section id="section-9.2.1.1">
             <h5 id="name-append-only-log">
-<a href="#section-9.1.1.1" class="section-number selfRef">9.1.1.1. </a><a href="#name-append-only-log" class="section-name selfRef">Append-only Log</a>
+<a href="#section-9.2.1.1" class="section-number selfRef">9.2.1.1. </a><a href="#name-append-only-log" class="section-name selfRef">Append-only Log</a>
             </h5>
-<p id="section-9.1.1.1-1">If a Transparency Service is honest, then a Transparent Statement including a correct Receipt ensures that the associated Signed Statement passed its Registration Policy and was recorded appropriately.<a href="#section-9.1.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-9.1.1.1-2">Conversely, a corrupt Transparency Service may:<a href="#section-9.1.1.1-2" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-9.1.1.1-3">
-<li id="section-9.1.1.1-3.1">
-                <p id="section-9.1.1.1-3.1.1">refuse or delay the Registration of Signed Statements<a href="#section-9.1.1.1-3.1.1" class="pilcrow">¶</a></p>
+<p id="section-9.2.1.1-1">If a Transparency Service is honest, then a Transparent Statement including a correct Receipt ensures that the associated Signed Statement passed its Registration Policy and was recorded appropriately.<a href="#section-9.2.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-9.2.1.1-2">Conversely, a corrupt Transparency Service may:<a href="#section-9.2.1.1-2" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-9.2.1.1-3">
+<li id="section-9.2.1.1-3.1">
+                <p id="section-9.2.1.1-3.1.1">refuse or delay the Registration of Signed Statements<a href="#section-9.2.1.1-3.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li id="section-9.1.1.1-3.2">
-                <p id="section-9.1.1.1-3.2.1">register Signed Statements that do not pass its Registration Policy (e.g., Signed Statement with Issuer identities and signatures that do not verify)<a href="#section-9.1.1.1-3.2.1" class="pilcrow">¶</a></p>
+              <li id="section-9.2.1.1-3.2">
+                <p id="section-9.2.1.1-3.2.1">register Signed Statements that do not pass its Registration Policy (e.g., Signed Statement with Issuer identities and signatures that do not verify)<a href="#section-9.2.1.1-3.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li id="section-9.1.1.1-3.3">
-                <p id="section-9.1.1.1-3.3.1">issue verifiable Receipts for Signed Statements that do not match its Append-only Log<a href="#section-9.1.1.1-3.3.1" class="pilcrow">¶</a></p>
+              <li id="section-9.2.1.1-3.3">
+                <p id="section-9.2.1.1-3.3.1">issue verifiable Receipts for Signed Statements that do not match its Append-only Log<a href="#section-9.2.1.1-3.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li id="section-9.1.1.1-3.4">
-                <p id="section-9.1.1.1-3.4.1">refuse access to its Transparency Service (e.g., to Auditors, possibly after storage loss)<a href="#section-9.1.1.1-3.4.1" class="pilcrow">¶</a></p>
+              <li id="section-9.2.1.1-3.4">
+                <p id="section-9.2.1.1-3.4.1">refuse access to its Transparency Service (e.g., to Auditors, possibly after storage loss)<a href="#section-9.2.1.1-3.4.1" class="pilcrow">¶</a></p>
 </li>
             </ol>
-<p id="section-9.1.1.1-4">An Auditor granted (partial) access to a Transparency Service and to a collection of disputed Receipts will be able to replay it, detect any invalid Registration (2) or incorrect Receipt in this collection (3), and blame the Transparency Service for them.
-This ensures any Verifier that trusts at least one such Auditor that (2, 3) will be blamed to the Transparency Service.<a href="#section-9.1.1.1-4" class="pilcrow">¶</a></p>
-<p id="section-9.1.1.1-5">Due to the operational challenge of maintaining a globally consistent Append-only Log, some Transparency Services may provide limited support for historical queries on the Signed Statements they have registered, and accept the risk of being blamed for inconsistent Registration or Issuer Equivocation.<a href="#section-9.1.1.1-5" class="pilcrow">¶</a></p>
-<p id="section-9.1.1.1-6">Verifiers and Auditors may also witness (1, 4) but may not be able to collect verifiable evidence for it.<a href="#section-9.1.1.1-6" class="pilcrow">¶</a></p>
+<p id="section-9.2.1.1-4">An Auditor granted (partial) access to a Transparency Service and to a collection of disputed Receipts will be able to replay it, detect any invalid Registration (2) or incorrect Receipt in this collection (3), and blame the Transparency Service for them.
+This ensures any Verifier that trusts at least one such Auditor that (2, 3) will be blamed to the Transparency Service.<a href="#section-9.2.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-9.2.1.1-5">Due to the operational challenge of maintaining a globally consistent Append-only Log, some Transparency Services may provide limited support for historical queries on the Signed Statements they have registered, and accept the risk of being blamed for inconsistent Registration or Issuer Equivocation.<a href="#section-9.2.1.1-5" class="pilcrow">¶</a></p>
+<p id="section-9.2.1.1-6">Verifiers and Auditors may also witness (1, 4) but may not be able to collect verifiable evidence for it.<a href="#section-9.2.1.1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-availability-of-transparent-statement">
-<section id="section-9.1.1.2">
+<section id="section-9.2.1.2">
             <h5 id="name-availability-of-transparent">
-<a href="#section-9.1.1.2" class="section-number selfRef">9.1.1.2. </a><a href="#name-availability-of-transparent" class="section-name selfRef">Availability of Transparent Statement</a>
+<a href="#section-9.2.1.2" class="section-number selfRef">9.2.1.2. </a><a href="#name-availability-of-transparent" class="section-name selfRef">Availability of Transparent Statement</a>
             </h5>
-<p id="section-9.1.1.2-1">Networking and Storage are trusted only for availability.<a href="#section-9.1.1.2-1" class="pilcrow">¶</a></p>
-<p id="section-9.1.1.2-2">Auditing may involve access to data beyond what is persisted in the Transparency Services.
-For example, the registered Transparency Service may include only the hash of a detailed SBOM, which may limit the scope of auditing.<a href="#section-9.1.1.2-2" class="pilcrow">¶</a></p>
-<p id="section-9.1.1.2-3">Resistance to denial-of-service is implementation specific.<a href="#section-9.1.1.2-3" class="pilcrow">¶</a></p>
-<p id="section-9.1.1.2-4">Actors may want to independently keep their own record of the Signed Statements they issue, endorse, verify, or audit.<a href="#section-9.1.1.2-4" class="pilcrow">¶</a></p>
+<p id="section-9.2.1.2-1">Networking and Storage are trusted only for availability.<a href="#section-9.2.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-9.2.1.2-2">Auditing may involve access to data beyond what is persisted in the Transparency Services.
+For example, the registered Transparency Service may include only the hash of a detailed SBOM, which may limit the scope of auditing.<a href="#section-9.2.1.2-2" class="pilcrow">¶</a></p>
+<p id="section-9.2.1.2-3">Resistance to denial-of-service is implementation specific.<a href="#section-9.2.1.2-3" class="pilcrow">¶</a></p>
+<p id="section-9.2.1.2-4">Actors may want to independently keep their own record of the Signed Statements they issue, endorse, verify, or audit.<a href="#section-9.2.1.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="sec-confidentiality-and-privacy">
-<section id="section-9.1.2">
+<section id="section-9.2.2">
           <h4 id="name-confidentiality-and-privacy">
-<a href="#section-9.1.2" class="section-number selfRef">9.1.2. </a><a href="#name-confidentiality-and-privacy" class="section-name selfRef">Confidentiality and Privacy</a>
+<a href="#section-9.2.2" class="section-number selfRef">9.2.2. </a><a href="#name-confidentiality-and-privacy" class="section-name selfRef">Confidentiality and Privacy</a>
           </h4>
-<p id="section-9.1.2-1">According to Zero Trust Principles any location in a network is never trusted.
-All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network traffic analysis.<a href="#section-9.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-9.2.2-1">According to Zero Trust Principles any location in a network is never trusted.
+All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network traffic analysis.<a href="#section-9.2.2-1" class="pilcrow">¶</a></p>
 <div id="sec-signed-statements-and-their-registration">
-<section id="section-9.1.2.1">
+<section id="section-9.2.2.1">
             <h5 id="name-signed-statements-and-their">
-<a href="#section-9.1.2.1" class="section-number selfRef">9.1.2.1. </a><a href="#name-signed-statements-and-their" class="section-name selfRef">Signed Statements and Their Registration</a>
+<a href="#section-9.2.2.1" class="section-number selfRef">9.2.2.1. </a><a href="#name-signed-statements-and-their" class="section-name selfRef">Signed Statements and Their Registration</a>
             </h5>
-<p id="section-9.1.2.1-1">The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
+<p id="section-9.2.2.1-1">The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
 Some Transparency Services may publish every Signed Statement in their logs, to facilitate their dissemination and auditing.
-Others may just return Receipts to clients that present Singed Statements for Registration, and disclose the Append-only Log only to Auditors trusted with the confidentiality of its contents.<a href="#section-9.1.2.1-1" class="pilcrow">¶</a></p>
-<p id="section-9.1.2.1-2">A collection of Signed Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.<a href="#section-9.1.2.1-2" class="pilcrow">¶</a></p>
-<p id="section-9.1.2.1-3">Issuers must carefully review the inclusion of private/confidential materials in their Statements.
+Others may just return Receipts to clients that present Singed Statements for Registration, and disclose the Append-only Log only to Auditors trusted with the confidentiality of its contents.<a href="#section-9.2.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-9.2.2.1-2">A collection of Signed Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.<a href="#section-9.2.2.1-2" class="pilcrow">¶</a></p>
+<p id="section-9.2.2.1-3">Issuers must carefully review the inclusion of private/confidential materials in their Statements.
 For example, Issuers must remove Personally Identifiable Information (PII) as clear text in the statement.
-Alternatively, Issuers may include opaque cryptographic statements, such as hashes.<a href="#section-9.1.2.1-3" class="pilcrow">¶</a></p>
+Alternatively, Issuers may include opaque cryptographic statements, such as hashes.<a href="#section-9.2.2.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-queries-to-the-transparency-service">
-<section id="section-9.1.2.2">
+<section id="section-9.2.2.2">
             <h5 id="name-queries-to-the-transparency">
-<a href="#section-9.1.2.2" class="section-number selfRef">9.1.2.2. </a><a href="#name-queries-to-the-transparency" class="section-name selfRef">Queries to the Transparency Service</a>
+<a href="#section-9.2.2.2" class="section-number selfRef">9.2.2.2. </a><a href="#name-queries-to-the-transparency" class="section-name selfRef">Queries to the Transparency Service</a>
             </h5>
-<p id="section-9.1.2.2-1">The confidentiality of queries is implementation-specific, and generally not guaranteed.
-For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.<a href="#section-9.1.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-9.2.2.2-1">The confidentiality of queries is implementation-specific, and generally not guaranteed.
+For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.<a href="#section-9.2.2.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="sec-cryptographic-assumptions">
-<section id="section-9.1.3">
+<section id="section-9.2.3">
           <h4 id="name-cryptographic-assumptions">
-<a href="#section-9.1.3" class="section-number selfRef">9.1.3. </a><a href="#name-cryptographic-assumptions" class="section-name selfRef">Cryptographic Assumptions</a>
+<a href="#section-9.2.3" class="section-number selfRef">9.2.3. </a><a href="#name-cryptographic-assumptions" class="section-name selfRef">Cryptographic Assumptions</a>
           </h4>
-<p id="section-9.1.3-1">SCITT relies on standard cryptographic security for signing schemes (EUF-CMA: for a given key, given the public key and any number of signed messages, an attacker cannot forge a valid signature for any other message) and for Receipts schemes (log collision-resistance: for a given commitment such as a Merkle-tree root, there is a unique log such that any valid path authenticates a Signed Statement in this log.)<a href="#section-9.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-9.1.3-2">The SCITT Architecture supports cryptographic agility.
+<p id="section-9.2.3-1">SCITT relies on standard cryptographic security for signing schemes (EUF-CMA: for a given key, given the public key and any number of signed messages, an attacker cannot forge a valid signature for any other message) and for Receipts schemes (log collision-resistance: for a given commitment such as a Merkle-tree root, there is a unique log such that any valid path authenticates a Signed Statement in this log.)<a href="#section-9.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-9.2.3-2">The SCITT Architecture supports cryptographic agility.
 The actors depend only on the subset of signing and Receipt schemes they trust.
-This enables the gradual transition to stronger algorithms, including e.g. post-quantum signature algorithms.<a href="#section-9.1.3-2" class="pilcrow">¶</a></p>
+This enables the gradual transition to stronger algorithms, including e.g. post-quantum signature algorithms.<a href="#section-9.2.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-transparency-service-clients">
-<section id="section-9.1.4">
+<section id="section-9.2.4">
           <h4 id="name-transparency-service-client">
-<a href="#section-9.1.4" class="section-number selfRef">9.1.4. </a><a href="#name-transparency-service-client" class="section-name selfRef">Transparency Service Clients</a>
+<a href="#section-9.2.4" class="section-number selfRef">9.2.4. </a><a href="#name-transparency-service-client" class="section-name selfRef">Transparency Service Clients</a>
           </h4>
-<p id="section-9.1.4-1">Trust in clients that submit Signed Statements for Registration is implementation-specific.
+<p id="section-9.2.4-1">Trust in clients that submit Signed Statements for Registration is implementation-specific.
 An attacker may attempt to register any Signed Statement it has obtained, at any Transparency Service that accepts them, possibly multiple times and out of order.
-This may be mitigated by a Transparency Service that enforces restrictive access control and Registration Policies.<a href="#section-9.1.4-1" class="pilcrow">¶</a></p>
+This may be mitigated by a Transparency Service that enforces restrictive access control and Registration Policies.<a href="#section-9.2.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-identity">
-<section id="section-9.1.5">
+<section id="section-9.2.5">
           <h4 id="name-identity">
-<a href="#section-9.1.5" class="section-number selfRef">9.1.5. </a><a href="#name-identity" class="section-name selfRef">Identity</a>
+<a href="#section-9.2.5" class="section-number selfRef">9.2.5. </a><a href="#name-identity" class="section-name selfRef">Identity</a>
           </h4>
-<p id="section-9.1.5-1">The identity resolution mechanism is trusted to associate long-term identifiers with their public signature-verification keys.
-Transparency Services and other parties may record identity-resolution evidence to facilitate its auditing.<a href="#section-9.1.5-1" class="pilcrow">¶</a></p>
-<p id="section-9.1.5-2">If one of the credentials of an Issuer gets compromised, the SCITT Architecture still guarantees the authenticity of all Signed Statements signed with this credential that have been registered on a Transparency Service before the compromise.
+<p id="section-9.2.5-1">The identity resolution mechanism is trusted to associate long-term identifiers with their public signature-verification keys.
+Transparency Services and other parties may record identity-resolution evidence to facilitate its auditing.<a href="#section-9.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-9.2.5-2">If one of the credentials of an Issuer gets compromised, the SCITT Architecture still guarantees the authenticity of all Signed Statements signed with this credential that have been registered on a Transparency Service before the compromise.
 It is up to the Issuer to notify Transparency Services of credential revocation to stop Verifiers from accepting Signed Statements signed with compromised credentials.
-Issuers <span class="bcp14">SHOULD</span> register new Signed Statements indicating the revocation, using the same <code>15</code> CWT <code>iss</code> and <code>sub</code> claims.<a href="#section-9.1.5-2" class="pilcrow">¶</a></p>
-<p id="section-9.1.5-3">The confidentiality of any identity lookup during Signed Statement Registration or Transparent Statement Verification is out of scope.<a href="#section-9.1.5-3" class="pilcrow">¶</a></p>
+Issuers <span class="bcp14">SHOULD</span> register new Signed Statements indicating the revocation, using the same <code>15</code> CWT <code>iss</code> and <code>sub</code> claims.<a href="#section-9.2.5-2" class="pilcrow">¶</a></p>
+<p id="section-9.2.5-3">The confidentiality of any identity lookup during Signed Statement Registration or Transparent Statement Verification is out of scope.<a href="#section-9.2.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
