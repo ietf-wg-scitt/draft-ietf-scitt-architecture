@@ -123,14 +123,12 @@ informative:
 
 --- abstract
 
-Traceability of physical and digital Artifacts in supply chains is a long-standing, but increasingly serious security concern.
+Traceability of physical and digital artifacts in supply chains is a long-standing, but increasingly serious security concern.
 The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases.
 
 This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
-It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
-Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers will be able to verify them.
-
-Within the SCITT Architecture, a producer is known as an Issuer, and a consumer is known as a Verifier.
+It provides flexibility, enabling interoperability across different implementations of transparency services with various auditing and compliance requirements.
+Issuers can register their signed statements on any transparency service, with the guarantee that all consumers will be able to verify them.
 
 --- middle
 
@@ -139,9 +137,9 @@ Within the SCITT Architecture, a producer is known as an Issuer, and a consumer 
 This document describes a scalable and flexible, decentralized architecture to enhance auditability and accountability across various existing and emerging supply chains.
 It achieves this goal by enforcing the following complementary security guarantees:
 
-1. Statements made by Issuers about supply chain Artifacts must be identifiable, authentic, and non-repudiable
-1. Such Statements must be registered on a secure Append-only Log, enabling provenance and history to be independently and consistently audited
-1. Issuers can efficiently prove to any other party the Registration of their Signed Statements; verifying this proof ensures that the Issuer is consistent and non-equivocal when producing Signed Statements
+1. Statements made by Issuers about supply chain Artifacts must be identifiable, authentic, and non-repudiable.
+1. Such Statements must be registered on a secure Append-only Log, enabling provenance and history to be independently and consistently audited.
+1. Issuers can efficiently prove to any other party the Registration of their Signed Statements; verifying this proof ensures that the Issuer is consistent and non-equivocal when producing Signed Statements.
 
 The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
 The second guarantee is achieved by storing the Signed Statement on an immutable, Append-only Log.
