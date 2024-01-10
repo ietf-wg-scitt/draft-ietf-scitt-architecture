@@ -1185,7 +1185,10 @@ Issuers can register their Signed Statements on any Transparency Service, with t
                     <p id="section-toc.1-1.5.2.1.2.2.1"><a href="#section-5.1.2" class="auto internal xref">5.1.2</a>.  <a href="#name-support-for-multiple-artifa" class="internal xref">Support for Multiple Artifacts</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.3">
-                    <p id="section-toc.1-1.5.2.1.2.3.1"><a href="#section-5.1.3" class="auto internal xref">5.1.3</a>.  <a href="#name-registration-policy-metadat" class="internal xref">Registration Policy Metadata</a></p>
+                    <p id="section-toc.1-1.5.2.1.2.3.1"><a href="#section-5.1.3" class="auto internal xref">5.1.3</a>.  <a href="#name-support-for-multiple-statem" class="internal xref">Support for Multiple Statements</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.4">
+                    <p id="section-toc.1-1.5.2.1.2.4.1"><a href="#section-5.1.4" class="auto internal xref">5.1.4</a>.  <a href="#name-registration-policy-metadat" class="internal xref">Registration Policy Metadata</a></p>
 </li>
                 </ul>
 </li>
@@ -1811,14 +1814,26 @@ The <code>iss</code> and <code>sub</code> claims, within the CWT_Claims protecte
 <p id="section-5.1.2-3">Issuers <span class="bcp14">MAY</span> use different signing keys (identified by <code>kid</code> in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.<a href="#section-5.1.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sec-registration-policy-metadata">
+<div id="sec-support-for-multiple-statements">
 <section id="section-5.1.3">
-          <h4 id="name-registration-policy-metadat">
-<a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-registration-policy-metadat" class="section-name selfRef">Registration Policy Metadata</a>
+          <h4 id="name-support-for-multiple-statem">
+<a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-support-for-multiple-statem" class="section-name selfRef">Support for Multiple Statements</a>
           </h4>
-<p id="section-5.1.3-1">SCITT payloads are opaque to Transparency Services.
-For interoperability, Registration Policy decisions should be based on interpretation of the mandatory metadata in the protected header of a Signed Statement.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.1.3-2">Each implementation of a Transparency Service <span class="bcp14">MAY</span> support additional metadata, specific to its implementation through additional <a href="https://www.iana.org/assignments/cwt/cwt.xhtml#claims-registry">"Reserved for Private Use"</a> keys within the <code>CWT_Claims</code> header.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-1">An Issuer can make multiple Statements about the same Artifact.
+For example, an Issuer can make amended Statements about the same Artifact as their view changes over time.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-2">Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
+Verifiers can choose which Issuers they trust.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-3">Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.<a href="#section-5.1.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-registration-policy-metadata">
+<section id="section-5.1.4">
+          <h4 id="name-registration-policy-metadat">
+<a href="#section-5.1.4" class="section-number selfRef">5.1.4. </a><a href="#name-registration-policy-metadat" class="section-name selfRef">Registration Policy Metadata</a>
+          </h4>
+<p id="section-5.1.4-1">SCITT payloads are opaque to Transparency Services.
+For interoperability, Registration Policy decisions should be based on interpretation of the mandatory metadata in the protected header of a Signed Statement.<a href="#section-5.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.4-2">Each implementation of a Transparency Service <span class="bcp14">MAY</span> support additional metadata, specific to its implementation through additional <a href="https://www.iana.org/assignments/cwt/cwt.xhtml#claims-registry">"Reserved for Private Use"</a> keys within the <code>CWT_Claims</code> header.<a href="#section-5.1.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
