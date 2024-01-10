@@ -141,69 +141,24 @@ This document defines a generic, interoperable and scalable architecture to enab
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
 Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers will be able to verify them.
 
-Within the SCITT Architecture, a producer is known as an Issuer, and a consumer is known as a Verifier.
-
 --- middle
 
 # Introduction
 
-This document describes a scalable and flexible, decentralized architecture to enhance auditability and accountability across various existing and emerging supply chains.
-It achieves this goal by enforcing the following complementary security guarantees:
+This document describes the scalable, flexible, and decentralized SCITT architecture.
+Its goal is to enhance auditability and accountability across supply chains.
 
-1. Statements made by Issuers about supply chain Artifacts must be identifiable, authentic, and non-repudiable
-1. Such Statements must be registered on a secure Append-only Log, enabling provenance and history to be independently and consistently audited
-1. Issuers can efficiently prove to any other party the Registration of their Signed Statements; verifying this proof ensures that the Issuer is consistent and non-equivocal when producing Signed Statements
+In supply chains, items travel down the chain until they are eventually consumed by someone.
+Consumers like to have information about the items that they consume.
+There are many parties who publish information about an item:
+For example, the original manufacturer may provide information about the state of the item when it left the factory.
+The shipping company may add information about the transport environment of the item.
+Compliance auditors may provide information about their compliance assessment of the item.
+Security companies may publish vulnerability information about an item.
+Consumers may even publish the fact that they consume an item.
 
-The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
-The second guarantee is achieved by storing the Signed Statement on an immutable, Append-only Log.
-The next guarantee is achieved by implementing the Append-only Log using a verifiable data structure (such as a Merkle Tree {{MERKLE}}).
-Lastly, the Transparency Service verifies the identity of the Issuer, and conformance to a Registration Policy associated with the instance of the Transparency Service.
-As the Issuer of the Signed Statement and conformance to the Registration Policy are confirmed, an endorsement is made as the Signed Statement is added to the Append-only Log.
-
-The guarantees and techniques used in this document generalize those of Certificate Transparency {{-CT}}, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates.
-However, the range of use cases and applications in this document is broader, which requires more flexibility in how each Transparency Service is implemented and operates.
-
-Each service MAY enforce its own Registration Policies for authorizing entities to register their Signed Statements to the Append-only Log.
-Some Transparency Services may also enforce authorization policies limiting who can write, read and audit the Append-only Log.
-It is critical to provide interoperability for all Transparency Services instances as the composition of supply chain entities is ever-changing.
-It is implausible to expect all participants to choose a single vendor or Append-only Log.
-
-A Transparency Service provides visibility into Signed Statements associated with various supply chains and their sub-systems.
-The Signed Statements (and inner payload) make claims about the Artifacts produced by a supply chain.
-A Transparency Service endorses specific and well-defined metadata about Artifacts which are captured in the envelope of the Statements.
-Some metadata is selected (and signed) by the Issuer ("who issued the Statement", "what type of Artifact is described", "what is the Artifact's version").
-Whereas additional metadata is selected (and countersigned) by the Transparency Services ("when was the Signed Statement about an Artifact registered in the Transparency Service", "which registration policy was used").
-Evaluating and Registering a Signed Statement, adding it to the Append-only Log, and producing a Transparent Statement is considered a form of counter-signed notarization.
-
-A Statements payload content is always opaque and MAY be encrypted when submitted to the Transparency Services.
-However the header metadata MUST be transparent in order to warrant trust for later processing.
-
-Transparent Statements provide a common basis for holding Issuers accountable for the Statement payload about Artifacts they release.
-Multiple Issuers may Register additional Signed Statements about the same Artifact, but they cannot delete or alter Signed Statements previously added to the Append-only Log.
-The ability for the original Issuer to make additional Statements about an Artifact provides for updated information to be shared, such as new positive or negative validations of quality.
-The ability of other Issuers to make Statements about an Artifact, produced from another Issuer, provides for third party validations.
-A Transparency Service may restrict access to Signed Statements through access control or Registration policies.
-However, third parties (such as Auditors) would be granted access as needed to attest to the validity of the Artifact, Subject or the entirety of the Transparency Service.
-Independent third parties may also make Statements about an Artifact, published on other Transparency Services.
-
-Trust in the Transparency Service itself is supported both by protecting their implementation (using replication, trusted hardware, and remote attestation of a system's operational state) and by enabling independent audits of the correctness and consistency of its Append-only Log, thereby holding the organization that operates it accountable.
-Unlike CT, where independent Auditors are responsible for enforcing the consistency of multiple independent instances of the same global Transparency Service, each Transparency Service is required to guarantee the consistency of its own Append-only Log (through the use of a consensus algorithm between replicas of the Transparency Service), but assume no consistency between different Transparency Services.
-
-Breadth of verifier access is critical.
-As a result, the Transparency Service specified in this architecture caters to two types of audiences:
-
-1. **Issuers**: organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers
-1. **Verifiers**: organizations, stakeholders, consumers, and users involved in validating supply chain artifacts, but can only do so if the Statements are known to be authentic.
-Verifiers MAY be Issuers, providing additional Signed Statements, attesting to conformance of various compliance requirements.
-
-The Issuer of a Signed Statement must be authenticated and authorized according to the Registration Policy of the Transparency Service.
-Analogously, Transparent Statement Verifiers rely on verifiable trustworthiness assertions associated with Transparent Statements and their processing provenance in a believable manner.
-If trust can be put into the operations that record Signed Statements in a secure, Append-only Log via online operations, the same trust can be put into the resulting Transparent Statement, issued by the Transparency Services and that can be validated in offline operations.
-
-The Transparency Services specified in this architecture are language independent and can be implemented alongside or within existing services.
-
-The interoperability guaranteed by the Transparency Services is enabled via core components (architectural constituents).
-Many of the data elements processed by the core components are based on the CBOR Signing and Encryption (COSE) standard specified in {{-COSE}}, which is used to produce Signed Statements about Artifacts and to build and maintain an Append-only Log for corresponding Signed Statements.
+SCITT provides a way for consumers to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
+SCITT achieves this by having producers, auditors, etc. (also called Issuers) publish information in a Transparency Service, where consumers (also called Verifiers) can check the information.
 
 ## Requirements Notation
 
@@ -212,6 +167,19 @@ Many of the data elements processed by the core components are based on the CBOR
 # Use Cases
 
 The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.
+
+## Relation to Certificate Transparency
+
+SCITT is a generalization of Certificate Transparency {{-CT}}, which can be interpreted as a transparency architecture for the supply chain of X.509 certificates.
+Considering CT in terms of SCITT:
+
+- CAs (Issuers) sign X.509 TBSCertificates (Artifacts) to produce X.509 certificates (Signed Statements)
+- CAs submit the certificates to one or more CT logs (Transparency Services)
+- CT logs produce Signed Certificate Timestamps (Transparent Statements)
+- SCTs are checked by browsers (Verifiers)
+- The Append-only Log can be checked by Auditors
+
+Note that just like CT logs are independent and their contents need not be consistent, Transparency Services are similarly independent of each other.
 
 # Terminology {#terminology}
 
@@ -982,6 +950,18 @@ Issuers MUST ensure that the Statement payloads in their Signed Statements are c
 
 Issuers and Transparency Services MUST carefully protect their private signing keys and avoid these keys being used for any purpose not described in this architecture document.
 In cases where key re-use is unavoidable, keys MUST NOT sign any other message that may be verified as an Envelope as part of a Signed Statement.
+
+## Security Guarantees
+
+SCITT provides the following security guarantees:
+
+1. Statements made by Issuers about supply chain Artifacts are identifiable, authentic, and non-repudiable
+1. Statement provenance and history can be independently and consistently audited
+1. Issuers can efficiently prove that their Statement is logged by a Transparency Service
+
+The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
+The second guarantee is achieved by storing the Signed Statement on an Append-only Log.
+The third guarantee is achieved by implementing the Append-only Log using a verifiable data structure (such as a Merkle Tree {{MERKLE}}).
 
 ## Threat Model
 
