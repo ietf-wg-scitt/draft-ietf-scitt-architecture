@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-09T00:36:58.657485+00:00",
+  "timestamp": "2024-01-11T00:36:59.296469+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -2801,7 +2801,7 @@
       ],
       "body": "In section 5.2.3.3 `client` appears out of the blue. It is not clear what a `client` is. ",
       "createdAt": "2023-09-20T07:46:53Z",
-      "updatedAt": "2023-12-21T00:39:34Z",
+      "updatedAt": "2024-01-10T17:38:19Z",
       "closedAt": null,
       "comments": [
         {
@@ -2873,6 +2873,13 @@
           "body": "OK, my work on #120 also led me to be confused and think maybe we have meant agent/client when we said verifier. I made some strawman diagrams to discuss this WG members in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/120#issuecomment-1865318043.\r\n\r\n/cc @mwiseman-byid ",
           "createdAt": "2023-12-21T00:39:34Z",
           "updatedAt": "2023-12-21T00:39:34Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "OK, it seems we are converging in a direction on #120 around verifier and relying party. The diagram based on author feedback demonstrates that with #156 likely updates to the spec forthcoming if that is approved. It turns out, not surprisingly, we need both verifier and relying party. The latter, if tweak terminology, could more clearly refer to client and resolve this issue as well.\r\n\r\nGiven that, and how it relates to here, I would argue that relying party is the correct substitute for client and this could be closed as a duplicate or modified accordingly to address that.\r\n\r\nThis change would be in line with with the RATS specification *iff* we distinguish between Verifier Owner/Verifier (person entity/logical system for that entity) and Relying Party Owner/Relying Party (person entity/logical system for that entity) and ironically [current I-D version 2.x of the OAuth AuthZ Framework](https://datatracker.ietf.org/doc/draft-ietf-oauth-v2-1/https://datatracker.ietf.org/doc/draft-ietf-oauth-v2-1/), various OAuth WG drafts (even if it seems not formally defined), and [the OpenID Connect Specification](https://openid.net/specs/openid-connect-core-1_0.html#Terminology). \r\n\r\nIt was unclear in previous discussion with authors if this is preferable or required, but it nicely aligns with small tactical changes to the diagram in #156 and relevant spec alignment in terminology and explanations.",
+          "createdAt": "2024-01-10T17:38:17Z",
+          "updatedAt": "2024-01-10T17:38:17Z"
         }
       ]
     },
@@ -3051,7 +3058,7 @@
       "labels": [],
       "body": "As discussed on today's call.\r\n\r\nFolks expressed concern that \"Verifier\" was not friendly enough to \"Consumers or Relying Parties\", that are supposed to process receipts.",
       "createdAt": "2023-10-23T15:22:39Z",
-      "updatedAt": "2024-01-08T16:27:26Z",
+      "updatedAt": "2024-01-10T17:39:57Z",
       "closedAt": null,
       "comments": [
         {
@@ -3130,6 +3137,20 @@
           "body": "> ```mermaid\r\n> \r\n> flowchart \r\n>     \r\n> RP\r\n> Verifier\r\n> \r\n> RP -- has or is a --> Verifier\r\n> ```\r\n\r\nhm... if we are talking RATS an entity can take on both the Roles of Verifier and Relying Party at the same time (rendering the creation and conveyance of Attestation Results moot)",
           "createdAt": "2024-01-08T16:27:25Z",
           "updatedAt": "2024-01-08T16:27:25Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "It seems #156 now obsoletes the diagrams in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/120#issuecomment-1865318043 and review in a previous meeting reflecting improvements and viable changes based upon answers to the questions posed in strawman diagrams in that comment.",
+          "createdAt": "2024-01-10T17:20:29Z",
+          "updatedAt": "2024-01-10T17:20:29Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Also of not my updates to the potential (and beneficial) overlap and possible alignment between relying party and client per https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/102#issuecomment-1885309749.",
+          "createdAt": "2024-01-10T17:39:56Z",
+          "updatedAt": "2024-01-10T17:39:56Z"
         }
       ]
     },
@@ -3391,6 +3412,105 @@
       "body": "Recent versions of the draft include [references to configuration and registration policies being included in append-only log](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-configuration). This brings up questions on what's used to identify an entry, which would represent the configuration an/or registration policy.\r\n\r\nSee:\r\n- #124 \r\n- #136\r\n- #145\r\n\r\nThe [draft says](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#section-5.2.2-2):\r\n> The registration policy for statements with the media type suffix (+<format> is implementation-specific. \r\n\r\nShould the inclusion of configuration & registration policy details be part of the architecture, or the entire topic be implementation-specific? ",
       "createdAt": "2024-01-06T01:56:08Z",
       "updatedAt": "2024-01-06T01:56:09Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 154,
+      "id": "I_kwDOIvmHss57ilU7",
+      "title": "Registration Information data in Protected Header needs to be consistent",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/154",
+      "state": "OPEN",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Registration_Info is defined in the protected header is not aligned properly to \r\nStatement Registration Information (Statement_Registration_info) mentioned in the document!",
+      "createdAt": "2024-01-09T15:56:28Z",
+      "updatedAt": "2024-01-09T20:11:27Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I read this again, and it seems the intention is to include unsecured data in the unprotected header.\r\n\r\nPer the changes in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/145\r\n\r\nThat information will not be included in the identifier, and I would like to see use cases for it, or to see it removed.",
+          "createdAt": "2024-01-09T20:11:26Z",
+          "updatedAt": "2024-01-09T20:11:26Z"
+        }
+      ]
+    },
+    {
+      "number": 155,
+      "id": "I_kwDOIvmHss57ilds",
+      "title": "Signed statement identifier should be hash",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/155",
+      "state": "OPEN",
+      "author": "aj-stein-nist",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Per authors meeting today: update the architecture such that the content identifier of the SCITT receipt for SCITT signed statement shall be the hash of the to-be-signed bytes as defined by COSE specification.",
+      "createdAt": "2024-01-09T15:56:47Z",
+      "updatedAt": "2024-01-09T22:25:59Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Adding a bit more clarity. \r\nThe hash shall be of the protected header and payload. The unprotected header is stripped to assure consistency",
+          "createdAt": "2024-01-09T22:25:58Z",
+          "updatedAt": "2024-01-09T22:25:58Z"
+        }
+      ]
+    },
+    {
+      "number": 158,
+      "id": "I_kwDOIvmHss57orr2",
+      "title": "Scope of Introduction",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/158",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "In 24f63ee8cfc2b99b937dd236cca3c886fd1218f9, the Introduction start to include normative language. Maybe it is better to move that to a follow-up section?",
+      "createdAt": "2024-01-10T12:23:50Z",
+      "updatedAt": "2024-01-10T12:23:50Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 159,
+      "id": "I_kwDOIvmHss57ovnG",
+      "title": "Normative Language on Registration Policy",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/159",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Currently in 24f63ee8cfc2b99b937dd236cca3c886fd1218f9, the Introduction includes normative language about Registration Policies.\r\n\r\n> Each service MAY enforce its own Registration Policies for authorizing entities to register their Signed Statements to the Append-only Log.\r\n\r\nIndependent of where this normative language goes in the end, I'd assume that a MAY is too weak? The minimal required registration policy - from my individual point of view - seems to be the authorization of the Issuer that is the \"Transparency Services Owner\" to register new Signed Statements. Does that sound right? (in essence that roughly resembles a \"key before signatures\" approach to ensure that a transparency service retains the capability to register Signed Statements).\r\n\r\nIf there always must be a Minimum of an initial Registration Policy (and be it part of bootstrapping a TS with its first statement that then must be a policy including a key), does this normative language not require a MUST?\r\n\r\nWhat does the group think. Am I missing something obvious here? ",
+      "createdAt": "2024-01-10T12:32:11Z",
+      "updatedAt": "2024-01-10T13:56:47Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 160,
+      "id": "I_kwDOIvmHss57pzMV",
+      "title": "New Examples for new section \"Support for Multiple Statements\"",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/160",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "OR13",
+        "henkbirkholz"
+      ],
+      "labels": [],
+      "body": "Looking at https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/153/, I think a that some more diverse examples later that show how multiple statements about one Artifact using the same sub Claim can have different semantics than multiple statements about one Artifact using different sub Claims - including illustrating text when one choice can be used an when the other & pros and cons.",
+      "createdAt": "2024-01-10T14:57:14Z",
+      "updatedAt": "2024-01-10T14:57:28Z",
       "closedAt": null,
       "comments": []
     }
@@ -15897,24 +16017,26 @@
       "id": "PR_kwDOIvmHss5jETZ5",
       "title": "Improve introduction",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/143",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "thgoebel",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "The previous introduction was very long, contained too much detail, and did not follow a clear logical structure (i.e. no clear chain-of-thought).\r\n\r\nTherefore here is my attempt at improving that:\r\n\r\n- start with a high-level scenario to motivate the problem\r\n- then provide a rough sketch of how the protocol works\r\n  -  This may be moved to Section 5 \"Architecture Overview\"? On the other hand, we do need the terminology to compare SCITT with CT, and the steps are a good way to introduce them concisely.\r\n- then state the security guarantees\r\n- end with comparing SCITT to CT (as per https://mailarchive.ietf.org/arch/msg/scitt/1oW4DRFFb1g230VmZVQVgj_Mdw8/ )\r\n  - Shameless plug: see [my blog](https://thore.io/posts/2023/07/how-certificates-are-born-data-structure-edition/) for an overview of X.509 certs, SCTs, and how they are constructed.\r\n\r\nI'm sure my attempt isn't perfect either, but I hope it's an incremental improvement and I welcome feedback :)\r\n\r\nClick below to expand the detailed analysis of why I dislike the old introduction:\r\n\r\n<details>\r\n\r\nA general pattern that I dislike across the introduction (but also in the rest of the document) is a tendancy to write long sentences. Sentences, that when rendered as TXT, are up to seven lines long. I consciously tried to keep it shorter.\r\nImho technical standards should be short, concise, approachable, and easily skimmable.\r\n\r\nAnother general pattern I dislike is the use of keywords (MAY, MUST) in the introduction. Imho that's bad practice -- the introduction should provide a rough overview, not specify anything binding.\r\n\r\nMore specific points (quote from the old text, followed by my comment/assessment, in order of appearance):\r\n\r\n> The second guarantee is achieved by storing the Signed Statement on an immutable, Append-only Log.\r\n\r\nEither the log is immutable or append-only (i.e., mutable with restrictions). It can't be both. => Remove \"immutable\".\r\n\r\n> Lastly, the Transparency Service verifies the identity of the Issuer, [...] Signed Statement is added to the Append-only Log.\r\n\r\nHow does this relate to the security guarantees?? I removed this sentence.\r\n\r\n> However, the range of use cases and applications in this document is broader, which requires more flexibility in how each Transparency Service is implemented and operates.\r\n\r\nStating the obvious, might as well delete.\r\n\r\n> Each service MAY enforce its own Registration Policies for authorizing entities to register their Signed Statements to the Append-only Log.\r\n\r\nWhy use the BCP 14 keywords in the introduction (here: MAY)? The purpose of an introduction should be to give a high level overview, not to specify something. This MAY-statement would better belong to Section 5.2.2.\r\n\r\nAlso, is this entire paragraph necessary for an introduction? Eight lines, just to say that Transparency Services can have policies. Imho policies are a detail that doesn't need to be in the introduction.\r\n\r\n> It is critical to provide interoperability for all Transparency Services instances as the composition of supply chain entities is ever-changing.\r\n\r\nRedundant. The whole points of IETF is to provide interoperability.\r\n\r\n> A Statements payload content is always opaque and MAY be encrypted when submitted to the Transparency Services. However the header metadata MUST be transparent in order to warrant trust for later processing.\r\n\r\nAgain, why use BCP 14 keywords (especially a binding MUST) in the introduction??\r\n\r\nAlso, this is again too much detail for the introduction.\r\n\r\n> However, third parties (such as Auditors) would be granted access as needed to attest to the validity of the Artifact, Subject or the entirety of the Transparency Service.\r\n\r\nStating the obvious. No access, no audit.\r\n\r\n> Independent third parties may also make Statements about an Artifact, published on other Transparency Services.\r\n\r\nRedundant, repeats what the same paragraph says earlier.\r\n\r\n> Breadth of verifier access is critical.\r\n\r\nStating the obvious. If there are no verifiers, we don't need SCITT.\r\n\r\n> As a result, the Transparency Service specified in this architecture caters to two types of audiences: [...]\r\n\r\nHow does this link to the previous sentence??\r\nWhy suddenly talk about issuers after starting the paragraph with  \"verifier access is critical\"?\r\n\r\n> The Transparency Services specified in this architecture are language independent and can be implemented alongside or within existing services.\r\n\r\nObvious. Of course it doesn't matter whether I implement it in C, Rust, or Python. This is why we write RFCs, to define standard interfaces.\r\n\r\n> The interoperability guaranteed by the Transparency Services is enabled via core components (architectural constituents).\r\n\r\nObvious. Again, IETF is all about interoperability.\r\n\r\n> Many of the data elements processed by the core components are based on the CBOR Signing and Encryption (COSE) standard specified in [RFC9052], which is used to produce Signed Statements about Artifacts and to build and maintain a Merkle tree that functions as an Append-only Log for corresponding Signed Statements.\r\n\r\nToo much detail for an introduction.\r\n\r\n</details>",
       "createdAt": "2024-01-02T16:57:53Z",
-      "updatedAt": "2024-01-06T11:14:26Z",
+      "updatedAt": "2024-01-10T17:37:02Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "24f63ee8cfc2b99b937dd236cca3c886fd1218f9",
       "headRepository": "thgoebel/draft-ietf-scitt-architecture",
       "headRefName": "improve-introduction",
       "headRefOid": "13d1185cf6978426e4e5a49a139a10aeac1a50e3",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-01-10T17:35:51Z",
+      "mergedAt": "2024-01-10T17:35:51Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "e85d13527ac8ff78a29d9a46cb4b609cff286692"
+      },
       "comments": [
         {
           "author": "thgoebel",
@@ -16343,6 +16465,118 @@
               "updatedAt": "2024-01-06T11:04:38Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sFYN3",
+          "commit": {
+            "abbreviatedOid": "13d1185"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-10T14:24:58Z",
+          "updatedAt": "2024-01-10T14:24:58Z",
+          "comments": [
+            {
+              "originalPosition": 91,
+              "body": "Its my understanding that CT includes modified certificates in the log.\r\n\r\nSo I might expect the following alignment:\r\n\r\n```\r\nTBSCertificates -> Certificate -> Deterministically Broken Cert -> Log Entry\r\nStatement --> Signed Statement -> Log Entry\r\n```\r\n\r\nI am not a CT expert, but I would focus on what goes on the log and make it clear that Logs are about \"what goes on them\".\r\n\r\n\r\n\r\n",
+              "createdAt": "2024-01-10T14:24:58Z",
+              "updatedAt": "2024-01-10T14:24:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sFYXt",
+          "commit": {
+            "abbreviatedOid": "13d1185"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-10T14:25:16Z",
+          "updatedAt": "2024-01-10T14:25:16Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sFbew",
+          "commit": {
+            "abbreviatedOid": "13d1185"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "It seems to me that @thgoebel did address all the comments (including moving some parts to #152). Are there any objection left to merge?",
+          "createdAt": "2024-01-10T14:31:04Z",
+          "updatedAt": "2024-01-10T14:31:04Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sFf25",
+          "commit": {
+            "abbreviatedOid": "13d1185"
+          },
+          "author": "thgoebel",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-10T14:39:16Z",
+          "updatedAt": "2024-01-10T14:39:16Z",
+          "comments": [
+            {
+              "originalPosition": 91,
+              "body": "The tree leaves store the TBSCertificate, among other things:\r\nhttps://datatracker.ietf.org/doc/html/rfc9162#name-merkle-tree-leaves",
+              "createdAt": "2024-01-10T14:39:16Z",
+              "updatedAt": "2024-01-10T14:39:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sGoyy",
+          "commit": {
+            "abbreviatedOid": "13d1185"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM -  great simplification thanks!",
+          "createdAt": "2024-01-10T16:53:09Z",
+          "updatedAt": "2024-01-10T16:53:09Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sGxVw",
+          "commit": {
+            "abbreviatedOid": "13d1185"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks, @thgoebel for the updates. This is a good baseline we can tweak further in subsequent PRs.",
+          "createdAt": "2024-01-10T17:10:59Z",
+          "updatedAt": "2024-01-10T17:10:59Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sGxpi",
+          "commit": {
+            "abbreviatedOid": "13d1185"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-10T17:11:44Z",
+          "updatedAt": "2024-01-10T17:11:44Z",
+          "comments": [
+            {
+              "originalPosition": 91,
+              "body": "@OR13, if you're satisfied, can you mark this resolved?",
+              "createdAt": "2024-01-10T17:11:44Z",
+              "updatedAt": "2024-01-10T17:11:45Z"
+            }
+          ]
         }
       ]
     },
@@ -16351,25 +16585,42 @@
       "id": "PR_kwDOIvmHss5jKM3w",
       "title": "Add more details to Privacy Considerations",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/144",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "thgoebel",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "This PR elaborates on the privacy analysis a bit.\r\n\r\n1. Describe why it is important (because we cannot delete items from the log)\r\n2. Remove the BCP 14 keyword (MUST NOT). \r\n    - Both the Privacy and Security Considerations sections should have the character of an analysis. They should be recommendations, or highlight gotchas to implementors. Anything binding should be in the main body of the RFC.\r\n    - Yes, this would need to be fixed in the Security Considerations, too.\r\n3. Expand the \"Unless advertised by a Transparency Service\" phrase into a paragraph about access control. This way it's more actionable. (Why would you advertise it? When would it be okay to advertise?)\r\n\r\n",
       "createdAt": "2024-01-03T17:48:22Z",
-      "updatedAt": "2024-01-06T11:08:44Z",
+      "updatedAt": "2024-01-10T14:43:08Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "1fa26e514a52d4bbb8f035183be0834230a4b2e4",
       "headRepository": "thgoebel/draft-ietf-scitt-architecture",
       "headRefName": "privacy",
       "headRefOid": "4f3f0fa871b9b633205f4eba00ab101185c93406",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2024-01-10T14:39:50Z",
+      "mergedAt": "2024-01-10T14:39:50Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "e316032028f888b013213a3a314a4e8dd609a6a4"
+      },
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Authors: (@fournet, @ad-l, @henkbirkholz, @yogeshbdeshpande, @OR13), I'm inclined to merge this as is. Any disagreements, or additional changes? We can iterate afterward, but seems like a good baseline to add",
+          "createdAt": "2024-01-09T04:45:42Z",
+          "updatedAt": "2024-01-09T04:45:42Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "> Authors: (@fournet, @ad-l, @henkbirkholz, @yogeshbdeshpande, @OR13), I'm inclined to merge this as is. Any disagreements, or additional changes? We can iterate afterward, but seems like a good baseline to add\r\n\r\nYes. this looks pretty stable and uncontroversial. Thanks a ton, @thgoebel.",
+          "createdAt": "2024-01-10T14:38:23Z",
+          "updatedAt": "2024-01-10T14:38:23Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss5rdO9p",
@@ -16575,6 +16826,45 @@
               "updatedAt": "2024-01-06T11:08:44Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sFfhP",
+          "commit": {
+            "abbreviatedOid": "4f3f0fa"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-10T14:38:38Z",
+          "updatedAt": "2024-01-10T14:38:38Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5rdPS_",
+          "commit": {
+            "abbreviatedOid": "4f3f0fa"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-03T17:54:01Z",
+          "updatedAt": "2024-01-10T14:38:49Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "definitely not : )\r\n\r\nThe privacy model for SCITT is access controlled log.\r\n\r\nThe log can contain private information.\r\n\r\nA receipt only proves inclusion, when combined with the original signed statement, private information is available.\r\n\r\naccess to signed statements is outside the scope of scitt (currently), as is access to the original statements (artifacts).\r\n\r\nYou can imagine it working like this:\r\n\r\n```\r\nhttps://artifact.transparency.example/some-container\r\nhttps://signed.artifact.transparency.example/some-signed-statement\r\nhttps://scitt.transparency.example/receipts/receipt-for-some-signed-statement\r\n```\r\n\r\nSCITT does not define artifact repo APIs, because its meant to be exposed in the existing artifact repo APIs.",
+              "createdAt": "2024-01-03T17:54:21Z",
+              "updatedAt": "2024-01-10T14:38:49Z"
+            },
+            {
+              "originalPosition": 7,
+              "body": "put another way, any filtering of messages counts as creating a new logical \"append only log\".",
+              "createdAt": "2024-01-03T17:56:08Z",
+              "updatedAt": "2024-01-10T14:38:49Z"
+            }
+          ]
         }
       ]
     },
@@ -16583,24 +16873,26 @@
       "id": "PR_kwDOIvmHss5jK6FF",
       "title": "Add identifier examples",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/145",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "",
+      "body": "This PR addresses:\r\n\r\n- https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/155\r\n\r\nRelated issues:\r\n\r\n- https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/154",
       "createdAt": "2024-01-03T20:55:08Z",
-      "updatedAt": "2024-01-05T16:31:11Z",
+      "updatedAt": "2024-01-10T14:43:57Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
-      "baseRefOid": "bded7531b6c922f827369405c72a60dcf793902f",
+      "baseRefOid": "24f63ee8cfc2b99b937dd236cca3c886fd1218f9",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "feat/identifiers-examples",
-      "headRefOid": "ae99c9bad589da680a5b45758c7a311e3b8f88fd",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "35cad4aff47c9de034a48c4d868d8667d3383d49",
+      "closedAt": "2024-01-10T14:43:57Z",
+      "mergedAt": "2024-01-10T14:43:57Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "fce8fcd6f8c081575d582c6780136b0a74cb3dc2"
+      },
       "comments": [
         {
           "author": "OR13",
@@ -16695,6 +16987,99 @@
           "body": "LGTM for the consistency of CBOR structures",
           "createdAt": "2024-01-04T17:15:05Z",
           "updatedAt": "2024-01-05T16:31:11Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5r-I8e",
+          "commit": {
+            "abbreviatedOid": "3fd632e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-09T15:49:28Z",
+          "updatedAt": "2024-01-09T15:49:29Z",
+          "comments": [
+            {
+              "originalPosition": 70,
+              "body": "```suggestion\r\n~~~\r\n```",
+              "createdAt": "2024-01-09T15:49:29Z",
+              "updatedAt": "2024-01-09T15:49:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5r__hq",
+          "commit": {
+            "abbreviatedOid": "35cad4a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-09T20:26:28Z",
+          "updatedAt": "2024-01-09T20:26:28Z",
+          "comments": [
+            {
+              "originalPosition": 106,
+              "body": "@fournet @ad-l per our call today, please make sure these are the security properties you want for \"identifiers\" for cose sign 1 messages.",
+              "createdAt": "2024-01-09T20:26:28Z",
+              "updatedAt": "2024-01-09T20:26:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sAAfP",
+          "commit": {
+            "abbreviatedOid": "35cad4a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-09T20:27:29Z",
+          "updatedAt": "2024-01-09T20:27:30Z",
+          "comments": [
+            {
+              "originalPosition": 123,
+              "body": "@fournet @ad-l if you have use cases for this, please suggest them here.\r\n\r\nIf you have security concerns with this, please also leave suggestions.",
+              "createdAt": "2024-01-09T20:27:30Z",
+              "updatedAt": "2024-01-09T20:27:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sFhWO",
+          "commit": {
+            "abbreviatedOid": "35cad4a"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-10T14:42:00Z",
+          "updatedAt": "2024-01-10T14:42:00Z",
+          "comments": [
+            {
+              "originalPosition": 123,
+              "body": "As there are open suggestions anymore and the feedback from @fournet was addressed by @OR13, I am moving on with approval and merge.",
+              "createdAt": "2024-01-10T14:42:00Z",
+              "updatedAt": "2024-01-10T14:42:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sFiRF",
+          "commit": {
+            "abbreviatedOid": "35cad4a"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-10T14:43:45Z",
+          "updatedAt": "2024-01-10T14:43:45Z",
           "comments": []
         }
       ]
@@ -16945,19 +17330,706 @@
       "labels": [],
       "body": "This PR builds on top of #143 to pull out a few things. (logically on top, not on top in terms of git :) )",
       "createdAt": "2024-01-06T10:56:36Z",
-      "updatedAt": "2024-01-06T11:02:57Z",
+      "updatedAt": "2024-01-10T17:55:03Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
-      "baseRefOid": "24f63ee8cfc2b99b937dd236cca3c886fd1218f9",
+      "baseRefOid": "e5f7401e147492fd310cff844cc3d5bc08d681d5",
       "headRepository": "thgoebel/draft-ietf-scitt-architecture",
       "headRefName": "architecture-details",
-      "headRefOid": "a28e3a8d7e2a7bf063398cf503006b2073c5b903",
+      "headRefOid": "98491d81d7289aa8c0cea2eb8f48aaddae3d18ca",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5r6C98",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Thanks, @thgoebel \r\nA few specific feedback items on the first half. The 2nd half could likely be split (again) and more easily merged.",
+          "createdAt": "2024-01-09T04:18:55Z",
+          "updatedAt": "2024-01-09T04:31:42Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\n1. Transparency Services evaluate Signed Statements against Registration Policies, counter-signing them if accepted\r\n1. Successfully registered Transparent Statements return Receipts to the issuer\r\n```",
+              "createdAt": "2024-01-09T04:18:55Z",
+              "updatedAt": "2024-01-09T04:31:42Z"
+            },
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-01-09T04:19:09Z",
+              "updatedAt": "2024-01-09T04:31:42Z"
+            },
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\n1. Verifiers query a Transparency Service for one or more Transparent Statement associated with a Subject\r\n1. By verifying the Transparent Statement payloads, the verifier may be convinced to the authenticity and integrity of an Artifact\r\n```",
+              "createdAt": "2024-01-09T04:24:07Z",
+              "updatedAt": "2024-01-10T14:45:47Z"
+            },
+            {
+              "originalPosition": 15,
+              "body": "```suggestion\r\nIssuers commit to a Statement by signing it and by registering it with a Transparency Service.\r\n```",
+              "createdAt": "2024-01-09T04:25:20Z",
+              "updatedAt": "2024-01-09T04:31:42Z"
+            },
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\nThey are not necessarily the first ones nor the only ones who register Signed Statements on one or more Transparency Services.\r\n```",
+              "createdAt": "2024-01-09T04:26:04Z",
+              "updatedAt": "2024-01-09T04:31:42Z"
+            },
+            {
+              "originalPosition": 18,
+              "body": "For the various pieces of feedback above, you may want to split out multiple roles from above. \r\nNote: we are having a conversation about terminology associated with RATS and other IETF Specs. See #120 and the latest [IETF SCITT Meeting notes](https://datatracker.ietf.org/wg/scitt/meetings/) ",
+              "createdAt": "2024-01-09T04:30:07Z",
+              "updatedAt": "2024-01-09T04:31:42Z"
+            },
+            {
+              "originalPosition": 32,
+              "body": "```suggestion\r\nMultiple Issuers can make different, even conflicting Statements, about the same Artifact.\r\nVerifiers can choose which Issuers they trust.\r\n```",
+              "createdAt": "2024-01-09T04:30:45Z",
+              "updatedAt": "2024-01-09T04:31:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5r7nQ2",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-09T09:53:09Z",
+          "updatedAt": "2024-01-09T09:53:09Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "@SteveLasker Your suggestion at line 387 is not correct. A Verifier need not and should not query the Transparency Service. That is the whole point of the Append only log is that N- Independent Entities (receiving Transparent Statements) need to need to check the log, but just use the Transparent statment possessing the receipt to Verify the presence of the Statement in the log.",
+              "createdAt": "2024-01-09T09:53:09Z",
+              "updatedAt": "2024-01-09T09:53:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5r7pl9",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-09T09:57:58Z",
+          "updatedAt": "2024-01-09T09:57:58Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "The example does not seem to be right in the `context` that normally the expectation is that not each Verifier to submit again new statements about Verification outcome, as this will explode the `n` statements.\r\n\r\nYes, in theory one can do that, but generally not advisable. I would prefer something on the lines that:\r\n\r\nAn entity can perform multiple roles, examples A Verifier can also be an Auditor where after Verification it can perform a detailed auditing of the log for specific aspects on a specific Artifact statements.\r\n",
+              "createdAt": "2024-01-09T09:57:58Z",
+              "updatedAt": "2024-01-09T09:57:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5r7_iS",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "thgoebel",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-09T10:46:28Z",
+          "updatedAt": "2024-01-09T10:46:29Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "Here I intentionally said \"Statement\" rather than \"Signed Statement\". If Alice and Bob sign the same statement, the Signed Statements will differ. But what I care about is the Statement that Alice and Bob agree on.\r\n\r\nI rephrased this to clarify it.",
+              "createdAt": "2024-01-09T10:46:29Z",
+              "updatedAt": "2024-01-09T10:46:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5r8AzQ",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "thgoebel",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-09T10:49:25Z",
+          "updatedAt": "2024-01-09T10:49:25Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "Moved to https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/153.\r\n\r\nStill, I prefer not to have a newline here. To me, the sentence \"Verifiers can choose which Issuers they trust\" is closely linked to the previous \"conflicting Statements\". When on its own paragraph, this sentence seems to be coming out of the blue, with little context.",
+              "createdAt": "2024-01-09T10:49:25Z",
+              "updatedAt": "2024-01-09T10:49:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5r8Cc3",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "thgoebel",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-09T10:53:07Z",
+          "updatedAt": "2024-01-09T10:53:07Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "Since that discussion is ongoing, I would leave it as-is for now. And update it later in a separate PR :)",
+              "createdAt": "2024-01-09T10:53:07Z",
+              "updatedAt": "2024-01-09T10:53:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5r8KT7",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "thgoebel",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-09T11:11:49Z",
+          "updatedAt": "2024-01-09T11:11:49Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "I added a better example for the \"Verifier + Issuer\" case, and added your \"Verifier + Auditor\" case as well.",
+              "createdAt": "2024-01-09T11:11:49Z",
+              "updatedAt": "2024-01-09T11:11:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5r_tVR",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-09T19:39:54Z",
+          "updatedAt": "2024-01-09T19:39:55Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "@yogeshbdeshpande, I believe we're mixing multiple scenarios here. \r\nAn issuer registers Signed Statements and gets a Receipt. How does a verifier get all the receipts?\r\nA verifier may not have access to the Receipts, and simply wants to get the current status for an artifact. What Statements have been made by Issuers they trust? Have any of the Issuers made amended statements that should be known? By querying the feed, based on the subject, they can see a wholistic picture and decide if the artifact meets their needs. ",
+              "createdAt": "2024-01-09T19:39:55Z",
+              "updatedAt": "2024-01-09T19:39:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5r_xCA",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-09T19:49:26Z",
+          "updatedAt": "2024-01-09T19:49:26Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "Thanks, @thgoebel. The nit I was looking to change was \"publish\" vs. \"register\". The process by which Signed Statements get added to the Append-only Log is through a registration policy. For consistency, we use \"register\" as opposed to publish, post, submit, etc. \r\n\r\nA verifier doesn't necessarily need to see agreement between various Issuers. A verifier can choose to trust, and filter in/out specific Issuers. An issuer may trust Alice and Bob, but statements made by Chuck are ignored. Whether they're malicious, or not relevant to the verifiers scenarios aren't overly important as there are scenarios where different issuers can make valid, yet conflicting statements based on a particular scenario or environment. ",
+              "createdAt": "2024-01-09T19:49:26Z",
+              "updatedAt": "2024-01-09T19:49:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5r_zpo",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-09T19:56:53Z",
+          "updatedAt": "2024-01-09T19:56:53Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "Note, the newline is PR feedback friendly, and markdown will put this on the same line. ",
+              "createdAt": "2024-01-09T19:56:53Z",
+              "updatedAt": "2024-01-09T19:56:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5r_01D",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "thgoebel",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-09T20:00:00Z",
+          "updatedAt": "2024-01-09T20:00:00Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "Ah oops, I thought there was a blank line inbetween. Fixed, added that newline.",
+              "createdAt": "2024-01-09T20:00:00Z",
+              "updatedAt": "2024-01-09T20:00:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sFjoX",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-10T14:46:15Z",
+          "updatedAt": "2024-01-10T14:46:16Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "@thgoebel accept or dismiss this suggestion please : )",
+              "createdAt": "2024-01-10T14:46:16Z",
+              "updatedAt": "2024-01-10T14:46:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sFlu7",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-10T14:49:29Z",
+          "updatedAt": "2024-01-10T14:49:29Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "> 1. By verifying the Transparent Statement payloads, the verifier may be convinced to the authenticity and integrity of an Artifact\r\n\r\nThis means effectively verifying `Statement playload`, which is not a thing. Did you mean `Signed Statement` instead of `Transparent Statement payloads`?",
+              "createdAt": "2024-01-10T14:49:29Z",
+              "updatedAt": "2024-01-10T17:52:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sFtM4",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-10T15:02:52Z",
+          "updatedAt": "2024-01-10T15:02:52Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "this seems resloved. @SteveLasker could you please resolve, if it is? ",
+              "createdAt": "2024-01-10T15:02:52Z",
+              "updatedAt": "2024-01-10T15:02:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sFuM9",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "thgoebel",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-10T15:04:48Z",
+          "updatedAt": "2024-01-10T15:04:48Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "I think @SteveLasker's main concern is having a bullet on how the Verifier obtains the Transparent Statement?\r\nMaybe we can list the different options here. Querying the TS, getting it from the Issuer directly, any others?",
+              "createdAt": "2024-01-10T15:04:48Z",
+              "updatedAt": "2024-01-10T15:04:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sF2pZ",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-10T15:20:14Z",
+          "updatedAt": "2024-01-10T15:20:14Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "> I think @SteveLasker's main concern is having a bullet on how the Verifier obtains the Transparent Statement?\r\nMaybe we can list the different options here. Querying the TS, getting it from the Issuer directly, any others?\r\n\r\nOkay. But how is that related to the new item?\r\n\r\n> 1. By verifying the Transparent Statement payloads, the verifier may be convinced to the authenticity and integrity of an Artifact",
+              "createdAt": "2024-01-10T15:20:14Z",
+              "updatedAt": "2024-01-10T15:20:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sG3DS",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "thgoebel",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-10T17:24:33Z",
+          "updatedAt": "2024-01-10T17:24:33Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "This \"new\" item is just my proposal pulled down and slightly edited (\"payload\" added, \"s/of Statements about an Artifact/of an Artifact\"). They are related in that you first need to obtain the Transparent Statement before you can verify it :)\r\n\r\nI pushed an update for this.  @SteveLasker please review.",
+              "createdAt": "2024-01-10T17:24:33Z",
+              "updatedAt": "2024-01-10T17:25:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sHEPo",
+          "commit": {
+            "abbreviatedOid": "a28e3a8"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-10T17:51:47Z",
+          "updatedAt": "2024-01-10T17:51:47Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "oh! I misread the suggestion scope. Sorry. So my question was targeted at you in the end! I'll chime in again, if this item stalls.",
+              "createdAt": "2024-01-10T17:51:47Z",
+              "updatedAt": "2024-01-10T17:51:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sHFfc",
+          "commit": {
+            "abbreviatedOid": "98491d8"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-10T17:55:03Z",
+          "updatedAt": "2024-01-10T17:55:03Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 153,
+      "id": "PR_kwDOIvmHss5jkFya",
+      "title": "Add section on multiple statements",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/153",
+      "state": "MERGED",
+      "author": "thgoebel",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-09T10:43:53Z",
+      "updatedAt": "2024-01-10T14:59:52Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "24f63ee8cfc2b99b937dd236cca3c886fd1218f9",
+      "headRepository": "thgoebel/draft-ietf-scitt-architecture",
+      "headRefName": "multiple-statements",
+      "headRefOid": "52fad0082d887054821fd59137a54badfc03bc38",
+      "closedAt": "2024-01-10T14:59:05Z",
+      "mergedAt": "2024-01-10T14:59:05Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "e5f7401e147492fd310cff844cc3d5bc08d681d5"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5r_rh0",
+          "commit": {
+            "abbreviatedOid": "2c77279"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-01-09T19:34:59Z",
+          "updatedAt": "2024-01-09T19:34:59Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sAuMW",
+          "commit": {
+            "abbreviatedOid": "52fad00"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-09T22:30:54Z",
+          "updatedAt": "2024-01-09T22:30:54Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sFVnr",
+          "commit": {
+            "abbreviatedOid": "52fad00"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-10T14:20:01Z",
+          "updatedAt": "2024-01-10T14:20:01Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sFqaF",
+          "commit": {
+            "abbreviatedOid": "52fad00"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-10T14:58:01Z",
+          "updatedAt": "2024-01-10T14:58:01Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 156,
+      "id": "PR_kwDOIvmHss5jnG8i",
+      "title": "Update architecture diagram",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/156",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This pull request:\r\n\r\n- clarifies that multiple receipts are possible\r\n- clarifies that issuers are not always artifact producers\r\n- clarifies that transparency services are not artifact repositories\r\n- clarifies that verifiers are not always relying parties\r\n- clarifies that relying parties care about artifact transparency (not just verifying transparent statements)\r\n\r\n![Screenshot 2024-01-09 at 1 06 39\u202fPM](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/8295856/38bfad0b-28ee-429b-9bb8-5db7cc22e108)\r\n",
+      "createdAt": "2024-01-09T19:04:44Z",
+      "updatedAt": "2024-01-10T17:01:03Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "24f63ee8cfc2b99b937dd236cca3c886fd1218f9",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "feat/less-dids",
+      "headRefOid": "592e97a3b362876a640e60c29a5154111919e907",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> What I don't like\r\n> \r\n> * The one diagram we have will look overly complicated.\r\n\r\nSometimes things get more complicated before they get simpler.\r\n\r\n> Is this the only diagram, or could this show an enhanced scenario, in addition to the basic workflow without two transparency services?\r\n\r\nI don't understand your comment, if you want to introduce a simpler diagram, raise a PR : )\r\n\r\n> * We haven't defined Relying Parties. Are these RATS references?\r\n> \r\n\r\nWe expect it to be defined based on the calls we are on, I saved the group a round trip to the diagram here, but if you object, we can simply remove the text from the diagram. Are you asking me to remove the text from the diagram?\r\n\r\n> I would approve the text updates, but think we should discuss the complexity of the diagram before merging as-is\r\n\r\nYou know \"discuss\" is code for block at IETF right ? : )\r\n\r\nCan you restate your comment here in terms of:\r\n\r\nWhat changes you need to see to approve and merge?\r\n\r\nAsking for discussion is the same thing as saying, lets not merge until discussion, you should request changes.",
+          "createdAt": "2024-01-10T14:34:09Z",
+          "updatedAt": "2024-01-10T14:34:09Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> > What I don't like\r\n> > \r\n> > * The one diagram we have will look overly complicated.\r\n> \r\n> Sometimes things get more complicated before they get simpler.\r\n\r\nSince I had volunteered in the past and the diagram will spur related cleanup, if we merge this one I am willing to break it out into a simpler one. The diagram update clarifies a lot of terminology and concept questions in the currently published diagram I didn't understand and per our discussion of #120 this clears a lot of that up.\r\n\r\nSo to recap, if we merge this one, I can PR a simpler one after this one is merged in. ",
+          "createdAt": "2024-01-10T14:42:30Z",
+          "updatedAt": "2024-01-10T14:42:30Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Is this the only diagram, or could this show an enhanced scenario, in addition to the basic workflow without two transparency services?\r\n> I don't understand your comment, if you want to introduce a simpler diagram, raise a PR : )\r\n\r\nI was suggesting we keep/update the existing diagram as the basic flow. Possibly pulled up to the intro. Than, add your diagram  to explain the more real-world capabilities supported. \r\n\r\nLooks like @aj-stein-nist is volunteering to do that, so I'm good with this incremental PR.",
+          "createdAt": "2024-01-10T16:59:25Z",
+          "updatedAt": "2024-01-10T16:59:25Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5r_otW",
+          "commit": {
+            "abbreviatedOid": "9f87bad"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Verbiage in the 2nd half reduces text for simplicity - big \ud83d\udc4d \r\n\r\nWhat I like about the updated diagram:\r\n- Shows the correlation of an artifact repository (storage) with the Transparency Service\r\n- An identity document, to abstract any specific format\r\n- The concept of Integrators and Distributors, or re-distributors\r\n\r\nWhat I don't like\r\n- The one diagram we have will look overly complicated. Is this the only diagram, or could this show an enhanced scenario, in addition to the basic workflow without two transparency services?\r\n- We haven't defined Relying Parties. Are these RATS references?\r\n\r\nI would approve the text updates, but think we should discuss the complexity of the diagram before merging as-is",
+          "createdAt": "2024-01-09T19:26:57Z",
+          "updatedAt": "2024-01-09T19:34:13Z",
+          "comments": [
+            {
+              "originalPosition": 132,
+              "body": "```suggestion\r\n- The Identifier of the Issuer, in the header of Signed Statements, MUST be included and match the `ts_identifier` field of the Receipt structure\r\n```",
+              "createdAt": "2024-01-09T19:26:57Z",
+              "updatedAt": "2024-01-09T19:34:13Z"
+            },
+            {
+              "originalPosition": 118,
+              "body": "\ud83d\udc4d for clarity",
+              "createdAt": "2024-01-09T19:27:19Z",
+              "updatedAt": "2024-01-09T19:34:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sARGt",
+          "commit": {
+            "abbreviatedOid": "9f87bad"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-09T21:08:48Z",
+          "updatedAt": "2024-01-09T21:08:48Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sGsje",
+          "commit": {
+            "abbreviatedOid": "592e97a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM with new PR incremental updates to include a basic flow, and this more real-world capabilities of SCITT",
+          "createdAt": "2024-01-10T17:01:03Z",
+          "updatedAt": "2024-01-10T17:01:03Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 157,
+      "id": "PR_kwDOIvmHss5jrcDm",
+      "title": "Interactive content PR for questions and comments",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/157",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-10T12:21:41Z",
+      "updatedAt": "2024-01-10T17:06:53Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "24f63ee8cfc2b99b937dd236cca3c886fd1218f9",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "henk/editorial-pass",
+      "headRefOid": "f2f379e462a88eb7d608057b42c252b3bbf3368f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This makes changes inconsistent with style throughout the doc. Suggest we either fix all references or close this PR to maintain consistency.",
+          "createdAt": "2024-01-10T17:06:52Z",
+          "updatedAt": "2024-01-10T17:06:52Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5sGtLJ",
+          "commit": {
+            "abbreviatedOid": "f2f379e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-10T17:02:23Z",
+          "updatedAt": "2024-01-10T17:02:23Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Artifact is defined in terminology, which we've said we want to keep Capatilized. ",
+              "createdAt": "2024-01-10T17:02:23Z",
+              "updatedAt": "2024-01-10T17:02:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sGt8Z",
+          "commit": {
+            "abbreviatedOid": "f2f379e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-10T17:04:03Z",
+          "updatedAt": "2024-01-10T17:04:04Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "Same note about capitalizing termonilogy. \r\nhttps://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-terminology\r\n> When used in text, the corresponding terms are capitalized. ",
+              "createdAt": "2024-01-10T17:04:04Z",
+              "updatedAt": "2024-01-10T17:04:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5sGuo0",
+          "commit": {
+            "abbreviatedOid": "f2f379e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-10T17:05:30Z",
+          "updatedAt": "2024-01-10T17:05:30Z",
+          "comments": [
+            {
+              "originalPosition": 25,
+              "body": "Throughout the doc, we removed punctuation on single-sentence lines. If we want change that, we should do a single sweep for consistency",
+              "createdAt": "2024-01-10T17:05:30Z",
+              "updatedAt": "2024-01-10T17:05:30Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
