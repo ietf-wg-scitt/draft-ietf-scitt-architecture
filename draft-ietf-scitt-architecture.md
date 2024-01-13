@@ -720,7 +720,7 @@ Receipts protected headers have additional mandatory fields:
 - **crit**: The `crit` header (id: 2) MUST be included and the following headers MUST be marked critical: (`scitt-version`, `verifiable-data-structure`, `kccs`).
 
 - The SCITT version header MUST be included and its value match the `version` field of the Receipt structure
-- The Identifier of Issuer header (in Signed Statements) MUST be included and its value match the `ts_identifier` field of the Receipt structure
+- The Identifier of the Issuer, in the header of Signed Statements, MUST be included and match the `ts_identifier` field of the Receipt structure
 - Transparency Service MUST include additional claims in the protected header of Receipts to indicate the policies evaluated during the registration of a Statement
 - Since {{-COMETRE}} uses optional headers, the `crit` header (id: 2) MUST be included and all SCITT-specific headers (version, Identifier of Transparency Service and Registration Policy) MUST be marked critical
 
