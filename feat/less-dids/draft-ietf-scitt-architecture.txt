@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 13 July 2024                                         C. Fournet
+Expires: 16 July 2024                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         10 January 2024
+                                                         13 January 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 July 2024.
+   This Internet-Draft will expire on 16 July 2024.
 
 Copyright Notice
 
@@ -464,10 +464,7 @@ Issuers  -->    |  Identity  |      |                                 |
                 |  Document  +------)-----------------+               |
                  '----+-----'       |                 |               |
                       |             |                 |               |
-                      |             |                 |               |
-                      |             |                 |               |
                       | Identifiers |                 |               |
-                      |             |                 |               |
                       |             |                 |               |
                       v             v                 |               |
                  .----+----.  .-----+----.            |               |
@@ -506,24 +503,17 @@ Distributors  -->    |  | Receipt 2  +<------+   Service 2  +--+  |   |
                              |                      |          |  |   |
                              |'--------.     .-----'           |  |   |
                              |          |   |                  |  |   |
-                             |          |   |                  |  |   |
-                             v          |   |                  v  v   |
-                    .--------+---.      |   |           .------+--+-. |
-Auditors -->       / Collect    /       |   |          / Replay    /  |
-                  /  Receipts  /        |   |         /  Logs     /   |
-                 '------------'         |   |        '-----------'    |
-                                        |   |                         |
-                                        v   v                         |
-                                   .----+---+-----------.             |
-                                  / Verify Transparent /              |
-Verifiers          -->           /      Statements    /               |
-                                '---------+----------'                |
+                             v          v   v                  v  v   |
+                    .--------+--. .-----+---+----------. .-----+--+-. |
+Verifiers -->      / Review    / / Verify Statement   / / Analyze  /  |
+                  /  Receipts / /  Transparency      / /  Logs    /   |
+                 '-----------' '----------+---------' '----------'    |
                                           |                           |
                                           v                           |
                               .-----------+-------.                   |
-                               \   Artifact      / <------------------+
-Relying Parties    -->          \  Transparency /
-                                 '-------------'
+                             / Verify Artifact   / <------------------+
+Relying Parties    -->      /  Transparency     /
+                           '-------------------'
 
    The SCITT architecture consists of a very loose federation of
    Transparency Services, and a set of common formats and protocols for
@@ -536,8 +526,9 @@ Relying Parties    -->          \  Transparency /
    COSE Signed Merkle Tree Proof document
    [I-D.draft-steele-cose-merkle-tree-proofs].
 
-   The details regarding Artifact Repositories, and Identity Document
-   infrastructure, such as OIDC or x509 are out of scope.
+   The details regarding Artifact Repositories, such as package managers
+   or container registries, and Identity Document infrastructure, such
+   as OIDC or x509 are out of scope.
 
    This section describes at a high level, the three main roles and
    associated processes in SCITT: Issuers and the Signed Statement
