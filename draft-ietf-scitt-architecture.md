@@ -343,10 +343,7 @@ Issuers  -->    |  Identity  |      |                                 |
                 |  Document  +------)-----------------+               |
                  '----+-----'       |                 |               |
                       |             |                 |               |
-                      |             |                 |               |
-                      |             |                 |               |
                       | Identifiers |                 |               |
-                      |             |                 |               |
                       |             |                 |               |
                       v             v                 |               |
                  .----+----.  .-----+----.            |               |
@@ -385,24 +382,17 @@ Distributors  -->    |  | Receipt 2  +<------+   Service 2  +--+  |   |
                              |                      |          |  |   |
                              |'--------.     .-----'           |  |   |
                              |          |   |                  |  |   |
-                             |          |   |                  |  |   |
-                             v          |   |                  v  v   |
-                    .--------+---.      |   |           .------+--+-. |
-Auditors -->       / Collect    /       |   |          / Replay    /  |
-                  /  Receipts  /        |   |         /  Logs     /   |
-                 '------------'         |   |        '-----------'    |
-                                        |   |                         |
-                                        v   v                         |
-                                   .----+---+-----------.             |
-                                  / Verify Transparent /              |
-Verifiers          -->           /      Statements    /               |
-                                '---------+----------'                |
+                             v          v   v                  v  v   |
+                    .--------+--. .-----+---+----------. .-----+--+-. |
+Verifiers -->      / Review    / / Verify Statement   / / Analyze  /  |
+                  /  Receipts / /  Transparency      / /  Logs    /   |
+                 '-----------' '----------+---------' '----------'    |
                                           |                           |
                                           v                           |
                               .-----------+-------.                   |
-                               \   Artifact      / <------------------+
-Relying Parties    -->          \  Transparency /
-                                 '-------------'
+                             / Verify Artifact   / <------------------+
+Relying Parties    -->      /  Transparency     /
+                           '-------------------'
 
 ~~~
 
