@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-11T00:36:59.296469+00:00",
+  "timestamp": "2024-01-14T00:40:04.957539+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -17847,13 +17847,13 @@
       "labels": [],
       "body": "This pull request:\r\n\r\n- clarifies that multiple receipts are possible\r\n- clarifies that issuers are not always artifact producers\r\n- clarifies that transparency services are not artifact repositories\r\n- clarifies that verifiers are not always relying parties\r\n- clarifies that relying parties care about artifact transparency (not just verifying transparent statements)\r\n\r\n![Screenshot 2024-01-09 at 1 06 39\u202fPM](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/8295856/38bfad0b-28ee-429b-9bb8-5db7cc22e108)\r\n",
       "createdAt": "2024-01-09T19:04:44Z",
-      "updatedAt": "2024-01-10T17:01:03Z",
+      "updatedAt": "2024-01-13T15:06:16Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "24f63ee8cfc2b99b937dd236cca3c886fd1218f9",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "feat/less-dids",
-      "headRefOid": "592e97a3b362876a640e60c29a5154111919e907",
+      "headRefOid": "35178e842e018487b699dbf04201e65984221a40",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -17879,6 +17879,20 @@
           "body": "> Is this the only diagram, or could this show an enhanced scenario, in addition to the basic workflow without two transparency services?\r\n> I don't understand your comment, if you want to introduce a simpler diagram, raise a PR : )\r\n\r\nI was suggesting we keep/update the existing diagram as the basic flow. Possibly pulled up to the intro. Than, add your diagram  to explain the more real-world capabilities supported. \r\n\r\nLooks like @aj-stein-nist is volunteering to do that, so I'm good with this incremental PR.",
           "createdAt": "2024-01-10T16:59:25Z",
           "updatedAt": "2024-01-10T16:59:25Z"
+        },
+        {
+          "author": "cabo",
+          "authorAssociation": "NONE",
+          "body": "I don't understand the word \"Verify\" here, but that may be RATS terminology I'm not familiar with.\r\n",
+          "createdAt": "2024-01-11T12:46:11Z",
+          "updatedAt": "2024-01-11T12:46:11Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "![Screenshot 2024-01-13 at 8 58 49\u202fAM](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/8295856/42a6d9fd-90de-4a85-929e-08d606536c78)\r\n\r\n\r\nI made some adjustments to the bottom based on feedback from @henkbirkholz and others.\r\n\r\n- Removed Auditor (a special case of verifier)\r\n- Clarified that SCITT verifiers perform several actions that distinguish them from OAuth or RATS verifiers.\r\n\r\nAs a general comment, we seem to have a mix of supply chain specific roles, like `Producer`, `Integrator` and `Distributor`, `Auditor?` and security oriented roles such as `Issuer`, `Verifier` and `Relying Parties`.\r\n\r\nIf its possible I think we should strive to not have this mix in our primary diagram.\r\n\r\nWe could conform to the supply chain specific terminology through the following changes.\r\n\r\n- `Issuer` -> `Producer`\r\n- `Verifier` -> `Auditor`\r\n- `Relying Party` -> `Consumer`\r\n\r\nAlternatively we could conform to the security terminology:\r\n\r\n- `Producers` -> `Claims Providers`\r\n- `Integrators` -> `Relying Party`\r\n- `Distributors` -> `Relying Party`\r\n\r\n",
+          "createdAt": "2024-01-13T15:06:15Z",
+          "updatedAt": "2024-01-13T15:06:15Z"
         }
       ],
       "reviews": [
