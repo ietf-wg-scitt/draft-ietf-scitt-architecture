@@ -421,6 +421,82 @@ For interoperability, Registration Policy decisions should be based on interpret
 
 Each implementation of a Transparency Service MAY support additional metadata, specific to its implementation through additional ["Reserved for Private Use"](https://www.iana.org/assignments/cwt/cwt.xhtml#claims-registry) keys within the `CWT_Claims` header.
 
+### Signing Statements with X.509
+
+Signing a Statement with X.509 would involve the following workflow:
+
+1. An Issuer makes Statements about an Artifact
+1. A Statement is any payload, including an SBOM, Attestation, ...
+1. A Statement has a payload type (spdx, json, yaml)
+1. A Statement is signed by the Issuer, using the statement as the payload, or hash of the statement as the payload
+1. The Statement (or hash) is signed using an Issuers Private Key
+1. A CWT_Claims collection is constructed using the Issuer and Subject which is an identifier for a collection of statements made about an Artifact
+1. A Protected Header is constructed, using the Algorithm and Key ID, CWT_Claims and the Payload Type of the statement
+1. A COSE_Sign1 Envelope is constructed, representing the Signed Statement
+1. The Signed Statement is registered on the Transparency Service
+
+~~~aasvg
+                 .----------.           .--------.
+                |  Artifact  +----.    |  Issuer  |
+                 '----+-----'      |    `---+----'
+                      v            |     .-' '------------------------------.
+                 .----+---------.  |    |                                    |
+Issuer      --> |   Statement    | |    |                                    |
+                |  Payload Type  +-)----)---------------------------------.  |
+                 '-+---------+--'  |    |                                  | |
+                   |         |     |    |                                  | |
+               +---+---+     |     |    |                                  | |
+               | Hash  | or  |     |    |                                  | |
+               +---+---+     |     |    |                                  | |
+                   |         |     |    |                                  | |
+                    '--. .--'      |    |                                  | |
+           .------------+          |    |                                  | |
+          |          +--+---+      |    |                                  | |
+Sign      |          | Sign |      |    |                                  | |
+          |          +-+--+-+      |    |                                  | |
+          |  .---------'  |        |    |                                  | |
+          | |              '----.  |    |     .--------------.             | |
+          | |                    | |    |    |   CWT_Claims   |            | |
+          | |                    | |     '-->+ Issuer         +---------.  | |
+          | |                    |  '------->+ Subject        |          | | |
+          | |                    |            '--+-----------'           | | |
+          | |                    |                                       | | |
+          | |                     '----.      .--------------------.     | | |
+          | |                           |    |   Protected Header   |    | | |
+          | |     .------------------.  |'-->| Algorithm identifier |    | | |
+          | |    |  Signed Statement  |  '-->| Key ID               |    | | |
+          | |    |    (COSE_Sign1)    |      | CWT_Claims           |<--'  | |
+          | |    | Protected Header   +<--.  | Payload Type         |<----'  |
+          | |    | Unprotected Header |    |  '--+-----------------'         |
+          |  `-->+ Signature          |     '---'                            |
+           '---->+ Payload            |                         .-----------'
+                  '----------+-------'                         |
+                             |               +----------+---+  |
+                          .-' '------------->+ Transparency |  |
+                         |   .-------.       |              |  |
+Transparency -->         |  | Receipt +<-----+   Service    |  |
+     Service             |   '---+---'       +------------+-+  |
+                          '-. .-'                         |    |
+                             |                            |    |
+                             v                            |    |
+                       .-----+-----.                      |    |
+                      | Transparent |                     |    |
+                      |  Statement  |                     |    |
+                       '-----+-----'                      |    |
+                             |                            |    |
+                             |'-------.     .-------------)---'
+                             |         |   |              |
+                             |         v   v              |
+                             |    .----+---+-----------.  |
+Verifier     -->             |   / Verify Transparent /   |
+                             |  /      Statement     /    |
+                             | '--------------------'     |
+                             v                            v
+                    .--------+---------.      .-----------+-----.
+Auditor      -->   / Collect Receipts /      /   Replay Log    /
+                  '------------------'      '-----------------'
+~~~
+
 ## Transparency Service
 
 The role of Transparency Service can be decomposed into several major functions.
