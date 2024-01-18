@@ -132,6 +132,8 @@ informative:
 
   I-D.draft-ietf-core-href: CURIs
 
+  KEY-MANAGEMENT: DOI.10.6028/NIST.SP.800-57pt2r1
+
 --- abstract
 
 Traceability of physical and digital Artifacts in supply chains is a long-standing, but increasingly serious security concern.
@@ -372,7 +374,7 @@ Transparency Services MAY support many other identifier formats for identifying 
 Issuers SHOULD use consistent identifiers for all their Statements about Artifacts to simplify authorization by Verifiers and auditing.
 If an Issuer uses multiple identifiers across their Statements, they MUST ensure that Statements signed under each identifier are consistent.
 
-Issuers MAY rotate verification keys at any time and SHOULD rotate verification keys at a consistent cryptoperiod (see .
+Issuers MAY rotate verification keys at any time and SHOULD rotate verification keys at a consistent cryptoperiod (see {{KEY-MANAGEMENT}}).
 Issuers MAY migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting signed statements that match its policies.
 
 The Issuer's identifier is required and appears in the `1 iss` claim of the `15 CWT_Claims` protected header of the Signed Statements' Envelope.
