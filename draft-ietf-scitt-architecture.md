@@ -381,7 +381,7 @@ The version of the key used to sign the Signed Statement MAY be included via the
 
 An Issuer identifier is required to be included in the COSE envelope. The protected header of a Signed Statement MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}. The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1, see {{IANA.cwt}}) where the value MUST represent the Issuer identifier.
 
-An Subject identifier is also required to be included in the COSE envelope. The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Subject Clain` (Claim label 2, see {{IANA.cwt}}) where the value MUST represent the Subject identifier.
+An Subject identifier is also required to be included in the COSE envelope. The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Subject Claim` (Claim label 2, see {{IANA.cwt}}) where the value MUST represent the Subject identifier.
 
 Figure {{fig-signed-statement}} illustrated a normative CDDL definition for the composition of the protected header in COSE envelope of SCITT Signed Statements.
 
