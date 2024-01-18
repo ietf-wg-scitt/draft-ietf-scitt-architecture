@@ -76,6 +76,7 @@ normative:
   COSWID: RFC9393
 
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
+  IANA.cwt:
   IANA.cose:
   IANA.media-types:
   IANA.named-information:
@@ -378,9 +379,11 @@ Issuers MAY rotate verification keys at any time and SHOULD rotate verification 
 Issuers MAY migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting Signed Statements that complies with its active Registration Policies.
 The version of the key used to sign the Signed Statement MAY be included via the `kid` COSE header parameter in the protected header. Key discovery protocols are out-of-scope of this document.
 
-An Issuer identifier is required to be included in the COSE envelope. The protected header of a Signed Statement MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}. The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) where the value MUST represent the Issuer identifier.
+An Issuer identifier is required to be included in the COSE envelope. The protected header of a Signed Statement MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}. The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1, see {{IANA.cwt}}) where the value MUST represent the Issuer identifier.
 
-An Subject identifier is also required to be included in the COSE envelope. The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Subject Clain` (Claim label 2) where the value MUST represent the Subject identifier.
+An Subject identifier is also required to be included in the COSE envelope. The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Subject Clain` (Claim label 2, see {{IANA.cwt}}) where the value MUST represent the Subject identifier.
+
+Figure {{fig-signed-statement}} illustrated a normative CDDL definition for the composition of the protected header in COSE envelope of SCITT Signed Statements.
 
 ~~~ cddl
 CWT_Claims = {
@@ -396,6 +399,7 @@ Protected_Header = {
   3   => tstr            ; payload type
 }
 ~~~
+{: #fig-signed-statement title="CDDL definition for SCITT Signed Statements"}
 
 ### Support for Multiple Artifacts
 
