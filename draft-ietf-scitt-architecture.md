@@ -213,7 +213,9 @@ Equivocation:
 
 Feed:
 
-: see Subject
+: A logical collection of Statements about the same Artifact.
+For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact.
+Issuers use `CWT_Claims:sub` (Subject)  to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
 
 Issuer:
 
@@ -257,10 +259,8 @@ The Statement is considered opaque to Transparency Service, and MAY be encrypted
 
 Subject:
 
-: a logical collection of Statements about the same Artifact.
-For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact.
-Issuers use Subject to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
-In SCITT, Subject is a property of the dedicated, protected header attribute `15: CWT_Claims` within the protected header of the COSE envelope.
+: See Feed as a logical collection of Statements about the same Artifact.
+Subject is a property of the dedicated, protected header attribute `15: CWT_Claims` within the protected header of the COSE envelope, to correlate the Statements.
 
 Transparency Service:
 
