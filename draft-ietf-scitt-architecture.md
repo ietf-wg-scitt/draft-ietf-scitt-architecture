@@ -428,7 +428,7 @@ Signing a Statement with an X.509 certificate includes the following steps:
 1. An Issuer makes a Statements about an Artifact
 1. The Issuer will sign the Statement, capturing relevant properties in the protected header (7) and envelope (8)
 1. A Statement is a payload about the Artifact, including a hash of the Artifact, an SBOM or other type of Attestation about the Artifact
-1. Statements are signed and placed in the `payload` of CoseSign1 envelope.  
+1. Statements are signed and placed in the `payload` of CoseSign1 envelope.
    The statement content may be stored outside of SCITT for privacy or size constraints, where a hash of the file is used to represent the Statement content.
 1. The Statement hash or Statement content is signed by the Issuer
 1. A CWT_Claims object is constructed, setting the `iss` to the Issuer and the `sub` as an identifier for the Artifact
