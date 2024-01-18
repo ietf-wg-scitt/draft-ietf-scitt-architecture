@@ -369,24 +369,24 @@ This section describes at a high level, the three main roles and associated proc
 
 Before an Issuer is able to produce Signed Statements, it must first create an identifier and obtain an identity document that is acceptable to the Transparency Service.
 Transparency Services MUST support the capability to associate an X.509v3 certificate with a Signed Statement using a hash (thumbprint) of the certificate as specified in {{Section 2 of RFC9360}} by supporting the `x5t` COSE header parameter. The `x5t` COSE header parameter MUST be included in the protected header of a Signed Statement's COSE envelope. The mechanisms how Transparency Services obtain corresponding X.509v3 certificates, e.g., as part of enforcing Registration Policy, is out-of-scope of this document. 
-Transparency Services MAY support many other identifier formats for identifying many other identity document formats. Alternative identifiers for identity documents MUST also be included protected header of the COSE envelope. Only one type of identity document identifier MUST be included in a Signed Statement's COSE envelope.
+Transparency Services MAY support many other identifier formats for identifying many other identity document formats. Alternative identifiers for identity documents MUST also be included in the protected header of the COSE envelope. Only one type of identity document identifier MUST be included in a Signed Statement's COSE envelope.
 
 Issuers SHOULD use consistent identifiers for all their Statements about Artifacts to simplify authorization by Verifiers and auditing.
 If an Issuer uses multiple identifiers across their Statements, they MUST ensure that Statements signed under each identifier are consistent.
 
-Issuers MAY rotate verification keys at any time and SHOULD rotate verification keys at a consistent cryptoperiod (see {{KEY-MANAGEMENT}}).
-Issuers MAY migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting signed statements that match its policies.
+Issuers MAY rotate verification keys at any time and SHOULD rotate verification keys at an appropriate and consistent cryptoperiod (see {{KEY-MANAGEMENT}}).
+Issuers MAY migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting Signed Statements that complies with its active Registration Policies.
+The version of the key used to sign the Signed Statement MAY be included via the `kid` COSE header parameter in the protected header. Key discovery protocols are out-of-scope of this document.
 
-The Issuer's identifier is required and appears in the `1 iss` claim of the `15 CWT_Claims` protected header of the Signed Statements' Envelope.
-The version of the key used to sign the Signed Statement is written in the `4 kid` protected header.
+An Issuer identifier is required to be included in the COSE envelope. The protected header of a Signed Statement MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}. The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) where the value MUST represent the Issuer identifier.
 
-Key discovery protocols are out of scope for this document.
+An Subject identifier is also required to be included in the COSE envelope. The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Subject Clain` (Claim label 2) where the value MUST represent the Subject identifier.
 
 ~~~ cddl
 CWT_Claims = {
-  1 => tstr; iss, the issuer making statements,
-  2 => tstr; sub, the subject of the statements,
-  * tstr => any
+  1 => tstr              ; iss, the issuer making statements,
+  2 => tstr              ; sub, the subject of the statements,
+  * int => any
 }
 
 Protected_Header = {
