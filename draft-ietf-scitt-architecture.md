@@ -366,7 +366,7 @@ This section describes at a high level, the three main roles and associated proc
 
 ## Signed Statement Issuance and Registration
 
-### Structure and Content of Signed Statements 
+### Structure and Content of Signed Statements
 
 Before an Issuer is able to produce Signed Statements, it must first create an identifier and obtain an identity document that is acceptable to the Transparency Service.
 Transparency Services MUST support the capability to associate an X.509v3 certificate with a Signed Statement using a hash (thumbprint) of the certificate as specified in {{Section 2 of RFC9360}} by supporting the `x5t` COSE header parameter. The `x5t` COSE header parameter MUST be included in the protected header of a Signed Statement's COSE envelope. The mechanisms how Transparency Services obtain corresponding X.509v3 certificates, e.g., as part of enforcing Registration Policy, is out-of-scope of this document.
