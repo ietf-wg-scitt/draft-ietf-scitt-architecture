@@ -372,8 +372,6 @@ Before an Issuer is able to produce Signed Statements, it must first create an i
 Transparency Services MUST support the capability to associate an X.509v3 certificate with a Signed Statement using a hash (thumbprint) of the certificate as specified in {{Section 2 of RFC9360}} by supporting the `x5t` COSE header parameter. The `x5t` COSE header parameter MUST be included in the protected header of a Signed Statement's COSE envelope. The mechanisms how Transparency Services obtain corresponding X.509v3 certificates, e.g., as part of enforcing Registration Policy, is out-of-scope of this document.
 Transparency Services MAY support many other identifier formats for identifying many other identity document formats. Alternative identifiers for identity documents MUST also be included in the protected header of the COSE envelope. Only one type of identity document identifier MUST be included in a Signed Statement's COSE envelope.
 
-Issuers SHOULD use consistent identifiers for all their Statements about Artifacts to simplify authorization by Verifiers and auditing.
-If an Issuer uses multiple identifiers across their Statements, they MUST ensure that Statements signed under each identifier are consistent.
 
 Issuers MAY rotate verification keys at any time and SHOULD rotate verification keys at an appropriate and consistent cryptoperiod (see {{KEY-MANAGEMENT}}).
 Issuers MAY migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting Signed Statements that complies with its active Registration Policies.
