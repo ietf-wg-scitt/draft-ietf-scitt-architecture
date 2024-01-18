@@ -492,13 +492,17 @@ Table of Contents
    The protected header of a Signed Statement MUST include the CWT
    Claims header parameter as specified in Section 2 of
    [CWT_CLAIMS_COSE].  The CBOR map that constitutes the corresponding
-   CWT Claims value MUST include the Issuer Claim (Claim label 1) where
-   the value MUST represent the Issuer identifier.
+   CWT Claims value MUST include the Issuer Claim (Claim label 1, see
+   [IANA.cwt]) where the value MUST represent the Issuer identifier.
 
    An Subject identifier is also required to be included in the COSE
    envelope.  The CBOR map that constitutes the corresponding CWT Claims
-   value MUST include the Subject Clain (Claim label 2) where the value
-   MUST represent the Subject identifier.
+   value MUST include the Subject Clain (Claim label 2, see [IANA.cwt])
+   where the value MUST represent the Subject identifier.
+
+   Figure Figure 1 illustrated a normative CDDL definition for the
+   composition of the protected header in COSE envelope of SCITT Signed
+   Statements.
 
    CWT_Claims = {
      1 => tstr              ; iss, the issuer making statements,
@@ -512,6 +516,8 @@ Table of Contents
      15  => CWT_Claims      ; CBOR Web Token Claims,
      3   => tstr            ; payload type
    }
+
+           Figure 1: CDDL definition for SCITT Signed Statements
 
 5.1.2.  Support for Multiple Artifacts
 
@@ -1601,6 +1607,9 @@ Table of Contents
               IANA, "CBOR Object Signing and Encryption (COSE)",
               <http://www.iana.org/assignments/cose>.
 
+   [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
+              <http://www.iana.org/assignments/cwt>.
+
    [IANA.media-types]
               IANA, "Media Types",
               <http://www.iana.org/assignments/media-types>.
@@ -1879,20 +1888,20 @@ A.4.1.  Statement URN
 
    urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                      Figure 1: Example Statement URN
+                      Figure 2: Example Statement URN
 
 A.4.2.  Statement URL
 
   https://transparency.example/api/identifiers\
   /urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                     Figure 2: Example Statement URL
+                     Figure 3: Example Statement URL
 
 A.4.3.  Statement Data URL
 
    data:application/json;base64,SGVsb...xkIQ==
 
-                    Figure 3: Example Statement Data URL
+                    Figure 4: Example Statement Data URL
 
 A.5.  Signed Statements
 
@@ -1901,7 +1910,7 @@ A.5.1.  Signed Statement URN
    urn:ietf:params:scitt:\
    signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                   Figure 4: Example Signed Statement URN
+                   Figure 5: Example Signed Statement URN
 
 A.5.2.  Signed Statement URL
 
@@ -1909,13 +1918,13 @@ A.5.2.  Signed Statement URL
    /urn:ietf:params:scitt:\
    signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                   Figure 5: Example Signed Statement URL
+                   Figure 6: Example Signed Statement URL
 
 A.5.3.  Signed Statement Data URL
 
    data:application/cose;base64,SGVsb...xkIQ==
 
-                Figure 6: Example Signed Statement Data URL
+                Figure 7: Example Signed Statement Data URL
 
 A.6.  Receipts
 
@@ -1923,20 +1932,20 @@ A.6.1.  Receipt URN
 
    urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                       Figure 7: Example Receipt URN
+                       Figure 8: Example Receipt URN
 
 A.6.2.  Receipt URL
 
    https://transparency.example/api/identifiers\
    /urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                       Figure 8: Example Receipt URL
+                       Figure 9: Example Receipt URL
 
 A.6.3.  Receipt Data URL
 
    data:application/cose;base64,SGVsb...xkIQ==
 
-                     Figure 9: Example Receipt Data URL
+                    Figure 10: Example Receipt Data URL
 
 A.7.  Transparent Statements
 
@@ -1945,7 +1954,7 @@ A.7.1.  Transparent Statement URN
    urn:ietf:params:scitt:\
    transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                Figure 10: Example Transparent Statement URN
+                Figure 11: Example Transparent Statement URN
 
 A.7.2.  Transparent Statement URL
 
@@ -1953,13 +1962,13 @@ A.7.2.  Transparent Statement URL
    /urn:ietf:params:scitt:\
    transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                Figure 11: Example Transparent Statement URL
+                Figure 12: Example Transparent Statement URL
 
 A.7.3.  Transparent Statement Data URL
 
    data:application/cose;base64,SGVsb...xkIQ==
 
-             Figure 12: Example Transparent Statement Data URL
+             Figure 13: Example Transparent Statement Data URL
 
 Contributors
 
