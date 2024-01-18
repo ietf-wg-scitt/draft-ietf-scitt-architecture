@@ -675,14 +675,14 @@ When a Signed Statement is registered by a Transparency Service a Receipt become
 When a Receipt is included in a Signed Statement a Transparent Statement is produced.
 
 Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}).
-Receipts protected headers have additional mandatory fields:
+Receipt protected headers have additional mandatory fields:
 
-- **scitt-version**: Receipt version number MUST be set to `0` for the current implementation of this document;
-- **verifiable-data-structure**: the verifiable data structure used in the inclusion proof of the receipt;
+- **scitt-version**: Receipt version number MUST be set to `0` for the current implementation of this document
+- **verifiable-data-structure**: the verifiable data structure used in the inclusion proof of the receipt
 - **registration-info**: The Transparency Service MAY include the Registration policy info header to indicate to
- Verifiers what policies have been applied at the registration of this Statement;
-- **kccs**: A CWT Claim Set representing the issuance of the receipt. Only a subset of all CWT claims can be used in a SCITT receipt.
-- **crit**: The `crit` header (id: 2) MUST be included and the following headers MUST be marked critical: (`scitt-version`, `verifiable-data-structure`, `kccs`).
+ Verifiers what policies have been applied at the registration of this Statement
+- **kccs**: A CWT Claim Set representing the issuance of the receipt. Only a subset of all CWT claims can be used in a SCITT receipt
+- **crit**: The `crit` header (id: 2) MUST be included and the following headers MUST be marked critical: (`scitt-version`, `verifiable-data-structure`, `kccs`)
 
 - The SCITT version header MUST be included and its value match the `version` field of the Receipt structure
 - The DID of Issuer header (in Signed Statements) MUST be included and its value match the `ts_identifier` field of the Receipt structure
@@ -1191,8 +1191,7 @@ urn:ietf:params:scitt:\
 
 Note that because this identifier is computed over the unprotected header of the Signed Statement, any changes to the unprotected header, such as changing the order of the unprotected header map key value pairs, adding additional receipts, or adding additional proofs to a receipt, will change the identifier of a transparent statement.
 
-Note that because this identifier is computed over the signatures of the signed statement and signatures in each receipt, any cannonicalization of the signatures after the fact will produce a distinct identifier.
-
+Note that because this identifier is computed over the signatures of the signed statement and signatures in each receipt, any canonicalization of the signatures after the fact will produce a distinct identifier.
 
 ## Statements
 
