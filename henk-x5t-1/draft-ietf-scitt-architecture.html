@@ -1778,16 +1778,17 @@ The version of the key used to sign the Signed Statement <span class="bcp14">MAY
             <div class="lang-cddl sourcecode" id="section-5.1.1-7.1">
 <pre>
 CWT_Claims = {
-  1 =&gt; tstr              ; iss, the issuer making statements,
-  2 =&gt; tstr              ; sub, the subject of the statements,
+    1 =&gt; tstr            ; iss, the issuer making statements
+    2 =&gt; tstr            ; sub, the subject of the statements
   * int =&gt; any
 }
 
 Protected_Header = {
-  1   =&gt; int             ; algorithm identifier,
-  4   =&gt; bstr            ; Key ID (kid),
-  15  =&gt; CWT_Claims      ; CBOR Web Token Claims,
-  3   =&gt; tstr            ; payload type
+    1 =&gt; int             ; algorithm identifier
+    3 =&gt; tstr            ; payload type
+  ? 4 =&gt; bstr            ; Key ID (kid)
+   15 =&gt; CWT_Claims      ; CBOR Web Token Claims
+   34 =&gt; COSE_CertHash   ; x5t, hash of an X.509 certificate
 }
 </pre>
 </div>
