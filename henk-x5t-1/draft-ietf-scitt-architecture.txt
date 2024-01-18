@@ -472,15 +472,14 @@ Table of Contents
    of identity document identifier MUST be included in a Signed
    Statement's COSE envelope.
 
-   Issuers MAY rotate verification keys at any time and SHOULD rotate
-   verification keys at an appropriate and consistent cryptoperiod (see
-   [KEY-MANAGEMENT]).  Issuers MAY migrate to new signing and
-   verification algorithms, but the Transparency Service remains
-   responsible for admitting Signed Statements that complies with its
-   active Registration Policies.  The version of the key used to sign
-   the Signed Statement MAY be included via the kid COSE header
-   parameter in the protected header.  Key discovery protocols are out-
-   of-scope of this document.
+   As Issuers MUST rotate verification keys for signature checking in
+   well-defined cryptoperiods (see [KEY-MANAGEMENT]).  Issuers MAY
+   migrate to new signing and verification algorithms, but the
+   Transparency Service remains responsible for admitting Signed
+   Statements that complies with its active Registration Policies.  The
+   version of the key used to sign the Signed Statement MAY be included
+   via the kid COSE header parameter in the protected header.  Key
+   discovery protocols are out-of-scope of this document.
 
    An Issuer identifier and a Subject identifier are required to be
    included in the COSE envelope.  Consequently, the protected header of
