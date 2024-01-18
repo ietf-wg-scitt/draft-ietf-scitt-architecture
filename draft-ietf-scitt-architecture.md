@@ -365,13 +365,14 @@ This section describes at a high level, the three main roles and associated proc
 
 ### Issuer Identity
 
-Before an Issuer is able to produce Signed Statements, it must first create an identifier and obtain an identity document, that is acceptable to the Transparency Service.
-Transparency Services MAY support many different identity document formats.
+Before an Issuer is able to produce Signed Statements, it must first create an identifier and obtain an identity document that is acceptable to the Transparency Service.
+Transparency Services MUST support the capability to associate an X.509v3 certificate with a Signed Statement using a hash (thumbprint) of the certificate as specified in {{Section 2 of RFC9360}} by supporting the `x5t` COSE header parameter. The `x5t` COSE header parameter MUST be included in the protected header of a Signed Statement's COSE envelope. The mechanisms how Transparency Services obtain corresponding X.509v3 certificates, e.g., as part of enforcing Registration Policy, is out-of-scope of this document. 
+Transparency Services MAY support many other identifier formats for identifying many other identity document formats. Alternative identifiers for identity documents MUST also be included protected header of the COSE envelope. Only one type of identity document identifier MUST be included in a Signed Statement's COSE envelope.
 
-Issuers SHOULD use consistent identifiers for all their Statements about Artifacts, to simplify authorization by Verifiers and auditing.
-If an Issuer uses multiple identifiers, they MUST ensure that statements signed under each identifier are consistent.
+Issuers SHOULD use consistent identifiers for all their Statements about Artifacts to simplify authorization by Verifiers and auditing.
+If an Issuer uses multiple identifiers across their Statements, they MUST ensure that Statements signed under each identifier are consistent.
 
-Issuers MAY rotate verification keys at any time, or at a consistent cryptoperiod.
+Issuers MAY rotate verification keys at any time and SHOULD rotate verification keys at a consistent cryptoperiod (see .
 Issuers MAY migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting signed statements that match its policies.
 
 The Issuer's identifier is required and appears in the `1 iss` claim of the `15 CWT_Claims` protected header of the Signed Statements' Envelope.
