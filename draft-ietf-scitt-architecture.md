@@ -425,7 +425,7 @@ Each implementation of a Transparency Service MAY support additional metadata, s
 
 Signing a Statement with an X.509 certificate includes the following steps:
 
-1. An Issuer makes a Statements about an Artifact
+1. An Issuer makes a Statement about an Artifact
 1. The Issuer will sign the Statement, capturing relevant properties in the protected header (7) and envelope (8)
 1. A Statement is a payload about the Artifact, including a hash of the Artifact, an SBOM or other type of Attestation about the Artifact
 1. Statements are signed and placed in the `payload` of CoseSign1 envelope.
