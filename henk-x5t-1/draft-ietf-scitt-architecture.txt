@@ -472,12 +472,6 @@ Table of Contents
    of identity document identifier MUST be included in a Signed
    Statement's COSE envelope.
 
-   Issuers SHOULD use consistent identifiers for all their Statements
-   about Artifacts to simplify authorization by Verifiers and auditing.
-   If an Issuer uses multiple identifiers across their Statements, they
-   MUST ensure that Statements signed under each identifier are
-   consistent.
-
    Issuers MAY rotate verification keys at any time and SHOULD rotate
    verification keys at an appropriate and consistent cryptoperiod (see
    [KEY-MANAGEMENT]).  Issuers MAY migrate to new signing and
