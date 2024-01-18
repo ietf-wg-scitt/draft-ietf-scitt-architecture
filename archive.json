@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-16T00:36:41.766012+00:00",
+  "timestamp": "2024-01-18T00:36:33.996068+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -3366,7 +3366,7 @@
       "labels": [],
       "body": "This issue is a living description of the references that block the architecture from becoming an RFC.\r\n\r\n```mermaid\r\nflowchart \r\n    \r\nsubgraph COSE\r\n    cometre[draft-ietf-cose-merkle-tree-proofs]\r\n    hash-envelope{{draft-steele-cose-hash-envelope}}\r\nend\r\n\r\nsubgraph SCITT\r\n    architecture[draft-ietf-scitt-architecture]\r\n    scrapi{{draft-birkholz-scitt-scrapi}}\r\n    cometre-ccf{{draft-birkholz-cose-cometre-ccf-profile}}\r\nend\r\n\r\nscrapi --> architecture\r\narchitecture -->  cometre\r\narchitecture --> hash-envelope\r\ncometre-ccf --> cometre\r\n```\r\n\r\nCurrently, the `draft-ietf-scitt-architecture` is blocked by `draft-ietf-cose-merkle-tree-proofs`.\r\n\r\n`draft-steele-cose-hash-envelope` is not blocking anything because it is just a special kind of signed statement, its possible it might block `draft-birkholz-scitt-scrapi` in the future.\r\n\r\n`draft-birkholz-cose-cometre-ccf-profile` is blocked by `draft-ietf-cose-merkle-tree-proofs`\r\n\r\nI recommend helping `draft-ietf-cose-merkle-tree-proofs` close out so the architecture can be published.\r\n\r\nI would then make `draft-birkholz-scitt-scrapi` adopted by SCITT, and make it be blocked by the architecture.\r\n\r\n\r\n",
       "createdAt": "2024-01-05T17:50:36Z",
-      "updatedAt": "2024-01-08T15:41:40Z",
+      "updatedAt": "2024-01-16T15:26:02Z",
       "closedAt": null,
       "comments": [
         {
@@ -3393,9 +3393,9 @@
         {
           "author": "henkbirkholz",
           "authorAssociation": "MEMBER",
-          "body": "> If folks like I can add blockers to the architecture based on major open issues next, so we can see how \"identifiers\" and \"configuration\" are related to finishing the architecture.\r\n\r\nMy individual summary of potential content/decision blockers (in contrast to reference blockers) as far as I am aware of them. Some of them might already have consensus, but it is not reflected, I think:\r\n\r\n* Text on identity document use in SCITT. My assumption is: agnostic expositional text and at least one example how to use x.509 wrt Signed Statements and Receipts\r\n* Text on statement identification. My assumption is that we need at least abstract exopsitional text. I am not sure, if this can/will be part of the first iteration of the architecture document.\r\n* Meaning of subject tstr composition (formerly known as feed). My assumption is: we are only providing the tstr in the CDDL definition of the Receipt structure and highlight in English text that SCITT CoMETRE profiles, such as https://datatracker.ietf.org/doc/draft-birkholz-cose-cometre-ccf-profile/ to remove that burden from the architecture I-D",
+          "body": "> If folks like I can add blockers to the architecture based on major open issues next, so we can see how \"identifiers\" and \"configuration\" are related to finishing the architecture.\r\n\r\nMy individual summary of potential content/decision blockers (in contrast to reference blockers) as far as I am aware of them. Some of them might already have consensus, but it is not reflected, I think:\r\n\r\n* Text on identity document use in SCITT. My assumption is: agnostic expositional text and at least one example how to use x.509 wrt Signed Statements and Receipts\r\n* Text on statement identification. My assumption is that we need at least abstract exopsitional text. I am not sure, if this can/will be part of the first iteration of the architecture document.\r\n* Meaning of subject tstr composition (formerly known as feed). My assumption is: could only providing the tstr in the CDDL definition of the Signed Statement structure and define the semantics of the tstr out-of-scope of the first SCITT Arch. Is that feasible?",
           "createdAt": "2024-01-08T15:41:39Z",
-          "updatedAt": "2024-01-08T15:41:39Z"
+          "updatedAt": "2024-01-16T15:26:02Z"
         }
       ]
     },
@@ -3511,6 +3511,22 @@
       "body": "Looking at https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/153/, I think a that some more diverse examples later that show how multiple statements about one Artifact using the same sub Claim can have different semantics than multiple statements about one Artifact using different sub Claims - including illustrating text when one choice can be used an when the other & pros and cons.",
       "createdAt": "2024-01-10T14:57:14Z",
       "updatedAt": "2024-01-10T14:57:28Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 162,
+      "id": "I_kwDOIvmHss58YAbe",
+      "title": "Align `iss` with `x5t` guidance with OAUTH draft",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/162",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "See https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01#section-3.5",
+      "createdAt": "2024-01-17T17:41:08Z",
+      "updatedAt": "2024-01-17T17:41:09Z",
       "closedAt": null,
       "comments": []
     }
@@ -17847,7 +17863,7 @@
       "labels": [],
       "body": "This pull request:\r\n\r\n- clarifies that multiple receipts are possible\r\n- clarifies that issuers are not always artifact producers\r\n- clarifies that transparency services are not artifact repositories\r\n- clarifies that verifiers are not always relying parties\r\n- clarifies that relying parties care about artifact transparency (not just verifying transparent statements)\r\n\r\n![Screenshot 2024-01-09 at 1 06 39\u202fPM](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/8295856/38bfad0b-28ee-429b-9bb8-5db7cc22e108)\r\n",
       "createdAt": "2024-01-09T19:04:44Z",
-      "updatedAt": "2024-01-13T15:06:16Z",
+      "updatedAt": "2024-01-17T14:49:44Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "24f63ee8cfc2b99b937dd236cca3c886fd1218f9",
@@ -17893,6 +17909,13 @@
           "body": "![Screenshot 2024-01-13 at 8 58 49\u202fAM](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/8295856/42a6d9fd-90de-4a85-929e-08d606536c78)\r\n\r\n\r\nI made some adjustments to the bottom based on feedback from @henkbirkholz and others.\r\n\r\n- Removed Auditor (a special case of verifier)\r\n- Clarified that SCITT verifiers perform several actions that distinguish them from OAuth or RATS verifiers.\r\n\r\nAs a general comment, we seem to have a mix of supply chain specific roles, like `Producer`, `Integrator` and `Distributor`, `Auditor?` and security oriented roles such as `Issuer`, `Verifier` and `Relying Parties`.\r\n\r\nIf its possible I think we should strive to not have this mix in our primary diagram.\r\n\r\nWe could conform to the supply chain specific terminology through the following changes.\r\n\r\n- `Issuer` -> `Producer`\r\n- `Verifier` -> `Auditor`\r\n- `Relying Party` -> `Consumer`\r\n\r\nAlternatively we could conform to the security terminology:\r\n\r\n- `Producers` -> `Claims Providers`\r\n- `Integrators` -> `Relying Party`\r\n- `Distributors` -> `Relying Party`\r\n\r\n",
           "createdAt": "2024-01-13T15:06:15Z",
           "updatedAt": "2024-01-13T15:06:15Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "If we are going to possibly merge #161 in the future it seems good to merge this now or pull in changes before that is pulled in since that diagram appears to be based on significant changes from that.",
+          "createdAt": "2024-01-17T14:49:43Z",
+          "updatedAt": "2024-01-17T14:49:43Z"
         }
       ],
       "reviews": [
@@ -18044,6 +18067,75 @@
           ]
         }
       ]
+    },
+    {
+      "number": 161,
+      "id": "PR_kwDOIvmHss5kQxIY",
+      "title": "X509 Signing Flow",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/161",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "An example workflow for signing with X.509\r\n\r\nNote: this is a draft for discussion and pending completion. \r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/104033ae-7559-4a54-8fc9-5080a56a361e)\r\n",
+      "createdAt": "2024-01-17T01:16:14Z",
+      "updatedAt": "2024-01-17T20:42:53Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "e85d13527ac8ff78a29d9a46cb4b609cff286692",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "x509-example",
+      "headRefOid": "069341adab736c581aeceef244d2d489800ae5d7",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "How does hash or sign for statement payload type change the sign action? It is always the same action, correct?",
+          "createdAt": "2024-01-17T13:41:17Z",
+          "updatedAt": "2024-01-17T13:41:17Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> How does hash or sign for statement payload type change the sign action? It is always the same action, correct?\r\n\r\nGreat question, and I need to elaborate on the text. It's not [Hash] or [Sign], rather what is sent to the signing process.\r\nThe payload to be signed is either the entire file contents (json, yaml, XML, pdf, ...) or a hash of the contents. \r\nSome payloads will themselves be hashes, such as an OCI Image or OCI Index manifest, and those could also be the content. \r\nWhatever is sent to the signing process is also what becomes the payload in the COSE_Sign1 envelope. \r\nThe circled part of the flow may not properly represent that\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/c00891a2-2e52-4819-b145-523d69e8bda0)\r\n\r\n",
+          "createdAt": "2024-01-17T15:29:28Z",
+          "updatedAt": "2024-01-17T15:29:28Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think the artifact goes to the hash, which then goes to the \"envelope\".\r\n\r\nIts weird to see issuer, repeated.",
+          "createdAt": "2024-01-17T15:55:42Z",
+          "updatedAt": "2024-01-17T15:57:57Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I think the artifact goes to the hash, which then goes to the \"envelope\".\r\n\r\nThis reflects the concept that an entity (issuer) makes a statement (sbom, quality, compliance) about an artifact. The binder is the `subject`. The verifier can query the feed, based on the subject of the artifact.\r\n\r\n> Its weird to see issuer, repeated.\r\n\r\nWhere is issuer repeated? Are you referring to it being at the top, and then a property on the CWT_Claims? ",
+          "createdAt": "2024-01-17T16:31:45Z",
+          "updatedAt": "2024-01-17T16:32:01Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I don't know if it would help others, but, for me, it would really help if we take a tangible example of a BOM or similar artifact and talk about it in a more detailed diagram/explanation outside the scope of the PR to understand how this diagram helps.",
+          "createdAt": "2024-01-17T16:46:59Z",
+          "updatedAt": "2024-01-17T16:46:59Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Here's the [Supply Chain Scenario from scitt.io](https://scitt.io/supply-chain) highlights multiple statements for a single artifact. \r\nIt also discusses promoting a series of statements across different transparency services. The software vendor(s) and companies that consume vendor software into their private environment. \r\n\r\n",
+          "createdAt": "2024-01-17T20:42:51Z",
+          "updatedAt": "2024-01-17T20:42:51Z"
+        }
+      ],
+      "reviews": []
     }
   ]
 }
