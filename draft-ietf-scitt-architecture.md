@@ -387,16 +387,17 @@ Figure {{fig-signed-statement}} illustrated a normative CDDL definition for the 
 
 ~~~ cddl
 CWT_Claims = {
-  1 => tstr              ; iss, the issuer making statements,
-  2 => tstr              ; sub, the subject of the statements,
+    1 => tstr            ; iss, the issuer making statements
+    2 => tstr            ; sub, the subject of the statements
   * int => any
 }
 
 Protected_Header = {
-  1   => int             ; algorithm identifier,
-  4   => bstr            ; Key ID (kid),
-  15  => CWT_Claims      ; CBOR Web Token Claims,
-  3   => tstr            ; payload type
+    1 => int             ; algorithm identifier
+    3 => tstr            ; payload type
+  ? 4 => bstr            ; Key ID (kid)
+   15 => CWT_Claims      ; CBOR Web Token Claims
+   34 => COSE_CertHash   ; x5t, hash of an X.509 certificate
 }
 ~~~
 {: #fig-signed-statement title="CDDL definition for SCITT Signed Statements"}
