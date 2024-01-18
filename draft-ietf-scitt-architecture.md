@@ -379,9 +379,7 @@ Issuers MAY rotate verification keys at any time and SHOULD rotate verification 
 Issuers MAY migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting Signed Statements that complies with its active Registration Policies.
 The version of the key used to sign the Signed Statement MAY be included via the `kid` COSE header parameter in the protected header. Key discovery protocols are out-of-scope of this document.
 
-An Issuer identifier is required to be included in the COSE envelope. The protected header of a Signed Statement MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}. The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1, see {{IANA.cwt}}) where the value MUST represent the Issuer identifier.
-
-An Subject identifier is also required to be included in the COSE envelope. The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Subject Claim` (Claim label 2, see {{IANA.cwt}}) where the value MUST represent the Subject identifier.
+An Issuer identifier and a Subject identifier are required to be included in the COSE envelope. Consequently, the protected header of a Signed Statement MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}. The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `Subject Claim` (Claim label 2) {{IANA.cwt}}.
 
 Figure {{fig-signed-statement}} illustrated a normative CDDL definition for the composition of the protected header in COSE envelope of SCITT Signed Statements.
 
