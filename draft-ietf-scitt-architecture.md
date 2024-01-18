@@ -423,47 +423,53 @@ Each implementation of a Transparency Service MAY support additional metadata, s
 
 ### Signing Statements with X.509
 
-Signing a Statement with X.509 would involve the following workflow:
+Signing a Statement with an X.509 certificate includes the following steps:
 
-1. An Issuer makes Statements about an Artifact
-1. A Statement is any payload, including an SBOM, Attestation, ...
-1. A Statement has a payload type (spdx, json, yaml)
-1. A Statement is signed by the Issuer, using the statement as the payload, or hash of the statement as the payload
-1. The Statement (or hash) is signed using an Issuers Private Key
-1. A CWT_Claims collection is constructed using the Issuer and Subject which is an identifier for a collection of statements made about an Artifact
-1. A Protected Header is constructed, using the Algorithm and Key ID, CWT_Claims and the Payload Type of the statement
-1. A COSE_Sign1 Envelope is constructed, representing the Signed Statement
-1. The Signed Statement is registered on the Transparency Service
+1. An Issuer makes a Statements about an Artifact
+1. The Issuer will sign the Statement, capturing relevant properties in the protected header (7) and envelope (8)
+1. A Statement is a payload about the Artifact, including a hash of the Artifact, an SBOM or other type of Attestation about the Artifact
+1. Statements are signed and placed in the `payload` of CoseSign1 envelope.  
+   The statement content may be stored outside of SCITT for privacy or size constraints, where a hash of the file is used to represent the Statement content.
+1. The Statement hash or Statement content is signed by the Issuer
+1. A CWT_Claims object is constructed, setting the `iss` to the Issuer and the `sub` as an identifier for the Artifact
+1. A Protected Header is constructed, capturing the Algorithm and Key ID, used to sign the Statement
+1. A COSE_Sign1 envelope is constructed aggregating the Protected Header, the CWT_Claims, Signature from the signing process, and the matching payload that was signed (hash or the content)
+1. The Signed Statement is submitted to the Transparency Service where the Registration Policy evaluates the Signed Statement
+1. Upon successful registration, a Receipt is returned as a property in the Unprotected Header of the Signed Statement, which is now a Transparent Statement
+1. TODO- elaborate on Transparent Statement
+1. TODO
+1. TODO
+1. TODO
 
 ~~~aasvg
-                 .----------.           .--------.
+               1 .----------.         2 .--------.
                 |  Artifact  +----.    |  Issuer  |
                  '----+-----'      |    `---+----'
                       v            |     .-' '------------------------------.
-                 .----+---------.  |    |                                    |
+               3 .----+---------.  |    |                                    |
 Issuer      --> |   Statement    +-)----)---------------------------------.  |
-                 '-+---------+--'  |    |                                  | |
-                   |         |     |    |                                  | |
-               +---+---+     |     |    |                                  | |
-               | Hash  | or  |     |    |                                  | |
-               +---+---+     |     |    |                                  | |
-                   |         |     |    |                                  | |
-                    '--. .--'      |    |                                  | |
+                 '-+--------+---'  |    |                                  | |
+               .--'         |      |    |                                  | |
+          +---+---+ 4   .---+---.  |    |                                  | |
+          | Hash  | or | Content | |    |                                  | |
+          +---+---+     '----+--'  |    |                                  | |
+              |              |     |    |                                  | |
+               '-------. .--'      |    |                                  | |
                         +          |    |                                  | |
            .-----------`|          |    |                                  | |
-          |          +--+---+      |    |                                  | |
+          |        5 +--+---+      |    |                                  | |
           |          | Sign |      |    |                                  | |
           |          +-+--+-+      |    |                                  | |
           |  .--------'   |        |    |                                  | |
-          | |              '----.  |    |     .--------------.             | |
+          | |              '----.  |    |  6  .--------------.             | |
           | |                    | |    |    |   CWT_Claims   |            | |
           | |                    | |     '-->+ Issuer         +---------.  | |
           | |                    |  '------->+ Subject        |          | | |
           | |                    |            '--+-----------'           | | |
           | |                    |                                       | | |
-          | |                     '----.      .--------------------.     | | |
+          | |                     '----.   7  .--------------------.     | | |
           | |                           |    |   Protected Header   |    | | |
-          | |     .------------------.  |'-->| Algorithm identifier |    | | |
+          | |  8  .------------------.  |'-->| Algorithm identifier |    | | |
           | |    |  Signed Statement  |  '-->| Key ID               |    | | |
           | |    |    (COSE_Sign1)    |      | CWT_Claims           |<--'  | |
           | |    | Protected Header   +<--.  | Payload Type         |<----'  |
@@ -471,13 +477,13 @@ Issuer      --> |   Statement    +-)----)---------------------------------.  |
           |  `-->+ Signature          |     '---'                            |
            '---->+ Payload            |                                      |
                   '----------+-------'                                       |
-                             |               +----------+---+                |
+                             |             9 +----------+---+                |
                               '------------->+ Transparency |                |
-                             .-------.       |              |                |
+                         10  .-------.       |              |                |
 Transparency -->            | Receipt +<-----+   Service    |                |
      Service                 '---+---'       +------------+-+                |
                                  |                        |                  |
-                                .+----------.             |                  |
+                             11 .+----------.             |                  |
                                | Transparent |            |                  |
                                |  Statement  |            |                  |
                                 '+----------'             |                  |
@@ -487,12 +493,12 @@ Transparency -->            | Receipt +<-----+   Service    |                |
                                  |'---.     .-------------)-----------------'
                               .-'      |   |              |
                              |         v   v              |
-                             |    .----+---+-----------.  |
+                             | 12 .----+---+-----------.  |
 Verifier     -->             |   / Verify Transparent /   |
                              |  /      Statement     /    |
                              | '--------------------'     |
                              v                            v
-                    .--------+---------.      .-----------+-----.
+                 13 .--------+---------.   14 .-----------+-----.
 Auditor      -->   / Collect Receipts /      /   Replay Log    /
                   '------------------'      '-----------------'
 ~~~
