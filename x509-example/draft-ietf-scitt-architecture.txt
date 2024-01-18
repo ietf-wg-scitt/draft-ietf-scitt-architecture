@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 20 July 2024                                         C. Fournet
+Expires: 21 July 2024                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         17 January 2024
+                                                         18 January 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 July 2024.
+   This Internet-Draft will expire on 21 July 2024.
 
 Copyright Notice
 
@@ -562,8 +562,7 @@ Table of Contents
                  '----+-----'      |    `---+----'
                       v            |     .-' '------------------------------.
                  .----+---------.  |    |                                    |
-Issuer      --> |   Statement    | |    |                                    |
-                |  Payload Type  +-)----)---------------------------------.  |
+Issuer      --> |   Statement    +-)----)---------------------------------.  |
                  '-+---------+--'  |    |                                  | |
                    |         |     |    |                                  | |
                +---+---+     |     |    |                                  | |
@@ -571,11 +570,12 @@ Issuer      --> |   Statement    | |    |                                    |
                +---+---+     |     |    |                                  | |
                    |         |     |    |                                  | |
                     '--. .--'      |    |                                  | |
-           .------------+          |    |                                  | |
+                        +          |    |                                  | |
+           .-----------`|          |    |                                  | |
           |          +--+---+      |    |                                  | |
-Sign      |          | Sign |      |    |                                  | |
+          |          | Sign |      |    |                                  | |
           |          +-+--+-+      |    |                                  | |
-          |  .---------'  |        |    |                                  | |
+          |  .--------'   |        |    |                                  | |
           | |              '----.  |    |     .--------------.             | |
           | |                    | |    |    |   CWT_Claims   |            | |
           | |                    | |     '-->+ Issuer         +---------.  | |
@@ -590,23 +590,23 @@ Sign      |          | Sign |      |    |                                  | |
           | |    | Protected Header   +<--.  | Payload Type         |<----'  |
           | |    | Unprotected Header |    |  '--+-----------------'         |
           |  `-->+ Signature          |     '---'                            |
-           '---->+ Payload            |                         .-----------'
-                  '----------+-------'                         |
-                             |               +----------+---+  |
-                          .-' '------------->+ Transparency |  |
-                         |   .-------.       |              |  |
-Transparency -->         |  | Receipt +<-----+   Service    |  |
-     Service             |   '---+---'       +------------+-+  |
-                          '-. .-'                         |    |
-                             |                            |    |
-                             v                            |    |
-                       .-----+-----.                      |    |
-                      | Transparent |                     |    |
-                      |  Statement  |                     |    |
-                       '-----+-----'                      |    |
-                             |                            |    |
-                             |'-------.     .-------------)---'
-                             |         |   |              |
+           '---->+ Payload            |                                      |
+                  '----------+-------'                                       |
+                             |               +----------+---+                |
+                              '------------->+ Transparency |                |
+                             .-------.       |              |                |
+Transparency -->            | Receipt +<-----+   Service    |                |
+     Service                 '---+---'       +------------+-+                |
+                                 |                        |                  |
+                                .+----------.             |                  |
+                               | Transparent |            |                  |
+                               |  Statement  |            |                  |
+                                '+----------'             |                  |
+                                 |                        |                  |
+                                 |                        |                  |
+                                 +                        |                  |
+                                 |'---.     .-------------)-----------------'
+                              .-'      |   |              |
                              |         v   v              |
                              |    .----+---+-----------.  |
 Verifier     -->             |   / Verify Transparent /   |
