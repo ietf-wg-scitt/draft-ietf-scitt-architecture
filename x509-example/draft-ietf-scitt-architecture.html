@@ -1831,52 +1831,68 @@ For interoperability, Registration Policy decisions should be based on interpret
           <h4 id="name-signing-statements-with-x50">
 <a href="#section-5.1.5" class="section-number selfRef">5.1.5. </a><a href="#name-signing-statements-with-x50" class="section-name selfRef">Signing Statements with X.509</a>
           </h4>
-<p id="section-5.1.5-1">Signing a Statement with X.509 would involve the following workflow:<a href="#section-5.1.5-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.5-1">Signing a Statement with an X.509 certificate includes the following steps:<a href="#section-5.1.5-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5.1.5-2">
 <li id="section-5.1.5-2.1">
-              <p id="section-5.1.5-2.1.1">An Issuer makes Statements about an Artifact<a href="#section-5.1.5-2.1.1" class="pilcrow">¶</a></p>
+              <p id="section-5.1.5-2.1.1">An Issuer makes a Statements about an Artifact<a href="#section-5.1.5-2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li id="section-5.1.5-2.2">
-              <p id="section-5.1.5-2.2.1">A Statement is any payload, including an SBOM, Attestation, ...<a href="#section-5.1.5-2.2.1" class="pilcrow">¶</a></p>
+              <p id="section-5.1.5-2.2.1">The Issuer will sign the Statement, capturing relevant properties in the protected header (7) and envelope (8)<a href="#section-5.1.5-2.2.1" class="pilcrow">¶</a></p>
 </li>
             <li id="section-5.1.5-2.3">
-              <p id="section-5.1.5-2.3.1">A Statement has a payload type (spdx, json, yaml)<a href="#section-5.1.5-2.3.1" class="pilcrow">¶</a></p>
+              <p id="section-5.1.5-2.3.1">A Statement is a payload about the Artifact, including a hash of the Artifact, an SBOM or other type of Attestation about the Artifact<a href="#section-5.1.5-2.3.1" class="pilcrow">¶</a></p>
 </li>
             <li id="section-5.1.5-2.4">
-              <p id="section-5.1.5-2.4.1">A Statement is signed by the Issuer, using the statement as the payload, or hash of the statement as the payload<a href="#section-5.1.5-2.4.1" class="pilcrow">¶</a></p>
+              <p id="section-5.1.5-2.4.1">Statements are signed and placed in the <code>payload</code> of CoseSign1 envelope.
+The statement content may be stored outside of SCITT for privacy or size constraints, where a hash of the file is used to represent the Statement content.<a href="#section-5.1.5-2.4.1" class="pilcrow">¶</a></p>
 </li>
             <li id="section-5.1.5-2.5">
-              <p id="section-5.1.5-2.5.1">The Statement (or hash) is signed using an Issuers Private Key<a href="#section-5.1.5-2.5.1" class="pilcrow">¶</a></p>
+              <p id="section-5.1.5-2.5.1">The Statement hash or Statement content is signed by the Issuer<a href="#section-5.1.5-2.5.1" class="pilcrow">¶</a></p>
 </li>
             <li id="section-5.1.5-2.6">
-              <p id="section-5.1.5-2.6.1">A CWT_Claims collection is constructed using the Issuer and Subject which is an identifier for a collection of statements made about an Artifact<a href="#section-5.1.5-2.6.1" class="pilcrow">¶</a></p>
+              <p id="section-5.1.5-2.6.1">A CWT_Claims object is constructed, setting the <code>iss</code> to the Issuer and the <code>sub</code> as an identifier for the Artifact<a href="#section-5.1.5-2.6.1" class="pilcrow">¶</a></p>
 </li>
             <li id="section-5.1.5-2.7">
-              <p id="section-5.1.5-2.7.1">A Protected Header is constructed, using the Algorithm and Key ID, CWT_Claims and the Payload Type of the statement<a href="#section-5.1.5-2.7.1" class="pilcrow">¶</a></p>
+              <p id="section-5.1.5-2.7.1">A Protected Header is constructed, capturing the Algorithm and Key ID, used to sign the Statement<a href="#section-5.1.5-2.7.1" class="pilcrow">¶</a></p>
 </li>
             <li id="section-5.1.5-2.8">
-              <p id="section-5.1.5-2.8.1">A COSE_Sign1 Envelope is constructed, representing the Signed Statement<a href="#section-5.1.5-2.8.1" class="pilcrow">¶</a></p>
+              <p id="section-5.1.5-2.8.1">A COSE_Sign1 envelope is constructed aggregating the Protected Header, the CWT_Claims, Signature from the signing process, and the matching payload that was signed (hash or the content)<a href="#section-5.1.5-2.8.1" class="pilcrow">¶</a></p>
 </li>
             <li id="section-5.1.5-2.9">
-              <p id="section-5.1.5-2.9.1">The Signed Statement is registered on the Transparency Service<a href="#section-5.1.5-2.9.1" class="pilcrow">¶</a></p>
+              <p id="section-5.1.5-2.9.1">The Signed Statement is submitted to the Transparency Service where the Registration Policy evaluates the Signed Statement<a href="#section-5.1.5-2.9.1" class="pilcrow">¶</a></p>
+</li>
+            <li id="section-5.1.5-2.10">
+              <p id="section-5.1.5-2.10.1">Upon successful registration, a Receipt is returned as a property in the Unprotected Header of the Signed Statement, which is now a Transparent Statement<a href="#section-5.1.5-2.10.1" class="pilcrow">¶</a></p>
+</li>
+            <li id="section-5.1.5-2.11">
+              <p id="section-5.1.5-2.11.1">TODO- elaborate on Transparent Statement<a href="#section-5.1.5-2.11.1" class="pilcrow">¶</a></p>
+</li>
+            <li id="section-5.1.5-2.12">
+              <p id="section-5.1.5-2.12.1">TODO<a href="#section-5.1.5-2.12.1" class="pilcrow">¶</a></p>
+</li>
+            <li id="section-5.1.5-2.13">
+              <p id="section-5.1.5-2.13.1">TODO<a href="#section-5.1.5-2.13.1" class="pilcrow">¶</a></p>
+</li>
+            <li id="section-5.1.5-2.14">
+              <p id="section-5.1.5-2.14.1">TODO<a href="#section-5.1.5-2.14.1" class="pilcrow">¶</a></p>
 </li>
           </ol>
 <div id="section-5.1.5-3">
             <div class="alignLeft art-svg artwork" id="section-5.1.5-3.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="976" width="632" viewBox="0 0 632 976" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 88,160 L 88,192" fill="none" stroke="black"></path>
                 <path d="M 88,272 L 88,544" fill="none" stroke="black"></path>
                 <path d="M 104,336 L 104,528" fill="none" stroke="black"></path>
-                <path d="M 128,160 L 128,192" fill="none" stroke="black"></path>
+                <path d="M 120,192 L 120,208" fill="none" stroke="black"></path>
                 <path d="M 144,480 L 144,560" fill="none" stroke="black"></path>
-                <path d="M 160,128 L 160,160" fill="none" stroke="black"></path>
-                <path d="M 160,192 L 160,208" fill="none" stroke="black"></path>
+                <path d="M 152,160 L 152,192" fill="none" stroke="black"></path>
                 <path d="M 176,272 L 176,304" fill="none" stroke="black"></path>
                 <path d="M 184,64 L 184,88" fill="none" stroke="black"></path>
-                <path d="M 192,160 L 192,192" fill="none" stroke="black"></path>
                 <path d="M 200,240 L 200,272" fill="none" stroke="black"></path>
                 <path d="M 216,304 L 216,320" fill="none" stroke="black"></path>
+                <path d="M 232,128 L 232,160" fill="none" stroke="black"></path>
                 <path d="M 232,272 L 232,304" fill="none" stroke="black"></path>
-                <path d="M 240,128 L 240,208" fill="none" stroke="black"></path>
+                <path d="M 240,192 L 240,208" fill="none" stroke="black"></path>
                 <path d="M 240,576 L 240,592" fill="none" stroke="black"></path>
                 <path d="M 240,832 L 240,920" fill="none" stroke="black"></path>
                 <path d="M 256,704 L 256,720" fill="none" stroke="black"></path>
@@ -1913,9 +1929,12 @@ For interoperability, Registration Policy decisions should be based on interpret
                 <path d="M 104,112 L 120,112" fill="none" stroke="black"></path>
                 <path d="M 272,112 L 592,112" fill="none" stroke="black"></path>
                 <path d="M 152,128 L 256,128" fill="none" stroke="black"></path>
-                <path d="M 128,160 L 192,160" fill="none" stroke="black"></path>
-                <path d="M 128,192 L 192,192" fill="none" stroke="black"></path>
-                <path d="M 176,224 L 184,224" fill="none" stroke="black"></path>
+                <path d="M 136,144 L 144,144" fill="none" stroke="black"></path>
+                <path d="M 88,160 L 152,160" fill="none" stroke="black"></path>
+                <path d="M 208,160 L 256,160" fill="none" stroke="black"></path>
+                <path d="M 88,192 L 152,192" fill="none" stroke="black"></path>
+                <path d="M 208,192 L 256,192" fill="none" stroke="black"></path>
+                <path d="M 136,224 L 184,224" fill="none" stroke="black"></path>
                 <path d="M 216,224 L 224,224" fill="none" stroke="black"></path>
                 <path d="M 104,256 L 184,256" fill="none" stroke="black"></path>
                 <path d="M 176,272 L 232,272" fill="none" stroke="black"></path>
@@ -1983,7 +2002,13 @@ For interoperability, Registration Policy decisions should be based on interpret
                 <path d="M 592,112 C 600.83064,112 608,119.16936 608,128" fill="none" stroke="black"></path>
                 <path d="M 152,128 C 143.16936,128 136,120.83064 136,112" fill="none" stroke="black"></path>
                 <path d="M 256,128 C 264.83064,128 272,120.83064 272,112" fill="none" stroke="black"></path>
-                <path d="M 176,224 C 167.16936,224 160,216.83064 160,208" fill="none" stroke="black"></path>
+                <path d="M 136,144 C 127.16936,144 120,151.16936 120,160" fill="none" stroke="black"></path>
+                <path d="M 144,144 C 152.83064,144 160,136.83064 160,128" fill="none" stroke="black"></path>
+                <path d="M 208,160 C 199.16936,160 192,167.16936 192,176" fill="none" stroke="black"></path>
+                <path d="M 256,160 C 264.83064,160 272,167.16936 272,176" fill="none" stroke="black"></path>
+                <path d="M 208,192 C 199.16936,192 192,184.83064 192,176" fill="none" stroke="black"></path>
+                <path d="M 256,192 C 264.83064,192 272,184.83064 272,176" fill="none" stroke="black"></path>
+                <path d="M 136,224 C 127.16936,224 120,216.83064 120,208" fill="none" stroke="black"></path>
                 <path d="M 184,224 C 192.83064,224 200,231.16936 200,240" fill="none" stroke="black"></path>
                 <path d="M 216,224 C 207.16936,224 200,231.16936 200,240" fill="none" stroke="black"></path>
                 <path d="M 224,224 C 232.83064,224 240,216.83064 240,208" fill="none" stroke="black"></path>
@@ -2058,18 +2083,27 @@ For interoperability, Registration Policy decisions should be based on interpret
                 <polygon class="arrowhead" points="136,640 124,634.4 124,645.6" fill="black" transform="rotate(0,128,640)"></polygon>
                 <polygon class="arrowhead" points="128,112 116,106.4 116,117.6" fill="black" transform="rotate(0,120,112)"></polygon>
                 <g class="text">
+                  <text x="128" y="36">1</text>
+                  <text x="312" y="36">2</text>
                   <text x="188" y="52">Artifact</text>
                   <text x="364" y="52">Issuer</text>
+                  <text x="128" y="100">3</text>
                   <text x="28" y="116">Issuer</text>
                   <text x="200" y="116">Statement</text>
-                  <text x="156" y="180">Hash</text>
-                  <text x="212" y="180">or</text>
+                  <text x="168" y="164">4</text>
+                  <text x="116" y="180">Hash</text>
+                  <text x="172" y="180">or</text>
+                  <text x="232" y="180">Content</text>
+                  <text x="160" y="276">5</text>
                   <text x="204" y="292">Sign</text>
+                  <text x="352" y="340">6</text>
                   <text x="436" y="356">CWT_Claims</text>
                   <text x="404" y="372">Issuer</text>
                   <text x="408" y="388">Subject</text>
+                  <text x="352" y="436">7</text>
                   <text x="432" y="452">Protected</text>
                   <text x="500" y="452">Header</text>
+                  <text x="128" y="468">8</text>
                   <text x="416" y="468">Algorithm</text>
                   <text x="500" y="468">identifier</text>
                   <text x="188" y="484">Signed</text>
@@ -2086,17 +2120,23 @@ For interoperability, Registration Policy decisions should be based on interpret
                   <text x="276" y="532">Header</text>
                   <text x="192" y="548">Signature</text>
                   <text x="184" y="564">Payload</text>
+                  <text x="352" y="596">9</text>
                   <text x="428" y="612">Transparency</text>
+                  <text x="212" y="628">10</text>
                   <text x="52" y="644">Transparency</text>
                   <text x="272" y="644">Receipt</text>
                   <text x="424" y="644">Service</text>
                   <text x="72" y="660">Service</text>
+                  <text x="244" y="692">11</text>
                   <text x="312" y="708">Transparent</text>
                   <text x="312" y="724">Statement</text>
+                  <text x="260" y="852">12</text>
                   <text x="36" y="868">Verifier</text>
                   <text x="308" y="868">Verify</text>
                   <text x="384" y="868">Transparent</text>
                   <text x="352" y="884">Statement</text>
+                  <text x="148" y="932">13</text>
+                  <text x="356" y="932">14</text>
                   <text x="32" y="948">Auditor</text>
                   <text x="200" y="948">Collect</text>
                   <text x="268" y="948">Receipts</text>
