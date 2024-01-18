@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 13 July 2024                                         C. Fournet
+Expires: 21 July 2024                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         10 January 2024
+                                                         18 January 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 July 2024.
+   This Internet-Draft will expire on 21 July 2024.
 
 Copyright Notice
 
@@ -950,25 +950,25 @@ Table of Contents
 
    Receipts are based on Signed Inclusion Proofs as described in COSE
    Signed Merkle Tree Proofs
-   ([I-D.draft-steele-cose-merkle-tree-proofs]).  Receipts protected
+   ([I-D.draft-steele-cose-merkle-tree-proofs]).  Receipt protected
    headers have additional mandatory fields:
 
    *  *scitt-version*: Receipt version number MUST be set to 0 for the
-      current implementation of this document;
+      current implementation of this document
 
    *  *verifiable-data-structure*: the verifiable data structure used in
-      the inclusion proof of the receipt;
+      the inclusion proof of the receipt
 
    *  *registration-info*: The Transparency Service MAY include the
       Registration policy info header to indicate to Verifiers what
-      policies have been applied at the registration of this Statement;
+      policies have been applied at the registration of this Statement
 
    *  *kccs*: A CWT Claim Set representing the issuance of the receipt.
-      Only a subset of all CWT claims can be used in a SCITT receipt.
+      Only a subset of all CWT claims can be used in a SCITT receipt
 
    *  *crit*: The crit header (id: 2) MUST be included and the following
       headers MUST be marked critical: (scitt-version, verifiable-data-
-      structure, kccs).
+      structure, kccs)
 
    *  The SCITT version header MUST be included and its value match the
       version field of the Receipt structure
@@ -1840,7 +1840,7 @@ A.3.  For Transparent Statements
 
    Note that because this identifier is computed over the signatures of
    the signed statement and signatures in each receipt, any
-   cannonicalization of the signatures after the fact will produce a
+   canonicalization of the signatures after the fact will produce a
    distinct identifier.
 
 A.4.  Statements
