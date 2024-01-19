@@ -187,9 +187,7 @@ The terms defined in this section have special meaning in the context of Supply 
 When used in text, the corresponding terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.
 
-
 The terms "header", "payload", and "to-be-signed bytes" are defined in {{RFC9052}}.
-
 
 Append-only Log (Ledger):
 
@@ -1271,7 +1269,6 @@ data:application/cose;base64,SGVsb...xkIQ==
 ~~~
 {: #example-receipt-data-url align="left" title="Example Receipt Data URL"}
 
-
 ## Transparent Statements
 
 ### Transparent Statement URN
@@ -1298,7 +1295,6 @@ data:application/cose;base64,SGVsb...xkIQ==
 ~~~
 {: #example-transparent-statement-data-url align="left" title="Example Transparent Statement Data URL"}
 
-
 # Signing Statements Remotely
 
 Some statements are too large, or sensitive to send over a network to a remote signer.
@@ -1317,12 +1313,12 @@ A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes acc
     |   |
     v   |               .
  .--+-------.          / \
-|  Hash      +--+     /   \
+| Statement  +--+     /   \
  '----------'   |    /     \     .----------.
         |       +-->+  OR   +-->+  Payload   |
         v       |    \     /     '---+------'
  .------+---.   |     \   /          |
-|  Statement +--+      \ /           |
+|    Hash    +--+      \ /           |
  '----+-----'           '            |
                                      |
 
@@ -1343,7 +1339,7 @@ A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes acc
 | Private Key  |                 |   |
  '----+-------'                  v   |
       |                     .----+-----.
-      |                    | Header     |
+      |                    |   Header   |
       |                     '----+-----'
       |                          |   |
       v                          v   v
