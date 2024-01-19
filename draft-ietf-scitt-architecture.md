@@ -373,7 +373,7 @@ Transparency Services MUST support the capability to associate an X.509v3 certif
 The `x5t` COSE header parameter MUST be included in the protected header of a Signed Statement's COSE envelope.
 When `x5t` is present, `iss` MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
 The mechanisms for how Transparency Services obtain corresponding X.509v3 certificates, e.g., as part of enforcing a Registration Policy, is out-of-scope of this document.
-Transparency Services MAY support many other identifier formats for identifying many other identity document formats. Alternative identifiers for identity documents MUST also be included in the protected header of the COSE envelope. Only one type of identity document identifier MUST be included in a Signed Statement's COSE envelope.
+At least one identifier for an identity document MUST be included in the protected header of the COSE envelope.
 
 As Issuers MUST rotate verification keys for signature checking in well-defined cryptoperiods (see {{KEY-MANAGEMENT}}).
 Issuers MAY migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting Signed Statements that complies with its active Registration Policies.
