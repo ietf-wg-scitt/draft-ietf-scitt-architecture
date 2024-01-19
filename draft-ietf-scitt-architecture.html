@@ -1037,7 +1037,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 21 July 2024</td>
+<td class="center">Expires 22 July 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1050,12 +1050,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-01-18" class="published">18 January 2024</time>
+<time datetime="2024-01-19" class="published">19 January 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-07-21">21 July 2024</time></dd>
+<dd class="expires"><time datetime="2024-07-22">22 July 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1124,7 +1124,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2936,8 +2936,8 @@ resource: content-type = dereference(identifier: identifier-type)
 <a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-for-binary-content" class="section-name selfRef">For Binary Content</a>
         </h3>
 <p id="appendix-A.1-1">Identifiers for binary content, such as Statements, or even Artifacts themselves are computed as follows:<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.1-2">Let the <code>base64url-encoded-bytes-digest</code> for the messsage be the base64url encoded digest with the chosen hash algorithm of bytes / octets.<a href="#appendix-A.1-2" class="pilcrow">¶</a></p>
-<p id="appendix-A.1-3">Let the SCITT name for the message be the URN constructed from the following URI templatem, according to <span>[<a href="#RFC6570" class="cite xref">RFC6570</a>]</span>:<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-2">Let the <code>base64url-encoded-bytes-digest</code> for the message be the base64url encoded digest with the chosen hash algorithm of bytes / octets.<a href="#appendix-A.1-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-3">Let the SCITT name for the message be the URN constructed from the following URI template, according to <span>[<a href="#RFC6570" class="cite xref">RFC6570</a>]</span>:<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
 <p id="appendix-A.1-4">Let the <code>message-type</code>, be "statement" for Statements and Artifacts.<a href="#appendix-A.1-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.1-5">
 <pre>
@@ -2955,8 +2955,8 @@ urn:ietf:params:scitt:\
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-for-scitt-messages" class="section-name selfRef">For SCITT Messages</a>
         </h3>
 <p id="appendix-A.2-1">Identifiers for COSE Sign 1 based messages, such as identifiers for Signed Statements and Receipts are computed as follows:<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.2-2">Let the <code>base64url-encoded-to-be-signed-bytes-digest</code> for the messsage be the base64url encoded digest with the chosen hash algorithm of the "to-be-signed bytes", according to <span><a href="https://rfc-editor.org/rfc/rfc9052#section-8.1" class="relref">Section 8.1</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
-<p id="appendix-A.2-3">Let the SCITT name for the message be the URN constructed from the following URI templatem, according to <span>[<a href="#RFC6570" class="cite xref">RFC6570</a>]</span>:<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-2">Let the <code>base64url-encoded-to-be-signed-bytes-digest</code> for the message be the base64url encoded digest with the chosen hash algorithm of the "to-be-signed bytes", according to <span><a href="https://rfc-editor.org/rfc/rfc9052#section-8.1" class="relref">Section 8.1</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-3">Let the SCITT name for the message be the URN constructed from the following URI template, according to <span>[<a href="#RFC6570" class="cite xref">RFC6570</a>]</span>:<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-4">Let the <code>message-type</code>, be "signed-statement" for Signed Statements, and "receipt" for Receipts.<a href="#appendix-A.2-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.2-5">
 <pre>
@@ -2966,7 +2966,7 @@ urn:ietf:params:scitt:\
 {base64url-encoded-to-be-signed-bytes-digest}
 </pre><a href="#appendix-A.2-5" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.2-6">Note that this means the content of the signature is not included in the identifer, even though signature related claims, such as activation or expiration information in protected headers are included.<a href="#appendix-A.2-6" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-6">Note that this means the content of the signature is not included in the identifier, even though signature related claims, such as activation or expiration information in protected headers are included.<a href="#appendix-A.2-6" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-7">As a result, an attacker may construct a new signed statement that has the same identifier as a previous signed statement, but has a different signature.<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
 </section>
 </div>

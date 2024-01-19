@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 21 July 2024                                         C. Fournet
+Expires: 22 July 2024                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         18 January 2024
+                                                         19 January 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 July 2024.
+   This Internet-Draft will expire on 22 July 2024.
 
 Copyright Notice
 
@@ -1779,12 +1779,12 @@ A.1.  For Binary Content
    Identifiers for binary content, such as Statements, or even Artifacts
    themselves are computed as follows:
 
-   Let the base64url-encoded-bytes-digest for the messsage be the
+   Let the base64url-encoded-bytes-digest for the message be the
    base64url encoded digest with the chosen hash algorithm of bytes /
    octets.
 
    Let the SCITT name for the message be the URN constructed from the
-   following URI templatem, according to [RFC6570]:
+   following URI template, according to [RFC6570]:
 
    Let the message-type, be "statement" for Statements and Artifacts.
 
@@ -1798,12 +1798,12 @@ A.2.  For SCITT Messages
    Identifiers for COSE Sign 1 based messages, such as identifiers for
    Signed Statements and Receipts are computed as follows:
 
-   Let the base64url-encoded-to-be-signed-bytes-digest for the messsage
+   Let the base64url-encoded-to-be-signed-bytes-digest for the message
    be the base64url encoded digest with the chosen hash algorithm of the
    "to-be-signed bytes", according to Section 8.1 of [RFC9052].
 
    Let the SCITT name for the message be the URN constructed from the
-   following URI templatem, according to [RFC6570]:
+   following URI template, according to [RFC6570]:
 
    Let the message-type, be "signed-statement" for Signed Statements,
    and "receipt" for Receipts.
@@ -1814,7 +1814,7 @@ A.2.  For SCITT Messages
    {base64url-encoded-to-be-signed-bytes-digest}
 
    Note that this means the content of the signature is not included in
-   the identifer, even though signature related claims, such as
+   the identifier, even though signature related claims, such as
    activation or expiration information in protected headers are
    included.
 
