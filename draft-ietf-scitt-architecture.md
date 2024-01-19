@@ -1144,9 +1144,9 @@ In the blocks and examples that follow, NOTE: '\' line wrapping per RFC 8792.
 
 Identifiers for binary content, such as Statements, or even Artifacts themselves are computed as follows:
 
-Let the `base64url-encoded-bytes-digest` for the messsage be the base64url encoded digest with the chosen hash algorithm of bytes / octets.
+Let the `base64url-encoded-bytes-digest` for the message be the base64url encoded digest with the chosen hash algorithm of bytes / octets.
 
-Let the SCITT name for the message be the URN constructed from the following URI templatem, according to {{-URITemplate}}:
+Let the SCITT name for the message be the URN constructed from the following URI template, according to {{-URITemplate}}:
 
 Let the `message-type`, be "statement" for Statements and Artifacts.
 
@@ -1161,9 +1161,9 @@ urn:ietf:params:scitt:\
 
 Identifiers for COSE Sign 1 based messages, such as identifiers for Signed Statements and Receipts are computed as follows:
 
-Let the `base64url-encoded-to-be-signed-bytes-digest` for the messsage be the base64url encoded digest with the chosen hash algorithm of the "to-be-signed bytes", according to {{Section 8.1 of RFC9052}}.
+Let the `base64url-encoded-to-be-signed-bytes-digest` for the message be the base64url encoded digest with the chosen hash algorithm of the "to-be-signed bytes", according to {{Section 8.1 of RFC9052}}.
 
-Let the SCITT name for the message be the URN constructed from the following URI templatem, according to {{-URITemplate}}:
+Let the SCITT name for the message be the URN constructed from the following URI template, according to {{-URITemplate}}:
 
 Let the `message-type`, be "signed-statement" for Signed Statements, and "receipt" for Receipts.
 
@@ -1174,7 +1174,7 @@ urn:ietf:params:scitt:\
 {base64url-encoded-to-be-signed-bytes-digest}
 ~~~
 
-Note that this means the content of the signature is not included in the identifer, even though signature related claims, such as activation or expiration information in protected headers are included.
+Note that this means the content of the signature is not included in the identifier, even though signature related claims, such as activation or expiration information in protected headers are included.
 
 As a result, an attacker may construct a new signed statement that has the same identifier as a previous signed statement, but has a different signature.
 
@@ -1266,7 +1266,6 @@ https://transparency.example/api/identifiers\
 data:application/cose;base64,SGVsb...xkIQ==
 ~~~
 {: #example-receipt-data-url align="left" title="Example Receipt Data URL"}
-
 
 ## Transparent Statements
 
