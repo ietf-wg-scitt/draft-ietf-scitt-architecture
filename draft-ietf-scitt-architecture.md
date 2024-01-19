@@ -371,6 +371,7 @@ This section describes at a high level, the three main roles and associated proc
 Before an Issuer is able to produce Signed Statements, it must first create an identifier and obtain an identity document that is acceptable to the Transparency Service.
 Transparency Services MUST support the capability to associate an X.509v3 certificate with a Signed Statement using a hash (thumbprint) of the certificate as specified in {{Section 2 of RFC9360}} by supporting the `x5t` COSE header parameter.
 The `x5t` COSE header parameter MUST be included in the protected header of a Signed Statement's COSE envelope.
+When `x5t` is present, `iss` MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
 The mechanisms for how Transparency Services obtain corresponding X.509v3 certificates, e.g., as part of enforcing a Registration Policy, is out-of-scope of this document.
 Transparency Services MAY support many other identifier formats for identifying many other identity document formats. Alternative identifiers for identity documents MUST also be included in the protected header of the COSE envelope. Only one type of identity document identifier MUST be included in a Signed Statement's COSE envelope.
 
