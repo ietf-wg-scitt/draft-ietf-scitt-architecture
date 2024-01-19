@@ -375,7 +375,7 @@ When `x5t` is present, `iss` MUST be a string with a value between 1 and 8192 ch
 The mechanisms for how Transparency Services obtain corresponding X.509v3 certificates, e.g., as part of enforcing a Registration Policy, is out-of-scope of this document.
 At least one identifier for an identity document MUST be included in the protected header of the COSE envelope.
 
-As Issuers MUST rotate verification keys for signature checking in well-defined cryptoperiods (see {{KEY-MANAGEMENT}}).
+Issuers MUST rotate verification keys for signature checking in well-defined cryptoperiods (see {{KEY-MANAGEMENT}}).
 Issuers MAY migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting Signed Statements that complies with its active Registration Policies.
 The version of the key used to sign the Signed Statement MAY be included via the `kid` COSE header parameter in the protected header. Key discovery protocols are out-of-scope of this document.
 
