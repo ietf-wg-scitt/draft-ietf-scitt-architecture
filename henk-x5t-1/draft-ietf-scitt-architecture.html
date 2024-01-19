@@ -1037,7 +1037,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 21 July 2024</td>
+<td class="center">Expires 22 July 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1050,12 +1050,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-01-18" class="published">18 January 2024</time>
+<time datetime="2024-01-19" class="published">19 January 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-07-21">21 July 2024</time></dd>
+<dd class="expires"><time datetime="2024-07-22">22 July 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1124,7 +1124,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1765,6 +1765,7 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
 <p id="section-5.1.1-1">Before an Issuer is able to produce Signed Statements, it must first create an identifier and obtain an identity document that is acceptable to the Transparency Service.
 Transparency Services <span class="bcp14">MUST</span> support the capability to associate an X.509v3 certificate with a Signed Statement using a hash (thumbprint) of the certificate as specified in <span><a href="https://rfc-editor.org/rfc/rfc9360#section-2" class="relref">Section 2</a> of [<a href="#RFC9360" class="cite xref">RFC9360</a>]</span> by supporting the <code>x5t</code> COSE header parameter.
 The <code>x5t</code> COSE header parameter <span class="bcp14">MUST</span> be included in the protected header of a Signed Statement's COSE envelope.
+When <code>x5t</code> is present, <code>iss</code> <span class="bcp14">MUST</span> be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
 The mechanisms for how Transparency Services obtain corresponding X.509v3 certificates, e.g., as part of enforcing a Registration Policy, is out-of-scope of this document.
 Transparency Services <span class="bcp14">MAY</span> support many other identifier formats for identifying many other identity document formats. Alternative identifiers for identity documents <span class="bcp14">MUST</span> also be included in the protected header of the COSE envelope. Only one type of identity document identifier <span class="bcp14">MUST</span> be included in a Signed Statement's COSE envelope.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.1.1-2">As Issuers <span class="bcp14">MUST</span> rotate verification keys for signature checking in well-defined cryptoperiods (see <span>[<a href="#KEY-MANAGEMENT" class="cite xref">KEY-MANAGEMENT</a>]</span>).
