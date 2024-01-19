@@ -187,6 +187,10 @@ The terms defined in this section have special meaning in the context of Supply 
 When used in text, the corresponding terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.
 
+
+The terms "header", "payload", and "to-be-signed bytes" are defined in {{RFC9052}}.
+
+
 Append-only Log (Ledger):
 
 : the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym, Log or Ledger.
@@ -1293,3 +1297,65 @@ transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 data:application/cose;base64,SGVsb...xkIQ==
 ~~~
 {: #example-transparent-statement-data-url align="left" title="Example Transparent Statement Data URL"}
+
+
+# Signing Statements Remotely
+
+Some statements are too large, or sensitive to send over a network to a remote signer.
+
+Recall that a Statement is an artifact, structured data regarding an artifact, or a hash.
+
+A Statement becomes a payload, which becomes to-be-signed bytes.
+
+A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of RFC9052}}.
+
+~~~aasvg
+
+ .----+-----.
+|  Artifact  |
+ '----------'
+    |   |
+    v   |               .
+ .--+-------.          / \
+|  Hash      +--+     /   \
+ '----------'   |    /     \     .----------.
+        |       +-->+  OR   +-->+  Payload   |
+        v       |    \     /     '---+------'
+ .------+---.   |     \   /          |
+|  Statement +--+      \ /           |
+ '----+-----'           '            |
+                                     |
+
+           ...  Producer Network ...
+
+                      ...
+
+           ...   Issuer Network ...
+
+                                     |
++-----------+                        |
+| Identity  |     (iss, x5t)         |
+| Document  +--------------------+   |
++-----+-----+                    |   |
+      ^                          |   |
+      |                          |   |
+ .----+-------.                  |   |
+| Private Key  |                 |   |
+ '----+-------'                  v   |
+      |                     .----+-----.
+      |                    | Header     |
+      |                     '----+-----'
+      |                          |   |
+      v                          v   v
+    .-+-----------.     .--------+---+---.
+   /             /     /                  \
+  /    Sign     +<----+ To Be Signed Bytes |
+ /             /       \                  /
+'-------------'         '----------------'
+      |
+      v
+ .----+-------.
+| COSE Sign 1  |
+ '------------'
+
+~~~
