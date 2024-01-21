@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-18T00:36:33.996068+00:00",
+  "timestamp": "2024-01-21T00:40:04.767020+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -3055,10 +3055,12 @@
         "aj-stein-nist",
         "mwiseman-byid"
       ],
-      "labels": [],
+      "labels": [
+        "terminology"
+      ],
       "body": "As discussed on today's call.\r\n\r\nFolks expressed concern that \"Verifier\" was not friendly enough to \"Consumers or Relying Parties\", that are supposed to process receipts.",
       "createdAt": "2023-10-23T15:22:39Z",
-      "updatedAt": "2024-01-10T17:39:57Z",
+      "updatedAt": "2024-01-19T15:31:18Z",
       "closedAt": null,
       "comments": [
         {
@@ -3527,6 +3529,38 @@
       "body": "See https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01#section-3.5",
       "createdAt": "2024-01-17T17:41:08Z",
       "updatedAt": "2024-01-17T17:41:09Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 166,
+      "id": "I_kwDOIvmHss58h1A9",
+      "title": "Resolve Section 5.1 and 6 as the titles appear duplicative",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/166",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "[5.1 Signed Statement Issuance and Registration](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-signed-statement-issuance-a) appears as duplicative of [6 Signed Statement Issuance, Registration, and Verification](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-signed-statement-issuance-r)\r\n\r\nAre these meant to separate signing, registration and verification?",
+      "createdAt": "2024-01-18T23:15:23Z",
+      "updatedAt": "2024-01-18T23:15:23Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 170,
+      "id": "I_kwDOIvmHss58kb_V",
+      "title": "Are multiple (potential conflicting) identifiers for identity documents in Signed Statements & would that pose a problem?",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/170",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Do we need to talk about that in the Security Considerations?",
+      "createdAt": "2024-01-19T08:21:48Z",
+      "updatedAt": "2024-01-19T08:21:48Z",
       "closedAt": null,
       "comments": []
     }
@@ -16896,7 +16930,7 @@
       "labels": [],
       "body": "This PR addresses:\r\n\r\n- https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/155\r\n\r\nRelated issues:\r\n\r\n- https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/154",
       "createdAt": "2024-01-03T20:55:08Z",
-      "updatedAt": "2024-01-10T14:43:57Z",
+      "updatedAt": "2024-01-18T21:15:49Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "24f63ee8cfc2b99b937dd236cca3c886fd1218f9",
@@ -17140,7 +17174,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-01-05T14:31:11Z",
-      "updatedAt": "2024-01-05T15:47:46Z",
+      "updatedAt": "2024-01-18T21:16:26Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "1fa26e514a52d4bbb8f035183be0834230a4b2e4",
@@ -17182,7 +17216,7 @@
       "labels": [],
       "body": "This is a simple dependency management PR to decouple SCRAPI from the architecture spec. See #148 \r\nSCRAPI can be a layer above, and reference the architecture (dependency) as in HTTP implementation. \r\nDecoupling allows us to move forward with the architecture doc, continuing to iterate on SCRAPI independently.\r\n\r\n",
       "createdAt": "2024-01-05T18:48:52Z",
-      "updatedAt": "2024-01-06T00:13:16Z",
+      "updatedAt": "2024-01-18T21:16:12Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "bded7531b6c922f827369405c72a60dcf793902f",
@@ -17224,7 +17258,7 @@
       "labels": [],
       "body": "Cleaning up loose ends to orphaned references and older terms.",
       "createdAt": "2024-01-05T19:29:28Z",
-      "updatedAt": "2024-01-06T01:42:19Z",
+      "updatedAt": "2024-01-18T21:15:51Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "fd258c3fd05cf56a7ff0a298cce7fefbbd31e81d",
@@ -17339,25 +17373,35 @@
       "id": "PR_kwDOIvmHss5jYDwz",
       "title": "Add Architecture details",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/152",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "thgoebel",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "terminology"
+      ],
       "body": "This PR builds on top of #143 to pull out a few things. (logically on top, not on top in terms of git :) )",
       "createdAt": "2024-01-06T10:56:36Z",
-      "updatedAt": "2024-01-10T17:55:03Z",
+      "updatedAt": "2024-01-19T15:49:41Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "e5f7401e147492fd310cff844cc3d5bc08d681d5",
       "headRepository": "thgoebel/draft-ietf-scitt-architecture",
       "headRefName": "architecture-details",
       "headRefOid": "98491d81d7289aa8c0cea2eb8f48aaddae3d18ca",
-      "closedAt": null,
+      "closedAt": "2024-01-19T15:49:41Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing PR based on discussion on the call.",
+          "createdAt": "2024-01-19T15:49:41Z",
+          "updatedAt": "2024-01-19T15:49:41Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss5r6C98",
@@ -17767,6 +17811,19 @@
           "createdAt": "2024-01-10T17:55:03Z",
           "updatedAt": "2024-01-10T17:55:03Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tQRRb",
+          "commit": {
+            "abbreviatedOid": "98491d8"
+          },
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "This description seems to duplicate what we say in the Terminology and, as it stands, the two are not aligned.  My preference would be to instead improve the Terminology if need be, and then avoid the duplication.",
+          "createdAt": "2024-01-19T15:11:13Z",
+          "updatedAt": "2024-01-19T15:11:13Z",
+          "comments": []
         }
       ]
     },
@@ -17856,21 +17913,21 @@
       "id": "PR_kwDOIvmHss5jnG8i",
       "title": "Update architecture diagram",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/156",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This pull request:\r\n\r\n- clarifies that multiple receipts are possible\r\n- clarifies that issuers are not always artifact producers\r\n- clarifies that transparency services are not artifact repositories\r\n- clarifies that verifiers are not always relying parties\r\n- clarifies that relying parties care about artifact transparency (not just verifying transparent statements)\r\n\r\n![Screenshot 2024-01-09 at 1 06 39\u202fPM](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/8295856/38bfad0b-28ee-429b-9bb8-5db7cc22e108)\r\n",
       "createdAt": "2024-01-09T19:04:44Z",
-      "updatedAt": "2024-01-17T14:49:44Z",
+      "updatedAt": "2024-01-19T15:50:00Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "24f63ee8cfc2b99b937dd236cca3c886fd1218f9",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "feat/less-dids",
       "headRefOid": "35178e842e018487b699dbf04201e65984221a40",
-      "closedAt": null,
+      "closedAt": "2024-01-19T15:49:59Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -17916,6 +17973,27 @@
           "body": "If we are going to possibly merge #161 in the future it seems good to merge this now or pull in changes before that is pulled in since that diagram appears to be based on significant changes from that.",
           "createdAt": "2024-01-17T14:49:43Z",
           "updatedAt": "2024-01-17T14:49:43Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> illustrates one pattern of multiple registration, among others. Do we need this complexity here? Should we add other diagrams in the Federation section?\r\n\r\nI am OK with `Issuer` to `Producer` however, I am not convinced that we should change `Relying Party` to anything else, as Relying party is more generic and also Consumer seems to mean that one consuming the Artefact which may not be necessarily true.\r\n\r\nAlso I do not agree with `Verifier` to `Auditor` change, would like to know more on the reason/rationale for this change.\r\n\r\nAn `Auditor` is a much more restrictive role however, a `Verifier` is a role performed by an entity (essentially `software`) which perfroms Cryptographic Verification of the Presence of a `Signed Statement` inside the log.",
+          "createdAt": "2024-01-19T14:21:59Z",
+          "updatedAt": "2024-01-19T14:21:59Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "![Screenshot 2024-01-19 at 9 15 52\u202fAM](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/8295856/e2a717b7-a416-4d7e-8482-d82d7afadc05)\r\n",
+          "createdAt": "2024-01-19T15:16:08Z",
+          "updatedAt": "2024-01-19T15:16:08Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Agreement to split this out into two actions:\r\n- Update the first diagram to represent transparency service as plural (@yogeshbdeshpande)\r\n- Add the dual implementation for identity documents and artifacts as an additional diagram\r\n- Remove terminology changes, to track as a separate PR\r\n\r\n@yogeshbdeshpande to take the pen on the next steps",
+          "createdAt": "2024-01-19T15:49:59Z",
+          "updatedAt": "2024-01-19T15:49:59Z"
         }
       ],
       "reviews": [
@@ -17970,6 +18048,19 @@
           "createdAt": "2024-01-10T17:01:03Z",
           "updatedAt": "2024-01-10T17:01:03Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tPFXK",
+          "commit": {
+            "abbreviatedOid": "35178e8"
+          },
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "This is a change of terminology. Let's confirm we agree on it, and update the Terminology section accordingly. In pariticular, so far we agreed not to separate verifiers and relying parties. Let's also double-check those terms are Ok wrt RATS.\r\n\r\nThis illustrates one pattern of multiple registration, among others. Do we need this complexity here? Should we add other diagrams in the Federation section?\r\n\r\nThe diagram is not consistent on the flow of identity documents, which (I guess) should all flow to Verifiers and to Auditors.",
+          "createdAt": "2024-01-19T13:46:38Z",
+          "updatedAt": "2024-01-19T13:46:38Z",
+          "comments": []
         }
       ]
     },
@@ -17985,7 +18076,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-01-10T12:21:41Z",
-      "updatedAt": "2024-01-10T17:06:53Z",
+      "updatedAt": "2024-01-18T19:04:13Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "24f63ee8cfc2b99b937dd236cca3c886fd1218f9",
@@ -18003,6 +18094,13 @@
           "body": "This makes changes inconsistent with style throughout the doc. Suggest we either fix all references or close this PR to maintain consistency.",
           "createdAt": "2024-01-10T17:06:52Z",
           "updatedAt": "2024-01-10T17:06:52Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "This PR is intended to discuss style proposals directly on text in order to derive issues from the discussion here.",
+          "createdAt": "2024-01-18T13:17:39Z",
+          "updatedAt": "2024-01-18T13:17:39Z"
         }
       ],
       "reviews": [
@@ -18065,6 +18163,66 @@
               "updatedAt": "2024-01-10T17:05:30Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tDi1B",
+          "commit": {
+            "abbreviatedOid": "f2f379e"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T13:11:18Z",
+          "updatedAt": "2024-01-18T13:11:18Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Exactly.\r\nBut a) this this the abstract and b) how do we deal with usage of capitalized terms in the text before they are introduced in the terminology Section?",
+              "createdAt": "2024-01-18T13:11:18Z",
+              "updatedAt": "2024-01-18T13:11:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tDjAg",
+          "commit": {
+            "abbreviatedOid": "f2f379e"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T13:11:43Z",
+          "updatedAt": "2024-01-18T13:11:43Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "see https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/157#discussion_r1457420130",
+              "createdAt": "2024-01-18T13:11:43Z",
+              "updatedAt": "2024-01-18T13:11:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tDlTh",
+          "commit": {
+            "abbreviatedOid": "f2f379e"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T13:16:50Z",
+          "updatedAt": "2024-01-18T13:16:50Z",
+          "comments": [
+            {
+              "originalPosition": 25,
+              "body": "> Throughout the doc, we removed punctuation on single-sentence lines.\r\nI am relatively certain this is not true :sweat_smile: Two examples to counter: line 201 (was 203) and line 386 (was 383).\r\nWhat I did here was just to add periods to complete sentences that appear in itemized lists.",
+              "createdAt": "2024-01-18T13:16:50Z",
+              "updatedAt": "2024-01-18T13:16:50Z"
+            }
+          ]
         }
       ]
     },
@@ -18078,15 +18236,15 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "An example workflow for signing with X.509\r\n\r\nNote: this is a draft for discussion and pending completion. \r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/104033ae-7559-4a54-8fc9-5080a56a361e)\r\n",
+      "body": "An example workflow for signing with X.509\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/499276a2-c64e-4d82-af61-9737e5784ff7)\r\n",
       "createdAt": "2024-01-17T01:16:14Z",
-      "updatedAt": "2024-01-17T20:42:53Z",
+      "updatedAt": "2024-01-19T09:31:29Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "e85d13527ac8ff78a29d9a46cb4b609cff286692",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "x509-example",
-      "headRefOid": "069341adab736c581aeceef244d2d489800ae5d7",
+      "headRefOid": "6ff550d4b3060f3f794286c1e5048d0c7e338da0",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -18133,8 +18291,669 @@
           "body": "Here's the [Supply Chain Scenario from scitt.io](https://scitt.io/supply-chain) highlights multiple statements for a single artifact. \r\nIt also discusses promoting a series of statements across different transparency services. The software vendor(s) and companies that consume vendor software into their private environment. \r\n\r\n",
           "createdAt": "2024-01-17T20:42:51Z",
           "updatedAt": "2024-01-17T20:42:51Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Updated the diagram to show a hash or the full content of the statement goes into the signing stage, and the payload and the correlation between the receipt and the transparent statement. I'm also experimenting with numbered references:\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/499276a2-c64e-4d82-af61-9737e5784ff7)\r\n",
+          "createdAt": "2024-01-18T16:10:47Z",
+          "updatedAt": "2024-01-18T20:04:46Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Converting back to a draft, pending some updates",
+          "createdAt": "2024-01-18T21:42:22Z",
+          "updatedAt": "2024-01-18T21:42:22Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "Per the last paragraph of Section 5 (emphasis mine) \r\n> This section describes at a high level, the three main roles and associated processes in SCITT: **Issuers and the Signed Statement issuance process**, Transparency Service and the Signed Statement Registration process, as well as Verifiers of the Transparent Statements and the Receipt validation process.\r\n\r\nI'd propose to move this Section after 5.1.1. and create a segue from 5.1.1 to the new 5.2.2\r\n\r\nMaybe we should discuss the explicit structure of these sections more today?",
+          "createdAt": "2024-01-19T09:31:28Z",
+          "updatedAt": "2024-01-19T09:31:28Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 163,
+      "id": "PR_kwDOIvmHss5kbDQB",
+      "title": "Overhaul of Section 5.1.1.",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/163",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "* Renamed to: Structure and Content of Signed Statements\r\n* Updated content based on this thread: https://mailarchive.ietf.org/arch/browse/scitt/?gbt=1&index=ON3uw6WDeC8o62bPgSt8RWNWg9M\r\n* Added `x5t` and made both CWT_Claims `iss` and `sub` mandatory as per the output of discussions\r\n* added refs and figure label (which are missing all over the place)\r\n\r\n",
+      "createdAt": "2024-01-18T13:03:27Z",
+      "updatedAt": "2024-01-19T15:16:42Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "e85d13527ac8ff78a29d9a46cb4b609cff286692",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "henk-x5t-1",
+      "headRefOid": "1ce8d52424eaff796483f0ccd25380bb82eb3293",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5tEGhq",
+          "commit": {
+            "abbreviatedOid": "c4c384a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T14:19:38Z",
+          "updatedAt": "2024-01-18T14:19:39Z",
+          "comments": [
+            {
+              "originalPosition": 45,
+              "body": "```suggestion\r\nAn Subject identifier is also required to be included in the COSE envelope. The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Subject Claim` (Claim label 2, see {{IANA.cwt}}) where the value MUST represent the Subject identifier.\r\n```",
+              "createdAt": "2024-01-18T14:19:38Z",
+              "updatedAt": "2024-01-18T14:19:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tEHYp",
+          "commit": {
+            "abbreviatedOid": "c4c384a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T14:20:35Z",
+          "updatedAt": "2024-01-18T14:20:35Z",
+          "comments": [
+            {
+              "originalPosition": 69,
+              "body": "are additional properties allowed here? I think they should be.",
+              "createdAt": "2024-01-18T14:20:35Z",
+              "updatedAt": "2024-01-18T14:20:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tEL91",
+          "commit": {
+            "abbreviatedOid": "c4c384a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T14:28:30Z",
+          "updatedAt": "2024-01-18T14:28:30Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "Do we want to make registering identity documents mandatory prior to accepting signed statements from issuers?\r\n\r\nThis makes the replay verification simple, find the public key in the log, then find each signature.",
+              "createdAt": "2024-01-18T14:28:30Z",
+              "updatedAt": "2024-01-18T14:28:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tENvP",
+          "commit": {
+            "abbreviatedOid": "c4c384a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T14:31:32Z",
+          "updatedAt": "2024-01-18T14:31:32Z",
+          "comments": [
+            {
+              "originalPosition": 26,
+              "body": "```suggestion\r\nAt least one identifier for an identity document MUST be included in the protected header of the COSE envelope.\r\n```",
+              "createdAt": "2024-01-18T14:31:32Z",
+              "updatedAt": "2024-01-18T14:35:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tEOeX",
+          "commit": {
+            "abbreviatedOid": "c4c384a"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T14:32:53Z",
+          "updatedAt": "2024-01-18T14:32:53Z",
+          "comments": [
+            {
+              "originalPosition": 69,
+              "body": "they were not allowed previously. While that does not make a lot of sense, I kept it that way for now.",
+              "createdAt": "2024-01-18T14:32:53Z",
+              "updatedAt": "2024-01-18T14:32:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tEPND",
+          "commit": {
+            "abbreviatedOid": "c4c384a"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T14:34:14Z",
+          "updatedAt": "2024-01-18T14:34:14Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "I would very, very much like that. They'll be used in Registration Policies and those also should be registered. So - yeah +1 (to automation, resilience, and transparency!)",
+              "createdAt": "2024-01-18T14:34:14Z",
+              "updatedAt": "2024-01-18T14:34:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tEPuv",
+          "commit": {
+            "abbreviatedOid": "c4c384a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T14:35:06Z",
+          "updatedAt": "2024-01-18T14:35:06Z",
+          "comments": [
+            {
+              "originalPosition": 26,
+              "body": "reasoning being that `iss` and `kid` are alternative names for `x5t` so logically, if `iss` and `x5t` are present, we are allowing / requiring multiple identifiers.",
+              "createdAt": "2024-01-18T14:35:06Z",
+              "updatedAt": "2024-01-18T14:35:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tEQBQ",
+          "commit": {
+            "abbreviatedOid": "c4c384a"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T14:35:37Z",
+          "updatedAt": "2024-01-18T14:35:37Z",
+          "comments": [
+            {
+              "originalPosition": 26,
+              "body": "So including several (potential conflicting identity document identifier is fine? Or do we want text, if there are multiple they MUST relate to the same identity document?",
+              "createdAt": "2024-01-18T14:35:37Z",
+              "updatedAt": "2024-01-18T14:35:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tEQcY",
+          "commit": {
+            "abbreviatedOid": "f8180c5"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T14:36:23Z",
+          "updatedAt": "2024-01-18T14:36:23Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-01-18T14:36:23Z",
+              "updatedAt": "2024-01-18T14:36:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tEQ3-",
+          "commit": {
+            "abbreviatedOid": "f8180c5"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T14:37:07Z",
+          "updatedAt": "2024-01-18T14:37:07Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "Let people reflect the graphs that exist today... even if they are not great. Policy can be used to adjust this, we don't need normative guidance here.",
+              "createdAt": "2024-01-18T14:37:07Z",
+              "updatedAt": "2024-01-18T14:37:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tEXHt",
+          "commit": {
+            "abbreviatedOid": "f53bc2f"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T14:48:09Z",
+          "updatedAt": "2024-01-18T14:48:09Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "I am happy whenever we can stay less prescriptive. okay",
+              "createdAt": "2024-01-18T14:48:09Z",
+              "updatedAt": "2024-01-18T14:48:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tElM0",
+          "commit": {
+            "abbreviatedOid": "88e992a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T15:11:53Z",
+          "updatedAt": "2024-01-18T15:11:53Z",
+          "comments": [
+            {
+              "originalPosition": 26,
+              "body": "If my registration policy accepts your message, I see no reason for us to say more.\r\n\r\nThe industry pressure for multiple receipts will cause the alignment here, and I doubt we can normatively capture all the possible ways to indirectly refer to an \"identity document\".",
+              "createdAt": "2024-01-18T15:11:53Z",
+              "updatedAt": "2024-01-18T15:11:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tEmH6",
+          "commit": {
+            "abbreviatedOid": "88e992a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T15:13:27Z",
+          "updatedAt": "2024-01-18T15:13:27Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "```suggestion\r\nTransparency Services MUST specify their supported signature algorithms in their Registration Policies.\r\n```\r\n\r\n[edit, Henk] capitalized Registration Policies",
+              "createdAt": "2024-01-18T15:13:27Z",
+              "updatedAt": "2024-01-19T08:24:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tEpT3",
+          "commit": {
+            "abbreviatedOid": "88e992a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T15:18:57Z",
+          "updatedAt": "2024-01-18T15:18:58Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "```suggestion\r\nThe `kid` header parameter MUST be present when the `x5t` header parameter is not present.\r\nKey discovery protocols are out-of-scope of this document.\r\n```\r\n\r\n[edit, Henk] line wrap!",
+              "createdAt": "2024-01-18T15:18:57Z",
+              "updatedAt": "2024-01-19T08:24:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tGNFS",
+          "commit": {
+            "abbreviatedOid": "88e992a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "A few nits for formatting and a question regarding how detailed we need/should be about signed statements.",
+          "createdAt": "2024-01-18T18:38:28Z",
+          "updatedAt": "2024-01-18T18:56:55Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "A bit of tweaking as an Issuer can produce signed statements, which they may submit to any number of transparency services. The registration policy may fail if it doesn't support a type of identity, but as worded it sounds like you can't sign a statement, as opposed to the TS doesn't have to accept it.\r\nI was trying to find an alternative way to say this, but is this sentence needed at all?\r\n```suggestion\r\n```",
+              "createdAt": "2024-01-18T18:38:29Z",
+              "updatedAt": "2024-01-18T18:56:56Z"
+            },
+            {
+              "originalPosition": 35,
+              "body": "added line wrapping for PR feedback\r\n```suggestion\r\nTransparency Services MUST support the capability to associate an X.509v3 certificate with a Signed Statement using a hash (thumbprint) of the certificate as specified in {{Section 2 of RFC9360}} by supporting the `x5t` COSE header parameter.\r\nThe `x5t` COSE header parameter MUST be included in the protected header of a Signed Statement's COSE envelope.\r\nThe mechanisms for how Transparency Services obtain corresponding X.509v3 certificates, e.g., as part of enforcing a Registration Policy, is out-of-scope of this document.\r\n```",
+              "createdAt": "2024-01-18T18:40:03Z",
+              "updatedAt": "2024-01-18T18:56:56Z"
+            },
+            {
+              "originalPosition": 40,
+              "body": "```suggestion\r\nIssuers MUST rotate verification keys for signature checking in well-defined cryptoperiods (see {{KEY-MANAGEMENT}}).\r\n```",
+              "createdAt": "2024-01-18T18:42:23Z",
+              "updatedAt": "2024-01-18T18:56:56Z"
+            },
+            {
+              "originalPosition": 41,
+              "body": "@OR13, doesn't this pull in the standardization of registration policies, if we say they must specify their supported algorithms?",
+              "createdAt": "2024-01-18T18:44:08Z",
+              "updatedAt": "2024-01-18T18:56:56Z"
+            },
+            {
+              "originalPosition": 46,
+              "body": "Line formatting for PR feedback and consistency\r\n```suggestion\r\nAn Issuer identifier and a Subject identifier are required to be included in the COSE envelope. Consequently, the protected header of a Signed Statement MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}.\r\nThe CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `Subject Claim` (Claim label 2) {{IANA.cwt}}.\r\n```",
+              "createdAt": "2024-01-18T18:53:01Z",
+              "updatedAt": "2024-01-18T18:56:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tGUjM",
+          "commit": {
+            "abbreviatedOid": "88e992a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T18:58:37Z",
+          "updatedAt": "2024-01-18T18:58:37Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "nit: line wrap sentences, please.",
+              "createdAt": "2024-01-18T18:58:37Z",
+              "updatedAt": "2024-01-18T18:58:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tHf59",
+          "commit": {
+            "abbreviatedOid": "28a8624"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T22:49:13Z",
+          "updatedAt": "2024-01-18T22:49:13Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "```suggestion\r\nThe `x5t` COSE header parameter MUST be included in the protected header of a Signed Statement's COSE envelope.\r\nWhen `x5t` is present, `iss` MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.\r\n```",
+              "createdAt": "2024-01-18T22:49:13Z",
+              "updatedAt": "2024-01-18T22:49:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tHrBD",
+          "commit": {
+            "abbreviatedOid": "28a8624"
+          },
+          "author": "CBonnell",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-18T23:38:56Z",
+          "updatedAt": "2024-01-18T23:38:56Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "I suggest specifying the second sentence (on line 374) as:\r\n`When `x5t` is present, `iss` MUST be the {{!RFC 4514}} string representation of the subject distinguished name of the certificate whose thumbprint is included in `x5t`.\r\n`",
+              "createdAt": "2024-01-18T23:38:56Z",
+              "updatedAt": "2024-01-18T23:39:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tL8Gq",
+          "commit": {
+            "abbreviatedOid": "1ce8d52"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "Addressed some feedback and added a suggestion",
+          "createdAt": "2024-01-19T08:17:22Z",
+          "updatedAt": "2024-01-19T08:26:57Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "With the \"new\" title and structure I felt that this lead-in sentence now felt off. Less, crisp text is better. Any objections?",
+              "createdAt": "2024-01-19T08:17:22Z",
+              "updatedAt": "2024-01-19T08:26:57Z"
+            },
+            {
+              "originalPosition": 36,
+              "body": ":+1: ",
+              "createdAt": "2024-01-19T08:18:27Z",
+              "updatedAt": "2024-01-19T08:26:57Z"
+            },
+            {
+              "originalPosition": 26,
+              "body": "Good. I agree. Maybe some Security Considerations? Created #170 as a reminder.",
+              "createdAt": "2024-01-19T08:22:22Z",
+              "updatedAt": "2024-01-19T08:26:57Z"
+            },
+            {
+              "originalPosition": 69,
+              "body": "17h later, it still makes no sense, changed it via suggestion feature.",
+              "createdAt": "2024-01-19T08:25:55Z",
+              "updatedAt": "2024-01-19T08:26:57Z"
+            },
+            {
+              "originalPosition": 77,
+              "body": "```suggestion\r\n   34 => COSE_CertHash   ; x5t, hash of an X.509 certificate\r\n   * int => any\r\n}\r\n~~~\r\n{: #fig-signed-statement title=\"CDDL definition for SCITT Signed Statements\"}\r\n```",
+              "createdAt": "2024-01-19T08:26:25Z",
+              "updatedAt": "2024-01-19T08:26:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5tQVYv",
+          "commit": {
+            "abbreviatedOid": "1ce8d52"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-19T15:16:42Z",
+          "updatedAt": "2024-01-19T15:16:42Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "If there are no objections, this suggestion is good to go.",
+              "createdAt": "2024-01-19T15:16:42Z",
+              "updatedAt": "2024-01-19T15:16:42Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 164,
+      "id": "PR_kwDOIvmHss5kd0zj",
+      "title": "Quick spelling and formatting fixes",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/164",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-18T21:13:32Z",
+      "updatedAt": "2024-01-18T21:15:32Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "e85d13527ac8ff78a29d9a46cb4b609cff286692",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve-spelling-and-formatting",
+      "headRefOid": "e68a571328dbee0bbbd000c968381f9c9fc41869",
+      "closedAt": "2024-01-18T21:14:34Z",
+      "mergedAt": "2024-01-18T21:14:34Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "6f6b778ea511e6b577d118d5716b398a937574eb"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 165,
+      "id": "PR_kwDOIvmHss5keL7W",
+      "title": "Clarify Feed and Subject",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/165",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Explains Feed as the logical collection, with `CWT_Claims sub` (Subject) as the property to represent the collection.",
+      "createdAt": "2024-01-18T22:30:36Z",
+      "updatedAt": "2024-01-19T22:16:19Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "6f6b778ea511e6b577d118d5716b398a937574eb",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/feed-subject",
+      "headRefOid": "09d3412548358e5549a10546648fbdb67f04470f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "> For simplicity, I would prefer to keep only one of the two in the Terminology.\r\n\r\nThat seems pretty reasonable to me. Are there any reasons to keep both?",
+          "createdAt": "2024-01-19T14:14:57Z",
+          "updatedAt": "2024-01-19T14:14:57Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> > For simplicity, I would prefer to keep only one of the two in the Terminology.\r\n> \r\n> That seems pretty reasonable to me. Are there any reasons to keep both?\r\n\r\nWhile I'd agree less is more, this keeps coming back when we try to explain it.\r\n\r\n- A feed is a known concept for a collection of related data\r\n- We're using CWT_Claims `sub`, which also makes sense to align with existing specs\r\n- We avoided Artifact ID\r\n\r\nAttempting to describe a collection of statements as a subject doesn't resonate.\r\n\r\nWe can keep Feed as the concept, and simply say CWT_Claims `sub` is how you set an identifier for the feed.\r\nHow does that work?",
+          "createdAt": "2024-01-19T22:16:19Z",
+          "updatedAt": "2024-01-19T22:16:19Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5tPiTr",
+          "commit": {
+            "abbreviatedOid": "09d3412"
+          },
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "For simplicity, I would prefer to keep only one of the two in the Terminology. ",
+          "createdAt": "2024-01-19T14:13:00Z",
+          "updatedAt": "2024-01-19T14:13:00Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 167,
+      "id": "PR_kwDOIvmHss5kez6V",
+      "title": "Add remote signing diagram",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/167",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "![Screenshot 2024-01-18 at 6 30 50\u202fPM](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/8295856/7100c0bc-b69e-43a1-93cc-df5de200c004)\r\n",
+      "createdAt": "2024-01-19T00:29:59Z",
+      "updatedAt": "2024-01-19T01:10:47Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "6f6b778ea511e6b577d118d5716b398a937574eb",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "feat/diagrams",
+      "headRefOid": "4a3f4f35f10ef05fcc1672b8819cf3fd53c59160",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 168,
+      "id": "PR_kwDOIvmHss5ke6oo",
+      "title": "Formatting fixes",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/168",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-19T01:10:39Z",
+      "updatedAt": "2024-01-19T01:15:43Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "feat/diagrams",
+      "baseRefOid": "f7d1c4574b9ce24b0bef5b6efc31e865c102d6ef",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/167-update",
+      "headRefOid": "5c82147c8f40c3e2f6ed97ba8c359c8bc20b49ba",
+      "closedAt": "2024-01-19T01:10:45Z",
+      "mergedAt": "2024-01-19T01:10:45Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "4a3f4f35f10ef05fcc1672b8819cf3fd53c59160"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 169,
+      "id": "PR_kwDOIvmHss5ke8Uc",
+      "title": "Nit formatting and spelling fixes",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/169",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-19T01:21:28Z",
+      "updatedAt": "2024-01-19T01:22:21Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "6f6b778ea511e6b577d118d5716b398a937574eb",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/formatting-fixes",
+      "headRefOid": "2540c48bec12fd2403edf4b49d36db724a030f5f",
+      "closedAt": "2024-01-19T01:22:08Z",
+      "mergedAt": "2024-01-19T01:22:08Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "aae7d8cf21aae5437463ea904516077452614f1a"
+      },
+      "comments": [],
       "reviews": []
     }
   ]
