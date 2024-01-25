@@ -320,19 +320,19 @@ Failure to produce this proof can indicate that the Transparency Services operat
                  .----+----.  .----------.  Identifiers
 Issuer      --> | Statement ||  Envelope  +<------------------.
                  '----+----'  '-----+----'                     |
-                      |             |           +--------------+---+
-                       '----. .----'            | Identity         |
-                             |                  | Documents        |-------
-                             v                  +-------+------+---+      |
+                      |             |            .-------------+--.
+                       '----. .----'            |    Identity      |
+                             |                  |    Documents     +-----.
+                             v                   '------+---------'       |
                         .----+----.                     |                 |
                        |  Signed   |    COSE Signing    |                 |
                        | Statement +<-------------------+                 |
                         '----+----'                     |                 |
                              |               +----------+----+            |
                           .-' '------------->+ Transparency  |            |
-                         |   .---------.     |               |            |
-Transparency -->         |  | Receipts +<----+  Services     |            |
-     Service             |   '---+-----'     +------------+--+            |
+                         |   .--------.      |               |            |
+Transparency -->         |  | Receipts +<----+   Services    |            |
+     Service             |   '---+----'      +------------+--+            |
                           '-. .-'                         |               |
                              |                            |               |
                              v                            |               |
@@ -341,7 +341,7 @@ Transparency -->         |  | Receipts +<----+  Services     |            |
                       |  Statement  |                     |               |
                        '-----+-----'                      |               |
                              |                            |               |
-                             |'-------.     .-------------)---------------'
+                             |'-------.     .-------------)--------------'
                              |         |   |              |
                              |         v   v              |
                              |    .----+---+-----------.  |
