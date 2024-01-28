@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-25T00:37:18.009035+00:00",
+  "timestamp": "2024-01-28T00:36:49.995525+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -18952,6 +18952,82 @@
       "mergedBy": "SteveLasker",
       "mergeCommit": {
         "oid": "aae7d8cf21aae5437463ea904516077452614f1a"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 171,
+      "id": "PR_kwDOIvmHss5lE4yd",
+      "title": "Add Multiplicity Diagram",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/171",
+      "state": "OPEN",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-25T15:10:18Z",
+      "updatedAt": "2024-01-25T16:05:10Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "aae7d8cf21aae5437463ea904516077452614f1a",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "re-architect",
+      "headRefOid": "e80d22eb096239f921cc402f0765fd8cad9081c4",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Thanks, @yogeshbdeshpande I [merged a few formatting fixes](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/172) ![image](https://private-user-images.githubusercontent.com/7647382/299720950-5d377d64-c851-4aa0-8d3a-4cb56476a5af.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDYxOTg5NjQsIm5iZiI6MTcwNjE5ODY2NCwicGF0aCI6Ii83NjQ3MzgyLzI5OTcyMDk1MC01ZDM3N2Q2NC1jODUxLTRhYTAtOGQzYS00Y2I1NjQ3NmE1YWYucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI0MDEyNSUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNDAxMjVUMTYwNDI0WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9NzFiY2E4MjgyYmZkNGRlNmRmNThhZGZkNWM2M2I5MjQxNmU2NjdiMzdjMDBkYWY5MDcwMzNlZjk1YjRkNTg2YiZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmYWN0b3JfaWQ9MCZrZXlfaWQ9MCZyZXBvX2lkPTAifQ.Hur3SfeNsya6qXWlJFMnbMsy1h14EyXveW3NGwx83KE)\r\n\r\n@SteveLasker \"Awesome\" Thank you for this, will merge when others Approve it!",
+          "createdAt": "2024-01-25T16:05:09Z",
+          "updatedAt": "2024-01-25T16:05:09Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5t6eCI",
+          "commit": {
+            "abbreviatedOid": "e80d22e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks, @yogeshbdeshpande\r\nI [merged a few formatting fixes](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/172)\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/5d377d64-c851-4aa0-8d3a-4cb56476a5af)\r\n",
+          "createdAt": "2024-01-25T15:40:33Z",
+          "updatedAt": "2024-01-25T15:40:33Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 172,
+      "id": "PR_kwDOIvmHss5lFEhH",
+      "title": "Architecture Overview aasvg fixes",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/172",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "a few formatting fixes\r\n- Identity Documents are rounded as they're documents, as opposed to a process\r\n- corner fixes \r\n- centering text",
+      "createdAt": "2024-01-25T15:36:42Z",
+      "updatedAt": "2024-01-25T15:37:39Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "re-architect",
+      "baseRefOid": "32520b4775885a363a1fceeb164e91822a4b2e19",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/aasvg-fixes",
+      "headRefOid": "1abdb3d6d9c77900cc64ee97d7d4b36aaf68b08b",
+      "closedAt": "2024-01-25T15:37:39Z",
+      "mergedAt": "2024-01-25T15:37:39Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "e80d22eb096239f921cc402f0765fd8cad9081c4"
       },
       "comments": [],
       "reviews": []
