@@ -1037,7 +1037,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 22 July 2024</td>
+<td class="center">Expires 2 August 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1050,12 +1050,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-01-19" class="published">19 January 2024</time>
+<time datetime="2024-01-30" class="published">30 January 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-07-22">22 July 2024</time></dd>
+<dd class="expires"><time datetime="2024-08-02">2 August 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1124,7 +1124,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 22 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 2 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1182,7 +1182,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
                 <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-signed-statement-issuance-a" class="internal xref">Signed Statement Issuance and Registration</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.1">
-                    <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="auto internal xref">5.1.1</a>.  <a href="#name-issuer-identity" class="internal xref">Issuer Identity</a></p>
+                    <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="auto internal xref">5.1.1</a>.  <a href="#name-structure-and-content-of-si" class="internal xref">Structure and Content of Signed Statements</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.2">
                     <p id="section-toc.1-1.5.2.1.2.2.1"><a href="#section-5.1.2" class="auto internal xref">5.1.2</a>.  <a href="#name-support-for-multiple-artifa" class="internal xref">Support for Multiple Artifacts</a></p>
@@ -1751,41 +1751,52 @@ Failure to produce this proof can indicate that the Transparency Services operat
 <p id="section-5-2">The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements, and auditing Transparent Statements.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <p id="section-5-3">In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span>.<a href="#section-5-3" class="pilcrow">¶</a></p>
-<p id="section-5-4">This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and the Signed Statement issuance process, Transparency Service and the Signed Statement Registration process, as well as Verifiers of the Transparent Statements and the Receipt validation process.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-4">This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and Signed Statements, Transparency Service and the Signed Statement Registration process, as well as Verifiers of the Transparent Statements and the Receipt validation process.<a href="#section-5-4" class="pilcrow">¶</a></p>
 <div id="sec-signed-statement-issuance-and-registration">
 <section id="section-5.1">
         <h3 id="name-signed-statement-issuance-a">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-signed-statement-issuance-a" class="section-name selfRef">Signed Statement Issuance and Registration</a>
         </h3>
-<div id="sec-issuer-identity">
+<div id="sec-structure-and-content-of-signed-statements">
 <section id="section-5.1.1">
-          <h4 id="name-issuer-identity">
-<a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-issuer-identity" class="section-name selfRef">Issuer Identity</a>
+          <h4 id="name-structure-and-content-of-si">
+<a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-structure-and-content-of-si" class="section-name selfRef">Structure and Content of Signed Statements</a>
           </h4>
-<p id="section-5.1.1-1">Before an Issuer is able to produce Signed Statements, it must first create an identifier and obtain an identity document, that is acceptable to the Transparency Service.
-Transparency Services <span class="bcp14">MAY</span> support many different identity document formats.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1.1-2">Issuers <span class="bcp14">SHOULD</span> use consistent identifiers for all their Statements about Artifacts, to simplify authorization by Verifiers and auditing.
-If an Issuer uses multiple identifiers, they <span class="bcp14">MUST</span> ensure that statements signed under each identifier are consistent.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-5.1.1-3">Issuers <span class="bcp14">MAY</span> rotate verification keys at any time, or at a consistent cryptoperiod.
-Issuers <span class="bcp14">MAY</span> migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting signed statements that match its policies.<a href="#section-5.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-5.1.1-4">The Issuer's identifier is required and appears in the <code>1 iss</code> claim of the <code>15 CWT_Claims</code> protected header of the Signed Statements' Envelope.
-The version of the key used to sign the Signed Statement is written in the <code>4 kid</code> protected header.<a href="#section-5.1.1-4" class="pilcrow">¶</a></p>
-<p id="section-5.1.1-5">Key discovery protocols are out of scope for this document.<a href="#section-5.1.1-5" class="pilcrow">¶</a></p>
-<div class="lang-cddl sourcecode" id="section-5.1.1-6">
+<p id="section-5.1.1-1">Transparency Services <span class="bcp14">MUST</span> support the capability to associate an X.509v3 certificate with a Signed Statement using a hash (thumbprint) of the certificate as specified in <span><a href="https://rfc-editor.org/rfc/rfc9360#section-2" class="relref">Section 2</a> of [<a href="#RFC9360" class="cite xref">RFC9360</a>]</span> by supporting the <code>x5t</code> COSE header parameter.
+The <code>x5t</code> COSE header parameter <span class="bcp14">MUST</span> be included in the protected header of a Signed Statement's COSE envelope.
+When <code>x5t</code> is present, <code>iss</code> <span class="bcp14">MUST</span> be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
+The mechanisms for how Transparency Services obtain corresponding X.509v3 certificates, e.g., as part of enforcing a Registration Policy, is out-of-scope of this document.
+At least one identifier for an identity document <span class="bcp14">MUST</span> be included in the protected header of the COSE envelope.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-2">Issuers <span class="bcp14">MUST</span> rotate verification keys for signature checking in well-defined cryptoperiods (see <span>[<a href="#KEY-MANAGEMENT" class="cite xref">KEY-MANAGEMENT</a>]</span>).
+Transparency Services <span class="bcp14">MUST</span> specify their supported signature algorithms in their Registration Policies.
+The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when the <code>x5t</code> header parameter is not present.
+Key discovery protocols are out-of-scope of this document.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-3">An Issuer identifier and a Subject identifier are required to be included in the COSE envelope. Consequently, the protected header of a Signed Statement <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10#section-2" class="relref">Section 2</a> of [<a href="#CWT_CLAIMS_COSE" class="cite xref">CWT_CLAIMS_COSE</a>]</span>.
+The CBOR map that constitutes the corresponding <code>CWT Claims</code> value <span class="bcp14">MUST</span> include the <code>Issuer Claim</code> (Claim label 1) and the <code>Subject Claim</code> (Claim label 2) <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span>.<a href="#section-5.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-4">Figure <a href="#fig-signed-statement" class="auto internal xref">Figure 1</a> illustrated a normative CDDL definition for the composition of the protected header in COSE envelope of SCITT Signed Statements.<a href="#section-5.1.1-4" class="pilcrow">¶</a></p>
+<span id="name-cddl-definition-for-scitt-s"></span><div id="fig-signed-statement">
+<figure id="figure-1">
+            <div class="lang-cddl sourcecode" id="section-5.1.1-5.1">
 <pre>
 CWT_Claims = {
-  1 =&gt; tstr; iss, the issuer making statements,
-  2 =&gt; tstr; sub, the subject of the statements,
-  * tstr =&gt; any
+    1 =&gt; tstr            ; iss, the issuer making statements
+    2 =&gt; tstr            ; sub, the subject of the statements
+  * int =&gt; any
 }
 
 Protected_Header = {
-  1   =&gt; int             ; algorithm identifier,
-  4   =&gt; bstr            ; Key ID (kid),
-  15  =&gt; CWT_Claims      ; CBOR Web Token Claims,
-  3   =&gt; tstr            ; payload type
+    1 =&gt; int             ; algorithm identifier
+    3 =&gt; tstr            ; payload type
+  ? 4 =&gt; bstr            ; Key ID (kid)
+   15 =&gt; CWT_Claims      ; CBOR Web Token Claims
+   34 =&gt; COSE_CertHash   ; x5t, hash of an X.509 certificate
+   * int =&gt; any
 }
-</pre><a href="#section-5.1.1-6" class="pilcrow">¶</a>
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-cddl-definition-for-scitt-s" class="selfRef">CDDL definition for SCITT Signed Statements</a>
+            </figcaption></figure>
 </div>
 </section>
 </div>
@@ -2772,6 +2783,10 @@ in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#sec
         <dd>
 <span class="refAuthor">IANA</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE)"</span>, <span>&lt;<a href="http://www.iana.org/assignments/cose">http://www.iana.org/assignments/cose</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="IANA.cwt">[IANA.cwt]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"CBOR Web Token (CWT) Claims"</span>, <span>&lt;<a href="http://www.iana.org/assignments/cwt">http://www.iana.org/assignments/cwt</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="IANA.media-types">[IANA.media-types]</dt>
         <dd>
 <span class="refAuthor">IANA</span>, <span class="refTitle">"Media Types"</span>, <span>&lt;<a href="http://www.iana.org/assignments/media-types">http://www.iana.org/assignments/media-types</a>&gt;</span>. </dd>
@@ -2852,6 +2867,10 @@ in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#sec
 <dt id="in-toto">[in-toto]</dt>
         <dd>
 <span class="refTitle">"in-toto"</span>, <span>n.d.</span>, <span>&lt;<a href="https://in-toto.io/">https://in-toto.io/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="KEY-MANAGEMENT">[KEY-MANAGEMENT]</dt>
+        <dd>
+<span class="refAuthor">Barker, E.</span> and <span class="refAuthor">W. Barker</span>, <span class="refTitle">"Recommendation for key management:: part 2 -- best practices for key management organizations"</span>, <span class="refContent">National Institute of Standards and Technology</span>, <span class="seriesInfo">DOI 10.6028/nist.sp.800-57pt2r1</span>, <time datetime="2019-05" class="refDate">May 2019</time>, <span>&lt;<a href="https://doi.org/10.6028/nist.sp.800-57pt2r1">https://doi.org/10.6028/nist.sp.800-57pt2r1</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="MERKLE">[MERKLE]</dt>
         <dd>
@@ -2999,13 +3018,13 @@ urn:ietf:params:scitt:\
 <a href="#appendix-A.4.1" class="section-number selfRef">A.4.1. </a><a href="#name-statement-urn" class="section-name selfRef">Statement URN</a>
           </h4>
 <span id="name-example-statement-urn"></span><div id="example-statement-urn">
-<figure id="figure-1">
+<figure id="figure-2">
             <div class="alignLeft art-text artwork" id="appendix-A.4.1-1.1">
 <pre>
 urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-example-statement-urn" class="selfRef">Example Statement URN</a>
             </figcaption></figure>
 </div>
@@ -3017,14 +3036,14 @@ urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 <a href="#appendix-A.4.2" class="section-number selfRef">A.4.2. </a><a href="#name-statement-url" class="section-name selfRef">Statement URL</a>
           </h4>
 <span id="name-example-statement-url"></span><div id="example-statement-url">
-<figure id="figure-2">
+<figure id="figure-3">
             <div class="alignLeft art-text artwork" id="appendix-A.4.2-1.1">
 <pre>
 https://transparency.example/api/identifiers\
 /urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
 <a href="#name-example-statement-url" class="selfRef">Example Statement URL</a>
             </figcaption></figure>
 </div>
@@ -3036,13 +3055,13 @@ https://transparency.example/api/identifiers\
 <a href="#appendix-A.4.3" class="section-number selfRef">A.4.3. </a><a href="#name-statement-data-url" class="section-name selfRef">Statement Data URL</a>
           </h4>
 <span id="name-example-statement-data-url"></span><div id="example-statement-data-url">
-<figure id="figure-3">
+<figure id="figure-4">
             <div class="alignLeft art-text artwork" id="appendix-A.4.3-1.1">
 <pre>
 data:application/json;base64,SGVsb...xkIQ==
 </pre>
 </div>
-<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
 <a href="#name-example-statement-data-url" class="selfRef">Example Statement Data URL</a>
             </figcaption></figure>
 </div>
@@ -3061,14 +3080,14 @@ data:application/json;base64,SGVsb...xkIQ==
 <a href="#appendix-A.5.1" class="section-number selfRef">A.5.1. </a><a href="#name-signed-statement-urn" class="section-name selfRef">Signed Statement URN</a>
           </h4>
 <span id="name-example-signed-statement-ur"></span><div id="example-signed-statement-urn">
-<figure id="figure-4">
+<figure id="figure-5">
             <div class="alignLeft art-text artwork" id="appendix-A.5.1-1.1">
 <pre>
 urn:ietf:params:scitt:\
 signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-example-signed-statement-ur" class="selfRef">Example Signed Statement URN</a>
             </figcaption></figure>
 </div>
@@ -3080,7 +3099,7 @@ signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 <a href="#appendix-A.5.2" class="section-number selfRef">A.5.2. </a><a href="#name-signed-statement-url" class="section-name selfRef">Signed Statement URL</a>
           </h4>
 <span id="name-example-signed-statement-url"></span><div id="example-signed-statement-url">
-<figure id="figure-5">
+<figure id="figure-6">
             <div class="alignLeft art-text artwork" id="appendix-A.5.2-1.1">
 <pre>
 https://transparency.example/api/identifiers\
@@ -3088,7 +3107,7 @@ https://transparency.example/api/identifiers\
 signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
 <a href="#name-example-signed-statement-url" class="selfRef">Example Signed Statement URL</a>
             </figcaption></figure>
 </div>
@@ -3100,13 +3119,13 @@ signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 <a href="#appendix-A.5.3" class="section-number selfRef">A.5.3. </a><a href="#name-signed-statement-data-url" class="section-name selfRef">Signed Statement Data URL</a>
           </h4>
 <span id="name-example-signed-statement-da"></span><div id="example-signed-statement-data-url">
-<figure id="figure-6">
+<figure id="figure-7">
             <div class="alignLeft art-text artwork" id="appendix-A.5.3-1.1">
 <pre>
 data:application/cose;base64,SGVsb...xkIQ==
 </pre>
 </div>
-<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-example-signed-statement-da" class="selfRef">Example Signed Statement Data URL</a>
             </figcaption></figure>
 </div>
@@ -3125,13 +3144,13 @@ data:application/cose;base64,SGVsb...xkIQ==
 <a href="#appendix-A.6.1" class="section-number selfRef">A.6.1. </a><a href="#name-receipt-urn" class="section-name selfRef">Receipt URN</a>
           </h4>
 <span id="name-example-receipt-urn"></span><div id="example-receipt-urn">
-<figure id="figure-7">
+<figure id="figure-8">
             <div class="alignLeft art-text artwork" id="appendix-A.6.1-1.1">
 <pre>
 urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
 <a href="#name-example-receipt-urn" class="selfRef">Example Receipt URN</a>
             </figcaption></figure>
 </div>
@@ -3143,14 +3162,14 @@ urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 <a href="#appendix-A.6.2" class="section-number selfRef">A.6.2. </a><a href="#name-receipt-url" class="section-name selfRef">Receipt URL</a>
           </h4>
 <span id="name-example-receipt-url"></span><div id="example-receipt-url">
-<figure id="figure-8">
+<figure id="figure-9">
             <div class="alignLeft art-text artwork" id="appendix-A.6.2-1.1">
 <pre>
 https://transparency.example/api/identifiers\
 /urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-example-receipt-url" class="selfRef">Example Receipt URL</a>
             </figcaption></figure>
 </div>
@@ -3162,13 +3181,13 @@ https://transparency.example/api/identifiers\
 <a href="#appendix-A.6.3" class="section-number selfRef">A.6.3. </a><a href="#name-receipt-data-url" class="section-name selfRef">Receipt Data URL</a>
           </h4>
 <span id="name-example-receipt-data-url"></span><div id="example-receipt-data-url">
-<figure id="figure-9">
+<figure id="figure-10">
             <div class="alignLeft art-text artwork" id="appendix-A.6.3-1.1">
 <pre>
 data:application/cose;base64,SGVsb...xkIQ==
 </pre>
 </div>
-<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
 <a href="#name-example-receipt-data-url" class="selfRef">Example Receipt Data URL</a>
             </figcaption></figure>
 </div>
@@ -3187,14 +3206,14 @@ data:application/cose;base64,SGVsb...xkIQ==
 <a href="#appendix-A.7.1" class="section-number selfRef">A.7.1. </a><a href="#name-transparent-statement-urn" class="section-name selfRef">Transparent Statement URN</a>
           </h4>
 <span id="name-example-transparent-stateme"></span><div id="example-transparent-statement-urn">
-<figure id="figure-10">
+<figure id="figure-11">
             <div class="alignLeft art-text artwork" id="appendix-A.7.1-1.1">
 <pre>
 urn:ietf:params:scitt:\
 transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
+<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
 <a href="#name-example-transparent-stateme" class="selfRef">Example Transparent Statement URN</a>
             </figcaption></figure>
 </div>
@@ -3206,7 +3225,7 @@ transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 <a href="#appendix-A.7.2" class="section-number selfRef">A.7.2. </a><a href="#name-transparent-statement-url" class="section-name selfRef">Transparent Statement URL</a>
           </h4>
 <span id="name-example-transparent-statemen"></span><div id="example-transparent-statement-url">
-<figure id="figure-11">
+<figure id="figure-12">
             <div class="alignLeft art-text artwork" id="appendix-A.7.2-1.1">
 <pre>
 https://transparency.example/api/identifiers\
@@ -3214,7 +3233,7 @@ https://transparency.example/api/identifiers\
 transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
+<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
 <a href="#name-example-transparent-statemen" class="selfRef">Example Transparent Statement URL</a>
             </figcaption></figure>
 </div>
@@ -3226,13 +3245,13 @@ transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 <a href="#appendix-A.7.3" class="section-number selfRef">A.7.3. </a><a href="#name-transparent-statement-data-" class="section-name selfRef">Transparent Statement Data URL</a>
           </h4>
 <span id="name-example-transparent-statement"></span><div id="example-transparent-statement-data-url">
-<figure id="figure-12">
+<figure id="figure-13">
             <div class="alignLeft art-text artwork" id="appendix-A.7.3-1.1">
 <pre>
 data:application/cose;base64,SGVsb...xkIQ==
 </pre>
 </div>
-<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
+<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
 <a href="#name-example-transparent-statement" class="selfRef">Example Transparent Statement Data URL</a>
             </figcaption></figure>
 </div>
