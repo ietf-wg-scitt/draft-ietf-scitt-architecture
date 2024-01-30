@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 22 July 2024                                         C. Fournet
+Expires: 2 August 2024                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         19 January 2024
+                                                         30 January 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 July 2024.
+   This Internet-Draft will expire on 2 August 2024.
 
 Copyright Notice
 
@@ -504,6 +504,7 @@ Table of Contents
      ? 4 => bstr            ; Key ID (kid)
       15 => CWT_Claims      ; CBOR Web Token Claims
       34 => COSE_CertHash   ; x5t, hash of an X.509 certificate
+      * int => any
    }
 
            Figure 1: CDDL definition for SCITT Signed Statements
