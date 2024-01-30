@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 22 July 2024                                         C. Fournet
+Expires: 2 August 2024                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         19 January 2024
+                                                         30 January 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 July 2024.
+   This Internet-Draft will expire on 2 August 2024.
 
 Copyright Notice
 
@@ -1937,16 +1937,12 @@ A.7.3.  Transparent Statement Data URL
 
 Appendix B.  Signing Statements Remotely
 
-   Some statements are too large, or sensitive to send over a network to
-   a remote signer.
-
-   Recall that a Statement is an artifact, structured data regarding an
-   artifact, or a hash.
-
-   A Statement becomes a payload, which becomes to-be-signed bytes.
-
-   A Signed Statement (cose-sign1) MUST be produced from the to-be-
-   signed bytes according to Section 4.4 of [RFC9052].
+   Statements, such as digital artifacts or structured data regarding
+   artifacts, can be too large or too sensitive to be send to a remote
+   Transparency Services over the Internet.  In these cases a statement
+   can also be hash, which becomes the payload included in COSE to-be-
+   signed bytes.  A Signed Statement (cose-sign1) MUST be produced from
+   the to-be-signed bytes according to Section 4.4 of [RFC9052].
 
     .----+-----.
    |  Artifact  |
