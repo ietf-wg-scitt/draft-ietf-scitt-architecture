@@ -1768,7 +1768,7 @@ When <code>x5t</code> is present, <code>iss</code> <span class="bcp14">MUST</spa
 The mechanisms for how Transparency Services obtain corresponding X.509v3 certificates, e.g., as part of enforcing a Registration Policy, is out-of-scope of this document.
 At least one identifier for an identity document <span class="bcp14">MUST</span> be included in the protected header of the COSE envelope.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.1.1-2">Issuers <span class="bcp14">MUST</span> rotate verification keys for signature checking in well-defined cryptoperiods (see <span>[<a href="#KEY-MANAGEMENT" class="cite xref">KEY-MANAGEMENT</a>]</span>).
-Issuers <span class="bcp14">MAY</span> migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting Signed Statements that complies with its active Registration Policies.
+Transparency Services <span class="bcp14">MUST</span> specify their supported signature algorithms in their Registration Policies.
 The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when the <code>x5t</code> header parameter is not present.
 Key discovery protocols are out-of-scope of this document.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1.1-3">An Issuer identifier and a Subject identifier are required to be included in the COSE envelope. Consequently, the protected header of a Signed Statement <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10#section-2" class="relref">Section 2</a> of [<a href="#CWT_CLAIMS_COSE" class="cite xref">CWT_CLAIMS_COSE</a>]</span>.
