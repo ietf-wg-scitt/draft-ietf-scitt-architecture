@@ -375,7 +375,7 @@ The mechanisms for how Transparency Services obtain corresponding X.509v3 certif
 At least one identifier for an identity document MUST be included in the protected header of the COSE envelope.
 
 Issuers MUST rotate verification keys for signature checking in well-defined cryptoperiods (see {{KEY-MANAGEMENT}}).
-Issuers MAY migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting Signed Statements that complies with its active Registration Policies.
+Transparency Services MUST specify their supported signature algorithms in their Registration Policies.
 The `kid` header parameter MUST be present when the `x5t` header parameter is not present.
 Key discovery protocols are out-of-scope of this document.
 
