@@ -397,6 +397,7 @@ Protected_Header = {
   ? 4 => bstr            ; Key ID (kid)
    15 => CWT_Claims      ; CBOR Web Token Claims
    34 => COSE_CertHash   ; x5t, hash of an X.509 certificate
+   * int => any
 }
 ~~~
 {: #fig-signed-statement title="CDDL definition for SCITT Signed Statements"}
