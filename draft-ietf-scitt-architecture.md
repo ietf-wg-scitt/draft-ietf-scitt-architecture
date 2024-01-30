@@ -376,7 +376,8 @@ At least one identifier for an identity document MUST be included in the protect
 
 Issuers MUST rotate verification keys for signature checking in well-defined cryptoperiods (see {{KEY-MANAGEMENT}}).
 Issuers MAY migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting Signed Statements that complies with its active Registration Policies.
-The version of the key used to sign the Signed Statement MAY be included via the `kid` COSE header parameter in the protected header. Key discovery protocols are out-of-scope of this document.
+The `kid` header parameter MUST be present when the `x5t` header parameter is not present.
+Key discovery protocols are out-of-scope of this document.
 
 An Issuer identifier and a Subject identifier are required to be included in the COSE envelope. Consequently, the protected header of a Signed Statement MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}.
 The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `Subject Claim` (Claim label 2) {{IANA.cwt}}.
