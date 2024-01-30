@@ -76,6 +76,7 @@ normative:
   COSWID: RFC9393
 
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
+  IANA.cwt:
   IANA.cose:
   IANA.media-types:
   IANA.named-information:
@@ -131,6 +132,8 @@ informative:
     title: URL Living Standard
 
   I-D.draft-ietf-core-href: CURIs
+
+  KEY-MANAGEMENT: DOI.10.6028/NIST.SP.800-57pt2r1
 
 --- abstract
 
@@ -359,40 +362,45 @@ The SCITT architecture consists of a very loose federation of Transparency Servi
 In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
 
-This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and the Signed Statement issuance process, Transparency Service and the Signed Statement Registration process, as well as Verifiers of the Transparent Statements and the Receipt validation process.
+This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and Signed Statements, Transparency Service and the Signed Statement Registration process, as well as Verifiers of the Transparent Statements and the Receipt validation process.
 
 ## Signed Statement Issuance and Registration
 
-### Issuer Identity
+### Structure and Content of Signed Statements
 
-Before an Issuer is able to produce Signed Statements, it must first create an identifier and obtain an identity document, that is acceptable to the Transparency Service.
-Transparency Services MAY support many different identity document formats.
+Transparency Services MUST support the capability to associate an X.509v3 certificate with a Signed Statement using a hash (thumbprint) of the certificate as specified in {{Section 2 of RFC9360}} by supporting the `x5t` COSE header parameter.
+The `x5t` COSE header parameter MUST be included in the protected header of a Signed Statement's COSE envelope.
+When `x5t` is present, `iss` MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
+The mechanisms for how Transparency Services obtain corresponding X.509v3 certificates, e.g., as part of enforcing a Registration Policy, is out-of-scope of this document.
+At least one identifier for an identity document MUST be included in the protected header of the COSE envelope.
 
-Issuers SHOULD use consistent identifiers for all their Statements about Artifacts, to simplify authorization by Verifiers and auditing.
-If an Issuer uses multiple identifiers, they MUST ensure that statements signed under each identifier are consistent.
+Issuers MUST rotate verification keys for signature checking in well-defined cryptoperiods (see {{KEY-MANAGEMENT}}).
+Transparency Services MUST specify their supported signature algorithms in their Registration Policies.
+The `kid` header parameter MUST be present when the `x5t` header parameter is not present.
+Key discovery protocols are out-of-scope of this document.
 
-Issuers MAY rotate verification keys at any time, or at a consistent cryptoperiod.
-Issuers MAY migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting signed statements that match its policies.
+An Issuer identifier and a Subject identifier are required to be included in the COSE envelope. Consequently, the protected header of a Signed Statement MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}.
+The CBOR map that constitutes the corresponding `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `Subject Claim` (Claim label 2) {{IANA.cwt}}.
 
-The Issuer's identifier is required and appears in the `1 iss` claim of the `15 CWT_Claims` protected header of the Signed Statements' Envelope.
-The version of the key used to sign the Signed Statement is written in the `4 kid` protected header.
-
-Key discovery protocols are out of scope for this document.
+Figure {{fig-signed-statement}} illustrated a normative CDDL definition for the composition of the protected header in COSE envelope of SCITT Signed Statements.
 
 ~~~ cddl
 CWT_Claims = {
-  1 => tstr; iss, the issuer making statements,
-  2 => tstr; sub, the subject of the statements,
-  * tstr => any
+    1 => tstr            ; iss, the issuer making statements
+    2 => tstr            ; sub, the subject of the statements
+  * int => any
 }
 
 Protected_Header = {
-  1   => int             ; algorithm identifier,
-  4   => bstr            ; Key ID (kid),
-  15  => CWT_Claims      ; CBOR Web Token Claims,
-  3   => tstr            ; payload type
+    1 => int             ; algorithm identifier
+    3 => tstr            ; payload type
+  ? 4 => bstr            ; Key ID (kid)
+   15 => CWT_Claims      ; CBOR Web Token Claims
+   34 => COSE_CertHash   ; x5t, hash of an X.509 certificate
+   * int => any
 }
 ~~~
+{: #fig-signed-statement title="CDDL definition for SCITT Signed Statements"}
 
 ### Support for Multiple Artifacts
 
