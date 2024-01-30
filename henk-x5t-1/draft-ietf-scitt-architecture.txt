@@ -455,21 +455,18 @@ Table of Contents
 
 5.1.1.  Structure and Content of Signed Statements
 
-   Before an Issuer is able to produce Signed Statements, it must first
-   create an identifier and obtain an identity document that is
-   acceptable to the Transparency Service.  Transparency Services MUST
-   support the capability to associate an X.509v3 certificate with a
-   Signed Statement using a hash (thumbprint) of the certificate as
-   specified in Section 2 of [RFC9360] by supporting the x5t COSE header
-   parameter.  The x5t COSE header parameter MUST be included in the
-   protected header of a Signed Statement's COSE envelope.  When x5t is
-   present, iss MUST be a string with a value between 1 and 8192
-   characters in length that fits the regular expression of a
-   distinguished name.  The mechanisms for how Transparency Services
-   obtain corresponding X.509v3 certificates, e.g., as part of enforcing
-   a Registration Policy, is out-of-scope of this document.  At least
-   one identifier for an identity document MUST be included in the
-   protected header of the COSE envelope.
+   Transparency Services MUST support the capability to associate an
+   X.509v3 certificate with a Signed Statement using a hash (thumbprint)
+   of the certificate as specified in Section 2 of [RFC9360] by
+   supporting the x5t COSE header parameter.  The x5t COSE header
+   parameter MUST be included in the protected header of a Signed
+   Statement's COSE envelope.  When x5t is present, iss MUST be a string
+   with a value between 1 and 8192 characters in length that fits the
+   regular expression of a distinguished name.  The mechanisms for how
+   Transparency Services obtain corresponding X.509v3 certificates,
+   e.g., as part of enforcing a Registration Policy, is out-of-scope of
+   this document.  At least one identifier for an identity document MUST
+   be included in the protected header of the COSE envelope.
 
    Issuers MUST rotate verification keys for signature checking in well-
    defined cryptoperiods (see [KEY-MANAGEMENT]).  Issuers MAY migrate to

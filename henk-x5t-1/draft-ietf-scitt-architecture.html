@@ -1762,8 +1762,7 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
           <h4 id="name-structure-and-content-of-si">
 <a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-structure-and-content-of-si" class="section-name selfRef">Structure and Content of Signed Statements</a>
           </h4>
-<p id="section-5.1.1-1">Before an Issuer is able to produce Signed Statements, it must first create an identifier and obtain an identity document that is acceptable to the Transparency Service.
-Transparency Services <span class="bcp14">MUST</span> support the capability to associate an X.509v3 certificate with a Signed Statement using a hash (thumbprint) of the certificate as specified in <span><a href="https://rfc-editor.org/rfc/rfc9360#section-2" class="relref">Section 2</a> of [<a href="#RFC9360" class="cite xref">RFC9360</a>]</span> by supporting the <code>x5t</code> COSE header parameter.
+<p id="section-5.1.1-1">Transparency Services <span class="bcp14">MUST</span> support the capability to associate an X.509v3 certificate with a Signed Statement using a hash (thumbprint) of the certificate as specified in <span><a href="https://rfc-editor.org/rfc/rfc9360#section-2" class="relref">Section 2</a> of [<a href="#RFC9360" class="cite xref">RFC9360</a>]</span> by supporting the <code>x5t</code> COSE header parameter.
 The <code>x5t</code> COSE header parameter <span class="bcp14">MUST</span> be included in the protected header of a Signed Statement's COSE envelope.
 When <code>x5t</code> is present, <code>iss</code> <span class="bcp14">MUST</span> be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
 The mechanisms for how Transparency Services obtain corresponding X.509v3 certificates, e.g., as part of enforcing a Registration Policy, is out-of-scope of this document.
