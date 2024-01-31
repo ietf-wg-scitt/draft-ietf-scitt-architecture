@@ -259,8 +259,7 @@ The Statement is considered opaque to Transparency Service, and MAY be encrypted
 
 Subject:
 
-: See Feed as a logical collection of Statements about the same Artifact.
-Subject is a property of the dedicated, protected header attribute `15: CWT_Claims` within the protected header of the COSE envelope, to correlate the Statements.
+: This term has the same definition as in RFC8392. Issuer's use `sub` to identify the entity about which they are making signed statements. Transparency services use `sub` to identify the entity about which they are issuing a receipt.
 
 Transparency Service:
 
