@@ -213,7 +213,9 @@ Equivocation:
 
 Feed:
 
-: An unordered collection of arbitrary data (artifacts, signed statements, receipts, or other data) related to the text identifiers, observed by the transparency service in the `sub` field of the CWT Claim property of the protected header of Signed Statements.
+: An unordered collection of Signed Statements, observed by the Transparency Service, related to the `sub` field of the 'CWT_Claims' property of the protected header of Signed Statements.
+
+Verifiers use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the Artifact they are evaluating.
 
 Issuer:
 
