@@ -333,9 +333,9 @@ Issuer      --> | Statement ||  Envelope  +<------------------.
                          |   .---------.     |               +-.          |
 Transparency        -->  |  | Receipt  +<----+  Service      ' |          |
      Service             |  |          +-.   +------------+--+ +          |
-                         |   '+--------' |      + Transparency |          |
+                         |   '-+-------' |      + Transparency |          |
                          |     | Receipt +<-----|              +          |
-                         |     '+---------'     + Service      |          |
+                         |     '---------'     + Service      |          |
                           +-------. .-'         '--------------'          |
                                    |                        |             |
                                    |                        |             |
