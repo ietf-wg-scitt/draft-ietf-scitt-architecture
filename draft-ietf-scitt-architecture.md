@@ -1302,52 +1302,48 @@ In these cases a statement can also be hash, which becomes the payload included 
 A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of RFC9052}}.
 
 ~~~aasvg
-
- .----+-----.
-|  Artifact  |
- '----------'
-    |   |
-    v   |               .
- .--+-------.          / \
-| Statement  +--+     /   \
- '----------'   |    /     \     .----------.
-        |       +-->+  OR   +-->+  Payload   |
-        v       |    \     /     '---+------'
- .------+---.   |     \   /          |
-|    Hash    +--+      \ /           |
- '----+-----'           '            |
-                                     |
-
-           ...  Producer Network ...
+   .----+-----.
+  |  Artifact  |
+   '+-+-------'
+    | |
+ .-'  v
+|  .--+-------.
+| |  Hash      +-+
+|  '----------'  |     /\
+ '-.             |    /  \     .----------.
+    |            +-->+ OR +-->+  Payload   |
+    v            |    \  /     '--------+-'
+   .+--------.   |     \/               |
+  | Statement +--+                      |
+   '---------'                          |
+                                        |
+                                        |
+           ...  Producer Network ...    |
 
                       ...
 
-           ...   Issuer Network ...
-
-                                     |
-+-----------+                        |
-| Identity  |     (iss, x5t)         |
-| Document  +--------------------+   |
-+-----+-----+                    |   |
-      ^                          |   |
-      |                          |   |
- .----+-------.                  |   |
-| Private Key  |                 |   |
- '----+-------'                  v   |
-      |                     .----+-----.
-      |                    |   Header   |
-      |                     '----+-----'
-      |                          |   |
-      v                          v   v
-    .-+-----------.     .--------+---+---.
-   /             /     /                  \
-  /    Sign     +<----+ To Be Signed Bytes |
- /             /       \                  /
-'-------------'         '----------------'
-      |
+           ...   Issuer Network ...     |
+                                        |
+                                        |
+ .---------.                            |
+| Identity  |     (iss, x5t)            |
+| Document  +--------------------+      |
+ `----+----`                     |      |
+      ^                          |      |
+ .----+-------.                  |      |
+| Private Key  |                 |      |
+ '----+-------'                  v      |
+      |                     .----+---.  |
+      |                    |  Header  | |
+      |                     '----+---'  |
+      v                          v      v
+    .-+-----------.       .------+------+--.
+   /             /       /                  \
+  /    Sign     +<------+ To Be Signed Bytes |
+ /             /         \                  /
+'-----+-------'           '----------------'
       v
  .----+-------.
 | COSE Sign 1  |
  '------------'
-
 ~~~
