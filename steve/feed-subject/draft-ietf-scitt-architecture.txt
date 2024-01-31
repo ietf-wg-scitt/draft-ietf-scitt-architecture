@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 21 July 2024                                         C. Fournet
+Expires: 3 August 2024                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         18 January 2024
+                                                         31 January 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 July 2024.
+   This Internet-Draft will expire on 3 August 2024.
 
 Copyright Notice
 
@@ -244,14 +244,11 @@ Table of Contents
       Service to provide different views of its append-only log to
       Verifiers about the same Artifact [EQUIVOCATION].
 
-   Feed:  A logical collection of Statements about the same Artifact.
-      For any step or set of steps in a supply chain there may be
-      multiple statements made about the same Artifact.  Issuers use
-      CWT_Claims:sub (Subject) to create a coherent sequence of Signed
-      Statements about the same Artifact and Verifiers use the Feed to
-      ensure completeness and Non-equivocation in supply chain evidence
-      by identifying all Transparent Statements linked to the one(s)
-      they are evaluating.
+   Feed:  An unordered collection of arbitrary data (artifacts, signed
+      statements, receipts, or other data) related to the text
+      identifiers, observed by the transparency service in the sub field
+      of the CWT Claim property of the protected header of Signed
+      Statements.
 
    Issuer:  organizations, stakeholders, and users involved in creating
       or attesting to supply chain artifacts, releasing authentic
