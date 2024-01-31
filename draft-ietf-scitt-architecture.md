@@ -332,10 +332,10 @@ Issuer      --> | Statement ||  Envelope  +<------------------.
                           .-' '------------->+ Transparency  |            |
                          |   .---------.     |               +-.          |
 Transparency        -->  |  | Receipt  +<----+  Service      | |          |
-     Service             |  |          +-.   +------------+--' |          |
-                         |   '-+-------' |      + Transparency |          |
-                         |     | Receipt +<-----|              +          |
-                         |     '---------'      + Service      |          |
+     Service             |  |          +-.   +--+---------+--' |          |
+                         |   '-+-------' |      | Transparency |          |
+                         |     | Receipt +<-----|              |          |
+                         |     '-------+-'      | Service      |          |
                           +-------. .-'         '--------------'          |
                                    |                        |             |
                                    |                        |             |
