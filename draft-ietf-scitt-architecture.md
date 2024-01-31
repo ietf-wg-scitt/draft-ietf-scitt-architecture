@@ -187,9 +187,7 @@ The terms defined in this section have special meaning in the context of Supply 
 When used in text, the corresponding terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.
 
-
 The terms "header", "payload", and "to-be-signed bytes" are defined in {{RFC9052}}.
-
 
 Append-only Log (Ledger):
 
@@ -1271,7 +1269,6 @@ data:application/cose;base64,SGVsb...xkIQ==
 ~~~
 {: #example-receipt-data-url align="left" title="Example Receipt Data URL"}
 
-
 ## Transparent Statements
 
 ### Transparent Statement URN
@@ -1300,16 +1297,11 @@ data:application/cose;base64,SGVsb...xkIQ==
 
 # Signing Statements Remotely
 
-Some statements are too large, or sensitive to send over a network to a remote signer.
-
-Recall that a Statement is an artifact, structured data regarding an artifact, or a hash.
-
-A Statement becomes a payload, which becomes to-be-signed bytes.
-
+Statements, such as digital artifacts or structured data regarding artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
+In these cases a statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
 A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of RFC9052}}.
 
 ~~~aasvg
-
    .----+-----.
   |  Artifact  |
    '+-+-------'
@@ -1350,6 +1342,49 @@ A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes acc
   /    Sign     +<------+ To Be Signed Bytes |
  /             /         \                  /
 '-----+-------'           '----------------'
+=======
+ .----+-----.
+|  Artifact  |
+ '----------'
+    |   |
+    v   |               .
+ .--+-------.          / \
+| Statement  +--+     /   \
+ '----------'   |    /     \     .----------.
+        |       +-->+  OR   +-->+  Payload   |
+        v       |    \     /     '---+------'
+ .------+---.   |     \   /          |
+|    Hash    +--+      \ /           |
+ '----+-----'           '            |
+                                     |
+
+           ...  Producer Network ...
+
+                      ...
+
+           ...   Issuer Network ...
+
+                                     |
++-----------+                        |
+| Identity  |     (iss, x5t)         |
+| Document  +--------------------+   |
++-----+-----+                    |   |
+      ^                          |   |
+      |                          |   |
+ .----+-------.                  |   |
+| Private Key  |                 |   |
+ '----+-------'                  v   |
+      |                     .----+-----.
+      |                    |   Header   |
+      |                     '----+-----'
+      |                          |   |
+      v                          v   v
+    .-+-----------.     .--------+---+---.
+   /             /     /                  \
+  /    Sign     +<----+ To Be Signed Bytes |
+ /             /       \                  /
+'-------------'         '----------------'
+      |
       v
  .----+-------.
 | COSE Sign 1  |
