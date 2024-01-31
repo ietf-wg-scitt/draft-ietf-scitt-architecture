@@ -1298,7 +1298,6 @@ data:application/cose;base64,SGVsb...xkIQ==
 ~~~
 {: #example-transparent-statement-data-url align="left" title="Example Transparent Statement Data URL"}
 
-
 # Signing Statements Remotely
 
 Some statements are too large, or sensitive to send over a network to a remote signer.
@@ -1311,51 +1310,48 @@ A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes acc
 
 ~~~aasvg
 
- .----+-----.
-|  Artifact  |
- '----------'
-    |   |
-    v   |               .
- .--+-------.          / \
-|  Hash      +--+     /   \
- '----------'   |    /     \     .----------.
-        |       +-->+  OR   +-->+  Payload   |
-        v       |    \     /     '---+------'
- .------+---.   |     \   /          |
-|  Statement +--+      \ /           |
- '----+-----'           '            |
-                                     |
-
-           ...  Producer Network ...
+   .----+-----.
+  |  Artifact  |
+   '+-+-------'
+    | |
+ .-'  v
+|  .--+-------.
+| |  Hash      +-+
+|  '----------'  |     /\
+ '-.             |    /  \     .----------.
+    |            +-->+ OR +-->+  Payload   |
+    v            |    \  /     '--------+-'
+   .+--------.   |     \/               |
+  | Statement +--+                      |
+   '---------'                          |
+                                        |
+                                        |
+           ...  Producer Network ...    |
 
                       ...
 
-           ...   Issuer Network ...
-
-                                     |
-+-----------+                        |
-| Identity  |     (iss, x5t)         |
-| Document  +--------------------+   |
-+-----+-----+                    |   |
-      ^                          |   |
-      |                          |   |
- .----+-------.                  |   |
-| Private Key  |                 |   |
- '----+-------'                  v   |
-      |                     .----+-----.
-      |                    | Header     |
-      |                     '----+-----'
-      |                          |   |
-      v                          v   v
-    .-+-----------.     .--------+---+---.
-   /             /     /                  \
-  /    Sign     +<----+ To Be Signed Bytes |
- /             /       \                  /
-'-------------'         '----------------'
-      |
+           ...   Issuer Network ...     |
+                                        |
+                                        |
+ .---------.                            |
+| Identity  |     (iss, x5t)            |
+| Document  +--------------------+      |
+ `----+----`                     |      |
+      ^                          |      |
+ .----+-------.                  |      |
+| Private Key  |                 |      |
+ '----+-------'                  v      |
+      |                     .----+---.  |
+      |                    |  Header  | |
+      |                     '----+---'  |
+      v                          v      v
+    .-+-----------.       .------+------+--.
+   /             /       /                  \
+  /    Sign     +<------+ To Be Signed Bytes |
+ /             /         \                  /
+'-----+-------'           '----------------'
       v
  .----+-------.
 | COSE Sign 1  |
  '------------'
-
 ~~~
