@@ -259,7 +259,9 @@ The Statement is considered opaque to Transparency Service, and MAY be encrypted
 
 Subject:
 
-: This term has the same definition as in RFC8392. Issuer's use `sub` to identify the entity about which they are making signed statements. Transparency services use `sub` to identify the entity about which they are issuing a receipt.
+: This term has the same definition as in RFC8392.
+Issuer's use `sub` to identify the entity about which they are making Signed Statements.
+Transparency Services use `sub` to identify the entity about which they are issuing a Receipt.
 
 Transparency Service:
 
