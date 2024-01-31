@@ -322,7 +322,7 @@ Issuer      --> | Statement ||  Envelope  +<------------------.
                  '----+----'  '-----+----'                     |
                       |             |           +--------------+---+
                        '----. .----'            | Identity         |
-                             |                  | Documents        |-------
+                             |                  | Documents        +------.
                              v                  +-------+------+---+      |
                         .----+----.                     |                 |
                        |  Signed   |    COSE Signing    |                 |
@@ -331,11 +331,11 @@ Issuer      --> | Statement ||  Envelope  +<------------------.
                              |               +----------+----+            |
                           .-' '------------->+ Transparency  |            |
                          |   .---------.     |               +-.          |
-Transparency        -->  |  | Receipt  +<----+  Service      ' |          |
-     Service             |  |          +-.   +------------+--+ +          |
+Transparency        -->  |  | Receipt  +<----+  Service      | |          |
+     Service             |  |          +-.   +------------+--' |          |
                          |   '-+-------' |      + Transparency |          |
                          |     | Receipt +<-----|              +          |
-                         |     '---------'     + Service      |          |
+                         |     '---------'      + Service      |          |
                           +-------. .-'         '--------------'          |
                                    |                        |             |
                                    |                        |             |
@@ -347,8 +347,8 @@ Transparency        -->  |  | Receipt  +<----+  Service      ' |          |
                                    |                        |             |
                                    |'-------.     .---------)-------------'
                                    |         |   |          |
-                                   |         v   v          -----
-                                   |    .----+---+-----------.  '
+                                   |         v   v           '--.
+                                   |    .----+---+-----------.  |
 Verifier            -->            |   / Verify Transparent /   |
                                    |  /      Statement     /    |
                                    | '--------------------'     |
