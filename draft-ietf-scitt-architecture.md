@@ -213,9 +213,7 @@ Equivocation:
 
 Feed:
 
-: A logical collection of Statements about the same Artifact.
-For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact.
-Issuers use `CWT_Claims:sub` (Subject)  to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
+: An unordered collection of arbitrary data (artifacts, signed statements, receipts, or other data) related to the text identifiers, observed by the transparency service in the `sub` field of the CWT Claim property of the protected header of Signed Statements.
 
 Issuer:
 
