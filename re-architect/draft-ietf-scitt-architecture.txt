@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 28 July 2024                                         C. Fournet
+Expires: 3 August 2024                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         25 January 2024
+                                                         31 January 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 July 2024.
+   This Internet-Draft will expire on 3 August 2024.
 
 Copyright Notice
 
@@ -398,38 +398,42 @@ Table of Contents
                  .----+----.  .----------.  Identifiers
 Issuer      --> | Statement ||  Envelope  +<------------------.
                  '----+----'  '-----+----'                     |
-                      |             |            .-------------+--.
-                       '----. .----'            |    Identity      |
-                             |                  |    Documents     +-----.
-                             v                   '------+---------'       |
+                      |             |           +--------------+---+
+                       '----. .----'            | Identity         |
+                             |                  | Documents        |-------
+                             v                  +-------+------+---+      |
                         .----+----.                     |                 |
                        |  Signed   |    COSE Signing    |                 |
                        | Statement +<-------------------+                 |
                         '----+----'                     |                 |
                              |               +----------+----+            |
                           .-' '------------->+ Transparency  |            |
-                         |   .--------.      |               |            |
-Transparency -->         |  | Receipts +<----+   Services    |            |
-     Service             |   '---+----'      +------------+--+            |
-                          '-. .-'                         |               |
-                             |                            |               |
-                             v                            |               |
-                       .-----+-----.                      |               |
-                      | Transparent |                     |               |
-                      |  Statement  |                     |               |
-                       '-----+-----'                      |               |
-                             |                            |               |
-                             |'-------.     .-------------)--------------'
-                             |         |   |              |
-                             |         v   v              |
-                             |    .----+---+-----------.  |
-Verifier     -->             |   / Verify Transparent /   |
-                             |  /      Statement     /    |
-                             | '--------------------'     |
-                             v                            v
-                    .--------+---------.      .-----------+-----.
-Auditor      -->   / Collect Receipts /      /   Replay Log    /
-                  '------------------'      '-----------------'
+                         |   .---------.     |               +-.          |
+Transparency        -->  |  | Receipt  +<----+  Service      ' |          |
+     Service             |  |          +-.   +------------+--+ +          |
+                         |   '+--------' |      + Transparency |          |
+                         |     | Receipt +<-----|              +          |
+                         |     '+---------'     + Service      |          |
+                          +-------. .-'         '--------------'          |
+                                   |                        |             |
+                                   |                        |             |
+                                   v                        |             |
+                             .-----+-----.                  |             |
+                            | Transparent |                 |             |
+                            |  Statement  |                 |             |
+                             '-----+-----'                  |             |
+                                   |                        |             |
+                                   |'-------.     .---------)-------------'
+                                   |         |   |          |
+                                   |         v   v          -----
+                                   |    .----+---+-----------.  '
+Verifier            -->            |   / Verify Transparent /   |
+                                   |  /      Statement     /    |
+                                   | '--------------------'     |
+                                   v                            v
+                          .--------+---------.      .-----------+-----.
+Auditor             -->   / Collect Receipts /      /   Replay Log    /
+                          '------------------'      '-----------------'
 
    The SCITT architecture consists of a very loose federation of
    Transparency Services, and a set of common formats and protocols for
