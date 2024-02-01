@@ -143,6 +143,7 @@ Table of Contents
        A.7.1.  Transparent Statement URN
        A.7.2.  Transparent Statement URL
        A.7.3.  Transparent Statement Data URL
+   Appendix B.  Signing Statements Remotely
    Contributors
    Authors' Addresses
 
@@ -216,6 +217,9 @@ Table of Contents
    throughout this document.  When used in text, the corresponding terms
    are capitalized.  To ensure readability, only a core set of terms is
    included in this section.
+
+   The terms "header", "payload", and "to-be-signed bytes" are defined
+   in [RFC9052].
 
    Append-only Log (Ledger):  the verifiable append-only data structure
       that stores Signed Statements in a Transparency Service often
@@ -1958,6 +1962,60 @@ A.7.3.  Transparent Statement Data URL
    data:application/cose;base64,SGVsb...xkIQ==
 
              Figure 13: Example Transparent Statement Data URL
+
+Appendix B.  Signing Statements Remotely
+
+   Statements, such as digital artifacts or structured data regarding
+   artifacts, can be too large or too sensitive to be send to a remote
+   Transparency Services over the Internet.  In these cases a statement
+   can also be hash, which becomes the payload included in COSE to-be-
+   signed bytes.  A Signed Statement (cose-sign1) MUST be produced from
+   the to-be-signed bytes according to Section 4.4 of [RFC9052].
+
+      .----+-----.
+     |  Artifact  |
+      '+-+-------'
+       | |
+    .-'  v
+   |  .--+-------.
+   | |  Hash      +-+
+   |  '----------'  |     /\
+    '-.             |    /  \     .----------.
+       |            +-->+ OR +-->+  Payload   |
+       v            |    \  /     '--------+-'
+      .+--------.   |     \/               |
+     | Statement +--+                      |
+      '---------'                          |
+                                           |
+                                           |
+              ...  Producer Network ...    |
+
+                         ...
+
+              ...   Issuer Network ...     |
+                                           |
+                                           |
+    .---------.                            |
+   | Identity  |     (iss, x5t)            |
+   | Document  +--------------------+      |
+    `----+----`                     |      |
+         ^                          |      |
+    .----+-------.                  |      |
+   | Private Key  |                 |      |
+    '----+-------'                  v      |
+         |                     .----+---.  |
+         |                    |  Header  | |
+         |                     '----+---'  |
+         v                          v      v
+       .-+-----------.       .------+------+--.
+      /             /       /                  \
+     /    Sign     +<------+ To Be Signed Bytes |
+    /             /         \                  /
+   '-----+-------'           '----------------'
+         v
+    .----+-------.
+   | COSE Sign 1  |
+    '------------'
 
 Contributors
 
