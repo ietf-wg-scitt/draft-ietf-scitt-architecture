@@ -249,12 +249,11 @@ Table of Contents
       Verifiers about the same Artifact [EQUIVOCATION].
 
    Feed:  A collection of Signed Statements, observed by the
-      Transparency Service, related to the sub field of the 'CWT_Claims'
-      property of the protected header of Signed Statements.
-
-   Verifiers use the Feed to ensure completeness and Non-equivocation in
-   supply chain evidence by identifying all Transparent Statements
-   linked to the Artifact they are evaluating.
+      Transparency Service, related to the sub field of the CWT_Claims
+      property of the protected header of Signed Statements.  Verifiers
+      use the Feed to ensure completeness and Non-equivocation in supply
+      chain evidence by identifying all Transparent Statements linked to
+      the Artifact they are evaluating.
 
    Issuer:  organizations, stakeholders, and users involved in creating
       or attesting to supply chain artifacts, releasing authentic
