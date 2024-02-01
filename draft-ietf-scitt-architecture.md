@@ -218,8 +218,7 @@ Equivocation:
 
 Feed:
 
-: A collection of Signed Statements, observed by the Transparency Service, related to the `sub` field of the 'CWT_Claims' property of the protected header of Signed Statements.
-
+: A collection of Signed Statements, observed by the Transparency Service, related to the `sub` field of the `CWT_Claims` property of the protected header of Signed Statements.
 Verifiers use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the Artifact they are evaluating.
 
 Issuer:
@@ -264,7 +263,13 @@ The Statement is considered opaque to Transparency Service, and MAY be encrypted
 
 Subject:
 
-: This term has the same definition as in RFC8392, which relies on the definition in RFC7519. The "sub" (subject) claim identifies the principal that is the subject of the CWT.  The claims in a CWT are normally statements about the subject.  In SCITT, "sub" identifies the entity about which statements, and receipts are made. The subject value MUST either be scoped to be locally unique in the context of the issuer or be globally unique. The processing of this claim is generally application specific.  The "sub" value is a case-sensitive string containing a StringOrURI value.
+: This term has the same definition as in RFC8392, which relies on the definition in RFC7519.
+The "sub" (subject) claim identifies the principal that is the subject of the CWT.
+The claims in a CWT are normally statements about the subject.
+In SCITT, "sub" identifies the entity about which statements, and receipts are made.
+The subject value MUST either be scoped to be locally unique in the context of the issuer or be globally unique.
+The processing of this claim is generally application specific.
+The "sub" value is a case-sensitive string containing a StringOrURI value.
 Issuer's use `sub` to identify the entity about which they are making Signed Statements.
 Transparency Services use `sub` to identify the entity about which they are issuing a Receipt.
 
