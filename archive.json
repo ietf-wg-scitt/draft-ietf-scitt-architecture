@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-30T00:34:29.137240+00:00",
+  "timestamp": "2024-02-01T00:36:08.609663+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -586,7 +586,7 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Re #132 I am willing to take this up and do it with aasvg if my other PR in the i-d-template project if that would be helpful.",
           "createdAt": "2023-12-02T18:49:36Z",
           "updatedAt": "2023-12-02T18:49:36Z"
@@ -2189,7 +2189,7 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "In your original comment, you mentioned a default hash algorithm and implementation.\r\n\r\n>The side effect is one can no longer register the same claim twice under a different entry ID.\r\n\r\nDoes this goes for entries under different hash algorithms and implementations, are those count as \"the same\" one entry ID?",
           "createdAt": "2023-10-18T01:47:01Z",
           "updatedAt": "2023-10-18T01:47:01Z"
@@ -2210,7 +2210,7 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Thanks for a thorough summary, @pdxjohnny. On the IETF side I am not sure exchanging was intended to mean federation, but in the pub/sub context ROLIE way be partially or wholly useful.\r\n\r\nhttps://datatracker.ietf.org/doc/rfc8322/",
           "createdAt": "2023-11-21T17:22:12Z",
           "updatedAt": "2023-11-21T17:22:12Z"
@@ -2827,14 +2827,14 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "In that vein, I would support clarifying it with a \"an Issue or Verifier's Transparency Service API client\" in the applicable areas of the draft. Would that be more helpful or does it not reduce ambiguity?",
           "createdAt": "2023-11-21T17:59:17Z",
           "updatedAt": "2023-11-21T17:59:17Z"
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Just an update, I plan to send a PR with proposed changes this week.",
           "createdAt": "2023-12-18T16:43:50Z",
           "updatedAt": "2023-12-18T16:43:50Z"
@@ -2855,7 +2855,7 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "@mwiseman-byid and I met today to discuss a recap of the authors/editorial meeting (sorry I missed) and how we need to think about 1) a better alternative name and 2) provide a rationale to why we need to have 1, terminology change or not (part of that is the subject of this issue and pending work that should come up in #120 for the latter).\r\n\r\nFor 1, Monty and I are leaning towards agent for now, but we need to brainstorm on adjusted architecture to reflect 2 and \"the way\" and how it relates to requested edits for the relying party issue in #120.\r\n\r\nWe will post in progress work and continue to collaborate and sync, updating the WG via mailing list when it is ready for review and feedback across the WG. More to follow.",
           "createdAt": "2023-12-19T17:06:15Z",
           "updatedAt": "2023-12-20T23:38:05Z"
@@ -2869,14 +2869,14 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "OK, my work on #120 also led me to be confused and think maybe we have meant agent/client when we said verifier. I made some strawman diagrams to discuss this WG members in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/120#issuecomment-1865318043.\r\n\r\n/cc @mwiseman-byid ",
           "createdAt": "2023-12-21T00:39:34Z",
           "updatedAt": "2023-12-21T00:39:34Z"
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "OK, it seems we are converging in a direction on #120 around verifier and relying party. The diagram based on author feedback demonstrates that with #156 likely updates to the spec forthcoming if that is approved. It turns out, not surprisingly, we need both verifier and relying party. The latter, if tweak terminology, could more clearly refer to client and resolve this issue as well.\r\n\r\nGiven that, and how it relates to here, I would argue that relying party is the correct substitute for client and this could be closed as a duplicate or modified accordingly to address that.\r\n\r\nThis change would be in line with with the RATS specification *iff* we distinguish between Verifier Owner/Verifier (person entity/logical system for that entity) and Relying Party Owner/Relying Party (person entity/logical system for that entity) and ironically [current I-D version 2.x of the OAuth AuthZ Framework](https://datatracker.ietf.org/doc/draft-ietf-oauth-v2-1/https://datatracker.ietf.org/doc/draft-ietf-oauth-v2-1/), various OAuth WG drafts (even if it seems not formally defined), and [the OpenID Connect Specification](https://openid.net/specs/openid-connect-core-1_0.html#Terminology). \r\n\r\nIt was unclear in previous discussion with authors if this is preferable or required, but it nicely aligns with small tactical changes to the diagram in #156 and relevant spec alignment in terminology and explanations.",
           "createdAt": "2024-01-10T17:38:17Z",
           "updatedAt": "2024-01-10T17:38:17Z"
@@ -3010,7 +3010,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/116",
       "state": "CLOSED",
       "author": "aj-stein-nist",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Define the term non-equivocation formally as it relates to this architecture document, per https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/107#discussion_r1367393803.\r\n            ",
@@ -3072,7 +3072,7 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Just an update, I plan to send a PR with proposed changes this week. @mwiseman-byid, shall we sync up in the comments or out of band elsewhere?",
           "createdAt": "2023-12-18T16:48:33Z",
           "updatedAt": "2023-12-18T16:48:33Z"
@@ -3086,28 +3086,28 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Sorry, @mwiseman-byid I had to dig a bit to find your email in my inbox from the mailing lists but I found it. Invite sent. I think we can make quick progress and draft a PR tomorrow. ",
           "createdAt": "2023-12-18T18:13:51Z",
           "updatedAt": "2023-12-18T18:13:51Z"
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Met with @mwiseman-byid and we discussed perspectives and work on this in the near-term, summarized with https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/102#issuecomment-1863163215. More to follow.",
           "createdAt": "2023-12-19T17:07:00Z",
           "updatedAt": "2023-12-19T17:07:00Z"
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Adding some more notes to plot out the work, Monty and I discussed aligning the diagram with the separate/distinct RATS architecture, but the separate call out of a distinct Relying Party role and how it pertains to agent was discussed when we met, per discussion I missed in today's author/editor meeting. For my future reference, I need to re-review the doc, as well as compare/contrast [the architecture diagram in Section 3](https://www.rfc-editor.org/rfc/rfc9334.html#name-architectural-overview),",
           "createdAt": "2023-12-19T19:27:02Z",
           "updatedAt": "2023-12-19T19:27:02Z"
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "# Background\r\n\r\nSo I did not make as much tangible progress today and have spent a lot of time thinking and reading as I re-read this SCITT Architecture draft and related WG drafts (RATS, OAuth) where Relying Party is defined. So, before I spend a significant effort in drawing this with aasvg, I would like to quickly highlight the gaps in my understanding via Mermaid so I can quickly iterate. I have tried reading the mailing list but it not 100% clear where the dichotomy between Auditor and Verifier occurred, but they seem overlapping and redundant *to me* unless Verifier is, in fact, some non-person entity, like the software doing the verification itself (so this goes to what should we rename client to in #102, separate of this), but does that not in fact mean Auditor is the Relying Party of sorts? It seems Auditor is just giving a specific name to a general kind of consumer and that is not what a Verifier is.\r\n\r\nSo on that note, this is the current version of the SVG diagram in Mermaid (\ud83e\udd1e I hope I got this right, I cannot just have labels like \"Issuer\" on the left-hand side so I use subgraphs to box those and not do something clever with dotted lines and cause more problems).\r\n\r\n# Current State\r\n\r\n```mermaid\r\nflowchart TD\r\n  \r\n  A([Artifact])\r\n  S([Statement])\r\n  E([Envelope])\r\n  SS([Signed Statement])\r\n  R([Receipt])\r\n  DIDKM[DID Key Manifest]\r\n  TServ[Transparency Service]\r\n  R([Receipt])\r\n  TStat([Transparent Statement])\r\n  VTStat[/Verify Transparent Statement/]\r\n  RLog[/Replay Log/]\r\n  CR[/Collect Receipts/]\r\n  subgraph Issuer\r\n  A-->S\r\n  S-->SS\r\n  E-->SS\r\n  end\r\n  subgraph Transparency Service\r\n  DIDKM--COSE Signing-->SS\r\n  DIDKM--Decentralized Identifier-->E\r\n  SS-->TServ\r\n  TServ-->R\r\n  R-->TStat\r\n  end\r\n  subgraph Verifier\r\n  TStat-->VTStat\r\n  DIDKM-->VTStat\r\n  end\r\n  subgraph Auditor\r\n  TStat-->CR\r\n  TServ-->RLog\r\n  end\r\n```\r\n\r\n(Source: https://gist.github.com/aj-stein-nist/c4630d197608350f738a6d9fea058efc)\r\n\r\n# Edit 1: Change Auditor to Relying Party\r\n\r\nIt would seem we really need to change the diagram and the terminology to get rid of Auditor altogether, so first, we would move to this.\r\n\r\n```mermaid\r\nflowchart TD\r\n  \r\n  A([Artifact])\r\n  S([Statement])\r\n  E([Envelope])\r\n  SS([Signed Statement])\r\n  R([Receipt])\r\n  DIDKM[DID Key Manifest]\r\n  TServ[Transparency Service]\r\n  RP[Relying Party]\r\n  R([Receipt])\r\n  V[Verifier]\r\n  TStat([Transparent Statement])\r\n  VTStat[/Verify Transparent Statement/]\r\n  RLog[/Replay Log/]\r\n  CR[/Collect Receipts/]\r\n  subgraph Issuer\r\n  A-->S\r\n  S-->SS\r\n  E-->SS\r\n  end\r\n  subgraph Transparency Service\r\n  DIDKM--COSE Signing-->SS\r\n  DIDKM--Decentralized Identifier-->E\r\n  SS-->TServ\r\n  TServ-->R\r\n  R-->TStat\r\n  end\r\n  subgraph Verifier Owner\r\n  TStat-->VTStat-->V\r\n  DIDKM-->VTStat-->V\r\n  end\r\n  subgraph Relying Party Owner\r\n  TStat-->CR-->RP\r\n  TServ-->RLog-->RP\r\n  end\r\n```\r\n\r\n(Source: https://gist.github.com/aj-stein-nist/c5bf7d5e3675e5149c897453fe5b1b6e)\r\n\r\n# Questions and Confusion\r\n\r\n1. I was going to do a subsequent edit, but at this point I will have to ask the group: what is a verifier doing that is different from a relying party owner with a relying party? Could you separate one from the other? (Don't you need to replay the log to verify the sequence of statements?) For reference, there is so much overlap with [the RATS Architecture terminology and diagram](https://datatracker.ietf.org/doc/html/rfc9334#dataflow) I think we need to either add compare statements to terminology and touch up the current state diagram to disambiguate the use of these terms. Screenshot below.\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/94922603/ffd60b0b-35dd-4e63-b7dd-addc7d7e3df4)\r\n\r\n2. So would that mean, if they are in fact separate, Edit 2 incrementing after Edit 1 to reflect my understanding would be ... this?\r\n\r\n```mermaid\r\nflowchart TD\r\n  \r\n  A([Artifact])\r\n  S([Statement])\r\n  E([Envelope])\r\n  SS([Signed Statement])\r\n  R([Receipt])\r\n  DIDKM[DID Key Manifest]\r\n  TServ[Transparency Service]\r\n  RP[Relying Party]\r\n  R([Receipt])\r\n  V[Verifier]\r\n  TStat([Transparent Statement])\r\n  VTStat[/Verify Transparent Statement/]\r\n  RLog[/Replay Log/]\r\n  CR[/Collect Receipts/]\r\n  subgraph Issuer\r\n  A-->S\r\n  S-->SS\r\n  E-->SS\r\n  end\r\n  subgraph Transparency Service\r\n  DIDKM--COSE Signing-->SS\r\n  DIDKM--Decentralized Identifier-->E\r\n  SS-->TServ\r\n  TServ-->R\r\n  R-->TStat\r\n  end\r\n  subgraph Verifier Owner\r\n  TStat-->VTStat-->V\r\n  DIDKM-->VTStat-->V\r\n  end\r\n  subgraph Relying Party Owner\r\n  TStat-->CR-->RP\r\n  TServ-->RLog-->RP\r\n  RP-->V\r\n  end\r\n```\r\n\r\n(Source: https://gist.github.com/aj-stein-nist/89a5068e10da05193d531762bf75ba67)\r\n\r\n\r\n3. If we start to think this way, do we consider the software (client/agent/what have you) used by the Issuer to be distinct? Similar but with one of two functionalities (an agent/client/what have you can be for Issuers to get receipts of signed statements *or* a verifier that reads all of them)?\r\n\r\n/cc @mwiseman-byid I am not sure this update at the end of the day reflects our discussion, but I feel like I lost the thread of what we discussed and seemed concrete in discussion. Translating it into diagram and wording updates has left me scratching my head.\r\n\r\n\r\n\r\n\r\n",
           "createdAt": "2023-12-21T00:37:18Z",
           "updatedAt": "2023-12-21T00:37:41Z"
@@ -3142,14 +3142,14 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "It seems #156 now obsoletes the diagrams in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/120#issuecomment-1865318043 and review in a previous meeting reflecting improvements and viable changes based upon answers to the questions posed in strawman diagrams in that comment.",
           "createdAt": "2024-01-10T17:20:29Z",
           "updatedAt": "2024-01-10T17:20:29Z"
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Also of not my updates to the potential (and beneficial) overlap and possible alignment between relying party and client per https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/102#issuecomment-1885309749.",
           "createdAt": "2024-01-10T17:39:56Z",
           "updatedAt": "2024-01-10T17:39:56Z"
@@ -3180,7 +3180,7 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "> We need to describe transparent statement inception in detail and comment on its correct usage (and its nonsensical usage).\r\n\r\nSo how does this happen in the architecture document, is it not an implementation detail? I have become cautious with systems that have unbounded recursion and want sensible limits on \"depth.\" Is that something 1) the group is accepting of 2) even we agree upon it belongs in the architecture doc and not somewhere else?",
           "createdAt": "2023-11-14T22:57:11Z",
           "updatedAt": "2023-11-14T22:57:11Z"
@@ -3213,9 +3213,17 @@
       "labels": [],
       "body": "For signed statements and receipts.",
       "createdAt": "2023-10-25T18:37:30Z",
-      "updatedAt": "2023-12-12T15:54:48Z",
+      "updatedAt": "2024-01-30T14:18:57Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "We settled with x5t (the humor is not lost on me). Any objections? Otherwise we can close.",
+          "createdAt": "2024-01-30T14:18:56Z",
+          "updatedAt": "2024-01-30T14:18:56Z"
+        }
+      ]
     },
     {
       "number": 127,
@@ -3234,7 +3242,7 @@
       "comments": [
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "If we take this proposed change, which one is it?\r\n\r\n> The configuration `reg_info` MUST include a secure version number and a timestamp.\r\n\r\nor\r\n\r\n> The configuration `reg_info` MUST include a secure version number or timestamp.\r\n\r\nI do not really know what a \"secure version number\" could be (do we mean incrementing sequence number?), but just switching SHOULD to MUST and requiring both seems like it could be tedious for the implementer, confusing for a TS Service API client consumer. Barring any guidance, which one is the primary one in the presence of both?",
           "createdAt": "2023-11-22T14:31:42Z",
           "updatedAt": "2023-11-22T14:31:42Z"
@@ -3272,14 +3280,14 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "But we have to turn it into a positive case (multiple receipts confirming the same artifacts) not the negative (not so happy path) case, yes? This is is easy, I can add.\r\n\r\n> Here is a markdown snippet that could be modified to clarify multiple receipts:\r\n> ...\r\n",
           "createdAt": "2023-11-16T02:42:40Z",
           "updatedAt": "2023-11-16T02:42:40Z"
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "This still need to be done (with `aasvg`)? I will pick this up by end of week or soon thereafter when I am back from leave.",
           "createdAt": "2023-12-07T02:23:42Z",
           "updatedAt": "2023-12-07T02:23:42Z"
@@ -3413,9 +3421,17 @@
       "labels": [],
       "body": "Recent versions of the draft include [references to configuration and registration policies being included in append-only log](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-configuration). This brings up questions on what's used to identify an entry, which would represent the configuration an/or registration policy.\r\n\r\nSee:\r\n- #124 \r\n- #136\r\n- #145\r\n\r\nThe [draft says](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#section-5.2.2-2):\r\n> The registration policy for statements with the media type suffix (+<format> is implementation-specific. \r\n\r\nShould the inclusion of configuration & registration policy details be part of the architecture, or the entire topic be implementation-specific? ",
       "createdAt": "2024-01-06T01:56:08Z",
-      "updatedAt": "2024-01-06T01:56:09Z",
+      "updatedAt": "2024-01-30T14:06:45Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "> Should the inclusion of configuration & registration policy details be part of the architecture\r\n\r\nNo\r\n> or the entire topic be implementation-specific?\r\n\r\nAlso no, but moving to another I-D",
+          "createdAt": "2024-01-30T14:06:44Z",
+          "updatedAt": "2024-01-30T14:06:44Z"
+        }
+      ]
     },
     {
       "number": 154,
@@ -3429,7 +3445,7 @@
       "labels": [],
       "body": "Registration_Info is defined in the protected header is not aligned properly to \r\nStatement Registration Information (Statement_Registration_info) mentioned in the document!",
       "createdAt": "2024-01-09T15:56:28Z",
-      "updatedAt": "2024-01-09T20:11:27Z",
+      "updatedAt": "2024-01-30T14:05:30Z",
       "closedAt": null,
       "comments": [
         {
@@ -3438,6 +3454,13 @@
           "body": "I read this again, and it seems the intention is to include unsecured data in the unprotected header.\r\n\r\nPer the changes in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/145\r\n\r\nThat information will not be included in the identifier, and I would like to see use cases for it, or to see it removed.",
           "createdAt": "2024-01-09T20:11:26Z",
           "updatedAt": "2024-01-09T20:11:26Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "The rough consensus seems to lean towards removing statement identifiers out-of-scope of the core SCITT architecture. Are there any objections to that wrt this issue?",
+          "createdAt": "2024-01-30T14:05:29Z",
+          "updatedAt": "2024-01-30T14:05:29Z"
         }
       ]
     },
@@ -3448,12 +3471,12 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/155",
       "state": "OPEN",
       "author": "aj-stein-nist",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Per authors meeting today: update the architecture such that the content identifier of the SCITT receipt for SCITT signed statement shall be the hash of the to-be-signed bytes as defined by COSE specification.",
       "createdAt": "2024-01-09T15:56:47Z",
-      "updatedAt": "2024-01-09T22:25:59Z",
+      "updatedAt": "2024-01-30T14:03:54Z",
       "closedAt": null,
       "comments": [
         {
@@ -3462,6 +3485,13 @@
           "body": "Adding a bit more clarity. \r\nThe hash shall be of the protected header and payload. The unprotected header is stripped to assure consistency",
           "createdAt": "2024-01-09T22:25:58Z",
           "updatedAt": "2024-01-09T22:25:58Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "How much is this issue related to #167?",
+          "createdAt": "2024-01-30T14:03:53Z",
+          "updatedAt": "2024-01-30T14:03:53Z"
         }
       ]
     },
@@ -3493,9 +3523,17 @@
       "labels": [],
       "body": "Currently in 24f63ee8cfc2b99b937dd236cca3c886fd1218f9, the Introduction includes normative language about Registration Policies.\r\n\r\n> Each service MAY enforce its own Registration Policies for authorizing entities to register their Signed Statements to the Append-only Log.\r\n\r\nIndependent of where this normative language goes in the end, I'd assume that a MAY is too weak? The minimal required registration policy - from my individual point of view - seems to be the authorization of the Issuer that is the \"Transparency Services Owner\" to register new Signed Statements. Does that sound right? (in essence that roughly resembles a \"key before signatures\" approach to ensure that a transparency service retains the capability to register Signed Statements).\r\n\r\nIf there always must be a Minimum of an initial Registration Policy (and be it part of bootstrapping a TS with its first statement that then must be a policy including a key), does this normative language not require a MUST?\r\n\r\nWhat does the group think. Am I missing something obvious here? ",
       "createdAt": "2024-01-10T12:32:11Z",
-      "updatedAt": "2024-01-10T13:56:47Z",
+      "updatedAt": "2024-01-30T14:00:48Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "The current rough consensus seems to lean towards putting Registration Policies out-of-scope of the core SCITT Architecture (with the exception of the \"key before signature\" concept). If there is no objection in the next days, I'll start a PR after #163 is resolved.",
+          "createdAt": "2024-01-30T14:00:46Z",
+          "updatedAt": "2024-01-30T14:00:46Z"
+        }
+      ]
     },
     {
       "number": 160,
@@ -3528,9 +3566,17 @@
       "labels": [],
       "body": "See https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01#section-3.5",
       "createdAt": "2024-01-17T17:41:08Z",
-      "updatedAt": "2024-01-17T17:41:09Z",
+      "updatedAt": "2024-01-30T13:57:24Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "PR please? \u263a\ufe0f",
+          "createdAt": "2024-01-30T13:57:23Z",
+          "updatedAt": "2024-01-30T13:57:23Z"
+        }
+      ]
     },
     {
       "number": 166,
@@ -3544,9 +3590,17 @@
       "labels": [],
       "body": "[5.1 Signed Statement Issuance and Registration](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-signed-statement-issuance-a) appears as duplicative of [6 Signed Statement Issuance, Registration, and Verification](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-signed-statement-issuance-r)\r\n\r\nAre these meant to separate signing, registration and verification?",
       "createdAt": "2024-01-18T23:15:23Z",
-      "updatedAt": "2024-01-18T23:15:23Z",
+      "updatedAt": "2024-01-30T13:56:14Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "We'll work through Section 5 asap and then resolve naming.",
+          "createdAt": "2024-01-30T13:56:13Z",
+          "updatedAt": "2024-01-30T13:56:13Z"
+        }
+      ]
     },
     {
       "number": 170,
@@ -11793,7 +11847,7 @@
             "abbreviatedOid": "1b88058"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "I skimmed this and these edits were very good, and clarified for me in an educational way. I don't want to quibble on word choice, but want to better understand what promise means specifically in the context of feeds and non-equivocation.",
           "createdAt": "2023-10-06T17:59:05Z",
@@ -12099,7 +12153,7 @@
             "abbreviatedOid": "1b88058"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-10-20T18:34:01Z",
@@ -12159,7 +12213,7 @@
             "abbreviatedOid": "7e11273"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-10-20T18:40:08Z",
@@ -12179,7 +12233,7 @@
             "abbreviatedOid": "7e11273"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-10-20T18:47:32Z",
@@ -12819,7 +12873,7 @@
             "abbreviatedOid": "ec0464e"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-10-18T01:57:52Z",
@@ -13411,7 +13465,7 @@
             "abbreviatedOid": "c55fe1a"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "Minor grammar and capitalization issues, but otherwise looks good. I will continue reading and point out anything more serious by 4:59 PT, oh well, I have not been so useful. Thus far, improvements look good to me, but more to follow.",
           "createdAt": "2023-10-23T15:51:28Z",
@@ -13611,7 +13665,7 @@
             "abbreviatedOid": "0a6c155"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "Minor nits around spacing and a URL update (pretending I understand my employer).",
           "createdAt": "2023-10-23T16:17:38Z",
@@ -13650,7 +13704,7 @@
             "abbreviatedOid": "c154c5b"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2023-10-23T17:38:27Z",
@@ -14880,7 +14934,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/130",
       "state": "MERGED",
       "author": "aj-stein-nist",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "A minor nit, but in the current version of the draft only RFC 9393 (COSWID) links to its PDF form, not the default HTML form. It is minor, but hopefully more (eventual) consistency is a good thing.",
@@ -14935,7 +14989,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/131",
       "state": "MERGED",
       "author": "aj-stein-nist",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Define equivocation and non-equivocation and cite the article that coined the term in analyzing Lamport. Closes ietf-wg-scitt/draft-ietf-scitt-architecture#116.",
@@ -14963,14 +15017,14 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "> I think this reference from the CT rfc is useful.\r\n> \r\n> https://datatracker.ietf.org/doc/html/rfc6962#section-7.3\r\n\r\nThis is very useful, thanks. I will adjust with this and your other feedback, most appreciated!",
           "createdAt": "2023-11-28T13:50:56Z",
           "updatedAt": "2023-11-28T13:50:56Z"
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "> LGTM Thanks, @aj-stein-nist for the iterations. This was a tricky one to summarize an entire paper in a few sentences\r\n\r\nWho reads papers anyway? Jokes aside, thanks for the contributions and making me think about how to communicate clearly on this one.",
           "createdAt": "2023-12-01T22:10:40Z",
           "updatedAt": "2023-12-01T22:10:40Z"
@@ -15028,7 +15082,7 @@
             "abbreviatedOid": "2f2e17f"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-11-28T04:51:56Z",
@@ -15048,7 +15102,7 @@
             "abbreviatedOid": "2f2e17f"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-11-28T04:54:25Z",
@@ -15114,7 +15168,7 @@
             "abbreviatedOid": "2f2e17f"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-11-28T15:30:19Z",
@@ -15174,7 +15228,7 @@
             "abbreviatedOid": "2f2e17f"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-11-30T05:50:40Z",
@@ -15194,7 +15248,7 @@
             "abbreviatedOid": "2f2e17f"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-11-30T05:50:51Z",
@@ -15214,7 +15268,7 @@
             "abbreviatedOid": "2f2e17f"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-11-30T05:51:14Z",
@@ -15234,7 +15288,7 @@
             "abbreviatedOid": "2f2e17f"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-11-30T05:52:51Z",
@@ -15350,7 +15404,7 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "> Yes, of course... The svg build is currently bugging, I can't build the draft locally.\r\n\r\nThe last [GHA build complains about `mmdc`](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/actions/runs/7022336236/job/19106385023?pr=132).\r\n\r\n```sh\r\n/usr/lib/ruby/3.2.0/open3.rb:222:in `spawn': No such file or directory - mmdc (Errno::ENOENT)\r\n\tfrom /usr/lib/ruby/3.2.0/open3.rb:222:in `popen_run'\r\n\tfrom /usr/lib/ruby/3.2.0/open3.rb:103:in `popen3'\r\n\tfrom /usr/lib/ruby/3.2.0/open3.rb:290:in `capture3'\r\n```\r\n\r\nTIL is the name of the shorthand name of the mermaid-cli compiler. I did not know that. I am looking Martin Thompson's template repo to see if this is supported (it must be if it mapped the `` ```mermaid`` backticks to that presumably installed command or what the deal is.\r\n\r\n**EDIT:** Perhaps this is the issue, we need our own package.json to activate that? It's implied, but kind of neat. I shall test.",
           "createdAt": "2023-12-01T16:11:13Z",
           "updatedAt": "2023-12-01T16:12:41Z"
@@ -15427,7 +15481,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/134",
       "state": "CLOSED",
       "author": "aj-stein-nist",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Per the docs from the template repo we use, we need to enable this explicitly by adding the proper npm configuration and it will just work.\r\n\r\nhttps://github.com/martinthomson/i-d-template/blob/c448265276fd30235326955c459fccf28f7bc364/doc/TOOLS.md?plain=1#L72-L75",
@@ -15446,14 +15500,14 @@
       "comments": [
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Ugh, you need puppeteer for this? It will be enjoyable for all @OR13 (GitHub CI will be ok, others will need to configure Chrome for local draft building, I forgot this fact).\r\n\r\nhttps://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/actions/runs/7062624270/job/19226846223?pr=134",
           "createdAt": "2023-12-01T16:35:33Z",
           "updatedAt": "2023-12-01T16:35:33Z"
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "I presume @OR13 stopped caring long ago, but if I figure a way to clean up the actual SVG output this might be usable and have general appeal amongst IETF WG authors, but the result has been a nice nothing burger in the end.\r\n\r\nI got it to work, then this from [`svgcheck`](https://github.com/ietf-tools/svgcheck) in [GHA CI run](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/actions/runs/7122905900/job/19394663503#step:6:73):\r\n\r\n```sh\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'max-width' removed\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'background-color' removed\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'text-anchor' promoted to attribute\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'font-size' promoted to attribute\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'font-weight' promoted to attribute\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'text-anchor' promoted to attribute\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'font-size' promoted to attribute\r\n*** [svgcheck:] ../../tmp/kramdown-rfc20231207-155-lgaec1:1: Style property 'font-weight' promoted to attribute\r\n*** [svgcheck:] ERROR: File does not conform to SVG requirements\r\nlib/trace.sh draft-ietf-scitt-architecture.txt -s xml2rfc-txt xml2rfc -q --rfc-base-url https://www.rfc-editor.org/rfc/ --id-base-url https://datatracker.ietf.org/doc/html/ --cache=/github/workspace/.refcache --text --no-pagination draft-ietf-scitt-architecture.xml -o draft-ietf-scitt-architecture.txt\r\ndraft-ietf-scitt-architecture.xml(2016): Error: Invalid attribute font-weight for element text, at /rfc/back/section[1]/artset/artwork[1]/*/*[1]/*[2]\r\ndraft-ietf-scitt-architecture.xml(2024): Error: Invalid attribute font-weight for element text, at /rfc/back/section[1]/artset/artwork[1]/*/*[2]/*[2]/*[2]\r\n/github/workspace/draft-ietf-scitt-architecture.xml(10): Error: Invalid document before running preptool.\r\nUnable to complete processing draft-ietf-scitt-architecture.xml\r\nmake[1]: *** [lib/main.mk:116: draft-ietf-scitt-architecture.txt] Error 1\r\nlib/trace.sh draft-ietf-scitt-architecture.html -s xml2rfc-html xml2rfc -q --rfc-base-url https://www.rfc-editor.org/rfc/ --id-base-url https://datatracker.ietf.org/doc/html/ --cache=/github/workspace/.refcache --html --css=lib/v3.css --metadata-js-url=/dev/null draft-ietf-scitt-architecture.xml -o draft-ietf-scitt-architecture.html\r\ndraft-ietf-scitt-architecture.xml(2016): Error: Invalid attribute font-weight for element text, at /rfc/back/section[1]/artset/artwork[1]/*/*[1]/*[2]\r\ndraft-ietf-scitt-architecture.xml(2024): Error: Invalid attribute font-weight for element text, at /rfc/back/section[1]/artset/artwork[1]/*/*[2]/*[2]/*[2]\r\n/github/workspace/draft-ietf-scitt-architecture.xml(10): Error: Invalid document before running preptool.\r\nUnable to complete processing draft-ietf-scitt-architecture.xml\r\nmake[1]: *** [lib/main.mk:111: draft-ietf-scitt-architecture.html] Error 1\r\nmake[1]: Target 'latest' not remade because of errors.\r\ndraft-ietf-scitt-architecture.md has no newline on the last line\r\n*** Run 'make fix-lint' to automatically fix some errors\r\nmake[1]: *** [lib/main.mk:199: lint-whitespace] Error 1\r\nmake[1]: Target 'lint' not remade because of errors.\r\nrm draft-ietf-scitt-architecture.xml\r\nmake: *** [lib/main.mk:16: all] Error 2\r\n```\r\n\r\nEt fin. \ud83e\udd26 ",
           "createdAt": "2023-12-07T02:22:48Z",
           "updatedAt": "2023-12-07T02:22:48Z"
@@ -15467,7 +15521,7 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "> It turns out it's easier to learn aasvg, than it is to get mermaid to work\r\n\r\nThe main challenge is we will need to \"transmogrify\" (to be a smart alec) the resulting SVG, but I too see the appeal. I am closing here but as a side project for when core project work is hard kind of routine I will look into this, but it is not in scope for upstream `mmdc` fixing or a filter script. I have been meaning to learn more about our favorite vector graphics format, and I know people into it.\r\n\r\nBut again, not in scope for convo here. More to follow and I will reach out if/when I make progress.",
           "createdAt": "2023-12-07T02:26:44Z",
           "updatedAt": "2023-12-07T02:26:44Z"
@@ -15508,7 +15562,7 @@
             "abbreviatedOid": "8413f94"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "Just a question for now. As an observer and interested, looks good so far!",
           "createdAt": "2023-12-02T00:52:01Z",
@@ -15704,7 +15758,7 @@
       "comments": [
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Re the SCRAPI I-D reference, it does not appear to be in the IETF Datatracker system at all and noticed when it wasn't listed or clicked on a link to search by I-D name and it returned no results, @OR13. That is why I asked about this on the mailing list.\r\n\r\nhttps://datatracker.ietf.org/doc/search?name=draft-birkholz-scitt-scrapi&rfcs=on&activedrafts=on&olddrafts=on\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/AqHH6OUrc2Xzj81JI-fD4IUB91U/\r\n\r\nDon't we need to take care of that issue for the short-hand references to work at all? Can it not be added to the tracker in advance of being adopted by the WG? (It seems some are added and \"owned\" by authors and not associated with the target WG in advance in some or not all cases. Sorry, I am new here.\r\n\r\n**UPDATE:** I had encountered this problem before and I guess I misread this output from [the previous run](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/actions/runs/7104011455/job/19338031440). It seems whitespace is an issue but not dangling links. Disregard!\r\n\r\n```sh\r\n /github/workspace/.refcache/reference.I-D.draft-birkholz-scitt-scrapi.xml: fetching from https://datatracker.ietf.org/doc/bibxml3/draft-birkholz-scitt-scrapi.xml\r\n*** Can't get with persistent HTTP: Status code 404 while fetching https://datatracker.ietf.org/doc/bibxml3/draft-birkholz-scitt-scrapi.xml\r\n*** 404 Not Found while fetching https://datatracker.ietf.org/doc/bibxml3/draft-birkholz-scitt-scrapi.xml\r\n*** No such file or directory @ rb_sysopen - /github/workspace/.refcache/reference.I-D.draft-birkholz-scitt-scrapi.xml for /github/workspace/.refcache/reference.I-D.draft-birkholz-scitt-scrapi.xml\r\n```",
           "createdAt": "2023-12-05T17:15:24Z",
           "updatedAt": "2023-12-05T17:21:25Z"
@@ -15718,7 +15772,7 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "> apparently its not blocking the PR... which is weird.\r\n\r\nI too thought it was weird, I'll look into the i-d template action and consider if there is a bug to report or enhancement to file.\r\n",
           "createdAt": "2023-12-05T17:33:07Z",
           "updatedAt": "2023-12-05T17:33:07Z"
@@ -15745,7 +15799,7 @@
             "abbreviatedOid": "2cd602b"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2023-12-05T17:22:02Z",
@@ -15847,7 +15901,7 @@
             "abbreviatedOid": "7329b25"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "CHANGES_REQUESTED",
           "body": "A small fix and then it will be ready to \ud83d\udea2 it.",
           "createdAt": "2023-12-07T14:55:00Z",
@@ -15946,7 +16000,7 @@
       "comments": [
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Thanks for the contribution. I actually completed the supporting work, with package.json and other requirements, and it works partly. The SVG can be output by the CLI but Mermaid itself makes not-so-standard SVG files and fails tests later in the pipeline. That's why I voluntarily closed #134. More details there.\r\n\r\nIn the coming weeks I am more than happy to work with you on determining how hard it is to make upstream fixes to Mermaid but it won't be trivial.\r\n\r\n**EDIT:** People wisely told me I am being silly and this is a very different issue and I conflated two. That's very correct! Easy to test and review PR, apologies, @thgoebel.",
           "createdAt": "2023-12-24T14:08:24Z",
           "updatedAt": "2024-01-02T15:14:44Z"
@@ -15960,7 +16014,7 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Yeah I am confused as when working on previous PRs, I only knew things were not working because I got errors from SVGs rendered from `aasvg` but I am confused what the deal was, but I must not have been paying too close attention. Thanks, @OR13.",
           "createdAt": "2024-01-02T15:24:32Z",
           "updatedAt": "2024-01-02T15:24:32Z"
@@ -15993,7 +16047,7 @@
             "abbreviatedOid": "a81c964"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2024-01-02T15:31:04Z",
@@ -16033,7 +16087,7 @@
             "abbreviatedOid": "a81c964"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-01-02T16:20:35Z",
@@ -16204,7 +16258,7 @@
             "abbreviatedOid": "c297587"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-01-02T17:35:46Z",
@@ -17805,7 +17859,7 @@
             "abbreviatedOid": "98491d8"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2024-01-10T17:55:03Z",
@@ -17873,7 +17927,7 @@
             "abbreviatedOid": "52fad00"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2024-01-09T22:30:54Z",
@@ -17941,7 +17995,7 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "> > What I don't like\r\n> > \r\n> > * The one diagram we have will look overly complicated.\r\n> \r\n> Sometimes things get more complicated before they get simpler.\r\n\r\nSince I had volunteered in the past and the diagram will spur related cleanup, if we merge this one I am willing to break it out into a simpler one. The diagram update clarifies a lot of terminology and concept questions in the currently published diagram I didn't understand and per our discussion of #120 this clears a lot of that up.\r\n\r\nSo to recap, if we merge this one, I can PR a simpler one after this one is merged in. ",
           "createdAt": "2024-01-10T14:42:30Z",
           "updatedAt": "2024-01-10T14:42:30Z"
@@ -17969,7 +18023,7 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "If we are going to possibly merge #161 in the future it seems good to merge this now or pull in changes before that is pulled in since that diagram appears to be based on significant changes from that.",
           "createdAt": "2024-01-17T14:49:43Z",
           "updatedAt": "2024-01-17T14:49:43Z"
@@ -18029,7 +18083,7 @@
             "abbreviatedOid": "9f87bad"
           },
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2024-01-09T21:08:48Z",
@@ -18069,21 +18123,21 @@
       "id": "PR_kwDOIvmHss5jrcDm",
       "title": "Interactive content PR for questions and comments",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/157",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-01-10T12:21:41Z",
-      "updatedAt": "2024-01-18T19:04:13Z",
+      "updatedAt": "2024-01-30T16:04:21Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "24f63ee8cfc2b99b937dd236cca3c886fd1218f9",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "henk/editorial-pass",
       "headRefOid": "f2f379e462a88eb7d608057b42c252b3bbf3368f",
-      "closedAt": null,
+      "closedAt": "2024-01-30T16:04:21Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -18252,7 +18306,7 @@
       "comments": [
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "How does hash or sign for statement payload type change the sign action? It is always the same action, correct?",
           "createdAt": "2024-01-17T13:41:17Z",
           "updatedAt": "2024-01-17T13:41:17Z"
@@ -18280,7 +18334,7 @@
         },
         {
           "author": "aj-stein-nist",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "I don't know if it would help others, but, for me, it would really help if we take a tangible example of a BOM or similar artifact and talk about it in a more detailed diagram/explanation outside the scope of the PR to understand how this diagram helps.",
           "createdAt": "2024-01-17T16:46:59Z",
           "updatedAt": "2024-01-17T16:46:59Z"
@@ -18321,25 +18375,35 @@
       "id": "PR_kwDOIvmHss5kbDQB",
       "title": "Overhaul of Section 5.1.1.",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/163",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "* Renamed to: Structure and Content of Signed Statements\r\n* Updated content based on this thread: https://mailarchive.ietf.org/arch/browse/scitt/?gbt=1&index=ON3uw6WDeC8o62bPgSt8RWNWg9M\r\n* Added `x5t` and made both CWT_Claims `iss` and `sub` mandatory as per the output of discussions\r\n* added refs and figure label (which are missing all over the place)\r\n\r\n",
       "createdAt": "2024-01-18T13:03:27Z",
-      "updatedAt": "2024-01-19T15:16:42Z",
+      "updatedAt": "2024-01-30T15:23:44Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "e85d13527ac8ff78a29d9a46cb4b609cff286692",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "henk-x5t-1",
-      "headRefOid": "1ce8d52424eaff796483f0ccd25380bb82eb3293",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "headRefOid": "5e50e36981c92e51ea3a82f42b535ecd891ad283",
+      "closedAt": "2024-01-30T15:22:48Z",
+      "mergedAt": "2024-01-30T15:22:48Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "f505a011279d3c2f8b2f5e3c9d537a0af6388953"
+      },
+      "comments": [
+        {
+          "author": "bobmartin3000",
+          "authorAssociation": "NONE",
+          "body": "LGTM",
+          "createdAt": "2024-01-30T15:23:42Z",
+          "updatedAt": "2024-01-30T15:23:42Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss5tEGhq",
@@ -18788,6 +18852,98 @@
               "updatedAt": "2024-01-19T15:16:42Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uWSRB",
+          "commit": {
+            "abbreviatedOid": "3dec6de"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T13:52:54Z",
+          "updatedAt": "2024-01-30T13:52:54Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "Last open item for discussion today",
+              "createdAt": "2024-01-30T13:52:54Z",
+              "updatedAt": "2024-01-30T13:52:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uWWbb",
+          "commit": {
+            "abbreviatedOid": "88e992a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T13:59:20Z",
+          "updatedAt": "2024-01-30T13:59:20Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "its ok to say MUST and leave it to implementations to decide how",
+              "createdAt": "2024-01-30T13:59:20Z",
+              "updatedAt": "2024-01-30T13:59:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uXPup",
+          "commit": {
+            "abbreviatedOid": "5e50e36"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-30T15:19:36Z",
+          "updatedAt": "2024-01-30T15:19:36Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uXQmD",
+          "commit": {
+            "abbreviatedOid": "5e50e36"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-30T15:20:46Z",
+          "updatedAt": "2024-01-30T15:20:46Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uXRKd",
+          "commit": {
+            "abbreviatedOid": "5e50e36"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-01-30T15:21:34Z",
+          "updatedAt": "2024-01-30T15:21:34Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uXSPy",
+          "commit": {
+            "abbreviatedOid": "5e50e36"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-01-30T15:23:00Z",
+          "updatedAt": "2024-01-30T15:23:00Z",
+          "comments": []
         }
       ]
     },
@@ -18831,13 +18987,13 @@
       "labels": [],
       "body": "Explains Feed as the logical collection, with `CWT_Claims sub` (Subject) as the property to represent the collection.",
       "createdAt": "2024-01-18T22:30:36Z",
-      "updatedAt": "2024-01-19T22:16:19Z",
+      "updatedAt": "2024-01-31T21:06:49Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "6f6b778ea511e6b577d118d5716b398a937574eb",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/feed-subject",
-      "headRefOid": "09d3412548358e5549a10546648fbdb67f04470f",
+      "headRefOid": "80a15258b6db950db839baa0201ef7c8316128ee",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -18856,6 +19012,27 @@
           "body": "> > For simplicity, I would prefer to keep only one of the two in the Terminology.\r\n> \r\n> That seems pretty reasonable to me. Are there any reasons to keep both?\r\n\r\nWhile I'd agree less is more, this keeps coming back when we try to explain it.\r\n\r\n- A feed is a known concept for a collection of related data\r\n- We're using CWT_Claims `sub`, which also makes sense to align with existing specs\r\n- We avoided Artifact ID\r\n\r\nAttempting to describe a collection of statements as a subject doesn't resonate.\r\n\r\nWe can keep Feed as the concept, and simply say CWT_Claims `sub` is how you set an identifier for the feed.\r\nHow does that work?",
           "createdAt": "2024-01-19T22:16:19Z",
           "updatedAt": "2024-01-19T22:16:19Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "Then we should deprecate the term feed in discussions, too, and just explain how a subject is used as a subject in this context?",
+          "createdAt": "2024-01-30T13:45:50Z",
+          "updatedAt": "2024-01-30T13:45:50Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Updated to merge in PR feedback",
+          "createdAt": "2024-01-31T04:44:59Z",
+          "updatedAt": "2024-01-31T04:44:59Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@henkbirkholz, @OR13, @fournet, PTAL as I've made some updates.    ",
+          "createdAt": "2024-01-31T21:06:49Z",
+          "updatedAt": "2024-01-31T21:06:49Z"
         }
       ],
       "reviews": [
@@ -18871,6 +19048,72 @@
           "createdAt": "2024-01-19T14:13:00Z",
           "updatedAt": "2024-01-19T14:13:00Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uWOfH",
+          "commit": {
+            "abbreviatedOid": "09d3412"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "CHANGES_REQUESTED",
+          "body": "Feed stills seems to be a superfluous term.",
+          "createdAt": "2024-01-30T13:46:42Z",
+          "updatedAt": "2024-01-30T13:46:42Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uXUEH",
+          "commit": {
+            "abbreviatedOid": "09d3412"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "I will revise my suggestion to something that is mergable",
+          "createdAt": "2024-01-30T15:25:26Z",
+          "updatedAt": "2024-01-30T15:28:52Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uXYRn",
+          "commit": {
+            "abbreviatedOid": "09d3412"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T15:31:08Z",
+          "updatedAt": "2024-01-30T15:31:08Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\n: An unordered collection of arbitrary data (artifacts, signed statements, receipts, or other data) related to the text identifiers, observed by the transparency service in the `sub` field of the CWT Claim property of the protected header of Signed Statements.\r\n```",
+              "createdAt": "2024-01-30T15:31:08Z",
+              "updatedAt": "2024-01-30T15:31:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uXZxX",
+          "commit": {
+            "abbreviatedOid": "09d3412"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T15:33:18Z",
+          "updatedAt": "2024-01-30T15:33:18Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\n: This term has the same definition as in RFC8392. Issuer's use `sub` to identify the entity about which they are making signed statements. Transparency services use `sub` to identify the entity about which they are issuing a receipt.\r\n```",
+              "createdAt": "2024-01-30T15:33:18Z",
+              "updatedAt": "2024-01-30T15:36:13Z"
+            }
+          ]
         }
       ]
     },
@@ -18886,19 +19129,334 @@
       "labels": [],
       "body": "![Screenshot 2024-01-18 at 6 30 50\u202fPM](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/8295856/7100c0bc-b69e-43a1-93cc-df5de200c004)\r\n",
       "createdAt": "2024-01-19T00:29:59Z",
-      "updatedAt": "2024-01-19T01:10:47Z",
+      "updatedAt": "2024-01-31T21:02:25Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "6f6b778ea511e6b577d118d5716b398a937574eb",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "feat/diagrams",
-      "headRefOid": "4a3f4f35f10ef05fcc1672b8819cf3fd53c59160",
+      "headRefOid": "460a44466bbb7f5e588b3461310725255144030c",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The diagram reflects my intention.",
+          "createdAt": "2024-01-30T16:21:49Z",
+          "updatedAt": "2024-01-30T16:21:49Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Here's a slightly modified view to remove the lines behind, add arrows consistenty\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/3a6ddbde-c1ee-4e39-9744-cac35a74ecdd)\r\n",
+          "createdAt": "2024-01-31T00:10:15Z",
+          "updatedAt": "2024-01-31T00:10:15Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5uWKbN",
+          "commit": {
+            "abbreviatedOid": "4a3f4f3"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T13:40:09Z",
+          "updatedAt": "2024-01-30T13:40:09Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "```suggestion\r\nStatements, such as digital artifacts or structured data regarding artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.\r\nIn these cases a statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.\r\nA Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of RFC9052}}.\r\n```",
+              "createdAt": "2024-01-30T13:40:09Z",
+              "updatedAt": "2024-01-30T16:06:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uWKm0",
+          "commit": {
+            "abbreviatedOid": "4a3f4f3"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T13:40:31Z",
+          "updatedAt": "2024-01-30T13:40:31Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": ":+1:",
+              "createdAt": "2024-01-30T13:40:31Z",
+              "updatedAt": "2024-01-30T13:40:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uWZJr",
+          "commit": {
+            "abbreviatedOid": "4a3f4f3"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T14:03:08Z",
+          "updatedAt": "2024-01-30T14:03:08Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "Wait, how is this PR related to #155?",
+              "createdAt": "2024-01-30T14:03:08Z",
+              "updatedAt": "2024-01-30T14:03:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uXxtx",
+          "commit": {
+            "abbreviatedOid": "66b59aa"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "lgtm",
+          "createdAt": "2024-01-30T16:08:54Z",
+          "updatedAt": "2024-01-30T16:08:54Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uX0Nj",
+          "commit": {
+            "abbreviatedOid": "66b59aa"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-30T16:12:33Z",
+          "updatedAt": "2024-01-30T16:12:33Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uX2I0",
+          "commit": {
+            "abbreviatedOid": "66b59aa"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T16:15:52Z",
+          "updatedAt": "2024-01-30T16:15:52Z",
+          "comments": [
+            {
+              "originalPosition": 70,
+              "body": "```suggestion\r\n'-----+-------'         '----------------'\r\n```",
+              "createdAt": "2024-01-30T16:15:52Z",
+              "updatedAt": "2024-01-30T16:15:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uX3Wf",
+          "commit": {
+            "abbreviatedOid": "66b59aa"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T16:17:09Z",
+          "updatedAt": "2024-01-30T16:17:09Z",
+          "comments": [
+            {
+              "originalPosition": 70,
+              "body": "Minor fix to differentiate lines \"behind\", vs. from. \r\nIn this case, I believe @OR13 is showing the COSE Sign 1 Document comes from the Sign process.",
+              "createdAt": "2024-01-30T16:17:09Z",
+              "updatedAt": "2024-01-30T16:17:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uX42K",
+          "commit": {
+            "abbreviatedOid": "66b59aa"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T16:18:47Z",
+          "updatedAt": "2024-01-30T16:18:48Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "As a \"document\", should this have rounded corners?\r\nI have time this afternoon to review and make PRs to tweak before approving.",
+              "createdAt": "2024-01-30T16:18:47Z",
+              "updatedAt": "2024-01-30T16:18:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uX7PW",
+          "commit": {
+            "abbreviatedOid": "66b59aa"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T16:22:47Z",
+          "updatedAt": "2024-01-30T16:22:48Z",
+          "comments": [
+            {
+              "originalPosition": 70,
+              "body": "The lines are correct as they are.",
+              "createdAt": "2024-01-30T16:22:47Z",
+              "updatedAt": "2024-01-30T16:22:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uX-lX",
+          "commit": {
+            "abbreviatedOid": "66b59aa"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T16:27:56Z",
+          "updatedAt": "2024-01-30T16:27:56Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "\r\n\r\nThis box represents a concept for an identity document, not a concrete identity document such as a certificate.\r\n\r\nI don't intend to update the PR, but you are welcome to.",
+              "createdAt": "2024-01-30T16:27:56Z",
+              "updatedAt": "2024-01-30T16:27:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uYAE8",
+          "commit": {
+            "abbreviatedOid": "66b59aa"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T16:30:19Z",
+          "updatedAt": "2024-01-30T16:30:19Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "As the Identity Document pre-exists outside of that data flow, I'd be okay with keeping that box different.",
+              "createdAt": "2024-01-30T16:30:19Z",
+              "updatedAt": "2024-01-30T16:30:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uYBUF",
+          "commit": {
+            "abbreviatedOid": "66b59aa"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T16:32:01Z",
+          "updatedAt": "2024-01-30T16:32:01Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "I very much liked the First part of the Daigram!",
+              "createdAt": "2024-01-30T16:32:01Z",
+              "updatedAt": "2024-01-30T16:32:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uYCY9",
+          "commit": {
+            "abbreviatedOid": "66b59aa"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T16:33:10Z",
+          "updatedAt": "2024-01-30T16:33:11Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "The Header part and the \"To be Signed bytes are mis-leading to me\"",
+              "createdAt": "2024-01-30T16:33:11Z",
+              "updatedAt": "2024-01-30T16:33:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uYDOG",
+          "commit": {
+            "abbreviatedOid": "66b59aa"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T16:34:34Z",
+          "updatedAt": "2024-01-30T16:34:34Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "Specially the `Payload` sections `Arrow` enters into the Header section. What are we trying to depict?",
+              "createdAt": "2024-01-30T16:34:34Z",
+              "updatedAt": "2024-01-30T16:34:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uYEPP",
+          "commit": {
+            "abbreviatedOid": "66b59aa"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T16:36:29Z",
+          "updatedAt": "2024-01-30T16:36:36Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "Also if I am not mis-taken `To be signed bytes` in our case is actually the `payload` ?\r\n\r\nIf it is, then can we keep the two same so as to logically link the two sections of the diagrams without physically linking them?",
+              "createdAt": "2024-01-30T16:36:29Z",
+              "updatedAt": "2024-01-30T16:36:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ucIXP",
+          "commit": {
+            "abbreviatedOid": "66b59aa"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "I've added #173 to cleanup a few elements",
+          "createdAt": "2024-01-31T04:23:21Z",
+          "updatedAt": "2024-01-31T04:23:21Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 168,
@@ -18961,24 +19519,26 @@
       "id": "PR_kwDOIvmHss5lE4yd",
       "title": "Add Multiplicity Diagram",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/171",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-01-25T15:10:18Z",
-      "updatedAt": "2024-01-25T16:05:10Z",
+      "updatedAt": "2024-01-31T19:30:49Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "aae7d8cf21aae5437463ea904516077452614f1a",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "re-architect",
-      "headRefOid": "e80d22eb096239f921cc402f0765fd8cad9081c4",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "f82d40fbf2c89499155aa6345551f9e9d9678a05",
+      "closedAt": "2024-01-31T19:30:45Z",
+      "mergedAt": "2024-01-31T19:30:45Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "854b1a3f90825fbf59206f27217f6c3f0513b2b5"
+      },
       "comments": [
         {
           "author": "yogeshbdeshpande",
@@ -18986,6 +19546,62 @@
           "body": "> Thanks, @yogeshbdeshpande I [merged a few formatting fixes](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/172) ![image](https://private-user-images.githubusercontent.com/7647382/299720950-5d377d64-c851-4aa0-8d3a-4cb56476a5af.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDYxOTg5NjQsIm5iZiI6MTcwNjE5ODY2NCwicGF0aCI6Ii83NjQ3MzgyLzI5OTcyMDk1MC01ZDM3N2Q2NC1jODUxLTRhYTAtOGQzYS00Y2I1NjQ3NmE1YWYucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI0MDEyNSUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNDAxMjVUMTYwNDI0WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9NzFiY2E4MjgyYmZkNGRlNmRmNThhZGZkNWM2M2I5MjQxNmU2NjdiMzdjMDBkYWY5MDcwMzNlZjk1YjRkNTg2YiZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmYWN0b3JfaWQ9MCZrZXlfaWQ9MCZyZXBvX2lkPTAifQ.Hur3SfeNsya6qXWlJFMnbMsy1h14EyXveW3NGwx83KE)\r\n\r\n@SteveLasker \"Awesome\" Thank you for this, will merge when others Approve it!",
           "createdAt": "2024-01-25T16:05:09Z",
           "updatedAt": "2024-01-25T16:05:09Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "I am not entirely sure how the title of this PR matches the content, but I am okay with the layout changes/polish.",
+          "createdAt": "2024-01-30T13:43:11Z",
+          "updatedAt": "2024-01-30T13:43:11Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@henkbirkholz  it added an \"s\" to Receipts\"... implying that a signed statement can have multiple receipts from the same TS.",
+          "createdAt": "2024-01-30T14:10:47Z",
+          "updatedAt": "2024-01-30T14:10:47Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "okay. That change was literally lost on me. Maybe @thomas-fossati would like to leave his mark with some layered boxes that show multiplicity in the ascii/aasvg art?",
+          "createdAt": "2024-01-30T14:13:39Z",
+          "updatedAt": "2024-01-30T14:13:39Z"
+        },
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "NONE",
+          "body": "> okay. That change was literally lost on me. Maybe @thomas-fossati would like to leave his mark with some layered boxes that show multiplicity in the ascii/aasvg art?\r\n\r\nNot sure what the wider context is, but if you need layered boxes you can take a look at https://github.com/ietf-rats-wg/architecture/blob/master/composite-attester.txt, which renders as https://www.rfc-editor.org/rfc/rfc9334.html#figure-4\r\n",
+          "createdAt": "2024-01-30T14:22:51Z",
+          "updatedAt": "2024-01-30T14:22:51Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "based on commit: [0b2d7cc27f3166c05104ce4f16bdc3302227ec17](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/171/commits/0b2d7cc27f3166c05104ce4f16bdc3302227ec17) this is the current view. @yogeshbdeshpande, can you fix the output of `make`?\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/7d4ec205-6b82-4af0-987f-28812dc3e1a7)\r\n\r\nI can take a look later today.",
+          "createdAt": "2024-01-31T15:24:58Z",
+          "updatedAt": "2024-01-31T15:24:58Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@SteveLasker  noticed some inconcsistencies,  still working on the PR, will update shortly!",
+          "createdAt": "2024-01-31T16:04:30Z",
+          "updatedAt": "2024-01-31T16:04:42Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I've pushed some fixes:\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/bac27169-3ce2-443c-94dc-1233743af28b)",
+          "createdAt": "2024-01-31T19:26:06Z",
+          "updatedAt": "2024-01-31T19:26:06Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@SteveLasker Thank you for fixing the corners! LGTM!",
+          "createdAt": "2024-01-31T19:27:28Z",
+          "updatedAt": "2024-01-31T19:27:28Z"
         }
       ],
       "reviews": [
@@ -19001,6 +19617,232 @@
           "createdAt": "2024-01-25T15:40:33Z",
           "updatedAt": "2024-01-25T15:40:33Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uWNCb",
+          "commit": {
+            "abbreviatedOid": "e80d22e"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "If this PR is not intended to add things, but just to polish the diagram, I guess it is okay.",
+          "createdAt": "2024-01-30T13:44:28Z",
+          "updatedAt": "2024-01-30T13:44:28Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uWeUn",
+          "commit": {
+            "abbreviatedOid": "e80d22e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-30T14:10:11Z",
+          "updatedAt": "2024-01-30T14:10:11Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uWwJR",
+          "commit": {
+            "abbreviatedOid": "e80d22e"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T14:36:45Z",
+          "updatedAt": "2024-01-30T14:36:45Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "```suggestion\r\n                        '----+----'                     |                 |\r\n                             |                  +-------+--------+        |\r\n                          .-' '---------------->+                |        |\r\n                         |   .--------.         |  Transparency  |        |\r\nTransparency -->         |  | Receipt  +-.      |    Services    |        |\r\n     Service             |   '+-------'  +<-----+                |        |\r\n                         |    | Receipt  |      +---------+------+        |\r\n                         |     '+-------'                 |               |\r\n                          '-. .-'                         |               |\r\n                             |                            |               |\r\n                             v                            |               |\r\n                       .-----+-----.                      |               |\r\n```\r\n\r\n*sigh* here my attempt at it then. Not that great, but it hopefully conveys the intent.",
+              "createdAt": "2024-01-30T14:36:45Z",
+              "updatedAt": "2024-01-30T14:36:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uX1Py",
+          "commit": {
+            "abbreviatedOid": "e80d22e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T16:14:20Z",
+          "updatedAt": "2024-01-30T16:14:20Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "this is again multiple receipts from the same TS... this is not very helpful.\r\n\r\nThe helpful thing, is to obtain multiple receipts from distinct TS (operated by different trusted authorities).",
+              "createdAt": "2024-01-30T16:14:20Z",
+              "updatedAt": "2024-01-30T16:14:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uX2bC",
+          "commit": {
+            "abbreviatedOid": "e80d22e"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-30T16:16:22Z",
+          "updatedAt": "2024-01-30T16:16:22Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "while it says \"services\" on the right, I agree. Can that be compacted enough to be put into this diagram?",
+              "createdAt": "2024-01-30T16:16:22Z",
+              "updatedAt": "2024-01-30T16:16:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ucJGI",
+          "commit": {
+            "abbreviatedOid": "e80d22e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-31T04:27:20Z",
+          "updatedAt": "2024-01-31T04:27:20Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "I think the multiple receipts was a mistake. In our discussions, we wanted to represent multiple transparency services. Each issues a single receipt for each signed statement. \r\n```suggestion\r\n                        '----+----'                     |                 |\r\n                             |               +----------+----+            |\r\n                          .-' '------------->+ Transparency  |            |\r\n                         |   .--------.      |               |            |\r\nTransparency -->         |  | Receipt  +<----+   Services    |            |\r\n     Service             |   '---+----'      +------------+--+            |\r\n                          '-. .-'                         |               |\r\n                             |                            |               |\r\n                             v                            |               |\r\n                       .-----+-----.                      |               |\r\n```",
+              "createdAt": "2024-01-31T04:27:20Z",
+              "updatedAt": "2024-01-31T04:27:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ucJYr",
+          "commit": {
+            "abbreviatedOid": "e80d22e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-31T04:29:00Z",
+          "updatedAt": "2024-01-31T04:29:00Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "@henkbirkholz, if you wanted to show the layered boxes around Transparency Services, instead of Receipt(s), that would work well",
+              "createdAt": "2024-01-31T04:29:00Z",
+              "updatedAt": "2024-01-31T04:29:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ueGDj",
+          "commit": {
+            "abbreviatedOid": "e80d22e"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-31T10:22:32Z",
+          "updatedAt": "2024-01-31T10:22:32Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "@henkbirkholz : I wanted to show multiple Receipt instances and Multiple Transparency service instances, however the diagram became `clumsy`, so i sticked with plurality",
+              "createdAt": "2024-01-31T10:22:32Z",
+              "updatedAt": "2024-01-31T10:22:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uelS5",
+          "commit": {
+            "abbreviatedOid": "e80d22e"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-31T11:27:12Z",
+          "updatedAt": "2024-01-31T11:27:12Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "@henkbirkholz @OR13 @SteveLasker : I have corrected the diagram to be more explicit!\r\n\r\nPlease have a look now!",
+              "createdAt": "2024-01-31T11:27:12Z",
+              "updatedAt": "2024-01-31T11:27:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ufF_3",
+          "commit": {
+            "abbreviatedOid": "e80d22e"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-31T12:44:10Z",
+          "updatedAt": "2024-01-31T12:44:10Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "@SteveLasker how are multiple receipts from different TS a mistake?",
+              "createdAt": "2024-01-31T12:44:10Z",
+              "updatedAt": "2024-01-31T12:44:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ug1o5",
+          "commit": {
+            "abbreviatedOid": "e80d22e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-31T15:29:26Z",
+          "updatedAt": "2024-01-31T15:29:26Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "Based on my understanding of our last discussion, we wanted to simplify #156 and agreed to show duplicity of Transparency Services. \r\nYes, each transparency service generates a different receipt for the same signed statement placed upon each TS. \r\nYes, one ore more entities can register the same signed statement on the same transparency service, producing multiple receipts for the same transparent statement. \r\nWe have discussed a TS can re-generate the receipt, so thinking more, it could have a multiplicity of receipts. \r\nMy gut is we should keep the first architecture overview relatively simple, letting readers digest the concepts. WIth incremental information, more details are exposed to the reader. \r\nJust my 2c. ",
+              "createdAt": "2024-01-31T15:29:26Z",
+              "updatedAt": "2024-01-31T15:29:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ui88S",
+          "commit": {
+            "abbreviatedOid": "e80d22e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-01-31T19:26:48Z",
+          "updatedAt": "2024-01-31T19:26:48Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "@henkbirkholz, the way @yogeshbdeshpande added multiple receipts, each from a different Transparency Service resolved my concerns.  ",
+              "createdAt": "2024-01-31T19:26:48Z",
+              "updatedAt": "2024-01-31T19:26:48Z"
+            }
+          ]
         }
       ]
     },
@@ -19028,6 +19870,89 @@
       "mergedBy": "SteveLasker",
       "mergeCommit": {
         "oid": "e80d22eb096239f921cc402f0765fd8cad9081c4"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 173,
+      "id": "PR_kwDOIvmHss5lhp3I",
+      "title": "Remote Signing PR Tweaks",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/173",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Updates #167 \r\n\r\n- Adds arrows\r\n- Avoids lines going behind diagrams\r\n- Makes Identity Document a rounded document type\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/bc89fc6a-4e65-4223-994b-a9cf2a76b2f9)\r\n",
+      "createdAt": "2024-01-31T04:18:10Z",
+      "updatedAt": "2024-01-31T21:02:24Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "feat/diagrams",
+      "baseRefOid": "66b59aa496e2194d225d594b3918cf00347758f2",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/diagram-fixes",
+      "headRefOid": "85efd0cf2b6c62c4e5456825efda34f6ef26f47d",
+      "closedAt": "2024-01-31T21:02:24Z",
+      "mergedAt": "2024-01-31T21:02:24Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "460a44466bbb7f5e588b3461310725255144030c"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5ujJ5L",
+          "commit": {
+            "abbreviatedOid": "030cb19"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-31T19:53:45Z",
+          "updatedAt": "2024-01-31T19:53:45Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ujbQ7",
+          "commit": {
+            "abbreviatedOid": "030cb19"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-01-31T20:32:51Z",
+          "updatedAt": "2024-01-31T20:32:51Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 174,
+      "id": "PR_kwDOIvmHss5lm99v",
+      "title": "aasvg fixes to multiplicity drawing",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/174",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/bac27169-3ce2-443c-94dc-1233743af28b)\r\n",
+      "createdAt": "2024-01-31T19:23:42Z",
+      "updatedAt": "2024-01-31T19:24:54Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "re-architect",
+      "baseRefOid": "126e8d69dd1caa59f6a7feb4603fa84c4ca95282",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve-fixes-to-171",
+      "headRefOid": "e8d40f9f77518493e24ca1e335ab4354c9d630ee",
+      "closedAt": "2024-01-31T19:24:53Z",
+      "mergedAt": "2024-01-31T19:24:53Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "f82d40fbf2c89499155aa6345551f9e9d9678a05"
       },
       "comments": [],
       "reviews": []
