@@ -1033,11 +1033,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SCITT Architecture</td>
-<td class="right">January 2024</td>
+<td class="right">February 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 3 August 2024</td>
+<td class="center">Expires 4 August 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1050,12 +1050,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-01-31" class="published">31 January 2024</time>
+<time datetime="2024-02-01" class="published">1 February 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-08-03">3 August 2024</time></dd>
+<dd class="expires"><time datetime="2024-08-04">4 August 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1124,7 +1124,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 3 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 4 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1182,7 +1182,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
                 <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-signed-statement-issuance-a" class="internal xref">Signed Statement Issuance and Registration</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.1">
-                    <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="auto internal xref">5.1.1</a>.  <a href="#name-issuer-identity" class="internal xref">Issuer Identity</a></p>
+                    <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="auto internal xref">5.1.1</a>.  <a href="#name-structure-and-content-of-si" class="internal xref">Structure and Content of Signed Statements</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.2">
                     <p id="section-toc.1-1.5.2.1.2.2.1"><a href="#section-5.1.2" class="auto internal xref">5.1.2</a>.  <a href="#name-support-for-multiple-artifa" class="internal xref">Support for Multiple Artifacts</a></p>
@@ -1366,10 +1366,13 @@ Issuers can register their Signed Statements on any Transparency Service, with t
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+            <p id="section-toc.1-1.13.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-signing-statements-remotely" class="internal xref">Signing Statements Remotely</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
-            <p id="section-toc.1-1.14.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.14.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15">
+            <p id="section-toc.1-1.15.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1448,117 +1451,118 @@ Considering CT in terms of SCITT:<a href="#section-2.1-1" class="pilcrow">¶</a>
 <p id="section-3-1">The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust, which are used throughout this document.
 When used in text, the corresponding terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-3-2">
-        <dt id="section-3-2.1">Append-only Log (Ledger):</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.2">
-          <p id="section-3-2.2.1">the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym, Log or Ledger.
-SCITT supports multiple Log and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Log.<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
+<p id="section-3-2">The terms "header", "payload", and "to-be-signed bytes" are defined in <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-3-3">
+        <dt id="section-3-3.1">Append-only Log (Ledger):</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.2">
+          <p id="section-3-3.2.1">the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym, Log or Ledger.
+SCITT supports multiple Log and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Log.<a href="#section-3-3.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.3">Artifact:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.4">
-          <p id="section-3-2.4.1">a physical or non-physical item that is moving along a supply chain.<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
+<dt id="section-3-3.3">Artifact:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.4">
+          <p id="section-3-3.4.1">a physical or non-physical item that is moving along a supply chain.<a href="#section-3-3.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.5">Auditor:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.6">
-          <p id="section-3-2.6.1">an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.<a href="#section-3-2.6.1" class="pilcrow">¶</a></p>
+<dt id="section-3-3.5">Auditor:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.6">
+          <p id="section-3-3.6.1">an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.<a href="#section-3-3.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.7">Envelope:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.8">
-          <p id="section-3-2.8.1">metadata, created by the Issuer to produce a Signed Statement.
+<dt id="section-3-3.7">Envelope:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.8">
+          <p id="section-3-3.8.1">metadata, created by the Issuer to produce a Signed Statement.
 The Envelope contains the identity of the Issuer and information about the Artifact, enabling Transparency Service Registration Policies to validate the Signed Statement.
 A Signed Statement is a COSE Envelope wrapped around a Statement, binding the metadata in the Envelope to the Statement.
-In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).<a href="#section-3-2.8.1" class="pilcrow">¶</a></p>
+In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).<a href="#section-3-3.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.9">Equivocation:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.10">
-          <p id="section-3-2.10.1">a state where it is possible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact <span>[<a href="#EQUIVOCATION" class="cite xref">EQUIVOCATION</a>]</span>.<a href="#section-3-2.10.1" class="pilcrow">¶</a></p>
+<dt id="section-3-3.9">Equivocation:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.10">
+          <p id="section-3-3.10.1">a state where it is possible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact <span>[<a href="#EQUIVOCATION" class="cite xref">EQUIVOCATION</a>]</span>.<a href="#section-3-3.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.11">Feed:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-2.12">
-          <p id="section-3-2.12.1">A collection of Signed Statements, observed by the Transparency Service, related to the <code>sub</code> field of the 'CWT_Claims' property of the protected header of Signed Statements.<a href="#section-3-2.12.1" class="pilcrow">¶</a></p>
+<dt id="section-3-3.11">Feed:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.12">
+          <p id="section-3-3.12.1">A collection of Signed Statements, observed by the Transparency Service, related to the <code>sub</code> field of the 'CWT_Claims' property of the protected header of Signed Statements.<a href="#section-3-3.12.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-3-3">Verifiers use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the Artifact they are evaluating.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-3-4">
-        <dt id="section-3-4.1">Issuer:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.2">
-          <p id="section-3-4.2.1">organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers.
-An Issuer may be the owner or author of Artifacts, or an independent third party such as an auditor, reviewer or an endorser.<a href="#section-3-4.2.1" class="pilcrow">¶</a></p>
+<p id="section-3-4">Verifiers use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the Artifact they are evaluating.<a href="#section-3-4" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-3-5">
+        <dt id="section-3-5.1">Issuer:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-5.2">
+          <p id="section-3-5.2.1">organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers.
+An Issuer may be the owner or author of Artifacts, or an independent third party such as an auditor, reviewer or an endorser.<a href="#section-3-5.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.3">Non-equivocation:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.4">
-          <p id="section-3-4.4.1">a state where it is impossible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact.
-Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Verifiers.<a href="#section-3-4.4.1" class="pilcrow">¶</a></p>
+<dt id="section-3-5.3">Non-equivocation:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-5.4">
+          <p id="section-3-5.4.1">a state where it is impossible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact.
+Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Verifiers.<a href="#section-3-5.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.5">Receipt:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.6">
-          <p id="section-3-4.6.1">a Receipt is a cryptographic proof that a Signed Statement is recorded in the Append-only Log.
+<dt id="section-3-5.5">Receipt:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-5.6">
+          <p id="section-3-5.6.1">a Receipt is a cryptographic proof that a Signed Statement is recorded in the Append-only Log.
 Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span>.
 Receipts can be built on different verifiable data structures, not just binary merkle trees.
-Receipts consist of Transparency Service-specific inclusion proofs, a signature by the Transparency Service of the state of the Append-only Log, and additional metadata (contained in the signature's protected headers) to assist in auditing.<a href="#section-3-4.6.1" class="pilcrow">¶</a></p>
+Receipts consist of Transparency Service-specific inclusion proofs, a signature by the Transparency Service of the state of the Append-only Log, and additional metadata (contained in the signature's protected headers) to assist in auditing.<a href="#section-3-5.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.7">Registration:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.8">
-          <p id="section-3-4.8.1">the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, adding to the Append-only Log, and producing a Receipt.<a href="#section-3-4.8.1" class="pilcrow">¶</a></p>
+<dt id="section-3-5.7">Registration:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-5.8">
+          <p id="section-3-5.8.1">the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, adding to the Append-only Log, and producing a Receipt.<a href="#section-3-5.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.9">Registration Policy:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.10">
-          <p id="section-3-4.10.1">the pre-condition enforced by the Transparency Service before registering a Signed Statement, based on information in the non-opaque header and metadata contained in its COSE Envelope.
+<dt id="section-3-5.9">Registration Policy:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-5.10">
+          <p id="section-3-5.10.1">the pre-condition enforced by the Transparency Service before registering a Signed Statement, based on information in the non-opaque header and metadata contained in its COSE Envelope.
 A Transparency Service <span class="bcp14">MAY</span> implement any range of policies that meets their needs.
-However a Transparency Service can not alter the contents of the Signed Statements.<a href="#section-3-4.10.1" class="pilcrow">¶</a></p>
+However a Transparency Service can not alter the contents of the Signed Statements.<a href="#section-3-5.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.11">Signed Statement:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.12">
-          <p id="section-3-4.12.1">an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
-In SCITT, Signed Statements are encoded as COSE signed objects; the payload of the COSE structure contains the issued Statement.<a href="#section-3-4.12.1" class="pilcrow">¶</a></p>
+<dt id="section-3-5.11">Signed Statement:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-5.12">
+          <p id="section-3-5.12.1">an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
+In SCITT, Signed Statements are encoded as COSE signed objects; the payload of the COSE structure contains the issued Statement.<a href="#section-3-5.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.13">Statement:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.14">
-          <p id="section-3-4.14.1">any serializable information about an Artifact.
+<dt id="section-3-5.13">Statement:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-5.14">
+          <p id="section-3-5.14.1">any serializable information about an Artifact.
 To help interpretation of Statements, they must be tagged with a media type (as specified in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>).
 A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version,  or any content an Issuer wishes to publish about an Artifact.
 The additional Statements about an artifact are correlated by the Subject defined in the <span>[<a href="#CWT_CLAIMS" class="cite xref">CWT_CLAIMS</a>]</span> protected header.
-The Statement is considered opaque to Transparency Service, and <span class="bcp14">MAY</span> be encrypted.<a href="#section-3-4.14.1" class="pilcrow">¶</a></p>
+The Statement is considered opaque to Transparency Service, and <span class="bcp14">MAY</span> be encrypted.<a href="#section-3-5.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.15">Subject:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.16">
-          <p id="section-3-4.16.1">This term has the same definition as in RFC8392.
+<dt id="section-3-5.15">Subject:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-5.16">
+          <p id="section-3-5.16.1">This term has the same definition as in RFC8392.
 Issuer's use <code>sub</code> to identify the entity about which they are making Signed Statements.
-Transparency Services use <code>sub</code> to identify the entity about which they are issuing a Receipt.<a href="#section-3-4.16.1" class="pilcrow">¶</a></p>
+Transparency Services use <code>sub</code> to identify the entity about which they are issuing a Receipt.<a href="#section-3-5.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.17">Transparency Service:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.18">
-          <p id="section-3-4.18.1">an entity that maintains and extends the Append-only Log, and endorses its state.
+<dt id="section-3-5.17">Transparency Service:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-5.18">
+          <p id="section-3-5.18.1">an entity that maintains and extends the Append-only Log, and endorses its state.
 A Transparency Service <span class="bcp14">MAY</span> implement a Registration Policy, often referred to by its synonym Notary.
 A Transparency Service can be a complex distributed system, and SCITT requires the Transparency Service to provide many security guarantees about its Append-only Log.
-The identity of a Transparency Service is captured by a public key that must be known by Verifiers in order to validate Receipts.<a href="#section-3-4.18.1" class="pilcrow">¶</a></p>
+The identity of a Transparency Service is captured by a public key that must be known by Verifiers in order to validate Receipts.<a href="#section-3-5.18.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.19">Transparent Statement:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.20">
-          <p id="section-3-4.20.1">a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
+<dt id="section-3-5.19">Transparent Statement:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-5.20">
+          <p id="section-3-5.20.1">a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
 The receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
-A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.<a href="#section-3-4.20.1" class="pilcrow">¶</a></p>
+A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.<a href="#section-3-5.20.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.21">Verifier:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.22">
-          <p id="section-3-4.22.1">organizations, stakeholders, and users involved in validating supply chain Artifacts.
-Verifiers consume Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.<a href="#section-3-4.22.1" class="pilcrow">¶</a></p>
+<dt id="section-3-5.21">Verifier:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-5.22">
+          <p id="section-3-5.22.1">organizations, stakeholders, and users involved in validating supply chain Artifacts.
+Verifiers consume Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.<a href="#section-3-5.22.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -1598,70 +1602,82 @@ Failure to produce this proof can indicate that the Transparency Services operat
       </h2>
 <div id="section-5-1">
         <div class="alignLeft art-svg artwork" id="section-5-1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="656" width="552" viewBox="0 0 552 656" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="720" width="568" viewBox="0 0 568 720" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
             <path d="M 184,64 L 184,88" fill="none" stroke="black"></path>
             <path d="M 184,128 L 184,144" fill="none" stroke="black"></path>
-            <path d="M 184,416 L 184,432" fill="none" stroke="black"></path>
             <path d="M 192,224 L 192,240" fill="none" stroke="black"></path>
-            <path d="M 208,304 L 208,336" fill="none" stroke="black"></path>
+            <path d="M 208,304 L 208,384" fill="none" stroke="black"></path>
+            <path d="M 232,320 L 232,336" fill="none" stroke="black"></path>
+            <path d="M 232,480 L 232,496" fill="none" stroke="black"></path>
             <path d="M 240,176 L 240,200" fill="none" stroke="black"></path>
             <path d="M 240,256 L 240,272" fill="none" stroke="black"></path>
-            <path d="M 240,368 L 240,392" fill="none" stroke="black"></path>
-            <path d="M 240,448 L 240,600" fill="none" stroke="black"></path>
+            <path d="M 256,352 L 256,368" fill="none" stroke="black"></path>
             <path d="M 288,224 L 288,240" fill="none" stroke="black"></path>
+            <path d="M 288,416 L 288,456" fill="none" stroke="black"></path>
+            <path d="M 288,512 L 288,664" fill="none" stroke="black"></path>
             <path d="M 296,128 L 296,144" fill="none" stroke="black"></path>
-            <path d="M 296,416 L 296,432" fill="none" stroke="black"></path>
-            <path d="M 320,496 L 320,520" fill="none" stroke="black"></path>
-            <path d="M 352,496 L 352,520" fill="none" stroke="black"></path>
-            <path d="M 368,272 L 368,336" fill="none" stroke="black"></path>
-            <path d="M 392,144 L 392,192" fill="none" stroke="black"></path>
+            <path d="M 320,320 L 320,336" fill="none" stroke="black"></path>
+            <path d="M 336,352 L 336,368" fill="none" stroke="black"></path>
+            <path d="M 344,480 L 344,496" fill="none" stroke="black"></path>
+            <path d="M 368,560 L 368,584" fill="none" stroke="black"></path>
+            <path d="M 384,272 L 384,336" fill="none" stroke="black"></path>
+            <path d="M 392,160 L 392,176" fill="none" stroke="black"></path>
+            <path d="M 400,560 L 400,584" fill="none" stroke="black"></path>
+            <path d="M 408,336 L 408,400" fill="none" stroke="black"></path>
             <path d="M 456,192 L 456,272" fill="none" stroke="black"></path>
-            <path d="M 472,336 L 472,472" fill="none" stroke="black"></path>
-            <path d="M 472,488 L 472,600" fill="none" stroke="black"></path>
-            <path d="M 488,272 L 488,336" fill="none" stroke="black"></path>
-            <path d="M 512,128 L 512,144" fill="none" stroke="black"></path>
-            <path d="M 512,192 L 512,464" fill="none" stroke="black"></path>
-            <path d="M 544,144 L 544,192" fill="none" stroke="black"></path>
+            <path d="M 472,128 L 472,144" fill="none" stroke="black"></path>
+            <path d="M 504,160 L 504,176" fill="none" stroke="black"></path>
+            <path d="M 512,272 L 512,336" fill="none" stroke="black"></path>
+            <path d="M 512,400 L 512,536" fill="none" stroke="black"></path>
+            <path d="M 512,552 L 512,664" fill="none" stroke="black"></path>
+            <path d="M 528,320 L 528,400" fill="none" stroke="black"></path>
+            <path d="M 544,192 L 544,528" fill="none" stroke="black"></path>
             <path d="M 152,32 L 224,32" fill="none" stroke="black"></path>
             <path d="M 152,64 L 224,64" fill="none" stroke="black"></path>
             <path d="M 152,96 L 216,96" fill="none" stroke="black"></path>
             <path d="M 256,96 L 328,96" fill="none" stroke="black"></path>
             <path d="M 104,112 L 120,112" fill="none" stroke="black"></path>
-            <path d="M 352,112 L 496,112" fill="none" stroke="black"></path>
+            <path d="M 352,112 L 456,112" fill="none" stroke="black"></path>
             <path d="M 152,128 L 216,128" fill="none" stroke="black"></path>
             <path d="M 256,128 L 328,128" fill="none" stroke="black"></path>
-            <path d="M 392,144 L 544,144" fill="none" stroke="black"></path>
+            <path d="M 408,144 L 488,144" fill="none" stroke="black"></path>
             <path d="M 200,160 L 224,160" fill="none" stroke="black"></path>
             <path d="M 256,160 L 280,160" fill="none" stroke="black"></path>
-            <path d="M 392,192 L 544,192" fill="none" stroke="black"></path>
+            <path d="M 504,176 L 528,176" fill="none" stroke="black"></path>
+            <path d="M 408,192 L 488,192" fill="none" stroke="black"></path>
             <path d="M 208,208 L 272,208" fill="none" stroke="black"></path>
             <path d="M 296,240 L 456,240" fill="none" stroke="black"></path>
             <path d="M 208,256 L 272,256" fill="none" stroke="black"></path>
-            <path d="M 368,272 L 488,272" fill="none" stroke="black"></path>
-            <path d="M 256,288 L 360,288" fill="none" stroke="black"></path>
-            <path d="M 248,304 L 296,304" fill="none" stroke="black"></path>
-            <path d="M 112,320 L 128,320" fill="none" stroke="black"></path>
-            <path d="M 320,320 L 368,320" fill="none" stroke="black"></path>
-            <path d="M 248,336 L 296,336" fill="none" stroke="black"></path>
-            <path d="M 368,336 L 488,336" fill="none" stroke="black"></path>
-            <path d="M 200,400 L 280,400" fill="none" stroke="black"></path>
-            <path d="M 200,448 L 280,448" fill="none" stroke="black"></path>
-            <path d="M 256,480 L 304,480" fill="none" stroke="black"></path>
-            <path d="M 368,480 L 496,480" fill="none" stroke="black"></path>
-            <path d="M 280,528 L 448,528" fill="none" stroke="black"></path>
-            <path d="M 112,544 L 128,544" fill="none" stroke="black"></path>
-            <path d="M 256,576 L 424,576" fill="none" stroke="black"></path>
-            <path d="M 168,608 L 320,608" fill="none" stroke="black"></path>
-            <path d="M 376,608 L 520,608" fill="none" stroke="black"></path>
-            <path d="M 112,624 L 128,624" fill="none" stroke="black"></path>
-            <path d="M 152,640 L 304,640" fill="none" stroke="black"></path>
-            <path d="M 360,640 L 504,640" fill="none" stroke="black"></path>
-            <path d="M 152,640 L 168,608" fill="none" stroke="black"></path>
-            <path d="M 256,576 L 280,528" fill="none" stroke="black"></path>
-            <path d="M 304,640 L 320,608" fill="none" stroke="black"></path>
-            <path d="M 360,640 L 376,608" fill="none" stroke="black"></path>
-            <path d="M 424,576 L 448,528" fill="none" stroke="black"></path>
-            <path d="M 504,640 L 520,608" fill="none" stroke="black"></path>
+            <path d="M 384,272 L 512,272" fill="none" stroke="black"></path>
+            <path d="M 256,288 L 376,288" fill="none" stroke="black"></path>
+            <path d="M 248,304 L 304,304" fill="none" stroke="black"></path>
+            <path d="M 168,320 L 184,320" fill="none" stroke="black"></path>
+            <path d="M 328,320 L 384,320" fill="none" stroke="black"></path>
+            <path d="M 512,320 L 528,320" fill="none" stroke="black"></path>
+            <path d="M 384,336 L 512,336" fill="none" stroke="black"></path>
+            <path d="M 248,352 L 304,352" fill="none" stroke="black"></path>
+            <path d="M 344,368 L 408,368" fill="none" stroke="black"></path>
+            <path d="M 272,384 L 320,384" fill="none" stroke="black"></path>
+            <path d="M 224,400 L 272,400" fill="none" stroke="black"></path>
+            <path d="M 408,400 L 528,400" fill="none" stroke="black"></path>
+            <path d="M 248,464 L 328,464" fill="none" stroke="black"></path>
+            <path d="M 248,512 L 328,512" fill="none" stroke="black"></path>
+            <path d="M 304,544 L 352,544" fill="none" stroke="black"></path>
+            <path d="M 416,544 L 528,544" fill="none" stroke="black"></path>
+            <path d="M 328,592 L 496,592" fill="none" stroke="black"></path>
+            <path d="M 168,608 L 184,608" fill="none" stroke="black"></path>
+            <path d="M 304,640 L 472,640" fill="none" stroke="black"></path>
+            <path d="M 216,672 L 368,672" fill="none" stroke="black"></path>
+            <path d="M 424,672 L 560,672" fill="none" stroke="black"></path>
+            <path d="M 168,688 L 184,688" fill="none" stroke="black"></path>
+            <path d="M 200,704 L 352,704" fill="none" stroke="black"></path>
+            <path d="M 408,704 L 544,704" fill="none" stroke="black"></path>
+            <path d="M 200,704 L 216,672" fill="none" stroke="black"></path>
+            <path d="M 304,640 L 328,592" fill="none" stroke="black"></path>
+            <path d="M 352,704 L 368,672" fill="none" stroke="black"></path>
+            <path d="M 408,704 L 424,672" fill="none" stroke="black"></path>
+            <path d="M 472,640 L 496,592" fill="none" stroke="black"></path>
+            <path d="M 544,704 L 560,672" fill="none" stroke="black"></path>
             <path d="M 152,32 C 143.16936,32 136,39.16936 136,48" fill="none" stroke="black"></path>
             <path d="M 224,32 C 232.83064,32 240,39.16936 240,48" fill="none" stroke="black"></path>
             <path d="M 152,64 C 143.16936,64 136,56.83064 136,48" fill="none" stroke="black"></path>
@@ -1670,15 +1686,20 @@ Failure to produce this proof can indicate that the Transparency Services operat
             <path d="M 216,96 C 224.83064,96 232,103.16936 232,112" fill="none" stroke="black"></path>
             <path d="M 256,96 C 247.16936,96 240,103.16936 240,112" fill="none" stroke="black"></path>
             <path d="M 328,96 C 336.83064,96 344,103.16936 344,112" fill="none" stroke="black"></path>
-            <path d="M 496,112 C 504.83064,112 512,119.16936 512,128" fill="none" stroke="black"></path>
+            <path d="M 456,112 C 464.83064,112 472,119.16936 472,128" fill="none" stroke="black"></path>
             <path d="M 152,128 C 143.16936,128 136,120.83064 136,112" fill="none" stroke="black"></path>
             <path d="M 216,128 C 224.83064,128 232,120.83064 232,112" fill="none" stroke="black"></path>
             <path d="M 256,128 C 247.16936,128 240,120.83064 240,112" fill="none" stroke="black"></path>
             <path d="M 328,128 C 336.83064,128 344,120.83064 344,112" fill="none" stroke="black"></path>
+            <path d="M 408,144 C 399.16936,144 392,151.16936 392,160" fill="none" stroke="black"></path>
+            <path d="M 488,144 C 496.83064,144 504,151.16936 504,160" fill="none" stroke="black"></path>
             <path d="M 200,160 C 191.16936,160 184,152.83064 184,144" fill="none" stroke="black"></path>
             <path d="M 224,160 C 232.83064,160 240,167.16936 240,176" fill="none" stroke="black"></path>
             <path d="M 256,160 C 247.16936,160 240,167.16936 240,176" fill="none" stroke="black"></path>
             <path d="M 280,160 C 288.83064,160 296,152.83064 296,144" fill="none" stroke="black"></path>
+            <path d="M 528,176 C 536.83064,176 544,183.16936 544,192" fill="none" stroke="black"></path>
+            <path d="M 408,192 C 399.16936,192 392,184.83064 392,176" fill="none" stroke="black"></path>
+            <path d="M 488,192 C 496.83064,192 504,184.83064 504,176" fill="none" stroke="black"></path>
             <path d="M 208,208 C 199.16936,208 192,215.16936 192,224" fill="none" stroke="black"></path>
             <path d="M 272,208 C 280.83064,208 288,215.16936 288,224" fill="none" stroke="black"></path>
             <path d="M 208,256 C 199.16936,256 192,248.83064 192,240" fill="none" stroke="black"></path>
@@ -1687,65 +1708,72 @@ Failure to produce this proof can indicate that the Transparency Services operat
             <path d="M 224,288 C 232.83064,288 240,280.83064 240,272" fill="none" stroke="black"></path>
             <path d="M 256,288 C 247.16936,288 240,280.83064 240,272" fill="none" stroke="black"></path>
             <path d="M 248,304 C 239.16936,304 232,311.16936 232,320" fill="none" stroke="black"></path>
-            <path d="M 296,304 C 304.83064,304 312,311.16936 312,320" fill="none" stroke="black"></path>
-            <path d="M 248,336 C 239.16936,336 232,328.83064 232,320" fill="none" stroke="black"></path>
-            <path d="M 296,336 C 304.83064,336 312,328.83064 312,320" fill="none" stroke="black"></path>
-            <path d="M 224,352 C 215.16936,352 208,344.83064 208,336" fill="none" stroke="black"></path>
-            <path d="M 224,352 C 232.83064,352 240,359.16936 240,368" fill="none" stroke="black"></path>
-            <path d="M 256,352 C 247.16936,352 240,359.16936 240,368" fill="none" stroke="black"></path>
-            <path d="M 256,352 C 264.83064,352 272,344.83064 272,336" fill="none" stroke="black"></path>
-            <path d="M 200,400 C 191.16936,400 184,407.16936 184,416" fill="none" stroke="black"></path>
-            <path d="M 280,400 C 288.83064,400 296,407.16936 296,416" fill="none" stroke="black"></path>
-            <path d="M 200,448 C 191.16936,448 184,440.83064 184,432" fill="none" stroke="black"></path>
-            <path d="M 280,448 C 288.83064,448 296,440.83064 296,432" fill="none" stroke="black"></path>
-            <path d="M 256,480 C 247.16936,480 240,472.83064 240,464" fill="none" stroke="black"></path>
-            <path d="M 304,480 C 312.83064,480 320,487.16936 320,496" fill="none" stroke="black"></path>
-            <path d="M 368,480 C 359.16936,480 352,487.16936 352,496" fill="none" stroke="black"></path>
-            <path d="M 496,480 C 504.83064,480 512,472.83064 512,464" fill="none" stroke="black"></path>
-            <polygon class="arrowhead" points="480,600 468,594.4 468,605.6" fill="black" transform="rotate(90,472,600)"></polygon>
-            <path class="jump" d="M 472,488 C 478,488 478,472 472,472" fill="none" stroke="black"></path>
-            <polygon class="arrowhead" points="368,288 356,282.4 356,293.6" fill="black" transform="rotate(0,360,288)"></polygon>
-            <polygon class="arrowhead" points="360,520 348,514.4 348,525.6" fill="black" transform="rotate(90,352,520)"></polygon>
+            <path d="M 304,304 C 312.83064,304 320,311.16936 320,320" fill="none" stroke="black"></path>
+            <path d="M 320,336 C 328.83064,336 336,343.16936 336,352" fill="none" stroke="black"></path>
+            <path d="M 248,352 C 239.16936,352 232,344.83064 232,336" fill="none" stroke="black"></path>
+            <path d="M 304,352 C 312.83064,352 320,344.83064 320,336" fill="none" stroke="black"></path>
+            <path d="M 272,384 C 263.16936,384 256,376.83064 256,368" fill="none" stroke="black"></path>
+            <path d="M 320,384 C 328.83064,384 336,376.83064 336,368" fill="none" stroke="black"></path>
+            <path d="M 224,400 C 215.16936,400 208,392.83064 208,384" fill="none" stroke="black"></path>
+            <path d="M 272,400 C 280.83064,400 288,407.16936 288,416" fill="none" stroke="black"></path>
+            <path d="M 304,400 C 295.16936,400 288,407.16936 288,416" fill="none" stroke="black"></path>
+            <path d="M 304,400 C 312.83064,400 320,392.83064 320,384" fill="none" stroke="black"></path>
+            <path d="M 248,464 C 239.16936,464 232,471.16936 232,480" fill="none" stroke="black"></path>
+            <path d="M 328,464 C 336.83064,464 344,471.16936 344,480" fill="none" stroke="black"></path>
+            <path d="M 248,512 C 239.16936,512 232,504.83064 232,496" fill="none" stroke="black"></path>
+            <path d="M 328,512 C 336.83064,512 344,504.83064 344,496" fill="none" stroke="black"></path>
+            <path d="M 304,544 C 295.16936,544 288,536.83064 288,528" fill="none" stroke="black"></path>
+            <path d="M 352,544 C 360.83064,544 368,551.16936 368,560" fill="none" stroke="black"></path>
+            <path d="M 416,544 C 407.16936,544 400,551.16936 400,560" fill="none" stroke="black"></path>
+            <path d="M 528,544 C 536.83064,544 544,536.83064 544,528" fill="none" stroke="black"></path>
+            <polygon class="arrowhead" points="520,664 508,658.4 508,669.6" fill="black" transform="rotate(90,512,664)"></polygon>
+            <path class="jump" d="M 512,552 C 518,552 518,536 512,536" fill="none" stroke="black"></path>
+            <polygon class="arrowhead" points="408,584 396,578.4 396,589.6" fill="black" transform="rotate(90,400,584)"></polygon>
+            <polygon class="arrowhead" points="384,288 372,282.4 372,293.6" fill="black" transform="rotate(0,376,288)"></polygon>
+            <polygon class="arrowhead" points="376,584 364,578.4 364,589.6" fill="black" transform="rotate(90,368,584)"></polygon>
             <polygon class="arrowhead" points="360,112 348,106.4 348,117.6" fill="black" transform="rotate(180,352,112)"></polygon>
-            <polygon class="arrowhead" points="328,520 316,514.4 316,525.6" fill="black" transform="rotate(90,320,520)"></polygon>
-            <polygon class="arrowhead" points="328,320 316,314.4 316,325.6" fill="black" transform="rotate(180,320,320)"></polygon>
+            <polygon class="arrowhead" points="352,368 340,362.4 340,373.6" fill="black" transform="rotate(180,344,368)"></polygon>
+            <polygon class="arrowhead" points="336,320 324,314.4 324,325.6" fill="black" transform="rotate(180,328,320)"></polygon>
             <polygon class="arrowhead" points="304,240 292,234.4 292,245.6" fill="black" transform="rotate(180,296,240)"></polygon>
-            <polygon class="arrowhead" points="248,600 236,594.4 236,605.6" fill="black" transform="rotate(90,240,600)"></polygon>
-            <polygon class="arrowhead" points="248,392 236,386.4 236,397.6" fill="black" transform="rotate(90,240,392)"></polygon>
+            <polygon class="arrowhead" points="296,664 284,658.4 284,669.6" fill="black" transform="rotate(90,288,664)"></polygon>
+            <polygon class="arrowhead" points="296,456 284,450.4 284,461.6" fill="black" transform="rotate(90,288,456)"></polygon>
             <polygon class="arrowhead" points="248,200 236,194.4 236,205.6" fill="black" transform="rotate(90,240,200)"></polygon>
+            <polygon class="arrowhead" points="192,688 180,682.4 180,693.6" fill="black" transform="rotate(0,184,688)"></polygon>
+            <polygon class="arrowhead" points="192,608 180,602.4 180,613.6" fill="black" transform="rotate(0,184,608)"></polygon>
+            <polygon class="arrowhead" points="192,320 180,314.4 180,325.6" fill="black" transform="rotate(0,184,320)"></polygon>
             <polygon class="arrowhead" points="192,88 180,82.4 180,93.6" fill="black" transform="rotate(90,184,88)"></polygon>
-            <polygon class="arrowhead" points="136,624 124,618.4 124,629.6" fill="black" transform="rotate(0,128,624)"></polygon>
-            <polygon class="arrowhead" points="136,544 124,538.4 124,549.6" fill="black" transform="rotate(0,128,544)"></polygon>
-            <polygon class="arrowhead" points="136,320 124,314.4 124,325.6" fill="black" transform="rotate(0,128,320)"></polygon>
             <polygon class="arrowhead" points="128,112 116,106.4 116,117.6" fill="black" transform="rotate(0,120,112)"></polygon>
             <g class="text">
               <text x="188" y="52">Artifact</text>
-              <text x="400" y="100">Identifiers</text>
+              <text x="408" y="100">Identifiers</text>
               <text x="28" y="116">Issuer</text>
               <text x="184" y="116">Statement</text>
               <text x="292" y="116">Envelope</text>
-              <text x="436" y="164">Identity</text>
-              <text x="440" y="180">Documents</text>
+              <text x="444" y="164">Identity</text>
+              <text x="448" y="180">Documents</text>
               <text x="236" y="228">Signed</text>
               <text x="340" y="228">COSE</text>
               <text x="392" y="228">Signing</text>
               <text x="240" y="244">Statement</text>
-              <text x="428" y="292">Transparency</text>
+              <text x="444" y="292">Transparency</text>
               <text x="52" y="324">Transparency</text>
               <text x="272" y="324">Receipt</text>
-              <text x="424" y="324">Service</text>
+              <text x="432" y="324">Service</text>
               <text x="72" y="340">Service</text>
-              <text x="240" y="420">Transparent</text>
-              <text x="240" y="436">Statement</text>
-              <text x="36" y="548">Verifier</text>
-              <text x="308" y="548">Verify</text>
-              <text x="384" y="548">Transparent</text>
-              <text x="352" y="564">Statement</text>
-              <text x="32" y="628">Auditor</text>
-              <text x="200" y="628">Collect</text>
-              <text x="268" y="628">Receipts</text>
-              <text x="420" y="628">Replay</text>
-              <text x="464" y="628">Log</text>
+              <text x="468" y="356">Transparency</text>
+              <text x="296" y="372">Receipt</text>
+              <text x="448" y="388">Service</text>
+              <text x="288" y="484">Transparent</text>
+              <text x="288" y="500">Statement</text>
+              <text x="36" y="612">Verifier</text>
+              <text x="356" y="612">Verify</text>
+              <text x="432" y="612">Transparent</text>
+              <text x="400" y="628">Statement</text>
+              <text x="32" y="692">Auditor</text>
+              <text x="248" y="692">Collect</text>
+              <text x="316" y="692">Receipts</text>
+              <text x="468" y="692">Replay</text>
+              <text x="512" y="692">Log</text>
             </g>
           </svg><a href="#section-5-1.1" class="pilcrow">¶</a>
 </div>
@@ -1753,41 +1781,52 @@ Failure to produce this proof can indicate that the Transparency Services operat
 <p id="section-5-2">The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements, and auditing Transparent Statements.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <p id="section-5-3">In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span>.<a href="#section-5-3" class="pilcrow">¶</a></p>
-<p id="section-5-4">This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and the Signed Statement issuance process, Transparency Service and the Signed Statement Registration process, as well as Verifiers of the Transparent Statements and the Receipt validation process.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-4">This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and Signed Statements, Transparency Service and the Signed Statement Registration process, as well as Verifiers of the Transparent Statements and the Receipt validation process.<a href="#section-5-4" class="pilcrow">¶</a></p>
 <div id="sec-signed-statement-issuance-and-registration">
 <section id="section-5.1">
         <h3 id="name-signed-statement-issuance-a">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-signed-statement-issuance-a" class="section-name selfRef">Signed Statement Issuance and Registration</a>
         </h3>
-<div id="sec-issuer-identity">
+<div id="sec-structure-and-content-of-signed-statements">
 <section id="section-5.1.1">
-          <h4 id="name-issuer-identity">
-<a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-issuer-identity" class="section-name selfRef">Issuer Identity</a>
+          <h4 id="name-structure-and-content-of-si">
+<a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-structure-and-content-of-si" class="section-name selfRef">Structure and Content of Signed Statements</a>
           </h4>
-<p id="section-5.1.1-1">Before an Issuer is able to produce Signed Statements, it must first create an identifier and obtain an identity document, that is acceptable to the Transparency Service.
-Transparency Services <span class="bcp14">MAY</span> support many different identity document formats.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1.1-2">Issuers <span class="bcp14">SHOULD</span> use consistent identifiers for all their Statements about Artifacts, to simplify authorization by Verifiers and auditing.
-If an Issuer uses multiple identifiers, they <span class="bcp14">MUST</span> ensure that statements signed under each identifier are consistent.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-5.1.1-3">Issuers <span class="bcp14">MAY</span> rotate verification keys at any time, or at a consistent cryptoperiod.
-Issuers <span class="bcp14">MAY</span> migrate to new signing and verification algorithms, but the Transparency Service remains responsible for admitting signed statements that match its policies.<a href="#section-5.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-5.1.1-4">The Issuer's identifier is required and appears in the <code>1 iss</code> claim of the <code>15 CWT_Claims</code> protected header of the Signed Statements' Envelope.
-The version of the key used to sign the Signed Statement is written in the <code>4 kid</code> protected header.<a href="#section-5.1.1-4" class="pilcrow">¶</a></p>
-<p id="section-5.1.1-5">Key discovery protocols are out of scope for this document.<a href="#section-5.1.1-5" class="pilcrow">¶</a></p>
-<div class="lang-cddl sourcecode" id="section-5.1.1-6">
+<p id="section-5.1.1-1">Transparency Services <span class="bcp14">MUST</span> support the capability to associate an X.509v3 certificate with a Signed Statement using a hash (thumbprint) of the certificate as specified in <span><a href="https://rfc-editor.org/rfc/rfc9360#section-2" class="relref">Section 2</a> of [<a href="#RFC9360" class="cite xref">RFC9360</a>]</span> by supporting the <code>x5t</code> COSE header parameter.
+The <code>x5t</code> COSE header parameter <span class="bcp14">MUST</span> be included in the protected header of a Signed Statement's COSE envelope.
+When <code>x5t</code> is present, <code>iss</code> <span class="bcp14">MUST</span> be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
+The mechanisms for how Transparency Services obtain corresponding X.509v3 certificates, e.g., as part of enforcing a Registration Policy, is out-of-scope of this document.
+At least one identifier for an identity document <span class="bcp14">MUST</span> be included in the protected header of the COSE envelope.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-2">Issuers <span class="bcp14">MUST</span> rotate verification keys for signature checking in well-defined cryptoperiods (see <span>[<a href="#KEY-MANAGEMENT" class="cite xref">KEY-MANAGEMENT</a>]</span>).
+Transparency Services <span class="bcp14">MUST</span> specify their supported signature algorithms in their Registration Policies.
+The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when the <code>x5t</code> header parameter is not present.
+Key discovery protocols are out-of-scope of this document.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-3">An Issuer identifier and a Subject identifier are required to be included in the COSE envelope. Consequently, the protected header of a Signed Statement <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10#section-2" class="relref">Section 2</a> of [<a href="#CWT_CLAIMS_COSE" class="cite xref">CWT_CLAIMS_COSE</a>]</span>.
+The CBOR map that constitutes the corresponding <code>CWT Claims</code> value <span class="bcp14">MUST</span> include the <code>Issuer Claim</code> (Claim label 1) and the <code>Subject Claim</code> (Claim label 2) <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span>.<a href="#section-5.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-4">Figure <a href="#fig-signed-statement" class="auto internal xref">Figure 1</a> illustrated a normative CDDL definition for the composition of the protected header in COSE envelope of SCITT Signed Statements.<a href="#section-5.1.1-4" class="pilcrow">¶</a></p>
+<span id="name-cddl-definition-for-scitt-s"></span><div id="fig-signed-statement">
+<figure id="figure-1">
+            <div class="lang-cddl sourcecode" id="section-5.1.1-5.1">
 <pre>
 CWT_Claims = {
-  1 =&gt; tstr; iss, the issuer making statements,
-  2 =&gt; tstr; sub, the subject of the statements,
-  * tstr =&gt; any
+    1 =&gt; tstr            ; iss, the issuer making statements
+    2 =&gt; tstr            ; sub, the subject of the statements
+  * int =&gt; any
 }
 
 Protected_Header = {
-  1   =&gt; int             ; algorithm identifier,
-  4   =&gt; bstr            ; Key ID (kid),
-  15  =&gt; CWT_Claims      ; CBOR Web Token Claims,
-  3   =&gt; tstr            ; payload type
+    1 =&gt; int             ; algorithm identifier
+    3 =&gt; tstr            ; payload type
+  ? 4 =&gt; bstr            ; Key ID (kid)
+   15 =&gt; CWT_Claims      ; CBOR Web Token Claims
+   34 =&gt; COSE_CertHash   ; x5t, hash of an X.509 certificate
+   * int =&gt; any
 }
-</pre><a href="#section-5.1.1-6" class="pilcrow">¶</a>
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-cddl-definition-for-scitt-s" class="selfRef">CDDL definition for SCITT Signed Statements</a>
+            </figcaption></figure>
 </div>
 </section>
 </div>
@@ -2774,6 +2813,10 @@ in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#sec
         <dd>
 <span class="refAuthor">IANA</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE)"</span>, <span>&lt;<a href="http://www.iana.org/assignments/cose">http://www.iana.org/assignments/cose</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="IANA.cwt">[IANA.cwt]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"CBOR Web Token (CWT) Claims"</span>, <span>&lt;<a href="http://www.iana.org/assignments/cwt">http://www.iana.org/assignments/cwt</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="IANA.media-types">[IANA.media-types]</dt>
         <dd>
 <span class="refAuthor">IANA</span>, <span class="refTitle">"Media Types"</span>, <span>&lt;<a href="http://www.iana.org/assignments/media-types">http://www.iana.org/assignments/media-types</a>&gt;</span>. </dd>
@@ -2854,6 +2897,10 @@ in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#sec
 <dt id="in-toto">[in-toto]</dt>
         <dd>
 <span class="refTitle">"in-toto"</span>, <span>n.d.</span>, <span>&lt;<a href="https://in-toto.io/">https://in-toto.io/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="KEY-MANAGEMENT">[KEY-MANAGEMENT]</dt>
+        <dd>
+<span class="refAuthor">Barker, E.</span> and <span class="refAuthor">W. Barker</span>, <span class="refTitle">"Recommendation for key management:: part 2 -- best practices for key management organizations"</span>, <span class="refContent">National Institute of Standards and Technology</span>, <span class="seriesInfo">DOI 10.6028/nist.sp.800-57pt2r1</span>, <time datetime="2019-05" class="refDate">May 2019</time>, <span>&lt;<a href="https://doi.org/10.6028/nist.sp.800-57pt2r1">https://doi.org/10.6028/nist.sp.800-57pt2r1</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="MERKLE">[MERKLE]</dt>
         <dd>
@@ -2938,8 +2985,8 @@ resource: content-type = dereference(identifier: identifier-type)
 <a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-for-binary-content" class="section-name selfRef">For Binary Content</a>
         </h3>
 <p id="appendix-A.1-1">Identifiers for binary content, such as Statements, or even Artifacts themselves are computed as follows:<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.1-2">Let the <code>base64url-encoded-bytes-digest</code> for the messsage be the base64url encoded digest with the chosen hash algorithm of bytes / octets.<a href="#appendix-A.1-2" class="pilcrow">¶</a></p>
-<p id="appendix-A.1-3">Let the SCITT name for the message be the URN constructed from the following URI templatem, according to <span>[<a href="#RFC6570" class="cite xref">RFC6570</a>]</span>:<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-2">Let the <code>base64url-encoded-bytes-digest</code> for the message be the base64url encoded digest with the chosen hash algorithm of bytes / octets.<a href="#appendix-A.1-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-3">Let the SCITT name for the message be the URN constructed from the following URI template, according to <span>[<a href="#RFC6570" class="cite xref">RFC6570</a>]</span>:<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
 <p id="appendix-A.1-4">Let the <code>message-type</code>, be "statement" for Statements and Artifacts.<a href="#appendix-A.1-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.1-5">
 <pre>
@@ -2957,8 +3004,8 @@ urn:ietf:params:scitt:\
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-for-scitt-messages" class="section-name selfRef">For SCITT Messages</a>
         </h3>
 <p id="appendix-A.2-1">Identifiers for COSE Sign 1 based messages, such as identifiers for Signed Statements and Receipts are computed as follows:<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.2-2">Let the <code>base64url-encoded-to-be-signed-bytes-digest</code> for the messsage be the base64url encoded digest with the chosen hash algorithm of the "to-be-signed bytes", according to <span><a href="https://rfc-editor.org/rfc/rfc9052#section-8.1" class="relref">Section 8.1</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
-<p id="appendix-A.2-3">Let the SCITT name for the message be the URN constructed from the following URI templatem, according to <span>[<a href="#RFC6570" class="cite xref">RFC6570</a>]</span>:<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-2">Let the <code>base64url-encoded-to-be-signed-bytes-digest</code> for the message be the base64url encoded digest with the chosen hash algorithm of the "to-be-signed bytes", according to <span><a href="https://rfc-editor.org/rfc/rfc9052#section-8.1" class="relref">Section 8.1</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-3">Let the SCITT name for the message be the URN constructed from the following URI template, according to <span>[<a href="#RFC6570" class="cite xref">RFC6570</a>]</span>:<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-4">Let the <code>message-type</code>, be "signed-statement" for Signed Statements, and "receipt" for Receipts.<a href="#appendix-A.2-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.2-5">
 <pre>
@@ -2968,7 +3015,7 @@ urn:ietf:params:scitt:\
 {base64url-encoded-to-be-signed-bytes-digest}
 </pre><a href="#appendix-A.2-5" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.2-6">Note that this means the content of the signature is not included in the identifer, even though signature related claims, such as activation or expiration information in protected headers are included.<a href="#appendix-A.2-6" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-6">Note that this means the content of the signature is not included in the identifier, even though signature related claims, such as activation or expiration information in protected headers are included.<a href="#appendix-A.2-6" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-7">As a result, an attacker may construct a new signed statement that has the same identifier as a previous signed statement, but has a different signature.<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -3001,13 +3048,13 @@ urn:ietf:params:scitt:\
 <a href="#appendix-A.4.1" class="section-number selfRef">A.4.1. </a><a href="#name-statement-urn" class="section-name selfRef">Statement URN</a>
           </h4>
 <span id="name-example-statement-urn"></span><div id="example-statement-urn">
-<figure id="figure-1">
+<figure id="figure-2">
             <div class="alignLeft art-text artwork" id="appendix-A.4.1-1.1">
 <pre>
 urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-example-statement-urn" class="selfRef">Example Statement URN</a>
             </figcaption></figure>
 </div>
@@ -3019,14 +3066,14 @@ urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 <a href="#appendix-A.4.2" class="section-number selfRef">A.4.2. </a><a href="#name-statement-url" class="section-name selfRef">Statement URL</a>
           </h4>
 <span id="name-example-statement-url"></span><div id="example-statement-url">
-<figure id="figure-2">
+<figure id="figure-3">
             <div class="alignLeft art-text artwork" id="appendix-A.4.2-1.1">
 <pre>
 https://transparency.example/api/identifiers\
 /urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
 <a href="#name-example-statement-url" class="selfRef">Example Statement URL</a>
             </figcaption></figure>
 </div>
@@ -3038,13 +3085,13 @@ https://transparency.example/api/identifiers\
 <a href="#appendix-A.4.3" class="section-number selfRef">A.4.3. </a><a href="#name-statement-data-url" class="section-name selfRef">Statement Data URL</a>
           </h4>
 <span id="name-example-statement-data-url"></span><div id="example-statement-data-url">
-<figure id="figure-3">
+<figure id="figure-4">
             <div class="alignLeft art-text artwork" id="appendix-A.4.3-1.1">
 <pre>
 data:application/json;base64,SGVsb...xkIQ==
 </pre>
 </div>
-<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
 <a href="#name-example-statement-data-url" class="selfRef">Example Statement Data URL</a>
             </figcaption></figure>
 </div>
@@ -3063,14 +3110,14 @@ data:application/json;base64,SGVsb...xkIQ==
 <a href="#appendix-A.5.1" class="section-number selfRef">A.5.1. </a><a href="#name-signed-statement-urn" class="section-name selfRef">Signed Statement URN</a>
           </h4>
 <span id="name-example-signed-statement-ur"></span><div id="example-signed-statement-urn">
-<figure id="figure-4">
+<figure id="figure-5">
             <div class="alignLeft art-text artwork" id="appendix-A.5.1-1.1">
 <pre>
 urn:ietf:params:scitt:\
 signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-example-signed-statement-ur" class="selfRef">Example Signed Statement URN</a>
             </figcaption></figure>
 </div>
@@ -3082,7 +3129,7 @@ signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 <a href="#appendix-A.5.2" class="section-number selfRef">A.5.2. </a><a href="#name-signed-statement-url" class="section-name selfRef">Signed Statement URL</a>
           </h4>
 <span id="name-example-signed-statement-url"></span><div id="example-signed-statement-url">
-<figure id="figure-5">
+<figure id="figure-6">
             <div class="alignLeft art-text artwork" id="appendix-A.5.2-1.1">
 <pre>
 https://transparency.example/api/identifiers\
@@ -3090,7 +3137,7 @@ https://transparency.example/api/identifiers\
 signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
 <a href="#name-example-signed-statement-url" class="selfRef">Example Signed Statement URL</a>
             </figcaption></figure>
 </div>
@@ -3102,13 +3149,13 @@ signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 <a href="#appendix-A.5.3" class="section-number selfRef">A.5.3. </a><a href="#name-signed-statement-data-url" class="section-name selfRef">Signed Statement Data URL</a>
           </h4>
 <span id="name-example-signed-statement-da"></span><div id="example-signed-statement-data-url">
-<figure id="figure-6">
+<figure id="figure-7">
             <div class="alignLeft art-text artwork" id="appendix-A.5.3-1.1">
 <pre>
 data:application/cose;base64,SGVsb...xkIQ==
 </pre>
 </div>
-<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-example-signed-statement-da" class="selfRef">Example Signed Statement Data URL</a>
             </figcaption></figure>
 </div>
@@ -3127,13 +3174,13 @@ data:application/cose;base64,SGVsb...xkIQ==
 <a href="#appendix-A.6.1" class="section-number selfRef">A.6.1. </a><a href="#name-receipt-urn" class="section-name selfRef">Receipt URN</a>
           </h4>
 <span id="name-example-receipt-urn"></span><div id="example-receipt-urn">
-<figure id="figure-7">
+<figure id="figure-8">
             <div class="alignLeft art-text artwork" id="appendix-A.6.1-1.1">
 <pre>
 urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
 <a href="#name-example-receipt-urn" class="selfRef">Example Receipt URN</a>
             </figcaption></figure>
 </div>
@@ -3145,14 +3192,14 @@ urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 <a href="#appendix-A.6.2" class="section-number selfRef">A.6.2. </a><a href="#name-receipt-url" class="section-name selfRef">Receipt URL</a>
           </h4>
 <span id="name-example-receipt-url"></span><div id="example-receipt-url">
-<figure id="figure-8">
+<figure id="figure-9">
             <div class="alignLeft art-text artwork" id="appendix-A.6.2-1.1">
 <pre>
 https://transparency.example/api/identifiers\
 /urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-example-receipt-url" class="selfRef">Example Receipt URL</a>
             </figcaption></figure>
 </div>
@@ -3164,13 +3211,13 @@ https://transparency.example/api/identifiers\
 <a href="#appendix-A.6.3" class="section-number selfRef">A.6.3. </a><a href="#name-receipt-data-url" class="section-name selfRef">Receipt Data URL</a>
           </h4>
 <span id="name-example-receipt-data-url"></span><div id="example-receipt-data-url">
-<figure id="figure-9">
+<figure id="figure-10">
             <div class="alignLeft art-text artwork" id="appendix-A.6.3-1.1">
 <pre>
 data:application/cose;base64,SGVsb...xkIQ==
 </pre>
 </div>
-<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
 <a href="#name-example-receipt-data-url" class="selfRef">Example Receipt Data URL</a>
             </figcaption></figure>
 </div>
@@ -3189,14 +3236,14 @@ data:application/cose;base64,SGVsb...xkIQ==
 <a href="#appendix-A.7.1" class="section-number selfRef">A.7.1. </a><a href="#name-transparent-statement-urn" class="section-name selfRef">Transparent Statement URN</a>
           </h4>
 <span id="name-example-transparent-stateme"></span><div id="example-transparent-statement-urn">
-<figure id="figure-10">
+<figure id="figure-11">
             <div class="alignLeft art-text artwork" id="appendix-A.7.1-1.1">
 <pre>
 urn:ietf:params:scitt:\
 transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
+<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
 <a href="#name-example-transparent-stateme" class="selfRef">Example Transparent Statement URN</a>
             </figcaption></figure>
 </div>
@@ -3208,7 +3255,7 @@ transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 <a href="#appendix-A.7.2" class="section-number selfRef">A.7.2. </a><a href="#name-transparent-statement-url" class="section-name selfRef">Transparent Statement URL</a>
           </h4>
 <span id="name-example-transparent-statemen"></span><div id="example-transparent-statement-url">
-<figure id="figure-11">
+<figure id="figure-12">
             <div class="alignLeft art-text artwork" id="appendix-A.7.2-1.1">
 <pre>
 https://transparency.example/api/identifiers\
@@ -3216,7 +3263,7 @@ https://transparency.example/api/identifiers\
 transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 </pre>
 </div>
-<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
+<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
 <a href="#name-example-transparent-statemen" class="selfRef">Example Transparent Statement URL</a>
             </figcaption></figure>
 </div>
@@ -3228,13 +3275,13 @@ transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 <a href="#appendix-A.7.3" class="section-number selfRef">A.7.3. </a><a href="#name-transparent-statement-data-" class="section-name selfRef">Transparent Statement Data URL</a>
           </h4>
 <span id="name-example-transparent-statement"></span><div id="example-transparent-statement-data-url">
-<figure id="figure-12">
+<figure id="figure-13">
             <div class="alignLeft art-text artwork" id="appendix-A.7.3-1.1">
 <pre>
 data:application/cose;base64,SGVsb...xkIQ==
 </pre>
 </div>
-<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
+<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
 <a href="#name-example-transparent-statement" class="selfRef">Example Transparent Statement Data URL</a>
             </figcaption></figure>
 </div>
@@ -3244,8 +3291,152 @@ data:application/cose;base64,SGVsb...xkIQ==
 </div>
 </section>
 </div>
-<div id="contributors">
+<div id="sec-signing-statements-remotely">
 <section id="appendix-B">
+      <h2 id="name-signing-statements-remotely">
+<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-signing-statements-remotely" class="section-name selfRef">Signing Statements Remotely</a>
+      </h2>
+<p id="appendix-B-1">Statements, such as digital artifacts or structured data regarding artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
+In these cases a statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
+A Signed Statement (cose-sign1) <span class="bcp14">MUST</span> be produced from the to-be-signed bytes according to <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.4" class="relref">Section 4.4</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<div id="appendix-B-2">
+        <div class="alignLeft art-svg artwork" id="appendix-B-2.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="736" width="376" viewBox="0 0 376 736" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+            <path d="M 8,112 L 8,144" fill="none" stroke="black"></path>
+            <path d="M 8,416 L 8,432" fill="none" stroke="black"></path>
+            <path d="M 40,64 L 40,80" fill="none" stroke="black"></path>
+            <path d="M 40,176 L 40,200" fill="none" stroke="black"></path>
+            <path d="M 56,64 L 56,104" fill="none" stroke="black"></path>
+            <path d="M 56,456 L 56,480" fill="none" stroke="black"></path>
+            <path d="M 56,512 L 56,584" fill="none" stroke="black"></path>
+            <path d="M 56,656 L 56,680" fill="none" stroke="black"></path>
+            <path d="M 104,416 L 104,432" fill="none" stroke="black"></path>
+            <path d="M 144,128 L 144,224" fill="none" stroke="black"></path>
+            <path d="M 272,432 L 272,520" fill="none" stroke="black"></path>
+            <path d="M 272,560 L 272,584" fill="none" stroke="black"></path>
+            <path d="M 328,192 L 328,288" fill="none" stroke="black"></path>
+            <path d="M 328,352 L 328,584" fill="none" stroke="black"></path>
+            <path d="M 40,32 L 112,32" fill="none" stroke="black"></path>
+            <path d="M 40,64 L 112,64" fill="none" stroke="black"></path>
+            <path d="M 40,112 L 112,112" fill="none" stroke="black"></path>
+            <path d="M 128,128 L 144,128" fill="none" stroke="black"></path>
+            <path d="M 40,144 L 112,144" fill="none" stroke="black"></path>
+            <path d="M 264,160 L 336,160" fill="none" stroke="black"></path>
+            <path d="M 144,176 L 168,176" fill="none" stroke="black"></path>
+            <path d="M 216,176 L 240,176" fill="none" stroke="black"></path>
+            <path d="M 264,192 L 336,192" fill="none" stroke="black"></path>
+            <path d="M 40,208 L 104,208" fill="none" stroke="black"></path>
+            <path d="M 120,224 L 144,224" fill="none" stroke="black"></path>
+            <path d="M 40,240 L 104,240" fill="none" stroke="black"></path>
+            <path d="M 24,400 L 88,400" fill="none" stroke="black"></path>
+            <path d="M 104,432 L 272,432" fill="none" stroke="black"></path>
+            <path d="M 24,448 L 88,448" fill="none" stroke="black"></path>
+            <path d="M 24,480 L 112,480" fill="none" stroke="black"></path>
+            <path d="M 24,512 L 112,512" fill="none" stroke="black"></path>
+            <path d="M 240,528 L 296,528" fill="none" stroke="black"></path>
+            <path d="M 240,560 L 296,560" fill="none" stroke="black"></path>
+            <path d="M 40,592 L 152,592" fill="none" stroke="black"></path>
+            <path d="M 216,592 L 352,592" fill="none" stroke="black"></path>
+            <path d="M 144,624 L 200,624" fill="none" stroke="black"></path>
+            <path d="M 8,656 L 120,656" fill="none" stroke="black"></path>
+            <path d="M 216,656 L 352,656" fill="none" stroke="black"></path>
+            <path d="M 24,688 L 112,688" fill="none" stroke="black"></path>
+            <path d="M 24,720 L 112,720" fill="none" stroke="black"></path>
+            <path d="M 200,624 L 216,656" fill="none" stroke="black"></path>
+            <path d="M 352,592 L 368,624" fill="none" stroke="black"></path>
+            <path d="M 176,176 L 196,216" fill="none" stroke="black"></path>
+            <path d="M 196,136 L 216,176" fill="none" stroke="black"></path>
+            <path d="M 176,176 L 196,136" fill="none" stroke="black"></path>
+            <path d="M 196,216 L 216,176" fill="none" stroke="black"></path>
+            <path d="M 8,656 L 40,592" fill="none" stroke="black"></path>
+            <path d="M 120,656 L 152,592" fill="none" stroke="black"></path>
+            <path d="M 200,624 L 216,592" fill="none" stroke="black"></path>
+            <path d="M 352,656 L 368,624" fill="none" stroke="black"></path>
+            <path d="M 40,32 C 31.16936,32 24,39.16936 24,48" fill="none" stroke="black"></path>
+            <path d="M 112,32 C 120.83064,32 128,39.16936 128,48" fill="none" stroke="black"></path>
+            <path d="M 40,64 C 31.16936,64 24,56.83064 24,48" fill="none" stroke="black"></path>
+            <path d="M 112,64 C 120.83064,64 128,56.83064 128,48" fill="none" stroke="black"></path>
+            <path d="M 24,96 C 15.16936,96 8,103.16936 8,112" fill="none" stroke="black"></path>
+            <path d="M 24,96 C 32.83064,96 40,88.83064 40,80" fill="none" stroke="black"></path>
+            <path d="M 40,112 C 31.16936,112 24,119.16936 24,128" fill="none" stroke="black"></path>
+            <path d="M 112,112 C 120.83064,112 128,119.16936 128,128" fill="none" stroke="black"></path>
+            <path d="M 40,144 C 31.16936,144 24,136.83064 24,128" fill="none" stroke="black"></path>
+            <path d="M 112,144 C 120.83064,144 128,136.83064 128,128" fill="none" stroke="black"></path>
+            <path d="M 24,160 C 15.16936,160 8,152.83064 8,144" fill="none" stroke="black"></path>
+            <path d="M 24,160 C 32.83064,160 40,167.16936 40,176" fill="none" stroke="black"></path>
+            <path d="M 264,160 C 255.16936,160 248,167.16936 248,176" fill="none" stroke="black"></path>
+            <path d="M 336,160 C 344.83064,160 352,167.16936 352,176" fill="none" stroke="black"></path>
+            <path d="M 264,192 C 255.16936,192 248,184.83064 248,176" fill="none" stroke="black"></path>
+            <path d="M 336,192 C 344.83064,192 352,184.83064 352,176" fill="none" stroke="black"></path>
+            <path d="M 40,208 C 31.16936,208 24,215.16936 24,224" fill="none" stroke="black"></path>
+            <path d="M 104,208 C 112.83064,208 120,215.16936 120,224" fill="none" stroke="black"></path>
+            <path d="M 40,240 C 31.16936,240 24,232.83064 24,224" fill="none" stroke="black"></path>
+            <path d="M 104,240 C 112.83064,240 120,232.83064 120,224" fill="none" stroke="black"></path>
+            <path d="M 24,400 C 15.16936,400 8,407.16936 8,416" fill="none" stroke="black"></path>
+            <path d="M 88,400 C 96.83064,400 104,407.16936 104,416" fill="none" stroke="black"></path>
+            <path d="M 24,448 C 15.16936,448 8,440.83064 8,432" fill="none" stroke="black"></path>
+            <path d="M 88,448 C 96.83064,448 104,440.83064 104,432" fill="none" stroke="black"></path>
+            <path d="M 24,480 C 15.16936,480 8,487.16936 8,496" fill="none" stroke="black"></path>
+            <path d="M 112,480 C 120.83064,480 128,487.16936 128,496" fill="none" stroke="black"></path>
+            <path d="M 24,512 C 15.16936,512 8,504.83064 8,496" fill="none" stroke="black"></path>
+            <path d="M 112,512 C 120.83064,512 128,504.83064 128,496" fill="none" stroke="black"></path>
+            <path d="M 240,528 C 231.16936,528 224,535.16936 224,544" fill="none" stroke="black"></path>
+            <path d="M 296,528 C 304.83064,528 312,535.16936 312,544" fill="none" stroke="black"></path>
+            <path d="M 240,560 C 231.16936,560 224,552.83064 224,544" fill="none" stroke="black"></path>
+            <path d="M 296,560 C 304.83064,560 312,552.83064 312,544" fill="none" stroke="black"></path>
+            <path d="M 24,688 C 15.16936,688 8,695.16936 8,704" fill="none" stroke="black"></path>
+            <path d="M 112,688 C 120.83064,688 128,695.16936 128,704" fill="none" stroke="black"></path>
+            <path d="M 24,720 C 15.16936,720 8,712.83064 8,704" fill="none" stroke="black"></path>
+            <path d="M 112,720 C 120.83064,720 128,712.83064 128,704" fill="none" stroke="black"></path>
+            <polygon class="arrowhead" points="336,584 324,578.4 324,589.6" fill="black" transform="rotate(90,328,584)"></polygon>
+            <polygon class="arrowhead" points="280,584 268,578.4 268,589.6" fill="black" transform="rotate(90,272,584)"></polygon>
+            <polygon class="arrowhead" points="280,520 268,514.4 268,525.6" fill="black" transform="rotate(90,272,520)"></polygon>
+            <polygon class="arrowhead" points="248,176 236,170.4 236,181.6" fill="black" transform="rotate(0,240,176)"></polygon>
+            <polygon class="arrowhead" points="176,176 164,170.4 164,181.6" fill="black" transform="rotate(0,168,176)"></polygon>
+            <polygon class="arrowhead" points="152,624 140,618.4 140,629.6" fill="black" transform="rotate(180,144,624)"></polygon>
+            <polygon class="arrowhead" points="64,680 52,674.4 52,685.6" fill="black" transform="rotate(90,56,680)"></polygon>
+            <polygon class="arrowhead" points="64,584 52,578.4 52,589.6" fill="black" transform="rotate(90,56,584)"></polygon>
+            <polygon class="arrowhead" points="64,456 52,450.4 52,461.6" fill="black" transform="rotate(270,56,456)"></polygon>
+            <polygon class="arrowhead" points="64,104 52,98.4 52,109.6" fill="black" transform="rotate(90,56,104)"></polygon>
+            <polygon class="arrowhead" points="48,200 36,194.4 36,205.6" fill="black" transform="rotate(90,40,200)"></polygon>
+            <g class="text">
+              <text x="76" y="52">Artifact</text>
+              <text x="60" y="132">Hash</text>
+              <text x="196" y="180">OR</text>
+              <text x="296" y="180">Payload</text>
+              <text x="72" y="228">Statement</text>
+              <text x="104" y="292">...</text>
+              <text x="164" y="292">Producer</text>
+              <text x="232" y="292">Network</text>
+              <text x="280" y="292">...</text>
+              <text x="192" y="324">...</text>
+              <text x="104" y="356">...</text>
+              <text x="164" y="356">Issuer</text>
+              <text x="224" y="356">Network</text>
+              <text x="272" y="356">...</text>
+              <text x="52" y="420">Identity</text>
+              <text x="168" y="420">(iss,</text>
+              <text x="212" y="420">x5t)</text>
+              <text x="52" y="436">Document</text>
+              <text x="48" y="500">Private</text>
+              <text x="96" y="500">Key</text>
+              <text x="268" y="548">Header</text>
+              <text x="76" y="628">Sign</text>
+              <text x="220" y="628">To</text>
+              <text x="244" y="628">Be</text>
+              <text x="284" y="628">Signed</text>
+              <text x="336" y="628">Bytes</text>
+              <text x="36" y="708">COSE</text>
+              <text x="76" y="708">Sign</text>
+              <text x="104" y="708">1</text>
+            </g>
+          </svg><a href="#appendix-B-2.1" class="pilcrow">¶</a>
+</div>
+</div>
+</section>
+</div>
+<div id="contributors">
+<section id="appendix-C">
       <h2 id="name-contributors">
 <a href="#name-contributors" class="section-name selfRef">Contributors</a>
       </h2>
@@ -3258,11 +3449,11 @@ data:application/cose;base64,SGVsb...xkIQ==
 <a href="mailto:orie@transmute.industries" class="email">orie@transmute.industries</a>
 </div>
 </address>
-<p id="appendix-B-1">Orie contributed to improving the generalization of COSE building blocks and document consistency.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">Orie contributed to improving the generalization of COSE building blocks and document consistency.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-C">
+<section id="appendix-D">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
