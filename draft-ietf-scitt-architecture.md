@@ -216,9 +216,7 @@ Equivocation:
 
 Feed:
 
-: A collection of Signed Statements, observed by the Transparency Service, related to the `sub` field of the 'CWT_Claims' property of the protected header of Signed Statements.
-
-Verifiers use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the Artifact they are evaluating.
+: see Subject
 
 Issuer:
 
@@ -262,9 +260,10 @@ The Statement is considered opaque to Transparency Service, and MAY be encrypted
 
 Subject:
 
-: This term has the same definition as in RFC8392.
-Issuer's use `sub` to identify the entity about which they are making Signed Statements.
-Transparency Services use `sub` to identify the entity about which they are issuing a Receipt.
+: a logical collection of Statements about the same Artifact.
+For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact.
+Issuers use Subject to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
+In SCITT, Subject is a property of the dedicated, protected header attribute `15: CWT_Claims` within the protected header of the COSE envelope.
 
 Transparency Service:
 
