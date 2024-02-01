@@ -1539,7 +1539,7 @@ The Statement is considered opaque to Transparency Service, and <span class="bcp
         <dd class="break"></dd>
 <dt id="section-3-5.15">Subject:</dt>
         <dd style="margin-left: 1.5em" id="section-3-5.16">
-          <p id="section-3-5.16.1">This term has the same definition as in RFC8392.
+          <p id="section-3-5.16.1">This term has the same definition as in RFC8392, which relies on the definition in RFC7519. The "sub" (subject) claim identifies the principal that is the subject of the CWT.  The claims in a CWT are normally statements about the subject.  In SCITT, "sub" identifies the entity about which statements, and receipts are made. The subject value <span class="bcp14">MUST</span> either be scoped to be locally unique in the context of the issuer or be globally unique. The processing of this claim is generally application specific.  The "sub" value is a case-sensitive string containing a StringOrURI value.
 Issuer's use <code>sub</code> to identify the entity about which they are making Signed Statements.
 Transparency Services use <code>sub</code> to identify the entity about which they are issuing a Receipt.<a href="#section-3-5.16.1" class="pilcrow">¶</a></p>
 </dd>
