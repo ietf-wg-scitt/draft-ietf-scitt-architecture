@@ -179,10 +179,8 @@ Considering CT in terms of SCITT:
 - CAs (Issuers) sign X.509 TBSCertificates (Artifacts) to produce X.509 certificates (Signed Statements)
 - CAs submit the certificates to one or more CT logs (Transparency Services)
 - CT logs produce Signed Certificate Timestamps (Transparent Statements)
-- SCTs are checked by browsers (Verifiers)
-- The Append-only Log can be checked by Auditors
-
-Note that just like CT logs are independent and their contents need not be consistent, Transparency Services are similarly independent of each other.
+- Signed Certificate Timestamps are checked by browsers (Verifiers)
+- The Append-only Log can be checked by Verifiers and Auditors
 
 # Terminology {#terminology}
 
