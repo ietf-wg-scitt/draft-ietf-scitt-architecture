@@ -397,7 +397,7 @@ CWT_Claims = {
 
 Protected_Header = {
     1 => int             ; algorithm identifier
-    3 => tstr            ; payload type
+    3 => tstr            ; payload type[TODO: Issue #178]
   ? 4 => bstr            ; Key ID (kid)
    15 => CWT_Claims      ; CBOR Web Token Claims
    34 => COSE_CertHash   ; x5t, hash of an X.509 certificate
@@ -576,7 +576,7 @@ They may additionally apply a validation policy based on the protected headers p
 
 Some Verifiers may systematically fetch all Transparent Statements using the CWT_Claims Subject and assess them alongside the Transparent Statement they are verifying to ensure freshness, completeness of evidence, and Non-equivocation.
 
-Some Verifiers may choose to subset the collection of Statements, filtering on the payload type (Protected Header `3`), the CWT (Protected Header `15`) Issuer claim, or other non-opaque properties.
+Some Verifiers may choose to subset the collection of Statements, filtering on the payload type[TODO: Issue #178] (Protected Header `3`), the CWT (Protected Header `15`) Issuer claim, or other non-opaque properties.
 
 Some Verifiers may systematically resolve Issuer identifiers to fetch the latest corresponding verification keys.
 This behavior strictly enforces the revocation of compromised keys.
@@ -632,7 +632,7 @@ Protected_Header = {
   1   => int             ; algorithm identifier,
   4   => bstr            ; Key ID,
   15  => CWT_Claims      ; CBOR Web Token Claims,
-  3   => tstr            ; payload type
+  3   => tstr            ; payload type[TODO: Issue #178]
 }
 
 Unprotected_Header = {
@@ -644,7 +644,7 @@ Unprotected_Header = {
 ## Creating Signed Statement
 
 There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
-An Issuer must first decide on a suitable format (`3`: payload type) to serialize the Statement payload.
+An Issuer must first decide on a suitable format (`3`: payload type[TODO: Issue #178]) to serialize the Statement payload.
 For a software supply chain, payloads describing the software artifacts may include:
 
 - {{COSWID}}
