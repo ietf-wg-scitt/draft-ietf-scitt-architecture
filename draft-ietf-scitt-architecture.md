@@ -192,8 +192,8 @@ The terms "header", "payload", and "to-be-signed bytes" are defined in {{RFC9052
 
 Append-only Log (Ledger):
 
-: the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym, Log or Ledger.
-SCITT supports multiple Log and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Log.
+: the verifiable append-only data structure that stores Signed Statements in a Transparency Service, often referred to by the synonym, Ledger.
+SCITT supports multiple Ledger and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Logs.
 
 Artifact:
 
@@ -212,7 +212,7 @@ In COSE, an Envelope consists of a protected header (included in the Issuer's si
 
 Equivocation:
 
-: a state where it is possible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact {{EQUIVOCATION}}.
+: a state where it is possible for a Transparency Service to provide different views of its Append-only log to Verifiers about the same Artifact {{EQUIVOCATION}}.
 
 Feed:
 
@@ -226,7 +226,7 @@ An Issuer may be the owner or author of Artifacts, or an independent third party
 Non-equivocation:
 
 : a state where it is impossible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact.
-Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Verifiers.
+Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about an Artifact (Feed) can be checked by all Verifiers.
 
 Receipt:
 
@@ -248,12 +248,12 @@ However a Transparency Service can not alter the contents of the Signed Statemen
 Signed Statement:
 
 : an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
-In SCITT, Signed Statements are encoded as COSE signed objects; the payload of the COSE structure contains the issued Statement.
+In SCITT, Signed Statements are encoded as COSE signed objects; the `payload` of the COSE structure contains the issued Statement.
 
 Statement:
 
 : any serializable information about an Artifact.
-To help interpretation of Statements, they must be tagged with a media type (as specified in {{RFC6838}}).
+To help interpretation of Statements, they must be tagged with a media type[TODO: Issue #178] (as specified in {{RFC6838}}).
 A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version,  or any content an Issuer wishes to publish about an Artifact.
 The additional Statements about an artifact are correlated by the Subject defined in the {{CWT_CLAIMS}} protected header.
 The Statement is considered opaque to Transparency Service, and MAY be encrypted.
@@ -470,9 +470,9 @@ This attestation evidence can be supplemented with Receipts for the software and
 
 ### Configuration
 
-The Transparency Service records its configuration in the Append-Only Log using Transparent Statements with distinguished media type `application/scitt-configuration`.
+The Transparency Service records its configuration in the Append-Only Log using Transparent Statements with distinguished media type[TODO: Issue #178] `application/scitt-configuration`.
 
-The registration policy for statements with the media type suffix (`+<format>` is implementation-specific.
+The registration policy for statements with the media type[TODO: Issue #178] suffix (`+<format>` is implementation-specific.
 The implementation SHOULD document them, for example defining the Issuers authorized to register configuration Signed Statements.
 
 The Transparency Service is configured by the last Transparent Statement of this type.
@@ -605,8 +605,8 @@ All Signed Statements MUST include the following protected headers:
     Example: `https://software.vendor.example`
   - **sub** (CWT_Claim Key `2`): The Subject to which the Statement refers, chosen by the Issuer<br>
     Example: `github.com/opensbom-generator/spdx-sbom-generator/releases/tag/v0.0.13`
-- **Content type** (label: `3`): The media type of the payload, as a string.<br>
-  Example: `application/spdx+json` as the media type of SDPX in JSON encoding
+- **Content type** (label: `3`): The media type[TODO: Issue #178] of the payload, as a string.<br>
+  Example: `application/spdx+json` as the media type[TODO: Issue #178] of SDPX in JSON encoding
 
 In CDDL {{-CDDL}} notation, a Signed_Statement is defined as follows:
 
@@ -817,7 +817,7 @@ The unprotected header can contain multiple receipts.
 ~~~~ cbor-diag
 {                                   / Protected                     /
   1: -7,                            / Algorithm                     /
-  3: application/example+json,      / Content type                  /
+  3: application/example+json,      / Content type[TODO: Issue #178]            /
   4: h'50685f55...50523255',        / Key identifier                /
   15: {                             / CWT Claims                    /
     1: software.vendor.example,     / Issuer                        /
@@ -826,7 +826,7 @@ The unprotected header can contain multiple receipts.
 }
 ~~~~
 
-The content type, transparency services might support only certain content types from certain issuers, per their registration policies.
+The content type[TODO: Issue #178], transparency services might support only certain content types[TODO: Issue #178] from certain issuers, per their registration policies.
 
 The CWT Claims, transparency services might support only statements about certain artifacts from certain issuers, per their registration policies.
 
@@ -1088,8 +1088,8 @@ TBD; {{mybody}}.
 
 ## Media Type Registration
 
-This section requests registration of the following media types {{RFC2046}} in
-the "Media Types" registry {{IANA.media-types}} in the manner described
+This section requests registration of the following media types[TODO: Issue #178] {{RFC2046}} in
+the "Media Types"[TODO: Issue #178] registry {{IANA.media-types}} in the manner described
 in {{RFC6838}}.
 
 To indicate that the content is an scitt configuration represented as JSON:
@@ -1102,7 +1102,7 @@ To indicate that the content is an scitt configuration represented as JSON:
 - Security considerations: See the Security Considerations section of TBD.
 - Interoperability considerations: n/a
 - Published specification: TBD
-- Applications that use this media type: TBD
+- Applications that use this media type[TODO: Issue #178]: TBD
 - Fragment identifier considerations: n/a
 - Additional information:
   - Magic number(s): n/a
