@@ -502,7 +502,7 @@ Table of Contents
 
    Protected_Header = {
        1 => int             ; algorithm identifier
-       3 => tstr            ; payload type
+       3 => tstr            ; payload type[TODO: Issue #178]
      ? 4 => bstr            ; Key ID (kid)
       15 => CWT_Claims      ; CBOR Web Token Claims
       34 => COSE_CertHash   ; x5t, hash of an X.509 certificate
@@ -798,8 +798,9 @@ Table of Contents
    completeness of evidence, and Non-equivocation.
 
    Some Verifiers may choose to subset the collection of Statements,
-   filtering on the payload type (Protected Header 3), the CWT
-   (Protected Header 15) Issuer claim, or other non-opaque properties.
+   filtering on the payload type[TODO: Issue #178] (Protected Header 3),
+   the CWT (Protected Header 15) Issuer claim, or other non-opaque
+   properties.
 
    Some Verifiers may systematically resolve Issuer identifiers to fetch
    the latest corresponding verification keys.  This behavior strictly
@@ -878,7 +879,7 @@ Table of Contents
      1   => int             ; algorithm identifier,
      4   => bstr            ; Key ID,
      15  => CWT_Claims      ; CBOR Web Token Claims,
-     3   => tstr            ; payload type
+     3   => tstr            ; payload type[TODO: Issue #178]
    }
 
    Unprotected_Header = {
@@ -891,8 +892,9 @@ Table of Contents
    There are many types of Statements (such as SBOMs, malware scans,
    audit reports, policy definitions) that Issuers may want to turn into
    Signed Statements.  An Issuer must first decide on a suitable format
-   (3: payload type) to serialize the Statement payload.  For a software
-   supply chain, payloads describing the software artifacts may include:
+   (3: payload type[TODO: Issue #178]) to serialize the Statement
+   payload.  For a software supply chain, payloads describing the
+   software artifacts may include:
 
    *  [COSWID]
 
