@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 4 August 2024                                        C. Fournet
+Expires: 6 August 2024                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         1 February 2024
+                                                         3 February 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 August 2024.
+   This Internet-Draft will expire on 6 August 2024.
 
 Copyright Notice
 
@@ -205,13 +205,9 @@ Table of Contents
    *  CT logs produce Signed Certificate Timestamps (Transparent
       Statements)
 
-   *  SCTs are checked by browsers (Verifiers)
+   *  Signed Certificate Timestamps are checked by browsers (Verifiers)
 
-   *  The Append-only Log can be checked by Auditors
-
-   Note that just like CT logs are independent and their contents need
-   not be consistent, Transparency Services are similarly independent of
-   each other.
+   *  The Append-only Log can be checked by Verifiers and Auditors
 
 3.  Terminology
 
