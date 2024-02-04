@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-01T00:36:08.609663+00:00",
+  "timestamp": "2024-02-04T00:37:38.232207+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -3617,6 +3617,32 @@
       "updatedAt": "2024-01-19T08:21:48Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 178,
+      "id": "I_kwDOIvmHss5-IV0j",
+      "title": "Converge Media Type, Content Type, Payload Type",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/178",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "SteveLasker"
+      ],
+      "labels": [],
+      "body": "The doc uses the three interchangeably\r\nIs there a preferred reference to be consistent?",
+      "createdAt": "2024-02-03T01:50:51Z",
+      "updatedAt": "2024-02-03T02:05:56Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "https://www.rfc-editor.org/rfc/rfc6838 is about Media Type. And then references payload and content type. \r\nI've been through this confusion before, where Media Type is the definition of a type of identifier. The challenge becomes when using that type of identifier for different parts of a document. \r\n- When does the media type refer to the envelope itself? \r\n- When does the media type refer to a property (aka payload)?",
+          "createdAt": "2024-02-03T02:05:55Z",
+          "updatedAt": "2024-02-03T02:05:55Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -18292,7 +18318,7 @@
       "labels": [],
       "body": "An example workflow for signing with X.509\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/499276a2-c64e-4d82-af61-9737e5784ff7)\r\n",
       "createdAt": "2024-01-17T01:16:14Z",
-      "updatedAt": "2024-01-19T09:31:29Z",
+      "updatedAt": "2024-02-01T20:09:07Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "e85d13527ac8ff78a29d9a46cb4b609cff286692",
@@ -18366,6 +18392,13 @@
           "body": "Per the last paragraph of Section 5 (emphasis mine) \r\n> This section describes at a high level, the three main roles and associated processes in SCITT: **Issuers and the Signed Statement issuance process**, Transparency Service and the Signed Statement Registration process, as well as Verifiers of the Transparent Statements and the Receipt validation process.\r\n\r\nI'd propose to move this Section after 5.1.1. and create a segue from 5.1.1 to the new 5.2.2\r\n\r\nMaybe we should discuss the explicit structure of these sections more today?",
           "createdAt": "2024-01-19T09:31:28Z",
           "updatedAt": "2024-01-19T09:31:28Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This PR should be closed.\r\n\r\nA new PR should be raised containing the following text:\r\n\r\n> When Signed Statements or Receipts are issued with certificates, the x5t (34) protected header parameter MUST be present, as defined in { Section 2 of RFC9360 }.\r\n\r\nThen later when describing verification the following text should be added:\r\n\r\n> When verifying Signed Statements and Receipts, the x5t (34), kid (4), and cwt claims (15) MUST be used to retrieve the verification key associated with the COSE Sign1. If a verifier is not able to obtain a verification key or certificate through the use of these hints, they MUST treat the signature as INVALID as described in { Section 4.4 of RFC9052 } and { Section 8.1 of RFC9052 }.\r\n",
+          "createdAt": "2024-02-01T20:08:20Z",
+          "updatedAt": "2024-02-01T20:09:07Z"
         }
       ],
       "reviews": []
@@ -18382,7 +18415,7 @@
       "labels": [],
       "body": "* Renamed to: Structure and Content of Signed Statements\r\n* Updated content based on this thread: https://mailarchive.ietf.org/arch/browse/scitt/?gbt=1&index=ON3uw6WDeC8o62bPgSt8RWNWg9M\r\n* Added `x5t` and made both CWT_Claims `iss` and `sub` mandatory as per the output of discussions\r\n* added refs and figure label (which are missing all over the place)\r\n\r\n",
       "createdAt": "2024-01-18T13:03:27Z",
-      "updatedAt": "2024-01-30T15:23:44Z",
+      "updatedAt": "2024-02-01T19:28:20Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "e85d13527ac8ff78a29d9a46cb4b609cff286692",
@@ -18980,24 +19013,26 @@
       "id": "PR_kwDOIvmHss5keL7W",
       "title": "Clarify Feed and Subject",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/165",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Explains Feed as the logical collection, with `CWT_Claims sub` (Subject) as the property to represent the collection.",
       "createdAt": "2024-01-18T22:30:36Z",
-      "updatedAt": "2024-01-31T21:06:49Z",
+      "updatedAt": "2024-02-01T19:19:48Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "6f6b778ea511e6b577d118d5716b398a937574eb",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/feed-subject",
       "headRefOid": "80a15258b6db950db839baa0201ef7c8316128ee",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-02-01T19:19:48Z",
+      "mergedAt": "2024-02-01T19:19:48Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "5de0d640d0bc43fe8f62a398dcb4f8b9fa9e7666"
+      },
       "comments": [
         {
           "author": "henkbirkholz",
@@ -19122,24 +19157,26 @@
       "id": "PR_kwDOIvmHss5kez6V",
       "title": "Add remote signing diagram",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/167",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "![Screenshot 2024-01-18 at 6 30 50\u202fPM](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/8295856/7100c0bc-b69e-43a1-93cc-df5de200c004)\r\n",
       "createdAt": "2024-01-19T00:29:59Z",
-      "updatedAt": "2024-01-31T21:02:25Z",
+      "updatedAt": "2024-02-01T19:28:01Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "6f6b778ea511e6b577d118d5716b398a937574eb",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "feat/diagrams",
       "headRefOid": "460a44466bbb7f5e588b3461310725255144030c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-02-01T19:22:45Z",
+      "mergedAt": "2024-02-01T19:22:45Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "f97acc29a758af130fc91768512e47260d016f9c"
+      },
       "comments": [
         {
           "author": "OR13",
@@ -19454,6 +19491,19 @@
           "body": "I've added #173 to cleanup a few elements",
           "createdAt": "2024-01-31T04:23:21Z",
           "updatedAt": "2024-01-31T04:23:21Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5utWub",
+          "commit": {
+            "abbreviatedOid": "460a444"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-01T19:16:39Z",
+          "updatedAt": "2024-02-01T19:16:39Z",
           "comments": []
         }
       ]
@@ -19858,7 +19908,7 @@
       "labels": [],
       "body": "a few formatting fixes\r\n- Identity Documents are rounded as they're documents, as opposed to a process\r\n- corner fixes \r\n- centering text",
       "createdAt": "2024-01-25T15:36:42Z",
-      "updatedAt": "2024-01-25T15:37:39Z",
+      "updatedAt": "2024-02-01T19:28:15Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "re-architect",
       "baseRefOid": "32520b4775885a363a1fceeb164e91822a4b2e19",
@@ -19886,7 +19936,7 @@
       "labels": [],
       "body": "Updates #167 \r\n\r\n- Adds arrows\r\n- Avoids lines going behind diagrams\r\n- Makes Identity Document a rounded document type\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/bc89fc6a-4e65-4223-994b-a9cf2a76b2f9)\r\n",
       "createdAt": "2024-01-31T04:18:10Z",
-      "updatedAt": "2024-01-31T21:02:24Z",
+      "updatedAt": "2024-02-01T19:28:03Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "feat/diagrams",
       "baseRefOid": "66b59aa496e2194d225d594b3918cf00347758f2",
@@ -19941,7 +19991,7 @@
       "labels": [],
       "body": "![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/bac27169-3ce2-443c-94dc-1233743af28b)\r\n",
       "createdAt": "2024-01-31T19:23:42Z",
-      "updatedAt": "2024-01-31T19:24:54Z",
+      "updatedAt": "2024-02-01T19:28:24Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "re-architect",
       "baseRefOid": "126e8d69dd1caa59f6a7feb4603fa84c4ca95282",
@@ -19956,6 +20006,341 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 175,
+      "id": "PR_kwDOIvmHss5lvj0y",
+      "title": "Revert \"Clarify Feed and Subject\"",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/175",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Reverts ietf-wg-scitt/draft-ietf-scitt-architecture#165",
+      "createdAt": "2024-02-01T19:21:03Z",
+      "updatedAt": "2024-02-01T19:27:51Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "5de0d640d0bc43fe8f62a398dcb4f8b9fa9e7666",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "revert-165-steve/feed-subject",
+      "headRefOid": "9ad526393b87ec8ca43c8e84992070b896d9ca64",
+      "closedAt": "2024-02-01T19:21:54Z",
+      "mergedAt": "2024-02-01T19:21:54Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "0973a2f38826003bf8181e7a116dcb6a33b0375b"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 176,
+      "id": "PR_kwDOIvmHss5lvmYT",
+      "title": "Clarify feed is implemented with the subject property",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/176",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes accidental merger and reversion of #165\r\nSee #165 for the discussion",
+      "createdAt": "2024-02-01T19:27:06Z",
+      "updatedAt": "2024-02-01T23:51:21Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "f97acc29a758af130fc91768512e47260d016f9c",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/feed-subject",
+      "headRefOid": "082f9dc9631ec42980036556addcd4a69ac9526b",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5utqjc",
+          "commit": {
+            "abbreviatedOid": "fe88bd7"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-01T19:44:45Z",
+          "updatedAt": "2024-02-01T19:44:45Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n: An unordered collection of arbitrary data (artifacts, signed statements, receipts, or other data) related to the text identifiers, observed by the transparency service in the `sub` field of the CWT Claim property of the protected header of Signed Statements.\r\n```",
+              "createdAt": "2024-02-01T19:44:45Z",
+              "updatedAt": "2024-02-01T19:44:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5utqvd",
+          "commit": {
+            "abbreviatedOid": "fe88bd7"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Repeating my change request from https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/165#discussion_r1471449646",
+          "createdAt": "2024-02-01T19:45:07Z",
+          "updatedAt": "2024-02-01T19:45:07Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5utrGv",
+          "commit": {
+            "abbreviatedOid": "fe88bd7"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-01T19:46:01Z",
+          "updatedAt": "2024-02-01T19:46:01Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-02-01T19:46:01Z",
+              "updatedAt": "2024-02-01T19:46:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5utsEK",
+          "commit": {
+            "abbreviatedOid": "fe88bd7"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-01T19:48:32Z",
+          "updatedAt": "2024-02-01T19:48:32Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "We can't say this, if we can't agree on what the data type of a feed or its items are.\r\n\r\nIt seems not likely to agree to a single definition of this, so I suggest leaving it up to implementations to process the feed as they see fit.",
+              "createdAt": "2024-02-01T19:48:32Z",
+              "updatedAt": "2024-02-01T19:48:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5utu0Q",
+          "commit": {
+            "abbreviatedOid": "fe88bd7"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-01T19:52:11Z",
+          "updatedAt": "2024-02-01T19:52:11Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\n: This term has the same definition as in RFC8392, which relies on the definition in RFC7519. The \"sub\" (subject) claim identifies the principal that is the subject of the CWT.  The claims in a CWT are normally statements about the subject.  In SCITT, \"sub\" identifies the entity about which statements, and receipts are made. The subject value MUST either be scoped to be locally unique in the context of the issuer or be globally unique. The processing of this claim is generally application specific.  The \"sub\" value is a case-sensitive string containing a StringOrURI value.\r\n```",
+              "createdAt": "2024-02-01T19:52:11Z",
+              "updatedAt": "2024-02-01T19:55:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5utvOE",
+          "commit": {
+            "abbreviatedOid": "fe88bd7"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-01T19:52:42Z",
+          "updatedAt": "2024-02-01T19:52:42Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "It seems essential to repeat this definition based on the discussions we have had regarding identifiers and their duration.",
+              "createdAt": "2024-02-01T19:52:42Z",
+              "updatedAt": "2024-02-01T19:52:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uvcNM",
+          "commit": {
+            "abbreviatedOid": "fe88bd7"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-01T23:43:32Z",
+          "updatedAt": "2024-02-01T23:43:32Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "A feed returns the collection of signed statements (or transparent statements). It returns what's on the append-only log. \r\nIt simply returns what the transparency service persisted.",
+              "createdAt": "2024-02-01T23:43:32Z",
+              "updatedAt": "2024-02-01T23:43:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uvd4u",
+          "commit": {
+            "abbreviatedOid": "fe88bd7"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-01T23:46:28Z",
+          "updatedAt": "2024-02-01T23:46:28Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Unordered: \r\nThis isn't necessarily so. A transparency service may order them. They may even order by different parameters, which is implementation specific. Stating they're not ordered is an over-statement.\r\nThis looks like a lot of extra text, to demonstrate we really need to solve what gets persisted, and what gets returned.\r\n",
+              "createdAt": "2024-02-01T23:46:28Z",
+              "updatedAt": "2024-02-01T23:46:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uveEY",
+          "commit": {
+            "abbreviatedOid": "fe88bd7"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-01T23:46:55Z",
+          "updatedAt": "2024-02-01T23:46:55Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "And, this same text has to be fixed whether it's on the feed or the subject property. ",
+              "createdAt": "2024-02-01T23:46:55Z",
+              "updatedAt": "2024-02-01T23:46:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5uve7o",
+          "commit": {
+            "abbreviatedOid": "fe88bd7"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-01T23:51:21Z",
+          "updatedAt": "2024-02-01T23:51:21Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "done",
+              "createdAt": "2024-02-01T23:51:21Z",
+              "updatedAt": "2024-02-01T23:51:21Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 177,
+      "id": "PR_kwDOIvmHss5lxJel",
+      "title": "Consistency Fixes",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/177",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "A set of consistency fixes for the next draft.",
+      "createdAt": "2024-02-01T23:55:16Z",
+      "updatedAt": "2024-02-03T01:54:54Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "f97acc29a758af130fc91768512e47260d016f9c",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/consistency-fixes",
+      "headRefOid": "6b103631ccf5948cc20ea92a18aa7dad7fb19af6",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5uvhzC",
+          "commit": {
+            "abbreviatedOid": "787759c"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-01T23:57:18Z",
+          "updatedAt": "2024-02-01T23:57:18Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I'm flagging the term \"Consumer\" as we previously had Producers and Consumers. Tagging for an alternative term.",
+              "createdAt": "2024-02-01T23:57:18Z",
+              "updatedAt": "2024-02-01T23:57:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5u1BMg",
+          "commit": {
+            "abbreviatedOid": "787759c"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-02T14:27:14Z",
+          "updatedAt": "2024-02-02T14:28:15Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I would recommend this or I can drive alignment after these fixes are merged and continue the work in #120.\r\n\r\n```suggestion\r\nIssuers can register their Signed Statements on any Transparency Service, with the guarantee that all Verifiers and Relying Parties will be able to verify them.\r\n```",
+              "createdAt": "2024-02-02T14:27:14Z",
+              "updatedAt": "2024-02-02T14:28:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5u6CfJ",
+          "commit": {
+            "abbreviatedOid": "eaf583b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-03T01:17:45Z",
+          "updatedAt": "2024-02-03T01:17:46Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "This sentence is poorly worded. Open to a suggestion, if needed",
+              "createdAt": "2024-02-03T01:17:45Z",
+              "updatedAt": "2024-02-03T01:17:46Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
