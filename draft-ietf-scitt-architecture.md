@@ -203,12 +203,6 @@ Auditor:
 
 : an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.
 
-Consumer:
-
-: an entity that retrieves information from a Transparency Service.
-A Consumer may be a human or automated process for auditing or a verifier.
-A Consumer is not intended to reflect a retail type end-user.
-
 Envelope:
 
 : metadata, created by the Issuer to produce a Signed Statement.
@@ -232,7 +226,7 @@ An Issuer may be the owner or author of Artifacts, or an independent third party
 Non-equivocation:
 
 : a state where it is impossible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact.
-Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about an Artifact (Feed) can be checked by all Verifiers.
+Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Verifiers.
 
 Receipt:
 
@@ -259,7 +253,7 @@ In SCITT, Signed Statements are encoded as COSE signed objects; the `payload` of
 Statement:
 
 : any serializable information about an Artifact.
-To help interpretation of Statements, they must be tagged with a media type[TODO: Issue #178] (as specified in {{RFC6838}}).
+To help interpretation of Statements, they must be tagged with a media type (as specified in {{RFC6838}}).
 A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version,  or any content an Issuer wishes to publish about an Artifact.
 The additional Statements about an artifact are correlated by the Subject defined in the {{CWT_CLAIMS}} protected header.
 The Statement is considered opaque to Transparency Service, and MAY be encrypted.
@@ -403,7 +397,7 @@ CWT_Claims = {
 
 Protected_Header = {
     1 => int             ; algorithm identifier
-    3 => tstr            ; payload type[TODO: Issue #178]
+    3 => tstr            ; payload type
   ? 4 => bstr            ; Key ID (kid)
    15 => CWT_Claims      ; CBOR Web Token Claims
    34 => COSE_CertHash   ; x5t, hash of an X.509 certificate
@@ -476,9 +470,9 @@ This attestation evidence can be supplemented with Receipts for the software and
 
 ### Configuration
 
-The Transparency Service records its configuration in the Append-Only Log using Transparent Statements with distinguished media type[TODO: Issue #178] `application/scitt-configuration`.
+The Transparency Service records its configuration in the Append-Only Log using Transparent Statements with distinguished media type `application/scitt-configuration`.
 
-The registration policy for statements with the media type[TODO: Issue #178] suffix (`+<format>` is implementation-specific.
+The registration policy for statements with the media type suffix (`+<format>` is implementation-specific.
 The implementation SHOULD document them, for example defining the Issuers authorized to register configuration Signed Statements.
 
 The Transparency Service is configured by the last Transparent Statement of this type.
@@ -582,7 +576,7 @@ They may additionally apply a validation policy based on the protected headers p
 
 Some Verifiers may systematically fetch all Transparent Statements using the CWT_Claims Subject and assess them alongside the Transparent Statement they are verifying to ensure freshness, completeness of evidence, and Non-equivocation.
 
-Some Verifiers may choose to subset the collection of Statements, filtering on the payload type[TODO: Issue #178] (Protected Header `3`), the CWT (Protected Header `15`) Issuer claim, or other non-opaque properties.
+Some Verifiers may choose to subset the collection of Statements, filtering on the payload type (Protected Header `3`), the CWT (Protected Header `15`) Issuer claim, or other non-opaque properties.
 
 Some Verifiers may systematically resolve Issuer identifiers to fetch the latest corresponding verification keys.
 This behavior strictly enforces the revocation of compromised keys.
@@ -611,8 +605,8 @@ All Signed Statements MUST include the following protected headers:
     Example: `https://software.vendor.example`
   - **sub** (CWT_Claim Key `2`): The Subject to which the Statement refers, chosen by the Issuer<br>
     Example: `github.com/opensbom-generator/spdx-sbom-generator/releases/tag/v0.0.13`
-- **Content type** (label: `3`): The media type[TODO: Issue #178] of the payload, as a string.<br>
-  Example: `application/spdx+json` as the media type[TODO: Issue #178] of SDPX in JSON encoding
+- **Content type** (label: `3`): The media type of the payload, as a string.<br>
+  Example: `application/spdx+json` as the media type of SDPX in JSON encoding
 
 In CDDL {{-CDDL}} notation, a Signed_Statement is defined as follows:
 
@@ -638,7 +632,7 @@ Protected_Header = {
   1   => int             ; algorithm identifier,
   4   => bstr            ; Key ID,
   15  => CWT_Claims      ; CBOR Web Token Claims,
-  3   => tstr            ; payload type[TODO: Issue #178]
+  3   => tstr            ; payload type
 }
 
 Unprotected_Header = {
@@ -650,7 +644,7 @@ Unprotected_Header = {
 ## Creating Signed Statement
 
 There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
-An Issuer must first decide on a suitable format (`3`: payload type[TODO: Issue #178]) to serialize the Statement payload.
+An Issuer must first decide on a suitable format (`3`: payload type) to serialize the Statement payload.
 For a software supply chain, payloads describing the software artifacts may include:
 
 - {{COSWID}}
@@ -823,7 +817,7 @@ The unprotected header can contain multiple receipts.
 ~~~~ cbor-diag
 {                                   / Protected                     /
   1: -7,                            / Algorithm                     /
-  3: application/example+json,      / Content type[TODO: Issue #178]            /
+  3: application/example+json,      / Content type            /
   4: h'50685f55...50523255',        / Key identifier                /
   15: {                             / CWT Claims                    /
     1: software.vendor.example,     / Issuer                        /
@@ -832,7 +826,7 @@ The unprotected header can contain multiple receipts.
 }
 ~~~~
 
-The content type[TODO: Issue #178], transparency services might support only certain content types[TODO: Issue #178] from certain issuers, per their registration policies.
+The content type, transparency services might support only certain content types from certain issuers, per their registration policies.
 
 The CWT Claims, transparency services might support only statements about certain artifacts from certain issuers, per their registration policies.
 
@@ -1094,8 +1088,8 @@ TBD; {{mybody}}.
 
 ## Media Type Registration
 
-This section requests registration of the following media types[TODO: Issue #178] {{RFC2046}} in
-the "Media Types"[TODO: Issue #178] registry {{IANA.media-types}} in the manner described
+This section requests registration of the following media types {{RFC2046}} in
+the "Media Types" registry {{IANA.media-types}} in the manner described
 in {{RFC6838}}.
 
 To indicate that the content is an scitt configuration represented as JSON:
@@ -1108,7 +1102,7 @@ To indicate that the content is an scitt configuration represented as JSON:
 - Security considerations: See the Security Considerations section of TBD.
 - Interoperability considerations: n/a
 - Published specification: TBD
-- Applications that use this media type[TODO: Issue #178]: TBD
+- Applications that use this media type: TBD
 - Fragment identifier considerations: n/a
 - Additional information:
   - Magic number(s): n/a
