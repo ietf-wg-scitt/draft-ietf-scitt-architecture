@@ -426,34 +426,23 @@ Verifiers can choose which Issuers they trust.
 
 Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.
 
-### Registration Policy Metadata
-
-SCITT payloads are opaque to Transparency Services.
-For interoperability, Registration Policy decisions should be based on interpretation of the mandatory metadata in the protected header of a Signed Statement.
-
-Each implementation of a Transparency Service MAY support additional metadata, specific to its implementation through additional ["Reserved for Private Use"](https://www.iana.org/assignments/cwt/cwt.xhtml#claims-registry) keys within the `CWT_Claims` header.
-
 ## Transparency Service
 
 The role of Transparency Service can be decomposed into several major functions.
-The most important is maintaining an Append-only Log, the verifiable data structure that records Signed Statements, and enforcing a Registration Policy.
-It also maintains a service key, which is used to endorse the state of the Append-only Log in Receipts.
-All Transparency Services MUST expose standard endpoints for Registration of Signed Statements and Receipt issuance.
-Each Transparency Service also defines its own Registration Policies, which MUST apply to all entries in the Append-only Log.
+The most important function is to maintain a Registration Policy for the Append-only Log that is the verifiable data structure that records Signed Statements.
+All Transparency Services MUST expose APIs for Registration of Signed Statements and Receipt issuance.
+Transparency Services may support additional APIs for auditing, for instance to query the history of Signed Statements.
 
-The combination of Identity, Registration Policy evaluation, and the Transparency Service endpoint constitute the trusted part of the Transparency Service.
-Each of these components MUST be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the Transparency Service.
-For instance, the code for the Registration Policy evaluation and endorsement may be protected by running in a Trusted Execution Environment (TEE).
-The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance (pBFT {{PBFT}}) and may be used to protect against malicious or vulnerable replicas.
-Threshold signatures may be use to protect the service key, etc.
+### Initialization
 
-Beyond the trusted components, Transparency Services may operate additional endpoints for auditing, for instance to query the history of Signed Statements registered by a given Issuer via a certain Subject.
-Implementations of Transparency Services SHOULD avoid using the service identity and extending the Transparency Service in auditing endpoints, except if it is necessary to compute an Append-only Log consistency proofs.
-Other evidence to support the correctness and completeness of the audit response MUST be computed from the Append-only Log.
+The log is empty when the service is intialized.
+The first entry is a signed statement for key material.
+The second set of entries are signed statements for additional domain specific policy.
+The third set of entries are signed statements for artifacts.
 
-### Service Identity, Remote Attestation, and Keying
+### Transparency Service Identity
 
-Every Transparency Service MUST have a public service identity, associated with public/private key pairs for signing on behalf of the service.
+Every Transparency Service MUST have a public service identity, associated with public/private key pairs for signing Receipts on behalf of the service.
 In particular, this identity must be known by Verifiers when validating a Receipt.
 
 This identity MUST be stable for the lifetime of the service, so that all Receipts remain valid and consistent.
@@ -468,57 +457,24 @@ For example, consider a Transparency Service implemented using a set of replicas
 Each replica MAY provide a recent attestation report for its TEE, binding their hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts.
 This attestation evidence can be supplemented with Receipts for the software and configuration of the service, as measured in its attestation report.
 
-### Configuration
-
-The Transparency Service records its configuration in the Append-Only Log using Transparent Statements with distinguished media type `application/scitt-configuration`.
-
-The registration policy for statements with the media type suffix (`+<format>` is implementation-specific.
-The implementation SHOULD document them, for example defining the Issuers authorized to register configuration Signed Statements.
-
-The Transparency Service is configured by the last Transparent Statement of this type.
-The Transparency Service MUST register a Signed Statement that defines its initial configuration before registering any other Signed Statement.
-The Transparency Service MAY register an additional Signed Statement that updates its configuration.
-
-The Transparency Service provides an endpoint that returns the Transparent Statement that describes its current configuration.
-
-The configuration `reg_info` SHOULD include a secure version number and a timestamp.
-
-The sample configuration payload uses the CDDL {{-CDDL}}
-
-~~~ cddl
-Signature_Algorithms = [ int ]
-
-Registration_Policy = {
-  * tstr => any
-}
-
-SCITT_Configuration = [
-  supported_signature_algs: Signature_Algorithms ; supported algorithms for signing Statement
-  ledger_alg: int ; type of verifiable data structure
-  service_uri: tstr; base URI of the transparency service, will be the issuer in the receipt CWT claim set
-  root_certificates: [ COSE_X509 ]
-  supported_apis: [ SCITT_Endpoint ]
-  registration_policies : Registration_Policy
-]
-~~~
-
 ### Registration Policies
 
-Authorization is needed prior to registration of Signed Statements to ensure completeness of an audit.
-A Transparency Service that registers valid Signed Statement offered by anonymous Issuers would provide limited to no value to Verifiers.
-More advanced use case will rely on the Transparency Service performing additional domain-specific checks before a Signed Statement is accepted.
-For example, some Transparency Services may validate the non-opaque content (payload) of Signed Statements.
-
-Registration Policies refers to the checks that are performed before a Signed Statement is registered given a set of input values.
-This specification leaves the implementation of the Registration Policy to the provider of the Transparency Services and its users.
-
-A provider of a Transparency Service indicates what Registration Policy is used in a given deployment and inform its users about changes to the Registration Policy by issuing and registering configuration statements.
+Registration Policies refers to the checks that are performed before a Signed Statement is added to an append only log, and a corrosponding receipt becomes available.
 
 As a minimum, a Transparency Service MUST authenticate the Issuer of the Signed Statement, which requires some form of trust anchor.
 As defined in {{RFC6024}}, "A trust anchor represents an authoritative entity via a public key and associated data.
 The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
 The Trust Anchor may be a certificate, a raw public key or other structure, as appropriate.
 It can be a non-root certificate when it is a certificate.
+
+Hints for discovering the trust anchors, MUST be placed in the protected header of signed statements as described in SECTION TBD.
+Before a policy is used to decide if a Signed Statement is added to the append only log, the policy MUST be added.
+Before a Signed Statement is added to the append only log, the trust anchor used to verify it MUST be added.
+In order to add a trust anchor, the anchor must be converted to a Signed Statement with a content type.
+During initialization of a Transparency serivce, the first Signed Statements registered will be for trust anchor material, that is not validated by any registration policy.
+This trust anchor material will then be used to verify subsequent Signed Statements.
+
+This specification leaves the implementation of the Registration Policy to the operator of the Transparency Service.
 
 ### Append-only Log Security Requirements
 
@@ -962,6 +918,15 @@ Issuers MUST ensure that the Statement payloads in their Signed Statements are c
 
 Issuers and Transparency Services MUST carefully protect their private signing keys and avoid these keys being used for any purpose not described in this architecture document.
 In cases where key re-use is unavoidable, keys MUST NOT sign any other message that may be verified as an Envelope as part of a Signed Statement.
+
+
+Each of these functions MUST be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the Transparency Service.
+
+For instance, the code for the Registration Policy evaluation and endorsement may be protected by running in a Trusted Execution Environment (TEE).
+
+
+The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance (pBFT {{PBFT}}) and may be used to protect against malicious or vulnerable replicas.
+Threshold signatures may be use to protect the service key, etc.
 
 ## Security Guarantees
 
