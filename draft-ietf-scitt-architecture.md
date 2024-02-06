@@ -244,8 +244,6 @@ Registration:
 Registration Policy:
 
 : the pre-condition enforced by the Transparency Service before registering a Signed Statement, based on information in the non-opaque header and metadata contained in its COSE Envelope.
-A Transparency Service MAY implement any range of policies that meets their needs.
-However a Transparency Service can not alter the contents of the Signed Statements.
 
 Signed Statement:
 
@@ -270,7 +268,7 @@ In SCITT, Subject is a property of the dedicated, protected header attribute `15
 Transparency Service:
 
 : an entity that maintains and extends the Append-only Log, and endorses its state.
-A Transparency Service MAY implement a Registration Policy, often referred to by its synonym Notary.
+A Transparency Service MAY alter the contents of the unprotected header of Signed Statements, this will alter the binary content stored on the log, from which receipts are produced.
 A Transparency Service can be a complex distributed system, and SCITT requires the Transparency Service to provide many security guarantees about its Append-only Log.
 The identity of a Transparency Service is captured by a public key that must be known by Verifiers in order to validate Receipts.
 
@@ -308,7 +306,7 @@ A Receipt is an offline, universally-verifiable proof that an entry is recorded 
 Receipts do not expire, but it is possible to append new entries (more recent Signed Statements) that subsume older entries (less recent Signed Statements).
 
 Anyone with access to the Transparency Service can independently verify its consistency and review the complete list of Transparent Statements registered by each Issuer.
-However, the Registrations of separate Transparency Services are generally disjoint, though it is possible to take a Transparent Statement from one Transparency Service and register it again on another (if its policy allows), so the authorization of the Issuer and of the Transparency Service by the Verifier of the Receipt are generally independent.
+However, the Registrations on separate Transparency Services are generally disjoint, though it is possible to take a Transparent Statement, a Signed Statement with a Receipt from the first Transparency Service in its unprotected header, and register it on another Transparency Service, where the second receipt will be over the first Receipt in the unprotected header.
 
 Reputable Issuers are thus incentivized to carefully review their Statements before signing them to produce Signed Statements.
 Similarly, reputable Transparency Services are incentivized to secure their Append-only Log, as any inconsistency can easily be pinpointed by any Auditor with read access to the Transparency Service.
