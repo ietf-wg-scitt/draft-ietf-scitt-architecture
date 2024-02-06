@@ -218,8 +218,8 @@ Equivocation:
 
 Feed:
 
-: A collection of Signed Statements, observed by the Transparency Service, related to the `sub` field of the `CWT_Claims` property of the protected header of Signed Statements.
-Verifiers use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the Artifact they are evaluating.
+: A collection of Receipts, as recorded by the Transparency Service, based on filtering of properties from the envelope including, but not limited to the `sub` field of the `CWT_Claims`.
+Verifiers may use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the Artifact they are evaluating.
 
 Issuer:
 
