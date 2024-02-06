@@ -817,7 +817,7 @@ The unprotected header can contain multiple receipts.
 ~~~~ cbor-diag
 {                                   / Protected                     /
   1: -7,                            / Algorithm                     /
-  3: application/example+json,      / Content type            /
+  3: application/example+json,      / Content type                  /
   4: h'50685f55...50523255',        / Key identifier                /
   15: {                             / CWT Claims                    /
     1: software.vendor.example,     / Issuer                        /
