@@ -426,7 +426,7 @@ Verifiers can choose which Issuers they trust.
 
 Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.
 
-## Transparency Service
+## Transparency Service {#ts-duties}
 
 The role of a Transparency Service includes several major functions.
 The most important function is to maintain Registration Policy for the Append-only Log that is the verifiable data structure recording Signed Statements.
@@ -472,7 +472,7 @@ This specification leaves implementation and encoding of Registration Policy to 
 ### Append-only Log Security Requirements
 
 There are many different candidate verifiable data structures that may be used to implement an Append-only Log, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants.
-The Transparency Service is only required to support concise Receipts (i.e., whose size grows at most logarithmically in the number of entries in the Append-only Log) that can be encoded as a Signed Inclusion Proof.
+A Transparency Service is only required to support concise Receipts (i.e., whose size grows at most logarithmically in the number of entries in the Append-only Log) that can be encoded as a Signed Inclusion Proof.
 
 It is possible to offer multiple signature algorithms for the COSE signature of receipts' Signed Inclusion Proofs, or to change the signing algorithm at later points.
 However, the verifiable data structure cannot easily be changed without breaking the consistency of the Append-only Log.
