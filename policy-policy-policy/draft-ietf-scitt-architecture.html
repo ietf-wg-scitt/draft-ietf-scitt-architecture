@@ -1858,7 +1858,7 @@ Verifiers can choose which Issuers they trust.<a href="#section-5.1.3-2" class="
 The most important function is to maintain Registration Policy for the Append-only Log that is the verifiable data structure recording Signed Statements.
 All Transparency Services <span class="bcp14">MUST</span> expose APIs for Registration of Signed Statements and Receipt issuance.
 Transparency Services <span class="bcp14">MAY</span> support additional APIs for auditing, for instance to query the history of Signed Statements.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<div id="sec-initialization">
+<div id="ts-initialization">
 <section id="section-5.2.1">
           <h4 id="name-initialization">
 <a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-initialization" class="section-name selfRef">Initialization</a>
@@ -1877,13 +1877,10 @@ From here on a Transparency Service is capable to check Signed Statements on reg
           </h4>
 <p id="section-5.2.2-1">Every Transparency Service <span class="bcp14">MUST</span> have a public service identity that is associated with public/private key pairs for signing Receipts on behalf of the service.
 In particular, this service identity must be known by Verifiers when checking a Receipt's signature.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-2">This service identity <span class="bcp14">MUST</span> be stable for the lifetime of the service, so that all Receipts remain valid and consistent.
-The Transparency Service operator <span class="bcp14">MAY</span> use a distributed identifier as their public service identity, if they wish to rotate their keys in cryptoperiods (see <span>[<a href="#KEY-MANAGEMENT" class="cite xref">KEY-MANAGEMENT</a>]</span>) and if the Append-only Log algorithm used to produce Receipts supports key rotation.
-Other types of cryptographic identities, such as parameters for non-interactive zero-knowledge proof systems, may also be used in the future.<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-3">A Transparency Service <span class="bcp14">MAY</span> provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
+<p id="section-5.2.2-2">A Transparency Service <span class="bcp14">MAY</span> provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
 If present, these additional authenticity assurances <span class="bcp14">MUST</span> be registered in the Append-only Log and <span class="bcp14">MUST</span> always be exposed by the Transparency Services' APIs.
-Examples for Signed Statement's payloads that can improve authenticity assurances, include trustworthiness assessments that are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>).<a href="#section-5.2.2-3" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-4">For example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs. The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts. The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a trusted Verifier and complies with well-known Reference Values and Endorsements.<a href="#section-5.2.2-4" class="pilcrow">¶</a></p>
+An example of Signed Statement's payloads that can improve authenticity assurances are trustworthiness assessments that are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>).<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-3">For example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs. The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts. The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a trusted Verifier and complies with well-known Reference Values and Endorsements.<a href="#section-5.2.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-registration-policies">
@@ -1891,19 +1888,17 @@ Examples for Signed Statement's payloads that can improve authenticity assurance
           <h4 id="name-registration-policies">
 <a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-registration-policies" class="section-name selfRef">Registration Policies</a>
           </h4>
-<p id="section-5.2.3-1">Registration Policies refers to the checks that are performed before a Signed Statement is added to an append only log, and a corrosponding receipt becomes available.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-2">As a minimum, a Transparency Service <span class="bcp14">MUST</span> authenticate the Issuer of the Signed Statement, which requires some form of trust anchor.
+<p id="section-5.2.3-1">Registration Policies refer to the checks that are performed before a Signed Statement is registered to an Append-only Log, and a corresponding Receipt becomes available.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-2">As a minimum, a Transparency Service <span class="bcp14">MUST</span> authenticate the Issuer of Signed Statements, which requires a trust anchor in the form of an already registered Signed Statement including key material (see <a href="#ts-initialization" class="auto internal xref">Section 5.2.1</a>).
 As defined in <span>[<a href="#RFC6024" class="cite xref">RFC6024</a>]</span>, "A trust anchor represents an authoritative entity via a public key and associated data.
 The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
-The Trust Anchor may be a certificate, a raw public key or other structure, as appropriate.
-It can be a non-root certificate when it is a certificate.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-3">Hints for discovering the trust anchors, <span class="bcp14">MUST</span> be placed in the protected header of signed statements as described in SECTION TBD.
-Before a policy is used to decide if a Signed Statement is added to the append only log, the policy <span class="bcp14">MUST</span> be added.
-Before a Signed Statement is added to the append only log, the trust anchor used to verify it <span class="bcp14">MUST</span> be added.
-In order to add a trust anchor, the anchor must be converted to a Signed Statement with a content type.
-During initialization of a Transparency serivce, the first Signed Statements registered will be for trust anchor material, that is not validated by any registration policy.
-This trust anchor material will then be used to verify subsequent Signed Statements.<a href="#section-5.2.3-3" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-4">This specification leaves the implementation of the Registration Policy to the operator of the Transparency Service.<a href="#section-5.2.3-4" class="pilcrow">¶</a></p>
+Typical representations of a trust anchor include certificates or raw public keys.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-3">The <code>x5t</code> and <code>kid</code> Claims in the protected header of Signed Statements can be used as hints for discovering trust anchors.
+Before a Registration Policy is used to decide if a Signed Statement is registered, the policy <span class="bcp14">MUST</span> be registered.
+Before a Signed Statement is registered, the trust anchor used to verify it <span class="bcp14">MUST</span> be registered (e.g., via a registered Registration Policy)..
+In order to register a trust anchor, the trust anchor <span class="bcp14">MUST</span> be converted to a Signed Statement with a matching content type Claim.
+During initialization of a Transparency Service, the first Signed Statements registered will be for a trust anchor that is not validated by any Registration Policy.<a href="#section-5.2.3-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-4">This specification leaves implementation and encoding of Registration Policy to the operator of the Transparency Service.<a href="#section-5.2.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-append-only-log-security-requirements">
