@@ -310,8 +310,7 @@ However, the Registrations on separate Transparency Services are generally disjo
 
 Reputable Issuers are thus incentivized to carefully review their Statements before signing them to produce Signed Statements.
 Similarly, reputable Transparency Services are incentivized to secure their Append-only Log, as any inconsistency can easily be pinpointed by any Auditor with read access to the Transparency Service.
-Some Append-only Log formats may also support consistency auditing ({{sec-consistency}}) through Receipts, that is, given two valid Receipts the Transparency Service may be asked to produce a cryptographic proof that they are consistent.
-Failure to produce this proof can indicate that the Transparency Services operator misbehaved.
+
 
 # Architecture Overview
 
