@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 9 August 2024                                        C. Fournet
+Expires: 10 August 2024                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         6 February 2024
+                                                         7 February 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 August 2024.
+   This Internet-Draft will expire on 10 August 2024.
 
 Copyright Notice
 
@@ -541,13 +541,13 @@ Table of Contents
 
 5.2.  Transparency Service
 
-   The role of Transparency Service can be decomposed into several major
-   functions.  The most important function is to maintain a Registration
-   Policy for the Append-only Log that is the verifiable data structure
-   that records Signed Statements.  All Transparency Services MUST
-   expose APIs for Registration of Signed Statements and Receipt
-   issuance.  Transparency Services may support additional APIs for
-   auditing, for instance to query the history of Signed Statements.
+   The role of a Transparency Service includes several major functions.
+   The most important function is to maintain Registration Policy for
+   the Append-only Log that is the verifiable data structure recording
+   Signed Statements.  All Transparency Services MUST expose APIs for
+   Registration of Signed Statements and Receipt issuance.  Transparency
+   Services MAY support additional APIs for auditing, for instance to
+   query the history of Signed Statements.
 
 5.2.1.  Initialization
 
