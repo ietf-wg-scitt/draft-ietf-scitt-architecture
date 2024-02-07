@@ -628,7 +628,7 @@ Table of Contents
    There are many different candidate verifiable data structures that
    may be used to implement an Append-only Log, such as chronological
    Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many
-   other variants.  The Transparency Service is only required to support
+   other variants.  A Transparency Service is only required to support
    concise Receipts (i.e., whose size grows at most logarithmically in
    the number of entries in the Append-only Log) that can be encoded as
    a Signed Inclusion Proof.
