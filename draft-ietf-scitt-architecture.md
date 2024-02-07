@@ -435,10 +435,11 @@ Transparency Services MAY support additional APIs for auditing, for instance to 
 
 ### Initialization
 
-The log is empty when the service is intialized.
-The first entry is a signed statement for key material.
-The second set of entries are signed statements for additional domain specific policy.
-The third set of entries are signed statements for artifacts.
+The Append-only Log is empty when the Transparency Service is initialized.
+The first entry that is added to the Append-only Log MUST be a Signed Statement including key material.
+The second set of entries are Signed Statements for additional domain-specific Registration Policy.
+The third set of entries are Signed Statements for Artifacts.
+From here on a Transparency Service is capable to check Signed Statements via policy that is at minimum key material and typically other Registration Policy and is a reliable state to register Signed Statements about Artifacts or new Registration Policy.
 
 ### Transparency Service Identity
 
