@@ -890,7 +890,6 @@ Each of these functions MUST be carefully protected against both external attack
 
 For instance, the code for the Registration Policy evaluation and endorsement may be protected by running in a Trusted Execution Environment (TEE).
 
-
 The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance (pBFT {{PBFT}}) and may be used to protect against malicious or vulnerable replicas.
 Threshold signatures may be use to protect the service key, etc.
 
