@@ -480,7 +480,7 @@ Specific verifiable data structures, such those describes in {{-CT}} and {{-COME
 
 #### Adjacent Services
 
-Transparency Services can be deployed along side other database or object storage technologies.
+Transparency Services can be deployed along side other data or object storage technologies.
 
 For example, a Transparency Service that is supporting a software package management system might be referenced from the APIs exposed for package management.
 Providing an ability to request a fresh receipt for a given software package, or to request a list of signed statements and Artifacts associated with a software package.
