@@ -447,14 +447,14 @@ Every Transparency Service MUST have a public service identity that is associate
 In particular, this service identity must be known by Verifiers when checking a Receipt's signature.
 
 This service identity MUST be stable for the lifetime of the service, so that all Receipts remain valid and consistent.
-The Transparency Service operator MAY use a distributed identifier as their public service identity, if they wish to rotate their keys in cryptoperiods and if the Append-only Log algorithm used to produce Receipts supports key rotation.
+The Transparency Service operator MAY use a distributed identifier as their public service identity, if they wish to rotate their keys in cryptoperiods (see {{KEY-MANAGEMENT}}) and if the Append-only Log algorithm used to produce Receipts supports key rotation.
 Other types of cryptographic identities, such as parameters for non-interactive zero-knowledge proof systems, may also be used in the future.
 
-A Transparency Service MAY provide additional authenticity assurances about its securely implementation and operation, enabling remote authentication of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
+A Transparency Service MAY provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
 If present, these additional authenticity assurances MUST be registered in the Append-only Log and MUST always be exposed by the Transparency Services' APIs.
-Examples for Signed Statement's payloads that can improve authenticity assurances, include trustworthiness assessments of the Transparency Services that are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see {{-rats-arch}}).
+Examples for Signed Statement's payloads that can improve authenticity assurances, include trustworthiness assessments that are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see {{-rats-arch}}).
 
-If, for example, a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), each replica can provide a fresh Evidence or fresh Attestation Results about its TEE. The respective Evidence can show the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts. The respective Attestation Result can show that the remote attestation Evidence was appraised by a trusted Verifier and complies with well-known reference values and endorsements.
+For example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs. The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts. The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a trusted Verifier and complies with well-known Reference Values and Endorsements.
 
 ### Registration Policies
 
