@@ -476,48 +476,17 @@ This trust anchor material will then be used to verify subsequent Signed Stateme
 
 This specification leaves the implementation of the Registration Policy to the operator of the Transparency Service.
 
-### Append-only Log Security Requirements
+### Transparency Log
 
-There are many different candidate verifiable data structures that may be used to implement an Append-only Log, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants.
-The Transparency Service is only required to support concise Receipts (i.e., whose size grows at most logarithmically in the number of entries in the Append-only Log) that can be encoded as a Signed Inclusion Proof.
+The security properties of the append only log are determined by the choice of verifiable data structure used to produce receipts.
 
-It is possible to offer multiple signature algorithms for the COSE signature of receipts' Signed Inclusion Proofs, or to change the signing algorithm at later points.
-However, the verifiable data structure cannot easily be changed without breaking the consistency of the Append-only Log.
-It is possible to maintain separate Registries for each algorithm in parallel but the Transparency Service is then responsible for proving their mutual consistency.
+In addition to Receipts, some verifiable data structures might support additional proof types, such as proofs of consistency, or proofs of non inclusion.
 
-#### Finality
+#### Adjacent Services
 
-A Transparency Service is append-only.
-Once a Signed Statement is registered and becomes a Transparent Statement, it cannot be modified, deleted, or reordered within the Append-only Log.
-In particular, once a Receipt is returned for a given Signed Statement, the registered Signed Statement and any preceding entry in the Append-only Log becomes immutable, and the Receipt provides universally-verifiable evidence of this property.
+Transparency Services can be deployed along side other database or object storage technologies.
 
-#### Consistency
-
-There is no fork in the Append-only Log.
-Everyone with access to its contents sees the same sequence of entries, and can check its consistency with any Receipts they have collected.
-Transparency Service implementations MAY provide a mechanism to verify that the state of the Append-only Log, encoded in an old Receipt, is consistent with the current Append-only Log state.
-
-#### Replayability and Auditing
-
-Everyone with access to the Transparency Service can check the correctness of its contents.
-In particular:
-
-- the Transparency Service defines and enforces deterministic Registration Policies that can be re-evaluated based solely on the contents of the Append-only Log at the time of Registration, and must then yield the same result
-- the ordering of entries, their cryptographic contents, and the Transparency Services' governance may be non-deterministic, but they must be verifiable
-- a Transparency Service MAY store evidence about the resolution of identifiers, identity documents, and key material.
-- a Transparency Service MAY additionally support verifiability of client authentication and access control
-
-#### Governance and Bootstrapping
-
-Transparency Services MAY document their governance rules and procedures for operating the Transparency Service and updating its code.<br>
-Example: relying on Transparent Statements about code updates, secured on its own Append-only Log, or on some auxiliary Transparency Service.<br>
-
-Governance procedures, their auditing, and their transparency are implementation specific.
-
-- Governance may be based on a consortium of members that are jointly responsible for the Transparency Services, or automated based on the contents of an auxiliary governance Transparency Service.
-- Governance typically involves additional records in the Append-only Log to enable its auditing.
-The Transparency Service may contain both Transparent Statements and governance entries.
-- Issuers, Verifiers, and third-party Auditors may review the Transparency Service governance before trusting the service, or on a regular basis.
+For example, a Transparency Service that is supporting a software package management system, might be referenced from the APIs exposed for package management, for example, providing an ability to request a fresh receipt for a given software package, or to request a list of signed statements and artifacts associatd with a software package.
 
 ## Verifying Transparent Statements {#validation}
 
