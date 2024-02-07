@@ -462,7 +462,7 @@ Typical representations of a trust anchor include certificates or raw public key
 
 The `x5t` and `kid` Claims in the protected header of Signed Statements can be used as hints for discovering trust anchors.
 Before a Registration Policy is used to decide if a Signed Statement is registered, the policy MUST be registered.
-Before a Signed Statement is registered, the trust anchor used to verify it MUST be registered (e.g., via a registered Registration Policy)..
+Before a Signed Statement is registered, the trust anchor used to verify it MUST be registered (e.g., via a registered Registration Policy).
 In order to register a trust anchor, the trust anchor MUST be converted to a Signed Statement with a matching content type Claim.
 During initialization of a Transparency Service, the first Signed Statements registered will be for a trust anchor that is not validated by any Registration Policy.
 
