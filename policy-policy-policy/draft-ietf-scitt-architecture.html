@@ -1199,7 +1199,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
                     <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="auto internal xref">5.2.1</a>.  <a href="#name-initialization" class="internal xref">Initialization</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.2">
-                    <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="auto internal xref">5.2.2</a>.  <a href="#name-transparency-service-identi" class="internal xref">Transparency Service Identity</a></p>
+                    <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="auto internal xref">5.2.2</a>.  <a href="#name-transparency-service-identi" class="internal xref">Transparency Service Identity and Authenticity</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.3">
                     <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-registration-policies" class="internal xref">Registration Policies</a></p>
@@ -1870,22 +1870,20 @@ The third set of entries are Signed Statements for Artifacts.
 From here on a Transparency Service is capable to check Signed Statements on registration via policy (that is at minimum key material and typically other Registration Policy) and is therefore in a reliable state to register Signed Statements about Artifacts or new Registration Policy.<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sec-transparency-service-identity">
+<div id="sec-transparency-service-identity-and-authenticity">
 <section id="section-5.2.2">
           <h4 id="name-transparency-service-identi">
-<a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-transparency-service-identi" class="section-name selfRef">Transparency Service Identity</a>
+<a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-transparency-service-identi" class="section-name selfRef">Transparency Service Identity and Authenticity</a>
           </h4>
-<p id="section-5.2.2-1">Every Transparency Service <span class="bcp14">MUST</span> have a public service identity, associated with public/private key pairs for signing Receipts on behalf of the service.
-In particular, this identity must be known by Verifiers when validating a Receipt.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-2">This identity <span class="bcp14">MUST</span> be stable for the lifetime of the service, so that all Receipts remain valid and consistent.
-The Transparency Service operator <span class="bcp14">MAY</span> use a distributed identifier as their public service identity if they wish to rotate their keys, if the Append-only Log algorithm they use for their Receipt supports it.
+<p id="section-5.2.2-1">Every Transparency Service <span class="bcp14">MUST</span> have a public service identity that is associated with public/private key pairs for signing Receipts on behalf of the service.
+In particular, this service identity must be known by Verifiers when checking a Receipt's signature.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-2">This service identity <span class="bcp14">MUST</span> be stable for the lifetime of the service, so that all Receipts remain valid and consistent.
+The Transparency Service operator <span class="bcp14">MAY</span> use a distributed identifier as their public service identity, if they wish to rotate their keys in cryptoperiods and if the Append-only Log algorithm used to produce Receipts supports key rotation.
 Other types of cryptographic identities, such as parameters for non-interactive zero-knowledge proof systems, may also be used in the future.<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-3">A Transparency Service <span class="bcp14">MAY</span> provide extra evidence that it is securely implemented and operated, enabling remote authentication of the hardware platforms and/or software TCB that run the Transparency Service.
-If present, this additional evidence <span class="bcp14">MUST</span> be recorded in the Append-only Log and presented on demand to Verifiers and Auditors.
-Examples for Statements that can improve trustworthy assessments of Transparency Services are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>).<a href="#section-5.2.2-3" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-4">For example, consider a Transparency Service implemented using a set of replicas, each running within its own hardware-protected trusted execution environments (TEEs).
-Each replica <span class="bcp14">MAY</span> provide a recent attestation report for its TEE, binding their hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts.
-This attestation evidence can be supplemented with Receipts for the software and configuration of the service, as measured in its attestation report.<a href="#section-5.2.2-4" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-3">A Transparency Service <span class="bcp14">MAY</span> provide additional authenticity assurances about its securely implementation and operation, enabling remote authentication of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
+If present, these additional authenticity assurances <span class="bcp14">MUST</span> be registered in the Append-only Log and <span class="bcp14">MUST</span> always be exposed by the Transparency Services' APIs.
+Examples for Signed Statement's payloads that can improve authenticity assurances, include trustworthiness assessments of the Transparency Services that are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>).<a href="#section-5.2.2-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-4">If, for example, a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), each replica can provide a fresh Evidence or fresh Attestation Results about its TEE. The respective Evidence can show the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts. The respective Attestation Result can show that the remote attestation Evidence was appraised by a trusted Verifier and complies with well-known reference values and endorsements.<a href="#section-5.2.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-registration-policies">
