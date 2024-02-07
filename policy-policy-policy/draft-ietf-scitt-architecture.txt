@@ -608,7 +608,7 @@ Table of Contents
    Registration Policy is used to decide if a Signed Statement is
    registered, the policy MUST be registered.  Before a Signed Statement
    is registered, the trust anchor used to verify it MUST be registered
-   (e.g., via a registered Registration Policy).. In order to register a
+   (e.g., via a registered Registration Policy).  In order to register a
    trust anchor, the trust anchor MUST be converted to a Signed
    Statement with a matching content type Claim.  During initialization
    of a Transparency Service, the first Signed Statements registered
