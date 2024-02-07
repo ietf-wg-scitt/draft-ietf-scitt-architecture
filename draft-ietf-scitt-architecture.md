@@ -441,22 +441,20 @@ The second set of entries are Signed Statements for additional domain-specific R
 The third set of entries are Signed Statements for Artifacts.
 From here on a Transparency Service is capable to check Signed Statements on registration via policy (that is at minimum key material and typically other Registration Policy) and is therefore in a reliable state to register Signed Statements about Artifacts or new Registration Policy.
 
-### Transparency Service Identity
+### Transparency Service Identity and Authenticity
 
-Every Transparency Service MUST have a public service identity, associated with public/private key pairs for signing Receipts on behalf of the service.
-In particular, this identity must be known by Verifiers when validating a Receipt.
+Every Transparency Service MUST have a public service identity that is associated with public/private key pairs for signing Receipts on behalf of the service.
+In particular, this service identity must be known by Verifiers when checking a Receipt's signature.
 
-This identity MUST be stable for the lifetime of the service, so that all Receipts remain valid and consistent.
-The Transparency Service operator MAY use a distributed identifier as their public service identity if they wish to rotate their keys, if the Append-only Log algorithm they use for their Receipt supports it.
+This service identity MUST be stable for the lifetime of the service, so that all Receipts remain valid and consistent.
+The Transparency Service operator MAY use a distributed identifier as their public service identity, if they wish to rotate their keys in cryptoperiods and if the Append-only Log algorithm used to produce Receipts supports key rotation.
 Other types of cryptographic identities, such as parameters for non-interactive zero-knowledge proof systems, may also be used in the future.
 
-A Transparency Service MAY provide extra evidence that it is securely implemented and operated, enabling remote authentication of the hardware platforms and/or software TCB that run the Transparency Service.
-If present, this additional evidence MUST be recorded in the Append-only Log and presented on demand to Verifiers and Auditors.
-Examples for Statements that can improve trustworthy assessments of Transparency Services are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see {{-rats-arch}}).
+A Transparency Service MAY provide additional authenticity assurances about its securely implementation and operation, enabling remote authentication of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
+If present, these additional authenticity assurances MUST be registered in the Append-only Log and MUST always be exposed by the Transparency Services' APIs.
+Examples for Signed Statement's payloads that can improve authenticity assurances, include trustworthiness assessments of the Transparency Services that are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see {{-rats-arch}}).
 
-For example, consider a Transparency Service implemented using a set of replicas, each running within its own hardware-protected trusted execution environments (TEEs).
-Each replica MAY provide a recent attestation report for its TEE, binding their hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts.
-This attestation evidence can be supplemented with Receipts for the software and configuration of the service, as measured in its attestation report.
+If, for example, a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), each replica can provide a fresh Evidence or fresh Attestation Results about its TEE. The respective Evidence can show the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts. The respective Attestation Result can show that the remote attestation Evidence was appraised by a trusted Verifier and complies with well-known reference values and endorsements.
 
 ### Registration Policies
 
