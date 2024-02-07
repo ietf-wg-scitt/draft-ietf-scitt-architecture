@@ -426,55 +426,48 @@ Verifiers can choose which Issuers they trust.
 
 Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.
 
-## Transparency Service
+## Transparency Service {#ts-duties}
 
-The role of Transparency Service can be decomposed into several major functions.
-The most important function is to maintain a Registration Policy for the Append-only Log that is the verifiable data structure that records Signed Statements.
+The role of a Transparency Service includes several major functions.
+The most important function is to maintain Registration Policy for the Append-only Log that is the verifiable data structure recording Signed Statements.
 All Transparency Services MUST expose APIs for Registration of Signed Statements and Receipt issuance.
-Transparency Services may support additional APIs for auditing, for instance to query the history of Signed Statements.
+Transparency Services MAY support additional APIs for auditing, for instance to query the history of Signed Statements.
 
-### Initialization
+### Initialization {#ts-initialization}
 
-The log is empty when the service is intialized.
-The first entry is a signed statement for key material.
-The second set of entries are signed statements for additional domain specific policy.
-The third set of entries are signed statements for artifacts.
+The Append-only Log is empty when the Transparency Service is initialized.
+The first entry that is added to the Append-only Log MUST be a Signed Statement including key material.
+The second set of entries are Signed Statements for additional domain-specific Registration Policy.
+The third set of entries are Signed Statements for Artifacts.
+From here on a Transparency Service is capable to check Signed Statements on registration via policy (that is at minimum key material and typically other Registration Policy) and is therefore in a reliable state to register Signed Statements about Artifacts or new Registration Policy.
 
-### Transparency Service Identity
+### Transparency Service Identity and Authenticity
 
-Every Transparency Service MUST have a public service identity, associated with public/private key pairs for signing Receipts on behalf of the service.
-In particular, this identity must be known by Verifiers when validating a Receipt.
+Every Transparency Service MUST have a public service identity that is associated with public/private key pairs for signing Receipts on behalf of the service.
+In particular, this service identity must be known by Verifiers when checking a Receipt's signature.
 
-This identity MUST be stable for the lifetime of the service, so that all Receipts remain valid and consistent.
-The Transparency Service operator MAY use a distributed identifier as their public service identity if they wish to rotate their keys, if the Append-only Log algorithm they use for their Receipt supports it.
-Other types of cryptographic identities, such as parameters for non-interactive zero-knowledge proof systems, may also be used in the future.
+A Transparency Service MAY provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
+If present, these additional authenticity assurances MUST be registered in the Append-only Log and MUST always be exposed by the Transparency Services' APIs.
+An example of Signed Statement's payloads that can improve authenticity assurances are trustworthiness assessments that are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see {{-rats-arch}}).
 
-A Transparency Service MAY provide extra evidence that it is securely implemented and operated, enabling remote authentication of the hardware platforms and/or software TCB that run the Transparency Service.
-If present, this additional evidence MUST be recorded in the Append-only Log and presented on demand to Verifiers and Auditors.
-Examples for Statements that can improve trustworthy assessments of Transparency Services are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see {{-rats-arch}}).
-
-For example, consider a Transparency Service implemented using a set of replicas, each running within its own hardware-protected trusted execution environments (TEEs).
-Each replica MAY provide a recent attestation report for its TEE, binding their hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts.
-This attestation evidence can be supplemented with Receipts for the software and configuration of the service, as measured in its attestation report.
+For example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs. The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts. The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a trusted Verifier and complies with well-known Reference Values and Endorsements.
 
 ### Registration Policies
 
-Registration Policies refers to the checks that are performed before a Signed Statement is added to an append only log, and a corrosponding receipt becomes available.
+Registration Policies refer to the checks that are performed before a Signed Statement is registered to an Append-only Log, and a corresponding Receipt becomes available.
 
-As a minimum, a Transparency Service MUST authenticate the Issuer of the Signed Statement, which requires some form of trust anchor.
+As a minimum, a Transparency Service MUST authenticate the Issuer of Signed Statements, which requires a trust anchor in the form of an already registered Signed Statement including key material (see {{ts-initialization}}).
 As defined in {{RFC6024}}, "A trust anchor represents an authoritative entity via a public key and associated data.
 The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
-The Trust Anchor may be a certificate, a raw public key or other structure, as appropriate.
-It can be a non-root certificate when it is a certificate.
+Typical representations of a trust anchor include certificates or raw public keys.
 
-Hints for discovering the trust anchors, MUST be placed in the protected header of signed statements as described in SECTION TBD.
-Before a policy is used to decide if a Signed Statement is added to the append only log, the policy MUST be added.
-Before a Signed Statement is added to the append only log, the trust anchor used to verify it MUST be added.
-In order to add a trust anchor, the anchor must be converted to a Signed Statement with a content type.
-During initialization of a Transparency serivce, the first Signed Statements registered will be for trust anchor material, that is not validated by any registration policy.
-This trust anchor material will then be used to verify subsequent Signed Statements.
+The `x5t` and `kid` Claims in the protected header of Signed Statements can be used as hints for discovering trust anchors.
+Before a Registration Policy is used to decide if a Signed Statement is registered, the policy MUST be registered.
+Before a Signed Statement is registered, the trust anchor used to verify it MUST be registered (e.g., via a registered Registration Policy)..
+In order to register a trust anchor, the trust anchor MUST be converted to a Signed Statement with a matching content type Claim.
+During initialization of a Transparency Service, the first Signed Statements registered will be for a trust anchor that is not validated by any Registration Policy.
 
-This specification leaves the implementation of the Registration Policy to the operator of the Transparency Service.
+This specification leaves implementation and encoding of Registration Policy to the operator of the Transparency Service.
 
 ### Transparency Log
 
