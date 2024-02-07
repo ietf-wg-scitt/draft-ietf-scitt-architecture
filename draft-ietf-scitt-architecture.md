@@ -428,7 +428,7 @@ Multiple Issuers can make the same Statement about a single Artifact, affirming 
 ## Transparency Service {#ts-duties}
 
 The role of a Transparency Service includes several major functions.
-The most important function is to maintain Registration Policy for the Append-only Log that is the verifiable data structure recording Signed Statements.
+The most important function is to maintain a Registration Policy for the Append-only Log which is a verifiable data structure recording of the Signed Statements.
 All Transparency Services MUST expose APIs for Registration of Signed Statements and Receipt issuance.
 Transparency Services MAY support additional APIs for auditing, for instance to query the history of Signed Statements.
 
