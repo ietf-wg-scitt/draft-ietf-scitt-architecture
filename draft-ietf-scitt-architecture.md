@@ -470,9 +470,11 @@ This specification leaves implementation and encoding of Registration Policy to 
 
 ### Transparency Log
 
-The security properties of the append only log are determined by the choice of verifiable data structure used to produce receipts.
+The security properties of the Append-only Log are determined by the choice of the verifiable data structure used to produce receipts.
 
 In addition to Receipts, some verifiable data structures might support additional proof types, such as proofs of consistency, or proofs of non inclusion.
+
+Specific verifiable data structures, such those describes in {{-CT}} and {{-COMETRE}} are out of scope for this document.
 
 #### Adjacent Services
 
