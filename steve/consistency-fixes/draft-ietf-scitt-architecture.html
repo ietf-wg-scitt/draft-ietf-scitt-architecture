@@ -15,20 +15,20 @@
 The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases. 
        This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
-Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers[TODO: Fix Resolve Consumer] will be able to verify them. 
+Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers will be able to verify them. 
     " name="description">
-<meta content="xml2rfc 3.19.1" name="generator">
+<meta content="xml2rfc 3.19.2" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-scitt-architecture-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.19.1
+  xml2rfc 3.19.2
     Python 3.11.6
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.3
-    platformdirs 4.1.0
+    platformdirs 4.2.0
     pycountry 22.3.5
     PyYAML 6.0.1
     requests 2.31.0
@@ -1037,7 +1037,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 6 August 2024</td>
+<td class="center">Expires 10 August 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1050,12 +1050,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-02-03" class="published">3 February 2024</time>
+<time datetime="2024-02-07" class="published">7 February 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-08-06">6 August 2024</time></dd>
+<dd class="expires"><time datetime="2024-08-10">10 August 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1088,7 +1088,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
-Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers[TODO: Fix Resolve Consumer] will be able to verify them.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers will be able to verify them.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1124,7 +1124,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 6 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 10 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1386,15 +1386,15 @@ Issuers can register their Signed Statements on any Transparency Service, with t
 <p id="section-1-1">This document describes the scalable, flexible, and decentralized SCITT architecture.
 Its goal is to enhance auditability and accountability across supply chains.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">In supply chains, items travel down the chain until they are eventually consumed by someone.
-Consumers[TODO: Fix Resolve Consumer] like to have information about the items that they consume.
+Consumers like to have information about the items that they consume.
 There are many parties who publish information about an item:
 For example, the original manufacturer may provide information about the state of the item when it left the factory.
 The shipping company may add information about the transport environment of the item.
 Compliance auditors may provide information about their compliance assessment of the item.
 Security companies may publish vulnerability information about an item.
-Consumers[TODO: Fix Resolve Consumer] may even publish the fact that they consume an item.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">SCITT provides a way for consumers[TODO: Fix Resolve Consumer] to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
-SCITT achieves this by having producers, auditors, etc. (also called Issuers) publish information in a Transparency Service, where consumers[TODO: Fix Resolve Consumer] (also called Verifiers) can check the information.<a href="#section-1-3" class="pilcrow">¶</a></p>
+Consumers may even publish the fact that they consume an item.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">SCITT provides a way for consumers to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
+SCITT achieves this by having producers, auditors, etc. (also called Issuers) publish information in a Transparency Service, where consumers (also called Verifiers) can check the information.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <div id="sec-requirements-notation">
 <section id="section-1.1">
         <h3 id="name-requirements-notation">
@@ -1468,98 +1468,105 @@ SCITT supports multiple Ledger and Receipt formats to accommodate different Tran
           <p id="section-3-3.6.1">an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.<a href="#section-3-3.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-3.7">Envelope:</dt>
+<dt id="section-3-3.7">Consumer:</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.8">
-          <p id="section-3-3.8.1">metadata, created by the Issuer to produce a Signed Statement.
+          <p id="section-3-3.8.1">an entity that retrieves information from a Transparency Service.
+A Consumer may be a human or automated process for auditing or a verifier.
+A Consumer is not intended to reflect a retail type end-user.<a href="#section-3-3.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-3.9">Envelope:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.10">
+          <p id="section-3-3.10.1">metadata, created by the Issuer to produce a Signed Statement.
 The Envelope contains the identity of the Issuer and information about the Artifact, enabling Transparency Service Registration Policies to validate the Signed Statement.
 A Signed Statement is a COSE Envelope wrapped around a Statement, binding the metadata in the Envelope to the Statement.
-In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).<a href="#section-3-3.8.1" class="pilcrow">¶</a></p>
+In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).<a href="#section-3-3.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-3.9">Equivocation:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-3.10">
-          <p id="section-3-3.10.1">a state where it is possible for a Transparency Service to provide different views of its Append-only log to Verifiers about the same Artifact <span>[<a href="#EQUIVOCATION" class="cite xref">EQUIVOCATION</a>]</span>.<a href="#section-3-3.10.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-3.11">Feed:</dt>
+<dt id="section-3-3.11">Equivocation:</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.12">
-          <p id="section-3-3.12.1">see Subject<a href="#section-3-3.12.1" class="pilcrow">¶</a></p>
+          <p id="section-3-3.12.1">a state where it is possible for a Transparency Service to provide different views of its Append-only log to Verifiers about the same Artifact <span>[<a href="#EQUIVOCATION" class="cite xref">EQUIVOCATION</a>]</span>.<a href="#section-3-3.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-3.13">Issuer:</dt>
+<dt id="section-3-3.13">Feed:</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.14">
-          <p id="section-3-3.14.1">organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers.
-An Issuer may be the owner or author of Artifacts, or an independent third party such as an auditor, reviewer or an endorser.<a href="#section-3-3.14.1" class="pilcrow">¶</a></p>
+          <p id="section-3-3.14.1">see Subject<a href="#section-3-3.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-3.15">Non-equivocation:</dt>
+<dt id="section-3-3.15">Issuer:</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.16">
-          <p id="section-3-3.16.1">a state where it is impossible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact.
-Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about an Artifact (Feed) can be checked by all Verifiers.<a href="#section-3-3.16.1" class="pilcrow">¶</a></p>
+          <p id="section-3-3.16.1">organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers.
+An Issuer may be the owner or author of Artifacts, or an independent third party such as an auditor, reviewer or an endorser.<a href="#section-3-3.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-3.17">Receipt:</dt>
+<dt id="section-3-3.17">Non-equivocation:</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.18">
-          <p id="section-3-3.18.1">a Receipt is a cryptographic proof that a Signed Statement is recorded in the Append-only Log.
+          <p id="section-3-3.18.1">a state where it is impossible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact.
+Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about an Artifact (Feed) can be checked by all Verifiers.<a href="#section-3-3.18.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-3.19">Receipt:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.20">
+          <p id="section-3-3.20.1">a Receipt is a cryptographic proof that a Signed Statement is recorded in the Append-only Log.
 Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span>.
 Receipts can be built on different verifiable data structures, not just binary merkle trees.
-Receipts consist of Transparency Service-specific inclusion proofs, a signature by the Transparency Service of the state of the Append-only Log, and additional metadata (contained in the signature's protected headers) to assist in auditing.<a href="#section-3-3.18.1" class="pilcrow">¶</a></p>
+Receipts consist of Transparency Service-specific inclusion proofs, a signature by the Transparency Service of the state of the Append-only Log, and additional metadata (contained in the signature's protected headers) to assist in auditing.<a href="#section-3-3.20.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-3.19">Registration:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-3.20">
-          <p id="section-3-3.20.1">the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, adding to the Append-only Log, and producing a Receipt.<a href="#section-3-3.20.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-3.21">Registration Policy:</dt>
+<dt id="section-3-3.21">Registration:</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.22">
-          <p id="section-3-3.22.1">the pre-condition enforced by the Transparency Service before registering a Signed Statement, based on information in the non-opaque header and metadata contained in its COSE Envelope.
-A Transparency Service <span class="bcp14">MAY</span> implement any range of policies that meets their needs.
-However a Transparency Service can not alter the contents of the Signed Statements.<a href="#section-3-3.22.1" class="pilcrow">¶</a></p>
+          <p id="section-3-3.22.1">the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, adding to the Append-only Log, and producing a Receipt.<a href="#section-3-3.22.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-3.23">Signed Statement:</dt>
+<dt id="section-3-3.23">Registration Policy:</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.24">
-          <p id="section-3-3.24.1">an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
-In SCITT, Signed Statements are encoded as COSE signed objects; the <code>payload</code> of the COSE structure contains the issued Statement.<a href="#section-3-3.24.1" class="pilcrow">¶</a></p>
+          <p id="section-3-3.24.1">the pre-condition enforced by the Transparency Service before registering a Signed Statement, based on information in the non-opaque header and metadata contained in its COSE Envelope.
+A Transparency Service <span class="bcp14">MAY</span> implement any range of policies that meets their needs.
+However a Transparency Service can not alter the contents of the Signed Statements.<a href="#section-3-3.24.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-3.25">Statement:</dt>
+<dt id="section-3-3.25">Signed Statement:</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.26">
-          <p id="section-3-3.26.1">any serializable information about an Artifact.
+          <p id="section-3-3.26.1">an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
+In SCITT, Signed Statements are encoded as COSE signed objects; the <code>payload</code> of the COSE structure contains the issued Statement.<a href="#section-3-3.26.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-3.27">Statement:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.28">
+          <p id="section-3-3.28.1">any serializable information about an Artifact.
 To help interpretation of Statements, they must be tagged with a media type[TODO: Issue #178] (as specified in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>).
 A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version,  or any content an Issuer wishes to publish about an Artifact.
 The additional Statements about an artifact are correlated by the Subject defined in the <span>[<a href="#CWT_CLAIMS" class="cite xref">CWT_CLAIMS</a>]</span> protected header.
-The Statement is considered opaque to Transparency Service, and <span class="bcp14">MAY</span> be encrypted.<a href="#section-3-3.26.1" class="pilcrow">¶</a></p>
+The Statement is considered opaque to Transparency Service, and <span class="bcp14">MAY</span> be encrypted.<a href="#section-3-3.28.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-3.27">Subject:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-3.28">
-          <p id="section-3-3.28.1">a logical collection of Statements about the same Artifact.
+<dt id="section-3-3.29">Subject:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.30">
+          <p id="section-3-3.30.1">a logical collection of Statements about the same Artifact.
 For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact.
 Issuers use Subject to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
-In SCITT, Subject is a property of the dedicated, protected header attribute <code>15: CWT_Claims</code> within the protected header of the COSE envelope.<a href="#section-3-3.28.1" class="pilcrow">¶</a></p>
+In SCITT, Subject is a property of the dedicated, protected header attribute <code>15: CWT_Claims</code> within the protected header of the COSE envelope.<a href="#section-3-3.30.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-3.29">Transparency Service:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-3.30">
-          <p id="section-3-3.30.1">an entity that maintains and extends the Append-only Log, and endorses its state.
+<dt id="section-3-3.31">Transparency Service:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.32">
+          <p id="section-3-3.32.1">an entity that maintains and extends the Append-only Log, and endorses its state.
 A Transparency Service <span class="bcp14">MAY</span> implement a Registration Policy, often referred to by its synonym Notary.
 A Transparency Service can be a complex distributed system, and SCITT requires the Transparency Service to provide many security guarantees about its Append-only Log.
-The identity of a Transparency Service is captured by a public key that must be known by Verifiers in order to validate Receipts.<a href="#section-3-3.30.1" class="pilcrow">¶</a></p>
+The identity of a Transparency Service is captured by a public key that must be known by Verifiers in order to validate Receipts.<a href="#section-3-3.32.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-3.31">Transparent Statement:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-3.32">
-          <p id="section-3-3.32.1">a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
-The receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
-A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.<a href="#section-3-3.32.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-3.33">Verifier:</dt>
+<dt id="section-3-3.33">Transparent Statement:</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.34">
-          <p id="section-3-3.34.1">organizations, stakeholders, and users involved in validating supply chain Artifacts.
-Verifiers consume Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.<a href="#section-3-3.34.1" class="pilcrow">¶</a></p>
+          <p id="section-3-3.34.1">a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
+The receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
+A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.<a href="#section-3-3.34.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-3.35">Verifier:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-3.36">
+          <p id="section-3-3.36.1">organizations, stakeholders, and users involved in validating supply chain Artifacts.
+Verifiers consume Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.<a href="#section-3-3.36.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
