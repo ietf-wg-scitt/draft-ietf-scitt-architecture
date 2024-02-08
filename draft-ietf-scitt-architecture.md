@@ -180,8 +180,8 @@ The terms "header", "payload", and "to-be-signed bytes" are defined in {{RFC9052
 
 Append-only Log (Ledger):
 
-: the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym, Log or Ledger.
-SCITT supports multiple Log and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Log.
+: the verifiable append-only data structure that stores Signed Statements in a Transparency Service, often referred to by the synonym, Ledger.
+SCITT supports multiple Ledger and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Logs.
 
 Artifact:
 
@@ -200,11 +200,12 @@ In COSE, an Envelope consists of a protected header (included in the Issuer's si
 
 Equivocation:
 
-: a state where it is possible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact {{EQUIVOCATION}}.
+: a state where it is possible for a Transparency Service to provide different views of its Append-only log to Verifiers about the same Artifact {{EQUIVOCATION}}.
 
 Feed:
 
-: see Subject
+: A collection of Receipts, as recorded by the Transparency Service, based on filtering of properties from the envelope including, but not limited to the `sub` field of the `CWT_Claims`.
+Verifiers may use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the Artifact they are evaluating.
 
 Issuer:
 
@@ -234,7 +235,7 @@ Registration Policy:
 Signed Statement:
 
 : an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
-In SCITT, Signed Statements are encoded as COSE signed objects; the payload of the COSE structure contains the issued Statement.
+In SCITT, Signed Statements are encoded as COSE signed objects; the `payload` of the COSE structure contains the issued Statement.
 
 Statement:
 
@@ -246,10 +247,15 @@ The Statement is considered opaque to Transparency Service, and MAY be encrypted
 
 Subject:
 
-: a logical collection of Statements about the same Artifact.
-For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact.
-Issuers use Subject to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
-In SCITT, Subject is a property of the dedicated, protected header attribute `15: CWT_Claims` within the protected header of the COSE envelope.
+: This term has the same definition as in RFC8392, which relies on the definition in RFC7519.
+The "sub" (subject) claim identifies the principal that is the subject of the CWT.
+The claims in a CWT are normally statements about the subject.
+In SCITT, "sub" identifies the entity about which statements, and receipts are made.
+The subject value MUST either be scoped to be locally unique in the context of the issuer or be globally unique.
+The processing of this claim is generally application specific.
+The "sub" value is a case-sensitive string containing a StringOrURI value.
+Issuer's use `sub` to identify the entity about which they are making Signed Statements.
+Transparency Services use `sub` to identify the entity about which they are issuing a Receipt.
 
 Transparency Service:
 
@@ -313,49 +319,48 @@ Note that just like CT logs are independent and their contents need not be consi
 # Architecture Overview
 
 ~~~aasvg
-                 .----------.
-                |  Artifact  |
-                 '----+-----'
-                      v
-                 .----+----.  .----------.   Identifiers
-Issuer      --> | Statement ||  Envelope  +<-------------.
-                 '----+----'  '-----+----'                |
-                      |             |            .--------+--.
-                       '----. .----'            |  Identity   |
-                             |                  |  Documents  +---.
-                             v                   '------+----'     |
-                        .----+----.                     |          |
-                       |  Signed   |    COSE Signing    |          |
-                       | Statement +<-------------------+          |
-                        '----+----'                     |          |
-                             |                 +--------+------+   |
-                          .-' '--------------->+ Transparency  |   |
-                         |   .--------.        |               |   |
-Transparency        -->  |  | Receipt  +<------+  Service      +-+ |
-     Service             |  |          +.      +--+------------+ | |
-                         |   '-+------'  |        | Transparency | |
-                         |     | Receipt +<-------+              | |
-                         |      '------+'         | Service      | |
-                          '-------. .-'           +------------+-+ |
-                                   |                           |   |
-                                   |                           |   |
-                                   v                           |   |
-                             .-----+-----.                     |   |
-                            | Transparent |                    |   |
-                            |  Statement  |                    |   |
-                             '-----+-----'                     |   |
-                                   |                           |   |
-                                   |'-------.     .------------)--'
-                                   |         |   |             |
-                                   |         v   v             |
-                                   |    .----+---+-----------. |
-Verifier            -->            |   / Verify Transparent /  |
-                                   |  /      Statement     /   |
-                                   | '--------------------'    |
-                                   v                           v
-                          .--------+---------.      .----------+-----.
-Auditor             -->  / Collect Receipts /      /   Replay Log   /
-                        '------------------'      '----------------'
+  .----------.
+ |  Artifact  |
+  '----+-----'
+       v
+  .----+----.  .----------.   Identifiers
+ | Statement ||  Envelope  +<-------------.
+  '----+----'  '-----+----'                |
+       |             |            .--------+--.
+        '----. .----'            |  Identity   |
+              |                  |  Documents  +---.
+              v                   '------+----'     |
+         .----+----.                     |          |
+        |  Signed   |    COSE Signing    |          |
+        | Statement +<-------------------+          |
+         '----+----'                     |          |
+              |                 +--------+------+   |
+           .-' '--------------->+ Transparency  |   |
+          |   .--------.        |               |   |
+          |  | Receipt  +<------+  Service      +-+ |
+          |  |          +.      +--+------------+ | |
+          |   '-+------'  |        | Transparency | |
+          |     | Receipt +<-------+              | |
+          |      '------+'         | Service      | |
+           '-------. .-'           +------------+-+ |
+                    |                           |   |
+                    v                           |   |
+              .-----+-----.                     |   |
+             | Transparent |                    |   |
+             |  Statement  |                    |   |
+              '-----+-----'                     |   |
+                    |                           |   |
+                    |'-------.     .------------)--'
+                    |         |   |             |
+                    |         v   v             |
+                    |    .----+---+-----------. |
+                    |   / Verify Transparent /  |
+                    |  /      Statement     /   |
+                    | '--------------------'    |
+                    v                           v
+           .--------+---------.      .----------+-----.
+          / Collect Receipts /      /   Replay Log   /
+         '------------------'      '----------------'
 ~~~
 
 The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements, and auditing Transparent Statements.
