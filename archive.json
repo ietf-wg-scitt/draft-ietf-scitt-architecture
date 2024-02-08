@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-06T00:34:04.489873+00:00",
+  "timestamp": "2024-02-08T00:34:11.092354+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -3632,7 +3632,7 @@
       "labels": [],
       "body": "The doc uses the three interchangeably\r\nIs there a preferred reference to be consistent?",
       "createdAt": "2024-02-03T01:50:51Z",
-      "updatedAt": "2024-02-03T02:05:56Z",
+      "updatedAt": "2024-02-07T22:23:24Z",
       "closedAt": null,
       "comments": [
         {
@@ -3641,8 +3641,31 @@
           "body": "https://www.rfc-editor.org/rfc/rfc6838 is about Media Type. And then references payload and content type. \r\nI've been through this confusion before, where Media Type is the definition of a type of identifier. The challenge becomes when using that type of identifier for different parts of a document. \r\n- When does the media type refer to the envelope itself? \r\n- When does the media type refer to a property (aka payload)?",
           "createdAt": "2024-02-03T02:05:55Z",
           "updatedAt": "2024-02-03T02:05:55Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I don't understand the question.\n\n`cose-sign1.cbor` is of content type `application/cbor` and `application/cose` .\n\nIt is generally a good idea to use a more specific media type.\n\nThe payload of a cose-sign1 can have a media type, such as `application/cose` or `application/json`.\n\n",
+          "createdAt": "2024-02-07T22:21:51Z",
+          "updatedAt": "2024-02-07T22:23:24Z"
         }
       ]
+    },
+    {
+      "number": 180,
+      "id": "I_kwDOIvmHss5-bfXH",
+      "title": "Define Consumer or Remove it",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/180",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-06T15:59:07Z",
+      "updatedAt": "2024-02-06T15:59:07Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -18318,7 +18341,7 @@
       "labels": [],
       "body": "An example workflow for signing with X.509\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/499276a2-c64e-4d82-af61-9737e5784ff7)\r\n",
       "createdAt": "2024-01-17T01:16:14Z",
-      "updatedAt": "2024-02-01T20:09:07Z",
+      "updatedAt": "2024-02-06T15:08:33Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "e85d13527ac8ff78a29d9a46cb4b609cff286692",
@@ -18401,7 +18424,28 @@
           "updatedAt": "2024-02-01T20:09:07Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5vMT9e",
+          "commit": {
+            "abbreviatedOid": "6ff550d"
+          },
+          "author": "roywill",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-06T15:08:33Z",
+          "updatedAt": "2024-02-06T15:08:33Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "This is not what we believe happens.  We simply can return the receipt, why roundtrip the signed statement and serialize it again with the receipt?",
+              "createdAt": "2024-02-06T15:08:33Z",
+              "updatedAt": "2024-02-06T15:08:33Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 163,
@@ -20047,13 +20091,13 @@
       "labels": [],
       "body": "Fixes accidental merger and reversion of #165\r\nSee #165 for the discussion",
       "createdAt": "2024-02-01T19:27:06Z",
-      "updatedAt": "2024-02-01T23:51:21Z",
+      "updatedAt": "2024-02-07T22:26:51Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "f97acc29a758af130fc91768512e47260d016f9c",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/feed-subject",
-      "headRefOid": "082f9dc9631ec42980036556addcd4a69ac9526b",
+      "headRefOid": "e674b8c1c9b19dbbbe8fc75dd4ac993670438e3d",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -20252,6 +20296,39 @@
               "updatedAt": "2024-02-01T23:51:21Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5vY5ip",
+          "commit": {
+            "abbreviatedOid": "fe88bd7"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-07T21:06:43Z",
+          "updatedAt": "2024-02-07T21:06:43Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "See https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/176/commits/e674b8c1c9b19dbbbe8fc75dd4ac993670438e3d for clarification \r\n\r\n> Feed:\r\n>\r\n> : A collection of Receipts, as recorded by the Transparency Service, based on filtering of properties from the envelope including, but not limited to the `sub` field of the `CWT_Claims`.",
+              "createdAt": "2024-02-07T21:06:43Z",
+              "updatedAt": "2024-02-07T21:06:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5vZWfG",
+          "commit": {
+            "abbreviatedOid": "e674b8c"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "We still need to explain what kind of interoperability is expected for feed.\n\nDoes every TS need to index the same way? \n\nDoes every TS have to support the same feed identifiers?\n\nAre there query parameters that must always be implemented consistently?\n\nThe more I think about this, the more I feel feed does not belong in the architecture.",
+          "createdAt": "2024-02-07T22:26:51Z",
+          "updatedAt": "2024-02-07T22:26:51Z",
+          "comments": []
         }
       ]
     },
@@ -20267,18 +20344,26 @@
       "labels": [],
       "body": "A set of consistency fixes for the next draft.",
       "createdAt": "2024-02-01T23:55:16Z",
-      "updatedAt": "2024-02-03T01:54:54Z",
+      "updatedAt": "2024-02-07T22:21:22Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "f97acc29a758af130fc91768512e47260d016f9c",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/consistency-fixes",
-      "headRefOid": "6b103631ccf5948cc20ea92a18aa7dad7fb19af6",
+      "headRefOid": "e4a45a490d00b033dbb85d8ead2f3069779a62d9",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/180 for discussion on the terminology. ",
+          "createdAt": "2024-02-06T16:24:35Z",
+          "updatedAt": "2024-02-06T16:24:35Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss5uvhzC",
@@ -20337,6 +20422,154 @@
               "body": "This sentence is poorly worded. Open to a suggestion, if needed",
               "createdAt": "2024-02-03T01:17:45Z",
               "updatedAt": "2024-02-03T01:17:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5vMxv3",
+          "commit": {
+            "abbreviatedOid": "6b10363"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "I would start with the new roles that are needed... lets not add a bunch of TODOs.\r\n\r\ndefine the new roles you need, and then use them consistently throughout the document.",
+          "createdAt": "2024-02-06T15:52:42Z",
+          "updatedAt": "2024-02-06T15:54:09Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 179,
+      "id": "PR_kwDOIvmHss5mJgag",
+      "title": "Adjust policy text",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Adjustments regarding registration policies.",
+      "createdAt": "2024-02-06T14:09:49Z",
+      "updatedAt": "2024-02-07T21:14:37Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "f97acc29a758af130fc91768512e47260d016f9c",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "policy-policy-policy",
+      "headRefOid": "12bd565936ff751a5548899e9b4ba653bc71a382",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5vYsET",
+          "commit": {
+            "abbreviatedOid": "45470fa"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "A few nits, with LGTM",
+          "createdAt": "2024-02-07T20:39:26Z",
+          "updatedAt": "2024-02-07T20:55:04Z",
+          "comments": [
+            {
+              "originalPosition": 65,
+              "body": "```suggestion\r\nThe most important function is to maintain a Registration Policy for the Append-only Log which is a verifiable data structure recording of the Signed Statements.\r\n```",
+              "createdAt": "2024-02-07T20:39:26Z",
+              "updatedAt": "2024-02-07T20:55:04Z"
+            },
+            {
+              "originalPosition": 78,
+              "body": "```suggestion\r\nThe second set of entries are Signed Statements for an additional domain-specific Registration Policy.\r\n```",
+              "createdAt": "2024-02-07T20:40:18Z",
+              "updatedAt": "2024-02-07T20:55:04Z"
+            },
+            {
+              "originalPosition": 129,
+              "body": "```suggestion\r\nFor example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs.\r\nThe respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts.\r\nThe respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a trusted Verifier and complies with well-known Reference Values and Endorsements.\r\n```",
+              "createdAt": "2024-02-07T20:44:09Z",
+              "updatedAt": "2024-02-07T20:55:04Z"
+            },
+            {
+              "originalPosition": 168,
+              "body": "```suggestion\r\nBefore a Signed Statement is registered, the trust anchor used to verify it MUST be registered (e.g., via a registered Registration Policy).\r\n```",
+              "createdAt": "2024-02-07T20:47:15Z",
+              "updatedAt": "2024-02-07T20:55:04Z"
+            },
+            {
+              "originalPosition": 170,
+              "body": "Is this redundant with line [438](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179/files#diff-585fb424519b79cf000445f3425fa56d328cbaca5d2a622740ddc4e5ca91dbe1R438)\r\n\r\n> The first entry that is added to the Append-only Log MUST be a Signed Statement including key material.",
+              "createdAt": "2024-02-07T20:48:36Z",
+              "updatedAt": "2024-02-07T20:55:04Z"
+            },
+            {
+              "originalPosition": 198,
+              "body": "Minor nit:\r\n```suggestion\r\nTransparency Services can be deployed along side other data or object storage technologies.\r\n```",
+              "createdAt": "2024-02-07T20:52:07Z",
+              "updatedAt": "2024-02-07T20:55:04Z"
+            },
+            {
+              "originalPosition": 206,
+              "body": "```suggestion\r\nFor example, a Transparency Service that is supporting a software package management system might be referenced from the APIs exposed for package management.\r\nProviding an ability to request a fresh receipt for a given software package, or to request a list of signed statements and Artifacts associated with a software package.\r\n```",
+              "createdAt": "2024-02-07T20:53:05Z",
+              "updatedAt": "2024-02-07T20:55:04Z"
+            },
+            {
+              "originalPosition": 218,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-02-07T20:53:23Z",
+              "updatedAt": "2024-02-07T20:55:04Z"
+            },
+            {
+              "originalPosition": 111,
+              "body": "A note that the section marked for deletion here is captured later [here](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179/files#diff-585fb424519b79cf000445f3425fa56d328cbaca5d2a622740ddc4e5ca91dbe1R888)",
+              "createdAt": "2024-02-07T20:54:48Z",
+              "updatedAt": "2024-02-07T20:55:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5vY8Y7",
+          "commit": {
+            "abbreviatedOid": "45470fa"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-07T21:13:34Z",
+          "updatedAt": "2024-02-07T21:13:34Z",
+          "comments": [
+            {
+              "originalPosition": 170,
+              "body": "Its not redundant, the referenced line is normative, this is informative.",
+              "createdAt": "2024-02-07T21:13:34Z",
+              "updatedAt": "2024-02-07T21:13:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5vY8zo",
+          "commit": {
+            "abbreviatedOid": "45470fa"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-07T21:14:37Z",
+          "updatedAt": "2024-02-07T21:14:37Z",
+          "comments": [
+            {
+              "originalPosition": 111,
+              "body": "I was just moving security considerations to that section, I did not attempt to actually improve the security considerations. ",
+              "createdAt": "2024-02-07T21:14:37Z",
+              "updatedAt": "2024-02-07T21:14:37Z"
             }
           ]
         }
