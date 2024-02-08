@@ -318,49 +318,48 @@ Failure to produce this proof can indicate that the Transparency Services operat
 # Architecture Overview
 
 ~~~aasvg
-                 .----------.
-                |  Artifact  |
-                 '----+-----'
-                      v
-                 .----+----.  .----------.   Identifiers
-Issuer      --> | Statement ||  Envelope  +<-------------.
-                 '----+----'  '-----+----'                |
-                      |             |            .--------+--.
-                       '----. .----'            |  Identity   |
-                             |                  |  Documents  +---.
-                             v                   '------+----'     |
-                        .----+----.                     |          |
-                       |  Signed   |    COSE Signing    |          |
-                       | Statement +<-------------------+          |
-                        '----+----'                     |          |
-                             |                 +--------+------+   |
-                          .-' '--------------->+ Transparency  |   |
-                         |   .--------.        |               |   |
-Transparency        -->  |  | Receipt  +<------+  Service      +-+ |
-     Service             |  |          +.      +--+------------+ | |
-                         |   '-+------'  |        | Transparency | |
-                         |     | Receipt +<-------+              | |
-                         |      '------+'         | Service      | |
-                          '-------. .-'           +------------+-+ |
-                                   |                           |   |
-                                   |                           |   |
-                                   v                           |   |
-                             .-----+-----.                     |   |
-                            | Transparent |                    |   |
-                            |  Statement  |                    |   |
-                             '-----+-----'                     |   |
-                                   |                           |   |
-                                   |'-------.     .------------)--'
-                                   |         |   |             |
-                                   |         v   v             |
-                                   |    .----+---+-----------. |
-Verifier            -->            |   / Verify Transparent /  |
-                                   |  /      Statement     /   |
-                                   | '--------------------'    |
-                                   v                           v
-                          .--------+---------.      .----------+-----.
-Auditor             -->  / Collect Receipts /      /   Replay Log   /
-                        '------------------'      '----------------'
+  .----------.
+ |  Artifact  |
+  '----+-----'
+       v
+  .----+----.  .----------.   Identifiers
+ | Statement ||  Envelope  +<-------------.
+  '----+----'  '-----+----'                |
+       |             |            .--------+--.
+        '----. .----'            |  Identity   |
+              |                  |  Documents  +---.
+              v                   '------+----'     |
+         .----+----.                     |          |
+        |  Signed   |    COSE Signing    |          |
+        | Statement +<-------------------+          |
+         '----+----'                     |          |
+              |                 +--------+------+   |
+           .-' '--------------->+ Transparency  |   |
+          |   .--------.        |               |   |
+          |  | Receipt  +<------+  Service      +-+ |
+          |  |          +.      +--+------------+ | |
+          |   '-+------'  |        | Transparency | |
+          |     | Receipt +<-------+              | |
+          |      '------+'         | Service      | |
+           '-------. .-'           +------------+-+ |
+                    |                           |   |
+                    v                           |   |
+              .-----+-----.                     |   |
+             | Transparent |                    |   |
+             |  Statement  |                    |   |
+              '-----+-----'                     |   |
+                    |                           |   |
+                    |'-------.     .------------)--'
+                    |         |   |             |
+                    |         v   v             |
+                    |    .----+---+-----------. |
+                    |   / Verify Transparent /  |
+                    |  /      Statement     /   |
+                    | '--------------------'    |
+                    v                           v
+           .--------+---------.      .----------+-----.
+          / Collect Receipts /      /   Replay Log   /
+         '------------------'      '----------------'
 ~~~
 
 The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements, and auditing Transparent Statements.
