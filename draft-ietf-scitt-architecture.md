@@ -218,7 +218,8 @@ Equivocation:
 
 Feed:
 
-: see Subject
+: A collection of Receipts, as recorded by the Transparency Service, based on filtering of properties from the envelope including, but not limited to the `sub` field of the `CWT_Claims`.
+Verifiers may use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the Artifact they are evaluating.
 
 Issuer:
 
@@ -262,10 +263,15 @@ The Statement is considered opaque to Transparency Service, and MAY be encrypted
 
 Subject:
 
-: a logical collection of Statements about the same Artifact.
-For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact.
-Issuers use Subject to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
-In SCITT, Subject is a property of the dedicated, protected header attribute `15: CWT_Claims` within the protected header of the COSE envelope.
+: This term has the same definition as in RFC8392, which relies on the definition in RFC7519.
+The "sub" (subject) claim identifies the principal that is the subject of the CWT.
+The claims in a CWT are normally statements about the subject.
+In SCITT, "sub" identifies the entity about which statements, and receipts are made.
+The subject value MUST either be scoped to be locally unique in the context of the issuer or be globally unique.
+The processing of this claim is generally application specific.
+The "sub" value is a case-sensitive string containing a StringOrURI value.
+Issuer's use `sub` to identify the entity about which they are making Signed Statements.
+Transparency Services use `sub` to identify the entity about which they are issuing a Receipt.
 
 Transparency Service:
 
