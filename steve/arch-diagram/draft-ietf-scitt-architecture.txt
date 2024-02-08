@@ -202,9 +202,13 @@ Table of Contents
    *  CT logs produce Signed Certificate Timestamps (Transparent
       Statements)
 
-   *  Signed Certificate Timestamps are checked by browsers (Verifiers)
+   *  SCTs are checked by browsers (Verifiers)
 
-   *  The Append-only Log can be checked by Verifiers and Auditors
+   *  The Append-only Log can be checked by Auditors
+
+   Note that just like CT logs are independent and their contents need
+   not be consistent, Transparency Services are similarly independent of
+   each other.
 
 3.  Terminology
 
@@ -218,11 +222,11 @@ Table of Contents
    in [RFC9052].
 
    Append-only Log (Ledger):  the verifiable append-only data structure
-      that stores Signed Statements in a Transparency Service, often
-      referred to by the synonym, Ledger.  SCITT supports multiple
-      Ledger and Receipt formats to accommodate different Transparency
-      Service implementations, and the proof types associated with
-      different types of Append-only Logs.
+      that stores Signed Statements in a Transparency Service often
+      referred to by the synonym, Log or Ledger.  SCITT supports
+      multiple Log and Receipt formats to accommodate different
+      Transparency Service implementations, and the proof types
+      associated with different types of Append-only Log.
 
    Artifact:  a physical or non-physical item that is moving along a
       supply chain.
@@ -241,7 +245,7 @@ Table of Contents
       signature).
 
    Equivocation:  a state where it is possible for a Transparency
-      Service to provide different views of its Append-only log to
+      Service to provide different views of its append-only log to
       Verifiers about the same Artifact [EQUIVOCATION].
 
    Feed:  see Subject

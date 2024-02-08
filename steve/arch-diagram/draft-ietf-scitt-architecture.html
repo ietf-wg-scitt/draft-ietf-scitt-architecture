@@ -1432,12 +1432,13 @@ Considering CT in terms of SCITT:<a href="#section-2.1-1" class="pilcrow">¶</a>
             <p id="section-2.1-2.3.1">CT logs produce Signed Certificate Timestamps (Transparent Statements)<a href="#section-2.1-2.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.1-2.4">
-            <p id="section-2.1-2.4.1">Signed Certificate Timestamps are checked by browsers (Verifiers)<a href="#section-2.1-2.4.1" class="pilcrow">¶</a></p>
+            <p id="section-2.1-2.4.1">SCTs are checked by browsers (Verifiers)<a href="#section-2.1-2.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.1-2.5">
-            <p id="section-2.1-2.5.1">The Append-only Log can be checked by Verifiers and Auditors<a href="#section-2.1-2.5.1" class="pilcrow">¶</a></p>
+            <p id="section-2.1-2.5.1">The Append-only Log can be checked by Auditors<a href="#section-2.1-2.5.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
+<p id="section-2.1-3">Note that just like CT logs are independent and their contents need not be consistent, Transparency Services are similarly independent of each other.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1454,8 +1455,8 @@ To ensure readability, only a core set of terms is included in this section.<a h
 <span class="break"></span><dl class="dlParallel" id="section-3-3">
         <dt id="section-3-3.1">Append-only Log (Ledger):</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.2">
-          <p id="section-3-3.2.1">the verifiable append-only data structure that stores Signed Statements in a Transparency Service, often referred to by the synonym, Ledger.
-SCITT supports multiple Ledger and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Logs.<a href="#section-3-3.2.1" class="pilcrow">¶</a></p>
+          <p id="section-3-3.2.1">the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym, Log or Ledger.
+SCITT supports multiple Log and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Log.<a href="#section-3-3.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-3.3">Artifact:</dt>
@@ -1478,7 +1479,7 @@ In COSE, an Envelope consists of a protected header (included in the Issuer's si
         <dd class="break"></dd>
 <dt id="section-3-3.9">Equivocation:</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.10">
-          <p id="section-3-3.10.1">a state where it is possible for a Transparency Service to provide different views of its Append-only log to Verifiers about the same Artifact <span>[<a href="#EQUIVOCATION" class="cite xref">EQUIVOCATION</a>]</span>.<a href="#section-3-3.10.1" class="pilcrow">¶</a></p>
+          <p id="section-3-3.10.1">a state where it is possible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact <span>[<a href="#EQUIVOCATION" class="cite xref">EQUIVOCATION</a>]</span>.<a href="#section-3-3.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-3.11">Feed:</dt>
@@ -1521,7 +1522,7 @@ However a Transparency Service can not alter the contents of the Signed Statemen
 <dt id="section-3-3.23">Signed Statement:</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.24">
           <p id="section-3-3.24.1">an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
-In SCITT, Signed Statements are encoded as COSE signed objects; the <code>payload</code> of the COSE structure contains the issued Statement.<a href="#section-3-3.24.1" class="pilcrow">¶</a></p>
+In SCITT, Signed Statements are encoded as COSE signed objects; the payload of the COSE structure contains the issued Statement.<a href="#section-3-3.24.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-3.25">Statement:</dt>
