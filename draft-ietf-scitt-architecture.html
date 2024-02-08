@@ -1484,7 +1484,8 @@ In COSE, an Envelope consists of a protected header (included in the Issuer's si
         <dd class="break"></dd>
 <dt id="section-3-3.11">Feed:</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.12">
-          <p id="section-3-3.12.1">see Subject<a href="#section-3-3.12.1" class="pilcrow">¶</a></p>
+          <p id="section-3-3.12.1">A collection of Receipts, as recorded by the Transparency Service, based on filtering of properties from the envelope including, but not limited to the <code>sub</code> field of the <code>CWT_Claims</code>.
+Verifiers may use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the Artifact they are evaluating.<a href="#section-3-3.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-3.13">Issuer:</dt>
@@ -1536,10 +1537,15 @@ The Statement is considered opaque to Transparency Service, and <span class="bcp
         <dd class="break"></dd>
 <dt id="section-3-3.27">Subject:</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.28">
-          <p id="section-3-3.28.1">a logical collection of Statements about the same Artifact.
-For any step or set of steps in a supply chain there may be multiple statements made about the same Artifact.
-Issuers use Subject to create a coherent sequence of Signed Statements about the same Artifact and Verifiers use the Subject to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the one(s) they are evaluating.
-In SCITT, Subject is a property of the dedicated, protected header attribute <code>15: CWT_Claims</code> within the protected header of the COSE envelope.<a href="#section-3-3.28.1" class="pilcrow">¶</a></p>
+          <p id="section-3-3.28.1">This term has the same definition as in RFC8392, which relies on the definition in RFC7519.
+The "sub" (subject) claim identifies the principal that is the subject of the CWT.
+The claims in a CWT are normally statements about the subject.
+In SCITT, "sub" identifies the entity about which statements, and receipts are made.
+The subject value <span class="bcp14">MUST</span> either be scoped to be locally unique in the context of the issuer or be globally unique.
+The processing of this claim is generally application specific.
+The "sub" value is a case-sensitive string containing a StringOrURI value.
+Issuer's use <code>sub</code> to identify the entity about which they are making Signed Statements.
+Transparency Services use <code>sub</code> to identify the entity about which they are issuing a Receipt.<a href="#section-3-3.28.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-3.29">Transparency Service:</dt>
