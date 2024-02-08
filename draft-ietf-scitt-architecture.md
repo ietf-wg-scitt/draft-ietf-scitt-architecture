@@ -401,8 +401,153 @@ A Registration Policy that requires an optional field to be present MUST reject 
 
 ~~~ cddl
 
+<<<<<<< HEAD
 Signed_Statement = #6.18(COSE_Sign1)
 Receipt = #6.18(COSE_Sign1)
+=======
+Protected_Header = {
+    1 => int             ; algorithm identifier
+    3 => tstr            ; payload type
+  ? 4 => bstr            ; Key ID (kid)
+   15 => CWT_Claims      ; CBOR Web Token Claims
+   34 => COSE_CertHash   ; x5t, hash of an X.509 certificate
+   * int => any
+}
+~~~
+{: #fig-signed-statement title="CDDL definition for SCITT Signed Statements"}
+
+### Support for Multiple Artifacts
+
+Issuers may produce Signed Statements about different Artifacts under the same Identity.
+Issuers and Verifiers must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
+The `iss` and `sub` claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.
+
+See Subject under {{terminology}} Terminology.
+
+Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
+
+### Support for Multiple Statements
+
+An Issuer can make multiple Statements about the same Artifact.
+For example, an Issuer can make amended Statements about the same Artifact as their view changes over time.
+
+Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
+Verifiers can choose which Issuers they trust.
+
+Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.
+
+## Transparency Service {#ts-duties}
+
+The role of a Transparency Service includes several major functions.
+The most important function is to maintain a Registration Policy for the Append-only Log which is a verifiable data structure recording of the Signed Statements.
+All Transparency Services MUST expose APIs for Registration of Signed Statements and Receipt issuance.
+Transparency Services MAY support additional APIs for auditing, for instance to query the history of Signed Statements.
+
+### Initialization {#ts-initialization}
+
+The Append-only Log is empty when the Transparency Service is initialized.
+The first entry that is added to the Append-only Log MUST be a Signed Statement including key material.
+The second set of entries are Signed Statements for an additional domain-specific Registration Policy.
+The third set of entries are Signed Statements for Artifacts.
+From here on a Transparency Service is capable to check Signed Statements on registration via policy (that is at minimum key material and typically other Registration Policy) and is therefore in a reliable state to register Signed Statements about Artifacts or new Registration Policy.
+
+### Transparency Service Identity and Authenticity
+
+Every Transparency Service MUST have a public service identity that is associated with public/private key pairs for signing Receipts on behalf of the service.
+In particular, this service identity must be known by Verifiers when checking a Receipt's signature.
+
+A Transparency Service MAY provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
+If present, these additional authenticity assurances MUST be registered in the Append-only Log and MUST always be exposed by the Transparency Services' APIs.
+An example of Signed Statement's payloads that can improve authenticity assurances are trustworthiness assessments that are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see {{-rats-arch}}).
+
+For example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs.
+The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts.
+The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a trusted Verifier and complies with well-known Reference Values and Endorsements.
+
+### Registration Policies
+
+Registration Policies refer to the checks that are performed before a Signed Statement is registered to an Append-only Log, and a corresponding Receipt becomes available.
+
+As a minimum, a Transparency Service MUST authenticate the Issuer of Signed Statements, which requires a trust anchor in the form of an already registered Signed Statement including key material (see {{ts-initialization}}).
+As defined in {{RFC6024}}, "A trust anchor represents an authoritative entity via a public key and associated data.
+The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
+Typical representations of a trust anchor include certificates or raw public keys.
+
+The `x5t` and `kid` Claims in the protected header of Signed Statements can be used as hints for discovering trust anchors.
+Before a Registration Policy is used to decide if a Signed Statement is registered, the policy MUST be registered.
+Before a Signed Statement is registered, the trust anchor used to verify it MUST be registered (e.g., via a registered Registration Policy).
+In order to register a trust anchor, the trust anchor MUST be converted to a Signed Statement with a matching content type Claim.
+During initialization of a Transparency Service, the first Signed Statements registered will be for a trust anchor that is not validated by any Registration Policy.
+
+This specification leaves implementation and encoding of Registration Policy to the operator of the Transparency Service.
+
+### Transparency Log
+
+The security properties of the Append-only Log are determined by the choice of the verifiable data structure used to produce receipts.
+
+In addition to Receipts, some verifiable data structures might support additional proof types, such as proofs of consistency, or proofs of non inclusion.
+
+Specific verifiable data structures, such those describes in {{-CT}} and {{-COMETRE}} are out of scope for this document.
+
+#### Adjacent Services
+
+Transparency Services can be deployed along side other data or object storage technologies.
+
+For example, a Transparency Service that is supporting a software package management system might be referenced from the APIs exposed for package management.
+Providing an ability to request a fresh receipt for a given software package, or to request a list of signed statements and Artifacts associated with a software package.
+
+## Verifying Transparent Statements {#validation}
+
+For a given Transparent Statement, Verifiers take as trusted inputs:
+
+1. the CWT_Claims Issuer (or its resolved key manifest)
+1. the collection of Transparent Statements to which this Statement about the Artifact belongs (CWT_Claims Subject)
+1. the list of service identities of trusted Transparency Services
+
+When presented with a Transparent Statement for an Artifact, Verifiers verify the CWT_Claims Issuer identity, signature, and Receipt.
+They may additionally apply a validation policy based on the protected headers present both in the Envelope, the Receipt, or the Statement itself, which may include security-critical or Artifact-specific details.
+
+Some Verifiers may systematically fetch all Transparent Statements using the CWT_Claims Subject and assess them alongside the Transparent Statement they are verifying to ensure freshness, completeness of evidence, and Non-equivocation.
+
+Some Verifiers may choose to subset the collection of Statements, filtering on the payload type (Protected Header `3`), the CWT (Protected Header `15`) Issuer claim, or other non-opaque properties.
+
+Some Verifiers may systematically resolve Issuer identifiers to fetch the latest corresponding verification keys.
+This behavior strictly enforces the revocation of compromised keys.
+Once the Issuer has updated its Statement to remove a key identifier, all Signed Statements include the corresponding `kid` will be rejected.
+
+Some Verifiers may decide to skip the identifier-based signature verification, relying on the Transparency Service's Registration Policy and the scrutiny of other Verifiers.
+Although this weakens their guarantees against key revocation, or against a corrupt Transparency Services, they can still keep the Receipt and blame the Issuer or the Transparency Services at a later point.
+
+# Signed Statement Issuance, Registration, and Verification
+
+This section details the interoperability requirements for implementers of Signed Statements issuance and validation libraries, and of Transparency Services.
+
+## Signed Statement Envelope
+
+Signed Statements are CBOR encoded {{-CBOR}} and protected by CBOR Object Signing and Encryption (COSE {{-COSE}}).
+Signed Statements contain a protected, an unprotected header and a payload.
+
+All Signed Statements MUST include the following protected headers:
+
+- **algorithm** (label: `1`): Asymmetric signature algorithm used by the Issuer of a Signed Statement, as an integer.<br>
+  Example: `-35` is the registered algorithm identifier for ECDSA with SHA-384, see [COSE Algorithms Registry](#IANA.cose).
+- **Key ID** (label: `4`): Key ID, as a bytestring
+- **CWT_Claims** (label: `15` pending {{CWT_CLAIMS_COSE}}): A CWT representing the Issuer (`iss`) making the statement, and the Subject (`sub`) to correlate a collection of statements about an Artifact.
+  Additional {{CWT_CLAIMS}} MAY be used, while `iss` and `sub` MUST be provided
+  - **iss** (CWT_Claim Key `1`): The Identifier of the signer, as a string<br>
+    Example: `https://software.vendor.example`
+  - **sub** (CWT_Claim Key `2`): The Subject to which the Statement refers, chosen by the Issuer<br>
+    Example: `github.com/opensbom-generator/spdx-sbom-generator/releases/tag/v0.0.13`
+- **Content type** (label: `3`): The media type of the payload, as a string.<br>
+  Example: `application/spdx+json` as the media type of SDPX in JSON encoding
+
+In CDDL {{-CDDL}} notation, a Signed_Statement is defined as follows:
+
+~~~ cddl
+Signed_Statement = COSE_Sign1_Tagged
+
+COSE_Sign1_Tagged = #6.18(COSE_Sign1)
+>>>>>>> 12bd565936ff751a5548899e9b4ba653bc71a382
 
 COSE_Sign1 = [
   protected   : bstr .cbor Protected_Header,
@@ -849,7 +994,6 @@ In cases where key re-use is unavoidable, keys MUST NOT sign any other message t
 Each of these functions MUST be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the Transparency Service.
 
 For instance, the code for the Registration Policy evaluation and endorsement may be protected by running in a Trusted Execution Environment (TEE).
-
 
 The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance (pBFT {{PBFT}}) and may be used to protect against malicious or vulnerable replicas.
 Threshold signatures may be use to protect the service key, etc.
