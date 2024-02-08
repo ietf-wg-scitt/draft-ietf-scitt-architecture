@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 4 August 2024                                        C. Fournet
+Expires: 11 August 2024                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         1 February 2024
+                                                         8 February 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 August 2024.
+   This Internet-Draft will expire on 11 August 2024.
 
 Copyright Notice
 
@@ -395,49 +395,48 @@ Table of Contents
 
 5.  Architecture Overview
 
-                   .----------.
-                  |  Artifact  |
-                   '----+-----'
-                        v
-                   .----+----.  .----------.   Identifiers
-  Issuer      --> | Statement ||  Envelope  +<-------------.
-                   '----+----'  '-----+----'                |
-                        |             |            .--------+--.
-                         '----. .----'            |  Identity   |
-                               |                  |  Documents  +---.
-                               v                   '------+----'     |
-                          .----+----.                     |          |
-                         |  Signed   |    COSE Signing    |          |
-                         | Statement +<-------------------+          |
-                          '----+----'                     |          |
-                               |                 +--------+------+   |
-                            .-' '--------------->+ Transparency  |   |
-                           |   .--------.        |               |   |
-  Transparency        -->  |  | Receipt  +<------+  Service      +-+ |
-       Service             |  |          +.      +--+------------+ | |
-                           |   '-+------'  |        | Transparency | |
-                           |     | Receipt +<-------+              | |
-                           |      '------+'         | Service      | |
-                            '-------. .-'           +------------+-+ |
-                                     |                           |   |
-                                     |                           |   |
-                                     v                           |   |
-                               .-----+-----.                     |   |
-                              | Transparent |                    |   |
-                              |  Statement  |                    |   |
-                               '-----+-----'                     |   |
-                                     |                           |   |
-                                     |'-------.     .------------)--'
-                                     |         |   |             |
-                                     |         v   v             |
-                                     |    .----+---+-----------. |
-  Verifier            -->            |   / Verify Transparent /  |
-                                     |  /      Statement     /   |
-                                     | '--------------------'    |
-                                     v                           v
-                            .--------+---------.      .----------+-----.
-  Auditor             -->  / Collect Receipts /      /   Replay Log   /
-                          '------------------'      '----------------'
+     .----------.
+    |  Artifact  |
+     '----+-----'
+          v
+     .----+----.  .----------.   Identifiers
+    | Statement ||  Envelope  +<-------------.
+     '----+----'  '-----+----'                |
+          |             |            .--------+--.
+           '----. .----'            |  Identity   |
+                 |                  |  Documents  +---.
+                 v                   '------+----'     |
+            .----+----.                     |          |
+           |  Signed   |    COSE Signing    |          |
+           | Statement +<-------------------+          |
+            '----+----'                     |          |
+                 |                 +--------+------+   |
+              .-' '--------------->+ Transparency  |   |
+             |   .--------.        |               |   |
+             |  | Receipt  +<------+  Service      +-+ |
+             |  |          +.      +--+------------+ | |
+             |   '-+------'  |        | Transparency | |
+             |     | Receipt +<-------+              | |
+             |      '------+'         | Service      | |
+              '-------. .-'           +------------+-+ |
+                       |                           |   |
+                       v                           |   |
+                 .-----+-----.                     |   |
+                | Transparent |                    |   |
+                |  Statement  |                    |   |
+                 '-----+-----'                     |   |
+                       |                           |   |
+                       |'-------.     .------------)--'
+                       |         |   |             |
+                       |         v   v             |
+                       |    .----+---+-----------. |
+                       |   / Verify Transparent /  |
+                       |  /      Statement     /   |
+                       | '--------------------'    |
+                       v                           v
+              .--------+---------.      .----------+-----.
+             / Collect Receipts /      /   Replay Log   /
+            '------------------'      '----------------'
 
    The SCITT architecture consists of a very loose federation of
    Transparency Services, and a set of common formats and protocols for
