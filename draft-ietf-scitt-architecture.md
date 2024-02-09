@@ -314,7 +314,6 @@ Considering CT in terms of SCITT:
 - SCTs are checked by browsers (Verifiers)
 - The Append-only Log can be checked by Auditors
 
-Note that just like CT logs are independent and their contents need not be consistent, Transparency Services are similarly independent of each other.
 
 # Architecture Overview
 
