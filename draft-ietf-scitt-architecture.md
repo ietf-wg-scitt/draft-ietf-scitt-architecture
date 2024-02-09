@@ -378,7 +378,6 @@ The Append-only Log is the verifiable data structure which registers Signed Stat
 All Transparency Services MUST expose APIs for the registration of Signed Statements and issuance of Receipts.
 
 Transparency Services MAY support additional APIs for auditing, for instance, to query the history of Signed Statements.
-TODO: Remove this ^. It is a layer violation, and it mixes the concept of feed, into the function of the Transparency Service.
 
 Typically a Transparency Services has a single issuer identity which is present in the `iss` claim of Receipts for that service.
 
