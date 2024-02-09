@@ -555,9 +555,9 @@ Signed Statements may be registered by a different party than their Issuer.
 The Transparency Service MAY verify the Statement payload format, content and other optional properties.
 1. **Apply Registration Policy:** The Transparency Service MUST check the attributes required by a policy are present in the protected headers.
   Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.
-1. **Register the Signed Statement** to the append-only log
-1. **Return the Transparent Statement**, which includes the Receipt
-  Details about generating Receipts are described in {{Receipt}}.
+1. **Register the Signed Statement** to the append-only log.
+1. **Return the Receipt**, which MAY be asynchronous from registration.
+Details about generating Receipts are described in {{Receipt}}.
 
 The last two steps may be shared between a batch of Signed Statements recorded in the Append-only Log.
 
@@ -566,7 +566,7 @@ Conversely, the Transparency Service MAY re-issue Receipts for the Append-only L
 
 ## Transparent Statements {#Receipt}
 
-The client (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the Unprotected header of the Signed Statement.
+The client (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the Unprotected Header of the Signed Statement.
 
 When a Signed Statement is registered by a Transparency Service a Receipt becomes available.
 When a Receipt is included in a Signed Statement a Transparent Statement is produced.
@@ -577,7 +577,7 @@ The registration time is defined as the timestamp at which the Transparency Serv
 
 **Editor's Note:** The WG is discussing if existing CWT claims might better support these design principles.
 
-Figure {{fig-transparent-statement-cddl}} illustrated a normative CDDL definition of Transparent Statements.
+{{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements.
 
 ~~~ cddl
 Transparent_Statement = #6.18(COSE_Sign1)
@@ -604,7 +604,7 @@ Unprotected_Header = {
 ~~~~
 {: #fig-transparent-statement-edn title="CBOR Extended Diagnostic Notation example of a Transparent Statement"}
 
-Figure {{fig-transparent-statement-edn}} illustrates a payload that is detached.
+{{fig-transparent-statement-edn}} illustrates a payload that is detached.
 
 The unprotected header can contain multiple receipts.
 
@@ -747,7 +747,7 @@ Each of these functions MUST be carefully protected against both external attack
 
 For instance, the code for the Registration Policy evaluation and endorsement may be protected by running in a Trusted Execution Environment (TEE).
 
-The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance (pBFT {{PBFT}}) and may be used to protect against malicious or vulnerable replicas.
+The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance {{PBFT}} and may be used to protect against malicious or vulnerable replicas.
 Threshold signatures may be use to protect the service key, etc.
 
 Issuers and Transparency Services MUST rotate verification keys for signature checking in well-defined cryptoperiods (see {{KEY-MANAGEMENT}}).
