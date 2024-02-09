@@ -1797,19 +1797,18 @@ This specification is left intentionally open to allow implementatons to make th
 <p id="section-4.2-3">Support for <code>x5t</code> is mandatory to implement.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
 <p id="section-4.2-4">Support for <code>kid</code> is optional.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 <p id="section-4.2-5">When <code>x5t</code> is present, <code>iss</code> <span class="bcp14">MUST</span> be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.<a href="#section-4.2-5" class="pilcrow">¶</a></p>
-<p id="section-4.2-6">TODO: address the guidance on choosing <code>iss</code> values for certificate based identities.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
-<p id="section-4.2-7">The mechanisms for how Transparency Services obtain identity documents is out-of-scope of this document.<a href="#section-4.2-7" class="pilcrow">¶</a></p>
-<p id="section-4.2-8">The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when the <code>x5t</code> header parameter is not present.
-Key discovery protocols are out-of-scope of this document.<a href="#section-4.2-8" class="pilcrow">¶</a></p>
-<p id="section-4.2-9">The protected header of a Signed Statement and a Receipt <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10#section-2" class="relref">Section 2</a> of [<a href="#CWT_CLAIMS_COSE" class="cite xref">CWT_CLAIMS_COSE</a>]</span>.
-The <code>CWT Claims</code> value <span class="bcp14">MUST</span> include the <code>Issuer Claim</code> (Claim label 1) and the <code>Subject Claim</code> (Claim label 2) <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span>.<a href="#section-4.2-9" class="pilcrow">¶</a></p>
-<p id="section-4.2-10">A Receipt is a Signed Statement, with addition claims in its protected header related to verifying the inclusion proof in its unprotected header. See <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span>.<a href="#section-4.2-10" class="pilcrow">¶</a></p>
-<p id="section-4.2-11">Figure <a href="#fig-signed-statement-cddl" class="auto internal xref">Figure 1</a> illustrated a normative CDDL definition for of the protected header for Signed Statements and Receipts.<a href="#section-4.2-11" class="pilcrow">¶</a></p>
-<p id="section-4.2-12">Everything that is optional in the following CDDL can potentially be discovered out of band and Registration Policies are not assured on the presence of these optional fields.
-A Registration Policy that requires an optional field to be present <span class="bcp14">MUST</span> reject any Signed Statements or Receipts that an invalid according to the policy.<a href="#section-4.2-12" class="pilcrow">¶</a></p>
+<p id="section-4.2-6">The mechanisms for how Transparency Services obtain identity documents is out-of-scope of this document.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
+<p id="section-4.2-7">The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when the <code>x5t</code> header parameter is not present.
+Key discovery protocols are out-of-scope of this document.<a href="#section-4.2-7" class="pilcrow">¶</a></p>
+<p id="section-4.2-8">The protected header of a Signed Statement and a Receipt <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10#section-2" class="relref">Section 2</a> of [<a href="#CWT_CLAIMS_COSE" class="cite xref">CWT_CLAIMS_COSE</a>]</span>.
+The <code>CWT Claims</code> value <span class="bcp14">MUST</span> include the <code>Issuer Claim</code> (Claim label 1) and the <code>Subject Claim</code> (Claim label 2) <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span>.<a href="#section-4.2-8" class="pilcrow">¶</a></p>
+<p id="section-4.2-9">A Receipt is a Signed Statement, with addition claims in its protected header related to verifying the inclusion proof in its unprotected header. See <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span>.<a href="#section-4.2-9" class="pilcrow">¶</a></p>
+<p id="section-4.2-10">Figure <a href="#fig-signed-statement-cddl" class="auto internal xref">Figure 1</a> illustrated a normative CDDL definition for of the protected header for Signed Statements and Receipts.<a href="#section-4.2-10" class="pilcrow">¶</a></p>
+<p id="section-4.2-11">Everything that is optional in the following CDDL can potentially be discovered out of band and Registration Policies are not assured on the presence of these optional fields.
+A Registration Policy that requires an optional field to be present <span class="bcp14">MUST</span> reject any Signed Statements or Receipts that an invalid according to the policy.<a href="#section-4.2-11" class="pilcrow">¶</a></p>
 <span id="name-cddl-definition-for-signed-"></span><div id="fig-signed-statement-cddl">
 <figure id="figure-1">
-          <div class="lang-cddl sourcecode" id="section-4.2-13.1">
+          <div class="lang-cddl sourcecode" id="section-4.2-12.1">
 <pre>
 Signed_Statement = #6.18(COSE_Sign1)
 Receipt = #6.18(COSE_Sign1)
@@ -1848,7 +1847,7 @@ Unprotected_Header = {
 </div>
 <span id="name-cbor-extended-diagnostic-no"></span><div id="fig-signed-statement-protected-header-edn">
 <figure id="figure-2">
-          <div class="lang-cbor-diag sourcecode" id="section-4.2-14.1">
+          <div class="lang-cbor-diag sourcecode" id="section-4.2-13.1">
 <pre>
 {                                   / Protected                     /
   1: -7,                            / Algorithm                     /
@@ -1867,7 +1866,7 @@ Unprotected_Header = {
 </div>
 <span id="name-cbor-extended-diagnostic-not"></span><div id="fig-signed-statement-edn">
 <figure id="figure-3">
-          <div class="lang-cbor-diag sourcecode" id="section-4.2-15.1">
+          <div class="lang-cbor-diag sourcecode" id="section-4.2-14.1">
 <pre>
 18(                                 / COSE Sign 1                   /
     [
@@ -1883,45 +1882,45 @@ Unprotected_Header = {
 <a href="#name-cbor-extended-diagnostic-not" class="selfRef">CBOR Extended Diagnostic Notation example of a Signed Statement</a>
           </figcaption></figure>
 </div>
-<p id="section-4.2-16">Figure <a href="#fig-signed-statement-edn" class="auto internal xref">Figure 3</a> illustrates a payload that is detached.
-This is to support very large supply chain artifacts, and to ensure that Transparent Statements can integrate with existing file systems.<a href="#section-4.2-16" class="pilcrow">¶</a></p>
-<p id="section-4.2-17">There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
+<p id="section-4.2-15">Figure <a href="#fig-signed-statement-edn" class="auto internal xref">Figure 3</a> illustrates a payload that is detached.
+This is to support very large supply chain artifacts, and to ensure that Transparent Statements can integrate with existing file systems.<a href="#section-4.2-15" class="pilcrow">¶</a></p>
+<p id="section-4.2-16">There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
 An Issuer must first decide on a suitable format (<code>3</code>: payload type) to serialize the Statement payload.
-For a software supply chain, payloads describing the software artifacts may include:<a href="#section-4.2-17" class="pilcrow">¶</a></p>
+For a software supply chain, payloads describing the software artifacts may include:<a href="#section-4.2-16" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.2-18.1">
-            <p id="section-4.2-18.1.1"><span>[<a href="#COSWID" class="cite xref">COSWID</a>]</span><a href="#section-4.2-18.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-4.2-17.1">
+            <p id="section-4.2-17.1.1"><span>[<a href="#COSWID" class="cite xref">COSWID</a>]</span><a href="#section-4.2-17.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-4.2-18.2">
-            <p id="section-4.2-18.2.1"><span>[<a href="#CycloneDX" class="cite xref">CycloneDX</a>]</span><a href="#section-4.2-18.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-4.2-17.2">
+            <p id="section-4.2-17.2.1"><span>[<a href="#CycloneDX" class="cite xref">CycloneDX</a>]</span><a href="#section-4.2-17.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-4.2-18.3">
-            <p id="section-4.2-18.3.1"><span>[<a href="#in-toto" class="cite xref">in-toto</a>]</span><a href="#section-4.2-18.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-4.2-17.3">
+            <p id="section-4.2-17.3.1"><span>[<a href="#in-toto" class="cite xref">in-toto</a>]</span><a href="#section-4.2-17.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-4.2-18.4">
-            <p id="section-4.2-18.4.1"><span>[<a href="#SPDX-CBOR" class="cite xref">SPDX-CBOR</a>]</span><a href="#section-4.2-18.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-4.2-17.4">
+            <p id="section-4.2-17.4.1"><span>[<a href="#SPDX-CBOR" class="cite xref">SPDX-CBOR</a>]</span><a href="#section-4.2-17.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-4.2-18.5">
-            <p id="section-4.2-18.5.1"><span>[<a href="#SPDX-JSON" class="cite xref">SPDX-JSON</a>]</span><a href="#section-4.2-18.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-4.2-17.5">
+            <p id="section-4.2-17.5.1"><span>[<a href="#SPDX-JSON" class="cite xref">SPDX-JSON</a>]</span><a href="#section-4.2-17.5.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-4.2-18.6">
-            <p id="section-4.2-18.6.1"><span>[<a href="#SLSA" class="cite xref">SLSA</a>]</span><a href="#section-4.2-18.6.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-4.2-17.6">
+            <p id="section-4.2-17.6.1"><span>[<a href="#SLSA" class="cite xref">SLSA</a>]</span><a href="#section-4.2-17.6.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-4.2-18.7">
-            <p id="section-4.2-18.7.1"><span>[<a href="#SWID" class="cite xref">SWID</a>]</span><a href="#section-4.2-18.7.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-4.2-17.7">
+            <p id="section-4.2-17.7.1"><span>[<a href="#SWID" class="cite xref">SWID</a>]</span><a href="#section-4.2-17.7.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-4.2-19">Once all the Envelope headers are set, an Issuer <span class="bcp14">MUST</span> use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of <code>COSE_Sign1_Tagged</code> is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).<a href="#section-4.2-19" class="pilcrow">¶</a></p>
-<p id="section-4.2-20">Issuers may produce Signed Statements about different Artifacts under the same Identity.
+<p id="section-4.2-18">Once all the Envelope headers are set, an Issuer <span class="bcp14">MUST</span> use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of <code>COSE_Sign1_Tagged</code> is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).<a href="#section-4.2-18" class="pilcrow">¶</a></p>
+<p id="section-4.2-19">Issuers may produce Signed Statements about different Artifacts under the same Identity.
 Issuers and Verifiers must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
-The <code>iss</code> and <code>sub</code> claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.<a href="#section-4.2-20" class="pilcrow">¶</a></p>
-<p id="section-4.2-21">See Subject under <a href="#terminology" class="auto internal xref">Section 2</a> Terminology.<a href="#section-4.2-21" class="pilcrow">¶</a></p>
-<p id="section-4.2-22">Issuers <span class="bcp14">MAY</span> use different signing keys (identified by <code>kid</code> in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.<a href="#section-4.2-22" class="pilcrow">¶</a></p>
-<p id="section-4.2-23">An Issuer can make multiple Statements about the same Artifact.
-For example, an Issuer can make amended Statements about the same Artifact as their view changes over time.<a href="#section-4.2-23" class="pilcrow">¶</a></p>
-<p id="section-4.2-24">Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
-Verifiers can choose which Issuers they trust.<a href="#section-4.2-24" class="pilcrow">¶</a></p>
-<p id="section-4.2-25">Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.<a href="#section-4.2-25" class="pilcrow">¶</a></p>
+The <code>iss</code> and <code>sub</code> claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.<a href="#section-4.2-19" class="pilcrow">¶</a></p>
+<p id="section-4.2-20">See Subject under <a href="#terminology" class="auto internal xref">Section 2</a> Terminology.<a href="#section-4.2-20" class="pilcrow">¶</a></p>
+<p id="section-4.2-21">Issuers <span class="bcp14">MAY</span> use different signing keys (identified by <code>kid</code> in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.<a href="#section-4.2-21" class="pilcrow">¶</a></p>
+<p id="section-4.2-22">An Issuer can make multiple Statements about the same Artifact.
+For example, an Issuer can make amended Statements about the same Artifact as their view changes over time.<a href="#section-4.2-22" class="pilcrow">¶</a></p>
+<p id="section-4.2-23">Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
+Verifiers can choose which Issuers they trust.<a href="#section-4.2-23" class="pilcrow">¶</a></p>
+<p id="section-4.2-24">Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.<a href="#section-4.2-24" class="pilcrow">¶</a></p>
 <div id="sec-registration">
 <section id="section-4.2.1">
           <h4 id="name-registration">
