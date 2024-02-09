@@ -71,15 +71,12 @@ contributor:
 normative:
   RFC2046:
   RFC6838:
-  RFC8610: CDDL
-  RFC8949: CBOR
   RFC9052: COSE
   RFC9360:
   COSWID: RFC9393
 
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
   IANA.cwt:
-  IANA.cose:
   IANA.media-types:
   IANA.named-information:
   RFC6570: URITemplate
