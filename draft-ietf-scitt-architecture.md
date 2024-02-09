@@ -313,7 +313,6 @@ Considering CT in terms of SCITT:
 - SCTs are checked by browsers (Verifiers)
 - The Append-only Log can be checked by Auditors
 
-
 # Architecture Overview
 
 ~~~aasvg
@@ -368,8 +367,6 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
 
 This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and Signed Statements, Transparency Service and the Signed Statement Registration process, as well as Verifiers of the Transparent Statements and the Receipt validation process.
 
-
-
 ## Transparency Service
 
 An important function of a Transparency Service is to maintain Registration Policies for the Append-only Log.
@@ -381,7 +378,7 @@ Transparency Services MAY support additional APIs for auditing, for instance, to
 
 Typically a Transparency Services has a single issuer identity which is present in the `iss` claim of Receipts for that service.
 
-Multitenant support can be enabled through the use of identifiers in the `iss` claim, for example, `ts.example` may have a distinct issuer identity for each sub domain, such as `customer1.ts.example` and `customer2.ts.example`.
+Multi-tenant support can be enabled through the use of identifiers in the `iss` claim, for example, `ts.example` may have a distinct issuer identity for each sub domain, such as `customer1.ts.example` and `customer2.ts.example`.
 
 ### Initialization {#ts-initialization}
 
@@ -428,7 +425,7 @@ Providing an ability to request a fresh receipt for a given software package, or
 
 This specification prioritizes conformance to RFC9052 and its required and optional properties.
 Profiles and implementation specific choices should be used to determine admissability of conforming messages.
-This specification is left intentionally open to allow implementatons to make the restrictions that make the most sense for their operational use cases.
+This specification is left intentionally open to allow implementations to make the restrictions that make the most sense for their operational use cases.
 
 At least one identifier for an identity document MUST be included in the protected header of the COSE envelope, either `x5t` or `kid`.
 
@@ -437,7 +434,6 @@ Support for `x5t` is mandatory to implement.
 Support for `kid` is optional.
 
 When `x5t` is present, `iss` MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
-
 
 The mechanisms for how Transparency Services obtain identity documents is out-of-scope of this document.
 
@@ -570,10 +566,9 @@ The last two steps may be shared between a batch of Signed Statements recorded i
 A Transparency Service MUST ensure that a Signed Statement is registered before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry (the now Transparent Statement) in the Append-only Log.
 Conversely, the Transparency Service MAY re-issue Receipts for the Append-only Log content, for instance after a transient fault during Signed Statement registration.
 
-
 ## Transparent Statements {#Receipt}
 
-The client (which is not necessarily the issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statment by adding the Receipt to the Unprotected header of the Signed Statement.
+The client (which is not necessarily the issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the Unprotected header of the Signed Statement.
 
 When a Signed Statement is registered by a Transparency Service a Receipt becomes available.
 When a Receipt is included in a Signed Statement a Transparent Statement is produced.
@@ -614,7 +609,6 @@ Unprotected_Header = {
 Figure {{fig-transparent-statement-edn}} illustrates a payload that is detached.
 
 The unprotected header can contain multiple receipts.
-
 
 ~~~~ cbor-diag
 {                                   / Protected                     /
@@ -750,7 +744,6 @@ Issuers MUST ensure that the Statement payloads in their Signed Statements are c
 
 Issuers and Transparency Services MUST carefully protect their private signing keys and avoid these keys being used for any purpose not described in this architecture document.
 In cases where key re-use is unavoidable, keys MUST NOT sign any other message that may be verified as an Envelope as part of a Signed Statement.
-
 
 Each of these functions MUST be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the Transparency Service.
 
