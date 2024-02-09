@@ -569,9 +569,10 @@ Table of Contents
    Claim (Claim label 1) and the Subject Claim (Claim label 2)
    [IANA.cwt].
 
-   A Receipt is a Signed Statement, with addition claims in its
-   protected header related to verifying the inclusion proof in its
-   unprotected header.  See [I-D.draft-steele-cose-merkle-tree-proofs].
+   A Receipt is a Signed Statement, (cose-sign1), with addition claims
+   in its protected header related to verifying the inclusion proof in
+   its unprotected header.  See
+   [I-D.draft-steele-cose-merkle-tree-proofs].
 
    Figure Figure 1 illustrated a normative CDDL definition for of the
    protected header for Signed Statements and Receipts.
