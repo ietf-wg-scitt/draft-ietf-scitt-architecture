@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 11 August 2024                                       C. Fournet
+Expires: 12 August 2024                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         8 February 2024
+                                                         9 February 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 August 2024.
+   This Internet-Draft will expire on 12 August 2024.
 
 Copyright Notice
 
@@ -185,11 +185,11 @@ Table of Contents
    in [RFC9052].
 
    Append-only Log (Ledger):  the verifiable append-only data structure
-      that stores Signed Statements in a Transparency Service often
-      referred to by the synonym, Log or Ledger.  SCITT supports
-      multiple Log and Receipt formats to accommodate different
-      Transparency Service implementations, and the proof types
-      associated with different types of Append-only Log.
+      that stores Signed Statements in a Transparency Service, often
+      referred to by the synonym, Ledger.  SCITT supports multiple
+      Ledger and Receipt formats to accommodate different Transparency
+      Service implementations, and the proof types associated with
+      different types of Append-only Logs.
 
    Artifact:  a physical or non-physical item that is moving along a
       supply chain.
@@ -208,10 +208,15 @@ Table of Contents
       signature).
 
    Equivocation:  a state where it is possible for a Transparency
-      Service to provide different views of its append-only log to
+      Service to provide different views of its Append-only log to
       Verifiers about the same Artifact [EQUIVOCATION].
 
-   Feed:  see Subject
+   Feed:  A collection of Receipts, as recorded by the Transparency
+      Service, based on filtering of properties from the envelope
+      including, but not limited to the sub field of the CWT_Claims.
+      Verifiers may use the Feed to ensure completeness and Non-
+      equivocation in supply chain evidence by identifying all
+      Transparent Statements linked to the Artifact they are evaluating.
 
    Issuer:  organizations, stakeholders, and users involved in creating
       or attesting to supply chain artifacts, releasing authentic
@@ -264,16 +269,19 @@ Table of Contents
       header.  The Statement is considered opaque to Transparency
       Service, and MAY be encrypted.
 
-   Subject:  a logical collection of Statements about the same Artifact.
-      For any step or set of steps in a supply chain there may be
-      multiple statements made about the same Artifact.  Issuers use
-      Subject to create a coherent sequence of Signed Statements about
-      the same Artifact and Verifiers use the Subject to ensure
-      completeness and Non-equivocation in supply chain evidence by
-      identifying all Transparent Statements linked to the one(s) they
-      are evaluating.  In SCITT, Subject is a property of the dedicated,
-      protected header attribute 15: CWT_Claims within the protected
-      header of the COSE envelope.
+   Subject:  This term has the same definition as in RFC8392, which
+      relies on the definition in RFC7519.  The "sub" (subject) claim
+      identifies the principal that is the subject of the CWT.  The
+      claims in a CWT are normally statements about the subject.  In
+      SCITT, "sub" identifies the entity about which statements, and
+      receipts are made.  The subject value MUST either be scoped to be
+      locally unique in the context of the issuer or be globally unique.
+      The processing of this claim is generally application specific.
+      The "sub" value is a case-sensitive string containing a
+      StringOrURI value.  Issuer's use sub to identify the entity about
+      which they are making Signed Statements.  Transparency Services
+      use sub to identify the entity about which they are issuing a
+      Receipt.
 
    Transparency Service:  an entity that maintains and extends the
       Append-only Log, and endorses its state.  A Transparency Service
@@ -381,49 +389,48 @@ Table of Contents
 
 4.  Architecture Overview
 
-                   .----------.
-                  |  Artifact  |
-                   '----+-----'
-                        v
-                   .----+----.  .----------.   Identifiers
-  Issuer      --> | Statement ||  Envelope  +<-------------.
-                   '----+----'  '-----+----'                |
-                        |             |            .--------+--.
-                         '----. .----'            |  Identity   |
-                               |                  |  Documents  +---.
-                               v                   '------+----'     |
-                          .----+----.                     |          |
-                         |  Signed   |    COSE Signing    |          |
-                         | Statement +<-------------------+          |
-                          '----+----'                     |          |
-                               |                 +--------+------+   |
-                            .-' '--------------->+ Transparency  |   |
-                           |   .--------.        |               |   |
-  Transparency        -->  |  | Receipt  +<------+  Service      +-+ |
-       Service             |  |          +.      +--+------------+ | |
-                           |   '-+------'  |        | Transparency | |
-                           |     | Receipt +<-------+              | |
-                           |      '------+'         | Service      | |
-                            '-------. .-'           +------------+-+ |
-                                     |                           |   |
-                                     |                           |   |
-                                     v                           |   |
-                               .-----+-----.                     |   |
-                              | Transparent |                    |   |
-                              |  Statement  |                    |   |
-                               '-----+-----'                     |   |
-                                     |                           |   |
-                                     |'-------.     .------------)--'
-                                     |         |   |             |
-                                     |         v   v             |
-                                     |    .----+---+-----------. |
-  Verifier            -->            |   / Verify Transparent /  |
-                                     |  /      Statement     /   |
-                                     | '--------------------'    |
-                                     v                           v
-                            .--------+---------.      .----------+-----.
-  Auditor             -->  / Collect Receipts /      /   Replay Log   /
-                          '------------------'      '----------------'
+     .----------.
+    |  Artifact  |
+     '----+-----'
+          v
+     .----+----.  .----------.   Identifiers
+    | Statement ||  Envelope  +<-------------.
+     '----+----'  '-----+----'                |
+          |             |            .--------+--.
+           '----. .----'            |  Identity   |
+                 |                  |  Documents  +---.
+                 v                   '------+----'     |
+            .----+----.                     |          |
+           |  Signed   |    COSE Signing    |          |
+           | Statement +<-------------------+          |
+            '----+----'                     |          |
+                 |                 +--------+------+   |
+              .-' '--------------->+ Transparency  |   |
+             |   .--------.        |               |   |
+             |  | Receipt  +<------+  Service      +-+ |
+             |  |          +.      +--+------------+ | |
+             |   '-+------'  |        | Transparency | |
+             |     | Receipt +<-------+              | |
+             |      '------+'         | Service      | |
+              '-------. .-'           +------------+-+ |
+                       |                           |   |
+                       v                           |   |
+                 .-----+-----.                     |   |
+                | Transparent |                    |   |
+                |  Statement  |                    |   |
+                 '-----+-----'                     |   |
+                       |                           |   |
+                       |'-------.     .------------)--'
+                       |         |   |             |
+                       |         v   v             |
+                       |    .----+---+-----------. |
+                       |   / Verify Transparent /  |
+                       |  /      Statement     /   |
+                       | '--------------------'    |
+                       v                           v
+              .--------+---------.      .----------+-----.
+             / Collect Receipts /      /   Replay Log   /
+            '------------------'      '----------------'
 
    The SCITT architecture consists of a very loose federation of
    Transparency Services, and a set of common formats and protocols for
