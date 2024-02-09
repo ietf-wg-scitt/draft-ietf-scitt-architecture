@@ -179,10 +179,8 @@ Considering CT in terms of SCITT:
 - CAs (Issuers) sign X.509 TBSCertificates (Artifacts) to produce X.509 certificates (Signed Statements)
 - CAs submit the certificates to one or more CT logs (Transparency Services)
 - CT logs produce Signed Certificate Timestamps (Transparent Statements)
-- SCTs are checked by browsers (Verifiers)
-- The Append-only Log can be checked by Auditors
-
-Note that just like CT logs are independent and their contents need not be consistent, Transparency Services are similarly independent of each other.
+- Signed Certificate Timestamps are checked by Verifiers.
+- The Append-only Log can be checked by Verifiers and Auditors
 
 # Terminology {#terminology}
 
@@ -194,8 +192,8 @@ The terms "header", "payload", and "to-be-signed bytes" are defined in {{RFC9052
 
 Append-only Log (Ledger):
 
-: the verifiable append-only data structure that stores Signed Statements in a Transparency Service often referred to by the synonym, Log or Ledger.
-SCITT supports multiple Log and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Log.
+: the verifiable append-only data structure that stores Signed Statements in a Transparency Service, often referred to by the synonym, Ledger.
+SCITT supports multiple Ledger and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Logs.
 
 Artifact:
 
@@ -214,7 +212,7 @@ In COSE, an Envelope consists of a protected header (included in the Issuer's si
 
 Equivocation:
 
-: a state where it is possible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact {{EQUIVOCATION}}.
+: a state where it is possible for a Transparency Service to provide different views of its Append-only log to Verifiers about the same Artifact {{EQUIVOCATION}}.
 
 Feed:
 
@@ -251,7 +249,7 @@ However a Transparency Service can not alter the contents of the Signed Statemen
 Signed Statement:
 
 : an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
-In SCITT, Signed Statements are encoded as COSE signed objects; the payload of the COSE structure contains the issued Statement.
+In SCITT, Signed Statements are encoded as COSE signed objects; the `payload` of the COSE structure contains the issued Statement.
 
 Statement:
 
