@@ -174,7 +174,7 @@ When used in text, the corresponding terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.
 
 The label "394" is expected to be reserved by this document, in the COSE Header Parameters Registry.
-NOTE: Please remove this comment before publishing.
+**Editor's Note:** Please remove this comment before publishing.
 
 The terms "header", "payload", and "to-be-signed bytes" are defined in {{RFC9052}}.
 
@@ -577,7 +577,7 @@ Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle
 
 The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.
 
-Editor's Note: The WG is discussing if existing CWT claims might better support these design principles.
+**Editor's Note:** The WG is discussing if existing CWT claims might better support these design principles.
 
 Figure {{fig-transparent-statement-cddl}} illustrated a normative CDDL definition of Transparent Statements.
 
@@ -703,7 +703,7 @@ Verifiers MAY offer options to store or share the Receipt of the Transparent Sta
 
 # Federation
 
-**Note**: This topic is still under discussion, see [issue 79](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/79)
+**Editor's Note:** This topic is still under discussion, see [issue 79](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/79)
 
 Multiple, independently-operated Transparency Services can help secure distributed supply chains, without the need for a single, centralized service trusted by all parties.
 For example, multiple Transparency Service instances may be governed and operated by different organizations that are either unaware of the other or do not trust one another.
@@ -937,7 +937,7 @@ Let base-encoding, be a base encoding defined in {{-Base64Url}}.
 
 To promote interoperability, the base encoding MUST be "base64url".
 
-In the blocks and examples that follow, NOTE: '\' line wrapping per RFC 8792.
+In the blocks and examples that follow, note '\' line wrapping per RFC 8792.
 
 ## For Binary Content
 
