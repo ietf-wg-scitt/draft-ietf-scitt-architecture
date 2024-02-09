@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 11 August 2024                                       C. Fournet
+Expires: 12 August 2024                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         8 February 2024
+                                                         9 February 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 August 2024.
+   This Internet-Draft will expire on 12 August 2024.
 
 Copyright Notice
 
@@ -202,13 +202,9 @@ Table of Contents
    *  CT logs produce Signed Certificate Timestamps (Transparent
       Statements)
 
-   *  SCTs are checked by browsers (Verifiers)
+   *  Signed Certificate Timestamps are checked by Verifiers.
 
-   *  The Append-only Log can be checked by Auditors
-
-   Note that just like CT logs are independent and their contents need
-   not be consistent, Transparency Services are similarly independent of
-   each other.
+   *  The Append-only Log can be checked by Verifiers and Auditors
 
 3.  Terminology
 
@@ -222,11 +218,11 @@ Table of Contents
    in [RFC9052].
 
    Append-only Log (Ledger):  the verifiable append-only data structure
-      that stores Signed Statements in a Transparency Service often
-      referred to by the synonym, Log or Ledger.  SCITT supports
-      multiple Log and Receipt formats to accommodate different
-      Transparency Service implementations, and the proof types
-      associated with different types of Append-only Log.
+      that stores Signed Statements in a Transparency Service, often
+      referred to by the synonym, Ledger.  SCITT supports multiple
+      Ledger and Receipt formats to accommodate different Transparency
+      Service implementations, and the proof types associated with
+      different types of Append-only Logs.
 
    Artifact:  a physical or non-physical item that is moving along a
       supply chain.
@@ -245,7 +241,7 @@ Table of Contents
       signature).
 
    Equivocation:  a state where it is possible for a Transparency
-      Service to provide different views of its append-only log to
+      Service to provide different views of its Append-only log to
       Verifiers about the same Artifact [EQUIVOCATION].
 
    Feed:  A collection of Receipts, as recorded by the Transparency
