@@ -54,7 +54,9 @@ author:
   name: Steve Lasker
   org: DataTrails
   email: steve.lasker@datatrails.ai
+  code: '98199'
   city: Seattle
+  region: WA
   country: United States
 
 contributor:
