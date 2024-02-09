@@ -461,7 +461,7 @@ Table of Contents
    Typically a Transparency Services has a single issuer identity which
    is present in the iss claim of Receipts for that service.
 
-   Multitenant support can be enabled through the use of identifiers in
+   Multi-tenant support can be enabled through the use of identifiers in
    the iss claim, for example, ts.example may have a distinct issuer
    identity for each sub domain, such as customer1.ts.example and
    customer2.ts.example.
@@ -542,7 +542,7 @@ Table of Contents
    required and optional properties.  Profiles and implementation
    specific choices should be used to determine admissability of
    conforming messages.  This specification is left intentionally open
-   to allow implementatons to make the restrictions that make the most
+   to allow implementations to make the restrictions that make the most
    sense for their operational use cases.
 
    At least one identifier for an identity document MUST be included in
@@ -745,7 +745,7 @@ Table of Contents
 
    The client (which is not necessarily the issuer) that registers a
    Signed Statement and receives a Receipt can produce a Transparent
-   Statment by adding the Receipt to the Unprotected header of the
+   Statement by adding the Receipt to the Unprotected header of the
    Signed Statement.
 
    When a Signed Statement is registered by a Transparency Service a
