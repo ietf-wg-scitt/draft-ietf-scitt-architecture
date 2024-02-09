@@ -260,7 +260,6 @@ Transparency Services use `sub` to identify the entity about which they are issu
 Transparency Service:
 
 : an entity that maintains and extends the Append-only Log, and endorses its state.
-A Transparency Service MAY alter the contents of the unprotected header of Signed Statements, this will alter the binary content stored on the log, from which receipts are produced.
 A Transparency Service can be a complex distributed system, and SCITT requires the Transparency Service to provide many security guarantees about its Append-only Log.
 The identity of a Transparency Service is captured by a public key that must be known by Verifiers in order to validate Receipts.
 
