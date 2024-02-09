@@ -438,7 +438,6 @@ Support for `kid` is optional.
 
 When `x5t` is present, `iss` MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
 
-TODO: address the guidance on choosing `iss` values for certificate based identities.
 
 The mechanisms for how Transparency Services obtain identity documents is out-of-scope of this document.
 
