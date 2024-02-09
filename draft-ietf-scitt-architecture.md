@@ -173,7 +173,8 @@ The terms defined in this section have special meaning in the context of Supply 
 When used in text, the corresponding terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.
 
-The label "394" is expected to be reserved by this document, in the COSE Header Parameters Registry.
+*The label "394" is expected to be reserved by this document, in the COSE Header Parameters Registry.*
+
 **Editor's Note:** Please remove this comment before publishing.
 
 The terms "header", "payload", and "to-be-signed bytes" are defined in {{RFC9052}}.
