@@ -724,10 +724,11 @@ Table of Contents
        may use information contained in the attributes of named
        policies.
 
-   6.  *Register the Signed Statement* to the append-only log
+   6.  *Register the Signed Statement* to the append-only log.
 
-   7.  *Return the Transparent Statement*, which includes the Receipt
-       Details about generating Receipts are described in Section 4.3.
+   7.  *Return the Receipt*, which MAY be asynchronous from
+       registration.  Details about generating Receipts are described in
+       Section 4.3.
 
    The last two steps may be shared between a batch of Signed Statements
    recorded in the Append-only Log.
@@ -744,7 +745,7 @@ Table of Contents
 
    The client (which is not necessarily the Issuer) that registers a
    Signed Statement and receives a Receipt can produce a Transparent
-   Statement by adding the Receipt to the Unprotected header of the
+   Statement by adding the Receipt to the Unprotected Header of the
    Signed Statement.
 
    When a Signed Statement is registered by a Transparency Service a
@@ -762,8 +763,8 @@ Table of Contents
    *Editor's Note:* The WG is discussing if existing CWT claims might
    better support these design principles.
 
-   Figure Figure 4 illustrated a normative CDDL definition of
-   Transparent Statements.
+   Figure 4 illustrates a normative CDDL definition of Transparent
+   Statements.
 
    Transparent_Statement = #6.18(COSE_Sign1)
 
@@ -789,7 +790,7 @@ Table of Contents
           Figure 5: CBOR Extended Diagnostic Notation example of a
                            Transparent Statement
 
-   Figure Figure 5 illustrates a payload that is detached.
+   Figure 5 illustrates a payload that is detached.
 
    The unprotected header can contain multiple receipts.
 
@@ -995,8 +996,8 @@ Table of Contents
    Environment (TEE).
 
    The Transparency Service may be replicated with a consensus
-   algorithm, such as Practical Byzantine Fault Tolerance (pBFT [PBFT])
-   and may be used to protect against malicious or vulnerable replicas.
+   algorithm, such as Practical Byzantine Fault Tolerance [PBFT] and may
+   be used to protect against malicious or vulnerable replicas.
    Threshold signatures may be use to protect the service key, etc.
 
    Issuers and Transparency Services MUST rotate verification keys for
