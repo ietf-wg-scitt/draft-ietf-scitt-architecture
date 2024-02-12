@@ -378,14 +378,6 @@ Typically a Transparency Services has a single Issuer identity which is present 
 
 Multi-tenant support can be enabled through the use of identifiers in the `iss` claim, for example, `ts.example` may have a distinct Issuer identity for each sub domain, such as `customer1.ts.example` and `customer2.ts.example`.
 
-### Initialization {#ts-initialization}
-
-The Append-only Log is empty when the Transparency Service is initialized.
-The first entry that is added to the Append-only Log MUST be a Signed Statement including key material.
-The second set of entries are Signed Statements for additional domain-specific Registration Policy.
-The third set of entries are Signed Statements for Artifacts.
-From here on a Transparency Service can check Signed Statements on registration via policy (that is at minimum, key material and typically a Registration Policy) and is therefore in a reliable state to register Signed Statements about Artifacts or a new Registration Policy.
-
 ### Append-only Log
 
 The security properties of the Append-only Log are determined by the choice of the verifiable data structure used to produce Receipts.
