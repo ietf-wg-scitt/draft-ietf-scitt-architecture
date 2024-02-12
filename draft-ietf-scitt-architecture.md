@@ -700,17 +700,23 @@ Verifiers MAY offer options to store or share the Receipt of the Transparent Sta
 
 # Federation
 
-**Editor's Note:** This topic is still under discussion, see [issue 79](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/79)
+Transparency Services MAY have Registration Policies that require Receipts from other Transparency Services to be included in the Unprotected Header of Signed Statements at the time of Registration.
 
-Multiple, independently-operated Transparency Services can help secure distributed supply chains, without the need for a single, centralized service trusted by all parties.
-For example, multiple Transparency Service instances may be governed and operated by different organizations that are either unaware of the other or do not trust one another.
+Transparency Services MUST reject Signed Statements that are invalid according to their Registration Policy, which can include requirements associated with the unprotected bytes comprising the cose-sign1 unprotected header.
 
-This may involve registering the same Signed Statements at different Transparency Services, each with their own purpose and Registration Policy.
+A Receipt for a Transparent Statement, proves that a Transparent Statement is included in an Append-only Log.
 
-This may also involve attaching multiple Receipts to the same Signed Statements.
+Receipts for Transparent Statements, are a special case of Receipts for Signed Statements.
 
-For example, a software producer of a supply chain artifact might rely on multiple independent software producers operating transparency services for their upstream artifacts.
-Downstream producers benefit from upstream producers providing higher transparency regarding their artifacts.
+Verifying Receipts for Transparent Statements can be difficult.
+
+Transparency Services SHOULD copy the unprotected header they observed at the time of registration into the Protected Header of their Receipt.
+
+This ensures that the exact bytes which they have included in their append only log, can be reconstructed, even though some of those bytes lacked integrited protection, due to being located in the unprotected header of a Signed Statement.
+
+Depending on the complexity of the unprotected header, additional cannonicalization operations MAY be required in order to recover the exact bytes that were included in the Append-only Log of a specific Transparency Service.
+
+Implementers are cautioned that maintaining the order of Receipts in the unprotected header is essential for uniquely identifying a Signed Statement with a specific series of Receipts in its unprotected header.
 
 # Privacy Considerations
 
