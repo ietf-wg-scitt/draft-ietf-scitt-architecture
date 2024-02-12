@@ -386,25 +386,6 @@ The second set of entries are Signed Statements for additional domain-specific R
 The third set of entries are Signed Statements for Artifacts.
 From here on a Transparency Service can check Signed Statements on registration via policy (that is at minimum, key material and typically a Registration Policy) and is therefore in a reliable state to register Signed Statements about Artifacts or a new Registration Policy.
 
-### Registration Policies
-
-Registration Policies refer to the checks that are performed before a Signed Statement is registered to an Append-only Log, and a corresponding Receipt becomes available.
-
-As a minimum, a Transparency Service MUST authenticate the Issuer of Signed Statements, which requires a trust anchor in the form of an already registered Signed Statement including key material (see {{ts-initialization}}).
-As defined in {{RFC6024}}, "A trust anchor represents an authoritative entity via a public key and associated data.
-The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
-Typical representations of a trust anchor include certificates or raw public keys.
-
-The `x5t` and `kid` Claims in the protected header of Signed Statements can be used as hints for discovering trust anchors.
-Before a Registration Policy is used to decide if a Signed Statement is registered, the policy MUST be registered.
-Before a Signed Statement is registered, the trust anchor used to verify it MUST be registered (e.g., via a registered Registration Policy).
-In order to register a trust anchor, the trust anchor MUST be converted to a Signed Statement with a matching content type Claim.
-During initialization of a Transparency Service, the first Signed Statements registered will be for a trust anchor that is not validated by any Registration Policy.
-
-Transparency Services MUST specify their supported signature algorithms in their Registration Policies.
-
-This specification leaves implementation, encoding and documentation of Registration Policies to the operator of the Transparency Service.
-
 ### Append-only Log
 
 The security properties of the Append-only Log are determined by the choice of the verifiable data structure used to produce Receipts.
