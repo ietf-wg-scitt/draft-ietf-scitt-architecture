@@ -698,26 +698,6 @@ Such policies may use as input all information in the Envelope, the Receipt, and
 
 Verifiers MAY offer options to store or share the Receipt of the Transparent Statement for auditing the Transparency Services in case a dispute arises.
 
-# Federation
-
-Transparency Services MAY have Registration Policies that require Receipts from other Transparency Services to be included in the Unprotected Header of Signed Statements at the time of Registration.
-
-Transparency Services MUST reject Signed Statements that are invalid according to their Registration Policy, which can include requirements associated with the unprotected bytes comprising the cose-sign1 unprotected header.
-
-A Receipt for a Transparent Statement, proves that a Transparent Statement is included in an Append-only Log.
-
-Receipts for Transparent Statements, are a special case of Receipts for Signed Statements.
-
-Verifying Receipts for Transparent Statements can be difficult.
-
-Transparency Services SHOULD copy the unprotected header they observed at the time of registration into the Protected Header of their Receipt.
-
-This ensures that the exact bytes which they have included in their append only log, can be reconstructed, even though some of those bytes lacked integrited protection, due to being located in the unprotected header of a Signed Statement.
-
-Depending on the complexity of the unprotected header, additional cannonicalization operations MAY be required in order to recover the exact bytes that were included in the Append-only Log of a specific Transparency Service.
-
-Implementers are cautioned that maintaining the order of Receipts in the unprotected header is essential for uniquely identifying a Signed Statement with a specific series of Receipts in its unprotected header.
-
 # Privacy Considerations
 
 Transparency Services are often publicly accessible.
