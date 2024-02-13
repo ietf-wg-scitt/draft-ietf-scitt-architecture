@@ -197,11 +197,11 @@ Table of Contents
    Auditor:  an entity that checks the correctness and consistency of
       all Transparent Statements issued by a Transparency Service.
 
-   Client:  an application making Transparency Service resource requests
-      on behalf of the resource owner and with its authorization
-      [RFC6749].  The term "Client" does not imply any particular
-      implementation characteristics (e.g., whether the application
-      executes on a server, a desktop, or other devices).
+   Client:  an application making protected Transparency Service
+      resource requests on behalf of the resource owner and with its
+      authorization [RFC6749].  The term "Client" does not imply any
+      particular implementation characteristics (e.g., whether the
+      application executes on a server, a desktop, or other devices).
 
    Envelope:  metadata, created by the Issuer to produce a Signed
       Statement.  The Envelope contains the identity of the Issuer and
