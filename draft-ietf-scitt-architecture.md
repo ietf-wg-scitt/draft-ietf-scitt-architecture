@@ -381,7 +381,7 @@ Multi-tenant support can be enabled through the use of identifiers in the `iss` 
 
 Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is accepted to be registered to the Append-only Log.
 
-Transparency Services MUST maintain Registration Policies which govern whether or not a given Signed Statement is eligible for registration. 
+Transparency Services MUST maintain Registration Policies which govern whether or not a given Signed Statement is eligible for registration.
 
 Registration Policies MUST be made transparent and available to all clients of the Transparency Service by registering them as Signed Statements on the Append-only Log and providing a means of fetching and verifying the corresponding Transparent Statement.
 
