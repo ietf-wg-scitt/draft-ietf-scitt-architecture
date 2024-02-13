@@ -554,7 +554,6 @@ To register a Signed Statement, the Transparency Service performs the following 
 
 1. **Client authentication:** A Client authenticates with the Transparency Service, to Register Signed Statements.
 Authentication and authorization is implementation-specific, and out of scope of the SCITT Architecture.
-Signed Statements may be registered by a different Client identity than the Issuer.
 1. **Issuer Verification:** The Transparency Service MUST perform resolution of the Issuer's identity, which may be different than the Client identity.
   This step may require that the service retrieves the Issuer ID in real-time, or rely on a cache of recent resolutions.
   For auditing, during Registration, the Transparency Service MUST store evidence of the lookup, including if it was resolved from a cache.
