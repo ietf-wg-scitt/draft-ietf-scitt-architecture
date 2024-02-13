@@ -91,10 +91,10 @@ informative:
 
   RFC2397: DataURLs
   RFC6024:
+  RFC6749:
   RFC8141: URNs
   RFC9162: CT
   RFC9334: rats-arch
-
   CWT_CLAIMS:
     target: https://www.iana.org/assignments/cwt/cwt.xhtml
     title: CBOR Web Token (CWT) Claims
@@ -194,8 +194,9 @@ Auditor:
 
 Client:
 
-: a process, user or another service that externally connects to the Transparency Service.
-A Client and Issuer are not synonymous as a Client may register Statements signed by a different Issuer identity.
+: an application making Transparency Service resource requests on behalf of the resource owner and with its authorization {{RFC6749}}.
+The term "Client" does not imply any particular implementation characteristics (e.g., whether the application executes on a server, a desktop, or other
+      devices).
 
 Envelope:
 
