@@ -367,7 +367,8 @@ This section describes at a high level, the three main roles and associated proc
 
 ## Transparency Service
 
-Transparency Services MUST feature an Append-only Log. The Append-only Log is the verifiable data structure which registers Signed Statements and supports the production of Receipts.
+Transparency Services MUST feature an Append-only Log.
+The Append-only Log is the verifiable data structure that registers Signed Statements and supports the production of Receipts.
 
 All Transparency Services MUST expose APIs for the registration of Signed Statements and issuance of Receipts.
 
