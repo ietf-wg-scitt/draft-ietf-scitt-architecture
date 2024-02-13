@@ -197,10 +197,11 @@ Table of Contents
    Auditor:  an entity that checks the correctness and consistency of
       all Transparent Statements issued by a Transparency Service.
 
-   Client:  a process, user or another service that externally connects
-      to the Transparency Service.  A Client and Issuer are not
-      synonymous as a Client may register Statements signed by a
-      different Issuer identity.
+   Client:  an application making Transparency Service resource requests
+      on behalf of the resource owner and with its authorization
+      [RFC6749].  The term "Client" does not imply any particular
+      implementation characteristics (e.g., whether the application
+      executes on a server, a desktop, or other devices).
 
    Envelope:  metadata, created by the Issuer to produce a Signed
       Statement.  The Envelope contains the identity of the Issuer and
@@ -1425,6 +1426,10 @@ Table of Contents
    [RFC6024]  Reddy, R. and C. Wallace, "Trust Anchor Management
               Requirements", RFC 6024, DOI 10.17487/RFC6024, October
               2010, <https://www.rfc-editor.org/rfc/rfc6024>.
+
+   [RFC6749]  Hardt, D., Ed., "The OAuth 2.0 Authorization Framework",
+              RFC 6749, DOI 10.17487/RFC6749, October 2012,
+              <https://www.rfc-editor.org/rfc/rfc6749>.
 
    [RFC8141]  Saint-Andre, P. and J. Klensin, "Uniform Resource Names
               (URNs)", RFC 8141, DOI 10.17487/RFC8141, April 2017,
