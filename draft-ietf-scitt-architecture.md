@@ -192,6 +192,11 @@ Auditor:
 
 : an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.
 
+Client:
+
+: a process, user or another service that externally connects to the Transparency Service.
+A Client and Issuer are not synonymous as a Client may register Statements signed by a different Issuer identity.
+
 Envelope:
 
 : metadata, created by the Issuer to produce a Signed Statement.
@@ -544,12 +549,12 @@ Multiple Issuers can make the same Statement about a single Artifact, affirming 
 
 ### Registration
 
-The same Signed Statement may be independently registered in multiple Transparency Services.
 To register a Signed Statement, the Transparency Service performs the following steps:
 
-1. **Client authentication:** This is implementation-specific and MAY be unrelated to the Issuer identity.
-Signed Statements may be registered by a different party than their Issuer.
-1. **Issuer Verification:** The Transparency Service MUST perform resolution of the Issuer's identity.
+1. **Client authentication:** A Client authenticates with the Transparency Service, to Register Signed Statements.
+Authentication and authorization is implementation-specific, and out of scope of the SCITT Architecture.
+Signed Statements may be registered by a different Client identity than the Issuer.
+1. **Issuer Verification:** The Transparency Service MUST perform resolution of the Issuer's identity, which may be different than the Client identity.
   This step may require that the service retrieves the Issuer ID in real-time, or rely on a cache of recent resolutions.
   For auditing, during Registration, the Transparency Service MUST store evidence of the lookup, including if it was resolved from a cache.
 1. **Signature verification:** The Transparency Service MUST verify the signature of the Signed Statement, as described in {{RFC9360}}, using the signature algorithm and verification key of the Issuer.
