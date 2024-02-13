@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-11T00:37:16.313831+00:00",
+  "timestamp": "2024-02-13T00:34:53.870544+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -709,7 +709,7 @@
       "id": "I_kwDOIvmHss5fdHKX",
       "title": "Statement by reference",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/18",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -718,8 +718,8 @@
       "labels": [],
       "body": "Copied over from: https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/issues/35\r\n\r\nAt IETF 115 there were discussions on having some kind of standard way to deal with statements by reference. Here are also the two relevant slides from https://datatracker.ietf.org/doc/slides-115-scitt-combined-scitt-presentations/:\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
       "createdAt": "2023-02-27T15:59:38Z",
-      "updatedAt": "2024-01-06T00:51:09Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:41:23Z",
+      "closedAt": "2024-02-12T17:41:23Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -755,6 +755,13 @@
           "body": "Noting that I believe supporting detached payloads, with a hash, is important to the first submission of the Architecture document. ",
           "createdAt": "2024-01-06T00:51:08Z",
           "updatedAt": "2024-01-06T00:51:08Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in the appendix of draft 05",
+          "createdAt": "2024-02-12T17:41:23Z",
+          "updatedAt": "2024-02-12T17:41:23Z"
         }
       ]
     },
@@ -867,7 +874,7 @@
       "id": "I_kwDOIvmHss5gFHY7",
       "title": "Support auditing of multiple replicas of a given Transparency Service, like in CT",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/21",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "nealmcb",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -876,8 +883,8 @@
       ],
       "body": "> Unlike CT, where independent auditors are responsible for enforcing the consistency of multiple independent instances of the same global Registry, each Transparency Service is required to guarantee the consistency of its own Registry (for instance, through the use of a consensus algorithm between replicas of the Registry), but assume no consistency between different Transparency Services\r\n\r\nThe sentence _Unlike CT,..._ takes away an important aspect of any transparency service, and negates the overall notion that we are trying to generalize CT.\r\n\r\nInstead, we should note that any given TS will be well served by having replicas and auditors which confirm that relying parties can choose any replica they want.",
       "createdAt": "2023-03-06T18:04:01Z",
-      "updatedAt": "2024-01-06T00:53:18Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:42:21Z",
+      "closedAt": "2024-02-12T17:42:21Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -2171,13 +2178,15 @@
       "state": "OPEN",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "OR13"
+      ],
       "labels": [
         "multiple-instances"
       ],
       "body": "This issue tracks initial work to be completed regarding profiling of COSE to support federation for SCITT.\r\n\r\n\r\nSome initial topics that still need to be addressed:\r\n\r\n- How do transparency services discovery each other?\r\n- How do they know if their policies are compatible?\r\n- How do they know if they support the same issuers? \r\n- How do they know if they support the same artifact types?\r\n- How is issuer privacy impacted by federation? ",
       "createdAt": "2023-07-08T12:39:47Z",
-      "updatedAt": "2023-11-21T17:22:12Z",
+      "updatedAt": "2024-02-12T17:39:58Z",
       "closedAt": null,
       "comments": [
         {
@@ -2214,6 +2223,13 @@
           "body": "Thanks for a thorough summary, @pdxjohnny. On the IETF side I am not sure exchanging was intended to mean federation, but in the pub/sub context ROLIE way be partially or wholly useful.\r\n\r\nhttps://datatracker.ietf.org/doc/rfc8322/",
           "createdAt": "2023-11-21T17:22:12Z",
           "updatedAt": "2023-11-21T17:22:12Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Suggestion is to remove the federation section",
+          "createdAt": "2024-02-12T17:39:48Z",
+          "updatedAt": "2024-02-12T17:39:48Z"
         }
       ]
     },
@@ -2566,7 +2582,7 @@
       "id": "I_kwDOIvmHss5wzzdy",
       "title": "Discovery of service parameters",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/96",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "pdxjohnny",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -2575,8 +2591,8 @@
       "labels": [],
       "body": "Knowledge of SCITT's tree algorithm and parameters for that tree algorithm are required for a client to verify receipts. It seems like we need to have an endpoint to enable discovery of those parameters.",
       "createdAt": "2023-09-12T14:18:47Z",
-      "updatedAt": "2023-12-12T15:48:46Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:40:24Z",
+      "closedAt": "2024-02-12T17:40:24Z",
       "comments": [
         {
           "author": "pdxjohnny",
@@ -2801,7 +2817,7 @@
       ],
       "body": "In section 5.2.3.3 `client` appears out of the blue. It is not clear what a `client` is. ",
       "createdAt": "2023-09-20T07:46:53Z",
-      "updatedAt": "2024-01-10T17:38:19Z",
+      "updatedAt": "2024-02-12T19:10:15Z",
       "closedAt": null,
       "comments": [
         {
@@ -2880,6 +2896,20 @@
           "body": "OK, it seems we are converging in a direction on #120 around verifier and relying party. The diagram based on author feedback demonstrates that with #156 likely updates to the spec forthcoming if that is approved. It turns out, not surprisingly, we need both verifier and relying party. The latter, if tweak terminology, could more clearly refer to client and resolve this issue as well.\r\n\r\nGiven that, and how it relates to here, I would argue that relying party is the correct substitute for client and this could be closed as a duplicate or modified accordingly to address that.\r\n\r\nThis change would be in line with with the RATS specification *iff* we distinguish between Verifier Owner/Verifier (person entity/logical system for that entity) and Relying Party Owner/Relying Party (person entity/logical system for that entity) and ironically [current I-D version 2.x of the OAuth AuthZ Framework](https://datatracker.ietf.org/doc/draft-ietf-oauth-v2-1/https://datatracker.ietf.org/doc/draft-ietf-oauth-v2-1/), various OAuth WG drafts (even if it seems not formally defined), and [the OpenID Connect Specification](https://openid.net/specs/openid-connect-core-1_0.html#Terminology). \r\n\r\nIt was unclear in previous discussion with authors if this is preferable or required, but it nicely aligns with small tactical changes to the diagram in #156 and relevant spec alignment in terminology and explanations.",
           "createdAt": "2024-01-10T17:38:17Z",
           "updatedAt": "2024-01-10T17:38:17Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Still active. @aj-stein-nist, do you have time to complete this item? ",
+          "createdAt": "2024-02-12T17:46:24Z",
+          "updatedAt": "2024-02-12T17:46:24Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I had presented on this topic and we had agreed some key revisions had to take place before we could decide to make adjustments. Are we at that point?\r\n\r\nAdditionally, the alignment with RATS and other specs: is this necessary or not? There are some open questions that are not covered, re https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/102#issuecomment-1885309749. I guess I will take it to the list.",
+          "createdAt": "2024-02-12T19:10:14Z",
+          "updatedAt": "2024-02-12T19:10:14Z"
         }
       ]
     },
@@ -3060,7 +3090,7 @@
       ],
       "body": "As discussed on today's call.\r\n\r\nFolks expressed concern that \"Verifier\" was not friendly enough to \"Consumers or Relying Parties\", that are supposed to process receipts.",
       "createdAt": "2023-10-23T15:22:39Z",
-      "updatedAt": "2024-01-19T15:31:18Z",
+      "updatedAt": "2024-02-12T17:48:07Z",
       "closedAt": null,
       "comments": [
         {
@@ -3153,6 +3183,13 @@
           "body": "Also of not my updates to the potential (and beneficial) overlap and possible alignment between relying party and client per https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/102#issuecomment-1885309749.",
           "createdAt": "2024-01-10T17:39:56Z",
           "updatedAt": "2024-01-10T17:39:56Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Ping @aj-stein-nist, @mwiseman-byid ",
+          "createdAt": "2024-02-12T17:48:06Z",
+          "updatedAt": "2024-02-12T17:48:06Z"
         }
       ]
     },
@@ -3161,15 +3198,15 @@
       "id": "I_kwDOIvmHss507r-i",
       "title": "Transparent Statement Recursion",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/124",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "```\r\nstatement -> receipt\r\nstatement + receipt => transparent statement^1\r\ntransparent statement -> receipt\r\ntransparent statement + receipt => transparent statement^2\r\n...\r\n```\r\n\r\nThere are cases where you want to drop all unprotected data from the signed statement before the registration policy will be applied, and cases where you really want to preserve those unprotected data elements so that the registration policy can be applied.\r\n\r\nWe need to describe transparent statement inception in detail and comment on its correct usage (and its nonsensical usage).\r\n",
       "createdAt": "2023-10-25T16:26:36Z",
-      "updatedAt": "2024-01-06T01:21:35Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:44:43Z",
+      "closedAt": "2024-02-12T17:44:42Z",
       "comments": [
         {
           "author": "OR13",
@@ -3198,6 +3235,13 @@
           "body": "> This issue is also related the concept of binding the registration policy to the signed statement... You might set the registration policy as an unprotected header property before adding the signed statement to the log... You will encounter a similar issue.\r\n\r\nSee: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/136#issuecomment-1879466796",
           "createdAt": "2024-01-06T00:59:36Z",
           "updatedAt": "2024-01-06T00:59:36Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as covered in most recent draft 05",
+          "createdAt": "2024-02-12T17:44:42Z",
+          "updatedAt": "2024-02-12T17:44:42Z"
         }
       ]
     },
@@ -3206,15 +3250,15 @@
       "id": "I_kwDOIvmHss508dzY",
       "title": "x5c or x5u or both?",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/125",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "For signed statements and receipts.",
       "createdAt": "2023-10-25T18:37:30Z",
-      "updatedAt": "2024-01-30T14:18:57Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:52:36Z",
+      "closedAt": "2024-02-12T17:52:36Z",
       "comments": [
         {
           "author": "henkbirkholz",
@@ -3261,15 +3305,15 @@
       "id": "I_kwDOIvmHss52yv6N",
       "title": "Update Diagrams",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/128",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "It would be nice to show that a single signed statement can have multiple receipts.... and elaborate on what \"transparent statement\" means when multiple receipts are present.\r\n\r\n```mermaid\r\nflowchart\r\n    transparency_service_1(Transparency Service 1)\r\n    transparency_service_2(Transparency Service 2)\r\n    transparent_statement(transparent statement) \r\n\r\n    signed_statement[signed statement]\r\n\r\n    signed_statement --> transparency_service_1\r\n    signed_statement --> transparency_service_2\r\n    transparency_service_1 --> receipt_1{{receipt 1}}\r\n    transparency_service_2 --> receipt_2{{receipt 2}}\r\n    signed_statement -.-> transparent_statement\r\n    receipt_1 --> transparent_statement\r\n    receipt_2 --> transparent_statement\r\n```\r\n\r\nIt would be nice to show that a single transparent statements can be split out into a single signed statement and at least 1 receipt.\r\n\r\n```mermaid\r\nflowchart\r\n    transparent_statement(transparent statement) \r\n    transparent_statement --> signed_statement(signed statement)\r\n    transparent_statement --> receipt_1{{receipt 1}}\r\n    transparent_statement --> receipt_2{{receipt 2}}\r\n    transparent_statement --> receipt_3{{receipt 3}}\r\n```",
       "createdAt": "2023-11-14T15:44:56Z",
-      "updatedAt": "2024-01-06T01:05:01Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:43:12Z",
+      "closedAt": "2024-02-12T17:43:12Z",
       "comments": [
         {
           "author": "OR13",
@@ -3306,15 +3350,15 @@
       "id": "I_kwDOIvmHss54yZmy",
       "title": "Mandatory references to policy feeds in receipts",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/136",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Should the policy be committed to in the registration of the signed statement?\r\n\r\nShould the policy be committed to in the issuance of the receipt?\r\n\r\nDoes the commitment need to be in the ledger, or simply in the protected header?",
       "createdAt": "2023-12-05T15:28:26Z",
-      "updatedAt": "2024-01-06T01:21:21Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:43:44Z",
+      "closedAt": "2024-02-12T17:43:44Z",
       "comments": [
         {
           "author": "OR13",
@@ -3369,15 +3413,15 @@
       "id": "I_kwDOIvmHss57P_zZ",
       "title": "What's blocking the architecture?",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/148",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This issue is a living description of the references that block the architecture from becoming an RFC.\r\n\r\n```mermaid\r\nflowchart \r\n    \r\nsubgraph COSE\r\n    cometre[draft-ietf-cose-merkle-tree-proofs]\r\n    hash-envelope{{draft-steele-cose-hash-envelope}}\r\nend\r\n\r\nsubgraph SCITT\r\n    architecture[draft-ietf-scitt-architecture]\r\n    scrapi{{draft-birkholz-scitt-scrapi}}\r\n    cometre-ccf{{draft-birkholz-cose-cometre-ccf-profile}}\r\nend\r\n\r\nscrapi --> architecture\r\narchitecture -->  cometre\r\narchitecture --> hash-envelope\r\ncometre-ccf --> cometre\r\n```\r\n\r\nCurrently, the `draft-ietf-scitt-architecture` is blocked by `draft-ietf-cose-merkle-tree-proofs`.\r\n\r\n`draft-steele-cose-hash-envelope` is not blocking anything because it is just a special kind of signed statement, its possible it might block `draft-birkholz-scitt-scrapi` in the future.\r\n\r\n`draft-birkholz-cose-cometre-ccf-profile` is blocked by `draft-ietf-cose-merkle-tree-proofs`\r\n\r\nI recommend helping `draft-ietf-cose-merkle-tree-proofs` close out so the architecture can be published.\r\n\r\nI would then make `draft-birkholz-scitt-scrapi` adopted by SCITT, and make it be blocked by the architecture.\r\n\r\n\r\n",
       "createdAt": "2024-01-05T17:50:36Z",
-      "updatedAt": "2024-01-16T15:26:02Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:46:55Z",
+      "closedAt": "2024-02-12T17:46:55Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -3406,6 +3450,13 @@
           "body": "> If folks like I can add blockers to the architecture based on major open issues next, so we can see how \"identifiers\" and \"configuration\" are related to finishing the architecture.\r\n\r\nMy individual summary of potential content/decision blockers (in contrast to reference blockers) as far as I am aware of them. Some of them might already have consensus, but it is not reflected, I think:\r\n\r\n* Text on identity document use in SCITT. My assumption is: agnostic expositional text and at least one example how to use x.509 wrt Signed Statements and Receipts\r\n* Text on statement identification. My assumption is that we need at least abstract exopsitional text. I am not sure, if this can/will be part of the first iteration of the architecture document.\r\n* Meaning of subject tstr composition (formerly known as feed). My assumption is: could only providing the tstr in the CDDL definition of the Signed Statement structure and define the semantics of the tstr out-of-scope of the first SCITT Arch. Is that feasible?",
           "createdAt": "2024-01-08T15:41:39Z",
           "updatedAt": "2024-01-16T15:26:02Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Resolved the loose ends",
+          "createdAt": "2024-02-12T17:46:55Z",
+          "updatedAt": "2024-02-12T17:46:55Z"
         }
       ]
     },
@@ -3414,15 +3465,15 @@
       "id": "I_kwDOIvmHss57R4sg",
       "title": "Complete Configuration/Registration Policy/Receipt Inclusion",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/151",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Recent versions of the draft include [references to configuration and registration policies being included in append-only log](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-configuration). This brings up questions on what's used to identify an entry, which would represent the configuration an/or registration policy.\r\n\r\nSee:\r\n- #124 \r\n- #136\r\n- #145\r\n\r\nThe [draft says](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#section-5.2.2-2):\r\n> The registration policy for statements with the media type suffix (+<format> is implementation-specific. \r\n\r\nShould the inclusion of configuration & registration policy details be part of the architecture, or the entire topic be implementation-specific? ",
       "createdAt": "2024-01-06T01:56:08Z",
-      "updatedAt": "2024-01-30T14:06:45Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:52:25Z",
+      "closedAt": "2024-02-12T17:52:25Z",
       "comments": [
         {
           "author": "henkbirkholz",
@@ -3430,6 +3481,13 @@
           "body": "> Should the inclusion of configuration & registration policy details be part of the architecture\r\n\r\nNo\r\n> or the entire topic be implementation-specific?\r\n\r\nAlso no, but moving to another I-D",
           "createdAt": "2024-01-30T14:06:44Z",
           "updatedAt": "2024-01-30T14:06:44Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as resolved in 05",
+          "createdAt": "2024-02-12T17:52:25Z",
+          "updatedAt": "2024-02-12T17:52:25Z"
         }
       ]
     },
@@ -3438,15 +3496,15 @@
       "id": "I_kwDOIvmHss57ilU7",
       "title": "Registration Information data in Protected Header needs to be consistent",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/154",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Registration_Info is defined in the protected header is not aligned properly to \r\nStatement Registration Information (Statement_Registration_info) mentioned in the document!",
       "createdAt": "2024-01-09T15:56:28Z",
-      "updatedAt": "2024-01-30T14:05:30Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:51:59Z",
+      "closedAt": "2024-02-12T17:51:59Z",
       "comments": [
         {
           "author": "OR13",
@@ -3461,6 +3519,13 @@
           "body": "The rough consensus seems to lean towards removing statement identifiers out-of-scope of the core SCITT architecture. Are there any objections to that wrt this issue?",
           "createdAt": "2024-01-30T14:05:29Z",
           "updatedAt": "2024-01-30T14:05:29Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in 05",
+          "createdAt": "2024-02-12T17:51:59Z",
+          "updatedAt": "2024-02-12T17:51:59Z"
         }
       ]
     },
@@ -3469,15 +3534,15 @@
       "id": "I_kwDOIvmHss57ilds",
       "title": "Signed statement identifier should be hash",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/155",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "aj-stein-nist",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Per authors meeting today: update the architecture such that the content identifier of the SCITT receipt for SCITT signed statement shall be the hash of the to-be-signed bytes as defined by COSE specification.",
       "createdAt": "2024-01-09T15:56:47Z",
-      "updatedAt": "2024-01-30T14:03:54Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:51:27Z",
+      "closedAt": "2024-02-12T17:51:27Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -3492,6 +3557,13 @@
           "body": "How much is this issue related to #167?",
           "createdAt": "2024-01-30T14:03:53Z",
           "updatedAt": "2024-01-30T14:03:53Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Resolved in 05",
+          "createdAt": "2024-02-12T17:51:27Z",
+          "updatedAt": "2024-02-12T17:51:27Z"
         }
       ]
     },
@@ -3500,31 +3572,39 @@
       "id": "I_kwDOIvmHss57orr2",
       "title": "Scope of Introduction",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/158",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "In 24f63ee8cfc2b99b937dd236cca3c886fd1218f9, the Introduction start to include normative language. Maybe it is better to move that to a follow-up section?",
       "createdAt": "2024-01-10T12:23:50Z",
-      "updatedAt": "2024-01-10T12:23:50Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-02-12T17:45:07Z",
+      "closedAt": "2024-02-12T17:45:06Z",
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Stale",
+          "createdAt": "2024-02-12T17:45:06Z",
+          "updatedAt": "2024-02-12T17:45:06Z"
+        }
+      ]
     },
     {
       "number": 159,
       "id": "I_kwDOIvmHss57ovnG",
       "title": "Normative Language on Registration Policy",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/159",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "Currently in 24f63ee8cfc2b99b937dd236cca3c886fd1218f9, the Introduction includes normative language about Registration Policies.\r\n\r\n> Each service MAY enforce its own Registration Policies for authorizing entities to register their Signed Statements to the Append-only Log.\r\n\r\nIndependent of where this normative language goes in the end, I'd assume that a MAY is too weak? The minimal required registration policy - from my individual point of view - seems to be the authorization of the Issuer that is the \"Transparency Services Owner\" to register new Signed Statements. Does that sound right? (in essence that roughly resembles a \"key before signatures\" approach to ensure that a transparency service retains the capability to register Signed Statements).\r\n\r\nIf there always must be a Minimum of an initial Registration Policy (and be it part of bootstrapping a TS with its first statement that then must be a policy including a key), does this normative language not require a MUST?\r\n\r\nWhat does the group think. Am I missing something obvious here? ",
       "createdAt": "2024-01-10T12:32:11Z",
-      "updatedAt": "2024-01-30T14:00:48Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:49:51Z",
+      "closedAt": "2024-02-12T17:49:50Z",
       "comments": [
         {
           "author": "henkbirkholz",
@@ -3532,6 +3612,13 @@
           "body": "The current rough consensus seems to lean towards putting Registration Policies out-of-scope of the core SCITT Architecture (with the exception of the \"key before signature\" concept). If there is no objection in the next days, I'll start a PR after #163 is resolved.",
           "createdAt": "2024-01-30T14:00:46Z",
           "updatedAt": "2024-01-30T14:00:46Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Completed in 05. Need specific, new issues.",
+          "createdAt": "2024-02-12T17:49:50Z",
+          "updatedAt": "2024-02-12T17:49:50Z"
         }
       ]
     },
@@ -3540,7 +3627,7 @@
       "id": "I_kwDOIvmHss57pzMV",
       "title": "New Examples for new section \"Support for Multiple Statements\"",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/160",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [
@@ -3550,24 +3637,32 @@
       "labels": [],
       "body": "Looking at https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/153/, I think a that some more diverse examples later that show how multiple statements about one Artifact using the same sub Claim can have different semantics than multiple statements about one Artifact using different sub Claims - including illustrating text when one choice can be used an when the other & pros and cons.",
       "createdAt": "2024-01-10T14:57:14Z",
-      "updatedAt": "2024-01-10T14:57:28Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-02-12T17:45:49Z",
+      "closedAt": "2024-02-12T17:45:49Z",
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Covered above",
+          "createdAt": "2024-02-12T17:45:49Z",
+          "updatedAt": "2024-02-12T17:45:49Z"
+        }
+      ]
     },
     {
       "number": 162,
       "id": "I_kwDOIvmHss58YAbe",
       "title": "Align `iss` with `x5t` guidance with OAUTH draft",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/162",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "See https://datatracker.ietf.org/doc/html/draft-ietf-oauth-sd-jwt-vc-01#section-3.5",
       "createdAt": "2024-01-17T17:41:08Z",
-      "updatedAt": "2024-01-30T13:57:24Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:49:09Z",
+      "closedAt": "2024-02-12T17:49:09Z",
       "comments": [
         {
           "author": "henkbirkholz",
@@ -3575,6 +3670,13 @@
           "body": "PR please? \u263a\ufe0f",
           "createdAt": "2024-01-30T13:57:23Z",
           "updatedAt": "2024-01-30T13:57:23Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Complete in 05",
+          "createdAt": "2024-02-12T17:49:09Z",
+          "updatedAt": "2024-02-12T17:49:09Z"
         }
       ]
     },
@@ -3583,15 +3685,15 @@
       "id": "I_kwDOIvmHss58h1A9",
       "title": "Resolve Section 5.1 and 6 as the titles appear duplicative",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/166",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "[5.1 Signed Statement Issuance and Registration](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-signed-statement-issuance-a) appears as duplicative of [6 Signed Statement Issuance, Registration, and Verification](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-signed-statement-issuance-r)\r\n\r\nAre these meant to separate signing, registration and verification?",
       "createdAt": "2024-01-18T23:15:23Z",
-      "updatedAt": "2024-01-30T13:56:14Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:48:36Z",
+      "closedAt": "2024-02-12T17:48:36Z",
       "comments": [
         {
           "author": "henkbirkholz",
@@ -3607,23 +3709,31 @@
       "id": "I_kwDOIvmHss58kb_V",
       "title": "Are multiple (potential conflicting) identifiers for identity documents in Signed Statements & would that pose a problem?",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/170",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "Do we need to talk about that in the Security Considerations?",
       "createdAt": "2024-01-19T08:21:48Z",
-      "updatedAt": "2024-01-19T08:21:48Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-02-12T17:47:33Z",
+      "closedAt": "2024-02-12T17:47:33Z",
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Latest language in 05 addresses this",
+          "createdAt": "2024-02-12T17:47:33Z",
+          "updatedAt": "2024-02-12T17:47:33Z"
+        }
+      ]
     },
     {
       "number": 178,
       "id": "I_kwDOIvmHss5-IV0j",
       "title": "Converge Media Type, Content Type, Payload Type",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/178",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -3632,8 +3742,8 @@
       "labels": [],
       "body": "The doc uses the three interchangeably\r\nIs there a preferred reference to be consistent?",
       "createdAt": "2024-02-03T01:50:51Z",
-      "updatedAt": "2024-02-07T22:23:24Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:53:32Z",
+      "closedAt": "2024-02-12T17:53:32Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -3672,31 +3782,39 @@
       "id": "I_kwDOIvmHss5-zva3",
       "title": "Are signed statements returned from a TS or only Receipts?",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/183",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Our implementation only returns receipts, because our log only stores hashes, you would need to call a different adjacent service to get the \"original contents\"... other implementations may have co-located these APIs and might support delivering more than \"receipts\" from a TS.\r\n\r\nBased on \r\n\r\n- https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179/files#r1484545650\r\n- https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179/files#r1483686978",
       "createdAt": "2024-02-09T16:39:52Z",
-      "updatedAt": "2024-02-09T16:46:45Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-02-12T17:54:20Z",
+      "closedAt": "2024-02-12T17:54:19Z",
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as resolved in 05, returns receipts",
+          "createdAt": "2024-02-12T17:54:19Z",
+          "updatedAt": "2024-02-12T17:54:19Z"
+        }
+      ]
     },
     {
       "number": 184,
       "id": "I_kwDOIvmHss5-zxqV",
       "title": "make this an editor comment",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/184",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "              make this an editor comment\r\n\r\n_Originally posted by @ad-l in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484498187_\r\n            ",
       "createdAt": "2024-02-09T16:45:46Z",
-      "updatedAt": "2024-02-09T16:45:56Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T17:53:48Z",
+      "closedAt": "2024-02-12T17:53:48Z",
       "comments": [
         {
           "author": "yogeshbdeshpande",
@@ -3704,6 +3822,13 @@
           "body": "To be completed!",
           "createdAt": "2024-02-09T16:45:55Z",
           "updatedAt": "2024-02-09T16:45:55Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as resolved in 05",
+          "createdAt": "2024-02-12T17:53:48Z",
+          "updatedAt": "2024-02-12T17:53:48Z"
         }
       ]
     },
@@ -3715,11 +3840,13 @@
       "state": "OPEN",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "fournet"
+      ],
       "labels": [],
       "body": "              Does it mean that unprotected headers are now also included in the receipt's signed information? This significantly complicates the interpretation of the resulting receipts by verifiers. I also don't think it should be discussed in the terminology.\r\n\r\n_Originally posted by @fournet in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484534857_\r\n            ",
       "createdAt": "2024-02-09T16:51:17Z",
-      "updatedAt": "2024-02-09T16:51:34Z",
+      "updatedAt": "2024-02-12T18:02:43Z",
       "closedAt": null,
       "comments": [
         {
@@ -3728,6 +3855,13 @@
           "body": "This is controversial statement: ",
           "createdAt": "2024-02-09T16:51:33Z",
           "updatedAt": "2024-02-09T16:51:33Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Notes taken from editors' meeting.\r\n@fournet, can you please update the title and describe the next steps. ",
+          "createdAt": "2024-02-12T18:02:41Z",
+          "updatedAt": "2024-02-12T18:02:41Z"
         }
       ]
     },
@@ -3739,11 +3873,13 @@
       "state": "OPEN",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "yogeshbdeshpande"
+      ],
       "labels": [],
       "body": "so the authorization of the Issuer and of the Transparency Service by the Verifier of the Receipt are generally independent\r\n\r\n_Originally posted by @yogeshbdeshpande in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484586471_\r\n            ",
       "createdAt": "2024-02-09T17:04:03Z",
-      "updatedAt": "2024-02-09T17:04:03Z",
+      "updatedAt": "2024-02-12T17:56:29Z",
       "closedAt": null,
       "comments": []
     },
@@ -3755,13 +3891,23 @@
       "state": "OPEN",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "ad-l"
+      ],
       "labels": [],
       "body": "              But at least their intended security properties are? If this is out of scope of SCITT then at least the COMETRE document must be much more specific about the minimum security properties of verifiable data structures.\r\n\r\n_Originally posted by @ad-l in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484523409_\r\n\r\nAddress comment from Cedric\r\n            ",
       "createdAt": "2024-02-09T17:19:56Z",
-      "updatedAt": "2024-02-09T17:19:56Z",
+      "updatedAt": "2024-02-12T22:38:50Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@ad-l can you trim this title down to something actionable and propose a PR for changes?",
+          "createdAt": "2024-02-12T22:38:49Z",
+          "updatedAt": "2024-02-12T22:38:49Z"
+        }
+      ]
     },
     {
       "number": 188,
@@ -3771,13 +3917,23 @@
       "state": "OPEN",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "ad-l"
+      ],
       "labels": [],
       "body": "              That is a big TODO and since x5t is now mandatory it needs to be specified before this PR can be merged\r\n\r\n_Originally posted by @ad-l in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484526507_\r\n            ",
       "createdAt": "2024-02-09T17:22:06Z",
-      "updatedAt": "2024-02-09T17:22:06Z",
+      "updatedAt": "2024-02-12T19:08:11Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Is it in fact the case that `x5t` use is mandatory in the draft spec and this issue is to track follow-on edits? Or is this issue to confirm whether or not that is the case and adjust accordingly?",
+          "createdAt": "2024-02-12T19:08:10Z",
+          "updatedAt": "2024-02-12T19:08:10Z"
+        }
+      ]
     },
     {
       "number": 189,
@@ -3787,13 +3943,23 @@
       "state": "OPEN",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "yogeshbdeshpande"
+      ],
       "labels": [],
       "body": "              Discuss the possible issue on this issue!\r\n\r\n_Originally posted by @yogeshbdeshpande in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484610979_\r\n            ",
       "createdAt": "2024-02-09T17:27:39Z",
-      "updatedAt": "2024-02-09T17:28:16Z",
+      "updatedAt": "2024-02-12T17:59:13Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Please propose a PR. ",
+          "createdAt": "2024-02-12T17:59:11Z",
+          "updatedAt": "2024-02-12T17:59:11Z"
+        }
+      ]
     },
     {
       "number": 190,
@@ -3803,28 +3969,38 @@
       "state": "OPEN",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "yogeshbdeshpande"
+      ],
       "labels": [],
       "body": "              Revisit ### Validation {#validation} section fully: After refactor\r\n\r\n_Originally posted by @yogeshbdeshpande in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484614307_\r\n            ",
       "createdAt": "2024-02-09T17:31:03Z",
-      "updatedAt": "2024-02-09T17:31:03Z",
+      "updatedAt": "2024-02-12T18:01:17Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Please propose a new PR. ",
+          "createdAt": "2024-02-12T17:59:39Z",
+          "updatedAt": "2024-02-12T17:59:39Z"
+        }
+      ]
     },
     {
       "number": 192,
       "id": "I_kwDOIvmHss5-1xDa",
       "title": "Resolve inconsistencies with what's stored and returned in the Append-only Log",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/192",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Registration referred to persisting and returning a transparent statement. The latest doc (Feb 9, 2024) starts to focus on storing and returning receipts, keeping the signed statements separable and possibly stored in associated data structures. A Transparent Statement is not something directly in the Append-only Log. However, the architecture has remnants that may not be completely agreed upon. \r\n\r\nFor example:\r\n> Register the Signed Statement to the append-only log\r\n> \r\n> Return the Transparent Statement, which includes the Receipt Details about generating Receipts are described in [Section 6.4](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#Receipt).\r\n\r\nand\r\n\r\n> Some jurisdictions have a Right to be Forgotten. However, once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.\r\n\r\nand\r\n\r\n> [7.2.3. ](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/192#section-7.2.3)[Confidentiality and Privacy](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/192#name-confidentiality-and-privacy)\r\nAccording to Zero Trust Principles any location in a network is never trusted. All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network traffic analysis.\r\n> \r\n> The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration. Some Transparency Services may publish every Signed Statement in their logs, to facilitate their dissemination and auditing.\r\n",
       "createdAt": "2024-02-10T01:02:35Z",
-      "updatedAt": "2024-02-10T15:40:26Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-12T18:00:17Z",
+      "closedAt": "2024-02-12T18:00:16Z",
       "comments": [
         {
           "author": "OR13",
@@ -3832,6 +4008,13 @@
           "body": "Transparent statements can go on a log, if they are COSE sign 1 and they are accepted by a registration policy.\n\nSaying anything other than that will likely require, nontrivial adjustments to our definitions.",
           "createdAt": "2024-02-10T15:40:25Z",
           "updatedAt": "2024-02-10T15:40:25Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as resolved in 05 (receipts)",
+          "createdAt": "2024-02-12T18:00:16Z",
+          "updatedAt": "2024-02-12T18:00:16Z"
         }
       ]
     }
@@ -22342,6 +22525,205 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 194,
+      "id": "PR_kwDOIvmHss5mqxua",
+      "title": "Remove Initialization and Registration policy sections",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/194",
+      "state": "CLOSED",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "aj-stein-nist"
+      ],
+      "labels": [],
+      "body": "Per decision in today's interim meeting, remove these sections from the architecture for the time being.",
+      "createdAt": "2024-02-12T18:48:24Z",
+      "updatedAt": "2024-02-12T22:14:41Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
+      "headRepository": "aj-stein-nist/draft-ietf-scitt-architecture",
+      "headRefName": "194-interim-meeting-rec-remove-sections",
+      "headRefOid": "fb6455c2a7762f164754a1cdbe42d7b5add08b6d",
+      "closedAt": "2024-02-12T22:14:28Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Per questions from others, I was under the impression this would be merged *and then* @JAG-UK would be adding relevant information for a second pass. Jon had asked for volunteer on this bit to make way for his follow-on changes. This PR only addresses that request for volunteer to remove the parts.",
+          "createdAt": "2024-02-12T22:00:46Z",
+          "updatedAt": "2024-02-12T22:00:46Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "A note that we're removing for a more crisply defined scope. To ease concerns, I'd be ok with waiting for @JAG-UK's PR ",
+          "createdAt": "2024-02-12T22:13:50Z",
+          "updatedAt": "2024-02-12T22:13:50Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> A note that we're removing for a more crisply defined scope. To ease concerns, I'd be ok with waiting for @JAG-UK's PR\r\n\r\nLet it be so.",
+          "createdAt": "2024-02-12T22:14:40Z",
+          "updatedAt": "2024-02-12T22:14:40Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 195,
+      "id": "PR_kwDOIvmHss5mq2XE",
+      "title": "Update Federation Section",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/195",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "In case there is no rough consensus to keep federation section, I raised https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/196 to remove it.",
+      "createdAt": "2024-02-12T19:00:47Z",
+      "updatedAt": "2024-02-12T22:10:59Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "feat/federation-federation-federation",
+      "headRefOid": "146e8c93df402f2405eaddc07845dd536ded51e0",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I'd suggest we've had a few different conversations about federation of everything in a transparency service, vs. selective promotion of a subset of information across Transparency Services. \r\nThe later being the ability for a consumer of one or more Transparency Services to promote the content for a subset of their software. \r\nMicrosoft ships lots of software, However a consumer may only want to promote the Office suite of products into their Transparency Service for internal validation.\r\n\r\nI'd suggest the wording, as current, isn't well defined and I'd vote to cut this section until more well defined.",
+          "createdAt": "2024-02-12T22:10:57Z",
+          "updatedAt": "2024-02-12T22:10:57Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5v0TKe",
+          "commit": {
+            "abbreviatedOid": "146e8c9"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-12T19:04:31Z",
+          "updatedAt": "2024-02-12T19:04:32Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "We will need to register header parameters if we decide to keep this advice, and this section.",
+              "createdAt": "2024-02-12T19:04:31Z",
+              "updatedAt": "2024-02-12T19:04:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v0T3a",
+          "commit": {
+            "abbreviatedOid": "146e8c9"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "If we are at the point where we need to start from scratch on configuration/registration policy and scrap the initialization section, I personally do not see how we can keep federation and not just remove it (not to drive you and others mad, we can always add back later).",
+          "createdAt": "2024-02-12T19:06:32Z",
+          "updatedAt": "2024-02-12T19:06:32Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v1vH0",
+          "commit": {
+            "abbreviatedOid": "146e8c9"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-12T21:26:41Z",
+          "updatedAt": "2024-02-12T21:26:41Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "Sees a bit weird to say \"this is difficult, here's something you COULD/SHOULD do\", as opposed to be more definitive, to make it easy for what to do. .\r\nMy vote is to cut until this scenario is better defined. ",
+              "createdAt": "2024-02-12T21:26:41Z",
+              "updatedAt": "2024-02-12T22:14:41Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 196,
+      "id": "PR_kwDOIvmHss5mq3E6",
+      "title": "Remove Federation Section",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/196",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "In case there is no consensus to remove Federation, I raised https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/195 to update it.",
+      "createdAt": "2024-02-12T19:02:46Z",
+      "updatedAt": "2024-02-12T22:12:49Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "feat/alternative-federation",
+      "headRefOid": "44b15b2a78761a2f0a97e21665cf2ad742fc7ee7",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I'd suggest we've had a few different conversations about federation of everything in a transparency service, vs. selective promotion of a subset of information across Transparency Services.\r\nThe latter is the ability for a consumer of one or more Transparency Services to promote the content for a subset of their software.\r\nMicrosoft ships lots of software, However, a consumer may only want to promote the Office suite of products into their Transparency Service for internal validation.\r\n\r\nI'd suggest the wording, as current, isn't well defined and I'd vote to cut this section until more well defined.",
+          "createdAt": "2024-02-12T22:12:39Z",
+          "updatedAt": "2024-02-12T22:12:39Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5v0TBL",
+          "commit": {
+            "abbreviatedOid": "44b15b2"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-12T19:04:09Z",
+          "updatedAt": "2024-02-12T19:04:09Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v2FL-",
+          "commit": {
+            "abbreviatedOid": "44b15b2"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-02-12T22:12:49Z",
+          "updatedAt": "2024-02-12T22:12:49Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
