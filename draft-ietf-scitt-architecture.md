@@ -559,7 +559,7 @@ The Transparency Service MAY verify the Statement payload format, content and ot
   Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.
 1. **Register the Signed Statement** to the append-only log.
 1. **Return the Receipt**, which MAY be asynchronous from registration.
-When asynchronous, the Transparency Service MUST returns an identifier used to retrieve the Receipt.
+When asynchronous, the Transparency Service MUST return an identifier used to retrieve the Receipt.
 Details about generating Receipts are described in {{Receipt}}.
 
 The last two steps may be shared between a batch of Signed Statements recorded in the Append-only Log.
