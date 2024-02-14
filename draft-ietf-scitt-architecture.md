@@ -409,7 +409,8 @@ Before a Signed Statement is registered, the trust anchor used to verify its Iss
 
 ### Initialization and bootstrapping {#ts-initialization}
 
-Since a Registration Policy is required prior to the registration of any Signed Statements, a means is required to configure the first Registration Policy that is not the standard issuance of a Signed Statement. Transparency Services MUST support at least one of these methods:
+Since a Registration Policy is required prior to the registration of any Signed Statements, a means is required to configure the first Registration Policy that is not the standard issuance of a Signed Statement.
+Transparency Services MUST support at least one of these methods:
 * A built-in default Registration Policy
 * Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks
 * An out-of-band authenticated management interface
