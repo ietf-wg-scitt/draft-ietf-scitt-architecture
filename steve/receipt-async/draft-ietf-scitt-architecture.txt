@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 16 August 2024                                       C. Fournet
+Expires: 17 August 2024                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        13 February 2024
+                                                        14 February 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 August 2024.
+   This Internet-Draft will expire on 17 August 2024.
 
 Copyright Notice
 
@@ -727,8 +727,9 @@ Table of Contents
    6.  *Register the Signed Statement* to the append-only log.
 
    7.  *Return the Receipt*, which MAY be asynchronous from
-       registration.  When asynchronous, the Transparency Service MUST
-       return an identifier used to retrieve the Receipt.  Details about
+       registration.  The Transparency Service MUST be able to provide a
+       receipt for all registered statements.  A receipt for a signed
+       statement MAY be provided asyncrhously``` Details about
        generating Receipts are described in Section 4.3.
 
    The last two steps may be shared between a batch of Signed Statements
