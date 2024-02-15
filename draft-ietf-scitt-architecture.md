@@ -388,7 +388,6 @@ Registration Policies MUST be made transparent and available to all clients of t
 
 Transparency Services MUST reject any attempt to register Signed Statements until at least one Registration Policy is registered.
 
-Registration Policies MAY be empty, in which case the Transparency Service only promises to enforce the Mandatory Registration Checks.
 
 This specification leaves implementation, encoding and documentation of Registration Policies to the operator of the Transparency Service.
 
