@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 17 August 2024                                       C. Fournet
+Expires: 18 August 2024                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        14 February 2024
+                                                        15 February 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 August 2024.
+   This Internet-Draft will expire on 18 August 2024.
 
 Copyright Notice
 
@@ -490,10 +490,9 @@ Table of Contents
 
 4.1.1.1.  Mandatory Registration Checks
 
-   In addition to enforcing the rules contained in any registered
-   Registration Policy, Transparency Services MUST, at a minimum,
-   perform the following checks before registering a Signed Statement: *
-   Authenticate the Issuer of the Signed Statement
+   Transparency Services MUST, at a minimum, perform the following
+   checks before registering a Signed Statement: * Authenticate the
+   Issuer of the Signed Statement
 
    To authenticate the Issuer of the Signed Statement the Transparency
    Service MUST refer to a trust anchor as defined in [RFC6024]: "A
