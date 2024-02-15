@@ -394,7 +394,7 @@ This specification leaves implementation, encoding and documentation of Registra
 
 #### Mandatory Registration Checks
 
-In addition to enforcing the rules contained in any registered Registration Policy, Transparency Services MUST, at a minimum, perform the following checks before registering a Signed Statement:
+Transparency Services MUST, at a minimum, perform the following checks before registering a Signed Statement:
 * Authenticate the Issuer of the Signed Statement
 
 To authenticate the Issuer of the Signed Statement the Transparency Service MUST refer to a trust anchor as defined in {{RFC6024}}: "A trust anchor represents an authoritative entity via a public key and associated data.
