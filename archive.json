@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-13T00:34:53.870544+00:00",
+  "timestamp": "2024-02-15T00:34:17.014460+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -3846,7 +3846,7 @@
       "labels": [],
       "body": "              Does it mean that unprotected headers are now also included in the receipt's signed information? This significantly complicates the interpretation of the resulting receipts by verifiers. I also don't think it should be discussed in the terminology.\r\n\r\n_Originally posted by @fournet in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484534857_\r\n            ",
       "createdAt": "2024-02-09T16:51:17Z",
-      "updatedAt": "2024-02-12T18:02:43Z",
+      "updatedAt": "2024-02-13T14:41:04Z",
       "closedAt": null,
       "comments": [
         {
@@ -3862,6 +3862,13 @@
           "body": "Notes taken from editors' meeting.\r\n@fournet, can you please update the title and describe the next steps. ",
           "createdAt": "2024-02-12T18:02:41Z",
           "updatedAt": "2024-02-12T18:02:41Z"
+        },
+        {
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I propose we cut this sentence.",
+          "createdAt": "2024-02-13T14:41:03Z",
+          "updatedAt": "2024-02-13T14:41:03Z"
         }
       ]
     },
@@ -3879,16 +3886,24 @@
       "labels": [],
       "body": "so the authorization of the Issuer and of the Transparency Service by the Verifier of the Receipt are generally independent\r\n\r\n_Originally posted by @yogeshbdeshpande in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484586471_\r\n            ",
       "createdAt": "2024-02-09T17:04:03Z",
-      "updatedAt": "2024-02-12T17:56:29Z",
+      "updatedAt": "2024-02-13T13:30:06Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See also #200",
+          "createdAt": "2024-02-13T13:30:05Z",
+          "updatedAt": "2024-02-13T13:30:05Z"
+        }
+      ]
     },
     {
       "number": 187,
       "id": "I_kwDOIvmHss5-z-b0",
       "title": "But at least their intended security properties are? If this is out of scope of SCITT then at least the COMETRE document must be much more specific about the minimum security properties of verifiable data structures.",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/187",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -3897,8 +3912,8 @@
       "labels": [],
       "body": "              But at least their intended security properties are? If this is out of scope of SCITT then at least the COMETRE document must be much more specific about the minimum security properties of verifiable data structures.\r\n\r\n_Originally posted by @ad-l in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484523409_\r\n\r\nAddress comment from Cedric\r\n            ",
       "createdAt": "2024-02-09T17:19:56Z",
-      "updatedAt": "2024-02-12T22:38:50Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-13T13:29:36Z",
+      "closedAt": "2024-02-13T13:29:36Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -3906,6 +3921,13 @@
           "body": "@ad-l can you trim this title down to something actionable and propose a PR for changes?",
           "createdAt": "2024-02-12T22:38:49Z",
           "updatedAt": "2024-02-12T22:38:49Z"
+        },
+        {
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This is explained in more detail in #199 ",
+          "createdAt": "2024-02-13T13:29:36Z",
+          "updatedAt": "2024-02-13T13:29:36Z"
         }
       ]
     },
@@ -3914,7 +3936,7 @@
       "id": "I_kwDOIvmHss5-z_IN",
       "title": "That is a big TODO and since x5t is now mandatory it needs to be specified before this PR can be merged",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/188",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -3923,8 +3945,8 @@
       "labels": [],
       "body": "              That is a big TODO and since x5t is now mandatory it needs to be specified before this PR can be merged\r\n\r\n_Originally posted by @ad-l in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484526507_\r\n            ",
       "createdAt": "2024-02-09T17:22:06Z",
-      "updatedAt": "2024-02-12T19:08:11Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-13T13:27:29Z",
+      "closedAt": "2024-02-13T13:27:29Z",
       "comments": [
         {
           "author": "aj-stein-nist",
@@ -3932,6 +3954,13 @@
           "body": "Is it in fact the case that `x5t` use is mandatory in the draft spec and this issue is to track follow-on edits? Or is this issue to confirm whether or not that is the case and adjust accordingly?",
           "createdAt": "2024-02-12T19:08:10Z",
           "updatedAt": "2024-02-12T19:08:10Z"
+        },
+        {
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This is detailed in #200 ",
+          "createdAt": "2024-02-13T13:27:29Z",
+          "updatedAt": "2024-02-13T13:27:29Z"
         }
       ]
     },
@@ -3944,12 +3973,13 @@
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
+        "SteveLasker",
         "yogeshbdeshpande"
       ],
       "labels": [],
       "body": "              Discuss the possible issue on this issue!\r\n\r\n_Originally posted by @yogeshbdeshpande in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484610979_\r\n            ",
       "createdAt": "2024-02-09T17:27:39Z",
-      "updatedAt": "2024-02-12T17:59:13Z",
+      "updatedAt": "2024-02-13T04:05:21Z",
       "closedAt": null,
       "comments": [
         {
@@ -3958,6 +3988,13 @@
           "body": "Please propose a PR. ",
           "createdAt": "2024-02-12T17:59:11Z",
           "updatedAt": "2024-02-12T17:59:11Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I realized @yogeshbdeshpande is OOF this week, so I submitted #197 ",
+          "createdAt": "2024-02-13T04:05:20Z",
+          "updatedAt": "2024-02-13T04:05:20Z"
         }
       ]
     },
@@ -4015,6 +4052,54 @@
           "body": "Closing as resolved in 05 (receipts)",
           "createdAt": "2024-02-12T18:00:16Z",
           "updatedAt": "2024-02-12T18:00:16Z"
+        }
+      ]
+    },
+    {
+      "number": 199,
+      "id": "I_kwDOIvmHss5_F5hA",
+      "title": "Restore log consistency & append-only requirements in architecture (4.1.3)",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/199",
+      "state": "OPEN",
+      "author": "ad-l",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "After the refactor, the only remaining normative text about the append-only log (4.1.3) states:\r\n\r\n> The security properties of the Append-only Log are determined by the choice of the verifiable data structure used to produce Receipts.\r\n> [...]\r\n> Specific verifiable data structures, such those describes in [[RFC9162](https://www.rfc-editor.org/rfc/rfc9162)] and [[I-D.draft-steele-cose-merkle-tree-proofs](https://datatracker.ietf.org/doc/html/draft-steele-cose-merkle-tree-proofs-01)] are out of scope for this document.\r\n\r\nThere are currently no requirements for verifiable data structures used for the ledger, so indeed it is possible to define and implement a ledger that is non consistent. In fact even though it is called an \"append-only ledger\" there is no normative requirement in the architecture or in COMETRE that the verifiable data structure is append-only. This is also incompatible with the definition of transparency in section 3 that states:\r\n\r\n> Transparency is implemented by providing a consistent, append-only, cryptographically verifiable, publicly available record of entries.\r\n\r\nGiven that auditable consistency is part of the definition of transparency, the security properties of acceptable verifiable data structures should be specified:\r\n- either in the architecture document itself, as it was before version 05\r\n- or, as a requirement for defining new verifiable data structures in I-D.draft-steele-cose-merkle-tree-proofs\r\n",
+      "createdAt": "2024-02-13T12:48:27Z",
+      "updatedAt": "2024-02-13T12:54:01Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I believe this is a core requirement that should be clearly stated in the SCITT architecture (even if its implementation is delegated to other specs such as COMETRE). Without it, I find it hard to argue about its security and transparency benefits. ",
+          "createdAt": "2024-02-13T12:53:59Z",
+          "updatedAt": "2024-02-13T12:53:59Z"
+        }
+      ]
+    },
+    {
+      "number": 200,
+      "id": "I_kwDOIvmHss5_GJQM",
+      "title": "Auditable/verifiable issuer authentication",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/200",
+      "state": "OPEN",
+      "author": "ad-l",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Since the refactor and the shift to X.509-based claim signature, the authentication of issuers is no longer auditable - i.e. it is no longer possible for verifiers and auditors to re-validate the claim signature and issuer authentication performed by a TS at registration, which massively increases the trust in the TS (which may now try to register forged claims with plausible deniability - by claiming the TS lost the issuer's certificate used at registration even if none existed). \r\n\r\nPart of the issue is that claims use x5t instead of x5c. This means there is no mechanism for auditors to obtain the certificate chain used to sign a claim from the TS at registration. Even if x5c was used instead of x5t, only the leaf certificate is required to appear in x5c. Reconstructing the full issuer certificate chain requires at least the TS configuration to link to the configured root CAs used by the TS. Since roots and intermediate certificates expire (or can be updated, as is often the case with PKIX root programs from Mozilla, Google and Microsoft), it is not possible to assume that verifiers can just store the root configuration with the TS's certificate.\r\n\r\nThere are further issues with issuer authentication:\r\n>When x5t is present, iss MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.\r\n\r\nThis is not well-specified without a reference to such a regular expression. Is this supposed to mean RFC4514 string representation of a distinguished name? The language of RFC4514 doesn't appear to be regular (it is context free), so this must be clarified.\r\n\r\nThere is also no requirement for the issuer's serialized distinguished name to be produced from the claim's X.509 leaf subject. A malicious issuer can put a different issuer's serialized distinguished name in the iss field and is likely to confuse a verifier who cannot detect the mismatch since issuer authentication is not auditable. This makes iss essentially useless for verifiers, and it may be preferable to set iss to nil if x5t/x5c is used.",
+      "createdAt": "2024-02-13T13:23:34Z",
+      "updatedAt": "2024-02-13T13:37:22Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I propose we require in the architecture that the full certificate chain used to identify the issuer and verify its signature at the time of registration be authenticated by the TS via the resulting receipt. \r\n- Given a transparent statement (and possibly auxiliary transparent statement from the TS log recording root and intermediate certificates) verifiers must be able to retrieve and review the full certificate chain.\r\n- This clearly separates PKI issues (delegated to certificate issuance) and the evidence required to keep them transparent and auditable. \r\n- The text included a a way to implement this requirement based on transparent configuration statements, which I found useful but may be too detailed/prescriptive for the architecture. ",
+          "createdAt": "2024-02-13T13:37:21Z",
+          "updatedAt": "2024-02-13T13:37:21Z"
         }
       ]
     }
@@ -22588,7 +22673,7 @@
       "labels": [],
       "body": "In case there is no rough consensus to keep federation section, I raised https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/196 to remove it.",
       "createdAt": "2024-02-12T19:00:47Z",
-      "updatedAt": "2024-02-12T22:10:59Z",
+      "updatedAt": "2024-02-13T15:26:59Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
@@ -22606,6 +22691,13 @@
           "body": "I'd suggest we've had a few different conversations about federation of everything in a transparency service, vs. selective promotion of a subset of information across Transparency Services. \r\nThe later being the ability for a consumer of one or more Transparency Services to promote the content for a subset of their software. \r\nMicrosoft ships lots of software, However a consumer may only want to promote the Office suite of products into their Transparency Service for internal validation.\r\n\r\nI'd suggest the wording, as current, isn't well defined and I'd vote to cut this section until more well defined.",
           "createdAt": "2024-02-12T22:10:57Z",
           "updatedAt": "2024-02-12T22:10:57Z"
+        },
+        {
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "body": "If this PR is dropped then we should create an issue to address the underspecification of unpotected headers at registration, especially the idea to preserve unprotected headers. Federation is a simple use case that highlights this problem",
+          "createdAt": "2024-02-13T15:26:57Z",
+          "updatedAt": "2024-02-13T15:26:57Z"
         }
       ],
       "reviews": [
@@ -22661,6 +22753,39 @@
               "updatedAt": "2024-02-12T22:14:41Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v89mn",
+          "commit": {
+            "abbreviatedOid": "146e8c9"
+          },
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "I think the new text is too specific. To me (and as in the prior text) Federation refers to having multiple TS, and one TS accepting receipts from another TS at registration time is just an advanced case, for which we don't have clarity yet. As discussed earlier, letting the TS decide what unprotected headers to authenticate in its receipts is a major complication. \r\n\r\nMy preference would be (1) keep a general placeholder on Federation --- better than nothing; or else (2) cut the section. But this leaves many questions unanswered, starting with the two TS in the arch diagram. ",
+          "createdAt": "2024-02-13T15:24:25Z",
+          "updatedAt": "2024-02-13T15:24:25Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v8-QR",
+          "commit": {
+            "abbreviatedOid": "146e8c9"
+          },
+          "author": "roywill",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:25:32Z",
+          "updatedAt": "2024-02-13T15:25:33Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "Having content in unprotected header like receipts that expire and be refreshed sounds odd.  As to why being able to confirm that you saw a version may cause problems where content is recorded on multiple SCITT instances.  As each receipt is distinct, now this may snap that order matters. ",
+              "createdAt": "2024-02-13T15:25:32Z",
+              "updatedAt": "2024-02-13T15:25:33Z"
+            }
+          ]
         }
       ]
     },
@@ -22676,7 +22801,7 @@
       "labels": [],
       "body": "In case there is no consensus to remove Federation, I raised https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/195 to update it.",
       "createdAt": "2024-02-12T19:02:46Z",
-      "updatedAt": "2024-02-12T22:12:49Z",
+      "updatedAt": "2024-02-13T15:28:56Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
@@ -22694,6 +22819,13 @@
           "body": "I'd suggest we've had a few different conversations about federation of everything in a transparency service, vs. selective promotion of a subset of information across Transparency Services.\r\nThe latter is the ability for a consumer of one or more Transparency Services to promote the content for a subset of their software.\r\nMicrosoft ships lots of software, However, a consumer may only want to promote the Office suite of products into their Transparency Service for internal validation.\r\n\r\nI'd suggest the wording, as current, isn't well defined and I'd vote to cut this section until more well defined.",
           "createdAt": "2024-02-12T22:12:39Z",
           "updatedAt": "2024-02-12T22:12:39Z"
+        },
+        {
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "body": "If this is merged then we likely need additional text in the claim registration section to describe what a TS should do with existing receipts already attached to the claim.",
+          "createdAt": "2024-02-13T15:28:55Z",
+          "updatedAt": "2024-02-13T15:28:55Z"
         }
       ],
       "reviews": [
@@ -22722,6 +22854,876 @@
           "createdAt": "2024-02-12T22:12:49Z",
           "updatedAt": "2024-02-12T22:12:49Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 197,
+      "id": "PR_kwDOIvmHss5mtFRN",
+      "title": "Clarify client and issuer",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/197",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #102, #186 and #189",
+      "createdAt": "2024-02-13T04:04:39Z",
+      "updatedAt": "2024-02-13T16:48:52Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/client-issuer-roles",
+      "headRefOid": "41c463ddd6a094941df43df65f71ed6cb24d7a8f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5v39j0",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T06:16:40Z",
+          "updatedAt": "2024-02-13T06:16:44Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "Is a Verifier a Client? If not, does a Verifier use a Client? I bring this up because in my prior work on this I presented a updated diagram to confirm my understanding and I was corrected on this point. However, this seems an important place to clarify this and/or in the definition of Verifier, otherwise the clarification is not in the current draft of the document.",
+              "createdAt": "2024-02-13T06:16:40Z",
+              "updatedAt": "2024-02-13T06:16:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v7oOO",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T13:11:44Z",
+          "updatedAt": "2024-02-13T13:11:44Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "I would simply write that the Issuer may or may not be the client that submits the signed claim to a TS for registration. (The proposed text suggests the client may also sign, which seems irrelevant here.)",
+              "createdAt": "2024-02-13T13:11:44Z",
+              "updatedAt": "2024-02-13T13:11:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v7_XH",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T13:49:29Z",
+          "updatedAt": "2024-02-13T13:49:29Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "If you read the original report in #102, your recommendation (from my perspective, others can feel free to disagree) further confuses the purpose of the original request for clarification: what a client (what is doing it) is unclear. Casually blurring the line between what is doing and who is doing (issuer, verifier has been unclear to me if it what or who) is part of the problem here.",
+              "createdAt": "2024-02-13T13:49:29Z",
+              "updatedAt": "2024-02-13T13:49:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v8-pI",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:26:12Z",
+          "updatedAt": "2024-02-13T15:26:13Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "lets take a normative definition of client from another spec if we can... perhaps\r\n\r\nhttps://datatracker.ietf.org/doc/html/rfc6749#section-1.1\r\n\r\n```\r\nclient\r\n      An application making protected resource requests on behalf of the\r\n      resource owner and with its authorization.  The term \"client\" does\r\n      not imply any particular implementation characteristics (e.g.,\r\n      whether the application executes on a server, a desktop, or other\r\n      devices).\r\n\r\n```",
+              "createdAt": "2024-02-13T15:26:12Z",
+              "updatedAt": "2024-02-13T15:26:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v8_sy",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:28:00Z",
+          "updatedAt": "2024-02-13T15:28:01Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-02-13T15:28:01Z",
+              "updatedAt": "2024-02-13T15:28:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v8_vc",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:28:04Z",
+          "updatedAt": "2024-02-13T15:28:05Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-02-13T15:28:05Z",
+              "updatedAt": "2024-02-13T15:28:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v8_2G",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:28:14Z",
+          "updatedAt": "2024-02-13T15:28:15Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "less confusing to just say nothing here.",
+              "createdAt": "2024-02-13T15:28:14Z",
+              "updatedAt": "2024-02-13T15:28:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9AAy",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "roywill",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:28:32Z",
+          "updatedAt": "2024-02-13T15:28:32Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I like this suggestion Orie.",
+              "createdAt": "2024-02-13T15:28:32Z",
+              "updatedAt": "2024-02-13T15:28:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9Ab-",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:29:14Z",
+          "updatedAt": "2024-02-13T15:29:14Z",
+          "comments": [
+            {
+              "originalPosition": 25,
+              "body": "This is registration policy details.... and interacts with all the other requirements we have for registration policies.... starting to feel like its better to say nothing here.",
+              "createdAt": "2024-02-13T15:29:14Z",
+              "updatedAt": "2024-02-13T15:29:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9BYi",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "roywill",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:30:05Z",
+          "updatedAt": "2024-02-13T15:30:05Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "Must a client authenticate?\r\n",
+              "createdAt": "2024-02-13T15:30:05Z",
+              "updatedAt": "2024-02-13T15:30:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9HYW",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:38:25Z",
+          "updatedAt": "2024-02-13T15:38:25Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "the definition is OAuth specific (\"protected resource\" is an OAuth term) and needs to be adapted.\r\n\r\n>An application making registration requests to a Transparency Service on behalf of a person holding a signed statement.",
+              "createdAt": "2024-02-13T15:38:25Z",
+              "updatedAt": "2024-02-13T15:40:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9H85",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:39:23Z",
+          "updatedAt": "2024-02-13T15:39:23Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Re my previous recommendation around RP was based in the applicability of OAUTH terms and concepts, so in that vein, I support this definition of client for the time being.",
+              "createdAt": "2024-02-13T15:39:23Z",
+              "updatedAt": "2024-02-13T15:39:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9Jp6",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:42:20Z",
+          "updatedAt": "2024-02-13T15:42:31Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "With my proposed definition above I would just add \r\n\r\n> (who may or may not be the Issuer of the statement)\r\n\r\nat the end of my proposed definition above ",
+              "createdAt": "2024-02-13T15:42:20Z",
+              "updatedAt": "2024-02-13T15:42:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9LQD",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:44:41Z",
+          "updatedAt": "2024-02-13T15:44:41Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "Not that I have a definitive answer, but I can envision some uses where authentication is not desirable, but it really depends on what authentication means in this context.",
+              "createdAt": "2024-02-13T15:44:41Z",
+              "updatedAt": "2024-02-13T15:44:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9LhZ",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:44:57Z",
+          "updatedAt": "2024-02-13T15:44:57Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "I still have concerns given the explanations to answer and fully resolve 102, but my questions have been answered and they are outside the scope of my support of the PR recommendation and tentative changes proposed in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/197/files#r1488069804.\r\n\r\n(Note to Steve as it is your PR: I cannot resolve this comment because sadly I did not create it as  part of a formal review in GitHub, so I cannot close it and mark it no longer relevant, apologies.)",
+              "createdAt": "2024-02-13T15:44:57Z",
+              "updatedAt": "2024-02-13T15:46:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v919b",
+          "commit": {
+            "abbreviatedOid": "4eab6e7"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T16:48:22Z",
+          "updatedAt": "2024-02-13T16:48:22Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I've updated above text",
+              "createdAt": "2024-02-13T16:48:22Z",
+              "updatedAt": "2024-02-13T16:48:22Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 198,
+      "id": "PR_kwDOIvmHss5mtG2A",
+      "title": "Clarify getting a receipt is async registration",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/198",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-13T04:15:25Z",
+      "updatedAt": "2024-02-14T21:25:04Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/receipt-async",
+      "headRefOid": "23888d048d945fc550af435317e36a13f9f14cfc",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5v391y",
+          "commit": {
+            "abbreviatedOid": "82db70c"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-02-13T06:17:34Z",
+          "updatedAt": "2024-02-13T06:17:38Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Minor grammar issue, but worth fixing:\r\n\r\n```suggestion\r\nWhen asynchronous, the Transparency Service MUST return an identifier used to retrieve the Receipt.\r\n```",
+              "createdAt": "2024-02-13T06:17:34Z",
+              "updatedAt": "2024-02-13T06:17:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v7t2B",
+          "commit": {
+            "abbreviatedOid": "4fcb0e1"
+          },
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-02-13T13:21:48Z",
+          "updatedAt": "2024-02-13T13:21:54Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Where is this identifier defined? What does it identify? There is a potential ambiguity between identifying a registration event (later authenticated by the receipt) or more loosely just a signed statement, which may then be registered later, or refer to an earlier registration, possibly subsumed by others. Unless/until we agree on registration-event identifiers, I suggest we cut this sentence. ",
+              "createdAt": "2024-02-13T13:21:48Z",
+              "updatedAt": "2024-02-13T13:21:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9Dyy",
+          "commit": {
+            "abbreviatedOid": "4fcb0e1"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:32:26Z",
+          "updatedAt": "2024-02-13T15:32:26Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "there are examples in the appendix, this sentence seems to imply that they would be used.",
+              "createdAt": "2024-02-13T15:32:26Z",
+              "updatedAt": "2024-02-13T15:32:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9EJS",
+          "commit": {
+            "abbreviatedOid": "4fcb0e1"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:33:01Z",
+          "updatedAt": "2024-02-13T15:33:01Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "this seems good",
+              "createdAt": "2024-02-13T15:33:01Z",
+              "updatedAt": "2024-02-13T15:33:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9FHg",
+          "commit": {
+            "abbreviatedOid": "4fcb0e1"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:34:41Z",
+          "updatedAt": "2024-02-13T15:34:42Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "in an asynchronous flow like when batch writing, you need an identifier to use to retrieve the receipt when it eventually becomes available,.",
+              "createdAt": "2024-02-13T15:34:41Z",
+              "updatedAt": "2024-02-13T15:34:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9GQS",
+          "commit": {
+            "abbreviatedOid": "4fcb0e1"
+          },
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:36:38Z",
+          "updatedAt": "2024-02-13T15:36:38Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "The simpler way to prevent confusion is to remove this sentence. Why is it required in the arch? ",
+              "createdAt": "2024-02-13T15:36:38Z",
+              "updatedAt": "2024-02-13T15:36:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9JRm",
+          "commit": {
+            "abbreviatedOid": "4fcb0e1"
+          },
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:41:42Z",
+          "updatedAt": "2024-02-13T15:41:42Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Could we write \"correlator\" instead of identifier to side-step this issue? ",
+              "createdAt": "2024-02-13T15:41:42Z",
+              "updatedAt": "2024-02-13T15:41:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wCPXS",
+          "commit": {
+            "abbreviatedOid": "4fcb0e1"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-14T08:18:09Z",
+          "updatedAt": "2024-02-14T08:18:09Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Could we fiip the sense and instead say\r\n\r\n```suggestion\r\nThe Transparency Service MUST be able to provide a receipt for all registered statements. A receipt for a signed statement MAY be provided asyncrhously```",
+              "createdAt": "2024-02-14T08:18:09Z",
+              "updatedAt": "2024-02-14T08:18:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wCPqG",
+          "commit": {
+            "abbreviatedOid": "4fcb0e1"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-14T08:18:53Z",
+          "updatedAt": "2024-02-14T08:18:53Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "\r\nI think this just brings what has been said previously closer together but the adjacency makes it easire to digest.\r\n\r\nThis could be tightened by adding\r\n\r\n\"Asynchronously obtained receipts MUST be demonstrably equivelent to a receipt obtained at the point of registration\"",
+              "createdAt": "2024-02-14T08:18:53Z",
+              "updatedAt": "2024-02-14T08:18:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wCQsR",
+          "commit": {
+            "abbreviatedOid": "4fcb0e1"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-14T08:21:29Z",
+          "updatedAt": "2024-02-14T08:21:29Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "I think this cements the relationship between signed statements and transparent statements and makes the 'recursive' case more natural to think about",
+              "createdAt": "2024-02-14T08:21:29Z",
+              "updatedAt": "2024-02-14T08:21:29Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 201,
+      "id": "PR_kwDOIvmHss5mwgmT",
+      "title": "Jag uk/clarify initialization",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/201",
+      "state": "OPEN",
+      "author": "JAG-UK",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Retains the concepts and many of the same words as before, but addresses concerns form the mailing list and interim call",
+      "createdAt": "2024-02-13T14:16:07Z",
+      "updatedAt": "2024-02-14T05:48:07Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "jag-uk/clarify-initialization",
+      "headRefOid": "e881a0d2197fcf52e0b322c5f66d6456e70cfbc8",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5v8wXp",
+          "commit": {
+            "abbreviatedOid": "270e6e2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:04:22Z",
+          "updatedAt": "2024-02-13T15:04:22Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "not to challenge our long standing tradition of using the term \"Append-only log\", but technically the Receipt depends on a verifiable data structure, of which an append only log (such as a merkle tree), is just one form.",
+              "createdAt": "2024-02-13T15:04:22Z",
+              "updatedAt": "2024-02-13T15:04:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9K6S",
+          "commit": {
+            "abbreviatedOid": "270e6e2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:44:10Z",
+          "updatedAt": "2024-02-13T15:44:11Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "```suggestion\r\nRegistration Policies MUST be made transparent and available to all clients of the Transparency Service by registering them as Signed Statements on the Append-only Log.\r\n```",
+              "createdAt": "2024-02-13T15:44:11Z",
+              "updatedAt": "2024-02-13T15:44:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9LAn",
+          "commit": {
+            "abbreviatedOid": "270e6e2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:44:21Z",
+          "updatedAt": "2024-02-13T15:44:21Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "Simpler",
+              "createdAt": "2024-02-13T15:44:21Z",
+              "updatedAt": "2024-02-13T15:44:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9LcM",
+          "commit": {
+            "abbreviatedOid": "270e6e2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:44:54Z",
+          "updatedAt": "2024-02-13T15:44:54Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "This is a deadlock... can't register a policy without a policy.",
+              "createdAt": "2024-02-13T15:44:54Z",
+              "updatedAt": "2024-02-13T15:44:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9Me4",
+          "commit": {
+            "abbreviatedOid": "270e6e2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:45:36Z",
+          "updatedAt": "2024-02-13T15:45:37Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "I think the distinction between Mandatory and Optional is more confusing here... I prefer to see all Policies as implementation specific.",
+              "createdAt": "2024-02-13T15:45:36Z",
+              "updatedAt": "2024-02-13T15:45:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9M4q",
+          "commit": {
+            "abbreviatedOid": "270e6e2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:45:54Z",
+          "updatedAt": "2024-02-13T15:45:54Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "This is all that needs to be said.",
+              "createdAt": "2024-02-13T15:45:54Z",
+              "updatedAt": "2024-02-13T15:45:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9QbC",
+          "commit": {
+            "abbreviatedOid": "270e6e2"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T15:49:48Z",
+          "updatedAt": "2024-02-13T15:49:48Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "I support this recommendation.",
+              "createdAt": "2024-02-13T15:49:48Z",
+              "updatedAt": "2024-02-13T15:49:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v9fPt",
+          "commit": {
+            "abbreviatedOid": "270e6e2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-13T16:09:52Z",
+          "updatedAt": "2024-02-13T16:09:52Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v-pau",
+          "commit": {
+            "abbreviatedOid": "270e6e2"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T18:45:08Z",
+          "updatedAt": "2024-02-13T18:45:08Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nTransparency Services MUST feature an Append-only Log.\r\nThe Append-only Log is the verifiable data structure that registers Signed Statements and supports the production of Receipts.\r\n```",
+              "createdAt": "2024-02-13T18:45:08Z",
+              "updatedAt": "2024-02-13T18:45:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5v-q4m",
+          "commit": {
+            "abbreviatedOid": "9808f2e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T18:47:38Z",
+          "updatedAt": "2024-02-13T18:47:38Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "A registration policy is just another signed statement, so how do we release the deadlock?",
+              "createdAt": "2024-02-13T18:47:38Z",
+              "updatedAt": "2024-02-13T18:47:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wBDmq",
+          "commit": {
+            "abbreviatedOid": "9808f2e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-14T04:05:26Z",
+          "updatedAt": "2024-02-14T04:05:26Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": ":+1: Verification is covered elsewhere, minimizing the text needed here",
+              "createdAt": "2024-02-14T04:05:26Z",
+              "updatedAt": "2024-02-14T04:05:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wBEU-",
+          "commit": {
+            "abbreviatedOid": "9808f2e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-14T04:10:38Z",
+          "updatedAt": "2024-02-14T05:47:19Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "To release the deadlock, suggesting we remove this line, and either:\r\n\r\n- [ ]  make registration policies suggested, but optional\r\n- [ ] keep the initialization of the Transparency Service to include a Signed Statement representing the configuration and registration policy.\r\n\r\n```suggestion\r\n```",
+              "createdAt": "2024-02-14T04:10:38Z",
+              "updatedAt": "2024-02-14T05:47:19Z"
+            },
+            {
+              "originalPosition": 34,
+              "body": "Reviewing [draft 5](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-05.html), I couldn't find any text that states a receipt has a pointer to a registration policy, or another statement. \r\nUntil we can clarify that, I'd suggest we remove this sentance\r\n```suggestion\r\n```",
+              "createdAt": "2024-02-14T05:38:36Z",
+              "updatedAt": "2024-02-14T05:47:19Z"
+            },
+            {
+              "originalPosition": 42,
+              "body": "```suggestion\r\nTransparency Services MUST, at a minimum, perform the following checks before registering a Signed Statement:\r\n```",
+              "createdAt": "2024-02-14T05:40:29Z",
+              "updatedAt": "2024-02-14T05:47:19Z"
+            },
+            {
+              "originalPosition": 42,
+              "body": "minimizing",
+              "createdAt": "2024-02-14T05:40:39Z",
+              "updatedAt": "2024-02-14T05:47:19Z"
+            },
+            {
+              "originalPosition": 59,
+              "body": "Per [this comment](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/201/files#r1488113904), I'd suggest removing lines 405-408",
+              "createdAt": "2024-02-14T05:42:47Z",
+              "updatedAt": "2024-02-14T05:47:19Z"
+            },
+            {
+              "originalPosition": 67,
+              "body": "```suggestion\r\nSince a Registration Policy is required prior to the registration of any Signed Statements, a means is required to configure the first Registration Policy that is not the standard issuance of a Signed Statement.\r\nTransparency Services MUST support at least one of these methods:\r\n```",
+              "createdAt": "2024-02-14T05:45:23Z",
+              "updatedAt": "2024-02-14T05:47:19Z"
+            },
+            {
+              "originalPosition": 33,
+              "body": "I just noticed this [initialization proposal below](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/201/files#diff-585fb424519b79cf000445f3425fa56d328cbaca5d2a622740ddc4e5ca91dbe1R412): \r\n\r\n> Since a Registration Policy is required prior to the registration of any Signed Statements, a means is required to configure the first Registration Policy that is not the standard issuance of a Signed Statement.\r\n> Transparency Services MUST support at least one of these methods:",
+              "createdAt": "2024-02-14T05:46:55Z",
+              "updatedAt": "2024-02-14T05:47:19Z"
+            }
+          ]
         }
       ]
     }
