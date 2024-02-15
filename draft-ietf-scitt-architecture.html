@@ -1037,7 +1037,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 13 August 2024</td>
+<td class="center">Expires 18 August 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1050,12 +1050,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-02-10" class="published">10 February 2024</time>
+<time datetime="2024-02-15" class="published">15 February 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-08-13">13 August 2024</time></dd>
+<dd class="expires"><time datetime="2024-08-18">18 August 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1124,7 +1124,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 18 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1959,12 +1959,15 @@ The Transparency Service <span class="bcp14">MAY</span> verify the Statement pay
 </li>
             <li id="section-4.2.1-2.7">
               <p id="section-4.2.1-2.7.1"><strong>Return the Receipt</strong>, which <span class="bcp14">MAY</span> be asynchronous from registration.
+The Transparency Service <span class="bcp14">MUST</span> be able to provide a receipt for all registered Statements.
+A receipt for a Signed Statement <span class="bcp14">MAY</span> be provided asynchronously.
 Details about generating Receipts are described in <a href="#Receipt" class="auto internal xref">Section 4.3</a>.<a href="#section-4.2.1-2.7.1" class="pilcrow">¶</a></p>
 </li>
           </ol>
 <p id="section-4.2.1-3">The last two steps may be shared between a batch of Signed Statements recorded in the Append-only Log.<a href="#section-4.2.1-3" class="pilcrow">¶</a></p>
-<p id="section-4.2.1-4">A Transparency Service <span class="bcp14">MUST</span> ensure that a Signed Statement is registered before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry (the now Transparent Statement) in the Append-only Log.
-Conversely, the Transparency Service <span class="bcp14">MAY</span> re-issue Receipts for the Append-only Log content, for instance after a transient fault during Signed Statement registration.<a href="#section-4.2.1-4" class="pilcrow">¶</a></p>
+<p id="section-4.2.1-4">A Transparency Service <span class="bcp14">MUST</span> ensure that a Signed Statement is registered before releasing its Receipt.<a href="#section-4.2.1-4" class="pilcrow">¶</a></p>
+<p id="section-4.2.1-5">The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
+The multiple receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.<a href="#section-4.2.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
