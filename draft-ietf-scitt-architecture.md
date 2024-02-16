@@ -404,7 +404,6 @@ Typical representations of a trust anchor include certificates or raw public key
 Before a Signed Statement is registered, the trust anchor used to verify its Issuer MUST be registered with the Transparency Service.
 * Inclusion of Issuer trust anchors in a registered Registration Policy
 * Submission of Issuer trust anchors as a Signed Statement
-* An out-of-band authenticated enrollment process
 
 ### Initialization and bootstrapping {#ts-initialization}
 
