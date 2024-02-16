@@ -386,7 +386,6 @@ Transparency Services MUST maintain Registration Policies which govern whether o
 
 Registration Policies MUST be made transparent and available to all clients of the Transparency Service by registering them as Signed Statements on the Append-only Log.
 
-Transparency Services MUST reject any attempt to register Signed Statements until at least one Registration Policy is registered.
 
 
 This specification leaves implementation, encoding and documentation of Registration Policies to the operator of the Transparency Service.
