@@ -401,7 +401,7 @@ The public key is used to verify digital signatures, and the associated data is 
 
 Typical representations of a trust anchor include certificates or raw public keys. The `x5t` and `kid` Claims in the protected header of Signed Statements can be used as hints for discovering trust anchors.
 
-Before a Signed Statement is registered, the trust anchor used to verify its Issuer MUST be registered with the Transparency Service. To enable this, Transparency Services MUST support at least one of these methods:
+Before a Signed Statement is registered, the trust anchor used to verify its Issuer MUST be registered with the Transparency Service.
 * Inclusion of Issuer trust anchors in a registered Registration Policy
 * Submission of Issuer trust anchors as a Signed Statement
 * An out-of-band authenticated enrollment process
