@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 18 August 2024                                       C. Fournet
+Expires: 19 August 2024                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        15 February 2024
+                                                        16 February 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 August 2024.
+   This Internet-Draft will expire on 19 August 2024.
 
 Copyright Notice
 
@@ -97,22 +97,21 @@ Table of Contents
        4.2.1.  Registration
      4.3.  Transparent Statements
        4.3.1.  Validation
-   5.  Federation
-   6.  Privacy Considerations
-   7.  Security Considerations
-     7.1.  Security Guarantees
-     7.2.  Threat Model
-       7.2.1.  Append-only Log
-       7.2.2.  Availability of Receipts
-       7.2.3.  Confidentiality and Privacy
-       7.2.4.  Cryptographic Agility
-       7.2.5.  Transparency Service Clients
-       7.2.6.  Impersonation
-   8.  IANA Considerations
-     8.1.  Media Type Registration
-   9.  References
-     9.1.  Normative References
-     9.2.  Informative References
+   5.  Privacy Considerations
+   6.  Security Considerations
+     6.1.  Security Guarantees
+     6.2.  Threat Model
+       6.2.1.  Append-only Log
+       6.2.2.  Availability of Receipts
+       6.2.3.  Confidentiality and Privacy
+       6.2.4.  Cryptographic Agility
+       6.2.5.  Transparency Service Clients
+       6.2.6.  Impersonation
+   7.  IANA Considerations
+     7.1.  Media Type Registration
+   8.  References
+     8.1.  Normative References
+     8.2.  Informative References
    Appendix A.  Identifiers
      A.1.  For Binary Content
      A.2.  For SCITT Messages
@@ -910,33 +909,7 @@ Table of Contents
    Transparent Statement for auditing the Transparency Services in case
    a dispute arises.
 
-5.  Federation
-
-   *Editor's Note:* This topic is still under discussion, see issue 79
-   (https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/
-   issues/79)
-
-   Multiple, independently-operated Transparency Services can help
-   secure distributed supply chains, without the need for a single,
-   centralized service trusted by all parties.  For example, multiple
-   Transparency Service instances may be governed and operated by
-   different organizations that are either unaware of the other or do
-   not trust one another.
-
-   This may involve registering the same Signed Statements at different
-   Transparency Services, each with their own purpose and Registration
-   Policy.
-
-   This may also involve attaching multiple Receipts to the same Signed
-   Statements.
-
-   For example, a software producer of a supply chain artifact might
-   rely on multiple independent software producers operating
-   transparency services for their upstream artifacts.  Downstream
-   producers benefit from upstream producers providing higher
-   transparency regarding their artifacts.
-
-6.  Privacy Considerations
+5.  Privacy Considerations
 
    Transparency Services are often publicly accessible.  Issuers should
    treat Signed Statements (rendering them as Transparent Statements) as
@@ -952,7 +925,7 @@ Table of Contents
    Signed Statement is inserted into the Append-only Log maintained by a
    Transparency Service, it cannot be removed from the Log.
 
-7.  Security Considerations
+6.  Security Considerations
 
    On its own, verifying a Transparent Statement does not guarantee that
    its Envelope or contents are trustworthy.  Just that they have been
@@ -1029,7 +1002,7 @@ Table of Contents
    by a trusted Verifier and complies with well-known Reference Values
    and Endorsements.
 
-7.1.  Security Guarantees
+6.1.  Security Guarantees
 
    SCITT provides the following security guarantees:
 
@@ -1049,7 +1022,7 @@ Table of Contents
    achieved by implementing the Append-only Log using a verifiable data
    structure (such as a Merkle Tree [MERKLE]).
 
-7.2.  Threat Model
+6.2.  Threat Model
 
    The document provides a generic threat model for SCITT, describing
    its residual security properties when some of its actors (identity
@@ -1108,7 +1081,7 @@ Table of Contents
    Issuer or a Transparency Service for Signed Statements they did not
    issue or register.
 
-7.2.1.  Append-only Log
+6.2.1.  Append-only Log
 
    If a Transparency Service is honest, then a Transparent Statement
    including a correct Receipt ensures that the associated Signed
@@ -1145,7 +1118,7 @@ Table of Contents
    Verifiers and Auditors may also witness (1, 4) but may not be able to
    collect verifiable evidence for it.
 
-7.2.2.  Availability of Receipts
+6.2.2.  Availability of Receipts
 
    Networking and Storage are trusted only for availability.
 
@@ -1159,7 +1132,7 @@ Table of Contents
    Actors may want to independently keep their own record of the Signed
    Statements they issue, endorse, verify, or audit.
 
-7.2.3.  Confidentiality and Privacy
+6.2.3.  Confidentiality and Privacy
 
    According to Zero Trust Principles any location in a network is never
    trusted.  All contents exchanged between actors is protected using
@@ -1190,14 +1163,14 @@ Table of Contents
    may monitor which of its Transparent Statements are being verified
    from lookups to ensure their freshness.
 
-7.2.4.  Cryptographic Agility
+6.2.4.  Cryptographic Agility
 
    The SCITT Architecture supports cryptographic agility.  The actors
    depend only on the subset of signing and Receipt schemes they trust.
    This enables the gradual transition to stronger algorithms, including
    e.g. post-quantum signature algorithms.
 
-7.2.5.  Transparency Service Clients
+6.2.5.  Transparency Service Clients
 
    Trust in clients that submit Signed Statements for Registration is
    implementation-specific.  An attacker may attempt to register any
@@ -1206,7 +1179,7 @@ Table of Contents
    mitigated by a Transparency Service that enforces restrictive access
    control and Registration Policies.
 
-7.2.6.  Impersonation
+6.2.6.  Impersonation
 
    The identity resolution mechanism is trusted to associate long-term
    identifiers with their public signature-verification keys.
@@ -1221,11 +1194,11 @@ Table of Contents
    Verifiers from accepting Signed Statements signed with compromised
    credentials.
 
-8.  IANA Considerations
+7.  IANA Considerations
 
    TBD; Section 3.
 
-8.1.  Media Type Registration
+7.1.  Media Type Registration
 
    This section requests registration of the following media types
    [RFC2046] in the "Media Types" registry [IANA.media-types] in the
@@ -1277,9 +1250,9 @@ Table of Contents
 
    *  Provisional registration?  No
 
-9.  References
+8.  References
 
-9.1.  Normative References
+8.1.  Normative References
 
    [COSWID]   Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D.
               Waltermire, "Concise Software Identification Tags",
@@ -1342,7 +1315,7 @@ Table of Contents
               Certificates", RFC 9360, DOI 10.17487/RFC9360, February
               2023, <https://www.rfc-editor.org/rfc/rfc9360>.
 
-9.2.  Informative References
+8.2.  Informative References
 
    [CWT_CLAIMS]
               "CBOR Web Token (CWT) Claims", n.d.,
