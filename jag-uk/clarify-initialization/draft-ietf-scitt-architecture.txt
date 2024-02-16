@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 18 August 2024                                       C. Fournet
+Expires: 19 August 2024                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        15 February 2024
+                                                        16 February 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 August 2024.
+   This Internet-Draft will expire on 19 August 2024.
 
 Copyright Notice
 
@@ -502,11 +502,9 @@ Table of Contents
    Signed Statements can be used as hints for discovering trust anchors.
 
    Before a Signed Statement is registered, the trust anchor used to
-   verify its Issuer MUST be registered with the Transparency Service.
-   To enable this, Transparency Services MUST support at least one of
-   these methods: * Inclusion of Issuer trust anchors in a registered
-   Registration Policy * Submission of Issuer trust anchors as a Signed
-   Statement * An out-of-band authenticated enrollment process
+   verify its Issuer MUST be registered with the Transparency Service. *
+   Inclusion of Issuer trust anchors in a registered Registration Policy
+   * Submission of Issuer trust anchors as a Signed Statement
 
 4.1.2.  Initialization and bootstrapping
 
