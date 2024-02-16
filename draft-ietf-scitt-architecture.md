@@ -702,20 +702,6 @@ Such policies may use as input all information in the Envelope, the Receipt, and
 
 Verifiers MAY offer options to store or share the Receipt of the Transparent Statement for auditing the Transparency Services in case a dispute arises.
 
-# Federation
-
-**Editor's Note:** This topic is still under discussion, see [issue 79](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/79)
-
-Multiple, independently-operated Transparency Services can help secure distributed supply chains, without the need for a single, centralized service trusted by all parties.
-For example, multiple Transparency Service instances may be governed and operated by different organizations that are either unaware of the other or do not trust one another.
-
-This may involve registering the same Signed Statements at different Transparency Services, each with their own purpose and Registration Policy.
-
-This may also involve attaching multiple Receipts to the same Signed Statements.
-
-For example, a software producer of a supply chain artifact might rely on multiple independent software producers operating transparency services for their upstream artifacts.
-Downstream producers benefit from upstream producers providing higher transparency regarding their artifacts.
-
 # Privacy Considerations
 
 Transparency Services are often publicly accessible.
