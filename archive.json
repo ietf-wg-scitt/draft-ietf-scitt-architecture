@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-15T00:34:17.014460+00:00",
+  "timestamp": "2024-02-18T00:36:51.256999+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -2175,7 +2175,7 @@
       "id": "I_kwDOIvmHss5q_F07",
       "title": "Federation part 1",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/79",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2186,8 +2186,8 @@
       ],
       "body": "This issue tracks initial work to be completed regarding profiling of COSE to support federation for SCITT.\r\n\r\n\r\nSome initial topics that still need to be addressed:\r\n\r\n- How do transparency services discovery each other?\r\n- How do they know if their policies are compatible?\r\n- How do they know if they support the same issuers? \r\n- How do they know if they support the same artifact types?\r\n- How is issuer privacy impacted by federation? ",
       "createdAt": "2023-07-08T12:39:47Z",
-      "updatedAt": "2024-02-12T17:39:58Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-16T00:03:20Z",
+      "closedAt": "2024-02-16T00:03:20Z",
       "comments": [
         {
           "author": "pdxjohnny",
@@ -4091,7 +4091,7 @@
       "labels": [],
       "body": "Since the refactor and the shift to X.509-based claim signature, the authentication of issuers is no longer auditable - i.e. it is no longer possible for verifiers and auditors to re-validate the claim signature and issuer authentication performed by a TS at registration, which massively increases the trust in the TS (which may now try to register forged claims with plausible deniability - by claiming the TS lost the issuer's certificate used at registration even if none existed). \r\n\r\nPart of the issue is that claims use x5t instead of x5c. This means there is no mechanism for auditors to obtain the certificate chain used to sign a claim from the TS at registration. Even if x5c was used instead of x5t, only the leaf certificate is required to appear in x5c. Reconstructing the full issuer certificate chain requires at least the TS configuration to link to the configured root CAs used by the TS. Since roots and intermediate certificates expire (or can be updated, as is often the case with PKIX root programs from Mozilla, Google and Microsoft), it is not possible to assume that verifiers can just store the root configuration with the TS's certificate.\r\n\r\nThere are further issues with issuer authentication:\r\n>When x5t is present, iss MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.\r\n\r\nThis is not well-specified without a reference to such a regular expression. Is this supposed to mean RFC4514 string representation of a distinguished name? The language of RFC4514 doesn't appear to be regular (it is context free), so this must be clarified.\r\n\r\nThere is also no requirement for the issuer's serialized distinguished name to be produced from the claim's X.509 leaf subject. A malicious issuer can put a different issuer's serialized distinguished name in the iss field and is likely to confuse a verifier who cannot detect the mismatch since issuer authentication is not auditable. This makes iss essentially useless for verifiers, and it may be preferable to set iss to nil if x5t/x5c is used.",
       "createdAt": "2024-02-13T13:23:34Z",
-      "updatedAt": "2024-02-13T13:37:22Z",
+      "updatedAt": "2024-02-15T20:51:40Z",
       "closedAt": null,
       "comments": [
         {
@@ -4100,6 +4100,13 @@
           "body": "I propose we require in the architecture that the full certificate chain used to identify the issuer and verify its signature at the time of registration be authenticated by the TS via the resulting receipt. \r\n- Given a transparent statement (and possibly auxiliary transparent statement from the TS log recording root and intermediate certificates) verifiers must be able to retrieve and review the full certificate chain.\r\n- This clearly separates PKI issues (delegated to certificate issuance) and the evidence required to keep them transparent and auditable. \r\n- The text included a a way to implement this requirement based on transparent configuration statements, which I found useful but may be too detailed/prescriptive for the architecture. ",
           "createdAt": "2024-02-13T13:37:21Z",
           "updatedAt": "2024-02-13T13:37:21Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I don't think its in the spirit of COSE to include the full cert chain in a protected header.\r\n\r\nA thumbprint to a certificate that is in a chain is more concise.",
+          "createdAt": "2024-02-15T20:51:39Z",
+          "updatedAt": "2024-02-15T20:51:39Z"
         }
       ]
     }
@@ -18459,7 +18466,7 @@
       "labels": [],
       "body": "This pull request:\r\n\r\n- clarifies that multiple receipts are possible\r\n- clarifies that issuers are not always artifact producers\r\n- clarifies that transparency services are not artifact repositories\r\n- clarifies that verifiers are not always relying parties\r\n- clarifies that relying parties care about artifact transparency (not just verifying transparent statements)\r\n\r\n![Screenshot 2024-01-09 at 1 06 39\u202fPM](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/8295856/38bfad0b-28ee-429b-9bb8-5db7cc22e108)\r\n",
       "createdAt": "2024-01-09T19:04:44Z",
-      "updatedAt": "2024-01-19T15:50:00Z",
+      "updatedAt": "2024-02-16T00:48:14Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "24f63ee8cfc2b99b937dd236cca3c886fd1218f9",
@@ -18615,7 +18622,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-01-10T12:21:41Z",
-      "updatedAt": "2024-01-30T16:04:21Z",
+      "updatedAt": "2024-02-16T00:48:28Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "24f63ee8cfc2b99b937dd236cca3c886fd1218f9",
@@ -20554,7 +20561,7 @@
       "labels": [],
       "body": "Fixes accidental merger and reversion of #165\r\nSee #165 for the discussion",
       "createdAt": "2024-02-01T19:27:06Z",
-      "updatedAt": "2024-02-08T23:53:15Z",
+      "updatedAt": "2024-02-16T00:47:58Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "f97acc29a758af130fc91768512e47260d016f9c",
@@ -20817,7 +20824,7 @@
       "labels": [],
       "body": "A set of consistency fixes for the next draft.",
       "createdAt": "2024-02-01T23:55:16Z",
-      "updatedAt": "2024-02-09T00:19:20Z",
+      "updatedAt": "2024-02-16T00:47:29Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "f97acc29a758af130fc91768512e47260d016f9c",
@@ -22491,7 +22498,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-02-08T07:18:21Z",
-      "updatedAt": "2024-02-08T23:45:46Z",
+      "updatedAt": "2024-02-16T00:47:54Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "f97acc29a758af130fc91768512e47260d016f9c",
@@ -22567,7 +22574,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-02-09T23:14:44Z",
-      "updatedAt": "2024-02-09T23:14:51Z",
+      "updatedAt": "2024-02-16T00:47:27Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "f640e0bd6b861249ad9622a08af6cee145886551",
@@ -22595,7 +22602,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-02-10T01:33:57Z",
-      "updatedAt": "2024-02-10T01:34:04Z",
+      "updatedAt": "2024-02-16T00:47:23Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "e3ae8a97b4406d05f60fbf3bdf0087d0b49cf057",
@@ -22666,24 +22673,26 @@
       "id": "PR_kwDOIvmHss5mq2XE",
       "title": "Update Federation Section",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/195",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "In case there is no rough consensus to keep federation section, I raised https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/196 to remove it.",
       "createdAt": "2024-02-12T19:00:47Z",
-      "updatedAt": "2024-02-13T15:26:59Z",
+      "updatedAt": "2024-02-16T00:47:45Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "feat/federation-federation-federation",
       "headRefOid": "146e8c93df402f2405eaddc07845dd536ded51e0",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-02-16T00:03:20Z",
+      "mergedAt": "2024-02-16T00:03:20Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "146e8c93df402f2405eaddc07845dd536ded51e0"
+      },
       "comments": [
         {
           "author": "SteveLasker",
@@ -22698,6 +22707,13 @@
           "body": "If this PR is dropped then we should create an issue to address the underspecification of unpotected headers at registration, especially the idea to preserve unprotected headers. Federation is a simple use case that highlights this problem",
           "createdAt": "2024-02-13T15:26:57Z",
           "updatedAt": "2024-02-13T15:26:57Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Federation is a simple use case that highlights this problem\r\n\r\nIts not simple, and we have seen no implementation support for it to date.",
+          "createdAt": "2024-02-15T14:22:20Z",
+          "updatedAt": "2024-02-15T14:22:20Z"
         }
       ],
       "reviews": [
@@ -22786,6 +22802,46 @@
               "updatedAt": "2024-02-13T15:25:33Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wOuVP",
+          "commit": {
+            "abbreviatedOid": "146e8c9"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-15T14:20:13Z",
+          "updatedAt": "2024-02-15T14:20:14Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "I would like to to hear from implementers how they handle federation with multiple receipts, without recording the unprotected header in a tamper evident way.\r\n\r\nIf the answer is, no implementations support this, and we don't want to define it in the architecture, the whole federation section should be removed IMO.",
+              "createdAt": "2024-02-15T14:20:13Z",
+              "updatedAt": "2024-02-15T14:20:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wOvJa",
+          "commit": {
+            "abbreviatedOid": "146e8c9"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-15T14:21:39Z",
+          "updatedAt": "2024-02-15T14:21:39Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "There is no other place to put receipts, without breaking the signature of the signed statement.\r\n\r\nAnd as soon as you put anything in the unprotected header, the bytes of the entire message, have been changed.",
+              "createdAt": "2024-02-15T14:21:39Z",
+              "updatedAt": "2024-02-15T14:21:39Z"
+            }
+          ]
         }
       ]
     },
@@ -22794,24 +22850,26 @@
       "id": "PR_kwDOIvmHss5mq3E6",
       "title": "Remove Federation Section",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/196",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "In case there is no consensus to remove Federation, I raised https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/195 to update it.",
       "createdAt": "2024-02-12T19:02:46Z",
-      "updatedAt": "2024-02-13T15:28:56Z",
+      "updatedAt": "2024-02-16T04:10:53Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "feat/alternative-federation",
       "headRefOid": "44b15b2a78761a2f0a97e21665cf2ad742fc7ee7",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-02-16T00:03:17Z",
+      "mergedAt": "2024-02-16T00:03:17Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "5a6fc246aabf625e2eb8c305bbdb48d0d143cb9b"
+      },
       "comments": [
         {
           "author": "SteveLasker",
@@ -22826,6 +22884,27 @@
           "body": "If this is merged then we likely need additional text in the claim registration section to describe what a TS should do with existing receipts already attached to the claim.",
           "createdAt": "2024-02-13T15:28:55Z",
           "updatedAt": "2024-02-13T15:28:55Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> If this is merged then we likely need additional text in the claim registration section to describe what a TS should do with existing receipts already attached to the claim.\r\n\r\nThanks, @ad-l \r\nWould you like to initiate that PR?",
+          "createdAt": "2024-02-16T00:03:06Z",
+          "updatedAt": "2024-02-16T00:03:06Z"
+        },
+        {
+          "author": "pdxjohnny",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Where are we doing the consensus discussion on federation? I feel like I haven\u2019t seen discussion on the list recently",
+          "createdAt": "2024-02-16T01:15:19Z",
+          "updatedAt": "2024-02-16T01:15:30Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi, John,\r\nWe've been discussing in these PRs and IETF calls. We're working towards a WG Last Call at 119, trimming elements that we don't feel are coming to closure. I know you've been doing some great work, and we can bring this back in with more clarity if you'd like to make a PR/Proposal.\r\n",
+          "createdAt": "2024-02-16T04:10:52Z",
+          "updatedAt": "2024-02-16T04:10:52Z"
         }
       ],
       "reviews": [
@@ -23209,24 +23288,26 @@
       "id": "PR_kwDOIvmHss5mtG2A",
       "title": "Clarify getting a receipt is async registration",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/198",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-02-13T04:15:25Z",
-      "updatedAt": "2024-02-14T21:25:04Z",
+      "updatedAt": "2024-02-16T00:01:49Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/receipt-async",
-      "headRefOid": "23888d048d945fc550af435317e36a13f9f14cfc",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "1d5468bb10899c1c814304e5b67555fd68ea1322",
+      "closedAt": "2024-02-15T23:56:00Z",
+      "mergedAt": "2024-02-15T23:56:00Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "3a2dedea5e1e7aa340e2bc7306a15d3e7d6776dd"
+      },
       "comments": [],
       "reviews": [
         {
@@ -23428,6 +23509,59 @@
               "updatedAt": "2024-02-14T08:21:29Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wTCoK",
+          "commit": {
+            "abbreviatedOid": "23888d0"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-15T23:00:16Z",
+          "updatedAt": "2024-02-15T23:01:33Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Minor capitalization and spelling issues, but not blocking\r\n\r\n```suggestion\r\nThe Transparency Service MUST be able to provide a receipt for all registered Statements. A receipt for a Signed Statement MAY be provided asynchronously.\r\n```",
+              "createdAt": "2024-02-15T23:00:16Z",
+              "updatedAt": "2024-02-15T23:02:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wTNvV",
+          "commit": {
+            "abbreviatedOid": "4cdf618"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-15T23:42:28Z",
+          "updatedAt": "2024-02-15T23:42:28Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wTOnV",
+          "commit": {
+            "abbreviatedOid": "4cdf618"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-15T23:47:12Z",
+          "updatedAt": "2024-02-15T23:47:12Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\nThe Transparency Service MUST be able to provide a receipt for all registered Statements.\r\nA receipt for a Signed Statement MAY be provided asynchronously.\r\n```",
+              "createdAt": "2024-02-15T23:47:12Z",
+              "updatedAt": "2024-02-15T23:47:13Z"
+            }
+          ]
         }
       ]
     },
@@ -23443,18 +23577,26 @@
       "labels": [],
       "body": "Retains the concepts and many of the same words as before, but addresses concerns form the mailing list and interim call",
       "createdAt": "2024-02-13T14:16:07Z",
-      "updatedAt": "2024-02-14T05:48:07Z",
+      "updatedAt": "2024-02-16T00:50:25Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "jag-uk/clarify-initialization",
-      "headRefOid": "e881a0d2197fcf52e0b322c5f66d6456e70cfbc8",
+      "headRefOid": "aa1bd2bf867381840617f751d0a6b5dbda65806a",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I've merged in suggestions. Please re-review, with LGTM or actionable suggestions.",
+          "createdAt": "2024-02-16T00:17:00Z",
+          "updatedAt": "2024-02-16T00:17:00Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss5v8wXp",
@@ -23724,6 +23866,212 @@
               "updatedAt": "2024-02-14T05:47:19Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wQLa4",
+          "commit": {
+            "abbreviatedOid": "270e6e2"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-15T16:24:48Z",
+          "updatedAt": "2024-02-15T16:24:48Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Happy to take alternative wording. I was re-using this wording from Draft-05 to minimise noise",
+              "createdAt": "2024-02-15T16:24:48Z",
+              "updatedAt": "2024-02-15T16:24:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wQLuA",
+          "commit": {
+            "abbreviatedOid": "270e6e2"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-15T16:25:21Z",
+          "updatedAt": "2024-02-15T16:25:21Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "I propose to resolve this comment given the presence of the Initialization section unless @OR13 still objects",
+              "createdAt": "2024-02-15T16:25:21Z",
+              "updatedAt": "2024-02-15T16:25:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wQM3L",
+          "commit": {
+            "abbreviatedOid": "95f89a1"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-15T16:27:17Z",
+          "updatedAt": "2024-02-15T16:27:18Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "I am super curious. Can someone illustrate a scenario where it is bad to not have a registration policy (e.g., key material to check signatures) in the Append-only Log before allowing Signed Statements to be registered? This is an honest question.",
+              "createdAt": "2024-02-15T16:27:17Z",
+              "updatedAt": "2024-02-15T16:27:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wS74P",
+          "commit": {
+            "abbreviatedOid": "95f89a1"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-15T22:40:37Z",
+          "updatedAt": "2024-02-15T22:40:38Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "I don't think it's a question of being bad. It's a chick-egg scenario. If a registration policy is just a signed statement, then how do you get the first signed statement into other Append-only Log if all registrations must be evaluated against a registration policy (which is just another signed statement)?",
+              "createdAt": "2024-02-15T22:40:37Z",
+              "updatedAt": "2024-02-15T22:40:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wS8JG",
+          "commit": {
+            "abbreviatedOid": "95f89a1"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-15T22:41:40Z",
+          "updatedAt": "2024-02-15T22:41:40Z",
+          "comments": [
+            {
+              "originalPosition": 58,
+              "body": "```suggestion\r\nBefore a Signed Statement is registered, the trust anchor used to verify its Issuer MUST be registered with the Transparency Service.\r\n```",
+              "createdAt": "2024-02-15T22:41:40Z",
+              "updatedAt": "2024-02-15T22:41:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wS8Nz",
+          "commit": {
+            "abbreviatedOid": "95f89a1"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-15T22:41:57Z",
+          "updatedAt": "2024-02-15T22:41:57Z",
+          "comments": [
+            {
+              "originalPosition": 59,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-02-15T22:41:57Z",
+              "updatedAt": "2024-02-15T22:41:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wS8R7",
+          "commit": {
+            "abbreviatedOid": "95f89a1"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-15T22:42:10Z",
+          "updatedAt": "2024-02-15T22:42:10Z",
+          "comments": [
+            {
+              "originalPosition": 60,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-02-15T22:42:10Z",
+              "updatedAt": "2024-02-15T22:42:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wS8Yp",
+          "commit": {
+            "abbreviatedOid": "95f89a1"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-15T22:42:34Z",
+          "updatedAt": "2024-02-15T22:42:35Z",
+          "comments": [
+            {
+              "originalPosition": 61,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-02-15T22:42:34Z",
+              "updatedAt": "2024-02-15T22:42:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wTS09",
+          "commit": {
+            "abbreviatedOid": "95f89a1"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-16T00:09:34Z",
+          "updatedAt": "2024-02-16T00:09:34Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "Based on this section, I believe Jon's resolved the deadlock: \r\nhttps://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/201/files#diff-585fb424519b79cf000445f3425fa56d328cbaca5d2a622740ddc4e5ca91dbe1R409",
+              "createdAt": "2024-02-16T00:09:34Z",
+              "updatedAt": "2024-02-16T00:09:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wTT8Q",
+          "commit": {
+            "abbreviatedOid": "aa1bd2b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-02-16T00:15:44Z",
+          "updatedAt": "2024-02-16T00:15:44Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wTanQ",
+          "commit": {
+            "abbreviatedOid": "aa1bd2b"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-16T00:50:25Z",
+          "updatedAt": "2024-02-16T00:50:25Z",
+          "comments": []
         }
       ]
     }
