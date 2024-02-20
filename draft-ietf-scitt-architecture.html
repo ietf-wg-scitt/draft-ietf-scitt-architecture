@@ -1174,10 +1174,10 @@ Issuers can register their Signed Statements on any Transparency Service, with t
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-transparency-service" class="internal xref">Transparency Service</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.1">
-                    <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="auto internal xref">4.1.1</a>.  <a href="#name-initialization" class="internal xref">Initialization</a></p>
+                    <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="auto internal xref">4.1.1</a>.  <a href="#name-registration-policies" class="internal xref">Registration Policies</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.2">
-                    <p id="section-toc.1-1.4.2.1.2.2.1"><a href="#section-4.1.2" class="auto internal xref">4.1.2</a>.  <a href="#name-registration-policies" class="internal xref">Registration Policies</a></p>
+                    <p id="section-toc.1-1.4.2.1.2.2.1"><a href="#section-4.1.2" class="auto internal xref">4.1.2</a>.  <a href="#name-initialization-and-bootstra" class="internal xref">Initialization and bootstrapping</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.3">
                     <p id="section-toc.1-1.4.2.1.2.3.1"><a href="#section-4.1.3" class="auto internal xref">4.1.3</a>.  <a href="#name-append-only-log" class="internal xref">Append-only Log</a></p>
@@ -1728,41 +1728,45 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
         <h3 id="name-transparency-service">
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-transparency-service" class="section-name selfRef">Transparency Service</a>
         </h3>
-<p id="section-4.1-1">An important function of a Transparency Service is to maintain Registration Policies for the Append-only Log.
-The Append-only Log is the verifiable data structure which registers Signed Statements and supports the production of Receipts.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-1">Transparency Services <span class="bcp14">MUST</span> feature an Append-only Log.
+The Append-only Log is the verifiable data structure that registers Signed Statements and supports the production of Receipts.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.1-2">All Transparency Services <span class="bcp14">MUST</span> expose APIs for the registration of Signed Statements and issuance of Receipts.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 <p id="section-4.1-3">Transparency Services <span class="bcp14">MAY</span> support additional APIs for auditing, for instance, to query the history of Signed Statements.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
-<p id="section-4.1-4">Typically a Transparency Services has a single Issuer identity which is present in the <code>iss</code> claim of Receipts for that service.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
+<p id="section-4.1-4">Typically a Transparency Service has a single Issuer identity which is present in the <code>iss</code> claim of Receipts for that service.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
 <p id="section-4.1-5">Multi-tenant support can be enabled through the use of identifiers in the <code>iss</code> claim, for example, <code>ts.example</code> may have a distinct Issuer identity for each sub domain, such as <code>customer1.ts.example</code> and <code>customer2.ts.example</code>.<a href="#section-4.1-5" class="pilcrow">¶</a></p>
-<div id="ts-initialization">
+<div id="sec-registration-policies">
 <section id="section-4.1.1">
-          <h4 id="name-initialization">
-<a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-initialization" class="section-name selfRef">Initialization</a>
+          <h4 id="name-registration-policies">
+<a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-registration-policies" class="section-name selfRef">Registration Policies</a>
           </h4>
-<p id="section-4.1.1-1">The Append-only Log is empty when the Transparency Service is initialized.
-The first entry that is added to the Append-only Log <span class="bcp14">MUST</span> be a Signed Statement including key material.
-The second set of entries are Signed Statements for additional domain-specific Registration Policy.
-The third set of entries are Signed Statements for Artifacts.
-From here on a Transparency Service can check Signed Statements on registration via policy (that is at minimum, key material and typically a Registration Policy) and is therefore in a reliable state to register Signed Statements about Artifacts or a new Registration Policy.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-1">Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is accepted to be registered to the Append-only Log.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-2">Transparency Services <span class="bcp14">MUST</span> maintain Registration Policies which govern whether or not a given Signed Statement is eligible for registration.<a href="#section-4.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-3">Registration Policies <span class="bcp14">MUST</span> be made transparent and available to all clients of the Transparency Service by registering them as Signed Statements on the Append-only Log.<a href="#section-4.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-4">This specification leaves implementation, encoding and documentation of Registration Policies to the operator of the Transparency Service.<a href="#section-4.1.1-4" class="pilcrow">¶</a></p>
+<div id="sec-mandatory-registration-checks">
+<section id="section-4.1.1.1">
+            <h5 id="name-mandatory-registration-chec">
+<a href="#section-4.1.1.1" class="section-number selfRef">4.1.1.1. </a><a href="#name-mandatory-registration-chec" class="section-name selfRef">Mandatory Registration Checks</a>
+            </h5>
+<p id="section-4.1.1.1-1">Transparency Services <span class="bcp14">MUST</span>, at a minimum, perform the following checks before registering a Signed Statement:
+* Authenticate the Issuer of the Signed Statement<a href="#section-4.1.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.1.1-2">The Transparency Service <span class="bcp14">MUST</span> authenticate the Issuer of Signed Statements by validating the COSE signature and checking the identity of the issuer through one of its configured trust anchors, using the <code>x5t</code> and <code>kid</code> headers in the protected header as hints. For instance, for X.509 signed claims the Transparency Service must validate a complete certificate chain from the certificate identified by <code>x5t</code> to one of the trusted root authority certificate of the Transparency Service.
+The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."<a href="#section-4.1.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.1.1.1-3">Before a Signed Statement is registered, the trust anchor used to verify its Issuer <span class="bcp14">MUST</span> be registered with the Transparency Service.<a href="#section-4.1.1.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sec-registration-policies">
+</section>
+</div>
+<div id="ts-initialization">
 <section id="section-4.1.2">
-          <h4 id="name-registration-policies">
-<a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-registration-policies" class="section-name selfRef">Registration Policies</a>
+          <h4 id="name-initialization-and-bootstra">
+<a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-initialization-and-bootstra" class="section-name selfRef">Initialization and bootstrapping</a>
           </h4>
-<p id="section-4.1.2-1">Registration Policies refer to the checks that are performed before a Signed Statement is registered to an Append-only Log, and a corresponding Receipt becomes available.<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.2-2">As a minimum, a Transparency Service <span class="bcp14">MUST</span> authenticate the Issuer of Signed Statements, which requires a trust anchor in the form of an already registered Signed Statement including key material (see <a href="#ts-initialization" class="auto internal xref">Section 4.1.1</a>).
-As defined in <span>[<a href="#RFC6024" class="cite xref">RFC6024</a>]</span>, "A trust anchor represents an authoritative entity via a public key and associated data.
-The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
-Typical representations of a trust anchor include certificates or raw public keys.<a href="#section-4.1.2-2" class="pilcrow">¶</a></p>
-<p id="section-4.1.2-3">The <code>x5t</code> and <code>kid</code> Claims in the protected header of Signed Statements can be used as hints for discovering trust anchors.
-Before a Registration Policy is used to decide if a Signed Statement is registered, the policy <span class="bcp14">MUST</span> be registered.
-Before a Signed Statement is registered, the trust anchor used to verify it <span class="bcp14">MUST</span> be registered (e.g., via a registered Registration Policy).
-In order to register a trust anchor, the trust anchor <span class="bcp14">MUST</span> be converted to a Signed Statement with a matching content type Claim.
-During initialization of a Transparency Service, the first Signed Statements registered will be for a trust anchor that is not validated by any Registration Policy.<a href="#section-4.1.2-3" class="pilcrow">¶</a></p>
-<p id="section-4.1.2-4">Transparency Services <span class="bcp14">MUST</span> specify their supported signature algorithms in their Registration Policies.<a href="#section-4.1.2-4" class="pilcrow">¶</a></p>
-<p id="section-4.1.2-5">This specification leaves implementation, encoding and documentation of Registration Policies to the operator of the Transparency Service.<a href="#section-4.1.2-5" class="pilcrow">¶</a></p>
+<p id="section-4.1.2-1">Since a Registration Policy is required prior to the registration of any Signed Statements, a means is required to configure the first Registration Policy that is not the standard issuance of a Signed Statement.
+Transparency Services <span class="bcp14">MUST</span> support at least one of these methods:
+* A built-in default Registration Policy
+* Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks
+* An out-of-band authenticated management interface<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-append-only-log">
