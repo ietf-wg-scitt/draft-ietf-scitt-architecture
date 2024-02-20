@@ -395,7 +395,7 @@ This specification leaves implementation, encoding and documentation of Registra
 Transparency Services MUST, at a minimum, perform the following checks before registering a Signed Statement:
 * Authenticate the Issuer of the Signed Statement
 
-To authenticate the Issuer of the Signed Statement the Transparency Service MUST refer to a trust anchor as defined in {{RFC6024}}: "A trust anchor represents an authoritative entity via a public key and associated data.
+The Transparency Service MUST authenticate the Issuer of Signed Statements by validating the COSE signature and checking the identity of the issuer through one of its configured trust anchors, using the `x5t` and `kid` headers in the protected header as hints. For instance, for X.509 signed claims the Transparency Service must validate a complete certificate chain from the certificate identified by `x5t` to one of the trusted root authority certificate of the Transparency Service.
 The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
 
 Typical representations of a trust anchor include certificates or key material, e.g., a raw public key. The `x5t` and `kid` Claims in the protected header of Signed Statements can be used as hints for discovering trust anchors.
