@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 16 August 2024                                       C. Fournet
+Expires: 23 August 2024                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        13 February 2024
+                                                        20 February 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 August 2024.
+   This Internet-Draft will expire on 23 August 2024.
 
 Copyright Notice
 
@@ -199,9 +199,9 @@ Table of Contents
 
    Client:  an application making protected Transparency Service
       resource requests on behalf of the resource owner and with its
-      authorization [RFC6749].  The term "Client" does not imply any
-      particular implementation characteristics (e.g., whether the
-      application executes on a server, a desktop, or other devices).
+      authorization.  The term "Client" does not imply any particular
+      implementation characteristics (e.g., whether the application
+      executes on a server, a desktop, or other devices).
 
    Envelope:  metadata, created by the Issuer to produce a Signed
       Statement.  The Envelope contains the identity of the Issuer and
