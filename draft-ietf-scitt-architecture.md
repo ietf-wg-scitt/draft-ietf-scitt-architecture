@@ -91,7 +91,6 @@ informative:
 
   RFC2397: DataURLs
   RFC6024:
-  RFC6749:
   RFC8141: URNs
   RFC9162: CT
   RFC9334: rats-arch
