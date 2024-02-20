@@ -498,11 +498,6 @@ Table of Contents
    the associated data is used to constrain the types of information for
    which the trust anchor is authoritative."
 
-   Typical representations of a trust anchor include certificates or key
-   material, e.g., a raw public key.  The x5t and kid Claims in the
-   protected header of Signed Statements can be used as hints for
-   discovering trust anchors.
-
    Before a Signed Statement is registered, the trust anchor used to
    verify its Issuer MUST be registered with the Transparency Service.
 
