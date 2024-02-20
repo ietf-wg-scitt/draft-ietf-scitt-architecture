@@ -371,43 +371,47 @@ This section describes at a high level, the three main roles and associated proc
 
 ## Transparency Service
 
-An important function of a Transparency Service is to maintain Registration Policies for the Append-only Log.
-The Append-only Log is the verifiable data structure which registers Signed Statements and supports the production of Receipts.
+Transparency Services MUST feature an Append-only Log.
+The Append-only Log is the verifiable data structure that registers Signed Statements and supports the production of Receipts.
 
 All Transparency Services MUST expose APIs for the registration of Signed Statements and issuance of Receipts.
 
 Transparency Services MAY support additional APIs for auditing, for instance, to query the history of Signed Statements.
 
-Typically a Transparency Services has a single Issuer identity which is present in the `iss` claim of Receipts for that service.
+Typically a Transparency Service has a single Issuer identity which is present in the `iss` claim of Receipts for that service.
 
 Multi-tenant support can be enabled through the use of identifiers in the `iss` claim, for example, `ts.example` may have a distinct Issuer identity for each sub domain, such as `customer1.ts.example` and `customer2.ts.example`.
 
-### Initialization {#ts-initialization}
-
-The Append-only Log is empty when the Transparency Service is initialized.
-The first entry that is added to the Append-only Log MUST be a Signed Statement including key material.
-The second set of entries are Signed Statements for additional domain-specific Registration Policy.
-The third set of entries are Signed Statements for Artifacts.
-From here on a Transparency Service can check Signed Statements on registration via policy (that is at minimum, key material and typically a Registration Policy) and is therefore in a reliable state to register Signed Statements about Artifacts or a new Registration Policy.
-
 ### Registration Policies
 
-Registration Policies refer to the checks that are performed before a Signed Statement is registered to an Append-only Log, and a corresponding Receipt becomes available.
+Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is accepted to be registered to the Append-only Log.
 
-As a minimum, a Transparency Service MUST authenticate the Issuer of Signed Statements, which requires a trust anchor in the form of an already registered Signed Statement including key material (see {{ts-initialization}}).
-As defined in {{RFC6024}}, "A trust anchor represents an authoritative entity via a public key and associated data.
-The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
-Typical representations of a trust anchor include certificates or raw public keys.
+Transparency Services MUST maintain Registration Policies which govern whether or not a given Signed Statement is eligible for registration.
 
-The `x5t` and `kid` Claims in the protected header of Signed Statements can be used as hints for discovering trust anchors.
-Before a Registration Policy is used to decide if a Signed Statement is registered, the policy MUST be registered.
-Before a Signed Statement is registered, the trust anchor used to verify it MUST be registered (e.g., via a registered Registration Policy).
-In order to register a trust anchor, the trust anchor MUST be converted to a Signed Statement with a matching content type Claim.
-During initialization of a Transparency Service, the first Signed Statements registered will be for a trust anchor that is not validated by any Registration Policy.
+Registration Policies MUST be made transparent and available to all clients of the Transparency Service by registering them as Signed Statements on the Append-only Log.
 
-Transparency Services MUST specify their supported signature algorithms in their Registration Policies.
+
 
 This specification leaves implementation, encoding and documentation of Registration Policies to the operator of the Transparency Service.
+
+#### Mandatory Registration Checks
+
+Transparency Services MUST, at a minimum, perform the following checks before registering a Signed Statement:
+* Authenticate the Issuer of the Signed Statement
+
+The Transparency Service MUST authenticate the Issuer of Signed Statements by validating the COSE signature and checking the identity of the issuer through one of its configured trust anchors, using the `x5t` and `kid` headers in the protected header as hints. For instance, for X.509 signed claims the Transparency Service must validate a complete certificate chain from the certificate identified by `x5t` to one of the trusted root authority certificate of the Transparency Service.
+The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
+
+
+Before a Signed Statement is registered, the trust anchor used to verify its Issuer MUST be registered with the Transparency Service.
+
+### Initialization and bootstrapping {#ts-initialization}
+
+Since a Registration Policy is required prior to the registration of any Signed Statements, a means is required to configure the first Registration Policy that is not the standard issuance of a Signed Statement.
+Transparency Services MUST support at least one of these methods:
+* A built-in default Registration Policy
+* Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks
+* An out-of-band authenticated management interface
 
 ### Append-only Log
 
