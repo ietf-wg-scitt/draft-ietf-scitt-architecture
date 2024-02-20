@@ -195,7 +195,6 @@ Client:
 
 : an application making protected Transparency Service resource requests on behalf of the resource owner and with its authorization.
 The term "Client" does not imply any particular implementation characteristics (e.g., whether the application executes on a server, a desktop, or other devices).
-      devices).
 
 Envelope:
 
