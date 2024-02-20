@@ -398,7 +398,7 @@ Transparency Services MUST, at a minimum, perform the following checks before re
 To authenticate the Issuer of the Signed Statement the Transparency Service MUST refer to a trust anchor as defined in {{RFC6024}}: "A trust anchor represents an authoritative entity via a public key and associated data.
 The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
 
-Typical representations of a trust anchor include certificates or raw public keys. The `x5t` and `kid` Claims in the protected header of Signed Statements can be used as hints for discovering trust anchors.
+Typical representations of a trust anchor include certificates or key material, e.g., a raw public key. The `x5t` and `kid` Claims in the protected header of Signed Statements can be used as hints for discovering trust anchors.
 
 Before a Signed Statement is registered, the trust anchor used to verify its Issuer MUST be registered with the Transparency Service.
 
