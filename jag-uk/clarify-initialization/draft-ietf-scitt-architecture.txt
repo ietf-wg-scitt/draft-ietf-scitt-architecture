@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 19 August 2024                                       C. Fournet
+Expires: 23 August 2024                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        16 February 2024
+                                                        20 February 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 August 2024.
+   This Internet-Draft will expire on 23 August 2024.
 
 Copyright Notice
 
@@ -494,9 +494,10 @@ Table of Contents
    signatures, and the associated data is used to constrain the types of
    information for which the trust anchor is authoritative."
 
-   Typical representations of a trust anchor include certificates or raw
-   public keys.  The x5t and kid Claims in the protected header of
-   Signed Statements can be used as hints for discovering trust anchors.
+   Typical representations of a trust anchor include certificates or key
+   material, e.g., a raw public key.  The x5t and kid Claims in the
+   protected header of Signed Statements can be used as hints for
+   discovering trust anchors.
 
    Before a Signed Statement is registered, the trust anchor used to
    verify its Issuer MUST be registered with the Transparency Service.
