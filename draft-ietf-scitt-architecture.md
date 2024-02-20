@@ -398,7 +398,6 @@ Transparency Services MUST, at a minimum, perform the following checks before re
 The Transparency Service MUST authenticate the Issuer of Signed Statements by validating the COSE signature and checking the identity of the issuer through one of its configured trust anchors, using the `x5t` and `kid` headers in the protected header as hints. For instance, for X.509 signed claims the Transparency Service must validate a complete certificate chain from the certificate identified by `x5t` to one of the trusted root authority certificate of the Transparency Service.
 The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
 
-Typical representations of a trust anchor include certificates or key material, e.g., a raw public key. The `x5t` and `kid` Claims in the protected header of Signed Statements can be used as hints for discovering trust anchors.
 
 Before a Signed Statement is registered, the trust anchor used to verify its Issuer MUST be registered with the Transparency Service.
 
