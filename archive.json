@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-20T00:33:37.447451+00:00",
+  "timestamp": "2024-02-22T00:34:03.805549+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -2805,7 +2805,7 @@
       "id": "I_kwDOIvmHss5xgoJV",
       "title": "Add client in terminology",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/102",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "nikosft",
       "authorAssociation": "NONE",
       "assignees": [
@@ -2817,8 +2817,8 @@
       ],
       "body": "In section 5.2.3.3 `client` appears out of the blue. It is not clear what a `client` is. ",
       "createdAt": "2023-09-20T07:46:53Z",
-      "updatedAt": "2024-02-12T19:10:15Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-20T15:13:18Z",
+      "closedAt": "2024-02-20T15:13:18Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -3877,7 +3877,7 @@
       "id": "I_kwDOIvmHss5-z4x3",
       "title": "Authorization of the issuer is missing!",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/186",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -3886,8 +3886,8 @@
       "labels": [],
       "body": "so the authorization of the Issuer and of the Transparency Service by the Verifier of the Receipt are generally independent\r\n\r\n_Originally posted by @yogeshbdeshpande in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484586471_\r\n            ",
       "createdAt": "2024-02-09T17:04:03Z",
-      "updatedAt": "2024-02-13T13:30:06Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-20T22:19:21Z",
+      "closedAt": "2024-02-20T22:19:21Z",
       "comments": [
         {
           "author": "ad-l",
@@ -3895,6 +3895,13 @@
           "body": "See also #200",
           "createdAt": "2024-02-13T13:30:05Z",
           "updatedAt": "2024-02-13T13:30:05Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Resolved by #197 ",
+          "createdAt": "2024-02-20T22:19:21Z",
+          "updatedAt": "2024-02-20T22:19:21Z"
         }
       ]
     },
@@ -3969,7 +3976,7 @@
       "id": "I_kwDOIvmHss5-0BHs",
       "title": "Discuss the possible issue on Client not the same as Issuer",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/189",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -3979,8 +3986,8 @@
       "labels": [],
       "body": "              Discuss the possible issue on this issue!\r\n\r\n_Originally posted by @yogeshbdeshpande in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484610979_\r\n            ",
       "createdAt": "2024-02-09T17:27:39Z",
-      "updatedAt": "2024-02-13T04:05:21Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-20T22:20:07Z",
+      "closedAt": "2024-02-20T22:20:06Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -3995,6 +4002,13 @@
           "body": "I realized @yogeshbdeshpande is OOF this week, so I submitted #197 ",
           "createdAt": "2024-02-13T04:05:20Z",
           "updatedAt": "2024-02-13T04:05:20Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "resolved by #197",
+          "createdAt": "2024-02-20T22:20:06Z",
+          "updatedAt": "2024-02-20T22:20:06Z"
         }
       ]
     },
@@ -4063,11 +4077,14 @@
       "state": "OPEN",
       "author": "ad-l",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "ad-l",
+        "fournet"
+      ],
       "labels": [],
       "body": "After the refactor, the only remaining normative text about the append-only log (4.1.3) states:\r\n\r\n> The security properties of the Append-only Log are determined by the choice of the verifiable data structure used to produce Receipts.\r\n> [...]\r\n> Specific verifiable data structures, such those describes in [[RFC9162](https://www.rfc-editor.org/rfc/rfc9162)] and [[I-D.draft-steele-cose-merkle-tree-proofs](https://datatracker.ietf.org/doc/html/draft-steele-cose-merkle-tree-proofs-01)] are out of scope for this document.\r\n\r\nThere are currently no requirements for verifiable data structures used for the ledger, so indeed it is possible to define and implement a ledger that is non consistent. In fact even though it is called an \"append-only ledger\" there is no normative requirement in the architecture or in COMETRE that the verifiable data structure is append-only. This is also incompatible with the definition of transparency in section 3 that states:\r\n\r\n> Transparency is implemented by providing a consistent, append-only, cryptographically verifiable, publicly available record of entries.\r\n\r\nGiven that auditable consistency is part of the definition of transparency, the security properties of acceptable verifiable data structures should be specified:\r\n- either in the architecture document itself, as it was before version 05\r\n- or, as a requirement for defining new verifiable data structures in I-D.draft-steele-cose-merkle-tree-proofs\r\n",
       "createdAt": "2024-02-13T12:48:27Z",
-      "updatedAt": "2024-02-13T12:54:01Z",
+      "updatedAt": "2024-02-20T22:21:49Z",
       "closedAt": null,
       "comments": [
         {
@@ -4087,11 +4104,13 @@
       "state": "OPEN",
       "author": "ad-l",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "ad-l"
+      ],
       "labels": [],
       "body": "Since the refactor and the shift to X.509-based claim signature, the authentication of issuers is no longer auditable - i.e. it is no longer possible for verifiers and auditors to re-validate the claim signature and issuer authentication performed by a TS at registration, which massively increases the trust in the TS (which may now try to register forged claims with plausible deniability - by claiming the TS lost the issuer's certificate used at registration even if none existed). \r\n\r\nPart of the issue is that claims use x5t instead of x5c. This means there is no mechanism for auditors to obtain the certificate chain used to sign a claim from the TS at registration. Even if x5c was used instead of x5t, only the leaf certificate is required to appear in x5c. Reconstructing the full issuer certificate chain requires at least the TS configuration to link to the configured root CAs used by the TS. Since roots and intermediate certificates expire (or can be updated, as is often the case with PKIX root programs from Mozilla, Google and Microsoft), it is not possible to assume that verifiers can just store the root configuration with the TS's certificate.\r\n\r\nThere are further issues with issuer authentication:\r\n>When x5t is present, iss MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.\r\n\r\nThis is not well-specified without a reference to such a regular expression. Is this supposed to mean RFC4514 string representation of a distinguished name? The language of RFC4514 doesn't appear to be regular (it is context free), so this must be clarified.\r\n\r\nThere is also no requirement for the issuer's serialized distinguished name to be produced from the claim's X.509 leaf subject. A malicious issuer can put a different issuer's serialized distinguished name in the iss field and is likely to confuse a verifier who cannot detect the mismatch since issuer authentication is not auditable. This makes iss essentially useless for verifiers, and it may be preferable to set iss to nil if x5t/x5c is used.",
       "createdAt": "2024-02-13T13:23:34Z",
-      "updatedAt": "2024-02-15T20:51:40Z",
+      "updatedAt": "2024-02-20T22:22:15Z",
       "closedAt": null,
       "comments": [
         {
@@ -22941,24 +22960,26 @@
       "id": "PR_kwDOIvmHss5mtFRN",
       "title": "Clarify client and issuer",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/197",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #102, #186 and #189",
       "createdAt": "2024-02-13T04:04:39Z",
-      "updatedAt": "2024-02-13T16:48:52Z",
+      "updatedAt": "2024-02-20T15:13:17Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/client-issuer-roles",
-      "headRefOid": "41c463ddd6a094941df43df65f71ed6cb24d7a8f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "e79adaf111d51d302be12dacdd29450295812c38",
+      "closedAt": "2024-02-20T15:13:17Z",
+      "mergedAt": "2024-02-20T15:13:17Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "d7290b31c299b90b30412f4d9c101f151d188d1a"
+      },
       "comments": [],
       "reviews": [
         {
@@ -23280,6 +23301,265 @@
               "updatedAt": "2024-02-13T16:48:22Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wsN0Y",
+          "commit": {
+            "abbreviatedOid": "41c463d"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T14:51:05Z",
+          "updatedAt": "2024-02-20T14:51:05Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "Are you intending to make all SCITT clients OAUTH clients?\r\n\r\nSeems like you just want to borrow the definition",
+              "createdAt": "2024-02-20T14:51:05Z",
+              "updatedAt": "2024-02-20T14:51:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wsO1X",
+          "commit": {
+            "abbreviatedOid": "41c463d"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T14:52:07Z",
+          "updatedAt": "2024-02-20T14:52:07Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "The current suggested text is likely to trigger a \"should be a normative reference\" comment.",
+              "createdAt": "2024-02-20T14:52:07Z",
+              "updatedAt": "2024-02-20T14:52:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wsXbp",
+          "commit": {
+            "abbreviatedOid": "41c463d"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:04:46Z",
+          "updatedAt": "2024-02-20T15:04:46Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "agreed with Orie",
+              "createdAt": "2024-02-20T15:04:46Z",
+              "updatedAt": "2024-02-20T15:04:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wsX8_",
+          "commit": {
+            "abbreviatedOid": "41c463d"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:05:37Z",
+          "updatedAt": "2024-02-20T15:05:37Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "A client is an initiator in a protocol interaction. I do not see how that is relevant to scitt? ",
+              "createdAt": "2024-02-20T15:05:37Z",
+              "updatedAt": "2024-02-20T15:05:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wsYat",
+          "commit": {
+            "abbreviatedOid": "41c463d"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:06:25Z",
+          "updatedAt": "2024-02-20T15:06:25Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "Why make this confusing? Is that an oauth thing?",
+              "createdAt": "2024-02-20T15:06:25Z",
+              "updatedAt": "2024-02-20T15:06:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wsZZb",
+          "commit": {
+            "abbreviatedOid": "41c463d"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:08:04Z",
+          "updatedAt": "2024-02-20T15:08:04Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-02-20T15:08:04Z",
+              "updatedAt": "2024-02-20T15:08:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wsZ0F",
+          "commit": {
+            "abbreviatedOid": "41c463d"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-20T15:08:47Z",
+          "updatedAt": "2024-02-20T15:08:47Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wsadm",
+          "commit": {
+            "abbreviatedOid": "41c463d"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:09:52Z",
+          "updatedAt": "2024-02-20T15:09:53Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "```suggestion\r\n: an application making protected Transparency Service resource requests on behalf of the resource owner and with its authorization.\r\n```",
+              "createdAt": "2024-02-20T15:09:53Z",
+              "updatedAt": "2024-02-20T15:09:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wsanv",
+          "commit": {
+            "abbreviatedOid": "1954827"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:10:08Z",
+          "updatedAt": "2024-02-20T15:10:09Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-02-20T15:10:09Z",
+              "updatedAt": "2024-02-20T15:10:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wsbC3",
+          "commit": {
+            "abbreviatedOid": "125cc38"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:10:52Z",
+          "updatedAt": "2024-02-20T15:10:52Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "```suggestion\r\nThe term \"Client\" does not imply any particular implementation characteristics (e.g., whether the application executes on a server, a desktop, or other devices).\r\n```",
+              "createdAt": "2024-02-20T15:10:52Z",
+              "updatedAt": "2024-02-20T15:10:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wsbOD",
+          "commit": {
+            "abbreviatedOid": "be434b0"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:11:10Z",
+          "updatedAt": "2024-02-20T15:11:10Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-02-20T15:11:10Z",
+              "updatedAt": "2024-02-20T15:11:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wsbU7",
+          "commit": {
+            "abbreviatedOid": "125cc38"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:11:21Z",
+          "updatedAt": "2024-02-20T15:11:22Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "I believe this role is outside the scope of SCITT and hence this PR should be abandoned!",
+              "createdAt": "2024-02-20T15:11:21Z",
+              "updatedAt": "2024-02-20T15:11:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wscPv",
+          "commit": {
+            "abbreviatedOid": "e79adaf"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-20T15:12:51Z",
+          "updatedAt": "2024-02-20T15:12:51Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wscaw",
+          "commit": {
+            "abbreviatedOid": "41c463d"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "good enough",
+          "createdAt": "2024-02-20T15:13:08Z",
+          "updatedAt": "2024-02-20T15:13:08Z",
+          "comments": []
         }
       ]
     },
@@ -23570,24 +23850,26 @@
       "id": "PR_kwDOIvmHss5mwgmT",
       "title": "Jag uk/clarify initialization",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/201",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "JAG-UK",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Retains the concepts and many of the same words as before, but addresses concerns form the mailing list and interim call",
       "createdAt": "2024-02-13T14:16:07Z",
-      "updatedAt": "2024-02-16T00:50:25Z",
+      "updatedAt": "2024-02-20T15:59:22Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "jag-uk/clarify-initialization",
-      "headRefOid": "aa1bd2bf867381840617f751d0a6b5dbda65806a",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "062b4b059b594046c0baeb38448aac119c36dbb3",
+      "closedAt": "2024-02-20T15:59:22Z",
+      "mergedAt": "2024-02-20T15:59:22Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "ac638ab0ab360eea5d417b893ba4d2304ec399f3"
+      },
       "comments": [
         {
           "author": "SteveLasker",
@@ -24071,6 +24353,152 @@
           "body": "",
           "createdAt": "2024-02-16T00:50:25Z",
           "updatedAt": "2024-02-16T00:50:25Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wsez3",
+          "commit": {
+            "abbreviatedOid": "aa1bd2b"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:15:31Z",
+          "updatedAt": "2024-02-20T15:15:31Z",
+          "comments": [
+            {
+              "originalPosition": 66,
+              "body": "yes",
+              "createdAt": "2024-02-20T15:15:31Z",
+              "updatedAt": "2024-02-20T15:15:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5wsfT0",
+          "commit": {
+            "abbreviatedOid": "aa1bd2b"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:16:00Z",
+          "updatedAt": "2024-02-20T15:16:00Z",
+          "comments": [
+            {
+              "originalPosition": 54,
+              "body": "```suggestion\r\nTypical representations of a trust anchor include certificates or key material, e.g., a raw public key. The `x5t` and `kid` Claims in the protected header of Signed Statements can be used as hints for discovering trust anchors.\r\n```",
+              "createdAt": "2024-02-20T15:16:00Z",
+              "updatedAt": "2024-02-20T15:16:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ws45D",
+          "commit": {
+            "abbreviatedOid": "aa1bd2b"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:53:29Z",
+          "updatedAt": "2024-02-20T15:53:29Z",
+          "comments": [
+            {
+              "originalPosition": 45,
+              "body": "```suggestion\r\nThe Transparency Service MUST authenticate the Issuer of Signed Statements by validating the COSE signature and checking the identity of the issuer through one of its configured trust anchors, using the `x5t` and `kid` headers in the protected header as hints. For instance, for X.509 signed claims the Transparency Service must validate a complete certificate chain from the certificate identified by `x5t` to one of the trusted root authority certificate of the Transparency Service.\r\n```",
+              "createdAt": "2024-02-20T15:53:29Z",
+              "updatedAt": "2024-02-20T15:53:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ws5oL",
+          "commit": {
+            "abbreviatedOid": "ea32355"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:54:45Z",
+          "updatedAt": "2024-02-20T15:54:45Z",
+          "comments": [
+            {
+              "originalPosition": 45,
+              "body": "yes\r\n[edit] let me elaborate: I really like the flow of systemic conclusions. Signature Checking, Identity Checking via certification paths that are trust anchors. Starting point is x5t and kid. No notes",
+              "createdAt": "2024-02-20T15:54:45Z",
+              "updatedAt": "2024-02-20T15:56:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ws6Dy",
+          "commit": {
+            "abbreviatedOid": "ea32355"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:55:25Z",
+          "updatedAt": "2024-02-20T15:55:25Z",
+          "comments": [
+            {
+              "originalPosition": 54,
+              "body": "```suggestion\r\n````\r\nnow redundant with my proposed text",
+              "createdAt": "2024-02-20T15:55:25Z",
+              "updatedAt": "2024-02-20T15:55:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ws7Lk",
+          "commit": {
+            "abbreviatedOid": "ea32355"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "yes",
+          "createdAt": "2024-02-20T15:57:14Z",
+          "updatedAt": "2024-02-20T15:57:14Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ws7RN",
+          "commit": {
+            "abbreviatedOid": "aa1bd2b"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-20T15:57:23Z",
+          "updatedAt": "2024-02-20T15:57:23Z",
+          "comments": [
+            {
+              "originalPosition": 45,
+              "body": "I will give it a \ud83d\udc4d but the use of the word is traipsing into configuration/policy territory that we have been trying to avoid.",
+              "createdAt": "2024-02-20T15:57:23Z",
+              "updatedAt": "2024-02-20T15:57:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ws8Iv",
+          "commit": {
+            "abbreviatedOid": "062b4b0"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-20T15:58:45Z",
+          "updatedAt": "2024-02-20T15:58:45Z",
           "comments": []
         }
       ]
