@@ -188,10 +188,10 @@ Auditor:
 
 : an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.
 
-Client:
+Relying Party:
 
-: an application making protected Transparency Service resource requests on behalf of the resource owner and with its authorization.
-The term "Client" does not imply any particular implementation characteristics (e.g., whether the application executes on a server, a desktop, or other devices).
+: a client application for protected Transparency Service resource requests on behalf of the resource owner and with its authorization.
+The term "Relying Party" does not imply any particular implementation characteristics (e.g., whether the application executes on a server, a desktop, or other devices).
 
 Envelope:
 
@@ -388,7 +388,7 @@ Registration Policies refer to additional checks over and above the Mandatory Re
 
 Transparency Services MUST maintain Registration Policies which govern whether or not a given Signed Statement is eligible for registration.
 
-Registration Policies MUST be made transparent and available to all clients of the Transparency Service by registering them as Signed Statements on the Append-only Log.
+Registration Policies MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log.
 
 
 
@@ -553,9 +553,9 @@ Multiple Issuers can make the same Statement about a single Artifact, affirming 
 
 To register a Signed Statement, the Transparency Service performs the following steps:
 
-1. **Client authentication:** A Client authenticates with the Transparency Service, to Register Signed Statements.
+1. **Relying Party authentication:** A Relying Party authenticates with the Transparency Service, to Register Signed Statements.
 Authentication and authorization is implementation-specific, and out of scope of the SCITT Architecture.
-1. **Issuer Verification:** The Transparency Service MUST perform resolution of the Issuer's identity, which may be different than the Client identity.
+1. **Issuer Verification:** The Transparency Service MUST perform resolution of the Issuer's identity, which may be different than the Relying Party identity.
   This step may require that the service retrieves the Issuer ID in real-time, or rely on a cache of recent resolutions.
   For auditing, during Registration, the Transparency Service MUST store evidence of the lookup, including if it was resolved from a cache.
 1. **Signature verification:** The Transparency Service MUST verify the signature of the Signed Statement, as described in {{RFC9360}}, using the signature algorithm and verification key of the Issuer.
@@ -578,7 +578,7 @@ The multiple receipts may be attached to the unprotected header of the Signed St
 
 ## Transparent Statements {#Receipt}
 
-The client (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the Unprotected Header of the Signed Statement.
+The Relying Party (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the Unprotected Header of the Signed Statement.
 
 When a Signed Statement is registered by a Transparency Service a Receipt becomes available.
 When a Receipt is included in a Signed Statement a Transparent Statement is produced.
@@ -833,7 +833,7 @@ All contents exchanged between actors is protected using secure authenticated ch
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
 Some Transparency Services may publish every Signed Statement in their logs, to facilitate their dissemination and auditing.
-Others may just return Receipts to clients that present Signed Statements for Registration, and disclose the Append-only Log only to Auditors trusted with the confidentiality of its contents.
+Others may just return Receipts to Relying Parties that present Singed Statements for Registration, and disclose the Append-only Log only to Auditors trusted with the confidentiality of its contents.
 
 A collection of Signed Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.
 
@@ -850,9 +850,9 @@ The SCITT Architecture supports cryptographic agility.
 The actors depend only on the subset of signing and Receipt schemes they trust.
 This enables the gradual transition to stronger algorithms, including e.g. post-quantum signature algorithms.
 
-### Transparency Service Clients
+### Transparency Service Relying Parties
 
-Trust in clients that submit Signed Statements for Registration is implementation-specific.
+Trust in Relying Parties that submit Signed Statements for Registration is implementation-specific.
 An attacker may attempt to register any Signed Statement it has obtained, at any Transparency Service that accepts them, possibly multiple times and out of order.
 This may be mitigated by a Transparency Service that enforces restrictive access control and Registration Policies.
 
