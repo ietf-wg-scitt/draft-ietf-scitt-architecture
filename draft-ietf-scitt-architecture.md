@@ -84,7 +84,7 @@ normative:
 
 informative:
 
-  I-D.draft-steele-cose-merkle-tree-proofs: COMETRE
+  I-D.draft-ietf-cose-merkle-tree-proofs: COMETRE
 
   RFC2397: DataURLs
   RFC6024:
