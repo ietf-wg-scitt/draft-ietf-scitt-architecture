@@ -397,7 +397,8 @@ This specification leaves implementation, encoding and documentation of Registra
 #### Mandatory Registration Checks
 
 Transparency Services MUST, at a minimum, perform the following checks before registering a Signed Statement:
-* Authenticate the Issuer of the Signed Statement
+
+- Authenticate the Issuer of the Signed Statement
 
 The Transparency Service MUST authenticate the Issuer of Signed Statements by validating the COSE signature and checking the identity of the issuer through one of its configured trust anchors, using the `x5t` and `kid` headers in the protected header as hints. For instance, for X.509 signed claims the Transparency Service must validate a complete certificate chain from the certificate identified by `x5t` to one of the trusted root authority certificate of the Transparency Service.
 The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
@@ -409,9 +410,10 @@ Before a Signed Statement is registered, the trust anchor used to verify its Iss
 
 Since a Registration Policy is required prior to the registration of any Signed Statements, a means is required to configure the first Registration Policy that is not the standard issuance of a Signed Statement.
 Transparency Services MUST support at least one of these methods:
-* A built-in default Registration Policy
-* Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks
-* An out-of-band authenticated management interface
+
+- A built-in default Registration Policy
+- Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks
+- An out-of-band authenticated management interface
 
 ### Append-only Log
 
