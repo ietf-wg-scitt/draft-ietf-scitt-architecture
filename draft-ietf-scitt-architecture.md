@@ -453,7 +453,7 @@ A Receipt is a Signed Statement, (cose-sign1), with addition claims in its prote
 {{fig-signed-statement-cddl}} illustrates a normative CDDL definition for of the protected header for Signed Statements and Receipts.
 
 Everything that is optional in the following CDDL can potentially be discovered out of band and Registration Policies are not assured on the presence of these optional fields.
-A Registration Policy that requires an optional field to be present MUST reject any Signed Statements or Receipts that an invalid according to the policy.
+A Registration Policy that requires an optional field to be present MUST reject any Signed Statements or Receipts that are invalid according to the policy.
 
 ~~~ cddl
 
