@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 23 August 2024                                       C. Fournet
+Expires: 29 August 2024                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        20 February 2024
+                                                        26 February 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 August 2024.
+   This Internet-Draft will expire on 29 August 2024.
 
 Copyright Notice
 
@@ -585,7 +585,7 @@ Table of Contents
    discovered out of band and Registration Policies are not assured on
    the presence of these optional fields.  A Registration Policy that
    requires an optional field to be present MUST reject any Signed
-   Statements or Receipts that an invalid according to the policy.
+   Statements or Receipts that are invalid according to the policy.
 
    Signed_Statement = #6.18(COSE_Sign1)
    Receipt = #6.18(COSE_Sign1)
