@@ -489,8 +489,9 @@ Table of Contents
 4.1.1.1.  Mandatory Registration Checks
 
    Transparency Services MUST, at a minimum, perform the following
-   checks before registering a Signed Statement: * Authenticate the
-   Issuer of the Signed Statement
+   checks before registering a Signed Statement:
+
+   *  Authenticate the Issuer of the Signed Statement
 
    The Transparency Service MUST authenticate the Issuer of Signed
    Statements by validating the COSE signature and checking the identity
@@ -512,10 +513,14 @@ Table of Contents
    any Signed Statements, a means is required to configure the first
    Registration Policy that is not the standard issuance of a Signed
    Statement.  Transparency Services MUST support at least one of these
-   methods: * A built-in default Registration Policy * Acceptance of a
-   first Signed Statement whose payload is a valid Registration Policy,
-   without performing registration checks * An out-of-band authenticated
-   management interface
+   methods:
+
+   *  A built-in default Registration Policy
+
+   *  Acceptance of a first Signed Statement whose payload is a valid
+      Registration Policy, without performing registration checks
+
+   *  An out-of-band authenticated management interface
 
 4.1.3.  Append-only Log
 
