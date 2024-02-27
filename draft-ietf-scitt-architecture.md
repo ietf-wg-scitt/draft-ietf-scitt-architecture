@@ -673,11 +673,10 @@ This is a decoded inclusion proof for RFC9162_SHA256, other verifiable data stru
 
 ### Validation {#validation}
 
-Verifiers MUST apply the verification process as described in Section 4.4 of RFC9052.
+Verifiers MUST apply the verification process as described in Section 4.4 of {{RFC9052}}.
 
-In order to verify the inclusion proof that is included in the Receipt, the verification process for the inclusion proof MUST be performed as described in the document that registers corresponding Verifiable Data Structure Parameters (see {{-COMETRE}}).
-
-APIs exposing verification logic for Transparent Statements may wish to provide more details that a single boolean result, for example, indicating if the signature on the Receipt or Signed Statement is valid, if claims related to the validity period are valid, or if the inclusion proof in the Receipt is valid.
+APIs exposing verification logic for Transparent Statements may provide more details than a single boolean result.
+For example, an API may indicate if the signature on the Receipt or Signed Statement is valid, if claims related to the validity period are valid, or if the inclusion proof in the Receipt is valid.
 
 The algorithm-specific details of checking inclusion proofs are covered in {{-COMETRE}}.
 The pseudo-code for validation of a transparent statement is as follows:
@@ -863,7 +862,6 @@ Transparency Services and other parties may record identity-resolution evidence 
 
 If one of the credentials of an Issuer gets compromised, the SCITT Architecture still guarantees the authenticity of all Signed Statements signed with this credential that have been registered on a Transparency Service before the compromise.
 It is up to the Issuer to notify Transparency Services of credential revocation to stop Verifiers from accepting Signed Statements signed with compromised credentials.
-
 
 # IANA Considerations
 
