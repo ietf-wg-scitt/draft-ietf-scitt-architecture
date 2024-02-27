@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 29 August 2024                                       C. Fournet
+Expires: 30 August 2024                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        26 February 2024
+                                                        27 February 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -33,7 +33,8 @@ Abstract
    interoperability across different implementations of Transparency
    Services with various auditing and compliance requirements.  Issuers
    can register their Signed Statements on any Transparency Service,
-   with the guarantee that all Consumers will be able to verify them.
+   with the guarantee that all Auditors and Verifiers will be able to
+   verify them.
 
 About This Document
 
@@ -65,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 August 2024.
+   This Internet-Draft will expire on 30 August 2024.
 
 Copyright Notice
 
@@ -142,24 +143,25 @@ Table of Contents
    SCITT architecture.  Its goal is to enhance auditability and
    accountability across supply chains.
 
-   In supply chains, artifacts travel down the chain until they are
-   eventually consumed by someone.  Consumers like to have information
-   about the artifacts that they consume.  There are many parties who
-   publish information about artifacts: For example, the original
-   manufacturer may provide information about the state of the artifact
-   when it left the factory.  The shipping company may add information
-   about the transport environment of the artifact.  Compliance auditors
-   may provide information about their compliance assessment of the
+   In supply chains, downstream artifacts are built upon upstream
+   artifacts.  The complexity of traceability and quality control for
+   these supply chains increases with the number of artifacts and
+   parties contributing to them.  There are many parties who publish
+   information about artifacts: For example, the original manufacturer
+   may provide information about the state of the artifact when it left
+   the factory.  The shipping company may add information about the
+   transport environment of the artifact.  Compliance auditors may
+   provide information about their compliance assessment of the
    artifact.  Security companies may publish vulnerability information
-   about an artifact.  Consumers may even publish the fact that they
-   consume an artifact.
+   about an artifact.  Some of these parties may publish information
+   about their analysis or use of an artifact.
 
-   SCITT provides a way for consumers to obtain this information in a
-   way that is "transparent", that is, parties cannot lie about the
+   SCITT provides a way for Relying Parties to obtain this information
+   in a way that is "transparent", that is, parties cannot lie about the
    information that they publish without it being detected.  SCITT
    achieves this by having producers publish information in a
-   Transparency Service, where consumers (also called Verifiers) can
-   check the information.
+   Transparency Service, where Relying Parties can check the
+   information.
 
 1.1.  Requirements Notation
 
@@ -303,7 +305,7 @@ Table of Contents
       Transparency Service.
 
    Verifier:  organizations, stakeholders, and users involved in
-      validating supply chain Artifacts.  Verifiers consume Transparent
+      validating supply chain Artifacts.  Verifiers analyze Transparent
       Statements, verifying their proofs and inspecting the Statement
       payload, either before using corresponding Artifacts, or later to
       audit an Artifact's provenance on the supply chain.
