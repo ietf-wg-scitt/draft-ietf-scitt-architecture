@@ -675,7 +675,7 @@ This is a decoded inclusion proof for RFC9162_SHA256, other verifiable data stru
 
 Verifiers MUST apply the verification process as described in Section 4.4 of {{RFC9052}}.
 
-APIs exposing verification logic for Transparent Statements may wish to provide more details than a single boolean result.
+APIs exposing verification logic for Transparent Statements may provide more details than a single boolean result.
 For example, indicating if the signature on the Receipt or Signed Statement is valid, if claims related to the validity period are valid, or if the inclusion proof in the Receipt is valid.
 
 The algorithm-specific details of checking inclusion proofs are covered in {{-COMETRE}}.
