@@ -388,7 +388,8 @@ Registration Policies refer to additional checks over and above the Mandatory Re
 
 Transparency Services MUST maintain Registration Policies which govern whether or not a given Signed Statement is eligible for registration.
 
-Registration Policies MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log.
+Registration Policies MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing associated Receipts.
+Distribution of Receipts is out of scope for this document.```
 
 
 
