@@ -159,7 +159,7 @@ Security companies may publish vulnerability information about an artifact.
 Consumers may even publish the fact that they consume an artifact.
 
 SCITT provides a way for consumers to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
-SCITT achieves this by having producers publish information in a Transparency Service, where consumers (also called Relying Party) can check the information.
+SCITT achieves this by having producers publish information in a Transparency Service, where consumers (also called Relying Parties) can check the information.
 
 ## Requirements Notation
 
