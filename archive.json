@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-25T00:37:05.026364+00:00",
+  "timestamp": "2024-02-27T00:33:56.330254+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -3837,7 +3837,7 @@
       "id": "I_kwDOIvmHss5-zzzw",
       "title": "Does it mean that unprotected headers are now also included in the receipt's signed information? This significantly complicates the interpretation of the resulting receipts by verifiers. I also don't think it should be discussed in the terminology.",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/185",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -3846,8 +3846,8 @@
       "labels": [],
       "body": "              Does it mean that unprotected headers are now also included in the receipt's signed information? This significantly complicates the interpretation of the resulting receipts by verifiers. I also don't think it should be discussed in the terminology.\r\n\r\n_Originally posted by @fournet in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484534857_\r\n            ",
       "createdAt": "2024-02-09T16:51:17Z",
-      "updatedAt": "2024-02-13T14:41:04Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-26T19:33:30Z",
+      "closedAt": "2024-02-26T19:33:30Z",
       "comments": [
         {
           "author": "yogeshbdeshpande",
@@ -3869,6 +3869,13 @@
           "body": "I propose we cut this sentence.",
           "createdAt": "2024-02-13T14:41:03Z",
           "updatedAt": "2024-02-13T14:41:03Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as  this sentance has already been removed. ",
+          "createdAt": "2024-02-26T19:33:30Z",
+          "updatedAt": "2024-02-26T19:33:30Z"
         }
       ]
     },
@@ -4128,6 +4135,22 @@
           "updatedAt": "2024-02-15T20:51:39Z"
         }
       ]
+    },
+    {
+      "number": 206,
+      "id": "I_kwDOIvmHss6Ac0ME",
+      "title": "Consumer is a capitalized term but not defined",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/206",
+      "state": "OPEN",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As part of #120, I would like to consider the removal of Consumer and consumer from this specification if we are not going to define it. It is a generalized term and I would rather expend work group time on trying to tailor an appropriate custom definition of it.\r\n\r\nI will likely post this issue to the mailing list and cross-reference that thread here and leave this issue for review for a week to solicit feedback.",
+      "createdAt": "2024-02-26T20:13:54Z",
+      "updatedAt": "2024-02-26T20:13:54Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -24502,6 +24525,294 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 202,
+      "id": "PR_kwDOIvmHss5n7Na-",
+      "title": "Grammar fix: add missing verb in Section 4.2",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/202",
+      "state": "MERGED",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Upon re-reading the draft to submit an unrelated PR, I noticed there is a missing verb in paragraph about Signed Statements.",
+      "createdAt": "2024-02-26T14:44:29Z",
+      "updatedAt": "2024-02-26T15:43:37Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "ac638ab0ab360eea5d417b893ba4d2304ec399f3",
+      "headRepository": "aj-stein-nist/draft-ietf-scitt-architecture",
+      "headRefName": "chore-grammar-section-4.2",
+      "headRefOid": "1a9b5e5816fef4b34a720fdd57ea4a5e51232aed",
+      "closedAt": "2024-02-26T15:43:37Z",
+      "mergedAt": "2024-02-26T15:43:37Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "2dc09afb15d8efc208225f4c495e0657b0c65ed8"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5xUBUB",
+          "commit": {
+            "abbreviatedOid": "1a9b5e5"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2024-02-26T14:46:04Z",
+          "updatedAt": "2024-02-26T14:46:04Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xUnl5",
+          "commit": {
+            "abbreviatedOid": "1a9b5e5"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM\r\nThanks for the polish @aj-stein-nist ",
+          "createdAt": "2024-02-26T15:43:23Z",
+          "updatedAt": "2024-02-26T15:43:23Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 203,
+      "id": "PR_kwDOIvmHss5n71La",
+      "title": "Fix unordered list rendering in Section 4",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/203",
+      "state": "MERGED",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "While working on a unrelated PR, I noticed that lists that do not have a newline between the list and previous paragraph. The end result is in local testing, and presuming upcoming publication to datatracker.ietf.org, the lists will not render correctly. I added newlines and also change the equivalent Markdown syntax to match preexisting lists from other sections in the draft that have been around longer.\r\n\r\nBefore:\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/94922603/1049fcfc-964f-4b53-8658-9306316b4077)\r\n\r\nAfter:\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/94922603/e1d859df-3873-49de-9920-30d2253e83f3)\r\n\r\n",
+      "createdAt": "2024-02-26T16:02:58Z",
+      "updatedAt": "2024-02-26T17:55:26Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "2dc09afb15d8efc208225f4c495e0657b0c65ed8",
+      "headRepository": "aj-stein-nist/draft-ietf-scitt-architecture",
+      "headRefName": "chore-formatting-ul-spacing",
+      "headRefOid": "ac0d8f9f9bb41cf847b1b694bbbb9d12a2928e3c",
+      "closedAt": "2024-02-26T17:55:26Z",
+      "mergedAt": "2024-02-26T17:55:26Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "1fccf4cf20f5171a44ac274e79f9b2beedbd827a"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5xWJWp",
+          "commit": {
+            "abbreviatedOid": "ac0d8f9"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM\r\nThanks, @aj-stein-nist ",
+          "createdAt": "2024-02-26T17:55:14Z",
+          "updatedAt": "2024-02-26T17:55:14Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 204,
+      "id": "PR_kwDOIvmHss5n9cXb",
+      "title": "Fix typo singed-signed",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/204",
+      "state": "MERGED",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I found another typo, to make review simple and not mix it in with a more substantive editorial PR that is pending, I am fixing this misspelling in a separate PR for review and likely approval. Correct singed->signed in Section 6.2.2.",
+      "createdAt": "2024-02-26T19:53:45Z",
+      "updatedAt": "2024-02-26T20:14:31Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "1fccf4cf20f5171a44ac274e79f9b2beedbd827a",
+      "headRepository": "aj-stein-nist/draft-ietf-scitt-architecture",
+      "headRefName": "chore-grammar-typo-6.2.2",
+      "headRefOid": "90a6fdaabddc575c6c248a2406e0bd7ac5aabf1a",
+      "closedAt": "2024-02-26T20:14:31Z",
+      "mergedAt": "2024-02-26T20:14:31Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "e1a921c94a227abba3f216e53b82f490e21cf013"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5xXNP_",
+          "commit": {
+            "abbreviatedOid": "90a6fda"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-26T20:14:26Z",
+          "updatedAt": "2024-02-26T20:14:26Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 205,
+      "id": "PR_kwDOIvmHss5n9dzD",
+      "title": "Clarify usage of Verifier and Relying Party",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/205",
+      "state": "OPEN",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "aj-stein-nist"
+      ],
+      "labels": [],
+      "body": "Closes #120.\r\n\r\n**NOTE:** Please merge after #204 or discuss this during review and merge. I can rebase accordingly on this is no longer in draft state.",
+      "createdAt": "2024-02-26T19:58:02Z",
+      "updatedAt": "2024-02-26T20:56:12Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "e1a921c94a227abba3f216e53b82f490e21cf013",
+      "headRepository": "aj-stein-nist/draft-ietf-scitt-architecture",
+      "headRefName": "120-clarify-verifier-relying-party",
+      "headRefOid": "056ab3dc8dd838f7e1731f1e5b2df31ec90bc14a",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 207,
+      "id": "PR_kwDOIvmHss5n9yDT",
+      "title": "Remove unclear usage of Consumers and consumers from draft",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/207",
+      "state": "OPEN",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-26T20:55:44Z",
+      "updatedAt": "2024-02-26T22:14:10Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "e1a921c94a227abba3f216e53b82f490e21cf013",
+      "headRepository": "aj-stein-nist/draft-ietf-scitt-architecture",
+      "headRefName": "206-remove-consumer",
+      "headRefOid": "5cf92d72dd3ecedae103f56ebc9d98686b57b435",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5xXpLE",
+          "commit": {
+            "abbreviatedOid": "49e4d67"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-26T21:12:40Z",
+          "updatedAt": "2024-02-26T21:12:41Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I see what you're trying to clean up, however adding Issuers here feels out of place.\r\nI think this sentence is trying to say there are publishers and consumers. \r\nPublishers surface as an Issuer signed the statement\r\nA consumer surfaces as a verifier can retrieve information from the ledger, or evaluate the receipt. \r\nAdding issuers and verifiers in this sentence feels a bit confusing.\r\n\r\n```suggestion\r\nSCITT achieves this by having producers publish information in a Transparency Service, where Verifiers can check the information.\r\n```",
+              "createdAt": "2024-02-26T21:12:40Z",
+              "updatedAt": "2024-02-26T21:12:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xYGJa",
+          "commit": {
+            "abbreviatedOid": "49e4d67"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-26T22:08:55Z",
+          "updatedAt": "2024-02-26T22:08:55Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "So my previous version of this comment, as flippant as it was, did not make sense. I am ok with taking this change and not sure where I was going with that previous comment. \ud83d\ude05 ",
+              "createdAt": "2024-02-26T22:08:55Z",
+              "updatedAt": "2024-02-26T22:13:24Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 208,
+      "id": "PR_kwDOIvmHss5n9zcm",
+      "title": "Update Verification Section",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/208",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Resolves #190 ",
+      "createdAt": "2024-02-26T20:59:28Z",
+      "updatedAt": "2024-02-26T20:59:29Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "e1a921c94a227abba3f216e53b82f490e21cf013",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/issue-190",
+      "headRefOid": "27d682a3c93f3d509c9d55c4d2d59116e6c9b586",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 209,
+      "id": "PR_kwDOIvmHss5n91QZ",
+      "title": "Update COMETRE reference",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/209",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Was pointing to the draft",
+      "createdAt": "2024-02-26T21:02:28Z",
+      "updatedAt": "2024-02-26T21:03:54Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "e1a921c94a227abba3f216e53b82f490e21cf013",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/fix-cometre-ref",
+      "headRefOid": "11188847b272da82ce7dc4cd7953f1e2f6bc5e8a",
+      "closedAt": "2024-02-26T21:03:53Z",
+      "mergedAt": "2024-02-26T21:03:53Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "18449b2a2656da4bc7b75d66eb590135b40b8cb9"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
