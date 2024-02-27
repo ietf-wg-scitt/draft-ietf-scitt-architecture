@@ -149,7 +149,8 @@ Issuers can register their Signed Statements on any Transparency Service, with t
 This document describes the scalable, flexible, and decentralized SCITT architecture.
 Its goal is to enhance auditability and accountability across supply chains.
 
-In supply chains, artifacts travel down the chain until they are no longer usable for one or more parties.
+In supply chains, downstream artifacts are built upon upstream artifacts.
+The complexity of traceability and quality control for these supply chains increases with the number of artifacts and parties contributing to them.
 All parties in supply chains like information about these artifacts.
 There are many parties who publish information about artifacts:
 For example, the original manufacturer may provide information about the state of the artifact when it left the factory.
