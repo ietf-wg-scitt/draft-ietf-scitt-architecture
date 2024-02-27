@@ -579,7 +579,8 @@ The multiple receipts may be attached to the unprotected header of the Signed St
 
 ## Transparent Statements {#Receipt}
 
-The Relying Party (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the Unprotected Header of the Signed Statement.
+Client applications MAY register Signed Statements on behalf of one or more Issuers.
+Client applications MAY request Receipts regardless of the identity of the Issuer of the associated Signed Statement.
 
 When a Signed Statement is registered by a Transparency Service a Receipt becomes available.
 When a Receipt is included in a Signed Statement a Transparent Statement is produced.
