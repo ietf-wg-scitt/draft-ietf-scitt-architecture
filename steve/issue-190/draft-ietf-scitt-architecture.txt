@@ -867,10 +867,10 @@ Table of Contents
    Section 4.4 of [RFC9052].
 
    APIs exposing verification logic for Transparent Statements may
-   provide more details than a single boolean result.  For example,
-   indicating if the signature on the Receipt or Signed Statement is
-   valid, if claims related to the validity period are valid, or if the
-   inclusion proof in the Receipt is valid.
+   provide more details than a single boolean result.  For example, an
+   API may indicate if the signature on the Receipt or Signed Statement
+   is valid, if claims related to the validity period are valid, or if
+   the inclusion proof in the Receipt is valid.
 
    The algorithm-specific details of checking inclusion proofs are
    covered in [I-D.draft-ietf-cose-merkle-tree-proofs].  The pseudo-code
