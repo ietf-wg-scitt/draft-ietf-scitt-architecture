@@ -140,7 +140,7 @@ The rise in popularity of verifiable data structures as a mechanism to make acto
 
 This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
-Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers will be able to verify them.
+Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Auditors and Verifiers will be able to verify them.
 
 --- middle
 
@@ -149,17 +149,17 @@ Issuers can register their Signed Statements on any Transparency Service, with t
 This document describes the scalable, flexible, and decentralized SCITT architecture.
 Its goal is to enhance auditability and accountability across supply chains.
 
-In supply chains, artifacts travel down the chain until they are eventually consumed by someone.
-Consumers like to have information about the artifacts that they consume.
+In supply chains, downstream artifacts are built upon upstream artifacts.
+The complexity of traceability and quality control for these supply chains increases with the number of artifacts and parties contributing to them.
 There are many parties who publish information about artifacts:
 For example, the original manufacturer may provide information about the state of the artifact when it left the factory.
 The shipping company may add information about the transport environment of the artifact.
 Compliance auditors may provide information about their compliance assessment of the artifact.
 Security companies may publish vulnerability information about an artifact.
-Consumers may even publish the fact that they consume an artifact.
+Some of these parties may publish information about their analysis or use of an artifact.
 
-SCITT provides a way for consumers to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
-SCITT achieves this by having producers publish information in a Transparency Service, where consumers (also called Verifiers) can check the information.
+SCITT provides a way for Relying Parties to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
+SCITT achieves this by having producers publish information in a Transparency Service, where Relying Parties can check the information.
 
 ## Requirements Notation
 
@@ -274,7 +274,7 @@ A Transparent Statement remains a valid Signed Statement, and may be registered 
 Verifier:
 
 : organizations, stakeholders, and users involved in validating supply chain Artifacts.
-Verifiers consume Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.
+Verifiers analyze Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.
 
 {: #mybody}
 
