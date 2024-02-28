@@ -835,7 +835,7 @@ All contents exchanged between actors is protected using secure authenticated ch
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
 Some Transparency Services may publish every Signed Statement in their logs, to facilitate their dissemination and auditing.
-Others may just return Receipts to Relying Parties that present Singed Statements for Registration, and disclose the Append-only Log only to Auditors trusted with the confidentiality of its contents.
+Transparency Services MAY return Receipts to client applications synchronously or asynchronously.
 
 A collection of Signed Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.
 
