@@ -852,7 +852,7 @@ The SCITT Architecture supports cryptographic agility.
 The actors depend only on the subset of signing and Receipt schemes they trust.
 This enables the gradual transition to stronger algorithms, including e.g. post-quantum signature algorithms.
 
-### Transparency Service Relying Parties
+### Transparency Service Client Applications
 
 Authentication of client applications is out of scope for this document.
 Transparency Services MUST authenticate both client applications and the Issuer of signed statements in order to ensure that implementation specific authentication and authorization policies are enforced.
