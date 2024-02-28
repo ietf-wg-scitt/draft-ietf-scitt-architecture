@@ -855,8 +855,8 @@ This enables the gradual transition to stronger algorithms, including e.g. post-
 ### Transparency Service Relying Parties
 
 Authentication of client applications is out of scope for this document.
-An attacker may attempt to register any Signed Statement it has obtained, at any Transparency Service that accepts them, possibly multiple times and out of order.
-This may be mitigated by a Transparency Service that enforces restrictive access control and Registration Policies.
+Transparency Services MUST authenticate both client applications and the Issuer of signed statements in order to ensure that implementation specific authentication and authorization policies are enforced.
+The specification of authentication and authorization policies is out of scope for this document.
 
 ### Impersonation
 
