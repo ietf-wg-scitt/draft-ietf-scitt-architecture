@@ -140,7 +140,7 @@ The rise in popularity of verifiable data structures as a mechanism to make acto
 
 This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
-Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers will be able to verify them.
+Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Auditors and Verifiers will be able to verify them.
 
 --- middle
 
@@ -149,14 +149,14 @@ Issuers can register their Signed Statements on any Transparency Service, with t
 This document describes the scalable, flexible, and decentralized SCITT architecture.
 Its goal is to enhance auditability and accountability across supply chains.
 
-In supply chains, artifacts travel down the chain until they are eventually consumed by someone.
-Consumers like to have information about the artifacts that they consume.
+In supply chains, downstream artifacts are built upon upstream artifacts.
+The complexity of traceability and quality control for these supply chains increases with the number of artifacts and parties contributing to them.
 There are many parties who publish information about artifacts:
 For example, the original manufacturer may provide information about the state of the artifact when it left the factory.
 The shipping company may add information about the transport environment of the artifact.
 Compliance auditors may provide information about their compliance assessment of the artifact.
 Security companies may publish vulnerability information about an artifact.
-Consumers may even publish the fact that they consume an artifact.
+Some of these parties may publish information about their analysis or use of an artifact.
 
 SCITT provides a way for consumers to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
 SCITT achieves this by having producers publish information in a Transparency Service, where consumers (also called Relying Parties) can check the information.
@@ -678,9 +678,8 @@ This is a decoded inclusion proof for RFC9162_SHA256, other verifiable data stru
 
 Relying Parties MUST apply the verification process as described in Section 4.4 of RFC9052.
 
-In order to verify the inclusion proof that is included in the Receipt, the verification process for the inclusion proof MUST be performed as described in the document that registers corresponding Verifiable Data Structure Parameters (see {{-COMETRE}}).
-
-APIs exposing verification logic for Transparent Statements may wish to provide more details that a single boolean result, for example, indicating if the signature on the Receipt or Signed Statement is valid, if claims related to the validity period are valid, or if the inclusion proof in the Receipt is valid.
+APIs exposing verification logic for Transparent Statements may provide more details than a single boolean result.
+For example, an API may indicate if the signature on the Receipt or Signed Statement is valid, if claims related to the validity period are valid, or if the inclusion proof in the Receipt is valid.
 
 The algorithm-specific details of checking inclusion proofs are covered in {{-COMETRE}}.
 The pseudo-code for validation of a transparent statement is as follows:
@@ -866,7 +865,6 @@ Transparency Services and other parties may record identity-resolution evidence 
 
 If one of the credentials of an Issuer gets compromised, the SCITT Architecture still guarantees the authenticity of all Signed Statements signed with this credential that have been registered on a Transparency Service before the compromise.
 It is up to the Issuer to notify Transparency Services of credential revocation to stop Relying Parties from accepting Signed Statements signed with compromised credentials.
-
 
 # IANA Considerations
 
