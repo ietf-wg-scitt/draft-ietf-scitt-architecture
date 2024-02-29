@@ -425,7 +425,8 @@ Append-Only:
 
 Non-equivocation:
 
-: there is no fork in the Append-only Log. Everyone with access to its content sees the same collection of Signed Statements, and can check that it is consistent with any Receipts they have verified.
+: there is no fork in the Append-only Log.
+Everyone with access to its content sees the same collection of Signed Statements and can check that it is consistent with any Receipts they have verified.
 
 Replayability:
 
