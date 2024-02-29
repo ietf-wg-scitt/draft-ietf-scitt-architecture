@@ -437,7 +437,6 @@ to check that each included Signed Statement has been correctly registered.
 In addition to Receipts, some verifiable data structures might support additional proof types, such as proofs of consistency, or proofs of non inclusion.
 
 Specific verifiable data structures, such those describes in {{-CT}} and {{-COMETRE}}, and the review of their security requirements for SCITT are out of scope for this document.
-q
 ### Adjacent Services
 
 Transparency Services can be deployed along side other database or object storage technologies.
