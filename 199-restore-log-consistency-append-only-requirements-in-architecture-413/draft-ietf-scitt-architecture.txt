@@ -106,7 +106,7 @@ Table of Contents
        6.2.2.  Availability of Receipts
        6.2.3.  Confidentiality and Privacy
        6.2.4.  Cryptographic Agility
-       6.2.5.  Transparency Service Clients
+       6.2.5.  Transparency Service Client Applications
        6.2.6.  Impersonation
    7.  IANA Considerations
      7.1.  Media Type Registration
@@ -200,9 +200,7 @@ Table of Contents
 
    Client:  an application making protected Transparency Service
       resource requests on behalf of the resource owner and with its
-      authorization.  The term "Client" does not imply any particular
-      implementation characteristics (e.g., whether the application
-      executes on a server, a desktop, or other devices).
+      authorization.
 
    Envelope:  metadata, created by the Issuer to produce a Signed
       Statement.  The Envelope contains the identity of the Issuer and
@@ -215,13 +213,13 @@ Table of Contents
       signature).
 
    Equivocation:  a state where it is possible for a Transparency
-      Service to provide different views of its Append-only Log to
-      Verifiers about the same Artifact [EQUIVOCATION].
+      Service to provide different views of its Append-only log to
+      Relying Parties about the same Artifact [EQUIVOCATION].
 
    Feed:  A collection of Receipts, as recorded by the Transparency
       Service, based on filtering of properties from the envelope
       including, but not limited to the sub field of the CWT_Claims.
-      Verifiers may use the Feed to ensure completeness and Non-
+      Relying Parties may use the Feed to ensure completeness and Non-
       equivocation in supply chain evidence by identifying all
       Transparent Statements linked to the Artifact they are evaluating.
 
@@ -232,12 +230,12 @@ Table of Contents
       as an auditor, reviewer or an endorser.
 
    Non-equivocation:  a state where it is impossible for a Transparency
-      Service to provide different views of its Append-only Log to
-      Verifiers about the same Artifact.  Over time, an Issuer may
+      Service to provide different views of its append-only log to
+      Relying Parties about the same Artifact.  Over time, an Issuer may
       register new Signed Statements about an Artifact in a Transparency
       Service with new information.  However, the consistency of a
       collection of Signed Statements about the Artifact can be checked
-      by all Verifiers.
+      by all Relying Parties.
 
    Receipt:  a cryptographic proof that a Signed Statement is included
       in the Append-only Log. Receipts are based on Signed Inclusion
@@ -259,6 +257,9 @@ Table of Contents
       Service before registering a Signed Statement, based on
       information in the non-opaque header and metadata contained in its
       COSE Envelope.
+
+   Relying Party:  a relying party depends on Signed or Transparent
+      Statements to verify an Artifact.
 
    Signed Statement:  an identifiable and non-repudiable Statement about
       an Artifact signed by an Issuer.  In SCITT, Signed Statements are
@@ -295,8 +296,8 @@ Table of Contents
       can be a complex distributed system, and SCITT requires the
       Transparency Service to provide many security guarantees about its
       Append-only Log. The identity of a Transparency Service is
-      captured by a public key that must be known by Verifiers in order
-      to validate Receipts.
+      captured by a public key that must be known by Relying Parties in
+      order to validate Receipts.
 
    Transparent Statement:  a Signed Statement that is augmented with a
       Receipt created via Registration in a Transparency Service.  The
@@ -305,11 +306,11 @@ Table of Contents
       Signed Statement, and may be registered again in a different
       Transparency Service.
 
-   Verifier:  organizations, stakeholders, and users involved in
-      validating supply chain Artifacts.  Verifiers analyze Transparent
-      Statements, verifying their proofs and inspecting the Statement
-      payload, either before using corresponding Artifacts, or later to
-      audit an Artifact's provenance on the supply chain.
+   Relying Party:  organizations, stakeholders, and users involved in
+      validating supply chain Artifacts.  Relying Parties consume
+      Transparent Statements, verifying their proofs and inspecting the
+      Statement payload, either before using corresponding Artifacts, or
+      later to audit an Artifact's provenance on the supply chain.
 
 3.  Definition of Transparency
 
@@ -335,7 +336,8 @@ Table of Contents
    it holds them accountable.  Any Artifact that may be verified, is
    subject to scrutiny and auditing by other parties.  The Transparency
    Service provides a history of Statements, which may be made by
-   multiple Issuers, enabling Verifiers to make informed decisions.
+   multiple Issuers, enabling Relying Parties to make informed
+   decisions.
 
    Transparency is implemented by providing a consistent, append-only,
    cryptographically verifiable, publicly available record of entries.
@@ -383,7 +385,7 @@ Table of Contents
    *  CT logs produce Signed Certificate Timestamps (Transparent
       Statements)
 
-   *  Signed Certificate Timestamps are checked by Verifiers
+   *  Signed Certificate Timestamps are checked by Relying Parties
 
    *  The Append-only Log can be checked by Auditors
 
@@ -449,8 +451,8 @@ Table of Contents
    This section describes at a high level, the three main roles and
    associated processes in SCITT: Issuers and Signed Statements,
    Transparency Service and the Signed Statement Registration process,
-   as well as Verifiers of the Transparent Statements and the Receipt
-   validation process.
+   as well as Relying Parties of the Transparent Statements and the
+   Receipt validation process.
 
 4.1.  Transparency Service
 
@@ -481,11 +483,11 @@ Table of Contents
 
    Transparency Services MUST maintain Registration Policies which
    govern whether or not a given Signed Statement is eligible for
-   registration.
-
-   Registration Policies MUST be made transparent and available to all
-   clients of the Transparency Service by registering them as Signed
-   Statements on the Append-only Log.
+   registration.  Registration Policies MUST be made transparent and
+   available to all Relying Parties of the Transparency Service by
+   registering them as Signed Statements on the Append-only Log, and
+   distributing associated Receipts.  Distribution of Receipts is out of
+   scope for this document.```
 
    This specification leaves implementation, encoding and documentation
    of Registration Policies to the operator of the Transparency Service.
@@ -700,10 +702,11 @@ Table of Contents
    Statement).
 
    Issuers may produce Signed Statements about different Artifacts under
-   the same Identity.  Issuers and Verifiers must be able to recognize
-   the Artifact to which the statements pertain by looking at the Signed
-   Statement.  The iss and sub claims, within the CWT_Claims protected
-   header, are used to identify the Artifact the statement pertains to.
+   the same Identity.  Issuers and Relying Parties must be able to
+   recognize the Artifact to which the statements pertain by looking at
+   the Signed Statement.  The iss and sub claims, within the CWT_Claims
+   protected header, are used to identify the Artifact the statement
+   pertains to.
 
    See Subject under Section 2 Terminology.
 
@@ -716,8 +719,8 @@ Table of Contents
    Artifact as their view changes over time.
 
    Multiple Issuers can make different, even conflicting Statements,
-   about the same Artifact.  Verifiers can choose which Issuers they
-   trust.
+   about the same Artifact.  Relying Parties can choose which Issuers
+   they trust.
 
    Multiple Issuers can make the same Statement about a single Artifact,
    affirming multiple Issuers agree.
@@ -728,9 +731,10 @@ Table of Contents
    following steps:
 
    1.  *Client authentication:* A Client authenticates with the
-       Transparency Service, to Register Signed Statements.
-       Authentication and authorization is implementation-specific, and
-       out of scope of the SCITT Architecture.
+       Transparency Service, to Register Signed Statements on behalf of
+       one or more issuers.  Authentication and authorization is
+       implementation-specific, and out of scope of the SCITT
+       Architecture.
 
    2.  *Issuer Verification:* The Transparency Service MUST perform
        resolution of the Issuer's identity, which may be different than
@@ -777,9 +781,12 @@ Table of Contents
 
 4.3.  Transparent Statements
 
-   The client (which is not necessarily the Issuer) that registers a
+   The Client (which is not necessarily the Issuer) that registers a
    Signed Statement and receives a Receipt can produce a Transparent
    Statement by adding the Receipt to the Unprotected Header of the
+   Signed Statement.  Client applications MAY register Signed Statements
+   on behalf of one or more Issuers.  Client applications MAY request
+   Receipts regardless of the identity of the Issuer of the associated
    Signed Statement.
 
    When a Signed Statement is registered by a Transparency Service a
@@ -884,8 +891,8 @@ Table of Contents
 
 4.3.1.  Validation
 
-   Verifiers MUST apply the verification process as described in
-   Section 4.4 of [RFC9052].
+   Relying Parties MUST apply the verification process as described in
+   Section 4.4 of RFC9052.
 
    APIs exposing verification logic for Transparent Statements may
    provide more details than a single boolean result.  For example, an
@@ -918,22 +925,22 @@ Table of Contents
    configured with one or more identities of trusted Transparency
    Services.
 
-   Verifiers MAY be configured to re-verify the Issuer's Signed
+   Relying Parties MAY be configured to re-verify the Issuer's Signed
    Statement locally, but this requires a fresh resolution of the
    Issuer's verification keys, which MAY fail if the key has been
    revoked.
 
-   Some Verifiers MAY decide to locally re-apply some or all of the
-   Registration Policies, if they have limited trust in the Transparency
-   Services.  In addition, Verifiers MAY apply arbitrary validation
-   policies after the Transparent Statement has been verified and
-   validated.  Such policies may use as input all information in the
-   Envelope, the Receipt, and the Statement payload, as well as any
-   local state.
+   Some Relying Parties MAY decide to locally re-apply some or all of
+   the Registration Policies, if they have limited trust in the
+   Transparency Services.  In addition, Relying Parties MAY apply
+   arbitrary validation policies after the Transparent Statement has
+   been verified and validated.  Such policies may use as input all
+   information in the Envelope, the Receipt, and the Statement payload,
+   as well as any local state.
 
-   Verifiers MAY offer options to store or share the Receipt of the
-   Transparent Statement for auditing the Transparency Services in case
-   a dispute arises.
+   Relying Parties MAY offer options to store or share the Receipt of
+   the Transparent Statement for auditing the Transparency Services in
+   case a dispute arises.
 
 5.  Privacy Considerations
 
@@ -979,8 +986,8 @@ Table of Contents
 
    Issuers MUST ensure that the Statement payloads in their Signed
    Statements are correct and unambiguous, for example by avoiding ill-
-   defined or ambiguous formats that may cause Verifiers to interpret
-   the Signed Statement as valid for some other purpose.
+   defined or ambiguous formats that may cause Relying Parties to
+   interpret the Signed Statement as valid for some other purpose.
 
    Issuers and Transparency Services MUST carefully protect their
    private signing keys and avoid these keys being used for any purpose
@@ -1101,7 +1108,7 @@ Table of Contents
    liability and the resulting damage to their reputation are
    application specific, and out of scope of the SCITT Architecture.
 
-   Verifiers and Auditors need not be trusted by other actors.  In
+   Relying Parties and Auditors need not be trusted by other actors.  In
    particular, so long as actors maintain proper control of their
    signing keys and identity infrastructure they cannot "frame" an
    Issuer or a Transparency Service for Signed Statements they did not
@@ -1141,8 +1148,8 @@ Table of Contents
    registered, and accept the risk of being blamed for inconsistent
    Registration or Issuer Equivocation.
 
-   Verifiers and Auditors may also witness (1, 4) but may not be able to
-   collect verifiable evidence for it.
+   Relying Parties and Auditors may also witness (1, 4) but may not be
+   able to collect verifiable evidence for it.
 
 6.2.2.  Availability of Receipts
 
@@ -1168,10 +1175,9 @@ Table of Contents
    The Transparency Service is trusted with the confidentiality of the
    Signed Statements presented for Registration.  Some Transparency
    Services may publish every Signed Statement in their logs, to
-   facilitate their dissemination and auditing.  Others may just return
-   Receipts to clients that present Signed Statements for Registration,
-   and disclose the Append-only Log only to Auditors trusted with the
-   confidentiality of its contents.
+   facilitate their dissemination and auditing.  Transparency Services
+   MAY return Receipts to client applications synchronously or
+   asynchronously.
 
    A collection of Signed Statements must not leak information about the
    contents of other Signed Statements registered on the Transparency
@@ -1196,14 +1202,14 @@ Table of Contents
    This enables the gradual transition to stronger algorithms, including
    e.g. post-quantum signature algorithms.
 
-6.2.5.  Transparency Service Clients
+6.2.5.  Transparency Service Client Applications
 
-   Trust in clients that submit Signed Statements for Registration is
-   implementation-specific.  An attacker may attempt to register any
-   Signed Statement it has obtained, at any Transparency Service that
-   accepts them, possibly multiple times and out of order.  This may be
-   mitigated by a Transparency Service that enforces restrictive access
-   control and Registration Policies.
+   Authentication of Client applications is out of scope for this
+   document.  Transparency Services MUST authenticate both client
+   applications and the Issuer of signed statements in order to ensure
+   that implementation specific authentication and authorization
+   policies are enforced.  The specification of authentication and
+   authorization policies is out of scope for this document.
 
 6.2.6.  Impersonation
 
@@ -1217,8 +1223,8 @@ Table of Contents
    Statements signed with this credential that have been registered on a
    Transparency Service before the compromise.  It is up to the Issuer
    to notify Transparency Services of credential revocation to stop
-   Verifiers from accepting Signed Statements signed with compromised
-   credentials.
+   Relying Parties from accepting Signed Statements signed with
+   compromised credentials.
 
 7.  IANA Considerations
 
