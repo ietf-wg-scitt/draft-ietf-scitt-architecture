@@ -87,7 +87,6 @@ informative:
   I-D.draft-ietf-cose-merkle-tree-proofs: COMETRE
 
   RFC2397: DataURLs
-  RFC6024:
   RFC8141: URNs
   RFC9162: CT
   RFC9334: rats-arch
@@ -372,8 +371,7 @@ This section describes at a high level, the three main roles and associated proc
 ## Transparency Service
 
 Transparency Services MUST feature an Append-only Log.
-The Append-only Log is a verifiable data structure that accumulates all Signed Statements 
-registered by the Transparency Service and that supports the production of Receipts.
+The Append-only Log is a verifiable data structure that accumulates all Signed Statements registered by the Transparency Service and that supports the production of Receipts.
 
 All Transparency Services MUST expose APIs for the registration of Signed Statements and issuance of Receipts.
 
@@ -391,8 +389,6 @@ Transparency Services MUST maintain Registration Policies which govern whether o
 
 Registration Policies MUST be made transparent and available to all clients of the Transparency Service by registering them as Signed Statements on the Append-only Log.
 
-
-
 This specification leaves implementation, encoding and documentation of Registration Policies to the operator of the Transparency Service.
 
 #### Mandatory Registration Checks
@@ -403,7 +399,6 @@ Transparency Services MUST, at a minimum, perform the following checks before re
 
 The Transparency Service MUST authenticate the Issuer of Signed Statements by validating the COSE signature and checking the identity of the issuer through one of its configured trust anchors, using the `x5t` and `kid` headers in the protected header as hints. For instance, for X.509 signed claims the Transparency Service must validate a complete certificate chain from the certificate identified by `x5t` to one of the trusted root authority certificate of the Transparency Service.
 The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
-
 
 Before a Signed Statement is registered, the trust anchor used to verify its Issuer MUST be registered with the Transparency Service.
 
@@ -418,25 +413,25 @@ Transparency Services MUST support at least one of these methods:
 
 ### Append-only Log
 
-The security properties of the Append-only Log are determined by the choice of the verifiable data structure used by the Transparency Service to produce Receipts. 
+The security properties of the Append-only Log are determined by the choice of the verifiable data structure used by the Transparency Service to produce Receipts.
 This verifiable data structure MUST support the following security requirements:
 
-Append-Only: 
+Append-Only:
 
-: once included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides a universally-verifiable proof of registration. 
+: once included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides a universally-verifiable proof of registration.
 
-Non-equivocation: 
+Non-equivocation:
 
 : there is no fork in the Append-only Log. Everyone with access to its content sees the same collection of Signed Statements, and can check that it is consistent with any Receipts they have verified.
 
 Replayability:
 
-: the Append-only Log includes sufficient information to enable everyone with access to its content 
-to check that each included Signed Statement has been correctly registered. 
+: the Append-only Log includes sufficient information to enable everyone with access to its content to check that each included Signed Statement has been correctly registered.
 
 In addition to Receipts, some verifiable data structures might support additional proof types, such as proofs of consistency, or proofs of non inclusion.
 
 Specific verifiable data structures, such those describes in {{-CT}} and {{-COMETRE}}, and the review of their security requirements for SCITT are out of scope for this document.
+
 ### Adjacent Services
 
 Transparency Services can be deployed along side other database or object storage technologies.
@@ -1152,3 +1147,4 @@ A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes acc
 | COSE Sign 1  |
  '------------'
 ~~~
+
