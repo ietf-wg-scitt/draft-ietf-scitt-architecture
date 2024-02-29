@@ -421,7 +421,7 @@ This verifiable data structure MUST support the following security requirements:
 
 Append-Only:
 
-: once included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides a universally-verifiable proof of registration.
+: once included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides an offline verifiable proof of registration.
 
 Non-equivocation:
 
