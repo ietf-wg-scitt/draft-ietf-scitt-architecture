@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-27T00:33:56.330254+00:00",
+  "timestamp": "2024-02-29T00:34:06.253220+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -82,6 +82,16 @@
       "name": "has-pr",
       "description": "",
       "color": "5816EC"
+    },
+    {
+      "name": "pending-close",
+      "description": "Pending closure with no recent activity",
+      "color": "fbca04"
+    },
+    {
+      "name": "ready-for-pr",
+      "description": "",
+      "color": "07D118"
     }
   ],
   "issues": [
@@ -3086,11 +3096,12 @@
         "mwiseman-byid"
       ],
       "labels": [
-        "terminology"
+        "terminology",
+        "has-pr"
       ],
-      "body": "As discussed on today's call.\r\n\r\nFolks expressed concern that \"Verifier\" was not friendly enough to \"Consumers or Relying Parties\", that are supposed to process receipts.",
+      "body": "As discussed on today's call.\r\n\r\nFolks expressed concern that \"Verifier\" was not friendly enough to \"Consumers or Relying Parties\", that are supposed to process receipts.\r\n\r\n------\r\nEditors Update:\r\nWe can choose to:\r\n- [ ] Accept #205 \r\n- [ ] Accept #210\r\n- [ ] Close both PRs and this issue, and keep the doc with Client and Verifier\r\n",
       "createdAt": "2023-10-23T15:22:39Z",
-      "updatedAt": "2024-02-12T17:48:07Z",
+      "updatedAt": "2024-02-28T19:20:18Z",
       "closedAt": null,
       "comments": [
         {
@@ -4022,19 +4033,21 @@
     {
       "number": 190,
       "id": "I_kwDOIvmHss5-0CNb",
-      "title": "Revisit ### Validation {#validation} section fully: After refactor",
+      "title": "Revisit Validation section for clarity after refactoring PR",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/190",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
         "yogeshbdeshpande"
       ],
-      "labels": [],
+      "labels": [
+        "has-pr"
+      ],
       "body": "              Revisit ### Validation {#validation} section fully: After refactor\r\n\r\n_Originally posted by @yogeshbdeshpande in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179#discussion_r1484614307_\r\n            ",
       "createdAt": "2024-02-09T17:31:03Z",
-      "updatedAt": "2024-02-12T18:01:17Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-27T15:31:13Z",
+      "closedAt": "2024-02-27T15:31:13Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -4088,10 +4101,13 @@
         "ad-l",
         "fournet"
       ],
-      "labels": [],
+      "labels": [
+        "pending-close",
+        "ready-for-pr"
+      ],
       "body": "After the refactor, the only remaining normative text about the append-only log (4.1.3) states:\r\n\r\n> The security properties of the Append-only Log are determined by the choice of the verifiable data structure used to produce Receipts.\r\n> [...]\r\n> Specific verifiable data structures, such those describes in [[RFC9162](https://www.rfc-editor.org/rfc/rfc9162)] and [[I-D.draft-steele-cose-merkle-tree-proofs](https://datatracker.ietf.org/doc/html/draft-steele-cose-merkle-tree-proofs-01)] are out of scope for this document.\r\n\r\nThere are currently no requirements for verifiable data structures used for the ledger, so indeed it is possible to define and implement a ledger that is non consistent. In fact even though it is called an \"append-only ledger\" there is no normative requirement in the architecture or in COMETRE that the verifiable data structure is append-only. This is also incompatible with the definition of transparency in section 3 that states:\r\n\r\n> Transparency is implemented by providing a consistent, append-only, cryptographically verifiable, publicly available record of entries.\r\n\r\nGiven that auditable consistency is part of the definition of transparency, the security properties of acceptable verifiable data structures should be specified:\r\n- either in the architecture document itself, as it was before version 05\r\n- or, as a requirement for defining new verifiable data structures in I-D.draft-steele-cose-merkle-tree-proofs\r\n",
       "createdAt": "2024-02-13T12:48:27Z",
-      "updatedAt": "2024-02-20T22:21:49Z",
+      "updatedAt": "2024-02-27T16:43:21Z",
       "closedAt": null,
       "comments": [
         {
@@ -4100,6 +4116,27 @@
           "body": "I believe this is a core requirement that should be clearly stated in the SCITT architecture (even if its implementation is delegated to other specs such as COMETRE). Without it, I find it hard to argue about its security and transparency benefits. ",
           "createdAt": "2024-02-13T12:53:59Z",
           "updatedAt": "2024-02-13T12:53:59Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We discussed this issue on the call.\r\n\r\nWe determined that there should be a pull request raised, which states:\r\n\r\nSCITT Receipts MUST support inclusion proofs, and MAY support consistency proofs.\r\n\r\nSCITT does not require a specific verifiable data structure.\r\n\r\nIt is RECOMMENDED that verifiable data structures used for SCITT Receipts receive public cryptographic review on CFRG or similar.",
+          "createdAt": "2024-02-27T15:57:09Z",
+          "updatedAt": "2024-02-27T15:57:09Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This issue will be closed if no PR is raised by Friday.",
+          "createdAt": "2024-02-27T15:59:12Z",
+          "updatedAt": "2024-02-27T15:59:12Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> It is RECOMMENDED that verifiable data structures used for SCITT Receipts receive public cryptographic review on CFRG or similar.\r\n\r\nJust to be clear because I was unable to attend the call: this is a procedural point and will not be explicitly written into the draft with a PR? I assume not, but I thought it was worth clearing up.",
+          "createdAt": "2024-02-27T16:43:20Z",
+          "updatedAt": "2024-02-27T16:43:20Z"
         }
       ]
     },
@@ -4114,10 +4151,13 @@
       "assignees": [
         "ad-l"
       ],
-      "labels": [],
+      "labels": [
+        "pending-close",
+        "ready-for-pr"
+      ],
       "body": "Since the refactor and the shift to X.509-based claim signature, the authentication of issuers is no longer auditable - i.e. it is no longer possible for verifiers and auditors to re-validate the claim signature and issuer authentication performed by a TS at registration, which massively increases the trust in the TS (which may now try to register forged claims with plausible deniability - by claiming the TS lost the issuer's certificate used at registration even if none existed). \r\n\r\nPart of the issue is that claims use x5t instead of x5c. This means there is no mechanism for auditors to obtain the certificate chain used to sign a claim from the TS at registration. Even if x5c was used instead of x5t, only the leaf certificate is required to appear in x5c. Reconstructing the full issuer certificate chain requires at least the TS configuration to link to the configured root CAs used by the TS. Since roots and intermediate certificates expire (or can be updated, as is often the case with PKIX root programs from Mozilla, Google and Microsoft), it is not possible to assume that verifiers can just store the root configuration with the TS's certificate.\r\n\r\nThere are further issues with issuer authentication:\r\n>When x5t is present, iss MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.\r\n\r\nThis is not well-specified without a reference to such a regular expression. Is this supposed to mean RFC4514 string representation of a distinguished name? The language of RFC4514 doesn't appear to be regular (it is context free), so this must be clarified.\r\n\r\nThere is also no requirement for the issuer's serialized distinguished name to be produced from the claim's X.509 leaf subject. A malicious issuer can put a different issuer's serialized distinguished name in the iss field and is likely to confuse a verifier who cannot detect the mismatch since issuer authentication is not auditable. This makes iss essentially useless for verifiers, and it may be preferable to set iss to nil if x5t/x5c is used.",
       "createdAt": "2024-02-13T13:23:34Z",
-      "updatedAt": "2024-02-20T22:22:15Z",
+      "updatedAt": "2024-02-27T15:59:28Z",
       "closedAt": null,
       "comments": [
         {
@@ -4133,6 +4173,13 @@
           "body": "I don't think its in the spirit of COSE to include the full cert chain in a protected header.\r\n\r\nA thumbprint to a certificate that is in a chain is more concise.",
           "createdAt": "2024-02-15T20:51:39Z",
           "updatedAt": "2024-02-15T20:51:39Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This issue will be closed if no PR is raised by Friday.",
+          "createdAt": "2024-02-27T15:59:27Z",
+          "updatedAt": "2024-02-27T15:59:27Z"
         }
       ]
     },
@@ -4141,16 +4188,35 @@
       "id": "I_kwDOIvmHss6Ac0ME",
       "title": "Consumer is a capitalized term but not defined",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/206",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "aj-stein-nist",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
-      "labels": [],
-      "body": "As part of #120, I would like to consider the removal of Consumer and consumer from this specification if we are not going to define it. It is a generalized term and I would rather expend work group time on trying to tailor an appropriate custom definition of it.\r\n\r\nI will likely post this issue to the mailing list and cross-reference that thread here and leave this issue for review for a week to solicit feedback.",
+      "assignees": [
+        "aj-stein-nist"
+      ],
+      "labels": [
+        "ready-for-pr"
+      ],
+      "body": "As part of #120, I would like to consider the removal of Consumer and consumer from this specification if we are not going to define it. It is a generalized term and I would rather expend work group time on trying to tailor an appropriate custom definition of it.\r\n\r\nI will likely post this issue to the mailing list and cross-reference that thread here and leave this issue for review for a week to solicit feedback.\r\n\r\nRelated mailing list thread: https://mailarchive.ietf.org/arch/msg/scitt/yTaAi3l-q2TZVLNH4Wp36rR232Q/.",
       "createdAt": "2024-02-26T20:13:54Z",
-      "updatedAt": "2024-02-26T20:13:54Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-02-27T15:21:27Z",
+      "closedAt": "2024-02-27T15:21:27Z",
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I do think Producer and Consumer is a good generic concept, with more clearly defined roles as Relying Party, Verifier, and Auditor, however, I'd support replacing Consumer with Relying Party or Verifier. ",
+          "createdAt": "2024-02-27T04:20:23Z",
+          "updatedAt": "2024-02-27T04:20:23Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I do think Producer and Consumer is a good generic concept\r\n\r\nBut we do not define them nor cite references that do. From a formality and procedures perspective in IETF, is that OK?\r\n\r\n> I'd support replacing Consumer with Relying Party or Verifier.\r\n\r\nThanks for the feedback. \r\n\r\n",
+          "createdAt": "2024-02-27T04:40:21Z",
+          "updatedAt": "2024-02-27T04:40:21Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -22990,7 +23056,7 @@
       "labels": [],
       "body": "Fixes #102, #186 and #189",
       "createdAt": "2024-02-13T04:04:39Z",
-      "updatedAt": "2024-02-20T15:13:17Z",
+      "updatedAt": "2024-02-28T23:28:31Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
@@ -23880,7 +23946,7 @@
       "labels": [],
       "body": "Retains the concepts and many of the same words as before, but addresses concerns form the mailing list and interim call",
       "createdAt": "2024-02-13T14:16:07Z",
-      "updatedAt": "2024-02-20T15:59:22Z",
+      "updatedAt": "2024-02-28T23:28:29Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d52fee989bfad67075287cdb7f134189b2cae56a",
@@ -24670,53 +24736,611 @@
       "id": "PR_kwDOIvmHss5n9dzD",
       "title": "Clarify usage of Verifier and Relying Party",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/205",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "aj-stein-nist",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
         "aj-stein-nist"
       ],
       "labels": [],
-      "body": "Closes #120.\r\n\r\n**NOTE:** Please merge after #204 or discuss this during review and merge. I can rebase accordingly on this is no longer in draft state.",
+      "body": "Closes #120.\r\n",
       "createdAt": "2024-02-26T19:58:02Z",
-      "updatedAt": "2024-02-26T20:56:12Z",
+      "updatedAt": "2024-02-28T20:49:11Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
-      "baseRefOid": "e1a921c94a227abba3f216e53b82f490e21cf013",
+      "baseRefOid": "18449b2a2656da4bc7b75d66eb590135b40b8cb9",
       "headRepository": "aj-stein-nist/draft-ietf-scitt-architecture",
       "headRefName": "120-clarify-verifier-relying-party",
-      "headRefOid": "056ab3dc8dd838f7e1731f1e5b2df31ec90bc14a",
-      "closedAt": null,
+      "headRefOid": "81c74c0ee21ee302230f138ff6a81862788c2c9f",
+      "closedAt": "2024-02-28T20:49:11Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Generally the PR is straightforward (replacing Client with RP), but I am not sure there is consensus on using \"relying party\", as the usage of the term is fairly removed from the definition in other RFCs.\r\n\r\nFrom RFC7521:\r\n>   The entity that creates and signs or integrity-protects the assertion\r\n>   is typically known as the \"Issuer\", and the entity that consumes the\r\n>   assertion and relies on its information is typically known as the\r\n>   \"Relying Party\".  In the context of this document, the authorization\r\n>   server acts as a relying party.\r\n\r\nthe client in SCITT does not consume the statement/assertion, so in my opinion the closest analogy to Relying Party in SCITT would be the verifier, not the client.\r\n\r\nFrom RFC9334:\r\n>In Remote ATtestation procedureS (RATS), one peer (the \"Attester\") produces believable information about itself (\"Evidence\") to enable a remote peer (the \"Relying Party\") to decide whether or not to consider that Attester a trustworthy peer. Remote attestation procedures are facilitated by an additional vital party (the \"Verifier\").\r\n\r\nIf we translate this to SCITT, Attester = Issuer, Evidence = Statement, Relying Party = Verifier, Verifier = Transparency Service.\r\nSo I would understand and probably agree to use \"Relying Party\" as a substitute for \"Verifier\" but using it as a replacement for \"Client\" is just more confusing to me\r\n",
+          "createdAt": "2024-02-27T16:06:21Z",
+          "updatedAt": "2024-02-27T16:06:21Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> From RFC7521:\r\n> \r\n> > The entity that creates and signs or integrity-protects the assertion\r\n> > is typically known as the \"Issuer\", and the entity that consumes the\r\n> > assertion and relies on its information is typically known as the\r\n> > \"Relying Party\".  **In the context of this document, the authorization\r\n> > server acts as a relying party.**\r\n\r\nI added emphasis but maybe it is unclear what is \"the software or tool\" proxying an entity and what requirements are similar are dissimilar for Issuers versus Auditors versus Verifiers.\r\n\r\n> From RFC9334:\r\n> \r\n> > In Remote ATtestation procedureS (RATS), one peer (the \"Attester\") produces believable information about itself (\"Evidence\") to enable **a remote peer (the \"Relying Party\") to decide whether or not to consider that Attester a trustworthy peer. Remote attestation procedures are facilitated by an additional vital party (the \"Verifier\").**\r\n\r\nI added emphasis again, but this appears to be talking about software by term \"remote peer\" which I would use describe software/tool, not a person/organizational entity with a role.\r\n\r\nSo on that note,\r\n\r\n> If we translate this to SCITT, Attester = Issuer, Evidence = Statement, Relying Party = Verifier, Verifier = Transparency Service. So I would understand and probably agree to use \"Relying Party\" as a substitute for \"Verifier\" but using it as a replacement for \"Client\" is just more confusing to me\r\n\r\nI am confused how we think Verifier is both \"client\" and \"Transparency Service\" at the same time. Can you elaborate further?",
+          "createdAt": "2024-02-27T16:30:06Z",
+          "updatedAt": "2024-02-27T16:30:06Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "A secondary point, and I want feedback from the editors, authors, and larger community: whether this spec is similar or aligned to OAuth, is this materially important? Whether it is similar or aligned to RATS, is this important? The latter seems important, but I have not received explicit feedback on this and I have asked a few times (prior to creating this PR, which is still in draft).\r\n\r\nAnswering this question is important to the relevance and need of this PR, more so the content. I am open to continuing on it or closing it accordingly.\r\n\r\nAs an aside, I find \"what is a TS Client\" if we want to keep this wording and what it does and not does is most important. I am not sure that *is* within the scope of this issue, but much needed. I can pose questions to the authors of this draft here or elsewhere, but the implication of this issue as reported is that conceptually what a \"TS Client\" is and is not (at an architecture level, not implementation level) needs clearing up or I would not volunteer on this PR or propose one for another issue (contingent on feedback).",
+          "createdAt": "2024-02-27T16:40:05Z",
+          "updatedAt": "2024-02-27T16:40:05Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@SteveLasker per discussion, I removed draft state as we want to move this along more quickly.",
+          "createdAt": "2024-02-27T20:11:52Z",
+          "updatedAt": "2024-02-27T20:11:52Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "As I review recommended changes, it appear the current response to this PR is to add definitions of relying party and keep client, which was not the goal of #120 as I interpret it and not my goal in adapting this PR. If that is what is intended, I would rather close this PR. After that, I would like to revisit adapting 120 with feedback from the original author or create a new, focused issue on this and bring up those points in the PR.\r\n\r\nAt this juncture, the original intent of this PR appears to have become muddled and I have missed the goal of my recommended change. Barring contrary feedback, I will close the PR in the next day or so.",
+          "createdAt": "2024-02-27T21:13:16Z",
+          "updatedAt": "2024-02-27T21:13:16Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "In an attempt to clarify the replacement of Verifier with Relying Party, while maintaining Client, I've made a PR to this PR: https://github.com/aj-stein-nist/draft-ietf-scitt-architecture/pull/1\r\n\r\nTo see the combination of AJs #205 with main: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/compare/main...SteveLasker:steve/120?expand=1",
+          "createdAt": "2024-02-28T00:48:52Z",
+          "updatedAt": "2024-02-28T00:48:52Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Given aj-stein-nist/draft-ietf-scitt-architecture#1 and my interpretation of these changes, I am going to move forward with my recommendation to close this PR. It would appear that the use of term Client is preferred and adding more usage of the term Relying Party as a synonym for client, instead of replacing it, is causing more problems than is solves in my proposed change and @SteveLasker's counter-PR.\r\n\r\nI thought this could help address problems with fresh terminology around \"what does a Client even do?\" in this spec and clearly delineate that from *my confusion* over Verifier roles, but I feel neither PR is helping with that, so considered this closed.",
+          "createdAt": "2024-02-28T20:49:11Z",
+          "updatedAt": "2024-02-28T20:49:11Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5xZTd_",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Thanks, @aj-stein-nist for trying to clarify Client, Verifier and Relying Party. \r\nReferencing [RATS Terminology](https://www.rfc-editor.org/rfc/rfc9334.html#name-roles), the Relying Party is a Consumer while an Attestor is the Producer of information. All interactions with the Transparency Service require a Client, which almost always requires access rights to write, and may require access rights to read. \r\nI'd suggest keeping Client, and making Verifier and Relying Party synonymous, or replace Verifier with Relying Party. ",
+          "createdAt": "2024-02-27T03:42:49Z",
+          "updatedAt": "2024-02-27T04:04:53Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Adding Relying Party is a good addition. However, I wouldn't remove Client as the application/process/entity that initiates the interaction. \r\nA Relying Part is a client of the Transparency service. A relying Party would need credentials to access the Transparency service.\r\nA Relying Party is a consumer and/or verifier.",
+              "createdAt": "2024-02-27T03:42:49Z",
+              "updatedAt": "2024-02-27T04:04:53Z"
+            },
+            {
+              "originalPosition": 19,
+              "body": "\ud83d\udc4d Where Client should be kept above to differentiate a role in the Client-Server model, this is a great clarification to say Registration Policies must be made available to Relying Parties, which is the whole point of a TS.",
+              "createdAt": "2024-02-27T03:44:06Z",
+              "updatedAt": "2024-02-27T04:04:53Z"
+            },
+            {
+              "originalPosition": 28,
+              "body": "This is one I'd suggest not changing. A Client authentication is required to write to the TS. While some Transparency Services may support anonymous, others may require Client Authentication to read. \r\nSo, I'd reject this change.",
+              "createdAt": "2024-02-27T03:45:41Z",
+              "updatedAt": "2024-02-27T04:04:53Z"
+            },
+            {
+              "originalPosition": 31,
+              "body": "This one is even more different. A Relying Party is a consumer of information. Issuer verification is done on registration, which is initiated by a producer. \r\nSo, I'd also reject this change. ",
+              "createdAt": "2024-02-27T03:46:48Z",
+              "updatedAt": "2024-02-27T04:04:53Z"
+            },
+            {
+              "originalPosition": 40,
+              "body": "reject: The Relying party is synonymous with Verifier, as opposed to the identity used to register a Signed Statement, signed by an Issuer.",
+              "createdAt": "2024-02-27T03:48:05Z",
+              "updatedAt": "2024-02-27T04:04:53Z"
+            },
+            {
+              "originalPosition": 47,
+              "body": "Not related to this PR, but contextual to the comments. I'd suggest we remove this one and not suggest that signed statements should be put directly on the log. Latest discussions reflect receipts are placed on the append-only log, avoiding all concerns of PII or redaction concerns. The Transparency Service may implement additional storage solutions that carry the signed statement, but not in the append-only log.",
+              "createdAt": "2024-02-27T03:50:53Z",
+              "updatedAt": "2024-02-27T04:04:53Z"
+            },
+            {
+              "originalPosition": 49,
+              "body": "This one is a bit more nuanced, as a Relying party can get receipts, as do clients that register signed statements. \r\nHowever, the context here is registration, which is done by a publisher, who published signed statements from an issuer. The publisher may also be a relying party on consumption, but in different phases of the workflow, the Client plays different roles, where's different hats.",
+              "createdAt": "2024-02-27T03:52:43Z",
+              "updatedAt": "2024-02-27T04:04:53Z"
+            },
+            {
+              "originalPosition": 61,
+              "body": "\ud83d\udc4e as relying parties are consumers, and don't submit Signed Statements for Registration.",
+              "createdAt": "2024-02-27T03:53:33Z",
+              "updatedAt": "2024-02-27T04:04:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xd96C",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T14:32:09Z",
+          "updatedAt": "2024-02-27T14:32:09Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "This PR is still in draft, but I intend to argue here, mailing list, and heaven forbid editor meetings if invited that if client is vague, we should use a precise term and build the necessary semantics around it (while avoiding the implementation-specific details not part of the architecture).",
+              "createdAt": "2024-02-27T14:32:09Z",
+              "updatedAt": "2024-02-27T14:32:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xd-89",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T14:33:53Z",
+          "updatedAt": "2024-02-27T14:33:53Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "Part of the original report from a community reviewer and implementer is that \"client\" as-is is vague and not precise. Casual use of client, in addition to more precision about what this Relying Party does, seems very important to clarifying this person's understanding of the architecture. Same goes for me as well. \ud83d\ude04 ",
+              "createdAt": "2024-02-27T14:33:53Z",
+              "updatedAt": "2024-02-27T14:33:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xeCnB",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T14:38:10Z",
+          "updatedAt": "2024-02-27T14:38:10Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "I am saying we replace the term client with Relying Party like other standards.\r\n\r\nCasual usage of client has not helped thus -far, and we should be more specific with a precise term. Additionally, the SCITT architecture is not always a traditional client-server architecture (more complex real-world use cases will function as a multi-layered distributed system), so implying that with use of the word client can further confuse unless we plan to address that.",
+              "createdAt": "2024-02-27T14:38:10Z",
+              "updatedAt": "2024-02-27T14:38:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xeC7v",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T14:38:42Z",
+          "updatedAt": "2024-02-27T14:38:42Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "Ditto with my comments above: Relying Party will be a specific term to mean client without using the loaded word client.",
+              "createdAt": "2024-02-27T14:38:42Z",
+              "updatedAt": "2024-02-27T14:38:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xeDXD",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T14:39:21Z",
+          "updatedAt": "2024-02-27T14:39:21Z",
+          "comments": [
+            {
+              "originalPosition": 40,
+              "body": "Relying Party will be synonymous with client/Client as we use it today, not Verifier or Issue or other entity.",
+              "createdAt": "2024-02-27T14:39:21Z",
+              "updatedAt": "2024-02-27T14:39:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xeDj1",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T14:39:41Z",
+          "updatedAt": "2024-02-27T14:39:41Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "I'll defer on that one.",
+              "createdAt": "2024-02-27T14:39:41Z",
+              "updatedAt": "2024-02-27T14:39:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xerOA",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T15:29:49Z",
+          "updatedAt": "2024-02-27T15:29:49Z",
+          "comments": [
+            {
+              "originalPosition": 61,
+              "body": "Relying Party is a client, not an entity like an Auditor or other form of consumer.",
+              "createdAt": "2024-02-27T15:29:49Z",
+              "updatedAt": "2024-02-27T15:29:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xgjha",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T17:49:37Z",
+          "updatedAt": "2024-02-27T17:49:37Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\n: a relying party depends on or is a Verifier of Signed or Transparent Statements.\r\n```",
+              "createdAt": "2024-02-27T17:49:37Z",
+              "updatedAt": "2024-02-27T17:49:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xgkjj",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T17:50:54Z",
+          "updatedAt": "2024-02-27T17:50:54Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\nRegistration Policies MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing associated Receipts.\r\nDistribution of Receipts is out of scope for this document.```",
+              "createdAt": "2024-02-27T17:50:54Z",
+              "updatedAt": "2024-02-27T18:24:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xglVb",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T17:51:54Z",
+          "updatedAt": "2024-02-27T17:51:54Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "```suggestion\r\n1. **Client authentication:** A client application authenticates with the Transparency Service, to Register Signed Statements on behalf of one or more issuers.\r\n```",
+              "createdAt": "2024-02-27T17:51:54Z",
+              "updatedAt": "2024-02-27T17:51:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xgl1f",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T17:52:33Z",
+          "updatedAt": "2024-02-27T17:52:34Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\n1. **Issuer Verification:** The Transparency Service MUST perform resolution of the Issuer's identity.\r\n```",
+              "createdAt": "2024-02-27T17:52:33Z",
+              "updatedAt": "2024-02-27T17:52:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xgnE4",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T17:54:10Z",
+          "updatedAt": "2024-02-27T17:54:10Z",
+          "comments": [
+            {
+              "originalPosition": 40,
+              "body": "```suggestion\r\nClient applications MAY register Signed Statements on behalf of one or more Issuers.\r\nClient applications MAY request Receipts regardless of the identity of the Issuer of the associated Signed Statement.\r\n```",
+              "createdAt": "2024-02-27T17:54:10Z",
+              "updatedAt": "2024-02-27T18:29:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xgn-l",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T17:55:17Z",
+          "updatedAt": "2024-02-27T17:55:17Z",
+          "comments": [
+            {
+              "originalPosition": 49,
+              "body": "```suggestion\r\nTransparency Services MAY return Receipts to client applications synchronously or asynchronously.\r\n```",
+              "createdAt": "2024-02-27T17:55:17Z",
+              "updatedAt": "2024-02-27T17:55:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xgpcb",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T17:57:08Z",
+          "updatedAt": "2024-02-27T17:57:08Z",
+          "comments": [
+            {
+              "originalPosition": 58,
+              "body": "```suggestion\r\n### Transparency Service Client Applications\r\n```",
+              "createdAt": "2024-02-27T17:57:08Z",
+              "updatedAt": "2024-02-27T17:57:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xgpwh",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T17:57:32Z",
+          "updatedAt": "2024-02-27T17:57:32Z",
+          "comments": [
+            {
+              "originalPosition": 61,
+              "body": "```suggestion\r\nAuthentication of client applications is out of scope for this document.\r\n```",
+              "createdAt": "2024-02-27T17:57:32Z",
+              "updatedAt": "2024-02-27T17:57:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xgrXb",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T17:59:37Z",
+          "updatedAt": "2024-02-27T17:59:37Z",
+          "comments": [
+            {
+              "originalPosition": 63,
+              "body": "```suggestion\r\nTransparency Services MUST authenticate both client applications and the Issuer of signed statements in order to ensure that implementation specific authentication and authorization policies are enforced.\r\nThe specification of authentication and authorization policies is out of scope for this document.\r\n```",
+              "createdAt": "2024-02-27T17:59:37Z",
+              "updatedAt": "2024-02-27T17:59:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xgr2z",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "I object to this pull request, unless my suggestions are applied.\r\n\r\nI would like to see the PR moved out of draft, before additional reviews are gathered.",
+          "createdAt": "2024-02-27T18:00:14Z",
+          "updatedAt": "2024-02-27T18:00:14Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xg6Ma",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T18:19:16Z",
+          "updatedAt": "2024-02-27T18:19:17Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "Yes, by giving a \ud83d\udc4d, I was agreeing with you in this context Relying Party was a more narrow clarification \ud83d\ude04 ",
+              "createdAt": "2024-02-27T18:19:16Z",
+              "updatedAt": "2024-02-27T18:19:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xhBIq",
+          "commit": {
+            "abbreviatedOid": "4377953"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T18:27:11Z",
+          "updatedAt": "2024-02-27T18:27:11Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "I believe the added definition of Client solves the gap. As the Issuer isn't the identity that interacts with the Transparency Service, we need a way to describe that entity. A Verifier, Relying Party and Auditor all interact with the Transparency Service through a client. The client is what is authorized to write/read to/from the TS.",
+              "createdAt": "2024-02-27T18:27:11Z",
+              "updatedAt": "2024-02-27T18:27:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xjRFk",
+          "commit": {
+            "abbreviatedOid": "81c74c0"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-28T00:30:36Z",
+          "updatedAt": "2024-02-28T00:30:36Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nClient:\r\n```",
+              "createdAt": "2024-02-28T00:30:36Z",
+              "updatedAt": "2024-02-28T00:30:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xjROn",
+          "commit": {
+            "abbreviatedOid": "81c74c0"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-28T00:31:24Z",
+          "updatedAt": "2024-02-28T00:31:24Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "Personally, I'd like to keep Client as defined and add Relying Party. I'd decline this suggestion, here.",
+              "createdAt": "2024-02-28T00:31:24Z",
+              "updatedAt": "2024-02-28T00:31:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xjRW0",
+          "commit": {
+            "abbreviatedOid": "81c74c0"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-28T00:32:01Z",
+          "updatedAt": "2024-02-28T00:32:01Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\nThe term \"Client\" does not imply any particular implementation characteristics (e.g., whether the application executes on a server, a desktop, or other devices).\r\n```",
+              "createdAt": "2024-02-28T00:32:01Z",
+              "updatedAt": "2024-02-28T00:32:01Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 207,
       "id": "PR_kwDOIvmHss5n9yDT",
       "title": "Remove unclear usage of Consumers and consumers from draft",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/207",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aj-stein-nist",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "aj-stein-nist"
+      ],
       "labels": [],
-      "body": "",
+      "body": "Closes #206.\r\n\r\nRelated mailing list thread: https://mailarchive.ietf.org/arch/msg/scitt/yTaAi3l-q2TZVLNH4Wp36rR232Q/.",
       "createdAt": "2024-02-26T20:55:44Z",
-      "updatedAt": "2024-02-26T22:14:10Z",
+      "updatedAt": "2024-02-27T15:56:44Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
-      "baseRefOid": "e1a921c94a227abba3f216e53b82f490e21cf013",
+      "baseRefOid": "18449b2a2656da4bc7b75d66eb590135b40b8cb9",
       "headRepository": "aj-stein-nist/draft-ietf-scitt-architecture",
       "headRefName": "206-remove-consumer",
-      "headRefOid": "5cf92d72dd3ecedae103f56ebc9d98686b57b435",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "headRefOid": "9e2f0c9a851df758e61ec2eb40176dd7b55aae5e",
+      "closedAt": "2024-02-27T15:21:26Z",
+      "mergedAt": "2024-02-27T15:21:26Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "4275a4d28cf6852942f1f7b1765bef70588e0121"
+      },
+      "comments": [
+        {
+          "author": "bobmartin3000",
+          "authorAssociation": "NONE",
+          "body": "these changes make sense to me",
+          "createdAt": "2024-02-27T15:56:42Z",
+          "updatedAt": "2024-02-27T15:56:42Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss5xXpLE",
@@ -24757,6 +25381,210 @@
               "updatedAt": "2024-02-26T22:13:24Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xZESD",
+          "commit": {
+            "abbreviatedOid": "f762435"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-27T02:24:04Z",
+          "updatedAt": "2024-02-27T02:28:15Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "This sentence is a throwaway, better to delete it",
+              "createdAt": "2024-02-27T02:24:04Z",
+              "updatedAt": "2024-02-27T02:28:15Z"
+            },
+            {
+              "originalPosition": 15,
+              "body": "I would rephrase this.\n\nDownstream artifacts, are built from upstream artifacts.\n\nTraceability and quality control in supply chains becomes more difficult, as the number of components and contributors to an artifact increases.\n\n",
+              "createdAt": "2024-02-27T02:27:31Z",
+              "updatedAt": "2024-02-27T02:28:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xZG5f",
+          "commit": {
+            "abbreviatedOid": "f762435"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T02:34:40Z",
+          "updatedAt": "2024-02-27T02:34:40Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "I am fine with that. I will leave out for feedback with a suggestion, and if no one else votes up your comment or replies with yay/nay commentary, I shall remove.\r\n\r\n```suggestion\r\n```",
+              "createdAt": "2024-02-27T02:34:40Z",
+              "updatedAt": "2024-02-27T02:36:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xZHZg",
+          "commit": {
+            "abbreviatedOid": "f762435"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T02:37:23Z",
+          "updatedAt": "2024-02-27T02:37:23Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "I was trying to stay in scope, I will admit it is awkward. I will rephrase given your feedback.",
+              "createdAt": "2024-02-27T02:37:23Z",
+              "updatedAt": "2024-02-27T02:37:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xZJBn",
+          "commit": {
+            "abbreviatedOid": "f762435"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T02:46:06Z",
+          "updatedAt": "2024-02-27T02:46:06Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "I made another attempt in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/207/commits/11b19c34e128846112b37aac52e0d5d7b06b8514. Feel free to re-open if you feel it is not resolved.",
+              "createdAt": "2024-02-27T02:46:06Z",
+              "updatedAt": "2024-02-27T02:46:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xZYSM",
+          "commit": {
+            "abbreviatedOid": "11b19c3"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM with some comments to accept/reject",
+          "createdAt": "2024-02-27T04:09:56Z",
+          "updatedAt": "2024-02-27T04:11:32Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "Always difficult to have abstract (\"these\", \"they\", references, even in the same paragraph \r\nAssuming you're going to lean into Relying Parties as the synonym to Consumer and Verifier, I'd suggest:\r\n```suggestion\r\nSCITT provides a way for Relying Parties to obtain this information in a way that is \"transparent\", that is, parties cannot lie about the information that they publish without it being detected.\r\n```",
+              "createdAt": "2024-02-27T04:09:56Z",
+              "updatedAt": "2024-02-27T04:11:32Z"
+            },
+            {
+              "originalPosition": 29,
+              "body": "I could go either way: \"Verifiers\", or \"Relying Parties\". Choose to merge/keep what you'd like in this PR.\r\n```suggestion\r\nSCITT achieves this by having producers publish information in a Transparency Service, where Relying Parties can check the information.\r\n```",
+              "createdAt": "2024-02-27T04:10:50Z",
+              "updatedAt": "2024-02-27T04:11:32Z"
+            },
+            {
+              "originalPosition": 38,
+              "body": "nice clarification... \ud83d\udc4d ",
+              "createdAt": "2024-02-27T04:11:12Z",
+              "updatedAt": "2024-02-27T04:11:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xd7VL",
+          "commit": {
+            "abbreviatedOid": "11b19c3"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T14:28:11Z",
+          "updatedAt": "2024-02-27T14:28:11Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "In this context, I specifically did not mean Relying Parties, I was mirroring preexisting usage of the term \"parties\" to be different actors/stakeholders in a software supply chain. This usage was elsewhere in the introduction when discussing a high-level, so I thought this would be ok.",
+              "createdAt": "2024-02-27T14:28:11Z",
+              "updatedAt": "2024-02-27T14:28:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xd8NI",
+          "commit": {
+            "abbreviatedOid": "11b19c3"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T14:29:30Z",
+          "updatedAt": "2024-02-27T14:29:30Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "I thought `Verifiers verify and validate Transparent Statements, verifying ...\" would be unpleasantly redundant but the other usage of \"consume\" didn't describe what they are doing with it, so I hope others enjoy that tweak as well.",
+              "createdAt": "2024-02-27T14:29:30Z",
+              "updatedAt": "2024-02-27T14:29:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xd82I",
+          "commit": {
+            "abbreviatedOid": "11b19c3"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T14:30:29Z",
+          "updatedAt": "2024-02-27T14:30:30Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "Ditto with above, I did not mean to change Verifiers or other entity to be Client or Relying Party (that is really another PR), but to say parties in line with other usages of it like actor/stakeholder that was previously existing in other parts of the introduction.",
+              "createdAt": "2024-02-27T14:30:30Z",
+              "updatedAt": "2024-02-27T14:30:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xeeqW",
+          "commit": {
+            "abbreviatedOid": "11b19c3"
+          },
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-27T15:14:20Z",
+          "updatedAt": "2024-02-27T15:14:20Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xek4m",
+          "commit": {
+            "abbreviatedOid": "9e2f0c9"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-27T15:21:07Z",
+          "updatedAt": "2024-02-27T15:21:07Z",
+          "comments": []
         }
       ]
     },
@@ -24765,26 +25593,181 @@
       "id": "PR_kwDOIvmHss5n9zcm",
       "title": "Update Verification Section",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/208",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Resolves #190 ",
       "createdAt": "2024-02-26T20:59:28Z",
-      "updatedAt": "2024-02-26T20:59:29Z",
+      "updatedAt": "2024-02-28T23:28:25Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "e1a921c94a227abba3f216e53b82f490e21cf013",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/issue-190",
-      "headRefOid": "27d682a3c93f3d509c9d55c4d2d59116e6c9b586",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "2e56211e63777b26af298d2dde0c9471bb673bbc",
+      "closedAt": "2024-02-27T15:31:12Z",
+      "mergedAt": "2024-02-27T15:31:12Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "75f711737ad2eec19571605d87c6eb367a688b2e"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5xZB0f",
+          "commit": {
+            "abbreviatedOid": "27d682a"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-27T02:14:22Z",
+          "updatedAt": "2024-02-27T02:14:22Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xZZcw",
+          "commit": {
+            "abbreviatedOid": "27d682a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T04:16:29Z",
+          "updatedAt": "2024-02-27T04:16:29Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "The above two lines are simply separated sentences for clarity, no meaningful change.\r\nThe previous line [678](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/208/files#diff-585fb424519b79cf000445f3425fa56d328cbaca5d2a622740ddc4e5ca91dbe1L678) was removed as it's been edited to a lack of clarity, and redundant with line [225](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/208/files#diff-585fb424519b79cf000445f3425fa56d328cbaca5d2a622740ddc4e5ca91dbe1L225)\r\n\r\n> Receipt:\r\n: a Receipt is a cryptographic proof that a Signed Statement is recorded in the Append-only Log.\r\nReceipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs {{-COMETRE}}.",
+              "createdAt": "2024-02-27T04:16:29Z",
+              "updatedAt": "2024-02-27T04:18:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xemrQ",
+          "commit": {
+            "abbreviatedOid": "27d682a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-27T15:23:42Z",
+          "updatedAt": "2024-02-27T15:23:42Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xen3a",
+          "commit": {
+            "abbreviatedOid": "27d682a"
+          },
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T15:25:40Z",
+          "updatedAt": "2024-02-27T15:25:40Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "I agree, but would prefer \"For example, an API may indicate if ...\" to avoid a nominal sentence. ",
+              "createdAt": "2024-02-27T15:25:40Z",
+              "updatedAt": "2024-02-27T15:25:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xeou5",
+          "commit": {
+            "abbreviatedOid": "27d682a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T15:27:03Z",
+          "updatedAt": "2024-02-27T15:27:04Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\nAPIs exposing verification logic for Transparent Statements may provide more details than a single boolean result.\r\n```",
+              "createdAt": "2024-02-27T15:27:04Z",
+              "updatedAt": "2024-02-27T15:27:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xepw3",
+          "commit": {
+            "abbreviatedOid": "27d682a"
+          },
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T15:28:28Z",
+          "updatedAt": "2024-02-27T15:28:28Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\nFor example, an API may indicate if the signature on the Receipt or Signed Statement is valid, if claims related to the validity period are valid, or if the inclusion proof in the Receipt is valid.\r\n```",
+              "createdAt": "2024-02-27T15:28:28Z",
+              "updatedAt": "2024-02-27T15:28:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xeqB9",
+          "commit": {
+            "abbreviatedOid": "4a7bc93"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-27T15:28:41Z",
+          "updatedAt": "2024-02-27T15:28:41Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\nFor example, an API may indicate the signature on the Receipt or Signed Statement is valid if claims related to the validity period are valid, or if the inclusion proof in the Receipt is valid.\r\n```",
+              "createdAt": "2024-02-27T15:28:41Z",
+              "updatedAt": "2024-02-27T15:28:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xerZG",
+          "commit": {
+            "abbreviatedOid": "2e56211"
+          },
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-27T15:29:59Z",
+          "updatedAt": "2024-02-27T15:29:59Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xesj1",
+          "commit": {
+            "abbreviatedOid": "2e56211"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-27T15:30:52Z",
+          "updatedAt": "2024-02-27T15:30:52Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 209,
@@ -24813,6 +25796,114 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 210,
+      "id": "PR_kwDOIvmHss5oNbvg",
+      "title": "Replace Verifier with Relying Party, keeping Client",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/210",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This is an alternate proposal to #205 to close #120\r\n\r\nThis PR:\r\n- Keeps **Client as** : _an application making protected Transparency Service resource requests on behalf of the resource owner and with its authorization._\r\n- Replaces **Verifier** with **Relying Party**:  _a relying party depends on Signed or Transparent Statements to verify an Artifact._, ",
+      "createdAt": "2024-02-28T19:17:10Z",
+      "updatedAt": "2024-02-28T23:20:01Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "75f711737ad2eec19571605d87c6eb367a688b2e",
+      "headRepository": "SteveLasker/draft-ietf-scitt-architecture",
+      "headRefName": "steve/120",
+      "headRefOid": "c713deb6ee918b6556aaec66ac78b2c36829aac5",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks, @aj-stein-nist \r\nDefinitely looking for more input, and I\u2019m also ok to close the PRs and issue and use the existing terminology. \r\nMy main concern is a Relying Party is a consumer of information. They rely on the receipts and signed statements from the Transparency Service. Which makes it a good candidate to replace Verifier\r\nIf we replace Client with Relying Party, this confuses what we call the entity that registers signed statements. They are not the issuer, as the issuer signs statements, but is not the entity with access rights to the Transparency Service. Both the producer and consumer need access rights. That was what we had as client. ",
+          "createdAt": "2024-02-28T22:15:25Z",
+          "updatedAt": "2024-02-28T22:15:25Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "There is still additional work that needs to be done.\r\n\r\nClient applications submit signed statements, and obtain receipts, so they can include transparent statements in downstream products.\r\n\r\nA consumer of a downstream product is a relying party, they either verify the transparent statements themselves, or they delegate the verification role to the \"verifier\" role.\r\n\r\n",
+          "createdAt": "2024-02-28T23:20:00Z",
+          "updatedAt": "2024-02-28T23:20:00Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5xsLQy",
+          "commit": {
+            "abbreviatedOid": "9fa8c19"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "I wrote some of my thoughts on https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/205#issuecomment-1969893968 and aj-stein-nist/ietf-wg-scitt#1, but for me Client was going to replace Relying Party (Client==RP), so I am not sure if making Verifier==RP is what my intent was when I revived the issue, so I will leave to others to decide.",
+          "createdAt": "2024-02-28T20:52:52Z",
+          "updatedAt": "2024-02-28T20:52:52Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xtBsu",
+          "commit": {
+            "abbreviatedOid": "9fa8c19"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-28T23:14:14Z",
+          "updatedAt": "2024-02-28T23:14:14Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nSCITT provides a way for Relying Parties to obtain this information in a way that is \"transparent\", that is, parties cannot lie about the information that they publish without it being detected.\r\n```",
+              "createdAt": "2024-02-28T23:14:14Z",
+              "updatedAt": "2024-02-28T23:14:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xtB_b",
+          "commit": {
+            "abbreviatedOid": "db71913"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-28T23:15:01Z",
+          "updatedAt": "2024-02-28T23:15:01Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nSCITT achieves this by having producers publish information in a Transparency Service, where Relying Parties can check the information.\r\n```",
+              "createdAt": "2024-02-28T23:15:01Z",
+              "updatedAt": "2024-02-28T23:15:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xtCiA",
+          "commit": {
+            "abbreviatedOid": "c713deb"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-28T23:17:22Z",
+          "updatedAt": "2024-02-28T23:17:22Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
