@@ -404,7 +404,7 @@ The Transparency Service MUST evaluate the Registration Policy that was most rec
 
 #### Auditability of Registration
 
-The operator of a Transparency Service MAY update the registration policy or the trust anchors of a transparency service at any time.
+The operator of a Transparency Service MAY update the Registration Policy or the trust anchors of a Transparency Service at any time.
 This presents a challenge to Auditors and Relying Parties if they cannot determine what policy was used to register a given Transparent Statement.
 
 Transparency Services MUST ensure that for any Transparent Statment they accept, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to identify and recover the Transparent Statements describing the registration policy and trust anchors that are applicable to the Transparent Statement.
