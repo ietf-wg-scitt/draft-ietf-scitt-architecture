@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 1 September 2024                                     C. Fournet
+Expires: 2 September 2024                                     C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        29 February 2024
+                                                            1 March 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 September 2024.
+   This Internet-Draft will expire on 2 September 2024.
 
 Copyright Notice
 
@@ -187,10 +187,10 @@ Table of Contents
 
    Append-only Log (Ledger):  the verifiable append-only data structure
       that stores Signed Statements in a Transparency Service, often
-      referred to by the synonym, Ledger.  SCITT supports multiple
-      Ledger and Receipt formats to accommodate different Transparency
-      Service implementations, and the proof types associated with
-      different types of Append-only Logs.
+      referred to by the synonym Ledger.  SCITT supports multiple Ledger
+      and Receipt formats to accommodate different Transparency Service
+      implementations, and the proof types associated with different
+      types of Append-only Logs.
 
    Artifact:  a physical or non-physical item that is moving along a
       supply chain.
@@ -237,15 +237,16 @@ Table of Contents
       collection of Signed Statements about the Artifact can be checked
       by all Relying Parties.
 
-   Receipt:  a Receipt is a cryptographic proof that a Signed Statement
-      is recorded in the Append-only Log. Receipts are based on Signed
-      Inclusion Proofs as described in COSE Signed Merkle Tree Proofs
-      [I-D.draft-ietf-cose-merkle-tree-proofs].  Receipts can be built
+   Receipt:  a cryptographic proof that a Signed Statement is included
+      in the Append-only Log. Receipts are based on Signed Inclusion
+      Proofs, such as those as described in COSE Signed Merkle Tree
+      Proofs [I-D.draft-ietf-cose-merkle-tree-proofs]; they can be built
       on different verifiable data structures, not just binary merkle
-      trees.  Receipts consist of Transparency Service-specific
-      inclusion proofs, a signature by the Transparency Service of the
-      state of the Append-only Log, and additional metadata (contained
-      in the signature's protected headers) to assist in auditing.
+      trees.  A Receipt consists of a Transparency Service-specific
+      inclusion proof for the Signed Statement, a signature by the
+      Transparency Service of the state of the Append-only Log after the
+      inclusion, and additional metadata (contained in the signature's
+      protected headers) to assist in auditing.
 
    Registration:  the process of submitting a Signed Statement to a
       Transparency Service, applying the Transparency Service's
@@ -456,7 +457,7 @@ Table of Contents
 4.1.  Transparency Service
 
    Transparency Services MUST feature an Append-only Log. The Append-
-   only Log is the verifiable data structure that registers Signed
+   only Log is the verifiable data structure that records Signed
    Statements and supports the production of Receipts.
 
    All Transparency Services MUST expose APIs for the registration of
@@ -529,15 +530,31 @@ Table of Contents
 4.1.3.  Append-only Log
 
    The security properties of the Append-only Log are determined by the
-   choice of the verifiable data structure used to produce Receipts.
+   choice of the verifiable data structure used by the Transparency
+   Service to implement the Log. This verifiable data structure MUST
+   support the following security requirements:
+
+   Append-Only:  once included in the verifiable data structure, a
+      Signed Statement cannot be modified, deleted, or reordered; hence
+      its Receipt provides an offline verifiable proof of registration.
+
+   Non-equivocation:  there is no fork in the Append-only Log. Everyone
+      with access to its content sees the same collection of Signed
+      Statements and can check that it is consistent with any Receipts
+      they have verified.
+
+   Replayability:  the Append-only Log includes sufficient information
+      to enable authorised actors with access to its content to check
+      that each included Signed Statement has been correctly registered.
 
    In addition to Receipts, some verifiable data structures might
    support additional proof types, such as proofs of consistency, or
    proofs of non inclusion.
 
    Specific verifiable data structures, such those describes in
-   [RFC9162] and [I-D.draft-ietf-cose-merkle-tree-proofs] are out of
-   scope for this document.
+   [RFC9162] and [I-D.draft-ietf-cose-merkle-tree-proofs], and the
+   review of their security requirements for SCITT are out of scope for
+   this document.
 
 4.1.4.  Adjacent Services
 
@@ -1387,10 +1404,6 @@ Table of Contents
    [RFC2397]  Masinter, L., "The "data" URL scheme", RFC 2397,
               DOI 10.17487/RFC2397, August 1998,
               <https://www.rfc-editor.org/rfc/rfc2397>.
-
-   [RFC6024]  Reddy, R. and C. Wallace, "Trust Anchor Management
-              Requirements", RFC 6024, DOI 10.17487/RFC6024, October
-              2010, <https://www.rfc-editor.org/rfc/rfc6024>.
 
    [RFC8141]  Saint-Andre, P. and J. Klensin, "Uniform Resource Names
               (URNs)", RFC 8141, DOI 10.17487/RFC8141, April 2017,
