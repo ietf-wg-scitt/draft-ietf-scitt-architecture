@@ -151,7 +151,7 @@ Its goal is to enhance auditability and accountability across supply chains.
 
 In supply chains, downstream artifacts are built upon upstream artifacts.
 The complexity of traceability and quality control for these supply chains increases with the number of artifacts and parties contributing to them.
-There are many parties who publish information about artifacts.
+There are many parties who publish information about artifacts:
 For example, the original manufacturer may provide information about the state of the artifact when it left the factory.
 The shipping company may add information about the transport environment of the artifact.
 Compliance auditors may provide information about their compliance assessment of the artifact.
