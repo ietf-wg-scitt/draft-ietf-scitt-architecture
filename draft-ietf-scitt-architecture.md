@@ -408,7 +408,6 @@ The operator of a Transparency Service MAY update the Registration Policy or the
 
 Transparency Services MUST ensure that for any Transparent Statment they accept, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to identify and recover the Transparent Statements describing the registration policy and trust anchors that are applicable to the Transparent Statement.
 
-In particular, this information SHOULD enable Auditors to re-validate the mandatory Issuer authentication check, unless the required information isn't available (e.g. the authentication protocol is not verifiable), or it is confidential (e.g. an OAuth access token embedding the Issuer's pubic key), or it is private (e.g. a Issuer certificate containing the name and email address of a developer).
 
 ### Initialization and bootstrapping {#ts-initialization}
 
