@@ -416,7 +416,7 @@ Transparency Services MUST support at least one of these methods:
 
 ### Append-only Log
 
-The security properties of the Append-only Log are determined by the choice of the verifiable data structure used by the Transparency Service to produce Receipts.
+The security properties of the Append-only Log are determined by the choice of the verifiable data structure used by the Transparency Service to implement the Log.
 This verifiable data structure MUST support the following security requirements:
 
 Append-Only:
