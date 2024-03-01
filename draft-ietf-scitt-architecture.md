@@ -87,7 +87,6 @@ informative:
   I-D.draft-ietf-cose-merkle-tree-proofs: COMETRE
 
   RFC2397: DataURLs
-  RFC6024:
   RFC8141: URNs
   RFC9162: CT
   RFC9334: rats-arch
@@ -177,7 +176,7 @@ The terms "header", "payload", and "to-be-signed bytes" are defined in {{RFC9052
 
 Append-only Log (Ledger):
 
-: the verifiable append-only data structure that stores Signed Statements in a Transparency Service, often referred to by the synonym, Ledger.
+: the verifiable append-only data structure that stores Signed Statements in a Transparency Service, often referred to by the synonym Ledger.
 SCITT supports multiple Ledger and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Logs.
 
 Artifact:
@@ -220,10 +219,10 @@ Over time, an Issuer may register new Signed Statements about an Artifact in a T
 
 Receipt:
 
-: a Receipt is a cryptographic proof that a Signed Statement is recorded in the Append-only Log.
-Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs {{-COMETRE}}.
-Receipts can be built on different verifiable data structures, not just binary merkle trees.
-Receipts consist of Transparency Service-specific inclusion proofs, a signature by the Transparency Service of the state of the Append-only Log, and additional metadata (contained in the signature's protected headers) to assist in auditing.
+: a cryptographic proof that a Signed Statement is included in the Append-only Log.
+Receipts are based on Signed Inclusion Proofs, such as those as described in COSE Signed Merkle Tree Proofs {{-COMETRE}};
+they can be built on different verifiable data structures, not just binary merkle trees.
+A Receipt consists of a Transparency Service-specific inclusion proof for the Signed Statement, a signature by the Transparency Service of the state of the Append-only Log after the inclusion, and additional metadata (contained in the signature's protected headers) to assist in auditing.
 
 Registration:
 
@@ -375,7 +374,7 @@ This section describes at a high level, the three main roles and associated proc
 ## Transparency Service
 
 Transparency Services MUST feature an Append-only Log.
-The Append-only Log is the verifiable data structure that registers Signed Statements and supports the production of Receipts.
+The Append-only Log is the verifiable data structure that records Signed Statements and supports the production of Receipts.
 
 All Transparency Services MUST expose APIs for the registration of Signed Statements and issuance of Receipts.
 
@@ -404,7 +403,6 @@ Transparency Services MUST, at a minimum, perform the following checks before re
 The Transparency Service MUST authenticate the Issuer of Signed Statements by validating the COSE signature and checking the identity of the issuer through one of its configured trust anchors, using the `x5t` and `kid` headers in the protected header as hints. For instance, for X.509 signed claims the Transparency Service must validate a complete certificate chain from the certificate identified by `x5t` to one of the trusted root authority certificate of the Transparency Service.
 The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
 
-
 Before a Signed Statement is registered, the trust anchor used to verify its Issuer MUST be registered with the Transparency Service.
 
 ### Initialization and bootstrapping {#ts-initialization}
@@ -418,11 +416,25 @@ Transparency Services MUST support at least one of these methods:
 
 ### Append-only Log
 
-The security properties of the Append-only Log are determined by the choice of the verifiable data structure used to produce Receipts.
+The security properties of the Append-only Log are determined by the choice of the verifiable data structure used by the Transparency Service to implement the Log.
+This verifiable data structure MUST support the following security requirements:
+
+Append-Only:
+
+: once included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides an offline verifiable proof of registration.
+
+Non-equivocation:
+
+: there is no fork in the Append-only Log.
+Everyone with access to its content sees the same collection of Signed Statements and can check that it is consistent with any Receipts they have verified.
+
+Replayability:
+
+: the Append-only Log includes sufficient information to enable authorised actors with access to its content to check that each included Signed Statement has been correctly registered.
 
 In addition to Receipts, some verifiable data structures might support additional proof types, such as proofs of consistency, or proofs of non inclusion.
 
-Specific verifiable data structures, such those describes in {{-CT}} and {{-COMETRE}} are out of scope for this document.
+Specific verifiable data structures, such those describes in {{-CT}} and {{-COMETRE}}, and the review of their security requirements for SCITT are out of scope for this document.
 
 ### Adjacent Services
 
@@ -1141,3 +1153,4 @@ A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes acc
 | COSE Sign 1  |
  '------------'
 ~~~
+
