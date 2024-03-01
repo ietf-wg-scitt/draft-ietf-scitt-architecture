@@ -407,7 +407,7 @@ The Transparency Service MUST evaluate the Registration Policy that was most rec
 The operator of a Transparency Service MAY update the registration policy or the trust anchors of a transparency service at any time.
 This presents a challenge to Auditors and Relying Parties if they cannot determine what policy was used to register a given Transparent Statement.
 
-Transparency Services MUST ensure that for any Transparent Statment they accept, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to identify and recover the Transparent Statements describing the registration policy and trust anchors that were in use at the time that Transparent Statement was registered.
+Transparency Services MUST ensure that for any Transparent Statment they accept, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to identify and recover the Transparent Statements describing the registration policy and trust anchors that are applicable to the Transparent Statement.
 
 In particular, this information SHOULD enable Auditors to re-validate the mandatory Issuer authentication check, unless the required information isn't available (e.g. the authentication protocol is not verifiable), or it is confidential (e.g. an OAuth access token embedding the Issuer's pubic key), or it is private (e.g. a Issuer certificate containing the name and email address of a developer).
 
