@@ -1437,7 +1437,7 @@ Over time, an Issuer may register new Signed Statements about an Artifact in a T
 <dt id="section-2-4.19">Receipt:</dt>
         <dd style="margin-left: 1.5em" id="section-2-4.20">
           <p id="section-2-4.20.1">a cryptographic proof that a Signed Statement is included in the Append-only Log.
-Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>;
+Receipts are based on Signed Inclusion Proofs, such as those as described in COSE Signed Merkle Tree Proofs <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>;
 they can be built on different verifiable data structures, not just binary merkle trees.
 A receipt consists of an Transparency Service-specific inclusion proof for the Signed Statement, a signature by the Transparency Service of the state of the Append-only Log after the inclusion, and additional metadata (contained in the signature's protected headers) to assist in auditing.<a href="#section-2-4.20.1" class="pilcrow">¶</a></p>
 </dd>
