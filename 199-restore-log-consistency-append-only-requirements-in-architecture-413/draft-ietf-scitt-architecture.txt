@@ -531,7 +531,7 @@ Table of Contents
 
    The security properties of the Append-only Log are determined by the
    choice of the verifiable data structure used by the Transparency
-   Service to produce Receipts.  This verifiable data structure MUST
+   Service to implement the Log. This verifiable data structure MUST
    support the following security requirements:
 
    Append-Only:  once included in the verifiable data structure, a
