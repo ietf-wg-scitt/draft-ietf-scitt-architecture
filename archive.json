@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-29T00:34:06.253220+00:00",
+  "timestamp": "2024-03-03T00:36:27.301849+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -3088,7 +3088,7 @@
       "id": "I_kwDOIvmHss50rAoh",
       "title": "Consider clarifying \"Verifier\" and \"Relying Party\"",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/120",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -3101,8 +3101,8 @@
       ],
       "body": "As discussed on today's call.\r\n\r\nFolks expressed concern that \"Verifier\" was not friendly enough to \"Consumers or Relying Parties\", that are supposed to process receipts.\r\n\r\n------\r\nEditors Update:\r\nWe can choose to:\r\n- [ ] Accept #205 \r\n- [ ] Accept #210\r\n- [ ] Close both PRs and this issue, and keep the doc with Client and Verifier\r\n",
       "createdAt": "2023-10-23T15:22:39Z",
-      "updatedAt": "2024-02-28T19:20:18Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-29T22:54:00Z",
+      "closedAt": "2024-02-29T22:53:59Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -4094,7 +4094,7 @@
       "id": "I_kwDOIvmHss5_F5hA",
       "title": "Restore log consistency & append-only requirements in architecture (4.1.3)",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/199",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "ad-l",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4107,8 +4107,8 @@
       ],
       "body": "After the refactor, the only remaining normative text about the append-only log (4.1.3) states:\r\n\r\n> The security properties of the Append-only Log are determined by the choice of the verifiable data structure used to produce Receipts.\r\n> [...]\r\n> Specific verifiable data structures, such those describes in [[RFC9162](https://www.rfc-editor.org/rfc/rfc9162)] and [[I-D.draft-steele-cose-merkle-tree-proofs](https://datatracker.ietf.org/doc/html/draft-steele-cose-merkle-tree-proofs-01)] are out of scope for this document.\r\n\r\nThere are currently no requirements for verifiable data structures used for the ledger, so indeed it is possible to define and implement a ledger that is non consistent. In fact even though it is called an \"append-only ledger\" there is no normative requirement in the architecture or in COMETRE that the verifiable data structure is append-only. This is also incompatible with the definition of transparency in section 3 that states:\r\n\r\n> Transparency is implemented by providing a consistent, append-only, cryptographically verifiable, publicly available record of entries.\r\n\r\nGiven that auditable consistency is part of the definition of transparency, the security properties of acceptable verifiable data structures should be specified:\r\n- either in the architecture document itself, as it was before version 05\r\n- or, as a requirement for defining new verifiable data structures in I-D.draft-steele-cose-merkle-tree-proofs\r\n",
       "createdAt": "2024-02-13T12:48:27Z",
-      "updatedAt": "2024-02-27T16:43:21Z",
-      "closedAt": null,
+      "updatedAt": "2024-03-01T20:43:54Z",
+      "closedAt": "2024-03-01T20:43:54Z",
       "comments": [
         {
           "author": "fournet",
@@ -25802,24 +25802,26 @@
       "id": "PR_kwDOIvmHss5oNbvg",
       "title": "Replace Verifier with Relying Party, keeping Client",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/210",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This is an alternate proposal to #205 to close #120\r\n\r\nThis PR:\r\n- Keeps **Client as** : _an application making protected Transparency Service resource requests on behalf of the resource owner and with its authorization._\r\n- Replaces **Verifier** with **Relying Party**:  _a relying party depends on Signed or Transparent Statements to verify an Artifact._, ",
       "createdAt": "2024-02-28T19:17:10Z",
-      "updatedAt": "2024-02-28T23:20:01Z",
+      "updatedAt": "2024-02-29T22:53:59Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "75f711737ad2eec19571605d87c6eb367a688b2e",
       "headRepository": "SteveLasker/draft-ietf-scitt-architecture",
       "headRefName": "steve/120",
       "headRefOid": "c713deb6ee918b6556aaec66ac78b2c36829aac5",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-02-29T22:53:59Z",
+      "mergedAt": "2024-02-29T22:53:59Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "eca62297d601a62901911f0ed2f86dc4aa20a6d7"
+      },
       "comments": [
         {
           "author": "SteveLasker",
@@ -25901,6 +25903,2102 @@
           "body": "",
           "createdAt": "2024-02-28T23:17:22Z",
           "updatedAt": "2024-02-28T23:17:22Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xzmrF",
+          "commit": {
+            "abbreviatedOid": "c713deb"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-29T16:33:51Z",
+          "updatedAt": "2024-02-29T16:33:51Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 211,
+      "id": "PR_kwDOIvmHss5oPbSs",
+      "title": "Update CODEOWNERS ",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/211",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Update CODEOWNERS to reflect the authors, editor, and active contributors for PR reviews",
+      "createdAt": "2024-02-29T03:04:29Z",
+      "updatedAt": "2024-02-29T22:53:24Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "75f711737ad2eec19571605d87c6eb367a688b2e",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/codeowners",
+      "headRefOid": "984d14ac5a00443b8a07f45886192a8a05172f93",
+      "closedAt": "2024-02-29T22:53:24Z",
+      "mergedAt": "2024-02-29T22:53:24Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "74e2c3a7a924e32036b7a3be9375db8c86ac6be0"
+      },
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@SteveLasker : I think, this file is autogenerated ?\r\n\r\nCould you please figure out correct way to express contribution ?",
+          "createdAt": "2024-02-29T15:12:07Z",
+          "updatedAt": "2024-02-29T15:12:07Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> @SteveLasker : I think, this file is autogenerated ?\r\n> \r\n> Could you please figure out correct way to express contribution ?\r\n\r\nI have written a few of them and built automation around them for other non-IETF projects. tl;dr they are not auto-generated.\r\n\r\nhttps://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners\r\n\r\nI don't understand the question about contribution or I would try to answer it, sorry.",
+          "createdAt": "2024-02-29T15:15:17Z",
+          "updatedAt": "2024-02-29T15:15:17Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "- If this is a tooling question:\r\n\r\n> I think, this file is autogenerated ?\r\n\r\nThe default template does generate on first instance, and has a make command:\r\n```\r\n# Automatically generated CODEOWNERS\r\n# Regenerate with `make update-codeowners`\r\n```\r\n\r\nHowever, it does **not** auto-generate on each `make`.\r\nIn the last Architecture Editors meeting, we agreed to be more transparent about who we seek feedback using the GitHub shields for PR Reviews. \r\n\r\n\r\n- If you approve of A.J. being a PR reviewer please LGTM or reject with reasons. \r\n\r\n\r\n",
+          "createdAt": "2024-02-29T15:32:47Z",
+          "updatedAt": "2024-02-29T15:32:47Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Ah, I see. If you are going to do that [the relevant Makefile](https://github.com/martinthomson/i-d-template/blob/80f7f2ec576473b034965880f62eb22ce4d1bf39/setup.mk#L52) calls a Python script [that reads the draft itself after converting it xml2rfc during build](https://github.com/martinthomson/i-d-template/blob/80f7f2ec576473b034965880f62eb22ce4d1bf39/setup-codeowners.py) so adding anyone who is not author is moot. I now get what Yogesh was saying. \ud83d\ude06 (So much for me being \"so skilled in automating these CODEOWNER files\" but not reading the i-d-template repo.)\r\n\r\nI defer to you all if that is worth it, but it seems it will only look at authors, not contributors, so manually adding me to the contributor section in the draft will not work either, so up to you all if you trust me (and maybe Orie if he is already a contributor), but as built the i-d-template repo will not do that for you.",
+          "createdAt": "2024-02-29T15:53:31Z",
+          "updatedAt": "2024-02-29T15:54:00Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Ah, I see. ... so adding anyone who is not author is moot. \r\n\r\nAs far as I can tell, that code only gets called if you explicitly call `make update-codeowners`, which would then need to be a PR which we'd reject.\r\n\r\nThis allows us to reflect additional GitHub reviewers and won't get clobbered.\r\n",
+          "createdAt": "2024-02-29T15:57:32Z",
+          "updatedAt": "2024-02-29T15:57:32Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5xt2_s",
+          "commit": {
+            "abbreviatedOid": "984d14a"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "I am honored but I think we need existing reviewers to endorse me to make official. \ud83d\ude01",
+          "createdAt": "2024-02-29T03:06:59Z",
+          "updatedAt": "2024-02-29T03:06:59Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xzWkz",
+          "commit": {
+            "abbreviatedOid": "984d14a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-29T16:05:34Z",
+          "updatedAt": "2024-02-29T16:05:34Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xznGA",
+          "commit": {
+            "abbreviatedOid": "984d14a"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-29T16:34:36Z",
+          "updatedAt": "2024-02-29T16:34:36Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5xzvZK",
+          "commit": {
+            "abbreviatedOid": "984d14a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2024-02-29T16:48:11Z",
+          "updatedAt": "2024-02-29T16:48:11Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 212,
+      "id": "PR_kwDOIvmHss5oVNvv",
+      "title": "Restoring Append-only security requirements",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/212",
+      "state": "MERGED",
+      "author": "fournet",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "See issue  #199 \r\n\r\nThe requirements in ### Append-only Log are restored (and much simplified) from earlier drafts, notably what used to be in ### Append-only Log Security Requirements.\r\n\r\nThe other changes are minor changes for uniformity about the Append-only Log. \r\n ",
+      "createdAt": "2024-02-29T19:24:55Z",
+      "updatedAt": "2024-03-02T21:46:30Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "eca62297d601a62901911f0ed2f86dc4aa20a6d7",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "199-restore-log-consistency-append-only-requirements-in-architecture-413",
+      "headRefOid": "7c2470f970071b24b168018221759242558ef568",
+      "closedAt": "2024-03-01T20:43:53Z",
+      "mergedAt": "2024-03-01T20:43:53Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "2741750932208b315ae580b73b43e37f6a6cf4b9"
+      },
+      "comments": [
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Not sure why the CI is failing, but I don't think that should block merging PRs, anyone can fix this after merging by running:\r\n\r\n```\r\nmake fix-lint\r\n```",
+          "createdAt": "2024-02-29T20:30:08Z",
+          "updatedAt": "2024-02-29T20:30:08Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5x1T6s",
+          "commit": {
+            "abbreviatedOid": "1fad15a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T20:22:07Z",
+          "updatedAt": "2024-02-29T20:22:08Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "I wonder if the Log is allowed to accumulate anything OTHER than \"Signed Statements\"... for example certificates, or JWTs.",
+              "createdAt": "2024-02-29T20:22:07Z",
+              "updatedAt": "2024-02-29T20:22:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1V_e",
+          "commit": {
+            "abbreviatedOid": "1fad15a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T20:27:47Z",
+          "updatedAt": "2024-02-29T20:27:48Z",
+          "comments": [
+            {
+              "originalPosition": 60,
+              "body": "I can imagine readers might get hung up on \"universally-verifiable proof of registration\".\r\n\r\nI wonder if we should define SCITT receipts as \"proof of registration\" that build on COSE receipts, which are signed inclusion proofs.\r\n\r\n",
+              "createdAt": "2024-02-29T20:27:47Z",
+              "updatedAt": "2024-02-29T20:27:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1Www",
+          "commit": {
+            "abbreviatedOid": "1fad15a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T20:29:12Z",
+          "updatedAt": "2024-02-29T20:29:13Z",
+          "comments": [
+            {
+              "originalPosition": 75,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-02-29T20:29:12Z",
+              "updatedAt": "2024-02-29T20:29:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1WzQ",
+          "commit": {
+            "abbreviatedOid": "1fad15a"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-29T20:29:18Z",
+          "updatedAt": "2024-02-29T20:29:18Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1o-2",
+          "commit": {
+            "abbreviatedOid": "1fad15a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T21:15:22Z",
+          "updatedAt": "2024-02-29T21:15:22Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "I preferred the previous version as it incorporates generating receipts. This also changes registered to accumulates, which only adds more concepts.",
+              "createdAt": "2024-02-29T21:15:22Z",
+              "updatedAt": "2024-02-29T21:15:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1w-C",
+          "commit": {
+            "abbreviatedOid": "1fad15a"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T21:38:18Z",
+          "updatedAt": "2024-02-29T21:38:18Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "Allowing the TS to use the log for audit information, in particular intermediate certificates or JWTs, is a pretty legitimate use case, so I would say yes",
+              "createdAt": "2024-02-29T21:38:18Z",
+              "updatedAt": "2024-02-29T21:38:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1xi4",
+          "commit": {
+            "abbreviatedOid": "1fad15a"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T21:40:03Z",
+          "updatedAt": "2024-02-29T21:40:03Z",
+          "comments": [
+            {
+              "originalPosition": 60,
+              "body": "Would you prefer \"offline verifiable\"? That captures the core requirement (you don't need any additional evidence to verify the proof) and I think more people would understand it.",
+              "createdAt": "2024-02-29T21:40:03Z",
+              "updatedAt": "2024-02-29T21:40:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x10Dk",
+          "commit": {
+            "abbreviatedOid": "f9f36ad"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-29T21:47:41Z",
+          "updatedAt": "2024-02-29T21:48:58Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "```suggestion\r\nOptionally, the Ledger may also record other collateral information for Auditors, such as governance information, records of management operations or security incidents, intermediate certificates used for Issuer authentication, etc.\r\n\r\n```",
+              "createdAt": "2024-02-29T21:47:41Z",
+              "updatedAt": "2024-02-29T21:48:58Z"
+            },
+            {
+              "originalPosition": 60,
+              "body": "```suggestion\r\n: once included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides an offline verifiable proof of registration. \r\n```",
+              "createdAt": "2024-02-29T21:48:31Z",
+              "updatedAt": "2024-02-29T21:48:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1-HM",
+          "commit": {
+            "abbreviatedOid": "f9f36ad"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T22:16:52Z",
+          "updatedAt": "2024-02-29T22:16:56Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "Isn't this the only one we have defined? Why not put them in a table and make it small changes to add if there is presumably more than one? It seems we have COMETRE and the CCF profile for COMETER, so I am not sure why we would want to emphasize this when no public draft or IETF spec drafts an alternative one.\r\n\r\nAm I missing something?",
+              "createdAt": "2024-02-29T22:16:52Z",
+              "updatedAt": "2024-02-29T22:16:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x2BYk",
+          "commit": {
+            "abbreviatedOid": "1fad15a"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T22:27:40Z",
+          "updatedAt": "2024-02-29T22:27:40Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "So we are saying, @ad-l we MUST add alternatives data to Signed Statements? SHOULD?\r\n\r\nThis has been discussed a few times in calls and on the mailing list, why MUST or SHOULD it be in the log and not something computed and returned by the API? I do not oppose that change, but why open the door?\r\n\r\nAnd you want the certs and JWTs themselves in the log, @ad-l? I can understand signed or transparent statements if properly sealed, but this reads as using the log for generic storage. Beyond my personal opinion, I thought many in the group oppose this notion generally.",
+              "createdAt": "2024-02-29T22:27:40Z",
+              "updatedAt": "2024-02-29T22:27:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x2Bq4",
+          "commit": {
+            "abbreviatedOid": "f9f36ad"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T22:28:42Z",
+          "updatedAt": "2024-02-29T22:28:42Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "If it is just a different kind of payload, why must we be explicit with this?",
+              "createdAt": "2024-02-29T22:28:42Z",
+              "updatedAt": "2024-02-29T22:28:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x2Ep8",
+          "commit": {
+            "abbreviatedOid": "f9f36ad"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T22:38:33Z",
+          "updatedAt": "2024-02-29T22:40:41Z",
+          "comments": [
+            {
+              "originalPosition": 60,
+              "body": "I like 'offline verifiable' a lot more than 'universally'",
+              "createdAt": "2024-02-29T22:38:33Z",
+              "updatedAt": "2024-02-29T22:40:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x2RgM",
+          "commit": {
+            "abbreviatedOid": "f9f36ad"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T23:33:10Z",
+          "updatedAt": "2024-02-29T23:33:11Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "Various implementations will support many different scenarios. I'd suggest change to 375/376 should be reverted, and not change the additional line 378\r\n",
+              "createdAt": "2024-02-29T23:33:10Z",
+              "updatedAt": "2024-02-29T23:39:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x2SNc",
+          "commit": {
+            "abbreviatedOid": "9c5023b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T23:36:46Z",
+          "updatedAt": "2024-02-29T23:36:47Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "Proposal to revert this change, as \"accumulates\", as we've moved away from the Transparency Service recording Signed Statement contgents, as that may introduce PII or other redaction scenarios that would be impossible. Rather the Transparency Service registers signed statements, producing receipts.\r\n```suggestion\r\nThe Append-only Log is the verifiable data structure that records Signed Statements and supports the production of Receipts.\r\n```",
+              "createdAt": "2024-02-29T23:36:47Z",
+              "updatedAt": "2024-02-29T23:36:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x2SiC",
+          "commit": {
+            "abbreviatedOid": "9c5023b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T23:38:19Z",
+          "updatedAt": "2024-02-29T23:38:20Z",
+          "comments": [
+            {
+              "originalPosition": 63,
+              "body": "```suggestion\r\n: there is no fork in the Append-only Log.\r\nEveryone with access to its content sees the same collection of Signed Statements and can check that it is consistent with any Receipts they have verified.\r\n```",
+              "createdAt": "2024-02-29T23:38:20Z",
+              "updatedAt": "2024-02-29T23:38:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x2S-Q",
+          "commit": {
+            "abbreviatedOid": "172aee2"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T23:40:34Z",
+          "updatedAt": "2024-02-29T23:40:34Z",
+          "comments": [
+            {
+              "originalPosition": 59,
+              "body": "```suggestion\r\n: once included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides an offline verifiable proof of registration.\r\n```",
+              "createdAt": "2024-02-29T23:40:34Z",
+              "updatedAt": "2024-02-29T23:40:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x2TH8",
+          "commit": {
+            "abbreviatedOid": "1fad15a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T23:41:15Z",
+          "updatedAt": "2024-02-29T23:41:15Z",
+          "comments": [
+            {
+              "originalPosition": 60,
+              "body": "> I like 'offline verifiable' a lot more than 'universally'\r\n\r\nSuggested change added",
+              "createdAt": "2024-02-29T23:41:15Z",
+              "updatedAt": "2024-02-29T23:41:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x5rP8",
+          "commit": {
+            "abbreviatedOid": "1fad15a"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T11:44:45Z",
+          "updatedAt": "2024-03-01T11:44:46Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "We need to distinguish between the log and the verifiable data structure if we are doing this. A merkle based append only log is just a bunch of hashes. The signed statements are committed to it, not \"in it\". I strongly prefer the original wording.",
+              "createdAt": "2024-03-01T11:44:45Z",
+              "updatedAt": "2024-03-01T11:44:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x5r7B",
+          "commit": {
+            "abbreviatedOid": "1fad15a"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T11:46:37Z",
+          "updatedAt": "2024-03-01T11:46:37Z",
+          "comments": [
+            {
+              "originalPosition": 60,
+              "body": "This just isn't true tho is it ? If a service has a take down request or whatever, it is legaly obliged to destroy the statement. This is usually accomplished by deleting the pre-image or \"forgeting\" some encrypting key",
+              "createdAt": "2024-03-01T11:46:37Z",
+              "updatedAt": "2024-03-01T11:46:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x5uh7",
+          "commit": {
+            "abbreviatedOid": "f9f36ad"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T11:53:55Z",
+          "updatedAt": "2024-03-01T11:53:55Z",
+          "comments": [
+            {
+              "originalPosition": 60,
+              "body": "```suggestion\r\nonce included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered without invalidating the cryptographic proof backing its Receipt; hence its Receipt provides an offline verifiable proof of tamper evident registration.\r\n```",
+              "createdAt": "2024-03-01T11:53:55Z",
+              "updatedAt": "2024-03-01T11:53:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x5vAC",
+          "commit": {
+            "abbreviatedOid": "372e7e8"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T11:55:11Z",
+          "updatedAt": "2024-03-01T11:55:12Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "```suggestion\r\nA receipt consists of an Transparency Service-specific inclusion proof for the Signed Statement, a signature by the Transparency Service of the state of the Append-only Log after the inclusion, and additional metadata (contained in the signature's protected headers) to assist in auditing.\r\n```",
+              "createdAt": "2024-03-01T11:55:11Z",
+              "updatedAt": "2024-03-01T11:55:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x5vln",
+          "commit": {
+            "abbreviatedOid": "f9f36ad"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T11:56:45Z",
+          "updatedAt": "2024-03-01T11:56:45Z",
+          "comments": [
+            {
+              "originalPosition": 60,
+              "body": "I also prefer offline verifiable though",
+              "createdAt": "2024-03-01T11:56:45Z",
+              "updatedAt": "2024-03-01T11:56:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x5wmQ",
+          "commit": {
+            "abbreviatedOid": "f9f36ad"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T11:59:33Z",
+          "updatedAt": "2024-03-01T11:59:33Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "```suggestion\r\nReceipts are based on Signed Inclusion Proofs, such as those as described in COSE Signed Merkle Tree Proofs {{-COMETRE}};\r\n```",
+              "createdAt": "2024-03-01T11:59:33Z",
+              "updatedAt": "2024-03-01T11:59:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x5y_e",
+          "commit": {
+            "abbreviatedOid": "8093769"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T12:05:51Z",
+          "updatedAt": "2024-03-01T12:05:52Z",
+          "comments": [
+            {
+              "originalPosition": 54,
+              "body": "```suggestion\r\nThe security properties of the Append-only Log are determined by the choice of the verifiable data structure used by the Transparency Service to implement the Log.\r\n```",
+              "createdAt": "2024-03-01T12:05:52Z",
+              "updatedAt": "2024-03-01T12:05:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x529c",
+          "commit": {
+            "abbreviatedOid": "8093769"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T12:13:08Z",
+          "updatedAt": "2024-03-01T12:13:08Z",
+          "comments": [
+            {
+              "originalPosition": 68,
+              "body": "```suggestion\r\n: the Append-only Log includes sufficient information to enable authorised actors with access to its content to check that each included Signed Statement has been correctly registered.\r\n```",
+              "createdAt": "2024-03-01T12:13:08Z",
+              "updatedAt": "2024-03-01T12:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x55cD",
+          "commit": {
+            "abbreviatedOid": "8093769"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T12:19:49Z",
+          "updatedAt": "2024-03-01T12:19:50Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "I agree with @SteveLasker assessment and I would prefer the earlier `old` version of the text.\r\n\r\nIn fact I would re-phrase it to:\r\n`An Append-only Log is the verifiable data structure that registers Signed Statements and produces Receipts.` \r\n",
+              "createdAt": "2024-03-01T12:19:50Z",
+              "updatedAt": "2024-03-01T12:19:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x7hn_",
+          "commit": {
+            "abbreviatedOid": "1fad15a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T15:32:43Z",
+          "updatedAt": "2024-03-01T15:32:43Z",
+          "comments": [
+            {
+              "originalPosition": 60,
+              "body": "Resolving as I've merged in the _offline verifiable_ change. Please re-open if folks don't agree.",
+              "createdAt": "2024-03-01T15:32:43Z",
+              "updatedAt": "2024-03-01T15:32:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x7qCJ",
+          "commit": {
+            "abbreviatedOid": "175e497"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T15:50:22Z",
+          "updatedAt": "2024-03-01T15:50:23Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "This gives me something extra to think about, sounds like a generaly useful thing, but doesn't seem necessary architecture ?",
+              "createdAt": "2024-03-01T15:50:22Z",
+              "updatedAt": "2024-03-01T15:50:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x7rIi",
+          "commit": {
+            "abbreviatedOid": "11fa485"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T15:52:38Z",
+          "updatedAt": "2024-03-01T15:52:38Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "```suggestion\r\nA Receipt consists of an Transparency Service-specific inclusion proof for the Signed Statement, a signature by the Transparency Service of the state of the Append-only Log after the inclusion, and additional metadata (contained in the signature's protected headers) to assist in auditing.\r\n```",
+              "createdAt": "2024-03-01T15:52:38Z",
+              "updatedAt": "2024-03-01T15:52:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x8aN8",
+          "commit": {
+            "abbreviatedOid": "34575ea"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T17:20:03Z",
+          "updatedAt": "2024-03-01T17:20:03Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "Resolving as not-needed, and implementation specific details.\r\n@ad-l, please re-open with comments and changes if you feel we need to keep it",
+              "createdAt": "2024-03-01T17:20:03Z",
+              "updatedAt": "2024-03-01T17:20:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x8bBS",
+          "commit": {
+            "abbreviatedOid": "1fad15a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T17:22:05Z",
+          "updatedAt": "2024-03-01T17:22:06Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "Marking as resolved: Please see the files view for the most recent changes. ",
+              "createdAt": "2024-03-01T17:22:05Z",
+              "updatedAt": "2024-03-01T17:22:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x8b3N",
+          "commit": {
+            "abbreviatedOid": "f9f36ad"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T17:24:20Z",
+          "updatedAt": "2024-03-01T17:24:20Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "While COMETRE is currently the only one defined, the spec allows for more. Not sure the spec needs to list all the current and potential future implementations. \r\nTo get this merged, I'm deferring this to a potential new PR, if felt needed.",
+              "createdAt": "2024-03-01T17:24:20Z",
+              "updatedAt": "2024-03-01T17:24:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x8qtJ",
+          "commit": {
+            "abbreviatedOid": "a956f71"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-03-01T17:57:13Z",
+          "updatedAt": "2024-03-01T17:57:18Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "This informative RFC is about trust anchor management and that is material to the changes being mad, did you or someone reviewing intend to remove it?\r\n\r\nSorry suggestions does not support adding back deleted lines anymore or I would just recommend it.",
+              "createdAt": "2024-03-01T17:57:13Z",
+              "updatedAt": "2024-03-01T17:57:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x8ssE",
+          "commit": {
+            "abbreviatedOid": "a956f71"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T18:01:05Z",
+          "updatedAt": "2024-03-01T18:01:05Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Trust Anchor Management is a vital part of SCITT story. I suggest we should retain it, perhaps needs to be referred from the section that talks about setting the Transparency Service with necessary Trust Anchors!",
+              "createdAt": "2024-03-01T18:01:05Z",
+              "updatedAt": "2024-03-01T18:01:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x81QD",
+          "commit": {
+            "abbreviatedOid": "a956f71"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T18:21:03Z",
+          "updatedAt": "2024-03-01T18:21:03Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Good catch. I removed the reference as it was no longer in the doc, and called out as a make error:\r\n\r\nThe reference to RFC6024 was removed in [PR 201](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/201/files#diff-585fb424519b79cf000445f3425fa56d328cbaca5d2a622740ddc4e5ca91dbe1L394)",
+              "createdAt": "2024-03-01T18:21:03Z",
+              "updatedAt": "2024-03-01T18:21:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x9eHO",
+          "commit": {
+            "abbreviatedOid": "a956f71"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-01T20:17:38Z",
+          "updatedAt": "2024-03-01T20:17:38Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x9fH6",
+          "commit": {
+            "abbreviatedOid": "a956f71"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-03-01T20:19:31Z",
+          "updatedAt": "2024-03-01T20:19:31Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x9l4o",
+          "commit": {
+            "abbreviatedOid": "a956f71"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Tiny grammar nit",
+          "createdAt": "2024-03-01T20:38:29Z",
+          "updatedAt": "2024-03-01T20:40:21Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "```suggestion\r\nA Receipt consists of a Transparency Service-specific inclusion proof for the Signed Statement, a signature by the Transparency Service of the state of the Append-only Log after the inclusion, and additional metadata (contained in the signature's protected headers) to assist in auditing.\r\n```",
+              "createdAt": "2024-03-01T20:38:29Z",
+              "updatedAt": "2024-03-01T20:40:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yAjC4",
+          "commit": {
+            "abbreviatedOid": "7c2470f"
+          },
+          "author": "bobmartin3000",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "These changes look good",
+          "createdAt": "2024-03-02T21:46:30Z",
+          "updatedAt": "2024-03-02T21:46:30Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 213,
+      "id": "PR_kwDOIvmHss5oVYcQ",
+      "title": "Registration auditability requirements (#200)",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213",
+      "state": "OPEN",
+      "author": "ad-l",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "My take on trying to make registration auditable. This is still very open-ended in terms of implementation choice",
+      "createdAt": "2024-02-29T19:57:16Z",
+      "updatedAt": "2024-03-02T21:51:03Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "75f711737ad2eec19571605d87c6eb367a688b2e",
+      "headRepository": "ad-l/draft-ietf-scitt-architecture",
+      "headRefName": "200_auditable_registration",
+      "headRefOid": "e4d7d9a4c11a4bc50b4a6efb08e8adec6b37c5de",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> This item: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213/files#r1508145284\r\n> I would approve the PR if `x5chain` support was a SHOULD, but I do not believe both `x5t` and `x5chain` should be MTI.\r\n\r\nI have made `x5chain` optional, but still supported\r\n",
+          "createdAt": "2024-02-29T21:33:01Z",
+          "updatedAt": "2024-02-29T21:36:16Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "Steve,\r\n\r\n \r\n\r\nIs it too late to add another service API to SCRAPI:\r\n\r\n \r\n\r\n3.2.5.  Retrieve Registration Policy \r\n\r\n \r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n  \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\n <http://www.reliableenergyanalytics.com/> http://www.reliableenergyanalytics.com\r\n\r\nEmail:  ***@***.***> ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: Steve Lasker ***@***.***> \r\nSent: Saturday, March 2, 2024 11:57 AM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Comment ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Registration auditability requirements (#200) (PR #213)\r\n\r\n \r\n\r\n@SteveLasker commented on this pull request.\r\n\r\n  _____  \r\n\r\nIn draft-ietf-scitt-architecture.md <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#discussion_r1510005167> :\r\n\r\n>  \r\n-- A built-in default Registration Policy\r\n-- Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks\r\n-- An out-of-band authenticated management interface\r\n+- A built-in default Registration Policy and initial list of trust anchors;\r\n\r\nlooking for feedback with a +1 or -1 to merge or discard\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#discussion_r1510005167> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NBA3KIBZBUTMUQSES3YWIAHJAVCNFSM6AAAAABEAR4LZOVHI2DSMVQWIX3LMV43YUDVNRWFEZLROVSXG5CSMV3GSZLXHMYTSMJSGY4TEMRRGU> .\r\nYou are receiving this because you commented.Message ID: ***@***.***>\r\n\r\n",
+          "createdAt": "2024-03-02T17:44:05Z",
+          "updatedAt": "2024-03-02T17:44:05Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5x1Njh",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T20:05:42Z",
+          "updatedAt": "2024-02-29T20:05:42Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\nFor instance, a trust anchor could be an X.509 root certificate, the discovery URL of an OpenID Connect identity provider, or any other COSE compatible PKI trust anchor.\r\n```",
+              "createdAt": "2024-02-29T20:05:42Z",
+              "updatedAt": "2024-02-29T20:05:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1N8z",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T20:06:42Z",
+          "updatedAt": "2024-02-29T20:06:42Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "are you sure you want both `x5t` and `x5chain` ?",
+              "createdAt": "2024-02-29T20:06:42Z",
+              "updatedAt": "2024-02-29T20:06:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1OUa",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T20:07:38Z",
+          "updatedAt": "2024-02-29T20:07:38Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "```suggestion\r\nDuring registration, a Transparency Services MUST, at a minimum, authenticate the Issuer of the Signed Statement by validating the COSE signature and checking the identity of the issuer against one of its configured trust anchors, using the `x5t` (34), `x5chain`(33) and `kid`(4) protected headers of the Signed Statement as hints.\r\n```",
+              "createdAt": "2024-02-29T20:07:38Z",
+              "updatedAt": "2024-02-29T20:07:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1OdN",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T20:07:59Z",
+          "updatedAt": "2024-02-29T20:08:00Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "Lets be sure people don't assume JOSE is supported.",
+              "createdAt": "2024-02-29T20:07:59Z",
+              "updatedAt": "2024-02-29T20:08:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1PiZ",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T20:10:49Z",
+          "updatedAt": "2024-02-29T20:10:49Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "```suggestion\r\nFor instance, in order to authenticate X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.\r\n```",
+              "createdAt": "2024-02-29T20:10:49Z",
+              "updatedAt": "2024-02-29T20:11:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1Qpi",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T20:13:21Z",
+          "updatedAt": "2024-02-29T20:13:22Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "can we define \"recent\", is that a logical time or lamport time? \r\n\r\nWhat is an \"instance-specific registration check\" ?",
+              "createdAt": "2024-02-29T20:13:21Z",
+              "updatedAt": "2024-02-29T20:13:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1RB_",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T20:14:09Z",
+          "updatedAt": "2024-02-29T20:14:09Z",
+          "comments": [
+            {
+              "originalPosition": 45,
+              "body": "Consider adding a \"SHOULD when\", or \"MUST when\" after this MAY.",
+              "createdAt": "2024-02-29T20:14:09Z",
+              "updatedAt": "2024-02-29T20:14:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1RoD",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T20:15:51Z",
+          "updatedAt": "2024-02-29T20:15:51Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "I'd prefer a simpler normative requirement for this, if one is possible... but since its a SHOULD its not mandatory to support, so I don't object to the ambiguity",
+              "createdAt": "2024-02-29T20:15:51Z",
+              "updatedAt": "2024-02-29T20:16:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1SjZ",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T20:18:22Z",
+          "updatedAt": "2024-02-29T20:18:22Z",
+          "comments": [
+            {
+              "originalPosition": 76,
+              "body": "I object to this change.\r\n\r\nthe purpose of MTI is to reduce optionality, this change increases implementer burden, and provides additional optionality.\r\n\r\nI'd be fine with SHOULD... but not MUST for `x5chain`",
+              "createdAt": "2024-02-29T20:18:22Z",
+              "updatedAt": "2024-02-29T20:18:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1TEE",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "This item: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213/files#r1508145284\r\n\r\nIs my only blocking comment.\r\n\r\nI would approve the PR if `x5chain` support was a SHOULD, but I do not believe both `x5t` and `x5chain` should be MTI.",
+          "createdAt": "2024-02-29T20:19:47Z",
+          "updatedAt": "2024-02-29T20:19:47Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1sI1",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T21:24:15Z",
+          "updatedAt": "2024-02-29T21:24:16Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "The benefit of \"x5chain\" is that you don't have to find or communicate the Issuer certificate to the relying party or the auditor if they want to re-check the signature. I don't see the harm in supporting it",
+              "createdAt": "2024-02-29T21:24:15Z",
+              "updatedAt": "2024-02-29T21:24:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1sxI",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T21:26:06Z",
+          "updatedAt": "2024-02-29T21:26:06Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "recent = latest added to the append only log, do you think this needs to be explicit?\r\n\r\n\"instance-specific registration check\" just means \"registration policy\"",
+              "createdAt": "2024-02-29T21:26:06Z",
+              "updatedAt": "2024-02-29T21:26:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1tFn",
+          "commit": {
+            "abbreviatedOid": "c4ed10a"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T21:26:57Z",
+          "updatedAt": "2024-02-29T21:26:57Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "```suggestion\r\nThe Transparency Service MUST evaluate the registration policy that was most recently added to the Append-only Log.\r\n```",
+              "createdAt": "2024-02-29T21:26:57Z",
+              "updatedAt": "2024-02-29T21:27:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1t6A",
+          "commit": {
+            "abbreviatedOid": "3324807"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T21:29:10Z",
+          "updatedAt": "2024-02-29T21:29:10Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "I agreee it is phrased ambiguously, trying to avoid being too prescriptive on implementers and giving them several possible opt-outs. If you think you can do better please provide an alternative",
+              "createdAt": "2024-02-29T21:29:10Z",
+              "updatedAt": "2024-02-29T21:29:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1uGY",
+          "commit": {
+            "abbreviatedOid": "3324807"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T21:29:45Z",
+          "updatedAt": "2024-02-29T21:29:45Z",
+          "comments": [
+            {
+              "originalPosition": 76,
+              "body": "```suggestion\r\nSupport for `x5t` is mandatory to implement.\r\n```",
+              "createdAt": "2024-02-29T21:29:45Z",
+              "updatedAt": "2024-02-29T21:29:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1uZk",
+          "commit": {
+            "abbreviatedOid": "1c797fd"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T21:30:38Z",
+          "updatedAt": "2024-02-29T21:30:38Z",
+          "comments": [
+            {
+              "originalPosition": 76,
+              "body": "```suggestion\r\n- Support for `x5t` is mandatory to implement.\r\n```",
+              "createdAt": "2024-02-29T21:30:38Z",
+              "updatedAt": "2024-02-29T21:30:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x1uyt",
+          "commit": {
+            "abbreviatedOid": "feae0aa"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T21:31:46Z",
+          "updatedAt": "2024-02-29T21:31:46Z",
+          "comments": [
+            {
+              "originalPosition": 76,
+              "body": "```suggestion\r\n- Support for `kid` and `x5chain` is optional.\r\n```",
+              "createdAt": "2024-02-29T21:31:46Z",
+              "updatedAt": "2024-02-29T21:31:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x2EhA",
+          "commit": {
+            "abbreviatedOid": "47ca4c2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-29T22:38:03Z",
+          "updatedAt": "2024-02-29T22:38:03Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x2FP2",
+          "commit": {
+            "abbreviatedOid": "47ca4c2"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-29T22:40:48Z",
+          "updatedAt": "2024-02-29T23:06:36Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "If we are to add things like this we need some requirements language (MUST/SHOULD/MAY) and then we need to be particular about it.\r\n\r\nAre we at that point as a working group we can actually do that?",
+              "createdAt": "2024-02-29T22:40:48Z",
+              "updatedAt": "2024-02-29T23:06:37Z"
+            },
+            {
+              "originalPosition": 5,
+              "body": "The colon was to preface the list below, no? What does this have to do with the linked issue and audibility? I wouldn't block over this but it doesn't seem immediately helpful or I'd ignore it.\r\n\r\n```suggestion\r\nThere are many parties who publish information about artifacts:\r\n```",
+              "createdAt": "2024-02-29T22:50:55Z",
+              "updatedAt": "2024-02-29T23:06:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x2aOX",
+          "commit": {
+            "abbreviatedOid": "47ca4c2"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T00:18:12Z",
+          "updatedAt": "2024-03-01T00:18:12Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "That text was already there, I only extended it to cover both registration policy and trust anchors (which was implicit before). But your point still stands that this text does not really use proper normative language, maybe create a separate issue about it?",
+              "createdAt": "2024-03-01T00:18:12Z",
+              "updatedAt": "2024-03-01T00:18:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x5zQZ",
+          "commit": {
+            "abbreviatedOid": "47cc0a3"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T12:06:33Z",
+          "updatedAt": "2024-03-01T12:06:33Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "nice",
+              "createdAt": "2024-03-01T12:06:33Z",
+              "updatedAt": "2024-03-01T12:06:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x52Ik",
+          "commit": {
+            "abbreviatedOid": "47cc0a3"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T12:10:56Z",
+          "updatedAt": "2024-03-01T12:10:57Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "I don't think this MUST is compatible with an eventualy consistent world.",
+              "createdAt": "2024-03-01T12:10:56Z",
+              "updatedAt": "2024-03-01T12:10:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x6DCa",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T12:43:19Z",
+          "updatedAt": "2024-03-01T12:43:20Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "I still don't see the utility of requirement to apply registration policies *on registration* for interoperability. Provided we are clear about the difference between a database of transparent statements and the verifiable datastracture that makes them tamper evident, there is no realy value in requiring a check before entry. And this apparent losening actually allows for more powerful retrospective analysis based on transparent statements about policy. Transparent retrospective policies can perfectly well reference the commitments of signed statements to append only logs even after the pre image data has been put beyond use (to counter posoning or satisfy legal requests). \r\n\r\n```suggestion\r\nTransparency Services MUST maintain Registration Policies that govern whether or not a given Signed Statement is acceptable.\r\nThese policies may retrospectively apply to previously registered signed statements that have been redacted.\r\n```",
+              "createdAt": "2024-03-01T12:43:19Z",
+              "updatedAt": "2024-03-01T17:28:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x6HJN",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T12:51:24Z",
+          "updatedAt": "2024-03-01T12:51:24Z",
+          "comments": [
+            {
+              "originalPosition": 48,
+              "body": "```suggestion\r\nTransparency Services MUST ensure that for any Transparent Statment they accept, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to identify and recover the Transparent Statements describing the registration policy and trust anchors that are applicable to the Transparent Statement.\r\n```",
+              "createdAt": "2024-03-01T12:51:24Z",
+              "updatedAt": "2024-03-01T16:11:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x6Ha5",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T12:52:06Z",
+          "updatedAt": "2024-03-01T12:52:06Z",
+          "comments": [
+            {
+              "originalPosition": 48,
+              "body": "Because this allows for retrospective interpretation of policies and avoids the various bootstraping issues.",
+              "createdAt": "2024-03-01T12:52:06Z",
+              "updatedAt": "2024-03-01T12:52:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x69wb",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T14:19:34Z",
+          "updatedAt": "2024-03-01T14:19:35Z",
+          "comments": [
+            {
+              "originalPosition": 48,
+              "body": "Might want to remove the ` ``` ` from the code block at the end or this will junk it up.",
+              "createdAt": "2024-03-01T14:19:34Z",
+              "updatedAt": "2024-03-01T16:11:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x6-2w",
+          "commit": {
+            "abbreviatedOid": "47ca4c2"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T14:21:44Z",
+          "updatedAt": "2024-03-01T14:21:44Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "We say default in the preexisting language and indicates you propose adding \"and initial list of trust anchors;\" to the end and that would be default too, correct? I am saying if we are going to say that we ought to be explicit about if we are committing to that.\r\n\r\nI for one am saying I am not sure we should, we see what others say.",
+              "createdAt": "2024-03-01T14:21:44Z",
+              "updatedAt": "2024-03-01T14:21:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x7AOw",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T14:23:50Z",
+          "updatedAt": "2024-03-01T14:23:50Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "Very useful perspective you might want to clean up the code block offset at the bottom for merge.\r\n\r\n```suggestion\r\nTransparency Services MUST maintain Registration Policies which govern whether or not a given Signed Statement is considered acceptable. These policies may retrospectively apply to previously registered signed statements which have been redacted.\r\n```",
+              "createdAt": "2024-03-01T14:23:50Z",
+              "updatedAt": "2024-03-01T17:28:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x7yyK",
+          "commit": {
+            "abbreviatedOid": "47cc0a3"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T16:08:43Z",
+          "updatedAt": "2024-03-01T16:08:43Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "```suggestion\r\nThe Transparency Service MUST evaluate the Registration Policy that was most recently added to the Append-only Log.\r\n```",
+              "createdAt": "2024-03-01T16:08:43Z",
+              "updatedAt": "2024-03-01T16:08:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x71Ud",
+          "commit": {
+            "abbreviatedOid": "5dbddb4"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T16:14:08Z",
+          "updatedAt": "2024-03-01T16:14:08Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "Would prefer text that isn't conversational, discussing problems, as opposed to stating how the spec provides solutions.",
+              "createdAt": "2024-03-01T16:14:08Z",
+              "updatedAt": "2024-03-01T16:14:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x734w",
+          "commit": {
+            "abbreviatedOid": "47cc0a3"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T16:19:38Z",
+          "updatedAt": "2024-03-01T16:19:38Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "I could live with this I think.\r\n\r\n```suggestion\r\nThe trust anchor used to verify its Issuer SHOULD be registered with the Transparency Service making it available for Auditors.\r\nIt MAY be registered at any time.\r\n```",
+              "createdAt": "2024-03-01T16:19:38Z",
+              "updatedAt": "2024-03-02T08:40:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x8DXB",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T16:43:21Z",
+          "updatedAt": "2024-03-01T16:43:21Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "If we need to be specific about ranges of time, lamport order is pretty rigid and also essentially up to the transparency service. Can we do something like \"Mininum Merge Delay\" for CT logs ?\r\n\r\n```suggestion\r\nIf the transparency service subjects signed statements to registration policies at time of registration, it MUST declare the maximum delay from accepting the policy to it being applicable to future statements.\r\n``` \r\n",
+              "createdAt": "2024-03-01T16:43:21Z",
+              "updatedAt": "2024-03-01T16:43:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x8eHG",
+          "commit": {
+            "abbreviatedOid": "5dbddb4"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T17:29:38Z",
+          "updatedAt": "2024-03-01T17:29:39Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "```suggestion\r\nThe operator of a Transparency Service MAY update the Registration Policy or the trust anchors of a Transparency Service at any time.\r\n```",
+              "createdAt": "2024-03-01T17:29:38Z",
+              "updatedAt": "2024-03-01T17:29:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x8fmR",
+          "commit": {
+            "abbreviatedOid": "6fd5e3f"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T17:32:24Z",
+          "updatedAt": "2024-03-01T17:32:25Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "Reviving Orie's [comment](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#discussion_r1508140415) as GitHub hid it after fixing some formatting changes",
+              "createdAt": "2024-03-01T17:32:25Z",
+              "updatedAt": "2024-03-01T17:32:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x8f3N",
+          "commit": {
+            "abbreviatedOid": "6fd5e3f"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T17:33:06Z",
+          "updatedAt": "2024-03-01T17:33:06Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-03-01T17:33:06Z",
+              "updatedAt": "2024-03-01T17:33:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x9YYd",
+          "commit": {
+            "abbreviatedOid": "6fd5e3f"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T20:02:02Z",
+          "updatedAt": "2024-03-01T20:02:02Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "I agree Steve. The party operating the Transparency Service and Registry must implement an auditable process for integrity verification. A lot can happen before an item is inserted into the block chain or database.\r\n\r\nFYI: I'm meeting with the FCC on March 21 to talk about SCITT and the need for a Trust Registry for the US Cyber Trust Mark. Hopefully we will have the architecture close by the time I have this meeting.",
+              "createdAt": "2024-03-01T20:02:02Z",
+              "updatedAt": "2024-03-01T20:02:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x9gwL",
+          "commit": {
+            "abbreviatedOid": "47cc0a3"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T20:23:30Z",
+          "updatedAt": "2024-03-01T20:23:30Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "its vague enough to be eventually true.",
+              "createdAt": "2024-03-01T20:23:30Z",
+              "updatedAt": "2024-03-01T20:23:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x9qJC",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T20:48:13Z",
+          "updatedAt": "2024-03-01T20:48:13Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "I don't this we should write MUST statements regarding Transparency Service policies like this.\r\n\r\nI think policies should be out of scope.\r\n\r\nI'd object to making this normative requirement.",
+              "createdAt": "2024-03-01T20:48:13Z",
+              "updatedAt": "2024-03-01T20:48:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x9pX8",
+          "commit": {
+            "abbreviatedOid": "6fd5e3f"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T20:45:28Z",
+          "updatedAt": "2024-03-01T20:54:22Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\r\nRegistration Policies and trust anchors MUST be made transparent and available to all authorised clients of the Transparency Service by registering them as Signed Statements on the Append-only Log.\r\n```",
+              "createdAt": "2024-03-01T20:45:28Z",
+              "updatedAt": "2024-03-01T20:54:22Z"
+            },
+            {
+              "originalPosition": 17,
+              "body": "I think we'll find pushback from the user community if ANY client can get hold of ALL trust anchor details without even a nod to auth.",
+              "createdAt": "2024-03-01T20:46:34Z",
+              "updatedAt": "2024-03-01T20:54:22Z"
+            },
+            {
+              "originalPosition": 26,
+              "body": "```suggestion\r\nDuring registration, a Transparency Service MUST, at a minimum, authenticate the Issuer of the Signed Statement by validating the COSE signature and checking the identity of the issuer against one of its configured trust anchors, using the `x5t` (34), `x5chain`(33) or `kid`(4) protected headers of the Signed Statement as hints.\r\n```",
+              "createdAt": "2024-03-01T20:47:46Z",
+              "updatedAt": "2024-03-01T20:54:22Z"
+            },
+            {
+              "originalPosition": 37,
+              "body": "This sentence is redundant. Support the removal.",
+              "createdAt": "2024-03-01T20:49:00Z",
+              "updatedAt": "2024-03-01T20:54:22Z"
+            },
+            {
+              "originalPosition": 42,
+              "body": "```suggestion\r\n```\r\n\r\nSuggest complete removal. This sentence doesn't add anything and the ambiguity just makes it confusing. The document already has the requirement to register and make the trust anchors transparent, that's enough.",
+              "createdAt": "2024-03-01T20:52:50Z",
+              "updatedAt": "2024-03-01T20:54:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x9s8K",
+          "commit": {
+            "abbreviatedOid": "6fd5e3f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T20:55:35Z",
+          "updatedAt": "2024-03-01T20:55:35Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\nTransparency Services MUST maintain Registration Policies.\r\n```",
+              "createdAt": "2024-03-01T20:55:35Z",
+              "updatedAt": "2024-03-01T20:55:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x9tB2",
+          "commit": {
+            "abbreviatedOid": "6fd5e3f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T20:55:55Z",
+          "updatedAt": "2024-03-01T20:55:55Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "Rely on definitions, instead of repeating purpose of defined terms.",
+              "createdAt": "2024-03-01T20:55:55Z",
+              "updatedAt": "2024-03-01T20:55:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x9tYW",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T20:56:57Z",
+          "updatedAt": "2024-03-01T20:56:57Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "Would a revoked \"trust anchor\" certificate have any effect on the statements contained on the chain? Would all of the statement still remain valid in the event of a revoked certificate?",
+              "createdAt": "2024-03-01T20:56:57Z",
+              "updatedAt": "2024-03-01T20:56:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x9-5N",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T21:35:43Z",
+          "updatedAt": "2024-03-01T21:35:43Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "Well I know there has been chatter about encoding a hash of the cert chain versus the whole thing and now this question posed by Dick. This leads to a problem, what if the certificates no longer exist, are not just recorded but presently invalid?",
+              "createdAt": "2024-03-01T21:35:43Z",
+              "updatedAt": "2024-03-01T21:35:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x-CTm",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-01T21:41:35Z",
+          "updatedAt": "2024-03-01T21:41:36Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "Spot on AJ. Another problem we see is the inability to verify a certificate using OSCP. Things go wrong. What is the \"failsafe\" position in the \"state machine\" for the Transparency Service when things go wrong?",
+              "createdAt": "2024-03-01T21:41:35Z",
+              "updatedAt": "2024-03-01T21:41:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x_WP7",
+          "commit": {
+            "abbreviatedOid": "1d2a203"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-02T01:09:36Z",
+          "updatedAt": "2024-03-02T01:09:37Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "Suggestion to revert this line, and revert the addtions below for the trust anchors.\r\n```suggestion\r\n- A built-in default Registration Policy\r\n```",
+              "createdAt": "2024-03-02T01:09:37Z",
+              "updatedAt": "2024-03-02T01:10:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x_WU7",
+          "commit": {
+            "abbreviatedOid": "1d2a203"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-02T01:10:41Z",
+          "updatedAt": "2024-03-02T01:10:42Z",
+          "comments": [
+            {
+              "originalPosition": 52,
+              "body": "```suggestion\r\n- Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks\r\n```",
+              "createdAt": "2024-03-02T01:10:41Z",
+              "updatedAt": "2024-03-02T01:10:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5x_WWD",
+          "commit": {
+            "abbreviatedOid": "1d2a203"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-02T01:10:55Z",
+          "updatedAt": "2024-03-02T01:10:56Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "```suggestion\r\n- An out-of-band authenticated management interface\r\n```",
+              "createdAt": "2024-03-02T01:10:55Z",
+              "updatedAt": "2024-03-02T01:10:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yADLu",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-02T08:42:00Z",
+          "updatedAt": "2024-03-02T08:42:01Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "SHOULD works for me. I only used MUST because I thought there was an appetite for normative requirements here",
+              "createdAt": "2024-03-02T08:42:00Z",
+              "updatedAt": "2024-03-02T08:42:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yAMUR",
+          "commit": {
+            "abbreviatedOid": "1d2a203"
+          },
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-03-02T12:23:06Z",
+          "updatedAt": "2024-03-02T12:28:37Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\n```\r\nI propose we remove the last remark on retrospective applications of policies. As detailed in the mail thread, this remark generally applies to some other policies that may be supported by the TS, but not to the registration policy as defined in the architecture. If need be, let's open a separate issue or PR to explain them in relation to auditing. ",
+              "createdAt": "2024-03-02T12:23:06Z",
+              "updatedAt": "2024-03-02T12:28:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yARWM",
+          "commit": {
+            "abbreviatedOid": "1d2a203"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-02T14:45:42Z",
+          "updatedAt": "2024-03-02T14:45:42Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "yep, agree. especially if we get ories change below (for line 389 -> \"Transparency Services MUST maintain Registration Policies.\")",
+              "createdAt": "2024-03-02T14:45:42Z",
+              "updatedAt": "2024-03-02T14:45:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yAV33",
+          "commit": {
+            "abbreviatedOid": "1d2a203"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-02T16:57:12Z",
+          "updatedAt": "2024-03-02T16:57:12Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "looking for feedback with a +1 or -1 to merge or discard ",
+              "createdAt": "2024-03-02T16:57:12Z",
+              "updatedAt": "2024-03-02T16:57:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yAjFp",
+          "commit": {
+            "abbreviatedOid": "e4d7d9a"
+          },
+          "author": "bobmartin3000",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-02T21:48:02Z",
+          "updatedAt": "2024-03-02T21:48:02Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "Good catch",
+              "createdAt": "2024-03-02T21:48:02Z",
+              "updatedAt": "2024-03-02T21:48:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yAjIM",
+          "commit": {
+            "abbreviatedOid": "e4d7d9a"
+          },
+          "author": "bobmartin3000",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-02T21:50:01Z",
+          "updatedAt": "2024-03-02T21:50:01Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "+1 on reverting",
+              "createdAt": "2024-03-02T21:50:01Z",
+              "updatedAt": "2024-03-02T21:50:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yAjIk",
+          "commit": {
+            "abbreviatedOid": "e4d7d9a"
+          },
+          "author": "bobmartin3000",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-02T21:50:18Z",
+          "updatedAt": "2024-03-02T21:50:18Z",
+          "comments": [
+            {
+              "originalPosition": 52,
+              "body": "+1",
+              "createdAt": "2024-03-02T21:50:18Z",
+              "updatedAt": "2024-03-02T21:50:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yAjI1",
+          "commit": {
+            "abbreviatedOid": "e4d7d9a"
+          },
+          "author": "bobmartin3000",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-02T21:50:30Z",
+          "updatedAt": "2024-03-02T21:50:30Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "+1 ",
+              "createdAt": "2024-03-02T21:50:30Z",
+              "updatedAt": "2024-03-02T21:50:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yAjJY",
+          "commit": {
+            "abbreviatedOid": "e4d7d9a"
+          },
+          "author": "bobmartin3000",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "These changes seem appropriate",
+          "createdAt": "2024-03-02T21:51:03Z",
+          "updatedAt": "2024-03-02T21:51:03Z",
           "comments": []
         }
       ]
