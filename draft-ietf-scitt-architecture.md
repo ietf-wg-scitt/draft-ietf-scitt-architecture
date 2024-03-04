@@ -415,7 +415,7 @@ Transparency Services MUST ensure that for any Signed Statement they register, e
 Since the mandatory registration checks rely on having registered Signed Statements for the registration policy and trust anchors, Transparency Services MUST support at least one of the three following bootstrapping mechanisms:
 
 - A built-in default Registration Policy and default trust anchors;
-- Acceptance of a first Signed Statement whose payload is a valid Registration Policy and trust anchors, omitting the normal registration checks;
+- Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks
 - An out-of-band authenticated management interface to configure the registration policy and trust anchors.
 
 ### Append-only Log
