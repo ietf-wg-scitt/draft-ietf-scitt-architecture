@@ -258,7 +258,7 @@ In SCITT, `sub` identifies the entity about which statements, and receipts are m
 The subject value MUST either be scoped to be locally unique in the context of the Issuer or be globally unique.
 The processing of this claim is generally application specific.
 The `sub` value is a case-sensitive string containing a StringOrURI value.
-Issuer's use `sub` to identify the entity about which they are making Signed Statements.
+Issuers use `sub` to identify the entity about which they are making Signed Statements.
 Transparency Services use `sub` to identify the entity about which they are issuing a Receipt.
 
 Transparency Service:
@@ -388,29 +388,33 @@ Multi-tenant support can be enabled through the use of identifiers in the `iss` 
 
 Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is accepted to be registered to the Append-only Log.
 
-Transparency Services MUST maintain Registration Policies which govern whether or not a given Signed Statement is eligible for registration.
-Registration Policies MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing associated Receipts.
-Distribution of Receipts is out of scope for this document.```
+Transparency Services MUST maintain Registration Policies.
 
-This specification leaves implementation, encoding and documentation of Registration Policies to the operator of the Transparency Service.
+Transparency Services MUST also maintain a list of trust anchors used to authenticate Issuers, which MAY be included in a registration policy statement.
+For instance, a trust anchor could be an X.509 root certificate, the discovery URL of an OpenID Connect identity provider, or any other COSE compatible PKI trust anchor.
+
+Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing the associated Receipts.
+
+This specification leaves implementation, encoding and documentation of Registration Policies and trust anchors to the operator of the Transparency Service.
 
 #### Mandatory Registration Checks
 
-Transparency Services MUST, at a minimum, perform the following checks before registering a Signed Statement:
+During registration, a Transparency Service MUST, at a minimum, authenticate the Issuer of the Signed Statement by validating the COSE signature and checking the identity of the issuer against one of its currently configured trust anchors, using the `x5t` (34), `x5chain`(33) or `kid`(4) protected headers of the Signed Statement as hints.
+For instance, in order to authenticate X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.
 
-- Authenticate the Issuer of the Signed Statement
+The Transparency Service MUST apply the Registration Policy that was most recently added to the Append-only Log at the time of registration.
 
-The Transparency Service MUST authenticate the Issuer of Signed Statements by validating the COSE signature and checking the identity of the issuer through one of its configured trust anchors, using the `x5t` and `kid` headers in the protected header as hints. For instance, for X.509 signed claims the Transparency Service must validate a complete certificate chain from the certificate identified by `x5t` to one of the trusted root authority certificate of the Transparency Service.
-The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."
+#### Auditability of Registration
 
-Before a Signed Statement is registered, the trust anchor used to verify its Issuer MUST be registered with the Transparency Service.
+The operator of a Transparency Service MAY update the Registration Policy or the trust anchors of a Transparency Service at any time.
+
+Transparency Services MUST ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to authenticate and retrieve the Transparent Statements describing the registration policy and trust anchors that apply to this registration.
 
 ### Initialization and bootstrapping {#ts-initialization}
 
-Since a Registration Policy is required prior to the registration of any Signed Statements, a means is required to configure the first Registration Policy that is not the standard issuance of a Signed Statement.
-Transparency Services MUST support at least one of these methods:
+Since the mandatory registration checks rely on having registered Signed Statements for the registration policy and trust anchors, Transparency Services MUST support at least one of the three following bootstrapping mechanisms:
 
-- A built-in default Registration Policy
+- A built-in default Registration Policy and default trust anchors;
 - Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks
 - An out-of-band authenticated management interface
 
@@ -448,16 +452,16 @@ This specification prioritizes conformance to {{RFC9052}} and its required and o
 Profiles and implementation specific choices should be used to determine admissability of conforming messages.
 This specification is left intentionally open to allow implementations to make the restrictions that make the most sense for their operational use cases.
 
-At least one identifier for an identity document MUST be included in the protected header of the COSE envelope, either `x5t` or `kid`.
+At least one identifier for an identity document MUST be included in the protected header of the COSE envelope, as one of `x5t`, `x5chain` or `kid`.
 
 - Support for `x5t` is mandatory to implement.
-- Support for `kid` is optional.
+- Support for `kid` and `x5chain` is optional.
 
-When `x5t` is present, `iss` MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
+When `x5t` or `x5chain` is present, `iss` MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
 
 The mechanisms for how Transparency Services obtain identity documents is out-of-scope of this document.
 
-The `kid` header parameter MUST be present when the `x5t` header parameter is not present.
+The `kid` header parameter MUST be present when neither `x5t` nor `x5chain` are present.
 Key discovery protocols are out-of-scope of this document.
 
 The protected header of a Signed Statement and a Receipt MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}.
@@ -487,6 +491,7 @@ Protected_Header = {
   ? &(alg: 1) => int
   ? &(content_type: 3) => tstr / uint
   ? &(kid: 4) => bstr
+  ? &(x5chain: 33) => COSE_X509
   ? &(x5t: 34) => COSE_CertHash
   * int => any
 }
