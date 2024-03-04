@@ -416,7 +416,7 @@ Since the mandatory registration checks rely on having registered Signed Stateme
 
 - A built-in default Registration Policy and default trust anchors;
 - Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks
-- An out-of-band authenticated management interface to configure the registration policy and trust anchors.
+- An out-of-band authenticated management interface
 
 ### Append-only Log
 
