@@ -434,7 +434,7 @@ Everyone with access to its content sees the same collection of Signed Statement
 
 Replayability:
 
-: the Append-only Log includes sufficient information to enable authorised actors with access to its content to check that each included Signed Statement has been correctly registered.
+: the Append-only Log includes sufficient information to enable authorized actors with access to its content to check that each included Signed Statement has been correctly registered.
 
 In addition to Receipts, some verifiable data structures might support additional proof types, such as proofs of consistency, or proofs of non inclusion.
 
@@ -1158,4 +1158,3 @@ A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes acc
 | COSE Sign 1  |
  '------------'
 ~~~
-
