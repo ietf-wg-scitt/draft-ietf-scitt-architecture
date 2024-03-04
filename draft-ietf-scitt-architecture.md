@@ -408,7 +408,7 @@ The Transparency Service MUST apply the Registration Policy that was most recent
 
 The operator of a Transparency Service MAY update the Registration Policy or the trust anchors of a Transparency Service at any time.
 
-Transparency Services MUST ensure that for any Transparent Statment they accept, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to identify and recover the Transparent Statements describing the registration policy and trust anchors that are applicable to the Transparent Statement.
+Transparency Services MUST ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to authenticate and retrieve the Transparent Statements describing the registration policy and trust anchors that apply to this registration. 
 
 ### Initialization and bootstrapping {#ts-initialization}
 
