@@ -402,7 +402,7 @@ This specification leaves implementation, encoding and documentation of Registra
 During registration, a Transparency Service MUST, at a minimum, authenticate the Issuer of the Signed Statement by validating the COSE signature and checking the identity of the issuer against one of its currently configured trust anchors, using the `x5t` (34), `x5chain`(33) or `kid`(4) protected headers of the Signed Statement as hints.
 For instance, in order to authenticate X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.
 
-The Transparency Service MUST evaluate the Registration Policy that was most recently added to the Append-only Log.
+The Transparency Service MUST apply the Registration Policy that was most recently added to the Append-only Log at the time of registration. 
 
 #### Auditability of Registration
 
