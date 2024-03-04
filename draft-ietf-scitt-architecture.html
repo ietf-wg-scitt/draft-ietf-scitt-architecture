@@ -17,12 +17,12 @@ The rise in popularity of verifiable data structures as a mechanism to make acto
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
 Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Auditors and Verifiers will be able to verify them. 
     " name="description">
-<meta content="xml2rfc 3.19.4" name="generator">
+<meta content="xml2rfc 3.20.0" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-scitt-architecture-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.19.4
-    Python 3.11.6
+  xml2rfc 3.20.0
+    Python 3.11.8
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
@@ -1037,7 +1037,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 2 September 2024</td>
+<td class="center">Expires 5 September 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1050,12 +1050,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-03-01" class="published">1 March 2024</time>
+<time datetime="2024-03-04" class="published">4 March 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-09-02">2 September 2024</time></dd>
+<dd class="expires"><time datetime="2024-09-05">5 September 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1124,7 +1124,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 2 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1481,7 +1481,7 @@ In SCITT, <code>sub</code> identifies the entity about which statements, and rec
 The subject value <span class="bcp14">MUST</span> either be scoped to be locally unique in the context of the Issuer or be globally unique.
 The processing of this claim is generally application specific.
 The <code>sub</code> value is a case-sensitive string containing a StringOrURI value.
-Issuer's use <code>sub</code> to identify the entity about which they are making Signed Statements.
+Issuers use <code>sub</code> to identify the entity about which they are making Signed Statements.
 Transparency Services use <code>sub</code> to identify the entity about which they are issuing a Receipt.<a href="#section-2-4.32.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
@@ -1744,24 +1744,28 @@ The Append-only Log is the verifiable data structure that records Signed Stateme
 <a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-registration-policies" class="section-name selfRef">Registration Policies</a>
           </h4>
 <p id="section-4.1.1-1">Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is accepted to be registered to the Append-only Log.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.1-2">Transparency Services <span class="bcp14">MUST</span> maintain Registration Policies which govern whether or not a given Signed Statement is eligible for registration.
-Registration Policies <span class="bcp14">MUST</span> be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing associated Receipts.
-Distribution of Receipts is out of scope for this document.```<a href="#section-4.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.1.1-3">This specification leaves implementation, encoding and documentation of Registration Policies to the operator of the Transparency Service.<a href="#section-4.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-2">Transparency Services <span class="bcp14">MUST</span> maintain Registration Policies.<a href="#section-4.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-3">Transparency Services <span class="bcp14">MUST</span> also maintain a list of trust anchors used to authenticate Issuers, which <span class="bcp14">MAY</span> be included in a registration policy statement.
+For instance, a trust anchor could be an X.509 root certificate, the discovery URL of an OpenID Connect identity provider, or any other COSE compatible PKI trust anchor.<a href="#section-4.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-4">Registration Policies and trust anchors <span class="bcp14">MUST</span> be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing the associated Receipts.<a href="#section-4.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-5">This specification leaves implementation, encoding and documentation of Registration Policies and trust anchors to the operator of the Transparency Service.<a href="#section-4.1.1-5" class="pilcrow">¶</a></p>
 <div id="sec-mandatory-registration-checks">
 <section id="section-4.1.1.1">
             <h5 id="name-mandatory-registration-chec">
 <a href="#section-4.1.1.1" class="section-number selfRef">4.1.1.1. </a><a href="#name-mandatory-registration-chec" class="section-name selfRef">Mandatory Registration Checks</a>
             </h5>
-<p id="section-4.1.1.1-1">Transparency Services <span class="bcp14">MUST</span>, at a minimum, perform the following checks before registering a Signed Statement:<a href="#section-4.1.1.1-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-4.1.1.1-2.1">
-                <p id="section-4.1.1.1-2.1.1">Authenticate the Issuer of the Signed Statement<a href="#section-4.1.1.1-2.1.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-<p id="section-4.1.1.1-3">The Transparency Service <span class="bcp14">MUST</span> authenticate the Issuer of Signed Statements by validating the COSE signature and checking the identity of the issuer through one of its configured trust anchors, using the <code>x5t</code> and <code>kid</code> headers in the protected header as hints. For instance, for X.509 signed claims the Transparency Service must validate a complete certificate chain from the certificate identified by <code>x5t</code> to one of the trusted root authority certificate of the Transparency Service.
-The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."<a href="#section-4.1.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-4.1.1.1-4">Before a Signed Statement is registered, the trust anchor used to verify its Issuer <span class="bcp14">MUST</span> be registered with the Transparency Service.<a href="#section-4.1.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-4.1.1.1-1">During registration, a Transparency Service <span class="bcp14">MUST</span>, at a minimum, authenticate the Issuer of the Signed Statement by validating the COSE signature and checking the identity of the issuer against one of its currently configured trust anchors, using the <code>x5t</code> (34), <code>x5chain</code>(33) or <code>kid</code>(4) protected headers of the Signed Statement as hints.
+For instance, in order to authenticate X.509 Signed Statements, the Transparency Service <span class="bcp14">MUST</span> build and validate a complete certificate chain from the Issuer's certificate identified by <code>x5t</code>, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.<a href="#section-4.1.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.1.1-2">The Transparency Service <span class="bcp14">MUST</span> apply the Registration Policy that was most recently added to the Append-only Log at the time of registration.<a href="#section-4.1.1.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-auditability-of-registration">
+<section id="section-4.1.1.2">
+            <h5 id="name-auditability-of-registratio">
+<a href="#section-4.1.1.2" class="section-number selfRef">4.1.1.2. </a><a href="#name-auditability-of-registratio" class="section-name selfRef">Auditability of Registration</a>
+            </h5>
+<p id="section-4.1.1.2-1">The operator of a Transparency Service <span class="bcp14">MAY</span> update the Registration Policy or the trust anchors of a Transparency Service at any time.<a href="#section-4.1.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.1.2-2">Transparency Services <span class="bcp14">MUST</span> ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to authenticate and retrieve the Transparent Statements describing the registration policy and trust anchors that apply to this registration.<a href="#section-4.1.1.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1771,11 +1775,10 @@ The public key is used to verify digital signatures, and the associated data is 
           <h4 id="name-initialization-and-bootstra">
 <a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-initialization-and-bootstra" class="section-name selfRef">Initialization and bootstrapping</a>
           </h4>
-<p id="section-4.1.2-1">Since a Registration Policy is required prior to the registration of any Signed Statements, a means is required to configure the first Registration Policy that is not the standard issuance of a Signed Statement.
-Transparency Services <span class="bcp14">MUST</span> support at least one of these methods:<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.2-1">Since the mandatory registration checks rely on having registered Signed Statements for the registration policy and trust anchors, Transparency Services <span class="bcp14">MUST</span> support at least one of the three following bootstrapping mechanisms:<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.1.2-2.1">
-              <p id="section-4.1.2-2.1.1">A built-in default Registration Policy<a href="#section-4.1.2-2.1.1" class="pilcrow">¶</a></p>
+              <p id="section-4.1.2-2.1.1">A built-in default Registration Policy and default trust anchors;<a href="#section-4.1.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-4.1.2-2.2">
               <p id="section-4.1.2-2.2.1">Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks<a href="#section-4.1.2-2.2.1" class="pilcrow">¶</a></p>
@@ -1835,18 +1838,18 @@ Providing an ability to request a fresh receipt for a given software package, or
 <p id="section-4.2-1">This specification prioritizes conformance to <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span> and its required and optional properties.
 Profiles and implementation specific choices should be used to determine admissability of conforming messages.
 This specification is left intentionally open to allow implementations to make the restrictions that make the most sense for their operational use cases.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">At least one identifier for an identity document <span class="bcp14">MUST</span> be included in the protected header of the COSE envelope, either <code>x5t</code> or <code>kid</code>.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2-2">At least one identifier for an identity document <span class="bcp14">MUST</span> be included in the protected header of the COSE envelope, as one of <code>x5t</code>, <code>x5chain</code> or <code>kid</code>.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.2-3.1">
             <p id="section-4.2-3.1.1">Support for <code>x5t</code> is mandatory to implement.<a href="#section-4.2-3.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-4.2-3.2">
-            <p id="section-4.2-3.2.1">Support for <code>kid</code> is optional.<a href="#section-4.2-3.2.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-3.2.1">Support for <code>kid</code> and <code>x5chain</code> is optional.<a href="#section-4.2-3.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-4.2-4">When <code>x5t</code> is present, <code>iss</code> <span class="bcp14">MUST</span> be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
+<p id="section-4.2-4">When <code>x5t</code> or <code>x5chain</code> is present, <code>iss</code> <span class="bcp14">MUST</span> be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 <p id="section-4.2-5">The mechanisms for how Transparency Services obtain identity documents is out-of-scope of this document.<a href="#section-4.2-5" class="pilcrow">¶</a></p>
-<p id="section-4.2-6">The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when the <code>x5t</code> header parameter is not present.
+<p id="section-4.2-6">The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when neither <code>x5t</code> nor <code>x5chain</code> are present.
 Key discovery protocols are out-of-scope of this document.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
 <p id="section-4.2-7">The protected header of a Signed Statement and a Receipt <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10#section-2" class="relref">Section 2</a> of [<a href="#CWT_CLAIMS_COSE" class="cite xref">CWT_CLAIMS_COSE</a>]</span>.
 The <code>CWT Claims</code> value <span class="bcp14">MUST</span> include the <code>Issuer Claim</code> (Claim label 1) and the <code>Subject Claim</code> (Claim label 2) <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span>.<a href="#section-4.2-7" class="pilcrow">¶</a></p>
@@ -1873,6 +1876,7 @@ Protected_Header = {
   ? &amp;(alg: 1) =&gt; int
   ? &amp;(content_type: 3) =&gt; tstr / uint
   ? &amp;(kid: 4) =&gt; bstr
+  ? &amp;(x5chain: 33) =&gt; COSE_X509
   ? &amp;(x5t: 34) =&gt; COSE_CertHash
   * int =&gt; any
 }
@@ -2523,7 +2527,7 @@ in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#sec
 <dd class="break"></dd>
 <dt id="I-D.draft-ietf-cose-merkle-tree-proofs">[I-D.draft-ietf-cose-merkle-tree-proofs]</dt>
         <dd>
-<span class="refAuthor">Steele, O.</span>, <span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Delignat-Lavaud, A.</span>, and <span class="refAuthor">C. Fournet</span>, <span class="refTitle">"Concise Encoding of Signed Merkle Tree Proofs"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cose-merkle-tree-proofs-03</span>, <time datetime="2023-12-11" class="refDate">11 December 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-merkle-tree-proofs-03">https://datatracker.ietf.org/doc/html/draft-ietf-cose-merkle-tree-proofs-03</a>&gt;</span>. </dd>
+<span class="refAuthor">Steele, O.</span>, <span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Delignat-Lavaud, A.</span>, and <span class="refAuthor">C. Fournet</span>, <span class="refTitle">"COSE Receipts"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cose-merkle-tree-proofs-04</span>, <time datetime="2024-03-02" class="refDate">2 March 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-merkle-tree-proofs-04">https://datatracker.ietf.org/doc/html/draft-ietf-cose-merkle-tree-proofs-04</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="in-toto">[in-toto]</dt>
         <dd>
