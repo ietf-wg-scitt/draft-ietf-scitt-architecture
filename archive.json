@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-03T00:36:27.301849+00:00",
+  "timestamp": "2024-03-05T00:33:52.394389+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4145,7 +4145,7 @@
       "id": "I_kwDOIvmHss5_GJQM",
       "title": "Auditable/verifiable issuer authentication",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/200",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "ad-l",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4157,8 +4157,8 @@
       ],
       "body": "Since the refactor and the shift to X.509-based claim signature, the authentication of issuers is no longer auditable - i.e. it is no longer possible for verifiers and auditors to re-validate the claim signature and issuer authentication performed by a TS at registration, which massively increases the trust in the TS (which may now try to register forged claims with plausible deniability - by claiming the TS lost the issuer's certificate used at registration even if none existed). \r\n\r\nPart of the issue is that claims use x5t instead of x5c. This means there is no mechanism for auditors to obtain the certificate chain used to sign a claim from the TS at registration. Even if x5c was used instead of x5t, only the leaf certificate is required to appear in x5c. Reconstructing the full issuer certificate chain requires at least the TS configuration to link to the configured root CAs used by the TS. Since roots and intermediate certificates expire (or can be updated, as is often the case with PKIX root programs from Mozilla, Google and Microsoft), it is not possible to assume that verifiers can just store the root configuration with the TS's certificate.\r\n\r\nThere are further issues with issuer authentication:\r\n>When x5t is present, iss MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.\r\n\r\nThis is not well-specified without a reference to such a regular expression. Is this supposed to mean RFC4514 string representation of a distinguished name? The language of RFC4514 doesn't appear to be regular (it is context free), so this must be clarified.\r\n\r\nThere is also no requirement for the issuer's serialized distinguished name to be produced from the claim's X.509 leaf subject. A malicious issuer can put a different issuer's serialized distinguished name in the iss field and is likely to confuse a verifier who cannot detect the mismatch since issuer authentication is not auditable. This makes iss essentially useless for verifiers, and it may be preferable to set iss to nil if x5t/x5c is used.",
       "createdAt": "2024-02-13T13:23:34Z",
-      "updatedAt": "2024-02-27T15:59:28Z",
-      "closedAt": null,
+      "updatedAt": "2024-03-04T15:40:37Z",
+      "closedAt": "2024-03-04T15:40:37Z",
       "comments": [
         {
           "author": "fournet",
@@ -4180,6 +4180,13 @@
           "body": "This issue will be closed if no PR is raised by Friday.",
           "createdAt": "2024-02-27T15:59:27Z",
           "updatedAt": "2024-02-27T15:59:27Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closed with #213 ",
+          "createdAt": "2024-03-04T15:40:37Z",
+          "updatedAt": "2024-03-04T15:40:37Z"
         }
       ]
     },
@@ -4215,6 +4222,44 @@
           "body": "> I do think Producer and Consumer is a good generic concept\r\n\r\nBut we do not define them nor cite references that do. From a formality and procedures perspective in IETF, is that OK?\r\n\r\n> I'd support replacing Consumer with Relying Party or Verifier.\r\n\r\nThanks for the feedback. \r\n\r\n",
           "createdAt": "2024-02-27T04:40:21Z",
           "updatedAt": "2024-02-27T04:40:21Z"
+        }
+      ]
+    },
+    {
+      "number": 214,
+      "id": "I_kwDOIvmHss6BLB5M",
+      "title": "Security Assurances to Auditors",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/214",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "There is ongoing discussion regarding what properties are assured for auditors, based on normative requirements in the specification:\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/28wIM5UhewqFm0sPIVpHpQ2-DwM/\r\n\r\nWe need to be more precise regarding what \"auditable\" means.\r\n\r\nDoes it ONLY mean that a merkle tree can be reconstructed?\r\n\r\nor does it mean that a merkle tree can be reconstructed AND the policies included in it can be confirmed to have been applied based on the content of the log. (does it enable use cases where signatures MUST be verified).",
+      "createdAt": "2024-03-04T15:43:13Z",
+      "updatedAt": "2024-03-04T17:10:35Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "raylutz",
+          "authorAssociation": "NONE",
+          "body": "Probably the notion can be split into several different levels.\r\n\r\n1. Internal consistency \"review\" -- That would relate to checking that the tree is consistent at least to some extent. A review may not check the entire tree for consistency, but it may have to. Checking consistency of the entire tree would still be at this  level.\r\n\r\n2. Artifact consistency -- without understand the data, check that the hash is still generated when applied with any specified salt and that it matches what is in the tree.\r\n\r\n3. External consistency -- Checking back to source information like trust anchors to verify all signatures are correct, etc. Probably this level is required for it to be called an audit, but it would also require the lower levels.\r\n\r\nMaybe this is helpful.\r\n",
+          "createdAt": "2024-03-04T16:13:28Z",
+          "updatedAt": "2024-03-04T16:14:21Z"
+        },
+        {
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The current stance of the architecture document (after #213) is that the minimum policy (checking the statement's signature and authenticating the issuer) has to be fully auditable based on the log and/or the receipt, barring some exceptional circumstances.\r\n\r\nI am in favour of extending the same requirement to the rest of the registration policy - an auditor should be able to check based on the log + receipt that the TS applied the registration policy correctly. However, there are some known challenges related to this; it is likely that some policies will be stateful (which may be OK if the state is pulled from the log), but some TS may perform side effects such as HTTP requests to evaluate policies which makes the auditing more complicated unless a lot more ad hoc information is added to the log.\r\n\r\nI think our high level goal is to facilitate interoperability of auditing, i.e. an auditor should be able to verify the registration of a transparent statement regardless of which implementation the TS on which it was registered is using. This may be realistically achievable for the signature validation, but hard for arbitrary stateful registration policies unless we put additional constraints, such as requiring that all extra inputs of a registration policy and state mutations must rely on the log, and no other state. This would certainly be very constraining for implementers and many would probably give up on using auditable registration policies altogether.",
+          "createdAt": "2024-03-04T16:14:10Z",
+          "updatedAt": "2024-03-04T16:14:10Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Is auditability really such a binary concept ? Is it possible to frame auditable registration with more nuance: For example: \"is autidable with the public key material in the log\", \"is auditable assuming the retention policy of this external source\" and so on.\r\n\r\nBoiling that down in spirit: The TS is required to make it clear _how_ auditable the log & receipts are, and precisely what it offers. Rather than have the arch only work for a very rigid constraints, which might be pretty challenging to agree on anyway.\r\n",
+          "createdAt": "2024-03-04T17:10:34Z",
+          "updatedAt": "2024-03-04T17:10:34Z"
         }
       ]
     }
@@ -26837,24 +26882,26 @@
       "id": "PR_kwDOIvmHss5oVYcQ",
       "title": "Registration auditability requirements (#200)",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "ad-l",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "My take on trying to make registration auditable. This is still very open-ended in terms of implementation choice",
       "createdAt": "2024-02-29T19:57:16Z",
-      "updatedAt": "2024-03-02T21:51:03Z",
+      "updatedAt": "2024-03-04T15:40:05Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
-      "baseRefOid": "75f711737ad2eec19571605d87c6eb367a688b2e",
+      "baseRefOid": "2741750932208b315ae580b73b43e37f6a6cf4b9",
       "headRepository": "ad-l/draft-ietf-scitt-architecture",
       "headRefName": "200_auditable_registration",
-      "headRefOid": "e4d7d9a4c11a4bc50b4a6efb08e8adec6b37c5de",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "80c4ff9cc82a6a35f9dd9abb3d57d5f744c0687b",
+      "closedAt": "2024-03-04T15:40:05Z",
+      "mergedAt": "2024-03-04T15:40:04Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "b0fdcdc766835d5cb7fa1984dccd9cd66ded782a"
+      },
       "comments": [
         {
           "author": "ad-l",
@@ -26869,6 +26916,69 @@
           "body": "Steve,\r\n\r\n \r\n\r\nIs it too late to add another service API to SCRAPI:\r\n\r\n \r\n\r\n3.2.5.  Retrieve Registration Policy \r\n\r\n \r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n  \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\n <http://www.reliableenergyanalytics.com/> http://www.reliableenergyanalytics.com\r\n\r\nEmail:  ***@***.***> ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: Steve Lasker ***@***.***> \r\nSent: Saturday, March 2, 2024 11:57 AM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Comment ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Registration auditability requirements (#200) (PR #213)\r\n\r\n \r\n\r\n@SteveLasker commented on this pull request.\r\n\r\n  _____  \r\n\r\nIn draft-ietf-scitt-architecture.md <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#discussion_r1510005167> :\r\n\r\n>  \r\n-- A built-in default Registration Policy\r\n-- Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks\r\n-- An out-of-band authenticated management interface\r\n+- A built-in default Registration Policy and initial list of trust anchors;\r\n\r\nlooking for feedback with a +1 or -1 to merge or discard\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#discussion_r1510005167> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NBA3KIBZBUTMUQSES3YWIAHJAVCNFSM6AAAAABEAR4LZOVHI2DSMVQWIX3LMV43YUDVNRWFEZLROVSXG5CSMV3GSZLXHMYTSMJSGY4TEMRRGU> .\r\nYou are receiving this because you commented.Message ID: ***@***.***>\r\n\r\n",
           "createdAt": "2024-03-02T17:44:05Z",
           "updatedAt": "2024-03-02T17:44:05Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Is it too late to add another service API to SCRAPI:\r\n\r\nHi, @rjb4standards,\r\nOnce the Architecture is settled, we plan to put more focus on SCRAPI, and yes, we can certainly add/edit/remove.",
+          "createdAt": "2024-03-03T17:53:36Z",
+          "updatedAt": "2024-03-03T17:53:36Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@rjb4standards this PR contains guidance for SCRAPI enabling registration policies to be retrieved:\r\n\r\nhttps://github.com/ietf-wg-scitt/draft-ietf-scitt-scrapi/pull/1/files#diff-44525cf8ba2e274f5663e0df19272962aed2b9a06e0fefee5b33bfd7ef23cdf7R167\r\n\r\nIt also adds optional endpoints for retrieving signature and payloads, not just receipts.",
+          "createdAt": "2024-03-03T18:01:29Z",
+          "updatedAt": "2024-03-03T18:01:29Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "Thanks @SteveLasker \r\n\r\n@OR13 I'm still not sure how the architecture handles a revoked certificate used to sign the registry log. Would a new log be started with a different signing key and the old log would remain available for reference - with a warning that the signing key has been revoked or is expired? Still trying to figure out implementation details so that REA can support the initiative. I assume the results of a SCRAPI query would contain a warning that the returned results are from a log that has a revoked signing key.",
+          "createdAt": "2024-03-04T11:39:23Z",
+          "updatedAt": "2024-03-04T11:39:23Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "SCITT does not have any messages currently related to revoked certificates.\n\nWhat messages do you propose?",
+          "createdAt": "2024-03-04T12:42:57Z",
+          "updatedAt": "2024-03-04T12:42:57Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "It can be as simple as a warning in response to a query i.e. \u201cWarning: The signing certificate has been revoked or has expired\u201d  \r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n  \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\n <http://www.reliableenergyanalytics.com/> http://www.reliableenergyanalytics.com\r\n\r\nEmail:  ***@***.***> ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: Orie Steele ***@***.***> \r\nSent: Monday, March 4, 2024 7:43 AM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Mention ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Registration auditability requirements (#200) (PR #213)\r\n\r\n \r\n\r\nSCITT does not have any messages currently related to revoked certificates.\r\n\r\nWhat messages do you propose?\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#issuecomment-1976500815> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NEZ5CZX4YAJ6SU5D4DYWRT5ZAVCNFSM6AAAAABEAR4LZOVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMYTSNZWGUYDAOBRGU> .\r\nYou are receiving this because you were mentioned.Message ID: ***@***.***>\r\n\r\n",
+          "createdAt": "2024-03-04T12:50:15Z",
+          "updatedAt": "2024-03-04T12:50:15Z"
+        },
+        {
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Dealing with expired or revoked TS certificates should be straightforward, as you can always obtain a fresh receipt for a previously registered transparent statement. For issuer certificate this is a non-issue as SCITT only guarantees the issuer certificate was valid at registration.",
+          "createdAt": "2024-03-04T12:55:02Z",
+          "updatedAt": "2024-03-04T12:55:02Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "Thanks, Antoine.\r\n\r\n \r\n\r\nIs this also the case when the certificate used to maintain log integrity has been revoked or has expired. I\u2019m presuming the registry log integrity is also maintained using a digital certificate \u2013 correct?\r\n\r\n \r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n  \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\n <http://www.reliableenergyanalytics.com/> http://www.reliableenergyanalytics.com\r\n\r\nEmail:  ***@***.***> ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: Antoine Delignat-Lavaud ***@***.***> \r\nSent: Monday, March 4, 2024 7:55 AM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Mention ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Registration auditability requirements (#200) (PR #213)\r\n\r\n \r\n\r\nDealing with expired or revoked TS certificates should be straightforward, as you can always obtain a fresh receipt for a previously registered transparent statement. For issuer certificate this is a non-issue as SCITT only guarantees the issuer certificate was valid at registration.\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#issuecomment-1976522162> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NC574JIMV62PP4CRRLYWRVLFAVCNFSM6AAAAABEAR4LZOVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMYTSNZWGUZDEMJWGI> .\r\nYou are receiving this because you were mentioned.Message ID: ***@***.***>\r\n\r\n",
+          "createdAt": "2024-03-04T12:58:58Z",
+          "updatedAt": "2024-03-04T12:58:58Z"
+        },
+        {
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Thanks, Antoine. Is this also the case when the certificate used to maintain log integrity has been revoked or has expired. I\u2019m presuming the registry log integrity is also maintained using a digital certificate \u2013 correct?\r\n\r\nYes, that's what I called the \"TS certificates\", i.e. the certificate used to sign the COSE receipt/countersignature.  That's the only certificate relying parties would care about - if there are other internal certificates it's up to the TS implementation to expose the details to auditors through the audit API",
+          "createdAt": "2024-03-04T13:32:13Z",
+          "updatedAt": "2024-03-04T13:32:13Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "Antoine,\r\n\r\n \r\n\r\nWhat is the set of criteria that the TS should use during the registration policy evaluation?\r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n  \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\n <http://www.reliableenergyanalytics.com/> http://www.reliableenergyanalytics.com\r\n\r\nEmail:  ***@***.***> ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: Antoine Delignat-Lavaud ***@***.***> \r\nSent: Monday, March 4, 2024 8:50 AM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Mention ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Registration auditability requirements (#200) (PR #213)\r\n\r\n \r\n\r\n@ad-l commented on this pull request.\r\n\r\n  _____  \r\n\r\nIn draft-ietf-scitt-architecture.md <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#discussion_r1511191215> :\r\n\r\n>  \r\n #### Mandatory Registration Checks\r\n \r\n-Transparency Services MUST, at a minimum, perform the following checks before registering a Signed Statement:\r\n+During registration, a Transparency Services MUST, at a minimum, authenticate the Issuer of the Signed Statement by validating the COSE signature and checking the identity of the issuer against one of its configured trust anchors, using the `x5t` (34), `x5chain`(33) and `kid`(4) protected headers of the Signed Statement as hints.\r\n+For instance, in order to authenticate X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.\r\n+\r\n+The Transparency Service MUST evaluate the registration policy that was most recently added to the Append-only Log.\r\n\r\nSee the updated comment thread on line 403 (now 405) about possible weakening of this requirement\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#discussion_r1511191215> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NDGWUDQ6V6SQ2ZFPXTYWR32HAVCNFSM6AAAAABEAR4LZOVHI2DSMVQWIX3LMV43YUDVNRWFEZLROVSXG5CSMV3GSZLXHMYTSMJUGM2TSOJSG4> .\r\nYou are receiving this because you were mentioned.Message ID: ***@***.***>\r\n\r\n",
+          "createdAt": "2024-03-04T13:56:20Z",
+          "updatedAt": "2024-03-04T13:56:20Z"
         }
       ],
       "reviews": [
@@ -27999,6 +28109,373 @@
           "body": "These changes seem appropriate",
           "createdAt": "2024-03-02T21:51:03Z",
           "updatedAt": "2024-03-02T21:51:03Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yGKGX",
+          "commit": {
+            "abbreviatedOid": "e4d7d9a"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T12:39:59Z",
+          "updatedAt": "2024-03-04T12:39:59Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "Yes, I mean default trust anchors. Would you prefer this:\r\n```suggestion\r\n- A built-in default Registration Policy and default trust anchors;\r\n```",
+              "createdAt": "2024-03-04T12:39:59Z",
+              "updatedAt": "2024-03-04T12:40:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yGLnb",
+          "commit": {
+            "abbreviatedOid": "e4d7d9a"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T12:43:16Z",
+          "updatedAt": "2024-03-04T12:43:16Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "-1 the trust anchors are as important (in fact probably more important) than the registration policy for trusting the TS. Imagine the operator adds his own self-signed root CA suddenly, then he can impersonate any issuer",
+              "createdAt": "2024-03-04T12:43:16Z",
+              "updatedAt": "2024-03-04T12:43:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yGLqw",
+          "commit": {
+            "abbreviatedOid": "e4d7d9a"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T12:43:22Z",
+          "updatedAt": "2024-03-04T12:43:23Z",
+          "comments": [
+            {
+              "originalPosition": 52,
+              "body": "-1 see above",
+              "createdAt": "2024-03-04T12:43:23Z",
+              "updatedAt": "2024-03-04T12:43:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yGL3C",
+          "commit": {
+            "abbreviatedOid": "e4d7d9a"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T12:43:47Z",
+          "updatedAt": "2024-03-04T12:43:47Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "+0 on this one I think \"management interface\" might be enough",
+              "createdAt": "2024-03-04T12:43:47Z",
+              "updatedAt": "2024-03-04T13:36:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yGOF6",
+          "commit": {
+            "abbreviatedOid": "189bd1f"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T12:48:22Z",
+          "updatedAt": "2024-03-04T12:48:22Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "It is completely OK if the certificate used to sign a statement is revoked or expires after the statement is registered. The point of the \"SHOULD\" is that the evidence to prove that the certificate was valid (e.g. the intermediate CAs, the valid OCSP certificate with a timestamp around registration time) should be available to Auditors so they can retrospectively verify that the signature was valid at registration.",
+              "createdAt": "2024-03-04T12:48:22Z",
+              "updatedAt": "2024-03-04T12:48:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yGmWd",
+          "commit": {
+            "abbreviatedOid": "1d2a203"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T13:37:31Z",
+          "updatedAt": "2024-03-04T13:37:32Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "+1 revert. A TS impersonating an  issuer sounds like an attack to me, so why would I trust any anchors it self registers ?",
+              "createdAt": "2024-03-04T13:37:32Z",
+              "updatedAt": "2024-03-04T13:37:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yGog4",
+          "commit": {
+            "abbreviatedOid": "3e363a6"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T13:41:46Z",
+          "updatedAt": "2024-03-04T13:41:46Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "@robinbryce if you are concerned about the lack of prescribed window for applying policy updates this could be weakened\r\n```suggestion\r\nThe Transparency Service MUST evaluate the most recently registered Registration Policy for which a Receipt has been distributed.\r\n```\r\nThis allows more asynchronous registration policy update, the TS can withhold the Receipt until it is ready to enable the new policy",
+              "createdAt": "2024-03-04T13:41:46Z",
+              "updatedAt": "2024-03-04T13:41:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yGtB3",
+          "commit": {
+            "abbreviatedOid": "47cc0a3"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T13:50:14Z",
+          "updatedAt": "2024-03-04T13:50:14Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "See the updated comment thread on line 403 (now 405) about possible weakening of this requirement",
+              "createdAt": "2024-03-04T13:50:14Z",
+              "updatedAt": "2024-03-04T13:50:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yG3uA",
+          "commit": {
+            "abbreviatedOid": "3e363a6"
+          },
+          "author": "fournet",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "I suggested a couple of improvements, but overall I support this PR. ",
+          "createdAt": "2024-03-04T14:05:22Z",
+          "updatedAt": "2024-03-04T14:11:52Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "I am not sure what distribution means. I suggest instead \r\n```suggestion\r\nThe Transparency Service MUST apply the Registration Policy that was most recently added to the Append-only Log at the time of registration. \r\n```",
+              "createdAt": "2024-03-04T14:05:22Z",
+              "updatedAt": "2024-03-04T14:11:52Z"
+            },
+            {
+              "originalPosition": 36,
+              "body": "This seems overly permissive. I would assume these privileged actions to be authorized in an implementation-specific manner. ",
+              "createdAt": "2024-03-04T14:07:55Z",
+              "updatedAt": "2024-03-04T14:11:52Z"
+            },
+            {
+              "originalPosition": 42,
+              "body": "```suggestion\r\nTransparency Services MUST ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to authenticate and retrieve the Transparent Statements describing the registration policy and trust anchors that apply to this registration. \r\n```",
+              "createdAt": "2024-03-04T14:10:05Z",
+              "updatedAt": "2024-03-04T14:11:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yHR2H",
+          "commit": {
+            "abbreviatedOid": "3e363a6"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T14:48:39Z",
+          "updatedAt": "2024-03-04T14:48:39Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "@fournet it just means the transperency service is allowed to hang registration policy validation off the act of receipt production. In the sense that its not a transparent statement until a receipt is in the un protected header.",
+              "createdAt": "2024-03-04T14:48:39Z",
+              "updatedAt": "2024-03-04T14:48:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yHVVp",
+          "commit": {
+            "abbreviatedOid": "3e363a6"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T14:53:50Z",
+          "updatedAt": "2024-03-04T14:53:51Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "FAOD: I'm essentially ok with this PR for what that is worth. If we get something like ad suggests, which I belive avoids all the bootstrappy and ordering implications, I think I'm starting to like registration policies. But as long as they block registration, I'm anticipating many \"well intentioned\" and also \"good\" implementations wont benefit much from them.",
+              "createdAt": "2024-03-04T14:53:51Z",
+              "updatedAt": "2024-03-04T14:53:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yHoIl",
+          "commit": {
+            "abbreviatedOid": "3e363a6"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T15:20:34Z",
+          "updatedAt": "2024-03-04T15:20:34Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "```suggestion\r\nThe Transparency Service MUST evaluate the Registration Policy that was most recently added to the Append-only Log at the time of registration.\r\n```",
+              "createdAt": "2024-03-04T15:20:34Z",
+              "updatedAt": "2024-03-04T15:20:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yHqso",
+          "commit": {
+            "abbreviatedOid": "3e363a6"
+          },
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T15:24:57Z",
+          "updatedAt": "2024-03-04T15:24:57Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "@fournet\r\n```suggestion\r\nThe operator of a Transparency Service MAY request to update the Registration Policy or the trust anchors of a Transparency Service at any time.\r\n```",
+              "createdAt": "2024-03-04T15:24:57Z",
+              "updatedAt": "2024-03-04T15:24:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yHx1p",
+          "commit": {
+            "abbreviatedOid": "509c935"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM\r\n",
+          "createdAt": "2024-03-04T15:36:46Z",
+          "updatedAt": "2024-03-04T15:36:46Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 215,
+      "id": "PR_kwDOIvmHss5onnr6",
+      "title": "spelling and formatting for 06",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/215",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-04T17:37:16Z",
+      "updatedAt": "2024-03-04T17:39:54Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "b0fdcdc766835d5cb7fa1984dccd9cd66ded782a",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/draft06",
+      "headRefOid": "9e3587907bad6a63ecc395745c031c5365ede544",
+      "closedAt": "2024-03-04T17:38:27Z",
+      "mergedAt": "2024-03-04T17:38:27Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "66463b96dedc838b8ad7156eb3a5e854c6768dd1"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5yI1gg",
+          "commit": {
+            "abbreviatedOid": "9e35879"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T17:39:07Z",
+          "updatedAt": "2024-03-04T17:39:07Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I think in British style of writing, `authorised` is a valid word.",
+              "createdAt": "2024-03-04T17:39:07Z",
+              "updatedAt": "2024-03-04T17:39:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yI1x3",
+          "commit": {
+            "abbreviatedOid": "9e35879"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T17:39:43Z",
+          "updatedAt": "2024-03-04T17:39:43Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "However, if we are consistently following US style of writing, then I am fine with the change as well!",
+              "createdAt": "2024-03-04T17:39:43Z",
+              "updatedAt": "2024-03-04T17:39:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5yI129",
+          "commit": {
+            "abbreviatedOid": "9e35879"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2024-03-04T17:39:54Z",
+          "updatedAt": "2024-03-04T17:39:54Z",
           "comments": []
         }
       ]
