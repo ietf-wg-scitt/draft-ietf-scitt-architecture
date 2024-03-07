@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-05T00:33:52.394389+00:00",
+  "timestamp": "2024-03-07T00:28:07.037639+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4230,15 +4230,15 @@
       "id": "I_kwDOIvmHss6BLB5M",
       "title": "Security Assurances to Auditors",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/214",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "There is ongoing discussion regarding what properties are assured for auditors, based on normative requirements in the specification:\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/28wIM5UhewqFm0sPIVpHpQ2-DwM/\r\n\r\nWe need to be more precise regarding what \"auditable\" means.\r\n\r\nDoes it ONLY mean that a merkle tree can be reconstructed?\r\n\r\nor does it mean that a merkle tree can be reconstructed AND the policies included in it can be confirmed to have been applied based on the content of the log. (does it enable use cases where signatures MUST be verified).",
       "createdAt": "2024-03-04T15:43:13Z",
-      "updatedAt": "2024-03-04T17:10:35Z",
-      "closedAt": null,
+      "updatedAt": "2024-03-05T16:03:17Z",
+      "closedAt": "2024-03-05T16:03:16Z",
       "comments": [
         {
           "author": "raylutz",
@@ -4260,8 +4260,56 @@
           "body": "Is auditability really such a binary concept ? Is it possible to frame auditable registration with more nuance: For example: \"is autidable with the public key material in the log\", \"is auditable assuming the retention policy of this external source\" and so on.\r\n\r\nBoiling that down in spirit: The TS is required to make it clear _how_ auditable the log & receipts are, and precisely what it offers. Rather than have the arch only work for a very rigid constraints, which might be pretty challenging to agree on anyway.\r\n",
           "createdAt": "2024-03-04T17:10:34Z",
           "updatedAt": "2024-03-04T17:10:34Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "On the call today, there was consensus that draft text for auditors is good enough.\r\n\r\nI propose closing this issue.",
+          "createdAt": "2024-03-05T15:51:09Z",
+          "updatedAt": "2024-03-05T15:51:09Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "As discussed in the Architecture Editors call, and believe the document is auditable and we can close this issue.",
+          "createdAt": "2024-03-05T15:54:51Z",
+          "updatedAt": "2024-03-05T15:54:51Z"
+        },
+        {
+          "author": "raylutz",
+          "authorAssociation": "NONE",
+          "body": "I believe the architecture provides a viable basis for auditing that can be expanded as needed in the future. Okay to close.",
+          "createdAt": "2024-03-05T15:59:47Z",
+          "updatedAt": "2024-03-05T15:59:47Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I'm closing this based on the feedback and discussion.",
+          "createdAt": "2024-03-05T16:03:16Z",
+          "updatedAt": "2024-03-05T16:03:16Z"
         }
       ]
+    },
+    {
+      "number": 216,
+      "id": "I_kwDOIvmHss6Bc0F6",
+      "title": "Relying Party definition is repeated",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/216",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "SteveLasker"
+      ],
+      "labels": [
+        "ready-for-pr"
+      ],
+      "body": "In the terminology section, Relying Party is described twice",
+      "createdAt": "2024-03-06T15:40:22Z",
+      "updatedAt": "2024-03-06T15:40:23Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -25977,7 +26025,7 @@
       "labels": [],
       "body": "Update CODEOWNERS to reflect the authors, editor, and active contributors for PR reviews",
       "createdAt": "2024-02-29T03:04:29Z",
-      "updatedAt": "2024-02-29T22:53:24Z",
+      "updatedAt": "2024-03-06T16:59:45Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "75f711737ad2eec19571605d87c6eb367a688b2e",
@@ -26094,7 +26142,7 @@
       "labels": [],
       "body": "See issue  #199 \r\n\r\nThe requirements in ### Append-only Log are restored (and much simplified) from earlier drafts, notably what used to be in ### Append-only Log Security Requirements.\r\n\r\nThe other changes are minor changes for uniformity about the Append-only Log. \r\n ",
       "createdAt": "2024-02-29T19:24:55Z",
-      "updatedAt": "2024-03-02T21:46:30Z",
+      "updatedAt": "2024-03-06T16:59:49Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "eca62297d601a62901911f0ed2f86dc4aa20a6d7",
@@ -28410,7 +28458,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-03-04T17:37:16Z",
-      "updatedAt": "2024-03-04T17:39:54Z",
+      "updatedAt": "2024-03-06T16:59:58Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "b0fdcdc766835d5cb7fa1984dccd9cd66ded782a",
@@ -28479,6 +28527,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 217,
+      "id": "PR_kwDOIvmHss5o3eie",
+      "title": "Converge duplicative definitions of Relying Parties",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/217",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #216 ",
+      "createdAt": "2024-03-06T16:59:26Z",
+      "updatedAt": "2024-03-06T16:59:27Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "66463b96dedc838b8ad7156eb3a5e854c6768dd1",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/216",
+      "headRefOid": "dfba349b94464c2c853ea57fd96067f668c33cd5",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
