@@ -73,6 +73,7 @@ normative:
   RFC6838:
   RFC9052: COSE
   RFC9360:
+  RFC8392:
   COSWID: RFC9393
 
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
@@ -258,7 +259,7 @@ The Statement is considered opaque to Transparency Service, and MAY be encrypted
 
 Subject:
 
-: This term has the same definition as in RFC8392, which relies on the definition in RFC7519.
+: This term has the same definition as in {{RFC8392}}, which relies on the definition in RFC7519.
 The `sub` (subject) claim identifies the principal that is the subject of the CWT.
 The claims in a CWT are normally statements about the subject.
 In SCITT, `sub` identifies the entity about which statements, and receipts are made.
