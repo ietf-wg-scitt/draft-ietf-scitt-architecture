@@ -190,7 +190,7 @@ Auditor:
 
 : an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.
 
-Claim: 
+Claim:
 
 : A claim is a piece of information asserted about a subject and is represented as a name/value pair consisting of a claim name and a claim value.
 
