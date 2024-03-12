@@ -177,7 +177,6 @@ The terms "header", "payload", and "to-be-signed bytes" are defined in {{RFC9052
 
 The terms claim is defined in {{RFC8392}}, and is repeated here for readability:
 
-
 Append-only Log (Ledger):
 
 : the verifiable append-only data structure that stores Signed Statements in a Transparency Service, often referred to by the synonym Ledger.
@@ -550,7 +549,7 @@ Unprotected_Header = {
 {{fig-signed-statement-edn}} illustrates an instance of a Signed Statement in EDN, with a payload that is detached.
 This is to support very large supply chain artifacts, and to ensure that Transparent Statements can integrate with existing file systems.
 
-~~~~ cbor-diag
+~~~ cbor-diag
 18(                                 / COSE Sign 1                   /
     [
       h'a4012603...6d706c65',       / Protected                     /
@@ -559,12 +558,12 @@ This is to support very large supply chain artifacts, and to ensure that Transpa
       h'79ada558...3a28bae4'        / Signature                     /
     ]
 )
-~~~~
+~~~
 {: #fig-signed-statement-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement"}
 
-{{fig-signed-statement-protected-header-edn}} illustrates the decoded protected header of the Signed Statement in {{fig-signed-statement-edn}}, and indicates that the Signed Statement is securing a JSON content type, and identifing the content with the `sub` claim "vendor.product.example".
+{{fig-signed-statement-protected-header-edn}} illustrates the decoded protected header of the Signed Statement in {{fig-signed-statement-edn}}, and indicates that the Signed Statement is securing a JSON content type, and identifying the content with the `sub` claim "vendor.product.example".
 
-~~~~ cbor-diag
+~~~ cbor-diag
 {                                   / Protected                     /
   1: -7,                            / Algorithm                     /
   3: application/example+json,      / Content type                  /
@@ -574,7 +573,7 @@ This is to support very large supply chain artifacts, and to ensure that Transpa
     2: vendor.product.example,      / Subject                       /
   }
 }
-~~~~
+~~~
 {: #fig-signed-statement-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement's Protected Header"}
 
 ### Registration
@@ -633,7 +632,7 @@ Unprotected_Header = {
 {{fig-transparent-statement-edn}} illustrates a Transparent Statement with a detached payload, and two receipts in its unprotected header.
 The label 394 `receipts` in unprotected header can contain multiple receipts.
 
-~~~~ cbor-diag
+~~~ cbor-diag
 18(                                 / COSE Sign 1                   /
     [
       h'a4012603...6d706c65',       / Protected                     /
@@ -647,16 +646,15 @@ The label 394 `receipts` in unprotected header can contain multiple receipts.
       h'79ada558...3a28bae4'        / Signature                     /
     ]
 )
-~~~~
+~~~
 {: #fig-transparent-statement-edn title="CBOR Extended Diagnostic Notation example of a Transparent Statement"}
-
 
 {{fig-receipt-edn}} one of the decoded Receipt from {{fig-transparent-statement-edn}}.
 Notice that this receipt contains inclusion proofs for verifiable data structures.
 Notice the unprotected header contains verifiable data structure proofs, see the protected header for details regarding the specific verifiable data structure used.
 We know from the COSE Verifiable Data Structure Registry that RFC9162_SHA256 is value 1, and that it supports -1 (inclusion proofs) and -2 (consistency proofs).
 
-~~~~ cbor-diag
+~~~ cbor-diag
 18(                                 / COSE Sign 1                   /
     [
       h'a4012604...6d706c65',       / Protected                     /
@@ -671,14 +669,13 @@ We know from the COSE Verifiable Data Structure Registry that RFC9162_SHA256 is 
       h'10f6b12a...4191f9d2'        / Signature                     /
     ]
 )
-~~~~
+~~~
 {: #fig-receipt-edn title="CBOR Extended Diagnostic Notation example of a Receipt"}
-
 
 {{fig-receipt-protected-header-edn}} illustrates the decoded protected header of the Transparent Statement in {{fig-transparent-statement-edn}}.
 Notice the verifiable data structure (-111) used is 1 (RFC9162_SHA256) in this case.
 
-~~~~ cbor-diag
+~~~ cbor-diag
 {                                   / Protected                     /
   1: -7,                            / Algorithm                     /
   4: h'50685f55...50523255',        / Key identifier                /
@@ -688,14 +685,14 @@ Notice the verifiable data structure (-111) used is 1 (RFC9162_SHA256) in this c
     2: vendor.product.example,      / Subject                       /
   }
 }
-~~~~
+~~~
 {: #fig-receipt-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Protected Header"}
 
 {{fig-receipt-inclusion-proof-edn}} illustrates the decoded inclusion proof from {{fig-receipt-edn}}.
 This inclusion proof indicates that the size of the transparency log was 8 at the time the receipt was issued.
 The structure of this inclusion proof is specific to the verifiable data structure used (RFC9162_SHA256).
 
-~~~~ cbor-diag
+~~~ cbor-diag
 [                                   / Inclusion proof 1             /
   8,                                / Tree size                     /
   7,                                / Leaf index                    /
@@ -705,7 +702,7 @@ The structure of this inclusion proof is specific to the verifiable data structu
      h'0bdaaed3...32568964'         / Intermediate hash 3           /
   ]
 ]
-~~~~
+~~~
 {: #fig-receipt-inclusion-proof-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Inclusion Proof"}
 
 ### Validation {#validation}
