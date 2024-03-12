@@ -476,7 +476,7 @@ The SCITT tag `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indi
 
 Issuers may produce Signed Statements about different Artifacts under the same Identity.
 Issuers and Relying Parties must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
-The `iss` and `sub` claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to. 
+The `iss` and `sub` claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.
 (See Subject under {{terminology}} Terminology.)
 
 Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
