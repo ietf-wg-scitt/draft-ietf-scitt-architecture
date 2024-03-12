@@ -471,13 +471,13 @@ For a software supply chain, payloads describing the software artifacts may incl
 - {{SLSA}}
 - {{SWID}}
 
-Once all the Envelope headers are set, an Issuer MUST use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).
+Once all the Envelope headers are set, an Issuer MUST use a standard COSE implementation to produce an appropriately serialized Signed Statement.
+The SCITT tag `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement.
 
 Issuers may produce Signed Statements about different Artifacts under the same Identity.
 Issuers and Relying Parties must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
-The `iss` and `sub` claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.
-
-See Subject under {{terminology}} Terminology.
+The `iss` and `sub` claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to. 
+(See Subject under {{terminology}} Terminology.)
 
 Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
 
@@ -505,6 +505,8 @@ The protected header of a Signed Statement and a Receipt MUST include the `CWT C
 The `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `Subject Claim` (Claim label 2) {{IANA.cwt}}.
 
 A Receipt is a Signed Statement, (cose-sign1), with addition claims in its protected header related to verifying the inclusion proof in its unprotected header. See {{-COMETRE}}.
+
+### Signed Statement Examples
 
 {{fig-signed-statement-cddl}} illustrates a normative CDDL definition for of the protected header for Signed Statements and Receipts.
 
@@ -547,7 +549,7 @@ Unprotected_Header = {
 {: #fig-signed-statement-cddl title="CDDL definition for Signed Statements and Receipts"}
 
 {{fig-signed-statement-edn}} illustrates an instance of a Signed Statement in EDN, with a payload that is detached.
-This is to support very large supply chain artifacts, and to ensure that Transparent Statements can integrate with existing file systems.
+Detached payloads support large artifacts, and ensure Signed Statements can integrate with existing storage systems.
 
 ~~~ cbor-diag
 18(                                 / COSE Sign 1                   /
@@ -561,7 +563,8 @@ This is to support very large supply chain artifacts, and to ensure that Transpa
 ~~~
 {: #fig-signed-statement-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement"}
 
-{{fig-signed-statement-protected-header-edn}} illustrates the decoded protected header of the Signed Statement in {{fig-signed-statement-edn}}, and indicates that the Signed Statement is securing a JSON content type, and identifying the content with the `sub` claim "vendor.product.example".
+{{fig-signed-statement-protected-header-edn}} illustrates the decoded protected header of the Signed Statement in {{fig-signed-statement-edn}}.
+It indicates the Signed Statement is securing a JSON content type, and identifying the content with the `sub` claim "vendor.product.example".
 
 ~~~ cbor-diag
 {                                   / Protected                     /
@@ -576,7 +579,7 @@ This is to support very large supply chain artifacts, and to ensure that Transpa
 ~~~
 {: #fig-signed-statement-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement's Protected Header"}
 
-### Registration
+## Registration
 
 To register a Signed Statement, the Transparency Service performs the following steps:
 
@@ -650,9 +653,10 @@ The label 394 `receipts` in unprotected header can contain multiple receipts.
 {: #fig-transparent-statement-edn title="CBOR Extended Diagnostic Notation example of a Transparent Statement"}
 
 {{fig-receipt-edn}} one of the decoded Receipt from {{fig-transparent-statement-edn}}.
-Notice that this receipt contains inclusion proofs for verifiable data structures.
-Notice the unprotected header contains verifiable data structure proofs, see the protected header for details regarding the specific verifiable data structure used.
-We know from the COSE Verifiable Data Structure Registry that RFC9162_SHA256 is value 1, and that it supports -1 (inclusion proofs) and -2 (consistency proofs).
+The Receipt contains inclusion proofs for verifiable data structures.
+The unprotected header contains verifiable data structure proofs.
+See the protected header for details regarding the specific verifiable data structure used.
+Referencing the COSE Verifiable Data Structure Registry, RFC9162_SHA256 is value `1`, which supports `-1` (inclusion proofs) and `-2` (consistency proofs).
 
 ~~~ cbor-diag
 18(                                 / COSE Sign 1                   /
@@ -673,7 +677,7 @@ We know from the COSE Verifiable Data Structure Registry that RFC9162_SHA256 is 
 {: #fig-receipt-edn title="CBOR Extended Diagnostic Notation example of a Receipt"}
 
 {{fig-receipt-protected-header-edn}} illustrates the decoded protected header of the Transparent Statement in {{fig-transparent-statement-edn}}.
-Notice the verifiable data structure (-111) used is 1 (RFC9162_SHA256) in this case.
+The verifiable data structure (`-111`) uses `1` from (RFC9162_SHA256).
 
 ~~~ cbor-diag
 {                                   / Protected                     /
@@ -689,7 +693,7 @@ Notice the verifiable data structure (-111) used is 1 (RFC9162_SHA256) in this c
 {: #fig-receipt-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Protected Header"}
 
 {{fig-receipt-inclusion-proof-edn}} illustrates the decoded inclusion proof from {{fig-receipt-edn}}.
-This inclusion proof indicates that the size of the transparency log was 8 at the time the receipt was issued.
+This inclusion proof indicates that the size of the transparency log was `8` at the time the receipt was issued.
 The structure of this inclusion proof is specific to the verifiable data structure used (RFC9162_SHA256).
 
 ~~~ cbor-diag
