@@ -234,7 +234,7 @@ Registration Policy:
 
 Relying Party:
 
-: a relying party depends on Signed or Transparent Statements to verify an Artifact.
+: a Relying Parties consumes Signed Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.
 
 Signed Statement:
 
@@ -272,11 +272,6 @@ Transparent Statement:
 : a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
 The receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
 A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.
-
-Relying Party:
-
-: organizations, stakeholders, and users involved in validating supply chain Artifacts.
-Relying Parties consume Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.
 
 {: #mybody}
 
@@ -620,6 +615,9 @@ Unprotected_Header = {
 ~~~
 {: #fig-transparent-statement-cddl title="CDDL definition for a Transparent Statement"}
 
+{{fig-transparent-statement-edn}} illustrates a payload that is detached.
+The unprotected header may contain multiple receipts.
+
 ~~~~ cbor-diag
 18(                                 / COSE Sign 1                   /
     [
@@ -635,23 +633,6 @@ Unprotected_Header = {
 )
 ~~~~
 {: #fig-transparent-statement-edn title="CBOR Extended Diagnostic Notation example of a Transparent Statement"}
-
-{{fig-transparent-statement-edn}} illustrates a payload that is detached.
-
-The unprotected header can contain multiple receipts.
-
-~~~~ cbor-diag
-{                                   / Protected                     /
-  1: -7,                            / Algorithm                     /
-  4: h'50685f55...50523255',        / Key identifier                /
-  -111: 1,                          / Verifiable Data Structure     /
-  15: {                             / CWT Claims                    /
-    1: transparency.vendor.example, / Issuer                        /
-    2: vendor.product.example,      / Subject                       /
-  }
-}
-~~~~
-{: #fig-receipt-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Protected Header"}
 
 Notice the verifiable data structure used is RFC9162_SHA256 in this case.
 We know from the COSE Verifiable Data Structure Registry that RFC9162_SHA256 is value 1, and that it supports -1 (inclusion proofs) and -2 (consistency proofs).
