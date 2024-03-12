@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 5 September 2024                                     C. Fournet
+Expires: 13 September 2024                                    C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                            4 March 2024
+                                                           12 March 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 September 2024.
+   This Internet-Draft will expire on 13 September 2024.
 
 Copyright Notice
 
@@ -258,8 +258,10 @@ Table of Contents
       information in the non-opaque header and metadata contained in its
       COSE Envelope.
 
-   Relying Party:  a relying party depends on Signed or Transparent
-      Statements to verify an Artifact.
+   Relying Party:  a Relying Parties consumes Transparent Statements,
+      verifying their proofs and inspecting the Statement payload,
+      either before using corresponding Artifacts, or later to audit an
+      Artifact's provenance on the supply chain.
 
    Signed Statement:  an identifiable and non-repudiable Statement about
       an Artifact signed by an Issuer.  In SCITT, Signed Statements are
@@ -305,12 +307,6 @@ Table of Contents
       the Signed Statement.  A Transparent Statement remains a valid
       Signed Statement, and may be registered again in a different
       Transparency Service.
-
-   Relying Party:  organizations, stakeholders, and users involved in
-      validating supply chain Artifacts.  Relying Parties consume
-      Transparent Statements, verifying their proofs and inspecting the
-      Statement payload, either before using corresponding Artifacts, or
-      later to audit an Artifact's provenance on the supply chain.
 
 3.  Definition of Transparency
 
