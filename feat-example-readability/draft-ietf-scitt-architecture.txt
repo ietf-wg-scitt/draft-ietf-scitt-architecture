@@ -95,9 +95,10 @@ Table of Contents
        4.1.3.  Append-only Log
        4.1.4.  Adjacent Services
      4.2.  Signed Statements
-       4.2.1.  Registration
-     4.3.  Transparent Statements
-       4.3.1.  Validation
+       4.2.1.  Signed Statement Examples
+     4.3.  Registration
+     4.4.  Transparent Statements
+       4.4.1.  Validation
    5.  Privacy Considerations
    6.  Security Considerations
      6.1.  Security Guarantees
@@ -617,18 +618,16 @@ Table of Contents
 
    Once all the Envelope headers are set, an Issuer MUST use a standard
    COSE implementation to produce an appropriately serialized Signed
-   Statement (the SCITT tag of COSE_Sign1_Tagged is outside the scope of
+   Statement.  The SCITT tag COSE_Sign1_Tagged is outside the scope of
    COSE, and used to indicate that a signed object is a Signed
-   Statement).
+   Statement.
 
    Issuers may produce Signed Statements about different Artifacts under
    the same Identity.  Issuers and Relying Parties must be able to
    recognize the Artifact to which the statements pertain by looking at
    the Signed Statement.  The iss and sub claims, within the CWT_Claims
    protected header, are used to identify the Artifact the statement
-   pertains to.
-
-   See Subject under Section 2 Terminology.
+   pertains to.  (See Subject under Section 2 Terminology.)
 
    Issuers MAY use different signing keys (identified by kid in the
    resolved key manifest) for different Artifacts, or sign all Signed
@@ -675,6 +674,8 @@ Table of Contents
    its unprotected header.  See
    [I-D.draft-ietf-cose-merkle-tree-proofs].
 
+4.2.1.  Signed Statement Examples
+
    Figure 1 illustrates a normative CDDL definition for of the protected
    header for Signed Statements and Receipts.
 
@@ -717,9 +718,9 @@ Table of Contents
         Figure 1: CDDL definition for Signed Statements and Receipts
 
    Figure 2 illustrates an instance of a Signed Statement in EDN, with a
-   payload that is detached.  This is to support very large supply chain
-   artifacts, and to ensure that Transparent Statements can integrate
-   with existing file systems.
+   payload that is detached.  Detached payloads support large artifacts,
+   and ensure Signed Statements can integrate with existing storage
+   systems.
 
    18(                                 / COSE Sign 1                   /
        [
@@ -734,9 +735,9 @@ Table of Contents
                                  Statement
 
    Figure 3 illustrates the decoded protected header of the Signed
-   Statement in Figure 2, and indicates that the Signed Statement is
-   securing a JSON content type, and identifying the content with the
-   sub claim "vendor.product.example".
+   Statement in Figure 2.  It indicates the Signed Statement is securing
+   a JSON content type, and identifying the content with the sub claim
+   "vendor.product.example".
 
    {                                   / Protected                     /
      1: -7,                            / Algorithm                     /
@@ -751,7 +752,7 @@ Table of Contents
       Figure 3: CBOR Extended Diagnostic Notation example of a Signed
                         Statement's Protected Header
 
-4.2.1.  Registration
+4.3.  Registration
 
    To register a Signed Statement, the Transparency Service performs the
    following steps:
@@ -792,7 +793,7 @@ Table of Contents
        registration.  The Transparency Service MUST be able to provide a
        receipt for all registered Statements.  A receipt for a Signed
        Statement MAY be provided asynchronously.  Details about
-       generating Receipts are described in Section 4.3.
+       generating Receipts are described in Section 4.4.
 
    The last two steps may be shared between a batch of Signed Statements
    recorded in the Append-only Log.
@@ -805,7 +806,7 @@ Table of Contents
    multiple receipts may be attached to the unprotected header of the
    Signed Statement, creating a Transparent Statement.
 
-4.3.  Transparent Statements
+4.4.  Transparent Statements
 
    The Client (which is not necessarily the Issuer) that registers a
    Signed Statement and receives a Receipt can produce a Transparent
@@ -861,13 +862,13 @@ Table of Contents
           Figure 5: CBOR Extended Diagnostic Notation example of a
                            Transparent Statement
 
-   Figure 6 one of the decoded Receipt from Figure 5.  Notice that this
-   receipt contains inclusion proofs for verifiable data structures.
-   Notice the unprotected header contains verifiable data structure
-   proofs, see the protected header for details regarding the specific
-   verifiable data structure used.  We know from the COSE Verifiable
-   Data Structure Registry that RFC9162_SHA256 is value 1, and that it
-   supports -1 (inclusion proofs) and -2 (consistency proofs).
+   Figure 6 one of the decoded Receipt from Figure 5.  The Receipt
+   contains inclusion proofs for verifiable data structures.  The
+   unprotected header contains verifiable data structure proofs.  See
+   the protected header for details regarding the specific verifiable
+   data structure used.  Referencing the COSE Verifiable Data Structure
+   Registry, RFC9162_SHA256 is value 1, which supports -1 (inclusion
+   proofs) and -2 (consistency proofs).
 
    18(                                 / COSE Sign 1                   /
        [
@@ -887,8 +888,8 @@ Table of Contents
       Figure 6: CBOR Extended Diagnostic Notation example of a Receipt
 
    Figure 7 illustrates the decoded protected header of the Transparent
-   Statement in Figure 5.  Notice the verifiable data structure (-111)
-   used is 1 (RFC9162_SHA256) in this case.
+   Statement in Figure 5.  The verifiable data structure (-111) uses 1
+   from (RFC9162_SHA256).
 
    {                                   / Protected                     /
      1: -7,                            / Algorithm                     /
@@ -922,7 +923,7 @@ Table of Contents
           Figure 8: CBOR Extended Diagnostic Notation example of a
                          Receipt's Inclusion Proof
 
-4.3.1.  Validation
+4.4.1.  Validation
 
    Relying Parties MUST apply the verification process as described in
    Section 4.4 of RFC9052, when checking the signature of Signed
