@@ -234,7 +234,7 @@ Registration Policy:
 
 Relying Party:
 
-: a relying party depends on Signed or Transparent Statements to verify an Artifact.
+: a Relying Parties consumes Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.
 
 Signed Statement:
 
@@ -272,11 +272,6 @@ Transparent Statement:
 : a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
 The receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
 A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.
-
-Relying Party:
-
-: organizations, stakeholders, and users involved in validating supply chain Artifacts.
-Relying Parties consume Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.
 
 {: #mybody}
 
