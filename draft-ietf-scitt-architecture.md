@@ -73,6 +73,7 @@ normative:
   RFC6838:
   RFC9052: COSE
   RFC9360:
+  RFC8392:
   COSWID: RFC9393
 
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
@@ -174,6 +175,8 @@ To ensure readability, only a core set of terms is included in this section.
 
 The terms "header", "payload", and "to-be-signed bytes" are defined in {{RFC9052}}.
 
+The terms claim is defined in {{RFC8392}}, and is repeated here for readability:
+
 Append-only Log (Ledger):
 
 : the verifiable append-only data structure that stores Signed Statements in a Transparency Service, often referred to by the synonym Ledger.
@@ -186,6 +189,10 @@ Artifact:
 Auditor:
 
 : an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.
+
+Claim:
+
+: A claim is a piece of information asserted about a subject and is represented as a name/value pair consisting of a claim name and a claim value.
 
 Client:
 
@@ -251,7 +258,7 @@ The Statement is considered opaque to Transparency Service, and MAY be encrypted
 
 Subject:
 
-: This term has the same definition as in RFC8392, which relies on the definition in RFC7519.
+: This term has the same definition as in {{RFC8392}}, which relies on the definition in RFC7519.
 The `sub` (subject) claim identifies the principal that is the subject of the CWT.
 The claims in a CWT are normally statements about the subject.
 In SCITT, `sub` identifies the entity about which statements, and receipts are made.
@@ -447,6 +454,36 @@ This specification prioritizes conformance to {{RFC9052}} and its required and o
 Profiles and implementation specific choices should be used to determine admissability of conforming messages.
 This specification is left intentionally open to allow implementations to make the restrictions that make the most sense for their operational use cases.
 
+There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
+An Issuer must first decide on a suitable format (`3`: payload type) to serialize the Statement payload.
+For a software supply chain, payloads describing the software artifacts may include:
+
+- {{COSWID}}
+- {{CycloneDX}}
+- {{in-toto}}
+- {{SPDX-CBOR}}
+- {{SPDX-JSON}}
+- {{SLSA}}
+- {{SWID}}
+
+Once all the Envelope headers are set, an Issuer MUST use a standard COSE implementation to produce an appropriately serialized Signed Statement.
+The SCITT tag `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement.
+
+Issuers may produce Signed Statements about different Artifacts under the same Identity.
+Issuers and Relying Parties must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
+The `iss` and `sub` claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.
+(See Subject under {{terminology}} Terminology.)
+
+Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
+
+An Issuer can make multiple Statements about the same Artifact.
+For example, an Issuer can make amended Statements about the same Artifact as their view changes over time.
+
+Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
+Relying Parties can choose which Issuers they trust.
+
+Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.
+
 At least one identifier for an identity document MUST be included in the protected header of the COSE envelope, as one of `x5t`, `x5chain` or `kid`.
 
 - Support for `x5t` is mandatory to implement.
@@ -463,6 +500,8 @@ The protected header of a Signed Statement and a Receipt MUST include the `CWT C
 The `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `Subject Claim` (Claim label 2) {{IANA.cwt}}.
 
 A Receipt is a Signed Statement, (cose-sign1), with addition claims in its protected header related to verifying the inclusion proof in its unprotected header. See {{-COMETRE}}.
+
+### Signed Statement Examples
 
 {{fig-signed-statement-cddl}} illustrates a normative CDDL definition for of the protected header for Signed Statements and Receipts.
 
@@ -504,7 +543,25 @@ Unprotected_Header = {
 ~~~
 {: #fig-signed-statement-cddl title="CDDL definition for Signed Statements and Receipts"}
 
-~~~~ cbor-diag
+{{fig-signed-statement-edn}} illustrates an instance of a Signed Statement in EDN, with a payload that is detached.
+Detached payloads support large artifacts, and ensure Signed Statements can integrate with existing storage systems.
+
+~~~ cbor-diag
+18(                                 / COSE Sign 1                   /
+    [
+      h'a4012603...6d706c65',       / Protected                     /
+      {},                           / Unprotected                   /
+      nil,                          / Detached payload              /
+      h'79ada558...3a28bae4'        / Signature                     /
+    ]
+)
+~~~
+{: #fig-signed-statement-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement"}
+
+{{fig-signed-statement-protected-header-edn}} illustrates the decoded protected header of the Signed Statement in {{fig-signed-statement-edn}}.
+It indicates the Signed Statement is securing a JSON content type, and identifying the content with the `sub` claim "vendor.product.example".
+
+~~~ cbor-diag
 {                                   / Protected                     /
   1: -7,                            / Algorithm                     /
   3: application/example+json,      / Content type                  /
@@ -514,55 +571,10 @@ Unprotected_Header = {
     2: vendor.product.example,      / Subject                       /
   }
 }
-~~~~
+~~~
 {: #fig-signed-statement-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement's Protected Header"}
 
-~~~~ cbor-diag
-18(                                 / COSE Sign 1                   /
-    [
-      h'a4012603...6d706c65',       / Protected                     /
-      {},                           / Unprotected                   /
-      nil,                          / Detached payload              /
-      h'79ada558...3a28bae4'        / Signature                     /
-    ]
-)
-~~~~
-{: #fig-signed-statement-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement"}
-
-{{fig-signed-statement-edn}} illustrates a payload that is detached.
-This is to support very large supply chain artifacts, and to ensure that Transparent Statements can integrate with existing file systems.
-
-There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
-An Issuer must first decide on a suitable format (`3`: payload type) to serialize the Statement payload.
-For a software supply chain, payloads describing the software artifacts may include:
-
-- {{COSWID}}
-- {{CycloneDX}}
-- {{in-toto}}
-- {{SPDX-CBOR}}
-- {{SPDX-JSON}}
-- {{SLSA}}
-- {{SWID}}
-
-Once all the Envelope headers are set, an Issuer MUST use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).
-
-Issuers may produce Signed Statements about different Artifacts under the same Identity.
-Issuers and Relying Parties must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
-The `iss` and `sub` claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.
-
-See Subject under {{terminology}} Terminology.
-
-Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
-
-An Issuer can make multiple Statements about the same Artifact.
-For example, an Issuer can make amended Statements about the same Artifact as their view changes over time.
-
-Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
-Relying Parties can choose which Issuers they trust.
-
-Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.
-
-### Registration
+## Registration
 
 To register a Signed Statement, the Transparency Service performs the following steps:
 
@@ -615,43 +627,33 @@ Unprotected_Header = {
 ~~~
 {: #fig-transparent-statement-cddl title="CDDL definition for a Transparent Statement"}
 
-~~~~ cbor-diag
+{{fig-transparent-statement-edn}} illustrates a Transparent Statement with a detached payload, and two receipts in its unprotected header.
+The label 394 `receipts` in unprotected header can contain multiple receipts.
+
+~~~ cbor-diag
 18(                                 / COSE Sign 1                   /
     [
       h'a4012603...6d706c65',       / Protected                     /
       {                             / Unprotected                   /
-        394: [                      / Receipts (1)                  /
+        394: [                      / Receipts (2)                  /
           h'd284586c...4191f9d2'    / Receipt 1                     /
+          h'c624586c...8f4af97e'    / Receipt 2                     /
         ]
       },
       nil,                          / Detached payload              /
       h'79ada558...3a28bae4'        / Signature                     /
     ]
 )
-~~~~
+~~~
 {: #fig-transparent-statement-edn title="CBOR Extended Diagnostic Notation example of a Transparent Statement"}
 
-{{fig-transparent-statement-edn}} illustrates a payload that is detached.
+{{fig-receipt-edn}} one of the decoded Receipt from {{fig-transparent-statement-edn}}.
+The Receipt contains inclusion proofs for verifiable data structures.
+The unprotected header contains verifiable data structure proofs.
+See the protected header for details regarding the specific verifiable data structure used.
+Referencing the COSE Verifiable Data Structure Registry, RFC9162_SHA256 is value `1`, which supports `-1` (inclusion proofs) and `-2` (consistency proofs).
 
-The unprotected header can contain multiple receipts.
-
-~~~~ cbor-diag
-{                                   / Protected                     /
-  1: -7,                            / Algorithm                     /
-  4: h'50685f55...50523255',        / Key identifier                /
-  -111: 1,                          / Verifiable Data Structure     /
-  15: {                             / CWT Claims                    /
-    1: transparency.vendor.example, / Issuer                        /
-    2: vendor.product.example,      / Subject                       /
-  }
-}
-~~~~
-{: #fig-receipt-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Protected Header"}
-
-Notice the verifiable data structure used is RFC9162_SHA256 in this case.
-We know from the COSE Verifiable Data Structure Registry that RFC9162_SHA256 is value 1, and that it supports -1 (inclusion proofs) and -2 (consistency proofs).
-
-~~~~ cbor-diag
+~~~ cbor-diag
 18(                                 / COSE Sign 1                   /
     [
       h'a4012604...6d706c65',       / Protected                     /
@@ -666,12 +668,30 @@ We know from the COSE Verifiable Data Structure Registry that RFC9162_SHA256 is 
       h'10f6b12a...4191f9d2'        / Signature                     /
     ]
 )
-~~~~
+~~~
 {: #fig-receipt-edn title="CBOR Extended Diagnostic Notation example of a Receipt"}
 
-Notice the unprotected header contains verifiable data structure proofs, see the protected header for details regarding the specific verifiable data structure used.
+{{fig-receipt-protected-header-edn}} illustrates the decoded protected header of the Transparent Statement in {{fig-transparent-statement-edn}}.
+The verifiable data structure (`-111`) uses `1` from (RFC9162_SHA256).
 
-~~~~ cbor-diag
+~~~ cbor-diag
+{                                   / Protected                     /
+  1: -7,                            / Algorithm                     /
+  4: h'50685f55...50523255',        / Key identifier                /
+  -111: 1,                          / Verifiable Data Structure     /
+  15: {                             / CWT Claims                    /
+    1: transparency.vendor.example, / Issuer                        /
+    2: vendor.product.example,      / Subject                       /
+  }
+}
+~~~
+{: #fig-receipt-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Protected Header"}
+
+{{fig-receipt-inclusion-proof-edn}} illustrates the decoded inclusion proof from {{fig-receipt-edn}}.
+This inclusion proof indicates that the size of the transparency log was `8` at the time the receipt was issued.
+The structure of this inclusion proof is specific to the verifiable data structure used (RFC9162_SHA256).
+
+~~~ cbor-diag
 [                                   / Inclusion proof 1             /
   8,                                / Tree size                     /
   7,                                / Leaf index                    /
@@ -681,49 +701,24 @@ Notice the unprotected header contains verifiable data structure proofs, see the
      h'0bdaaed3...32568964'         / Intermediate hash 3           /
   ]
 ]
-~~~~
+~~~
 {: #fig-receipt-inclusion-proof-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Inclusion Proof"}
-
-This is a decoded inclusion proof for RFC9162_SHA256, other verifiable data structures might encode inclusion proofs differently.
 
 ### Validation {#validation}
 
-Relying Parties MUST apply the verification process as described in Section 4.4 of RFC9052.
+Relying Parties MUST apply the verification process as described in Section 4.4 of RFC9052, when checking the signature of Signed Statements and Receipts.
+
+A Relying Party MUST trust the verification key or certificate and the associated identity of at least one issuer of a Receipt.
+
+A Relying Party MAY decide to verify only a single Receipt that is acceptable to them, and not check the signature on the Signed Statement or Receipts which rely on verifiable data structures which they do not understand.
 
 APIs exposing verification logic for Transparent Statements may provide more details than a single boolean result.
 For example, an API may indicate if the signature on the Receipt or Signed Statement is valid, if claims related to the validity period are valid, or if the inclusion proof in the Receipt is valid.
 
-The algorithm-specific details of checking inclusion proofs are covered in {{-COMETRE}}.
-The pseudo-code for validation of a transparent statement is as follows:
+Relying Parties MAY be configured to re-verify the Issuer's Signed Statement locally.
 
-~~~python
-let verify_transparent_statement(t) =
-  let receipt = t.unprotected.scitt-receipt
-  let version = receipt.protected.scitt-version or fail "Missing SCITT Receipt version"
-  assert(version == 1)
-
-  let leaf = COSE.serialize(t with .unprotected = {
-    334 => receipt.unprotected.statement-registration-info
-  })
-
-  let vds = receipt.protected.verifiable-data-structure of fail "Missing verifiable data structure"
-  let root = verify_inclusion_proof(vds, receipt.unprotected.scitt-inclusion-proof, leaf)
-    or fail "Failed to verify inclusion proof"
-
-  // Statement registration info has been authenticated by the inclusion proof
-  receipt.protected.statement-registration-info = receipt.unprotected.statement-registration-info
-  return COSE.verify(receipt, detached_payload=root)
-~~~
-
-Before checking a Transparent Statement, the Verifier must be configured with one or more identities of trusted Transparency Services.
-
-Relying Parties MAY be configured to re-verify the Issuer's Signed Statement locally, but this requires a fresh resolution of the Issuer's verification keys, which MAY fail if the key has been revoked.
-
-Some Relying Parties MAY decide to locally re-apply some or all of the Registration Policies, if they have limited trust in the Transparency Services.
 In addition, Relying Parties MAY apply arbitrary validation policies after the Transparent Statement has been verified and validated.
 Such policies may use as input all information in the Envelope, the Receipt, and the Statement payload, as well as any local state.
-
-Relying Parties MAY offer options to store or share the Receipt of the Transparent Statement for auditing the Transparency Services in case a dispute arises.
 
 # Privacy Considerations
 
