@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-12T00:33:44.984390+00:00",
+  "timestamp": "2024-03-14T00:33:47.040909+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4296,7 +4296,7 @@
       "id": "I_kwDOIvmHss6Bc0F6",
       "title": "Relying Party definition is repeated",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/216",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4307,8 +4307,8 @@
       ],
       "body": "In the terminology section, Relying Party is described twice",
       "createdAt": "2024-03-06T15:40:22Z",
-      "updatedAt": "2024-03-06T15:40:23Z",
-      "closedAt": null,
+      "updatedAt": "2024-03-12T18:56:02Z",
+      "closedAt": "2024-03-12T18:56:02Z",
       "comments": []
     }
   ],
@@ -28533,26 +28533,218 @@
       "id": "PR_kwDOIvmHss5o3eie",
       "title": "Converge duplicative definitions of Relying Parties",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/217",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #216 ",
       "createdAt": "2024-03-06T16:59:26Z",
-      "updatedAt": "2024-03-06T16:59:27Z",
+      "updatedAt": "2024-03-12T18:56:02Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "66463b96dedc838b8ad7156eb3a5e854c6768dd1",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/216",
-      "headRefOid": "dfba349b94464c2c853ea57fd96067f668c33cd5",
-      "closedAt": null,
+      "headRefOid": "73ac04643ea812640343f4d8f3600fa991791eae",
+      "closedAt": "2024-03-12T18:56:01Z",
+      "mergedAt": "2024-03-12T18:56:01Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "14f60858c94b2b1c49433fcd2932d6ffad2ac44f"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5zG4Nf",
+          "commit": {
+            "abbreviatedOid": "dfba349"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-12T14:09:22Z",
+          "updatedAt": "2024-03-12T14:09:22Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5zIaAd",
+          "commit": {
+            "abbreviatedOid": "dfba349"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-12T16:31:47Z",
+          "updatedAt": "2024-03-12T16:31:47Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n: a Relying Parties consumes Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.\r\n```",
+              "createdAt": "2024-03-12T16:31:47Z",
+              "updatedAt": "2024-03-12T16:31:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5zIaRf",
+          "commit": {
+            "abbreviatedOid": "dfba349"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-12T16:32:16Z",
+          "updatedAt": "2024-03-12T16:32:17Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Note a Relying Party gets what is returned by the Transparency Service",
+              "createdAt": "2024-03-12T16:32:16Z",
+              "updatedAt": "2024-03-12T16:32:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5zKUVJ",
+          "commit": {
+            "abbreviatedOid": "dfba349"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-12T18:55:31Z",
+          "updatedAt": "2024-03-12T18:55:31Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "goo catch",
+              "createdAt": "2024-03-12T18:55:31Z",
+              "updatedAt": "2024-03-12T18:55:31Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 218,
+      "id": "PR_kwDOIvmHss5pY7w-",
+      "title": "Fix examples and verification sections",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/218",
+      "state": "CLOSED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-03-12T15:00:57Z",
+      "updatedAt": "2024-03-12T19:49:11Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "66463b96dedc838b8ad7156eb3a5e854c6768dd1",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/fix-sample",
+      "headRefOid": "bf166effdb06ccba32d7eaf52dc0fc25b4c3c2ec",
+      "closedAt": "2024-03-12T19:49:11Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@SteveLasker This seems to duplicate #217. I would suggest you please proceed 217 and then rebase 218 only to introduce the `Delta`",
+          "createdAt": "2024-03-12T16:34:30Z",
+          "updatedAt": "2024-03-12T16:34:30Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> @SteveLasker This seems to duplicate #217. I would suggest you please proceed 217 and then rebase 218 only to introduce the `Delta`\r\n\r\nThanks, @yogeshbdeshpande. This became a dupe of #219\r\n\r\n",
+          "createdAt": "2024-03-12T19:49:11Z",
+          "updatedAt": "2024-03-12T19:49:11Z"
+        }
+      ],
       "reviews": []
+    },
+    {
+      "number": 219,
+      "id": "PR_kwDOIvmHss5pZdTd",
+      "title": "Apply feedback from editors call (Fix examples and verification sections)",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/219",
+      "state": "MERGED",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "- Adjusts text around CDDL and EDN\r\n- Adjusts text regarding Validation",
+      "createdAt": "2024-03-12T15:46:26Z",
+      "updatedAt": "2024-03-13T19:45:10Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "66463b96dedc838b8ad7156eb3a5e854c6768dd1",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "feat-example-readability",
+      "headRefOid": "653a3a364020c5d84af15a07b15af65145993334",
+      "closedAt": "2024-03-13T19:45:10Z",
+      "mergedAt": "2024-03-13T19:45:10Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "fa79d103837881f12e24bd857bcfa95fe2a3116a"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5zJpBm",
+          "commit": {
+            "abbreviatedOid": "7930b5e"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM, nice and clear changes",
+          "createdAt": "2024-03-12T18:03:20Z",
+          "updatedAt": "2024-03-12T18:03:20Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5zKfCn",
+          "commit": {
+            "abbreviatedOid": "1ca506e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-12T19:09:36Z",
+          "updatedAt": "2024-03-12T19:09:36Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "a reviewers note that this is not a new section, but rather a re-ordering. See line [538](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/219/files#diff-585fb424519b79cf000445f3425fa56d328cbaca5d2a622740ddc4e5ca91dbe1L538) for reference",
+              "createdAt": "2024-03-12T19:09:36Z",
+              "updatedAt": "2024-03-12T19:09:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5zK8hg",
+          "commit": {
+            "abbreviatedOid": "653a3a3"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-03-12T19:47:38Z",
+          "updatedAt": "2024-03-12T19:47:38Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
