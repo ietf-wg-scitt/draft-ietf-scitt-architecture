@@ -538,6 +538,7 @@ CWT_Claims = {
 
 Unprotected_Header = {
   ? &(receipts: 394)  => [+ Receipt]
+  * int => any
 }
 
 ~~~
