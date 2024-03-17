@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-14T00:33:47.040909+00:00",
+  "timestamp": "2024-03-17T00:37:08.114478+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -3431,7 +3431,7 @@
       "labels": [],
       "body": "This issue is a living description of the references that block the architecture from becoming an RFC.\r\n\r\n```mermaid\r\nflowchart \r\n    \r\nsubgraph COSE\r\n    cometre[draft-ietf-cose-merkle-tree-proofs]\r\n    hash-envelope{{draft-steele-cose-hash-envelope}}\r\nend\r\n\r\nsubgraph SCITT\r\n    architecture[draft-ietf-scitt-architecture]\r\n    scrapi{{draft-birkholz-scitt-scrapi}}\r\n    cometre-ccf{{draft-birkholz-cose-cometre-ccf-profile}}\r\nend\r\n\r\nscrapi --> architecture\r\narchitecture -->  cometre\r\narchitecture --> hash-envelope\r\ncometre-ccf --> cometre\r\n```\r\n\r\nCurrently, the `draft-ietf-scitt-architecture` is blocked by `draft-ietf-cose-merkle-tree-proofs`.\r\n\r\n`draft-steele-cose-hash-envelope` is not blocking anything because it is just a special kind of signed statement, its possible it might block `draft-birkholz-scitt-scrapi` in the future.\r\n\r\n`draft-birkholz-cose-cometre-ccf-profile` is blocked by `draft-ietf-cose-merkle-tree-proofs`\r\n\r\nI recommend helping `draft-ietf-cose-merkle-tree-proofs` close out so the architecture can be published.\r\n\r\nI would then make `draft-birkholz-scitt-scrapi` adopted by SCITT, and make it be blocked by the architecture.\r\n\r\n\r\n",
       "createdAt": "2024-01-05T17:50:36Z",
-      "updatedAt": "2024-02-12T17:46:55Z",
+      "updatedAt": "2024-03-15T23:12:41Z",
       "closedAt": "2024-02-12T17:46:55Z",
       "comments": [
         {
@@ -3468,6 +3468,13 @@
           "body": "Resolved the loose ends",
           "createdAt": "2024-02-12T17:46:55Z",
           "updatedAt": "2024-02-12T17:46:55Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "How did we resolve loose ends on dependent drafts where the RFCs aren't past WGLC in other WGs?",
+          "createdAt": "2024-03-15T23:12:39Z",
+          "updatedAt": "2024-03-15T23:12:39Z"
         }
       ]
     },
@@ -28742,6 +28749,59 @@
           "body": "LGTM",
           "createdAt": "2024-03-12T19:47:38Z",
           "updatedAt": "2024-03-12T19:47:38Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 220,
+      "id": "PR_kwDOIvmHss5p0WlP",
+      "title": "Add any to the unprotected header.",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/220",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Making the unprotected header consistent with the protected header",
+      "createdAt": "2024-03-16T07:25:47Z",
+      "updatedAt": "2024-03-16T23:54:11Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "fa79d103837881f12e24bd857bcfa95fe2a3116a",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/unprotected-any",
+      "headRefOid": "cc5292daa813eb097d59ded648ab6d3928aa870f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5ztiHx",
+          "commit": {
+            "abbreviatedOid": "cc5292d"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-16T20:16:16Z",
+          "updatedAt": "2024-03-16T20:16:16Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5ztqDp",
+          "commit": {
+            "abbreviatedOid": "cc5292d"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-16T23:54:11Z",
+          "updatedAt": "2024-03-16T23:54:11Z",
           "comments": []
         }
       ]
