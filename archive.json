@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-17T00:37:08.114478+00:00",
+  "timestamp": "2024-03-19T00:34:40.131725+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4317,6 +4317,32 @@
       "updatedAt": "2024-03-12T18:56:02Z",
       "closedAt": "2024-03-12T18:56:02Z",
       "comments": []
+    },
+    {
+      "number": 221,
+      "id": "I_kwDOIvmHss6CnRxH",
+      "title": "Should we add Registered Signed Statement to the terminology",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/221",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "terminology"
+      ],
+      "body": "The TS stores Signed Statements. When we started SCITT, I believe several folks had the position that TS would create and store Transparent Statements. \r\nAs of draft 06, a Transparent Statement is assembled on the client, outside the scope of the TS. Yet, we still refer to Transparent Statements. \r\nShould we add a term called Registered Signed Statement, which differentiates a Signed Statement that hasn't yet been registered, and a Signed Statement that has been registered, but isn't Transparent as the TS doesn't staple the receipt to the Signed Statement?",
+      "createdAt": "2024-03-18T06:24:43Z",
+      "updatedAt": "2024-03-18T15:35:47Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> As of draft 06, a Transparent Statement is assembled on the client, outside the scope of the TS. Yet, we still refer to Transparent Statements.\r\n\r\nThis change was intentional and explicitly stated in 06?\r\n\r\n",
+          "createdAt": "2024-03-18T15:35:46Z",
+          "updatedAt": "2024-03-18T15:35:46Z"
+        }
+      ]
     }
   ],
   "pulls": [
