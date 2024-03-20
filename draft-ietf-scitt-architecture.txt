@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 14 September 2024                                    C. Fournet
+Expires: 21 September 2024                                    C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                           13 March 2024
+                                                           20 March 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 September 2024.
+   This Internet-Draft will expire on 21 September 2024.
 
 Copyright Notice
 
@@ -709,6 +709,7 @@ Table of Contents
 
    Unprotected_Header = {
      ? &(receipts: 394)  => [+ Receipt]
+     * int => any
    }
 
         Figure 1: CDDL definition for Signed Statements and Receipts
