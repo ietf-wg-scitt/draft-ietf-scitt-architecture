@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-19T00:34:40.131725+00:00",
+  "timestamp": "2024-03-21T00:35:45.745718+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4332,7 +4332,7 @@
       ],
       "body": "The TS stores Signed Statements. When we started SCITT, I believe several folks had the position that TS would create and store Transparent Statements. \r\nAs of draft 06, a Transparent Statement is assembled on the client, outside the scope of the TS. Yet, we still refer to Transparent Statements. \r\nShould we add a term called Registered Signed Statement, which differentiates a Signed Statement that hasn't yet been registered, and a Signed Statement that has been registered, but isn't Transparent as the TS doesn't staple the receipt to the Signed Statement?",
       "createdAt": "2024-03-18T06:24:43Z",
-      "updatedAt": "2024-03-18T15:35:47Z",
+      "updatedAt": "2024-03-20T11:42:04Z",
       "closedAt": null,
       "comments": [
         {
@@ -4341,8 +4341,38 @@
           "body": "> As of draft 06, a Transparent Statement is assembled on the client, outside the scope of the TS. Yet, we still refer to Transparent Statements.\r\n\r\nThis change was intentional and explicitly stated in 06?\r\n\r\n",
           "createdAt": "2024-03-18T15:35:46Z",
           "updatedAt": "2024-03-18T15:35:46Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": ">This change was intentional and explicitly stated in 06?\r\n\r\nCorrect, we did clarify a Transparent Statement is assembled outside the Transparency Service, or more specifically, outside the SCITT API/Architecture. \r\nAn implementation could assemble them. \r\nHowever, reading and writing new docs, it's become difficult to describe a signed statement that's been registered. See: https://github.com/ietf-wg-scitt/draft-ietf-scitt-scrapi/pull/5/commits/6a81982412e1eb8c87545f25def8311c8beee013\r\n\r\nIf others agree, proposal would be to add Registered Signed Statement in the terminology and other relevant places in the doc.",
+          "createdAt": "2024-03-19T06:15:05Z",
+          "updatedAt": "2024-03-19T06:15:05Z"
+        },
+        {
+          "author": "bobmartin3000",
+          "authorAssociation": "NONE",
+          "body": "Sounds like a good change",
+          "createdAt": "2024-03-20T11:42:03Z",
+          "updatedAt": "2024-03-20T11:42:03Z"
         }
       ]
+    },
+    {
+      "number": 222,
+      "id": "I_kwDOIvmHss6CyHR8",
+      "title": "Clarify if/when X5Chain should be included",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/222",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "At the IETF 119 Hackathon, it became confusing when/if `33 x5chain` should be added to the protected header, the unprotected header, or not at all.\r\n\r\nWhile adding the x5chain to the statement can help discoverability, it expands the CBOR content, which is intended to be as small as possible.\r\nPlacing x5Chain in the protected header also means it's included in the signature, which really adds no value.\r\nAlternatives are to place it in the unprotected header, which isn't signed and could be stripped, but typically isn't in practice, so it still adds bloat.\r\n\r\nLastly, the spec speaks to different options: `x5t` (34), `x5chain`(33) or `kid`(4) \r\n[Line: 404](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L404) says:\r\n> During registration, a Transparency Service MUST, at a minimum, authenticate the Issuer of the Signed Statement by validating the CBOR signature and checking the identity of the issuer against one of its currently configured trust anchors, using the `x5t` (34), `x5chain`(33) or `kid`(4) protected headers of the Signed Statement as hints.\r\n> For instance, in order to authenticate X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.\r\n\r\nProposal would be to:\r\n1. Move x5Chain to the unprotected header\r\n1. Remove x5Chain\r\n1. Update the samples to show the different combinations. The [current sample](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L523) shows all as options, which has confused implementers.",
+      "createdAt": "2024-03-19T06:51:45Z",
+      "updatedAt": "2024-03-19T06:51:45Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -28784,24 +28814,26 @@
       "id": "PR_kwDOIvmHss5p0WlP",
       "title": "Add any to the unprotected header.",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/220",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Making the unprotected header consistent with the protected header",
       "createdAt": "2024-03-16T07:25:47Z",
-      "updatedAt": "2024-03-16T23:54:11Z",
+      "updatedAt": "2024-03-20T05:38:48Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "fa79d103837881f12e24bd857bcfa95fe2a3116a",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/unprotected-any",
       "headRefOid": "cc5292daa813eb097d59ded648ab6d3928aa870f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-03-20T05:38:48Z",
+      "mergedAt": "2024-03-20T05:38:48Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b"
+      },
       "comments": [],
       "reviews": [
         {
