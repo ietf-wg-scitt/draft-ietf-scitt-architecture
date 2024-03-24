@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-21T00:35:45.745718+00:00",
+  "timestamp": "2024-03-24T00:38:53.714118+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4332,7 +4332,7 @@
       ],
       "body": "The TS stores Signed Statements. When we started SCITT, I believe several folks had the position that TS would create and store Transparent Statements. \r\nAs of draft 06, a Transparent Statement is assembled on the client, outside the scope of the TS. Yet, we still refer to Transparent Statements. \r\nShould we add a term called Registered Signed Statement, which differentiates a Signed Statement that hasn't yet been registered, and a Signed Statement that has been registered, but isn't Transparent as the TS doesn't staple the receipt to the Signed Statement?",
       "createdAt": "2024-03-18T06:24:43Z",
-      "updatedAt": "2024-03-20T11:42:04Z",
+      "updatedAt": "2024-03-22T00:09:49Z",
       "closedAt": null,
       "comments": [
         {
@@ -4355,6 +4355,13 @@
           "body": "Sounds like a good change",
           "createdAt": "2024-03-20T11:42:03Z",
           "updatedAt": "2024-03-20T11:42:03Z"
+        },
+        {
+          "author": "raylutz",
+          "authorAssociation": "NONE",
+          "body": "I would prefer to see that the format of the final registered signed statement be defined because it appears that this will be likely something that is published along with an artifact in many use cases.",
+          "createdAt": "2024-03-22T00:09:48Z",
+          "updatedAt": "2024-03-22T00:09:48Z"
         }
       ]
     },
@@ -4371,6 +4378,22 @@
       "body": "At the IETF 119 Hackathon, it became confusing when/if `33 x5chain` should be added to the protected header, the unprotected header, or not at all.\r\n\r\nWhile adding the x5chain to the statement can help discoverability, it expands the CBOR content, which is intended to be as small as possible.\r\nPlacing x5Chain in the protected header also means it's included in the signature, which really adds no value.\r\nAlternatives are to place it in the unprotected header, which isn't signed and could be stripped, but typically isn't in practice, so it still adds bloat.\r\n\r\nLastly, the spec speaks to different options: `x5t` (34), `x5chain`(33) or `kid`(4) \r\n[Line: 404](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L404) says:\r\n> During registration, a Transparency Service MUST, at a minimum, authenticate the Issuer of the Signed Statement by validating the CBOR signature and checking the identity of the issuer against one of its currently configured trust anchors, using the `x5t` (34), `x5chain`(33) or `kid`(4) protected headers of the Signed Statement as hints.\r\n> For instance, in order to authenticate X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.\r\n\r\nProposal would be to:\r\n1. Move x5Chain to the unprotected header\r\n1. Remove x5Chain\r\n1. Update the samples to show the different combinations. The [current sample](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L523) shows all as options, which has confused implementers.",
       "createdAt": "2024-03-19T06:51:45Z",
       "updatedAt": "2024-03-19T06:51:45Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 223,
+      "id": "I_kwDOIvmHss6DNwIQ",
+      "title": "Add common usage of terminology",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/223",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Justin suggested adding an appendix section to disambiguage common usage of terms, such as Issuer, Verifier, Attestation and Assertion.",
+      "createdAt": "2024-03-21T23:59:52Z",
+      "updatedAt": "2024-03-21T23:59:52Z",
       "closedAt": null,
       "comments": []
     }
