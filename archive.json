@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-26T00:34:25.428935+00:00",
+  "timestamp": "2024-03-28T00:34:46.072049+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4377,9 +4377,17 @@
       "labels": [],
       "body": "At the IETF 119 Hackathon, it became confusing when/if `33 x5chain` should be added to the protected header, the unprotected header, or not at all.\r\n\r\nWhile adding the x5chain to the statement can help discoverability, it expands the CBOR content, which is intended to be as small as possible.\r\nPlacing x5Chain in the protected header also means it's included in the signature, which really adds no value.\r\nAlternatives are to place it in the unprotected header, which isn't signed and could be stripped, but typically isn't in practice, so it still adds bloat.\r\n\r\nLastly, the spec speaks to different options: `x5t` (34), `x5chain`(33) or `kid`(4) \r\n[Line: 404](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L404) says:\r\n> During registration, a Transparency Service MUST, at a minimum, authenticate the Issuer of the Signed Statement by validating the CBOR signature and checking the identity of the issuer against one of its currently configured trust anchors, using the `x5t` (34), `x5chain`(33) or `kid`(4) protected headers of the Signed Statement as hints.\r\n> For instance, in order to authenticate X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.\r\n\r\nProposal would be to:\r\n1. Move x5Chain to the unprotected header\r\n1. Remove x5Chain\r\n1. Update the samples to show the different combinations. The [current sample](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L523) shows all as options, which has confused implementers.",
       "createdAt": "2024-03-19T06:51:45Z",
-      "updatedAt": "2024-03-19T06:51:45Z",
+      "updatedAt": "2024-03-27T18:42:03Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "CBonnell",
+          "authorAssociation": "NONE",
+          "body": "If an X.509 certificate is used as the identity document of the Issuer, then it's reasonable to require the thumbprint of the end-entity certificate to be included in the protected header. Additionally, the x5chain can optionally be included in the unprotected header. This approach has several benefits:\r\n\r\n1. If there is an alternate discovery mechanism for X.509-based identity documents, the `x5t` value can be used to retrieve such documents. Given the existence of this alternate discovery mechanism, the chain included in the unprotected header can be removed to reduce the amount of (unnecessary) data in the Transparency Service.\r\n2. If there is no such discovery mechanism, the presence of the x5chain in the unprotected header provides the necessary information to relying parties to validate the signature on the Statement.\r\n3. RFC 9360 requires that information regarding the end-entity certificate for the identity be integrity-protected. Including the `x5t` in the protected header accomplishes this. However, there is no requirement for the `x5chain` to be protected, so it can be included in the unprotected header.",
+          "createdAt": "2024-03-27T18:42:02Z",
+          "updatedAt": "2024-03-27T18:42:02Z"
+        }
+      ]
     },
     {
       "number": 223,
