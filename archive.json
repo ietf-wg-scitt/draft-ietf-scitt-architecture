@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-31T00:38:46.380841+00:00",
+  "timestamp": "2024-04-02T00:35:26.566327+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4404,6 +4404,37 @@
       "updatedAt": "2024-03-21T23:59:52Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 224,
+      "id": "I_kwDOIvmHss6EJnDp",
+      "title": "DNS Name Compatible Receipt Identifiers",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/224",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Consider:\r\n\r\n```\r\nurn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o\r\n```\r\n\r\nWhile this provides string name that works ok for HTTP APIs, this name is not acceptable in many other APIs, due to its use of multiple cases and the colon character.\r\n\r\nConsider a CSR which wishes to obtain a certificate with a SAN, where the SAN can encode a fully qualified receipt.\r\n\r\nPossible syntax:\r\n\r\n```\r\nreceipt-{lowercase(base64url(sha256(signed-statement)))}.transparency.service.example\r\nreceipt-{lowercase(hex(sha256(signed-statement)))}.transparency.service.example\r\n```\r\n\r\n`receipt` could be shortened.\r\n\r\nNames can't start with numbers, cant include special characters, etc...\r\n\r\nIn the same way that URN authority moves left to right, DNS name authority moves right to left... right?\r\n\r\nThere would be issues with case collisions, perhaps base16 lowercase is a better choice.\r\n\r\nThere are restrictions on the max length of SANs, we would want to check those.\r\n \r\nIs this an abuse of SAN? \r\n\r\nBeing \"name\" lookup compatible with DNS seems worth considering.\r\n",
+      "createdAt": "2024-03-31T18:00:02Z",
+      "updatedAt": "2024-04-01T23:14:42Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I'm not fully sure I'm following, but I think I'm leaning towards the 'abuse of SAN' answer. \r\n\r\nDo I understand that you want to somehow encode an (Issuer?) identity (or some statement about an identity ... and yes I've deliberately avoided the word 'claim' here) into a SCITT Signed Statement, then get a SCITT Receipt for that and then put the whole Receipt in the SubjectAltName field so that the identity coms ready-loaded with some kind of provenance/authenticity measure in it?",
+          "createdAt": "2024-04-01T11:03:06Z",
+          "updatedAt": "2024-04-01T11:03:06Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "For `sub` and `iss`, the value `example.com` is an acceptable value, and an acceptable SAN.\r\n\r\nAnd yes, long story short, I am wondering about where Receipts might be provided by reference in CSRs... similar to how Let's Encrypt certificates contain references to SCTs, and support SANs.\r\n\r\n\r\n",
+          "createdAt": "2024-04-01T18:34:05Z",
+          "updatedAt": "2024-04-01T23:14:42Z"
+        }
+      ]
     }
   ],
   "pulls": [
