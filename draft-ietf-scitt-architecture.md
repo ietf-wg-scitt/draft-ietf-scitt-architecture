@@ -231,6 +231,11 @@ Receipts are based on Signed Inclusion Proofs, such as those as described in COS
 they can be built on different verifiable data structures, not just binary merkle trees.
 A Receipt consists of a Transparency Service-specific inclusion proof for the Signed Statement, a signature by the Transparency Service of the state of the Append-only Log after the inclusion, and additional metadata (contained in the signature's protected headers) to assist in auditing.
 
+Registered Signed Statement:
+
+: a Signed Statement that has passed the Registration Policy, has been counter-signed by the Transparency Service and has been committed to the Append-only Log.
+A Registered Signed Statement is represented as a Receipt.
+
 Registration:
 
 : the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, adding to the Append-only Log, and producing a Receipt.
@@ -276,7 +281,7 @@ The identity of a Transparency Service is captured by a public key that must be 
 
 Transparent Statement:
 
-: a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
+: a Registered Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
 The receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
 A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.
 
@@ -303,7 +308,7 @@ A Receipt is an offline, universally-verifiable proof that an entry is recorded 
 Receipts do not expire, but it is possible to append new entries (more recent Signed Statements) that subsume older entries (less recent Signed Statements).
 
 Anyone with access to the Transparency Service can independently verify its consistency and review the complete list of Transparent Statements registered by each Issuer.
-However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, from a from the first Transparency Service ) and register it on another Transparency Service, where the second receipt will be over the first Receipt in the unprotected header.
+However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Registered Signed Statement with a Receipt in its unprotected header, from the first Transparency Service) and register it on another Transparency Service, where the second receipt will be over the first Receipt in the unprotected header.
 
 Reputable Issuers are thus incentivized to carefully review their Statements before signing them to produce Signed Statements.
 Similarly, reputable Transparency Services are incentivized to secure their Append-only Log, as any inconsistency can easily be pinpointed by any Auditor with read access to the Transparency Service.
@@ -321,7 +326,7 @@ Considering CT in terms of SCITT:
 
 # Architecture Overview
 
-The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements, and auditing Transparent Statements.
+The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and Registering Signed Statements, and auditing Transparent Statements.
 
 In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
@@ -349,11 +354,11 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
           |  |          +.      +--+------------+ | |
           |   '-+------'  |        | Transparency | |
           |     | Receipt +<-------+              | |
-          |      '------+'         | Service      | |
-           '-------. .-'           +------------+-+ |
-                    |                           |   |
-                    v                           |   |
-              .-----+-----.                     |   |
+          |      '-----+-'         | Service      | |
+           '----.      |           +------------+-+ |
+                 |     |                        |   |
+                 v     v                        |   |
+              .--+-----+--.                     |   |
              | Transparent |                    |   |
              |  Statement  |                    |   |
               '-----+-----'                     |   |
@@ -371,7 +376,7 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
          '------------------'      '----------------'
 ~~~
 
-This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and Signed Statements, Transparency Service and the Signed Statement Registration process, as well as Relying Parties of the Transparent Statements and the Receipt validation process.
+This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and Signed Statements, Transparency Service, the Signed Statement Registration process, as well as Relying Parties of the Transparent Statements and the Receipt validation process.
 
 ## Transparency Service
 
