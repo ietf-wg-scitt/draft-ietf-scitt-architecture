@@ -15,14 +15,14 @@
 The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases. 
        This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
-Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers will be able to verify them. 
+Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Auditors and Verifiers will be able to verify them. 
     " name="description">
-<meta content="xml2rfc 3.19.4" name="generator">
+<meta content="xml2rfc 3.20.1" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-scitt-architecture-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.19.4
-    Python 3.11.6
+  xml2rfc 3.20.1
+    Python 3.11.8
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
@@ -1033,11 +1033,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SCITT Architecture</td>
-<td class="right">February 2024</td>
+<td class="right">April 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 23 August 2024</td>
+<td class="center">Expires 5 October 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1050,12 +1050,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-02-20" class="published">20 February 2024</time>
+<time datetime="2024-04-03" class="published">3 April 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-08-23">23 August 2024</time></dd>
+<dd class="expires"><time datetime="2024-10-05">5 October 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1088,7 +1088,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
-Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Consumers will be able to verify them.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Auditors and Verifiers will be able to verify them.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1124,7 +1124,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 23 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 October 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1191,154 +1191,154 @@ Issuers can register their Signed Statements on any Transparency Service, with t
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-signed-statements" class="internal xref">Signed Statements</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.1">
-                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="auto internal xref">4.2.1</a>.  <a href="#name-registration" class="internal xref">Registration</a></p>
+                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="auto internal xref">4.2.1</a>.  <a href="#name-signed-statement-examples" class="internal xref">Signed Statement Examples</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-transparent-statements" class="internal xref">Transparent Statements</a></p>
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-registration" class="internal xref">Registration</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-transparent-statements" class="internal xref">Transparent Statements</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.1">
-                    <p id="section-toc.1-1.4.2.3.2.1.1"><a href="#section-4.3.1" class="auto internal xref">4.3.1</a>.  <a href="#name-validation" class="internal xref">Validation</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4.2.1">
+                    <p id="section-toc.1-1.4.2.4.2.1.1"><a href="#section-4.4.1" class="auto internal xref">4.4.1</a>.  <a href="#name-validation" class="internal xref">Validation</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-federation" class="internal xref">Federation</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-privacy-considerations" class="internal xref">Privacy Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-privacy-considerations" class="internal xref">Privacy Considerations</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-security-guarantees" class="internal xref">Security Guarantees</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-security-guarantees" class="internal xref">Security Guarantees</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
-                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-threat-model" class="internal xref">Threat Model</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-threat-model" class="internal xref">Threat Model</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2.2.1">
-                    <p id="section-toc.1-1.7.2.2.2.1.1"><a href="#section-7.2.1" class="auto internal xref">7.2.1</a>.  <a href="#name-append-only-log-2" class="internal xref">Append-only Log</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.1">
+                    <p id="section-toc.1-1.6.2.2.2.1.1"><a href="#section-6.2.1" class="auto internal xref">6.2.1</a>.  <a href="#name-append-only-log-2" class="internal xref">Append-only Log</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2.2.2">
-                    <p id="section-toc.1-1.7.2.2.2.2.1"><a href="#section-7.2.2" class="auto internal xref">7.2.2</a>.  <a href="#name-availability-of-receipts" class="internal xref">Availability of Receipts</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.2">
+                    <p id="section-toc.1-1.6.2.2.2.2.1"><a href="#section-6.2.2" class="auto internal xref">6.2.2</a>.  <a href="#name-availability-of-receipts" class="internal xref">Availability of Receipts</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2.2.3">
-                    <p id="section-toc.1-1.7.2.2.2.3.1"><a href="#section-7.2.3" class="auto internal xref">7.2.3</a>.  <a href="#name-confidentiality-and-privacy" class="internal xref">Confidentiality and Privacy</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.3">
+                    <p id="section-toc.1-1.6.2.2.2.3.1"><a href="#section-6.2.3" class="auto internal xref">6.2.3</a>.  <a href="#name-confidentiality-and-privacy" class="internal xref">Confidentiality and Privacy</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2.2.4">
-                    <p id="section-toc.1-1.7.2.2.2.4.1"><a href="#section-7.2.4" class="auto internal xref">7.2.4</a>.  <a href="#name-cryptographic-agility" class="internal xref">Cryptographic Agility</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.4">
+                    <p id="section-toc.1-1.6.2.2.2.4.1"><a href="#section-6.2.4" class="auto internal xref">6.2.4</a>.  <a href="#name-cryptographic-agility" class="internal xref">Cryptographic Agility</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2.2.5">
-                    <p id="section-toc.1-1.7.2.2.2.5.1"><a href="#section-7.2.5" class="auto internal xref">7.2.5</a>.  <a href="#name-transparency-service-client" class="internal xref">Transparency Service Clients</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.5">
+                    <p id="section-toc.1-1.6.2.2.2.5.1"><a href="#section-6.2.5" class="auto internal xref">6.2.5</a>.  <a href="#name-transparency-service-client" class="internal xref">Transparency Service Client Applications</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2.2.6">
-                    <p id="section-toc.1-1.7.2.2.2.6.1"><a href="#section-7.2.6" class="auto internal xref">7.2.6</a>.  <a href="#name-impersonation" class="internal xref">Impersonation</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.6">
+                    <p id="section-toc.1-1.6.2.2.2.6.1"><a href="#section-6.2.6" class="auto internal xref">6.2.6</a>.  <a href="#name-impersonation" class="internal xref">Impersonation</a></p>
 </li>
                 </ul>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-media-type-registration" class="internal xref">Media Type Registration</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-references" class="internal xref">References</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
-                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-media-type-registration" class="internal xref">Media Type Registration</a></p>
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-identifiers" class="internal xref">Identifiers</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
-                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+                <p id="section-toc.1-1.9.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-for-binary-content" class="internal xref">For Binary Content</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
-                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+                <p id="section-toc.1-1.9.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-for-scitt-messages" class="internal xref">For SCITT Messages</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3">
+                <p id="section-toc.1-1.9.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-for-transparent-statements" class="internal xref">For Transparent Statements</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.4">
+                <p id="section-toc.1-1.9.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-statements" class="internal xref">Statements</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.4.2.1">
+                    <p id="section-toc.1-1.9.2.4.2.1.1"><a href="#appendix-A.4.1" class="auto internal xref">A.4.1</a>.  <a href="#name-statement-urn" class="internal xref">Statement URN</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.4.2.2">
+                    <p id="section-toc.1-1.9.2.4.2.2.1"><a href="#appendix-A.4.2" class="auto internal xref">A.4.2</a>.  <a href="#name-statement-url" class="internal xref">Statement URL</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.4.2.3">
+                    <p id="section-toc.1-1.9.2.4.2.3.1"><a href="#appendix-A.4.3" class="auto internal xref">A.4.3</a>.  <a href="#name-statement-data-url" class="internal xref">Statement Data URL</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.5">
+                <p id="section-toc.1-1.9.2.5.1"><a href="#appendix-A.5" class="auto internal xref">A.5</a>.  <a href="#name-signed-statements-2" class="internal xref">Signed Statements</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.5.2.1">
+                    <p id="section-toc.1-1.9.2.5.2.1.1"><a href="#appendix-A.5.1" class="auto internal xref">A.5.1</a>.  <a href="#name-signed-statement-urn" class="internal xref">Signed Statement URN</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.5.2.2">
+                    <p id="section-toc.1-1.9.2.5.2.2.1"><a href="#appendix-A.5.2" class="auto internal xref">A.5.2</a>.  <a href="#name-signed-statement-url" class="internal xref">Signed Statement URL</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.5.2.3">
+                    <p id="section-toc.1-1.9.2.5.2.3.1"><a href="#appendix-A.5.3" class="auto internal xref">A.5.3</a>.  <a href="#name-signed-statement-data-url" class="internal xref">Signed Statement Data URL</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.6">
+                <p id="section-toc.1-1.9.2.6.1"><a href="#appendix-A.6" class="auto internal xref">A.6</a>.  <a href="#name-receipts" class="internal xref">Receipts</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.6.2.1">
+                    <p id="section-toc.1-1.9.2.6.2.1.1"><a href="#appendix-A.6.1" class="auto internal xref">A.6.1</a>.  <a href="#name-receipt-urn" class="internal xref">Receipt URN</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.6.2.2">
+                    <p id="section-toc.1-1.9.2.6.2.2.1"><a href="#appendix-A.6.2" class="auto internal xref">A.6.2</a>.  <a href="#name-receipt-url" class="internal xref">Receipt URL</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.6.2.3">
+                    <p id="section-toc.1-1.9.2.6.2.3.1"><a href="#appendix-A.6.3" class="auto internal xref">A.6.3</a>.  <a href="#name-receipt-data-url" class="internal xref">Receipt Data URL</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.7">
+                <p id="section-toc.1-1.9.2.7.1"><a href="#appendix-A.7" class="auto internal xref">A.7</a>.  <a href="#name-transparent-statements-2" class="internal xref">Transparent Statements</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.7.2.1">
+                    <p id="section-toc.1-1.9.2.7.2.1.1"><a href="#appendix-A.7.1" class="auto internal xref">A.7.1</a>.  <a href="#name-transparent-statement-urn" class="internal xref">Transparent Statement URN</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.7.2.2">
+                    <p id="section-toc.1-1.9.2.7.2.2.1"><a href="#appendix-A.7.2" class="auto internal xref">A.7.2</a>.  <a href="#name-transparent-statement-url" class="internal xref">Transparent Statement URL</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.7.2.3">
+                    <p id="section-toc.1-1.9.2.7.2.3.1"><a href="#appendix-A.7.3" class="auto internal xref">A.7.3</a>.  <a href="#name-transparent-statement-data-" class="internal xref">Transparent Statement Data URL</a></p>
+</li>
+                </ul>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-identifiers" class="internal xref">Identifiers</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
-                <p id="section-toc.1-1.10.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-for-binary-content" class="internal xref">For Binary Content</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
-                <p id="section-toc.1-1.10.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-for-scitt-messages" class="internal xref">For SCITT Messages</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.3">
-                <p id="section-toc.1-1.10.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-for-transparent-statements" class="internal xref">For Transparent Statements</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.4">
-                <p id="section-toc.1-1.10.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-statements" class="internal xref">Statements</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.4.2.1">
-                    <p id="section-toc.1-1.10.2.4.2.1.1"><a href="#appendix-A.4.1" class="auto internal xref">A.4.1</a>.  <a href="#name-statement-urn" class="internal xref">Statement URN</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.4.2.2">
-                    <p id="section-toc.1-1.10.2.4.2.2.1"><a href="#appendix-A.4.2" class="auto internal xref">A.4.2</a>.  <a href="#name-statement-url" class="internal xref">Statement URL</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.4.2.3">
-                    <p id="section-toc.1-1.10.2.4.2.3.1"><a href="#appendix-A.4.3" class="auto internal xref">A.4.3</a>.  <a href="#name-statement-data-url" class="internal xref">Statement Data URL</a></p>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.5">
-                <p id="section-toc.1-1.10.2.5.1"><a href="#appendix-A.5" class="auto internal xref">A.5</a>.  <a href="#name-signed-statements-2" class="internal xref">Signed Statements</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.5.2.1">
-                    <p id="section-toc.1-1.10.2.5.2.1.1"><a href="#appendix-A.5.1" class="auto internal xref">A.5.1</a>.  <a href="#name-signed-statement-urn" class="internal xref">Signed Statement URN</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.5.2.2">
-                    <p id="section-toc.1-1.10.2.5.2.2.1"><a href="#appendix-A.5.2" class="auto internal xref">A.5.2</a>.  <a href="#name-signed-statement-url" class="internal xref">Signed Statement URL</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.5.2.3">
-                    <p id="section-toc.1-1.10.2.5.2.3.1"><a href="#appendix-A.5.3" class="auto internal xref">A.5.3</a>.  <a href="#name-signed-statement-data-url" class="internal xref">Signed Statement Data URL</a></p>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.6">
-                <p id="section-toc.1-1.10.2.6.1"><a href="#appendix-A.6" class="auto internal xref">A.6</a>.  <a href="#name-receipts" class="internal xref">Receipts</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.6.2.1">
-                    <p id="section-toc.1-1.10.2.6.2.1.1"><a href="#appendix-A.6.1" class="auto internal xref">A.6.1</a>.  <a href="#name-receipt-urn" class="internal xref">Receipt URN</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.6.2.2">
-                    <p id="section-toc.1-1.10.2.6.2.2.1"><a href="#appendix-A.6.2" class="auto internal xref">A.6.2</a>.  <a href="#name-receipt-url" class="internal xref">Receipt URL</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.6.2.3">
-                    <p id="section-toc.1-1.10.2.6.2.3.1"><a href="#appendix-A.6.3" class="auto internal xref">A.6.3</a>.  <a href="#name-receipt-data-url" class="internal xref">Receipt Data URL</a></p>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.7">
-                <p id="section-toc.1-1.10.2.7.1"><a href="#appendix-A.7" class="auto internal xref">A.7</a>.  <a href="#name-transparent-statements-2" class="internal xref">Transparent Statements</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.7.2.1">
-                    <p id="section-toc.1-1.10.2.7.2.1.1"><a href="#appendix-A.7.1" class="auto internal xref">A.7.1</a>.  <a href="#name-transparent-statement-urn" class="internal xref">Transparent Statement URN</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.7.2.2">
-                    <p id="section-toc.1-1.10.2.7.2.2.1"><a href="#appendix-A.7.2" class="auto internal xref">A.7.2</a>.  <a href="#name-transparent-statement-url" class="internal xref">Transparent Statement URL</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.7.2.3">
-                    <p id="section-toc.1-1.10.2.7.2.3.1"><a href="#appendix-A.7.3" class="auto internal xref">A.7.3</a>.  <a href="#name-transparent-statement-data-" class="internal xref">Transparent Statement Data URL</a></p>
-</li>
-                </ul>
-</li>
-            </ul>
+            <p id="section-toc.1-1.10.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-signing-statements-remotely" class="internal xref">Signing Statements Remotely</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-signing-statements-remotely" class="internal xref">Signing Statements Remotely</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1351,16 +1351,16 @@ Issuers can register their Signed Statements on any Transparency Service, with t
       </h2>
 <p id="section-1-1">This document describes the scalable, flexible, and decentralized SCITT architecture.
 Its goal is to enhance auditability and accountability across supply chains.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">In supply chains, artifacts travel down the chain until they are eventually consumed by someone.
-Consumers like to have information about the artifacts that they consume.
+<p id="section-1-2">In supply chains, downstream artifacts are built upon upstream artifacts.
+The complexity of traceability and quality control for these supply chains increases with the number of artifacts and parties contributing to them.
 There are many parties who publish information about artifacts:
 For example, the original manufacturer may provide information about the state of the artifact when it left the factory.
 The shipping company may add information about the transport environment of the artifact.
 Compliance auditors may provide information about their compliance assessment of the artifact.
 Security companies may publish vulnerability information about an artifact.
-Consumers may even publish the fact that they consume an artifact.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">SCITT provides a way for consumers to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
-SCITT achieves this by having producers publish information in a Transparency Service, where consumers (also called Verifiers) can check the information.<a href="#section-1-3" class="pilcrow">¶</a></p>
+Some of these parties may publish information about their analysis or use of an artifact.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">SCITT provides a way for Relying Parties to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
+SCITT achieves this by having producers publish information in a Transparency Service, where Relying Parties can check the information.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <div id="sec-requirements-notation">
 <section id="section-1.1">
         <h3 id="name-requirements-notation">
@@ -1384,118 +1384,134 @@ When used in text, the corresponding terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2"><strong>Editor's Note:</strong>: <em>The label "394" is expected to be reserved by this document, in the COSE Header Parameters Registry.</em><a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">The terms "header", "payload", and "to-be-signed bytes" are defined in <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#section-2-3" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-2-4">
-        <dt id="section-2-4.1">Append-only Log (Ledger):</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.2">
-          <p id="section-2-4.2.1">the verifiable append-only data structure that stores Signed Statements in a Transparency Service, often referred to by the synonym, Ledger.
-SCITT supports multiple Ledger and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Logs.<a href="#section-2-4.2.1" class="pilcrow">¶</a></p>
+<p id="section-2-4">The terms claim is defined in <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>, and is repeated here for readability:<a href="#section-2-4" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2-5">
+        <dt id="section-2-5.1">Append-only Log (Ledger):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.2">
+          <p id="section-2-5.2.1">the verifiable append-only data structure that stores Signed Statements in a Transparency Service, often referred to by the synonym Ledger.
+SCITT supports multiple Ledger and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Logs.<a href="#section-2-5.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.3">Artifact:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.4">
-          <p id="section-2-4.4.1">a physical or non-physical item that is moving along a supply chain.<a href="#section-2-4.4.1" class="pilcrow">¶</a></p>
+<dt id="section-2-5.3">Artifact:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.4">
+          <p id="section-2-5.4.1">a physical or non-physical item that is moving along a supply chain.<a href="#section-2-5.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.5">Auditor:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.6">
-          <p id="section-2-4.6.1">an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.<a href="#section-2-4.6.1" class="pilcrow">¶</a></p>
+<dt id="section-2-5.5">Auditor:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.6">
+          <p id="section-2-5.6.1">an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.<a href="#section-2-5.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.7">Envelope:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.8">
-          <p id="section-2-4.8.1">metadata, created by the Issuer to produce a Signed Statement.
+<dt id="section-2-5.7">Claim:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.8">
+          <p id="section-2-5.8.1">A claim is a piece of information asserted about a subject and is represented as a name/value pair consisting of a claim name and a claim value.<a href="#section-2-5.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.9">Client:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.10">
+          <p id="section-2-5.10.1">an application making protected Transparency Service resource requests on behalf of the resource owner and with its authorization.<a href="#section-2-5.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.11">Envelope:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.12">
+          <p id="section-2-5.12.1">metadata, created by the Issuer to produce a Signed Statement.
 The Envelope contains the identity of the Issuer and information about the Artifact, enabling Transparency Service Registration Policies to validate the Signed Statement.
 A Signed Statement is a COSE Envelope wrapped around a Statement, binding the metadata in the Envelope to the Statement.
-In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).<a href="#section-2-4.8.1" class="pilcrow">¶</a></p>
+In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).<a href="#section-2-5.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.9">Equivocation:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.10">
-          <p id="section-2-4.10.1">a state where it is possible for a Transparency Service to provide different views of its Append-only log to Verifiers about the same Artifact <span>[<a href="#EQUIVOCATION" class="cite xref">EQUIVOCATION</a>]</span>.<a href="#section-2-4.10.1" class="pilcrow">¶</a></p>
+<dt id="section-2-5.13">Equivocation:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.14">
+          <p id="section-2-5.14.1">a state where it is possible for a Transparency Service to provide different views of its Append-only log to Relying Parties about the same Artifact <span>[<a href="#EQUIVOCATION" class="cite xref">EQUIVOCATION</a>]</span>.<a href="#section-2-5.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.11">Feed:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.12">
-          <p id="section-2-4.12.1">A collection of Receipts, as recorded by the Transparency Service, based on filtering of properties from the envelope including, but not limited to the <code>sub</code> field of the <code>CWT_Claims</code>.
-Verifiers may use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the Artifact they are evaluating.<a href="#section-2-4.12.1" class="pilcrow">¶</a></p>
+<dt id="section-2-5.15">Feed:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.16">
+          <p id="section-2-5.16.1">A collection of Receipts, as recorded by the Transparency Service, based on filtering of properties from the envelope including, but not limited to the <code>sub</code> field of the <code>CWT_Claims</code>.
+Relying Parties may use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the Artifact they are evaluating.<a href="#section-2-5.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.13">Issuer:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.14">
-          <p id="section-2-4.14.1">organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers.
-An Issuer may be the owner or author of Artifacts, or an independent third party such as an auditor, reviewer or an endorser.<a href="#section-2-4.14.1" class="pilcrow">¶</a></p>
+<dt id="section-2-5.17">Issuer:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.18">
+          <p id="section-2-5.18.1">organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers.
+An Issuer may be the owner or author of Artifacts, or an independent third party such as an auditor, reviewer or an endorser.<a href="#section-2-5.18.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.15">Non-equivocation:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.16">
-          <p id="section-2-4.16.1">a state where it is impossible for a Transparency Service to provide different views of its append-only log to Verifiers about the same Artifact.
-Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Verifiers.<a href="#section-2-4.16.1" class="pilcrow">¶</a></p>
+<dt id="section-2-5.19">Non-equivocation:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.20">
+          <p id="section-2-5.20.1">a state where it is impossible for a Transparency Service to provide different views of its append-only log to Relying Parties about the same Artifact.
+Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Relying Parties.<a href="#section-2-5.20.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.17">Receipt:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.18">
-          <p id="section-2-4.18.1">a Receipt is a cryptographic proof that a Signed Statement is recorded in the Append-only Log.
-Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span>.
-Receipts can be built on different verifiable data structures, not just binary merkle trees.
-Receipts consist of Transparency Service-specific inclusion proofs, a signature by the Transparency Service of the state of the Append-only Log, and additional metadata (contained in the signature's protected headers) to assist in auditing.<a href="#section-2-4.18.1" class="pilcrow">¶</a></p>
+<dt id="section-2-5.21">Receipt:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.22">
+          <p id="section-2-5.22.1">a cryptographic proof that a Signed Statement is included in the Append-only Log.
+Receipts are based on Signed Inclusion Proofs, such as those as described in COSE Signed Merkle Tree Proofs <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>;
+they can be built on different verifiable data structures, not just binary merkle trees.
+A Receipt consists of a Transparency Service-specific inclusion proof for the Signed Statement, a signature by the Transparency Service of the state of the Append-only Log after the inclusion, and additional metadata (contained in the signature's protected headers) to assist in auditing.<a href="#section-2-5.22.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.19">Registration:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.20">
-          <p id="section-2-4.20.1">the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, adding to the Append-only Log, and producing a Receipt.<a href="#section-2-4.20.1" class="pilcrow">¶</a></p>
+<dt id="section-2-5.23">Registered Signed Statement:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.24">
+          <p id="section-2-5.24.1">a Signed Statement that has passed the Registration Policy, has been counter-signed by the Transparency Service and has been committed to the Append-only Log.
+A Registered Signed Statement is represented as a Receipt.<a href="#section-2-5.24.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.21">Registration Policy:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.22">
-          <p id="section-2-4.22.1">the pre-condition enforced by the Transparency Service before registering a Signed Statement, based on information in the non-opaque header and metadata contained in its COSE Envelope.<a href="#section-2-4.22.1" class="pilcrow">¶</a></p>
+<dt id="section-2-5.25">Registration:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.26">
+          <p id="section-2-5.26.1">the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, adding to the Append-only Log, and producing a Receipt.<a href="#section-2-5.26.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.23">Signed Statement:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.24">
-          <p id="section-2-4.24.1">an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
-In SCITT, Signed Statements are encoded as COSE signed objects; the <code>payload</code> of the COSE structure contains the issued Statement.<a href="#section-2-4.24.1" class="pilcrow">¶</a></p>
+<dt id="section-2-5.27">Registration Policy:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.28">
+          <p id="section-2-5.28.1">the pre-condition enforced by the Transparency Service before registering a Signed Statement, based on information in the non-opaque header and metadata contained in its COSE Envelope.<a href="#section-2-5.28.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.25">Statement:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.26">
-          <p id="section-2-4.26.1">any serializable information about an Artifact.
+<dt id="section-2-5.29">Relying Party:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.30">
+          <p id="section-2-5.30.1">a Relying Parties consumes Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.<a href="#section-2-5.30.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.31">Signed Statement:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.32">
+          <p id="section-2-5.32.1">an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
+In SCITT, Signed Statements are encoded as COSE signed objects; the <code>payload</code> of the COSE structure contains the issued Statement.<a href="#section-2-5.32.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.33">Statement:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.34">
+          <p id="section-2-5.34.1">any serializable information about an Artifact.
 To help interpretation of Statements, they must be tagged with a media type (as specified in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>).
 A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version,  or any content an Issuer wishes to publish about an Artifact.
 The additional Statements about an Artifact are correlated by the Subject defined in the <span>[<a href="#CWT_CLAIMS" class="cite xref">CWT_CLAIMS</a>]</span> protected header.
-The Statement is considered opaque to Transparency Service, and <span class="bcp14">MAY</span> be encrypted.<a href="#section-2-4.26.1" class="pilcrow">¶</a></p>
+The Statement is considered opaque to Transparency Service, and <span class="bcp14">MAY</span> be encrypted.<a href="#section-2-5.34.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.27">Subject:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.28">
-          <p id="section-2-4.28.1">This term has the same definition as in RFC8392, which relies on the definition in RFC7519.
+<dt id="section-2-5.35">Subject:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.36">
+          <p id="section-2-5.36.1">This term has the same definition as in <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>, which relies on the definition in RFC7519.
 The <code>sub</code> (subject) claim identifies the principal that is the subject of the CWT.
 The claims in a CWT are normally statements about the subject.
 In SCITT, <code>sub</code> identifies the entity about which statements, and receipts are made.
 The subject value <span class="bcp14">MUST</span> either be scoped to be locally unique in the context of the Issuer or be globally unique.
 The processing of this claim is generally application specific.
 The <code>sub</code> value is a case-sensitive string containing a StringOrURI value.
-Issuer's use <code>sub</code> to identify the entity about which they are making Signed Statements.
-Transparency Services use <code>sub</code> to identify the entity about which they are issuing a Receipt.<a href="#section-2-4.28.1" class="pilcrow">¶</a></p>
+Issuers use <code>sub</code> to identify the entity about which they are making Signed Statements.
+Transparency Services use <code>sub</code> to identify the entity about which they are issuing a Receipt.<a href="#section-2-5.36.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.29">Transparency Service:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.30">
-          <p id="section-2-4.30.1">an entity that maintains and extends the Append-only Log, and endorses its state.
+<dt id="section-2-5.37">Transparency Service:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.38">
+          <p id="section-2-5.38.1">an entity that maintains and extends the Append-only Log, and endorses its state.
 A Transparency Service can be a complex distributed system, and SCITT requires the Transparency Service to provide many security guarantees about its Append-only Log.
-The identity of a Transparency Service is captured by a public key that must be known by Verifiers in order to validate Receipts.<a href="#section-2-4.30.1" class="pilcrow">¶</a></p>
+The identity of a Transparency Service is captured by a public key that must be known by Relying Parties in order to validate Receipts.<a href="#section-2-5.38.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-4.31">Transparent Statement:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.32">
-          <p id="section-2-4.32.1">a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
+<dt id="section-2-5.39">Transparent Statement:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.40">
+          <p id="section-2-5.40.1">a Registered Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
 The receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
-A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.<a href="#section-2-4.32.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-4.33">Verifier:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-4.34">
-          <p id="section-2-4.34.1">organizations, stakeholders, and users involved in validating supply chain Artifacts.
-Verifiers consume Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.<a href="#section-2-4.34.1" class="pilcrow">¶</a></p>
+A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.<a href="#section-2-5.40.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -1514,14 +1530,14 @@ Signed Statements can be made transparent by attaching a proof of Registration b
 By extension, the document may say an Artifact (a firmware binary) is transparent if it comes with one or more Transparent Statements from its author or owner, though the context should make it clear what type of Signed Statements is expected for a given Artifact.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">Transparency does not prevent dishonest or compromised Issuers, but it holds them accountable.
 Any Artifact that may be verified, is subject to scrutiny and auditing by other parties.
-The Transparency Service provides a history of Statements, which may be made by multiple Issuers, enabling Verifiers to make informed decisions.<a href="#section-3-3" class="pilcrow">¶</a></p>
+The Transparency Service provides a history of Statements, which may be made by multiple Issuers, enabling Relying Parties to make informed decisions.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <p id="section-3-4">Transparency is implemented by providing a consistent, append-only, cryptographically verifiable, publicly available record of entries.
 A SCITT instance is referred to as a Transparency Service.
 Implementations of Transparency Services may protect their Append-only Log using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence.
 A Receipt is an offline, universally-verifiable proof that an entry is recorded in the Append-only Log.
 Receipts do not expire, but it is possible to append new entries (more recent Signed Statements) that subsume older entries (less recent Signed Statements).<a href="#section-3-4" class="pilcrow">¶</a></p>
 <p id="section-3-5">Anyone with access to the Transparency Service can independently verify its consistency and review the complete list of Transparent Statements registered by each Issuer.
-However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, from a from the first Transparency Service ) and register it on another Transparency Service, where the second receipt will be over the first Receipt in the unprotected header.<a href="#section-3-5" class="pilcrow">¶</a></p>
+However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Registered Signed Statement with a Receipt in its unprotected header, from the first Transparency Service) and register it on another Transparency Service, where the second receipt will be over the first Receipt in the unprotected header.<a href="#section-3-5" class="pilcrow">¶</a></p>
 <p id="section-3-6">Reputable Issuers are thus incentivized to carefully review their Statements before signing them to produce Signed Statements.
 Similarly, reputable Transparency Services are incentivized to secure their Append-only Log, as any inconsistency can easily be pinpointed by any Auditor with read access to the Transparency Service.<a href="#section-3-6" class="pilcrow">¶</a></p>
 <p id="section-3-7">The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.<a href="#section-3-7" class="pilcrow">¶</a></p>
@@ -1538,7 +1554,7 @@ Considering CT in terms of SCITT:<a href="#section-3-8" class="pilcrow">¶</a></
           <p id="section-3-9.3.1">CT logs produce Signed Certificate Timestamps (Transparent Statements)<a href="#section-3-9.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-9.4">
-          <p id="section-3-9.4.1">Signed Certificate Timestamps are checked by Verifiers<a href="#section-3-9.4.1" class="pilcrow">¶</a></p>
+          <p id="section-3-9.4.1">Signed Certificate Timestamps are checked by Relying Parties<a href="#section-3-9.4.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-9.5">
           <p id="section-3-9.5.1">The Append-only Log can be checked by Auditors<a href="#section-3-9.5.1" class="pilcrow">¶</a></p>
@@ -1551,9 +1567,9 @@ Considering CT in terms of SCITT:<a href="#section-3-8" class="pilcrow">¶</a></
       <h2 id="name-architecture-overview">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-architecture-overview" class="section-name selfRef">Architecture Overview</a>
       </h2>
-<p id="section-4-1">The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements, and auditing Transparent Statements.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-1">The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and Registering Signed Statements, and auditing Transparent Statements.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
-Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span>.<a href="#section-4-2" class="pilcrow">¶</a></p>
+Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>.<a href="#section-4-2" class="pilcrow">¶</a></p>
 <div id="section-4-3">
         <div class="alignLeft art-svg artwork" id="section-4-3.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="720" width="440" viewBox="0 0 440 720" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -1566,10 +1582,11 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
             <path d="M 112,176 L 112,200" fill="none" stroke="black"></path>
             <path d="M 112,256 L 112,272" fill="none" stroke="black"></path>
             <path d="M 128,352 L 128,368" fill="none" stroke="black"></path>
+            <path d="M 136,416 L 136,440" fill="none" stroke="black"></path>
             <path d="M 160,224 L 160,240" fill="none" stroke="black"></path>
-            <path d="M 160,416 L 160,440" fill="none" stroke="black"></path>
             <path d="M 160,496 L 160,648" fill="none" stroke="black"></path>
             <path d="M 168,128 L 168,144" fill="none" stroke="black"></path>
+            <path d="M 184,384 L 184,440" fill="none" stroke="black"></path>
             <path d="M 192,320 L 192,336" fill="none" stroke="black"></path>
             <path d="M 208,352 L 208,368" fill="none" stroke="black"></path>
             <path d="M 216,464 L 216,480" fill="none" stroke="black"></path>
@@ -1610,7 +1627,7 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
             <path d="M 120,352 L 176,352" fill="none" stroke="black"></path>
             <path d="M 216,368 L 280,368" fill="none" stroke="black"></path>
             <path d="M 144,384 L 192,384" fill="none" stroke="black"></path>
-            <path d="M 96,400 L 144,400" fill="none" stroke="black"></path>
+            <path d="M 96,400 L 120,400" fill="none" stroke="black"></path>
             <path d="M 280,400 L 400,400" fill="none" stroke="black"></path>
             <path d="M 120,448 L 200,448" fill="none" stroke="black"></path>
             <path d="M 120,496 L 200,496" fill="none" stroke="black"></path>
@@ -1665,9 +1682,7 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
             <path d="M 144,384 C 135.16936,384 128,376.83064 128,368" fill="none" stroke="black"></path>
             <path d="M 192,384 C 200.83064,384 208,376.83064 208,368" fill="none" stroke="black"></path>
             <path d="M 96,400 C 87.16936,400 80,392.83064 80,384" fill="none" stroke="black"></path>
-            <path d="M 144,400 C 152.83064,400 160,407.16936 160,416" fill="none" stroke="black"></path>
-            <path d="M 176,400 C 167.16936,400 160,407.16936 160,416" fill="none" stroke="black"></path>
-            <path d="M 176,400 C 184.83064,400 192,392.83064 192,384" fill="none" stroke="black"></path>
+            <path d="M 120,400 C 128.83064,400 136,407.16936 136,416" fill="none" stroke="black"></path>
             <path d="M 120,448 C 111.16936,448 104,455.16936 104,464" fill="none" stroke="black"></path>
             <path d="M 200,448 C 208.83064,448 216,455.16936 216,464" fill="none" stroke="black"></path>
             <path d="M 120,496 C 111.16936,496 104,488.83064 104,480" fill="none" stroke="black"></path>
@@ -1684,9 +1699,10 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
             <polygon class="arrowhead" points="232,112 220,106.4 220,117.6" fill="black" transform="rotate(180,224,112)"></polygon>
             <polygon class="arrowhead" points="224,368 212,362.4 212,373.6" fill="black" transform="rotate(180,216,368)"></polygon>
             <polygon class="arrowhead" points="208,320 196,314.4 196,325.6" fill="black" transform="rotate(180,200,320)"></polygon>
+            <polygon class="arrowhead" points="192,440 180,434.4 180,445.6" fill="black" transform="rotate(90,184,440)"></polygon>
             <polygon class="arrowhead" points="176,240 164,234.4 164,245.6" fill="black" transform="rotate(180,168,240)"></polygon>
             <polygon class="arrowhead" points="168,648 156,642.4 156,653.6" fill="black" transform="rotate(90,160,648)"></polygon>
-            <polygon class="arrowhead" points="168,440 156,434.4 156,445.6" fill="black" transform="rotate(90,160,440)"></polygon>
+            <polygon class="arrowhead" points="144,440 132,434.4 132,445.6" fill="black" transform="rotate(90,136,440)"></polygon>
             <polygon class="arrowhead" points="120,200 108,194.4 108,205.6" fill="black" transform="rotate(90,112,200)"></polygon>
             <polygon class="arrowhead" points="64,88 52,82.4 52,93.6" fill="black" transform="rotate(90,56,88)"></polygon>
             <g class="text">
@@ -1719,14 +1735,14 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
           </svg><a href="#section-4-3.1" class="pilcrow">¶</a>
 </div>
 </div>
-<p id="section-4-4">This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and Signed Statements, Transparency Service and the Signed Statement Registration process, as well as Verifiers of the Transparent Statements and the Receipt validation process.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-4">This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and Signed Statements, Transparency Service, the Signed Statement Registration process, as well as Relying Parties of the Transparent Statements and the Receipt validation process.<a href="#section-4-4" class="pilcrow">¶</a></p>
 <div id="sec-transparency-service">
 <section id="section-4.1">
         <h3 id="name-transparency-service">
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-transparency-service" class="section-name selfRef">Transparency Service</a>
         </h3>
 <p id="section-4.1-1">Transparency Services <span class="bcp14">MUST</span> feature an Append-only Log.
-The Append-only Log is the verifiable data structure that registers Signed Statements and supports the production of Receipts.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+The Append-only Log is the verifiable data structure that records Signed Statements and supports the production of Receipts.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.1-2">All Transparency Services <span class="bcp14">MUST</span> expose APIs for the registration of Signed Statements and issuance of Receipts.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 <p id="section-4.1-3">Transparency Services <span class="bcp14">MAY</span> support additional APIs for auditing, for instance, to query the history of Signed Statements.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 <p id="section-4.1-4">Typically a Transparency Service has a single Issuer identity which is present in the <code>iss</code> claim of Receipts for that service.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
@@ -1737,19 +1753,28 @@ The Append-only Log is the verifiable data structure that registers Signed State
 <a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-registration-policies" class="section-name selfRef">Registration Policies</a>
           </h4>
 <p id="section-4.1.1-1">Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is accepted to be registered to the Append-only Log.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.1-2">Transparency Services <span class="bcp14">MUST</span> maintain Registration Policies which govern whether or not a given Signed Statement is eligible for registration.<a href="#section-4.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.1.1-3">Registration Policies <span class="bcp14">MUST</span> be made transparent and available to all clients of the Transparency Service by registering them as Signed Statements on the Append-only Log.<a href="#section-4.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-4.1.1-4">This specification leaves implementation, encoding and documentation of Registration Policies to the operator of the Transparency Service.<a href="#section-4.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-2">Transparency Services <span class="bcp14">MUST</span> maintain Registration Policies.<a href="#section-4.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-3">Transparency Services <span class="bcp14">MUST</span> also maintain a list of trust anchors used to authenticate Issuers, which <span class="bcp14">MAY</span> be included in a registration policy statement.
+For instance, a trust anchor could be an X.509 root certificate, the discovery URL of an OpenID Connect identity provider, or any other COSE compatible PKI trust anchor.<a href="#section-4.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-4">Registration Policies and trust anchors <span class="bcp14">MUST</span> be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing the associated Receipts.<a href="#section-4.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-5">This specification leaves implementation, encoding and documentation of Registration Policies and trust anchors to the operator of the Transparency Service.<a href="#section-4.1.1-5" class="pilcrow">¶</a></p>
 <div id="sec-mandatory-registration-checks">
 <section id="section-4.1.1.1">
             <h5 id="name-mandatory-registration-chec">
 <a href="#section-4.1.1.1" class="section-number selfRef">4.1.1.1. </a><a href="#name-mandatory-registration-chec" class="section-name selfRef">Mandatory Registration Checks</a>
             </h5>
-<p id="section-4.1.1.1-1">Transparency Services <span class="bcp14">MUST</span>, at a minimum, perform the following checks before registering a Signed Statement:
-* Authenticate the Issuer of the Signed Statement<a href="#section-4.1.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.1.1-2">The Transparency Service <span class="bcp14">MUST</span> authenticate the Issuer of Signed Statements by validating the COSE signature and checking the identity of the issuer through one of its configured trust anchors, using the <code>x5t</code> and <code>kid</code> headers in the protected header as hints. For instance, for X.509 signed claims the Transparency Service must validate a complete certificate chain from the certificate identified by <code>x5t</code> to one of the trusted root authority certificate of the Transparency Service.
-The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative."<a href="#section-4.1.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.1.1.1-3">Before a Signed Statement is registered, the trust anchor used to verify its Issuer <span class="bcp14">MUST</span> be registered with the Transparency Service.<a href="#section-4.1.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1.1.1-1">During registration, a Transparency Service <span class="bcp14">MUST</span>, at a minimum, authenticate the Issuer of the Signed Statement by validating the COSE signature and checking the identity of the issuer against one of its currently configured trust anchors, using the <code>x5t</code> (34), <code>x5chain</code>(33) or <code>kid</code>(4) protected headers of the Signed Statement as hints.
+For instance, in order to authenticate X.509 Signed Statements, the Transparency Service <span class="bcp14">MUST</span> build and validate a complete certificate chain from the Issuer's certificate identified by <code>x5t</code>, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.<a href="#section-4.1.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.1.1-2">The Transparency Service <span class="bcp14">MUST</span> apply the Registration Policy that was most recently added to the Append-only Log at the time of registration.<a href="#section-4.1.1.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-auditability-of-registration">
+<section id="section-4.1.1.2">
+            <h5 id="name-auditability-of-registratio">
+<a href="#section-4.1.1.2" class="section-number selfRef">4.1.1.2. </a><a href="#name-auditability-of-registratio" class="section-name selfRef">Auditability of Registration</a>
+            </h5>
+<p id="section-4.1.1.2-1">The operator of a Transparency Service <span class="bcp14">MAY</span> update the Registration Policy or the trust anchors of a Transparency Service at any time.<a href="#section-4.1.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.1.2-2">Transparency Services <span class="bcp14">MUST</span> ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to authenticate and retrieve the Transparent Statements describing the registration policy and trust anchors that apply to this registration.<a href="#section-4.1.1.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1759,11 +1784,18 @@ The public key is used to verify digital signatures, and the associated data is 
           <h4 id="name-initialization-and-bootstra">
 <a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-initialization-and-bootstra" class="section-name selfRef">Initialization and bootstrapping</a>
           </h4>
-<p id="section-4.1.2-1">Since a Registration Policy is required prior to the registration of any Signed Statements, a means is required to configure the first Registration Policy that is not the standard issuance of a Signed Statement.
-Transparency Services <span class="bcp14">MUST</span> support at least one of these methods:
-* A built-in default Registration Policy
-* Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks
-* An out-of-band authenticated management interface<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.2-1">Since the mandatory registration checks rely on having registered Signed Statements for the registration policy and trust anchors, Transparency Services <span class="bcp14">MUST</span> support at least one of the three following bootstrapping mechanisms:<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1.2-2.1">
+              <p id="section-4.1.2-2.1.1">A built-in default Registration Policy and default trust anchors;<a href="#section-4.1.2-2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.2-2.2">
+              <p id="section-4.1.2-2.2.1">Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks<a href="#section-4.1.2-2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.1.2-2.3">
+              <p id="section-4.1.2-2.3.1">An out-of-band authenticated management interface<a href="#section-4.1.2-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
 </section>
 </div>
 <div id="sec-append-only-log">
@@ -1771,9 +1803,28 @@ Transparency Services <span class="bcp14">MUST</span> support at least one of th
           <h4 id="name-append-only-log">
 <a href="#section-4.1.3" class="section-number selfRef">4.1.3. </a><a href="#name-append-only-log" class="section-name selfRef">Append-only Log</a>
           </h4>
-<p id="section-4.1.3-1">The security properties of the Append-only Log are determined by the choice of the verifiable data structure used to produce Receipts.<a href="#section-4.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.3-2">In addition to Receipts, some verifiable data structures might support additional proof types, such as proofs of consistency, or proofs of non inclusion.<a href="#section-4.1.3-2" class="pilcrow">¶</a></p>
-<p id="section-4.1.3-3">Specific verifiable data structures, such those describes in <span>[<a href="#RFC9162" class="cite xref">RFC9162</a>]</span> and <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span> are out of scope for this document.<a href="#section-4.1.3-3" class="pilcrow">¶</a></p>
+<p id="section-4.1.3-1">The security properties of the Append-only Log are determined by the choice of the verifiable data structure used by the Transparency Service to implement the Log.
+This verifiable data structure <span class="bcp14">MUST</span> support the following security requirements:<a href="#section-4.1.3-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.1.3-2">
+            <dt id="section-4.1.3-2.1">Append-Only:</dt>
+            <dd style="margin-left: 1.5em" id="section-4.1.3-2.2">
+              <p id="section-4.1.3-2.2.1">once included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides an offline verifiable proof of registration.<a href="#section-4.1.3-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-4.1.3-2.3">Non-equivocation:</dt>
+            <dd style="margin-left: 1.5em" id="section-4.1.3-2.4">
+              <p id="section-4.1.3-2.4.1">there is no fork in the Append-only Log.
+Everyone with access to its content sees the same collection of Signed Statements and can check that it is consistent with any Receipts they have verified.<a href="#section-4.1.3-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-4.1.3-2.5">Replayability:</dt>
+            <dd style="margin-left: 1.5em" id="section-4.1.3-2.6">
+              <p id="section-4.1.3-2.6.1">the Append-only Log includes sufficient information to enable authorized actors with access to its content to check that each included Signed Statement has been correctly registered.<a href="#section-4.1.3-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+<p id="section-4.1.3-3">In addition to Receipts, some verifiable data structures might support additional proof types, such as proofs of consistency, or proofs of non inclusion.<a href="#section-4.1.3-3" class="pilcrow">¶</a></p>
+<p id="section-4.1.3-4">Specific verifiable data structures, such those describes in <span>[<a href="#RFC9162" class="cite xref">RFC9162</a>]</span> and <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>, and the review of their security requirements for SCITT are out of scope for this document.<a href="#section-4.1.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-adjacent-services">
@@ -1796,28 +1847,71 @@ Providing an ability to request a fresh receipt for a given software package, or
 <p id="section-4.2-1">This specification prioritizes conformance to <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span> and its required and optional properties.
 Profiles and implementation specific choices should be used to determine admissability of conforming messages.
 This specification is left intentionally open to allow implementations to make the restrictions that make the most sense for their operational use cases.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">At least one identifier for an identity document <span class="bcp14">MUST</span> be included in the protected header of the COSE envelope, either <code>x5t</code> or <code>kid</code>.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2-2">There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
+An Issuer must first decide on a suitable format (<code>3</code>: payload type) to serialize the Statement payload.
+For a software supply chain, payloads describing the software artifacts may include:<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.2-3.1">
-            <p id="section-4.2-3.1.1">Support for <code>x5t</code> is mandatory to implement.<a href="#section-4.2-3.1.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-3.1.1"><span>[<a href="#COSWID" class="cite xref">COSWID</a>]</span><a href="#section-4.2-3.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-4.2-3.2">
-            <p id="section-4.2-3.2.1">Support for <code>kid</code> is optional.<a href="#section-4.2-3.2.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-3.2.1"><span>[<a href="#CycloneDX" class="cite xref">CycloneDX</a>]</span><a href="#section-4.2-3.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.2-3.3">
+            <p id="section-4.2-3.3.1"><span>[<a href="#in-toto" class="cite xref">in-toto</a>]</span><a href="#section-4.2-3.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.2-3.4">
+            <p id="section-4.2-3.4.1"><span>[<a href="#SPDX-CBOR" class="cite xref">SPDX-CBOR</a>]</span><a href="#section-4.2-3.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.2-3.5">
+            <p id="section-4.2-3.5.1"><span>[<a href="#SPDX-JSON" class="cite xref">SPDX-JSON</a>]</span><a href="#section-4.2-3.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.2-3.6">
+            <p id="section-4.2-3.6.1"><span>[<a href="#SLSA" class="cite xref">SLSA</a>]</span><a href="#section-4.2-3.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.2-3.7">
+            <p id="section-4.2-3.7.1"><span>[<a href="#SWID" class="cite xref">SWID</a>]</span><a href="#section-4.2-3.7.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-4.2-4">When <code>x5t</code> is present, <code>iss</code> <span class="bcp14">MUST</span> be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
-<p id="section-4.2-5">The mechanisms for how Transparency Services obtain identity documents is out-of-scope of this document.<a href="#section-4.2-5" class="pilcrow">¶</a></p>
-<p id="section-4.2-6">The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when the <code>x5t</code> header parameter is not present.
-Key discovery protocols are out-of-scope of this document.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
-<p id="section-4.2-7">The protected header of a Signed Statement and a Receipt <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10#section-2" class="relref">Section 2</a> of [<a href="#CWT_CLAIMS_COSE" class="cite xref">CWT_CLAIMS_COSE</a>]</span>.
-The <code>CWT Claims</code> value <span class="bcp14">MUST</span> include the <code>Issuer Claim</code> (Claim label 1) and the <code>Subject Claim</code> (Claim label 2) <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span>.<a href="#section-4.2-7" class="pilcrow">¶</a></p>
-<p id="section-4.2-8">A Receipt is a Signed Statement, (cose-sign1), with addition claims in its protected header related to verifying the inclusion proof in its unprotected header. See <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span>.<a href="#section-4.2-8" class="pilcrow">¶</a></p>
-<p id="section-4.2-9"><a href="#fig-signed-statement-cddl" class="auto internal xref">Figure 1</a> illustrates a normative CDDL definition for of the protected header for Signed Statements and Receipts.<a href="#section-4.2-9" class="pilcrow">¶</a></p>
-<p id="section-4.2-10">Everything that is optional in the following CDDL can potentially be discovered out of band and Registration Policies are not assured on the presence of these optional fields.
-A Registration Policy that requires an optional field to be present <span class="bcp14">MUST</span> reject any Signed Statements or Receipts that an invalid according to the policy.<a href="#section-4.2-10" class="pilcrow">¶</a></p>
+<p id="section-4.2-4">Once all the Envelope headers are set, an Issuer <span class="bcp14">MUST</span> use a standard COSE implementation to produce an appropriately serialized Signed Statement.
+The SCITT tag <code>COSE_Sign1_Tagged</code> is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
+<p id="section-4.2-5">Issuers may produce Signed Statements about different Artifacts under the same Identity.
+Issuers and Relying Parties must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
+The <code>iss</code> and <code>sub</code> claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.
+(See Subject under <a href="#terminology" class="auto internal xref">Section 2</a> Terminology.)<a href="#section-4.2-5" class="pilcrow">¶</a></p>
+<p id="section-4.2-6">Issuers <span class="bcp14">MAY</span> use different signing keys (identified by <code>kid</code> in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.<a href="#section-4.2-6" class="pilcrow">¶</a></p>
+<p id="section-4.2-7">An Issuer can make multiple Statements about the same Artifact.
+For example, an Issuer can make amended Statements about the same Artifact as their view changes over time.<a href="#section-4.2-7" class="pilcrow">¶</a></p>
+<p id="section-4.2-8">Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
+Relying Parties can choose which Issuers they trust.<a href="#section-4.2-8" class="pilcrow">¶</a></p>
+<p id="section-4.2-9">Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.<a href="#section-4.2-9" class="pilcrow">¶</a></p>
+<p id="section-4.2-10">At least one identifier for an identity document <span class="bcp14">MUST</span> be included in the protected header of the COSE envelope, as one of <code>x5t</code>, <code>x5chain</code> or <code>kid</code>.<a href="#section-4.2-10" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.2-11.1">
+            <p id="section-4.2-11.1.1">Support for <code>x5t</code> is mandatory to implement.<a href="#section-4.2-11.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.2-11.2">
+            <p id="section-4.2-11.2.1">Support for <code>kid</code> and <code>x5chain</code> is optional.<a href="#section-4.2-11.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-4.2-12">When <code>x5t</code> or <code>x5chain</code> is present, <code>iss</code> <span class="bcp14">MUST</span> be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.<a href="#section-4.2-12" class="pilcrow">¶</a></p>
+<p id="section-4.2-13">The mechanisms for how Transparency Services obtain identity documents is out-of-scope of this document.<a href="#section-4.2-13" class="pilcrow">¶</a></p>
+<p id="section-4.2-14">The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when neither <code>x5t</code> nor <code>x5chain</code> are present.
+Key discovery protocols are out-of-scope of this document.<a href="#section-4.2-14" class="pilcrow">¶</a></p>
+<p id="section-4.2-15">The protected header of a Signed Statement and a Receipt <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10#section-2" class="relref">Section 2</a> of [<a href="#CWT_CLAIMS_COSE" class="cite xref">CWT_CLAIMS_COSE</a>]</span>.
+The <code>CWT Claims</code> value <span class="bcp14">MUST</span> include the <code>Issuer Claim</code> (Claim label 1) and the <code>Subject Claim</code> (Claim label 2) <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span>.<a href="#section-4.2-15" class="pilcrow">¶</a></p>
+<p id="section-4.2-16">A Receipt is a Signed Statement, (cose-sign1), with addition claims in its protected header related to verifying the inclusion proof in its unprotected header. See <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>.<a href="#section-4.2-16" class="pilcrow">¶</a></p>
+<div id="sec-signed-statement-examples">
+<section id="section-4.2.1">
+          <h4 id="name-signed-statement-examples">
+<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-signed-statement-examples" class="section-name selfRef">Signed Statement Examples</a>
+          </h4>
+<p id="section-4.2.1-1"><a href="#fig-signed-statement-cddl" class="auto internal xref">Figure 1</a> illustrates a normative CDDL definition for of the protected header for Signed Statements and Receipts.<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.1-2">Everything that is optional in the following CDDL can potentially be discovered out of band and Registration Policies are not assured on the presence of these optional fields.
+A Registration Policy that requires an optional field to be present <span class="bcp14">MUST</span> reject any Signed Statements or Receipts that are invalid according to the policy.<a href="#section-4.2.1-2" class="pilcrow">¶</a></p>
 <span id="name-cddl-definition-for-signed-"></span><div id="fig-signed-statement-cddl">
 <figure id="figure-1">
-          <div class="lang-cddl sourcecode" id="section-4.2-11.1">
+            <div class="lang-cddl sourcecode" id="section-4.2.1-3.1">
 <pre>
 Signed_Statement = #6.18(COSE_Sign1)
 Receipt = #6.18(COSE_Sign1)
@@ -1834,6 +1928,7 @@ Protected_Header = {
   ? &amp;(alg: 1) =&gt; int
   ? &amp;(content_type: 3) =&gt; tstr / uint
   ? &amp;(kid: 4) =&gt; bstr
+  ? &amp;(x5chain: 33) =&gt; COSE_X509
   ? &amp;(x5t: 34) =&gt; COSE_CertHash
   * int =&gt; any
 }
@@ -1846,17 +1941,40 @@ CWT_Claims = {
 
 Unprotected_Header = {
   ? &amp;(receipts: 394)  =&gt; [+ Receipt]
+  * int =&gt; any
 }
 
 </pre>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-cddl-definition-for-signed-" class="selfRef">CDDL definition for Signed Statements and Receipts</a>
-          </figcaption></figure>
+            </figcaption></figure>
 </div>
-<span id="name-cbor-extended-diagnostic-no"></span><div id="fig-signed-statement-protected-header-edn">
+<p id="section-4.2.1-4"><a href="#fig-signed-statement-edn" class="auto internal xref">Figure 2</a> illustrates an instance of a Signed Statement in EDN, with a payload that is detached.
+Detached payloads support large artifacts, and ensure Signed Statements can integrate with existing storage systems.<a href="#section-4.2.1-4" class="pilcrow">¶</a></p>
+<span id="name-cbor-extended-diagnostic-no"></span><div id="fig-signed-statement-edn">
 <figure id="figure-2">
-          <div class="lang-cbor-diag sourcecode" id="section-4.2-12.1">
+            <div class="lang-cbor-diag sourcecode" id="section-4.2.1-5.1">
+<pre>
+18(                                 / COSE Sign 1                   /
+    [
+      h'a4012603...6d706c65',       / Protected                     /
+      {},                           / Unprotected                   /
+      nil,                          / Detached payload              /
+      h'79ada558...3a28bae4'        / Signature                     /
+    ]
+)
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-cbor-extended-diagnostic-no" class="selfRef">CBOR Extended Diagnostic Notation example of a Signed Statement</a>
+            </figcaption></figure>
+</div>
+<p id="section-4.2.1-6"><a href="#fig-signed-statement-protected-header-edn" class="auto internal xref">Figure 3</a> illustrates the decoded protected header of the Signed Statement in <a href="#fig-signed-statement-edn" class="auto internal xref">Figure 2</a>.
+It indicates the Signed Statement is securing a JSON content type, and identifying the content with the <code>sub</code> claim "vendor.product.example".<a href="#section-4.2.1-6" class="pilcrow">¶</a></p>
+<span id="name-cbor-extended-diagnostic-not"></span><div id="fig-signed-statement-protected-header-edn">
+<figure id="figure-3">
+            <div class="lang-cbor-diag sourcecode" id="section-4.2.1-7.1">
 <pre>
 {                                   / Protected                     /
   1: -7,                            / Algorithm                     /
@@ -1869,125 +1987,74 @@ Unprotected_Header = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
-<a href="#name-cbor-extended-diagnostic-no" class="selfRef">CBOR Extended Diagnostic Notation example of a Signed Statement's Protected Header</a>
-          </figcaption></figure>
-</div>
-<span id="name-cbor-extended-diagnostic-not"></span><div id="fig-signed-statement-edn">
-<figure id="figure-3">
-          <div class="lang-cbor-diag sourcecode" id="section-4.2-13.1">
-<pre>
-18(                                 / COSE Sign 1                   /
-    [
-      h'a4012603...6d706c65',       / Protected                     /
-      {},                           / Unprotected                   /
-      nil,                          / Detached payload              /
-      h'79ada558...3a28bae4'        / Signature                     /
-    ]
-)
-</pre>
-</div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
-<a href="#name-cbor-extended-diagnostic-not" class="selfRef">CBOR Extended Diagnostic Notation example of a Signed Statement</a>
-          </figcaption></figure>
+<a href="#name-cbor-extended-diagnostic-not" class="selfRef">CBOR Extended Diagnostic Notation example of a Signed Statement's Protected Header</a>
+            </figcaption></figure>
 </div>
-<p id="section-4.2-14"><a href="#fig-signed-statement-edn" class="auto internal xref">Figure 3</a> illustrates a payload that is detached.
-This is to support very large supply chain artifacts, and to ensure that Transparent Statements can integrate with existing file systems.<a href="#section-4.2-14" class="pilcrow">¶</a></p>
-<p id="section-4.2-15">There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
-An Issuer must first decide on a suitable format (<code>3</code>: payload type) to serialize the Statement payload.
-For a software supply chain, payloads describing the software artifacts may include:<a href="#section-4.2-15" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-4.2-16.1">
-            <p id="section-4.2-16.1.1"><span>[<a href="#COSWID" class="cite xref">COSWID</a>]</span><a href="#section-4.2-16.1.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-4.2-16.2">
-            <p id="section-4.2-16.2.1"><span>[<a href="#CycloneDX" class="cite xref">CycloneDX</a>]</span><a href="#section-4.2-16.2.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-4.2-16.3">
-            <p id="section-4.2-16.3.1"><span>[<a href="#in-toto" class="cite xref">in-toto</a>]</span><a href="#section-4.2-16.3.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-4.2-16.4">
-            <p id="section-4.2-16.4.1"><span>[<a href="#SPDX-CBOR" class="cite xref">SPDX-CBOR</a>]</span><a href="#section-4.2-16.4.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-4.2-16.5">
-            <p id="section-4.2-16.5.1"><span>[<a href="#SPDX-JSON" class="cite xref">SPDX-JSON</a>]</span><a href="#section-4.2-16.5.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-4.2-16.6">
-            <p id="section-4.2-16.6.1"><span>[<a href="#SLSA" class="cite xref">SLSA</a>]</span><a href="#section-4.2-16.6.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-4.2-16.7">
-            <p id="section-4.2-16.7.1"><span>[<a href="#SWID" class="cite xref">SWID</a>]</span><a href="#section-4.2-16.7.1" class="pilcrow">¶</a></p>
-</li>
-        </ul>
-<p id="section-4.2-17">Once all the Envelope headers are set, an Issuer <span class="bcp14">MUST</span> use a standard COSE implementation to produce an appropriately serialized Signed Statement (the SCITT tag of <code>COSE_Sign1_Tagged</code> is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement).<a href="#section-4.2-17" class="pilcrow">¶</a></p>
-<p id="section-4.2-18">Issuers may produce Signed Statements about different Artifacts under the same Identity.
-Issuers and Verifiers must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
-The <code>iss</code> and <code>sub</code> claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.<a href="#section-4.2-18" class="pilcrow">¶</a></p>
-<p id="section-4.2-19">See Subject under <a href="#terminology" class="auto internal xref">Section 2</a> Terminology.<a href="#section-4.2-19" class="pilcrow">¶</a></p>
-<p id="section-4.2-20">Issuers <span class="bcp14">MAY</span> use different signing keys (identified by <code>kid</code> in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.<a href="#section-4.2-20" class="pilcrow">¶</a></p>
-<p id="section-4.2-21">An Issuer can make multiple Statements about the same Artifact.
-For example, an Issuer can make amended Statements about the same Artifact as their view changes over time.<a href="#section-4.2-21" class="pilcrow">¶</a></p>
-<p id="section-4.2-22">Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
-Verifiers can choose which Issuers they trust.<a href="#section-4.2-22" class="pilcrow">¶</a></p>
-<p id="section-4.2-23">Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.<a href="#section-4.2-23" class="pilcrow">¶</a></p>
-<div id="sec-registration">
-<section id="section-4.2.1">
-          <h4 id="name-registration">
-<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-registration" class="section-name selfRef">Registration</a>
-          </h4>
-<p id="section-4.2.1-1">The same Signed Statement may be independently registered in multiple Transparency Services.
-To register a Signed Statement, the Transparency Service performs the following steps:<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-4.2.1-2">
-<li id="section-4.2.1-2.1">
-              <p id="section-4.2.1-2.1.1"><strong>Client authentication:</strong> This is implementation-specific and <span class="bcp14">MAY</span> be unrelated to the Issuer identity.
-Signed Statements may be registered by a different party than their Issuer.<a href="#section-4.2.1-2.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-4.2.1-2.2">
-              <p id="section-4.2.1-2.2.1"><strong>Issuer Verification:</strong> The Transparency Service <span class="bcp14">MUST</span> perform resolution of the Issuer's identity.
-  This step may require that the service retrieves the Issuer ID in real-time, or rely on a cache of recent resolutions.
-  For auditing, during Registration, the Transparency Service <span class="bcp14">MUST</span> store evidence of the lookup, including if it was resolved from a cache.<a href="#section-4.2.1-2.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-4.2.1-2.3">
-              <p id="section-4.2.1-2.3.1"><strong>Signature verification:</strong> The Transparency Service <span class="bcp14">MUST</span> verify the signature of the Signed Statement, as described in <span>[<a href="#RFC9360" class="cite xref">RFC9360</a>]</span>, using the signature algorithm and verification key of the Issuer.<a href="#section-4.2.1-2.3.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-4.2.1-2.4">
-              <p id="section-4.2.1-2.4.1"><strong>Signed Statement validation:</strong> The Transparency Service <span class="bcp14">MUST</span> check that the Signed Statement includes the required protected headers listed above.
-The Transparency Service <span class="bcp14">MAY</span> verify the Statement payload format, content and other optional properties.<a href="#section-4.2.1-2.4.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-4.2.1-2.5">
-              <p id="section-4.2.1-2.5.1"><strong>Apply Registration Policy:</strong> The Transparency Service <span class="bcp14">MUST</span> check the attributes required by a policy are present in the protected headers.
-  Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.<a href="#section-4.2.1-2.5.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-4.2.1-2.6">
-              <p id="section-4.2.1-2.6.1"><strong>Register the Signed Statement</strong> to the append-only log.<a href="#section-4.2.1-2.6.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-4.2.1-2.7">
-              <p id="section-4.2.1-2.7.1"><strong>Return the Receipt</strong>, which <span class="bcp14">MAY</span> be asynchronous from registration.
-Details about generating Receipts are described in <a href="#Receipt" class="auto internal xref">Section 4.3</a>.<a href="#section-4.2.1-2.7.1" class="pilcrow">¶</a></p>
-</li>
-          </ol>
-<p id="section-4.2.1-3">The last two steps may be shared between a batch of Signed Statements recorded in the Append-only Log.<a href="#section-4.2.1-3" class="pilcrow">¶</a></p>
-<p id="section-4.2.1-4">A Transparency Service <span class="bcp14">MUST</span> ensure that a Signed Statement is registered before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry (the now Transparent Statement) in the Append-only Log.
-Conversely, the Transparency Service <span class="bcp14">MAY</span> re-issue Receipts for the Append-only Log content, for instance after a transient fault during Signed Statement registration.<a href="#section-4.2.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
+</section>
+</div>
+<div id="sec-registration">
+<section id="section-4.3">
+        <h3 id="name-registration">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-registration" class="section-name selfRef">Registration</a>
+        </h3>
+<p id="section-4.3-1">To register a Signed Statement, the Transparency Service performs the following steps:<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-4.3-2">
+<li id="section-4.3-2.1">
+            <p id="section-4.3-2.1.1"><strong>Client authentication:</strong> A Client authenticates with the Transparency Service, to Register Signed Statements on behalf of one or more issuers.
+Authentication and authorization is implementation-specific, and out of scope of the SCITT Architecture.<a href="#section-4.3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-4.3-2.2">
+            <p id="section-4.3-2.2.1"><strong>Issuer Verification:</strong> The Transparency Service <span class="bcp14">MUST</span> perform resolution of the Issuer's identity, which may be different than the Client identity.
+  This step may require that the service retrieves the Issuer ID in real-time, or rely on a cache of recent resolutions.
+  For auditing, during Registration, the Transparency Service <span class="bcp14">MUST</span> store evidence of the lookup, including if it was resolved from a cache.<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-4.3-2.3">
+            <p id="section-4.3-2.3.1"><strong>Signature verification:</strong> The Transparency Service <span class="bcp14">MUST</span> verify the signature of the Signed Statement, as described in <span>[<a href="#RFC9360" class="cite xref">RFC9360</a>]</span>, using the signature algorithm and verification key of the Issuer.<a href="#section-4.3-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-4.3-2.4">
+            <p id="section-4.3-2.4.1"><strong>Signed Statement validation:</strong> The Transparency Service <span class="bcp14">MUST</span> check that the Signed Statement includes the required protected headers listed above.
+The Transparency Service <span class="bcp14">MAY</span> verify the Statement payload format, content and other optional properties.<a href="#section-4.3-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-4.3-2.5">
+            <p id="section-4.3-2.5.1"><strong>Apply Registration Policy:</strong> The Transparency Service <span class="bcp14">MUST</span> check the attributes required by a policy are present in the protected headers.
+  Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.<a href="#section-4.3-2.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-4.3-2.6">
+            <p id="section-4.3-2.6.1"><strong>Register the Signed Statement</strong> to the append-only log.<a href="#section-4.3-2.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-4.3-2.7">
+            <p id="section-4.3-2.7.1"><strong>Return the Receipt</strong>, which <span class="bcp14">MAY</span> be asynchronous from registration.
+The Transparency Service <span class="bcp14">MUST</span> be able to provide a receipt for all registered Statements.
+A receipt for a Signed Statement <span class="bcp14">MAY</span> be provided asynchronously.
+Details about generating Receipts are described in <a href="#Receipt" class="auto internal xref">Section 4.4</a>.<a href="#section-4.3-2.7.1" class="pilcrow">¶</a></p>
+</li>
+        </ol>
+<p id="section-4.3-3">The last two steps may be shared between a batch of Signed Statements recorded in the Append-only Log.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
+<p id="section-4.3-4">A Transparency Service <span class="bcp14">MUST</span> ensure that a Signed Statement is registered before releasing its Receipt.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
+<p id="section-4.3-5">The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
+The multiple receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.<a href="#section-4.3-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="Receipt">
-<section id="section-4.3">
+<section id="section-4.4">
         <h3 id="name-transparent-statements">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-transparent-statements" class="section-name selfRef">Transparent Statements</a>
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-transparent-statements" class="section-name selfRef">Transparent Statements</a>
         </h3>
-<p id="section-4.3-1">The client (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the Unprotected Header of the Signed Statement.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
-<p id="section-4.3-2">When a Signed Statement is registered by a Transparency Service a Receipt becomes available.
-When a Receipt is included in a Signed Statement a Transparent Statement is produced.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
-<p id="section-4.3-3">Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs (<span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span>).<a href="#section-4.3-3" class="pilcrow">¶</a></p>
-<p id="section-4.3-4">The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
-<p id="section-4.3-5"><strong>Editor's Note:</strong> The WG is discussing if existing CWT claims might better support these design principles.<a href="#section-4.3-5" class="pilcrow">¶</a></p>
-<p id="section-4.3-6"><a href="#fig-transparent-statement-cddl" class="auto internal xref">Figure 4</a> illustrates a normative CDDL definition of Transparent Statements.<a href="#section-4.3-6" class="pilcrow">¶</a></p>
+<p id="section-4.4-1">The Client (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the Unprotected Header of the Signed Statement.
+Client applications <span class="bcp14">MAY</span> register Signed Statements on behalf of one or more Issuers.
+Client applications <span class="bcp14">MAY</span> request Receipts regardless of the identity of the Issuer of the associated Signed Statement.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.4-2">When a Signed Statement is registered by a Transparency Service a Receipt becomes available.
+When a Receipt is included in a Signed Statement a Transparent Statement is produced.<a href="#section-4.4-2" class="pilcrow">¶</a></p>
+<p id="section-4.4-3">Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs (<span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>).<a href="#section-4.4-3" class="pilcrow">¶</a></p>
+<p id="section-4.4-4">The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.<a href="#section-4.4-4" class="pilcrow">¶</a></p>
+<p id="section-4.4-5"><strong>Editor's Note:</strong> The WG is discussing if existing CWT claims might better support these design principles.<a href="#section-4.4-5" class="pilcrow">¶</a></p>
+<p id="section-4.4-6"><a href="#fig-transparent-statement-cddl" class="auto internal xref">Figure 4</a> illustrates a normative CDDL definition of Transparent Statements.<a href="#section-4.4-6" class="pilcrow">¶</a></p>
 <span id="name-cddl-definition-for-a-trans"></span><div id="fig-transparent-statement-cddl">
 <figure id="figure-4">
-          <div class="lang-cddl sourcecode" id="section-4.3-7.1">
+          <div class="lang-cddl sourcecode" id="section-4.4-7.1">
 <pre>
 Transparent_Statement = #6.18(COSE_Sign1)
 
@@ -2000,16 +2067,19 @@ Unprotected_Header = {
 <a href="#name-cddl-definition-for-a-trans" class="selfRef">CDDL definition for a Transparent Statement</a>
           </figcaption></figure>
 </div>
+<p id="section-4.4-8"><a href="#fig-transparent-statement-edn" class="auto internal xref">Figure 5</a> illustrates a Transparent Statement with a detached payload, and two receipts in its unprotected header.
+The label 394 <code>receipts</code> in unprotected header can contain multiple receipts.<a href="#section-4.4-8" class="pilcrow">¶</a></p>
 <span id="name-cbor-extended-diagnostic-nota"></span><div id="fig-transparent-statement-edn">
 <figure id="figure-5">
-          <div class="lang-cbor-diag sourcecode" id="section-4.3-8.1">
+          <div class="lang-cbor-diag sourcecode" id="section-4.4-9.1">
 <pre>
 18(                                 / COSE Sign 1                   /
     [
       h'a4012603...6d706c65',       / Protected                     /
       {                             / Unprotected                   /
-        394: [                      / Receipts (1)                  /
+        394: [                      / Receipts (2)                  /
           h'd284586c...4191f9d2'    / Receipt 1                     /
+          h'c624586c...8f4af97e'    / Receipt 2                     /
         ]
       },
       nil,                          / Detached payload              /
@@ -2022,32 +2092,14 @@ Unprotected_Header = {
 <a href="#name-cbor-extended-diagnostic-nota" class="selfRef">CBOR Extended Diagnostic Notation example of a Transparent Statement</a>
           </figcaption></figure>
 </div>
-<p id="section-4.3-9"><a href="#fig-transparent-statement-edn" class="auto internal xref">Figure 5</a> illustrates a payload that is detached.<a href="#section-4.3-9" class="pilcrow">¶</a></p>
-<p id="section-4.3-10">The unprotected header can contain multiple receipts.<a href="#section-4.3-10" class="pilcrow">¶</a></p>
-<span id="name-cbor-extended-diagnostic-notat"></span><div id="fig-receipt-protected-header-edn">
+<p id="section-4.4-10"><a href="#fig-receipt-edn" class="auto internal xref">Figure 6</a> one of the decoded Receipt from <a href="#fig-transparent-statement-edn" class="auto internal xref">Figure 5</a>.
+The Receipt contains inclusion proofs for verifiable data structures.
+The unprotected header contains verifiable data structure proofs.
+See the protected header for details regarding the specific verifiable data structure used.
+Referencing the COSE Verifiable Data Structure Registry, RFC9162_SHA256 is value <code>1</code>, which supports <code>-1</code> (inclusion proofs) and <code>-2</code> (consistency proofs).<a href="#section-4.4-10" class="pilcrow">¶</a></p>
+<span id="name-cbor-extended-diagnostic-notat"></span><div id="fig-receipt-edn">
 <figure id="figure-6">
-          <div class="lang-cbor-diag sourcecode" id="section-4.3-11.1">
-<pre>
-{                                   / Protected                     /
-  1: -7,                            / Algorithm                     /
-  4: h'50685f55...50523255',        / Key identifier                /
-  -111: 1,                          / Verifiable Data Structure     /
-  15: {                             / CWT Claims                    /
-    1: transparency.vendor.example, / Issuer                        /
-    2: vendor.product.example,      / Subject                       /
-  }
-}
-</pre>
-</div>
-<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
-<a href="#name-cbor-extended-diagnostic-notat" class="selfRef">CBOR Extended Diagnostic Notation example of a Receipt's Protected Header</a>
-          </figcaption></figure>
-</div>
-<p id="section-4.3-12">Notice the verifiable data structure used is RFC9162_SHA256 in this case.
-We know from the COSE Verifiable Data Structure Registry that RFC9162_SHA256 is value 1, and that it supports -1 (inclusion proofs) and -2 (consistency proofs).<a href="#section-4.3-12" class="pilcrow">¶</a></p>
-<span id="name-cbor-extended-diagnostic-notati"></span><div id="fig-receipt-edn">
-<figure id="figure-7">
-          <div class="lang-cbor-diag sourcecode" id="section-4.3-13.1">
+          <div class="lang-cbor-diag sourcecode" id="section-4.4-11.1">
 <pre>
 18(                                 / COSE Sign 1                   /
     [
@@ -2065,14 +2117,37 @@ We know from the COSE Verifiable Data Structure Registry that RFC9162_SHA256 is 
 )
 </pre>
 </div>
-<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
-<a href="#name-cbor-extended-diagnostic-notati" class="selfRef">CBOR Extended Diagnostic Notation example of a Receipt</a>
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<a href="#name-cbor-extended-diagnostic-notat" class="selfRef">CBOR Extended Diagnostic Notation example of a Receipt</a>
           </figcaption></figure>
 </div>
-<p id="section-4.3-14">Notice the unprotected header contains verifiable data structure proofs, see the protected header for details regarding the specific verifiable data structure used.<a href="#section-4.3-14" class="pilcrow">¶</a></p>
+<p id="section-4.4-12"><a href="#fig-receipt-protected-header-edn" class="auto internal xref">Figure 7</a> illustrates the decoded protected header of the Transparent Statement in <a href="#fig-transparent-statement-edn" class="auto internal xref">Figure 5</a>.
+The verifiable data structure (<code>-111</code>) uses <code>1</code> from (RFC9162_SHA256).<a href="#section-4.4-12" class="pilcrow">¶</a></p>
+<span id="name-cbor-extended-diagnostic-notati"></span><div id="fig-receipt-protected-header-edn">
+<figure id="figure-7">
+          <div class="lang-cbor-diag sourcecode" id="section-4.4-13.1">
+<pre>
+{                                   / Protected                     /
+  1: -7,                            / Algorithm                     /
+  4: h'50685f55...50523255',        / Key identifier                /
+  -111: 1,                          / Verifiable Data Structure     /
+  15: {                             / CWT Claims                    /
+    1: transparency.vendor.example, / Issuer                        /
+    2: vendor.product.example,      / Subject                       /
+  }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<a href="#name-cbor-extended-diagnostic-notati" class="selfRef">CBOR Extended Diagnostic Notation example of a Receipt's Protected Header</a>
+          </figcaption></figure>
+</div>
+<p id="section-4.4-14"><a href="#fig-receipt-inclusion-proof-edn" class="auto internal xref">Figure 8</a> illustrates the decoded inclusion proof from <a href="#fig-receipt-edn" class="auto internal xref">Figure 6</a>.
+This inclusion proof indicates that the size of the transparency log was <code>8</code> at the time the receipt was issued.
+The structure of this inclusion proof is specific to the verifiable data structure used (RFC9162_SHA256).<a href="#section-4.4-14" class="pilcrow">¶</a></p>
 <span id="name-cbor-extended-diagnostic-notatio"></span><div id="fig-receipt-inclusion-proof-edn">
 <figure id="figure-8">
-          <div class="lang-cbor-diag sourcecode" id="section-4.3-15.1">
+          <div class="lang-cbor-diag sourcecode" id="section-4.4-15.1">
 <pre>
 [                                   / Inclusion proof 1             /
   8,                                / Tree size                     /
@@ -2089,233 +2164,195 @@ We know from the COSE Verifiable Data Structure Registry that RFC9162_SHA256 is 
 <a href="#name-cbor-extended-diagnostic-notatio" class="selfRef">CBOR Extended Diagnostic Notation example of a Receipt's Inclusion Proof</a>
           </figcaption></figure>
 </div>
-<p id="section-4.3-16">This is a decoded inclusion proof for RFC9162_SHA256, other verifiable data structures might encode inclusion proofs differently.<a href="#section-4.3-16" class="pilcrow">¶</a></p>
 <div id="validation">
-<section id="section-4.3.1">
+<section id="section-4.4.1">
           <h4 id="name-validation">
-<a href="#section-4.3.1" class="section-number selfRef">4.3.1. </a><a href="#name-validation" class="section-name selfRef">Validation</a>
+<a href="#section-4.4.1" class="section-number selfRef">4.4.1. </a><a href="#name-validation" class="section-name selfRef">Validation</a>
           </h4>
-<p id="section-4.3.1-1">Verifiers <span class="bcp14">MUST</span> apply the verification process as described in Section 4.4 of RFC9052.<a href="#section-4.3.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.3.1-2">In order to verify the inclusion proof that is included in the Receipt, the verification process for the inclusion proof <span class="bcp14">MUST</span> be performed as described in the document that registers corresponding Verifiable Data Structure Parameters (see <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span>).<a href="#section-4.3.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.3.1-3">APIs exposing verification logic for Transparent Statements may wish to provide more details that a single boolean result, for example, indicating if the signature on the Receipt or Signed Statement is valid, if claims related to the validity period are valid, or if the inclusion proof in the Receipt is valid.<a href="#section-4.3.1-3" class="pilcrow">¶</a></p>
-<p id="section-4.3.1-4">The algorithm-specific details of checking inclusion proofs are covered in <span>[<a href="#I-D.draft-steele-cose-merkle-tree-proofs" class="cite xref">I-D.draft-steele-cose-merkle-tree-proofs</a>]</span>.
-The pseudo-code for validation of a transparent statement is as follows:<a href="#section-4.3.1-4" class="pilcrow">¶</a></p>
-<div class="lang-python sourcecode" id="section-4.3.1-5">
-<pre>
-let verify_transparent_statement(t) =
-  let receipt = t.unprotected.scitt-receipt
-  let version = receipt.protected.scitt-version or fail "Missing SCITT Receipt version"
-  assert(version == 1)
-
-  let leaf = COSE.serialize(t with .unprotected = {
-    334 =&gt; receipt.unprotected.statement-registration-info
-  })
-
-  let vds = receipt.protected.verifiable-data-structure of fail "Missing verifiable data structure"
-  let root = verify_inclusion_proof(vds, receipt.unprotected.scitt-inclusion-proof, leaf)
-    or fail "Failed to verify inclusion proof"
-
-  // Statement registration info has been authenticated by the inclusion proof
-  receipt.protected.statement-registration-info = receipt.unprotected.statement-registration-info
-  return COSE.verify(receipt, detached_payload=root)
-</pre><a href="#section-4.3.1-5" class="pilcrow">¶</a>
-</div>
-<p id="section-4.3.1-6">Before checking a Transparent Statement, the Verifier must be configured with one or more identities of trusted Transparency Services.<a href="#section-4.3.1-6" class="pilcrow">¶</a></p>
-<p id="section-4.3.1-7">Verifiers <span class="bcp14">MAY</span> be configured to re-verify the Issuer's Signed Statement locally, but this requires a fresh resolution of the Issuer's verification keys, which <span class="bcp14">MAY</span> fail if the key has been revoked.<a href="#section-4.3.1-7" class="pilcrow">¶</a></p>
-<p id="section-4.3.1-8">Some Verifiers <span class="bcp14">MAY</span> decide to locally re-apply some or all of the Registration Policies, if they have limited trust in the Transparency Services.
-In addition, Verifiers <span class="bcp14">MAY</span> apply arbitrary validation policies after the Transparent Statement has been verified and validated.
-Such policies may use as input all information in the Envelope, the Receipt, and the Statement payload, as well as any local state.<a href="#section-4.3.1-8" class="pilcrow">¶</a></p>
-<p id="section-4.3.1-9">Verifiers <span class="bcp14">MAY</span> offer options to store or share the Receipt of the Transparent Statement for auditing the Transparency Services in case a dispute arises.<a href="#section-4.3.1-9" class="pilcrow">¶</a></p>
+<p id="section-4.4.1-1">Relying Parties <span class="bcp14">MUST</span> apply the verification process as described in Section 4.4 of RFC9052, when checking the signature of Signed Statements and Receipts.<a href="#section-4.4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.4.1-2">A Relying Party <span class="bcp14">MUST</span> trust the verification key or certificate and the associated identity of at least one issuer of a Receipt.<a href="#section-4.4.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.4.1-3">A Relying Party <span class="bcp14">MAY</span> decide to verify only a single Receipt that is acceptable to them, and not check the signature on the Signed Statement or Receipts which rely on verifiable data structures which they do not understand.<a href="#section-4.4.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.4.1-4">APIs exposing verification logic for Transparent Statements may provide more details than a single boolean result.
+For example, an API may indicate if the signature on the Receipt or Signed Statement is valid, if claims related to the validity period are valid, or if the inclusion proof in the Receipt is valid.<a href="#section-4.4.1-4" class="pilcrow">¶</a></p>
+<p id="section-4.4.1-5">Relying Parties <span class="bcp14">MAY</span> be configured to re-verify the Issuer's Signed Statement locally.<a href="#section-4.4.1-5" class="pilcrow">¶</a></p>
+<p id="section-4.4.1-6">In addition, Relying Parties <span class="bcp14">MAY</span> apply arbitrary validation policies after the Transparent Statement has been verified and validated.
+Such policies may use as input all information in the Envelope, the Receipt, and the Statement payload, as well as any local state.<a href="#section-4.4.1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
-</section>
-</div>
-<div id="sec-federation">
-<section id="section-5">
-      <h2 id="name-federation">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-federation" class="section-name selfRef">Federation</a>
-      </h2>
-<p id="section-5-1"><strong>Editor's Note:</strong> This topic is still under discussion, see <a href="https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/79">issue 79</a><a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2">Multiple, independently-operated Transparency Services can help secure distributed supply chains, without the need for a single, centralized service trusted by all parties.
-For example, multiple Transparency Service instances may be governed and operated by different organizations that are either unaware of the other or do not trust one another.<a href="#section-5-2" class="pilcrow">¶</a></p>
-<p id="section-5-3">This may involve registering the same Signed Statements at different Transparency Services, each with their own purpose and Registration Policy.<a href="#section-5-3" class="pilcrow">¶</a></p>
-<p id="section-5-4">This may also involve attaching multiple Receipts to the same Signed Statements.<a href="#section-5-4" class="pilcrow">¶</a></p>
-<p id="section-5-5">For example, a software producer of a supply chain artifact might rely on multiple independent software producers operating transparency services for their upstream artifacts.
-Downstream producers benefit from upstream producers providing higher transparency regarding their artifacts.<a href="#section-5-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-privacy-considerations">
-<section id="section-6">
+<section id="section-5">
       <h2 id="name-privacy-considerations">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>
       </h2>
-<p id="section-6-1">Transparency Services are often publicly accessible.
+<p id="section-5-1">Transparency Services are often publicly accessible.
 Issuers should treat Signed Statements (rendering them as Transparent Statements) as publicly accessible.
-In particular, a Signed Statement Envelope and Statement payload should not carry any private information in plaintext.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">Transparency Services can have an authorization policy controlling who can access the Append-only Log.
-While this can be used to limit who can read the Log, it may also limit the usefulness of the system.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<p id="section-6-3">Some jurisdictions have a Right to be Forgotten.
-However, once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.<a href="#section-6-3" class="pilcrow">¶</a></p>
+In particular, a Signed Statement Envelope and Statement payload should not carry any private information in plaintext.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">Transparency Services can have an authorization policy controlling who can access the Append-only Log.
+While this can be used to limit who can read the Log, it may also limit the usefulness of the system.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">Some jurisdictions have a Right to be Forgotten.
+However, once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.<a href="#section-5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-security-considerations">
-<section id="section-7">
+<section id="section-6">
       <h2 id="name-security-considerations">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-7-1">On its own, verifying a Transparent Statement does not guarantee that its Envelope or contents are trustworthy.
+<p id="section-6-1">On its own, verifying a Transparent Statement does not guarantee that its Envelope or contents are trustworthy.
 Just that they have been signed by the apparent Issuer and counter-signed by the Transparency Service.
 If the Verifier trusts the Issuer, it can infer that an Issuer's Signed Statement was issued with this Envelope and contents, which may be interpreted as the Issuer saying the Artifact is fit for its intended purpose.
 If the Verifier trusts the Transparency Service, it can independently infer that the Signed Statement passed the Transparency Service Registration Policy and that has been persisted in the Append-only Log.
-Unless advertised in the Transparency Service Registration Policy, the Verifier cannot assume that the ordering of Signed Statements in the Append-only Log matches the ordering of their issuance.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">Similarly, the fact that an Issuer can be held accountable for its Transparent Statements does not on its own provide any mitigation or remediation mechanism in case one of these Transparent Statements turned out to be misleading or malicious.
-Just that signed evidence will be available to support them.<a href="#section-7-2" class="pilcrow">¶</a></p>
-<p id="section-7-3">An Issuer that knows of a changed state of quality for an Artifact, <span class="bcp14">SHOULD</span> Register a new Signed Statement, using the same <code>15</code> CWT <code>iss</code> and <code>sub</code> claims.<a href="#section-7-3" class="pilcrow">¶</a></p>
-<p id="section-7-4">Issuers <span class="bcp14">MUST</span> ensure that the Statement payloads in their Signed Statements are correct and unambiguous, for example by avoiding ill-defined or ambiguous formats that may cause Verifiers to interpret the Signed Statement as valid for some other purpose.<a href="#section-7-4" class="pilcrow">¶</a></p>
-<p id="section-7-5">Issuers and Transparency Services <span class="bcp14">MUST</span> carefully protect their private signing keys and avoid these keys being used for any purpose not described in this architecture document.
-In cases where key re-use is unavoidable, keys <span class="bcp14">MUST NOT</span> sign any other message that may be verified as an Envelope as part of a Signed Statement.<a href="#section-7-5" class="pilcrow">¶</a></p>
-<p id="section-7-6">Each of these functions <span class="bcp14">MUST</span> be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the Transparency Service.<a href="#section-7-6" class="pilcrow">¶</a></p>
-<p id="section-7-7">For instance, the code for the Registration Policy evaluation and endorsement may be protected by running in a Trusted Execution Environment (TEE).<a href="#section-7-7" class="pilcrow">¶</a></p>
-<p id="section-7-8">The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance <span>[<a href="#PBFT" class="cite xref">PBFT</a>]</span> and may be used to protect against malicious or vulnerable replicas.
-Threshold signatures may be use to protect the service key, etc.<a href="#section-7-8" class="pilcrow">¶</a></p>
-<p id="section-7-9">Issuers and Transparency Services <span class="bcp14">MUST</span> rotate verification keys for signature checking in well-defined cryptoperiods (see <span>[<a href="#KEY-MANAGEMENT" class="cite xref">KEY-MANAGEMENT</a>]</span>).<a href="#section-7-9" class="pilcrow">¶</a></p>
-<p id="section-7-10">A Transparency Service <span class="bcp14">MAY</span> provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
+Unless advertised in the Transparency Service Registration Policy, the Verifier cannot assume that the ordering of Signed Statements in the Append-only Log matches the ordering of their issuance.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">Similarly, the fact that an Issuer can be held accountable for its Transparent Statements does not on its own provide any mitigation or remediation mechanism in case one of these Transparent Statements turned out to be misleading or malicious.
+Just that signed evidence will be available to support them.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">An Issuer that knows of a changed state of quality for an Artifact, <span class="bcp14">SHOULD</span> Register a new Signed Statement, using the same <code>15</code> CWT <code>iss</code> and <code>sub</code> claims.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">Issuers <span class="bcp14">MUST</span> ensure that the Statement payloads in their Signed Statements are correct and unambiguous, for example by avoiding ill-defined or ambiguous formats that may cause Relying Parties to interpret the Signed Statement as valid for some other purpose.<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-5">Issuers and Transparency Services <span class="bcp14">MUST</span> carefully protect their private signing keys and avoid these keys being used for any purpose not described in this architecture document.
+In cases where key re-use is unavoidable, keys <span class="bcp14">MUST NOT</span> sign any other message that may be verified as an Envelope as part of a Signed Statement.<a href="#section-6-5" class="pilcrow">¶</a></p>
+<p id="section-6-6">Each of these functions <span class="bcp14">MUST</span> be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the Transparency Service.<a href="#section-6-6" class="pilcrow">¶</a></p>
+<p id="section-6-7">For instance, the code for the Registration Policy evaluation and endorsement may be protected by running in a Trusted Execution Environment (TEE).<a href="#section-6-7" class="pilcrow">¶</a></p>
+<p id="section-6-8">The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance <span>[<a href="#PBFT" class="cite xref">PBFT</a>]</span> and may be used to protect against malicious or vulnerable replicas.
+Threshold signatures may be use to protect the service key, etc.<a href="#section-6-8" class="pilcrow">¶</a></p>
+<p id="section-6-9">Issuers and Transparency Services <span class="bcp14">MUST</span> rotate verification keys for signature checking in well-defined cryptoperiods (see <span>[<a href="#KEY-MANAGEMENT" class="cite xref">KEY-MANAGEMENT</a>]</span>).<a href="#section-6-9" class="pilcrow">¶</a></p>
+<p id="section-6-10">A Transparency Service <span class="bcp14">MAY</span> provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
 If present, these additional authenticity assurances <span class="bcp14">MUST</span> be registered in the Append-only Log and <span class="bcp14">MUST</span> always be exposed by the Transparency Services' APIs.
-An example of Signed Statement's payloads that can improve authenticity assurances are trustworthiness assessments that are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>).<a href="#section-7-10" class="pilcrow">¶</a></p>
-<p id="section-7-11">For example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs. The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts. The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a trusted Verifier and complies with well-known Reference Values and Endorsements.<a href="#section-7-11" class="pilcrow">¶</a></p>
+An example of Signed Statement's payloads that can improve authenticity assurances are trustworthiness assessments that are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>).<a href="#section-6-10" class="pilcrow">¶</a></p>
+<p id="section-6-11">For example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs. The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts. The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a trusted Verifier and complies with well-known Reference Values and Endorsements.<a href="#section-6-11" class="pilcrow">¶</a></p>
 <div id="sec-security-guarantees">
-<section id="section-7.1">
+<section id="section-6.1">
         <h3 id="name-security-guarantees">
-<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-security-guarantees" class="section-name selfRef">Security Guarantees</a>
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-security-guarantees" class="section-name selfRef">Security Guarantees</a>
         </h3>
-<p id="section-7.1-1">SCITT provides the following security guarantees:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-7.1-2">
-<li id="section-7.1-2.1">
-            <p id="section-7.1-2.1.1">Statements made by Issuers about supply chain Artifacts are identifiable, authentic, and non-repudiable<a href="#section-7.1-2.1.1" class="pilcrow">¶</a></p>
+<p id="section-6.1-1">SCITT provides the following security guarantees:<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-6.1-2">
+<li id="section-6.1-2.1">
+            <p id="section-6.1-2.1.1">Statements made by Issuers about supply chain Artifacts are identifiable, authentic, and non-repudiable<a href="#section-6.1-2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li id="section-7.1-2.2">
-            <p id="section-7.1-2.2.1">Statement provenance and history can be independently and consistently audited<a href="#section-7.1-2.2.1" class="pilcrow">¶</a></p>
+          <li id="section-6.1-2.2">
+            <p id="section-6.1-2.2.1">Statement provenance and history can be independently and consistently audited<a href="#section-6.1-2.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li id="section-7.1-2.3">
-            <p id="section-7.1-2.3.1">Issuers can efficiently prove that their Statement is logged by a Transparency Service<a href="#section-7.1-2.3.1" class="pilcrow">¶</a></p>
+          <li id="section-6.1-2.3">
+            <p id="section-6.1-2.3.1">Issuers can efficiently prove that their Statement is logged by a Transparency Service<a href="#section-6.1-2.3.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
-<p id="section-7.1-3">The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
+<p id="section-6.1-3">The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
 The second guarantee is achieved by storing the Signed Statement on an Append-only Log.
-The third guarantee is achieved by implementing the Append-only Log using a verifiable data structure (such as a Merkle Tree <span>[<a href="#MERKLE" class="cite xref">MERKLE</a>]</span>).<a href="#section-7.1-3" class="pilcrow">¶</a></p>
+The third guarantee is achieved by implementing the Append-only Log using a verifiable data structure (such as a Merkle Tree <span>[<a href="#MERKLE" class="cite xref">MERKLE</a>]</span>).<a href="#section-6.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-threat-model">
-<section id="section-7.2">
+<section id="section-6.2">
         <h3 id="name-threat-model">
-<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-threat-model" class="section-name selfRef">Threat Model</a>
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-threat-model" class="section-name selfRef">Threat Model</a>
         </h3>
-<p id="section-7.2-1">The document provides a generic threat model for SCITT, describing its residual security properties when some of its actors (identity providers, Issuers, Transparency Services, and Auditors) are corrupt or compromised.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
-<p id="section-7.2-2">This model may need to be refined to account for specific supply chains and use cases.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
-<p id="section-7.2-3">SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency).
-These guarantees are meant to hold for extensive periods of time, possibly decades.<a href="#section-7.2-3" class="pilcrow">¶</a></p>
-<p id="section-7.2-4">It can never be assumed that some Issuers and some Transparency Services will not be corrupt.<a href="#section-7.2-4" class="pilcrow">¶</a></p>
-<p id="section-7.2-5">SCITT entities explicitly trust one another on the basis of their long-term identity, which maps to shorter-lived cryptographic credentials.
-A Verifier <span class="bcp14">SHOULD</span> validate a Transparent Statement originating from a given Issuer, registered at a given Transparency Service (both identified in the Verifier's local authorization policy) and would not depend on any other Issuer or Transparency Services.<a href="#section-7.2-5" class="pilcrow">¶</a></p>
-<p id="section-7.2-6">Authorized supply chain actors (Issuers) cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a trustworthy Transparency Service.<a href="#section-7.2-6" class="pilcrow">¶</a></p>
-<p id="section-7.2-7">Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal.
+<p id="section-6.2-1">The document provides a generic threat model for SCITT, describing its residual security properties when some of its actors (identity providers, Issuers, Transparency Services, and Auditors) are corrupt or compromised.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2-2">This model may need to be refined to account for specific supply chains and use cases.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
+<p id="section-6.2-3">SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency).
+These guarantees are meant to hold for extensive periods of time, possibly decades.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
+<p id="section-6.2-4">It can never be assumed that some Issuers and some Transparency Services will not be corrupt.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
+<p id="section-6.2-5">SCITT entities explicitly trust one another on the basis of their long-term identity, which maps to shorter-lived cryptographic credentials.
+A Verifier <span class="bcp14">SHOULD</span> validate a Transparent Statement originating from a given Issuer, registered at a given Transparency Service (both identified in the Verifier's local authorization policy) and would not depend on any other Issuer or Transparency Services.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
+<p id="section-6.2-6">Authorized supply chain actors (Issuers) cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a trustworthy Transparency Service.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
+<p id="section-6.2-7">Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal.
 Preventing a Transparency Service from registering Signed Statements that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their Append-only Log is not possible.
 In contrast Transparency Services can be held accountable and they can be called out by any Auditor that replays their Append-only Log against any contested Receipt.
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service.
-Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.<a href="#section-7.2-7" class="pilcrow">¶</a></p>
-<p id="section-7.2-8">In both cases, the SCITT Architecture provides generic, universally-verifiable cryptographic proof to individually blame Issuers or the Transparency Service.
+Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.<a href="#section-6.2-7" class="pilcrow">¶</a></p>
+<p id="section-6.2-8">In both cases, the SCITT Architecture provides generic, universally-verifiable cryptographic proof to individually blame Issuers or the Transparency Service.
 On one hand, this enables valid actors to detect and disambiguate malicious actors who employ Equivocation with Signed Statements to different entities.
-On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT Architecture.<a href="#section-7.2-8" class="pilcrow">¶</a></p>
-<p id="section-7.2-9">Verifiers and Auditors need not be trusted by other actors.
-In particular, so long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.<a href="#section-7.2-9" class="pilcrow">¶</a></p>
+On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT Architecture.<a href="#section-6.2-8" class="pilcrow">¶</a></p>
+<p id="section-6.2-9">Relying Parties and Auditors need not be trusted by other actors.
+In particular, so long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.<a href="#section-6.2-9" class="pilcrow">¶</a></p>
 <div id="sec-append-only-log-1">
-<section id="section-7.2.1">
+<section id="section-6.2.1">
           <h4 id="name-append-only-log-2">
-<a href="#section-7.2.1" class="section-number selfRef">7.2.1. </a><a href="#name-append-only-log-2" class="section-name selfRef">Append-only Log</a>
+<a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-append-only-log-2" class="section-name selfRef">Append-only Log</a>
           </h4>
-<p id="section-7.2.1-1">If a Transparency Service is honest, then a Transparent Statement including a correct Receipt ensures that the associated Signed Statement passed its Registration Policy and was recorded appropriately.<a href="#section-7.2.1-1" class="pilcrow">¶</a></p>
-<p id="section-7.2.1-2">Conversely, a corrupt Transparency Service may:<a href="#section-7.2.1-2" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-7.2.1-3">
-<li id="section-7.2.1-3.1">
-              <p id="section-7.2.1-3.1.1">refuse or delay the Registration of Signed Statements<a href="#section-7.2.1-3.1.1" class="pilcrow">¶</a></p>
+<p id="section-6.2.1-1">If a Transparency Service is honest, then a Transparent Statement including a correct Receipt ensures that the associated Signed Statement passed its Registration Policy and was recorded appropriately.<a href="#section-6.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.1-2">Conversely, a corrupt Transparency Service may:<a href="#section-6.2.1-2" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-6.2.1-3">
+<li id="section-6.2.1-3.1">
+              <p id="section-6.2.1-3.1.1">refuse or delay the Registration of Signed Statements<a href="#section-6.2.1-3.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-7.2.1-3.2">
-              <p id="section-7.2.1-3.2.1">register Signed Statements that do not pass its Registration Policy (e.g., Signed Statement with Issuer identities and signatures that do not verify)<a href="#section-7.2.1-3.2.1" class="pilcrow">¶</a></p>
+            <li id="section-6.2.1-3.2">
+              <p id="section-6.2.1-3.2.1">register Signed Statements that do not pass its Registration Policy (e.g., Signed Statement with Issuer identities and signatures that do not verify)<a href="#section-6.2.1-3.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-7.2.1-3.3">
-              <p id="section-7.2.1-3.3.1">issue verifiable Receipts for Signed Statements that do not match its Append-only Log<a href="#section-7.2.1-3.3.1" class="pilcrow">¶</a></p>
+            <li id="section-6.2.1-3.3">
+              <p id="section-6.2.1-3.3.1">issue verifiable Receipts for Signed Statements that do not match its Append-only Log<a href="#section-6.2.1-3.3.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-7.2.1-3.4">
-              <p id="section-7.2.1-3.4.1">refuse access to its Transparency Service (e.g., to Auditors, possibly after storage loss)<a href="#section-7.2.1-3.4.1" class="pilcrow">¶</a></p>
+            <li id="section-6.2.1-3.4">
+              <p id="section-6.2.1-3.4.1">refuse access to its Transparency Service (e.g., to Auditors, possibly after storage loss)<a href="#section-6.2.1-3.4.1" class="pilcrow">¶</a></p>
 </li>
           </ol>
-<p id="section-7.2.1-4">An Auditor granted (partial) access to a Transparency Service and to a collection of disputed Receipts will be able to replay it, detect any invalid Registration (2) or incorrect Receipt in this collection (3), and blame the Transparency Service for them.
-This ensures any Verifier that trusts at least one such Auditor that (2, 3) will be blamed to the Transparency Service.<a href="#section-7.2.1-4" class="pilcrow">¶</a></p>
-<p id="section-7.2.1-5">Due to the operational challenge of maintaining a globally consistent Append-only Log, some Transparency Services may provide limited support for historical queries on the Signed Statements they have registered, and accept the risk of being blamed for inconsistent Registration or Issuer Equivocation.<a href="#section-7.2.1-5" class="pilcrow">¶</a></p>
-<p id="section-7.2.1-6">Verifiers and Auditors may also witness (1, 4) but may not be able to collect verifiable evidence for it.<a href="#section-7.2.1-6" class="pilcrow">¶</a></p>
+<p id="section-6.2.1-4">An Auditor granted (partial) access to a Transparency Service and to a collection of disputed Receipts will be able to replay it, detect any invalid Registration (2) or incorrect Receipt in this collection (3), and blame the Transparency Service for them.
+This ensures any Verifier that trusts at least one such Auditor that (2, 3) will be blamed to the Transparency Service.<a href="#section-6.2.1-4" class="pilcrow">¶</a></p>
+<p id="section-6.2.1-5">Due to the operational challenge of maintaining a globally consistent Append-only Log, some Transparency Services may provide limited support for historical queries on the Signed Statements they have registered, and accept the risk of being blamed for inconsistent Registration or Issuer Equivocation.<a href="#section-6.2.1-5" class="pilcrow">¶</a></p>
+<p id="section-6.2.1-6">Relying Parties and Auditors may also witness (1, 4) but may not be able to collect verifiable evidence for it.<a href="#section-6.2.1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-availability-of-receipts">
-<section id="section-7.2.2">
+<section id="section-6.2.2">
           <h4 id="name-availability-of-receipts">
-<a href="#section-7.2.2" class="section-number selfRef">7.2.2. </a><a href="#name-availability-of-receipts" class="section-name selfRef">Availability of Receipts</a>
+<a href="#section-6.2.2" class="section-number selfRef">6.2.2. </a><a href="#name-availability-of-receipts" class="section-name selfRef">Availability of Receipts</a>
           </h4>
-<p id="section-7.2.2-1">Networking and Storage are trusted only for availability.<a href="#section-7.2.2-1" class="pilcrow">¶</a></p>
-<p id="section-7.2.2-2">Auditing may involve access to data beyond what is persisted in the Transparency Services.
-For example, the registered Transparency Service may include only the hash of a detailed SBOM, which may limit the scope of auditing.<a href="#section-7.2.2-2" class="pilcrow">¶</a></p>
-<p id="section-7.2.2-3">Resistance to denial-of-service is implementation specific.<a href="#section-7.2.2-3" class="pilcrow">¶</a></p>
-<p id="section-7.2.2-4">Actors may want to independently keep their own record of the Signed Statements they issue, endorse, verify, or audit.<a href="#section-7.2.2-4" class="pilcrow">¶</a></p>
+<p id="section-6.2.2-1">Networking and Storage are trusted only for availability.<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.2-2">Auditing may involve access to data beyond what is persisted in the Transparency Services.
+For example, the registered Transparency Service may include only the hash of a detailed SBOM, which may limit the scope of auditing.<a href="#section-6.2.2-2" class="pilcrow">¶</a></p>
+<p id="section-6.2.2-3">Resistance to denial-of-service is implementation specific.<a href="#section-6.2.2-3" class="pilcrow">¶</a></p>
+<p id="section-6.2.2-4">Actors may want to independently keep their own record of the Signed Statements they issue, endorse, verify, or audit.<a href="#section-6.2.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-confidentiality-and-privacy">
-<section id="section-7.2.3">
+<section id="section-6.2.3">
           <h4 id="name-confidentiality-and-privacy">
-<a href="#section-7.2.3" class="section-number selfRef">7.2.3. </a><a href="#name-confidentiality-and-privacy" class="section-name selfRef">Confidentiality and Privacy</a>
+<a href="#section-6.2.3" class="section-number selfRef">6.2.3. </a><a href="#name-confidentiality-and-privacy" class="section-name selfRef">Confidentiality and Privacy</a>
           </h4>
-<p id="section-7.2.3-1">According to Zero Trust Principles any location in a network is never trusted.
-All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network traffic analysis.<a href="#section-7.2.3-1" class="pilcrow">¶</a></p>
-<p id="section-7.2.3-2">The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
+<p id="section-6.2.3-1">According to Zero Trust Principles any location in a network is never trusted.
+All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network traffic analysis.<a href="#section-6.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.3-2">The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
 Some Transparency Services may publish every Signed Statement in their logs, to facilitate their dissemination and auditing.
-Others may just return Receipts to clients that present Singed Statements for Registration, and disclose the Append-only Log only to Auditors trusted with the confidentiality of its contents.<a href="#section-7.2.3-2" class="pilcrow">¶</a></p>
-<p id="section-7.2.3-3">A collection of Signed Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.<a href="#section-7.2.3-3" class="pilcrow">¶</a></p>
-<p id="section-7.2.3-4">Issuers must carefully review the inclusion of private/confidential materials in their Statements.
+Transparency Services <span class="bcp14">MAY</span> return Receipts to client applications synchronously or asynchronously.<a href="#section-6.2.3-2" class="pilcrow">¶</a></p>
+<p id="section-6.2.3-3">A collection of Signed Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.<a href="#section-6.2.3-3" class="pilcrow">¶</a></p>
+<p id="section-6.2.3-4">Issuers must carefully review the inclusion of private/confidential materials in their Statements.
 For example, Issuers must remove Personally Identifiable Information (PII) as clear text in the statement.
-Alternatively, Issuers may include opaque cryptographic statements, such as hashes.<a href="#section-7.2.3-4" class="pilcrow">¶</a></p>
-<p id="section-7.2.3-5">The confidentiality of queries is implementation-specific, and generally not guaranteed.
-For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.<a href="#section-7.2.3-5" class="pilcrow">¶</a></p>
+Alternatively, Issuers may include opaque cryptographic statements, such as hashes.<a href="#section-6.2.3-4" class="pilcrow">¶</a></p>
+<p id="section-6.2.3-5">The confidentiality of queries is implementation-specific, and generally not guaranteed.
+For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.<a href="#section-6.2.3-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-cryptographic-agility">
-<section id="section-7.2.4">
+<section id="section-6.2.4">
           <h4 id="name-cryptographic-agility">
-<a href="#section-7.2.4" class="section-number selfRef">7.2.4. </a><a href="#name-cryptographic-agility" class="section-name selfRef">Cryptographic Agility</a>
+<a href="#section-6.2.4" class="section-number selfRef">6.2.4. </a><a href="#name-cryptographic-agility" class="section-name selfRef">Cryptographic Agility</a>
           </h4>
-<p id="section-7.2.4-1">The SCITT Architecture supports cryptographic agility.
+<p id="section-6.2.4-1">The SCITT Architecture supports cryptographic agility.
 The actors depend only on the subset of signing and Receipt schemes they trust.
-This enables the gradual transition to stronger algorithms, including e.g. post-quantum signature algorithms.<a href="#section-7.2.4-1" class="pilcrow">¶</a></p>
+This enables the gradual transition to stronger algorithms, including e.g. post-quantum signature algorithms.<a href="#section-6.2.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sec-transparency-service-clients">
-<section id="section-7.2.5">
+<div id="sec-transparency-service-client-applications">
+<section id="section-6.2.5">
           <h4 id="name-transparency-service-client">
-<a href="#section-7.2.5" class="section-number selfRef">7.2.5. </a><a href="#name-transparency-service-client" class="section-name selfRef">Transparency Service Clients</a>
+<a href="#section-6.2.5" class="section-number selfRef">6.2.5. </a><a href="#name-transparency-service-client" class="section-name selfRef">Transparency Service Client Applications</a>
           </h4>
-<p id="section-7.2.5-1">Trust in clients that submit Signed Statements for Registration is implementation-specific.
-An attacker may attempt to register any Signed Statement it has obtained, at any Transparency Service that accepts them, possibly multiple times and out of order.
-This may be mitigated by a Transparency Service that enforces restrictive access control and Registration Policies.<a href="#section-7.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.5-1">Authentication of Client applications is out of scope for this document.
+Transparency Services <span class="bcp14">MUST</span> authenticate both client applications and the Issuer of signed statements in order to ensure that implementation specific authentication and authorization policies are enforced.
+The specification of authentication and authorization policies is out of scope for this document.<a href="#section-6.2.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-impersonation">
-<section id="section-7.2.6">
+<section id="section-6.2.6">
           <h4 id="name-impersonation">
-<a href="#section-7.2.6" class="section-number selfRef">7.2.6. </a><a href="#name-impersonation" class="section-name selfRef">Impersonation</a>
+<a href="#section-6.2.6" class="section-number selfRef">6.2.6. </a><a href="#name-impersonation" class="section-name selfRef">Impersonation</a>
           </h4>
-<p id="section-7.2.6-1">The identity resolution mechanism is trusted to associate long-term identifiers with their public signature-verification keys.
-Transparency Services and other parties may record identity-resolution evidence to facilitate its auditing.<a href="#section-7.2.6-1" class="pilcrow">¶</a></p>
-<p id="section-7.2.6-2">If one of the credentials of an Issuer gets compromised, the SCITT Architecture still guarantees the authenticity of all Signed Statements signed with this credential that have been registered on a Transparency Service before the compromise.
-It is up to the Issuer to notify Transparency Services of credential revocation to stop Verifiers from accepting Signed Statements signed with compromised credentials.<a href="#section-7.2.6-2" class="pilcrow">¶</a></p>
+<p id="section-6.2.6-1">The identity resolution mechanism is trusted to associate long-term identifiers with their public signature-verification keys.
+Transparency Services and other parties may record identity-resolution evidence to facilitate its auditing.<a href="#section-6.2.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.6-2">If one of the credentials of an Issuer gets compromised, the SCITT Architecture still guarantees the authenticity of all Signed Statements signed with this credential that have been registered on a Transparency Service before the compromise.
+It is up to the Issuer to notify Transparency Services of credential revocation to stop Relying Parties from accepting Signed Statements signed with compromised credentials.<a href="#section-6.2.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2323,96 +2360,96 @@ It is up to the Issuer to notify Transparency Services of credential revocation 
 </section>
 </div>
 <div id="sec-iana-considerations">
-<section id="section-8">
+<section id="section-7">
       <h2 id="name-iana-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-8-1">TBD; <a href="#mybody" class="auto internal xref">Section 3</a>.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">TBD; <a href="#mybody" class="auto internal xref">Section 3</a>.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <div id="sec-media-type-registration">
-<section id="section-8.1">
+<section id="section-7.1">
         <h3 id="name-media-type-registration">
-<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-media-type-registration" class="section-name selfRef">Media Type Registration</a>
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-media-type-registration" class="section-name selfRef">Media Type Registration</a>
         </h3>
-<p id="section-8.1-1">This section requests registration of the following media types <span>[<a href="#RFC2046" class="cite xref">RFC2046</a>]</span> in
+<p id="section-7.1-1">This section requests registration of the following media types <span>[<a href="#RFC2046" class="cite xref">RFC2046</a>]</span> in
 the "Media Types" registry <span>[<a href="#IANA.media-types" class="cite xref">IANA.media-types</a>]</span> in the manner described
-in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
-<p id="section-8.1-2">To indicate that the content is an scitt configuration represented as JSON:<a href="#section-8.1-2" class="pilcrow">¶</a></p>
+in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<p id="section-7.1-2">To indicate that the content is an scitt configuration represented as JSON:<a href="#section-7.1-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-8.1-3.1">
-            <p id="section-8.1-3.1.1">Type name: application<a href="#section-8.1-3.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.1-3.1">
+            <p id="section-7.1-3.1.1">Type name: application<a href="#section-7.1-3.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.2">
-            <p id="section-8.1-3.2.1">Subtype name: scitt-configuration+json<a href="#section-8.1-3.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.2">
+            <p id="section-7.1-3.2.1">Subtype name: scitt-configuration+json<a href="#section-7.1-3.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.3">
-            <p id="section-8.1-3.3.1">Required parameters: n/a<a href="#section-8.1-3.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.3">
+            <p id="section-7.1-3.3.1">Required parameters: n/a<a href="#section-7.1-3.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.4">
-            <p id="section-8.1-3.4.1">Optional parameters: n/a<a href="#section-8.1-3.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.4">
+            <p id="section-7.1-3.4.1">Optional parameters: n/a<a href="#section-7.1-3.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.5">
-            <p id="section-8.1-3.5.1">Encoding considerations: binary; application/scitt-configuration+json values are represented as a JSON Object; UTF-8 encoding <span class="bcp14">SHOULD</span> be employed for the JSON object.<a href="#section-8.1-3.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.5">
+            <p id="section-7.1-3.5.1">Encoding considerations: binary; application/scitt-configuration+json values are represented as a JSON Object; UTF-8 encoding <span class="bcp14">SHOULD</span> be employed for the JSON object.<a href="#section-7.1-3.5.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.6">
-            <p id="section-8.1-3.6.1">Security considerations: See the Security Considerations section of TBD.<a href="#section-8.1-3.6.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.6">
+            <p id="section-7.1-3.6.1">Security considerations: See the Security Considerations section of TBD.<a href="#section-7.1-3.6.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.7">
-            <p id="section-8.1-3.7.1">Interoperability considerations: n/a<a href="#section-8.1-3.7.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.7">
+            <p id="section-7.1-3.7.1">Interoperability considerations: n/a<a href="#section-7.1-3.7.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.8">
-            <p id="section-8.1-3.8.1">Published specification: TBD<a href="#section-8.1-3.8.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.8">
+            <p id="section-7.1-3.8.1">Published specification: TBD<a href="#section-7.1-3.8.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.9">
-            <p id="section-8.1-3.9.1">Applications that use this media type: TBD<a href="#section-8.1-3.9.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.9">
+            <p id="section-7.1-3.9.1">Applications that use this media type: TBD<a href="#section-7.1-3.9.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.10">
-            <p id="section-8.1-3.10.1">Fragment identifier considerations: n/a<a href="#section-8.1-3.10.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.10">
+            <p id="section-7.1-3.10.1">Fragment identifier considerations: n/a<a href="#section-7.1-3.10.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.11">
-            <p id="section-8.1-3.11.1">Additional information:<a href="#section-8.1-3.11.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.11">
+            <p id="section-7.1-3.11.1">Additional information:<a href="#section-7.1-3.11.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-8.1-3.11.2.1">
-                <p id="section-8.1-3.11.2.1.1">Magic number(s): n/a<a href="#section-8.1-3.11.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.1-3.11.2.1">
+                <p id="section-7.1-3.11.2.1.1">Magic number(s): n/a<a href="#section-7.1-3.11.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-8.1-3.11.2.2">
-                <p id="section-8.1-3.11.2.2.1">File extension(s): n/a<a href="#section-8.1-3.11.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-7.1-3.11.2.2">
+                <p id="section-7.1-3.11.2.2.1">File extension(s): n/a<a href="#section-7.1-3.11.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-8.1-3.11.2.3">
-                <p id="section-8.1-3.11.2.3.1">Macintosh file type code(s): n/a<a href="#section-8.1-3.11.2.3.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-7.1-3.11.2.3">
+                <p id="section-7.1-3.11.2.3.1">Macintosh file type code(s): n/a<a href="#section-7.1-3.11.2.3.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="normal" id="section-8.1-3.12">
-            <p id="section-8.1-3.12.1">Person &amp; email address to contact for further information: TBD<a href="#section-8.1-3.12.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.12">
+            <p id="section-7.1-3.12.1">Person &amp; email address to contact for further information: TBD<a href="#section-7.1-3.12.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.13">
-            <p id="section-8.1-3.13.1">Intended usage: COMMON<a href="#section-8.1-3.13.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.13">
+            <p id="section-7.1-3.13.1">Intended usage: COMMON<a href="#section-7.1-3.13.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.14">
-            <p id="section-8.1-3.14.1">Restrictions on usage: none<a href="#section-8.1-3.14.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.14">
+            <p id="section-7.1-3.14.1">Restrictions on usage: none<a href="#section-7.1-3.14.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.15">
-            <p id="section-8.1-3.15.1">Author: TBD<a href="#section-8.1-3.15.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.15">
+            <p id="section-7.1-3.15.1">Author: TBD<a href="#section-7.1-3.15.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.16">
-            <p id="section-8.1-3.16.1">Change Controller: IETF<a href="#section-8.1-3.16.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.16">
+            <p id="section-7.1-3.16.1">Change Controller: IETF<a href="#section-7.1-3.16.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-8.1-3.17">
-            <p id="section-8.1-3.17.1">Provisional registration?  No<a href="#section-8.1-3.17.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.1-3.17">
+            <p id="section-7.1-3.17.1">Provisional registration?  No<a href="#section-7.1-3.17.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 </section>
 </div>
-<section id="section-9">
+<section id="section-8">
       <h2 id="name-references">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
 <div id="sec-normative-references">
-<section id="section-9.1">
+<section id="section-8.1">
         <h3 id="name-normative-references">
-<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="COSWID">[COSWID]</dt>
@@ -2459,6 +2496,10 @@ in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#sec
         <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8392">[RFC8392]</dt>
+        <dd>
+<span class="refAuthor">Jones, M.</span>, <span class="refAuthor">Wahlstroem, E.</span>, <span class="refAuthor">Erdtman, S.</span>, and <span class="refAuthor">H. Tschofenig</span>, <span class="refTitle">"CBOR Web Token (CWT)"</span>, <span class="seriesInfo">RFC 8392</span>, <span class="seriesInfo">DOI 10.17487/RFC8392</span>, <time datetime="2018-05" class="refDate">May 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8392">https://www.rfc-editor.org/rfc/rfc8392</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC9052">[RFC9052]</dt>
         <dd>
 <span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Structures and Process"</span>, <span class="seriesInfo">STD 96</span>, <span class="seriesInfo">RFC 9052</span>, <span class="seriesInfo">DOI 10.17487/RFC9052</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9052">https://www.rfc-editor.org/rfc/rfc9052</a>&gt;</span>. </dd>
@@ -2471,9 +2512,9 @@ in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#sec
 </section>
 </div>
 <div id="sec-informative-references">
-<section id="section-9.2">
+<section id="section-8.2">
         <h3 id="name-informative-references">
-<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="CWT_CLAIMS">[CWT_CLAIMS]</dt>
@@ -2492,9 +2533,9 @@ in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#sec
         <dd>
 <span class="refAuthor">Bormann, C.</span> and <span class="refAuthor">H. Birkholz</span>, <span class="refTitle">"Constrained Resource Identifiers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-core-href-14</span>, <time datetime="2024-01-09" class="refDate">9 January 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-href-14">https://datatracker.ietf.org/doc/html/draft-ietf-core-href-14</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.draft-steele-cose-merkle-tree-proofs">[I-D.draft-steele-cose-merkle-tree-proofs]</dt>
+<dt id="I-D.draft-ietf-cose-merkle-tree-proofs">[I-D.draft-ietf-cose-merkle-tree-proofs]</dt>
         <dd>
-<span class="refAuthor">Steele, O.</span>, <span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Delignat-Lavaud, A.</span>, and <span class="refAuthor">C. Fournet</span>, <span class="refTitle">"Concise Encoding of Signed Merkle Tree Proofs"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-steele-cose-merkle-tree-proofs-01</span>, <time datetime="2023-07-10" class="refDate">10 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-steele-cose-merkle-tree-proofs-01">https://datatracker.ietf.org/doc/html/draft-steele-cose-merkle-tree-proofs-01</a>&gt;</span>. </dd>
+<span class="refAuthor">Steele, O.</span>, <span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Delignat-Lavaud, A.</span>, and <span class="refAuthor">C. Fournet</span>, <span class="refTitle">"COSE Receipts"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cose-merkle-tree-proofs-04</span>, <time datetime="2024-03-02" class="refDate">2 March 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-merkle-tree-proofs-04">https://datatracker.ietf.org/doc/html/draft-ietf-cose-merkle-tree-proofs-04</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="in-toto">[in-toto]</dt>
         <dd>
@@ -2515,10 +2556,6 @@ in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#sec
 <dt id="RFC2397">[RFC2397]</dt>
         <dd>
 <span class="refAuthor">Masinter, L.</span>, <span class="refTitle">"The "data" URL scheme"</span>, <span class="seriesInfo">RFC 2397</span>, <span class="seriesInfo">DOI 10.17487/RFC2397</span>, <time datetime="1998-08" class="refDate">August 1998</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2397">https://www.rfc-editor.org/rfc/rfc2397</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC6024">[RFC6024]</dt>
-        <dd>
-<span class="refAuthor">Reddy, R.</span> and <span class="refAuthor">C. Wallace</span>, <span class="refTitle">"Trust Anchor Management Requirements"</span>, <span class="seriesInfo">RFC 6024</span>, <span class="seriesInfo">DOI 10.17487/RFC6024</span>, <time datetime="2010-10" class="refDate">October 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6024">https://www.rfc-editor.org/rfc/rfc6024</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8141">[RFC8141]</dt>
         <dd>
