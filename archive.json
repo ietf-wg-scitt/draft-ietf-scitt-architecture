@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-02T00:35:26.566327+00:00",
+  "timestamp": "2024-04-04T00:36:03.303334+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4328,11 +4328,12 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
-        "terminology"
+        "terminology",
+        "has-pr"
       ],
       "body": "The TS stores Signed Statements. When we started SCITT, I believe several folks had the position that TS would create and store Transparent Statements. \r\nAs of draft 06, a Transparent Statement is assembled on the client, outside the scope of the TS. Yet, we still refer to Transparent Statements. \r\nShould we add a term called Registered Signed Statement, which differentiates a Signed Statement that hasn't yet been registered, and a Signed Statement that has been registered, but isn't Transparent as the TS doesn't staple the receipt to the Signed Statement?",
       "createdAt": "2024-03-18T06:24:43Z",
-      "updatedAt": "2024-03-22T00:09:49Z",
+      "updatedAt": "2024-04-03T15:45:41Z",
       "closedAt": null,
       "comments": [
         {
@@ -4374,10 +4375,12 @@
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "ready-for-pr"
+      ],
       "body": "At the IETF 119 Hackathon, it became confusing when/if `33 x5chain` should be added to the protected header, the unprotected header, or not at all.\r\n\r\nWhile adding the x5chain to the statement can help discoverability, it expands the CBOR content, which is intended to be as small as possible.\r\nPlacing x5Chain in the protected header also means it's included in the signature, which really adds no value.\r\nAlternatives are to place it in the unprotected header, which isn't signed and could be stripped, but typically isn't in practice, so it still adds bloat.\r\n\r\nLastly, the spec speaks to different options: `x5t` (34), `x5chain`(33) or `kid`(4) \r\n[Line: 404](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L404) says:\r\n> During registration, a Transparency Service MUST, at a minimum, authenticate the Issuer of the Signed Statement by validating the CBOR signature and checking the identity of the issuer against one of its currently configured trust anchors, using the `x5t` (34), `x5chain`(33) or `kid`(4) protected headers of the Signed Statement as hints.\r\n> For instance, in order to authenticate X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.\r\n\r\nProposal would be to:\r\n1. Move x5Chain to the unprotected header\r\n1. Remove x5Chain\r\n1. Update the samples to show the different combinations. The [current sample](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L523) shows all as options, which has confused implementers.",
       "createdAt": "2024-03-19T06:51:45Z",
-      "updatedAt": "2024-03-27T18:42:03Z",
+      "updatedAt": "2024-04-03T15:45:52Z",
       "closedAt": null,
       "comments": [
         {
@@ -4398,10 +4401,12 @@
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "ready-for-pr"
+      ],
       "body": "Justin suggested adding an appendix section to disambiguage common usage of terms, such as Issuer, Verifier, Attestation and Assertion.",
       "createdAt": "2024-03-21T23:59:52Z",
-      "updatedAt": "2024-03-21T23:59:52Z",
+      "updatedAt": "2024-04-03T15:45:59Z",
       "closedAt": null,
       "comments": []
     },
@@ -28925,6 +28930,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 225,
+      "id": "PR_kwDOIvmHss5rlh-N",
+      "title": "Add Registered Signed Statement",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/225",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #221 ",
+      "createdAt": "2024-04-03T15:43:09Z",
+      "updatedAt": "2024-04-03T15:43:11Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/221-registered-signed-statement",
+      "headRefOid": "f909c82c17acb3c42143f72322cba6c5511bee67",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
