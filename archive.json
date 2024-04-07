@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-04T00:36:03.303334+00:00",
+  "timestamp": "2024-04-07T00:38:54.726841+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4380,7 +4380,7 @@
       ],
       "body": "At the IETF 119 Hackathon, it became confusing when/if `33 x5chain` should be added to the protected header, the unprotected header, or not at all.\r\n\r\nWhile adding the x5chain to the statement can help discoverability, it expands the CBOR content, which is intended to be as small as possible.\r\nPlacing x5Chain in the protected header also means it's included in the signature, which really adds no value.\r\nAlternatives are to place it in the unprotected header, which isn't signed and could be stripped, but typically isn't in practice, so it still adds bloat.\r\n\r\nLastly, the spec speaks to different options: `x5t` (34), `x5chain`(33) or `kid`(4) \r\n[Line: 404](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L404) says:\r\n> During registration, a Transparency Service MUST, at a minimum, authenticate the Issuer of the Signed Statement by validating the CBOR signature and checking the identity of the issuer against one of its currently configured trust anchors, using the `x5t` (34), `x5chain`(33) or `kid`(4) protected headers of the Signed Statement as hints.\r\n> For instance, in order to authenticate X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.\r\n\r\nProposal would be to:\r\n1. Move x5Chain to the unprotected header\r\n1. Remove x5Chain\r\n1. Update the samples to show the different combinations. The [current sample](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L523) shows all as options, which has confused implementers.",
       "createdAt": "2024-03-19T06:51:45Z",
-      "updatedAt": "2024-04-03T15:45:52Z",
+      "updatedAt": "2024-04-05T18:12:34Z",
       "closedAt": null,
       "comments": [
         {
@@ -4389,6 +4389,41 @@
           "body": "If an X.509 certificate is used as the identity document of the Issuer, then it's reasonable to require the thumbprint of the end-entity certificate to be included in the protected header. Additionally, the x5chain can optionally be included in the unprotected header. This approach has several benefits:\r\n\r\n1. If there is an alternate discovery mechanism for X.509-based identity documents, the `x5t` value can be used to retrieve such documents. Given the existence of this alternate discovery mechanism, the chain included in the unprotected header can be removed to reduce the amount of (unnecessary) data in the Transparency Service.\r\n2. If there is no such discovery mechanism, the presence of the x5chain in the unprotected header provides the necessary information to relying parties to validate the signature on the Statement.\r\n3. RFC 9360 requires that information regarding the end-entity certificate for the identity be integrity-protected. Including the `x5t` in the protected header accomplishes this. However, there is no requirement for the `x5chain` to be protected, so it can be included in the unprotected header.",
           "createdAt": "2024-03-27T18:42:02Z",
           "updatedAt": "2024-03-27T18:42:02Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@henkbirkholz says `x5chain` is not to be recommended.",
+          "createdAt": "2024-04-05T16:03:16Z",
+          "updatedAt": "2024-04-05T16:03:16Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "Okay. @OR13 made sure I reply \u263a\ufe0f Seems to have worked out.\r\n\r\nOne looking from a specific angle could glean two potential drawbacks here: \"carrying the weight of `x5chain` can be a.) a burden (size) and b.) can make you lazy (cause it may cause over time something to the extend of... \"maybe it may be okay to just trust the `x5chain` content? Probably? Maybe? No other checks?.... ah, what could possible go wrong\")",
+          "createdAt": "2024-04-05T17:33:57Z",
+          "updatedAt": "2024-04-05T17:36:37Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "Having commented that. I would advice to just make it optional and elaborate about semantics and usage scenarios in English text (especially if the location of `x5chain` implies different usage scenarios or slightly different semantics).",
+          "createdAt": "2024-04-05T17:37:06Z",
+          "updatedAt": "2024-04-05T17:37:06Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "@CBonnell, yes (if I read this correctly, who knows). If you mean: \"May be included optionally in either protected or unprotected header\", I am okay. Actually, I would also not explicitly disallow putting them in both headers. Policy can figure that one out.",
+          "createdAt": "2024-04-05T17:41:26Z",
+          "updatedAt": "2024-04-05T17:41:26Z"
+        },
+        {
+          "author": "CBonnell",
+          "authorAssociation": "NONE",
+          "body": "@henkbirkholz, my concrete suggestion:\r\n1. `x5t` in the protected header: MUST if an X.509 certificate is the Identity Document\r\n2. `x5chain` in the *unprotected* header: MAY\r\n3. `x5chain` in the *protected* header: SHOULD NOT for the reasons you outlined in the comment [above](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/222#issuecomment-2040311441)\r\n\r\nAs you mentioned, policy can profile these MAYs and SHOULD NOTs to stronger RFC 2119 words if needed.",
+          "createdAt": "2024-04-05T18:06:25Z",
+          "updatedAt": "2024-04-05T18:12:34Z"
         }
       ]
     },
@@ -4422,7 +4457,7 @@
       "labels": [],
       "body": "Consider:\r\n\r\n```\r\nurn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o\r\n```\r\n\r\nWhile this provides string name that works ok for HTTP APIs, this name is not acceptable in many other APIs, due to its use of multiple cases and the colon character.\r\n\r\nConsider a CSR which wishes to obtain a certificate with a SAN, where the SAN can encode a fully qualified receipt.\r\n\r\nPossible syntax:\r\n\r\n```\r\nreceipt-{lowercase(base64url(sha256(signed-statement)))}.transparency.service.example\r\nreceipt-{lowercase(hex(sha256(signed-statement)))}.transparency.service.example\r\n```\r\n\r\n`receipt` could be shortened.\r\n\r\nNames can't start with numbers, cant include special characters, etc...\r\n\r\nIn the same way that URN authority moves left to right, DNS name authority moves right to left... right?\r\n\r\nThere would be issues with case collisions, perhaps base16 lowercase is a better choice.\r\n\r\nThere are restrictions on the max length of SANs, we would want to check those.\r\n \r\nIs this an abuse of SAN? \r\n\r\nBeing \"name\" lookup compatible with DNS seems worth considering.\r\n",
       "createdAt": "2024-03-31T18:00:02Z",
-      "updatedAt": "2024-04-01T23:14:42Z",
+      "updatedAt": "2024-04-05T15:44:06Z",
       "closedAt": null,
       "comments": [
         {
@@ -4438,6 +4473,20 @@
           "body": "For `sub` and `iss`, the value `example.com` is an acceptable value, and an acceptable SAN.\r\n\r\nAnd yes, long story short, I am wondering about where Receipts might be provided by reference in CSRs... similar to how Let's Encrypt certificates contain references to SCTs, and support SANs.\r\n\r\n\r\n",
           "createdAt": "2024-04-01T18:34:05Z",
           "updatedAt": "2024-04-01T23:14:42Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See https://wiki.mozilla.org/Security/Binary_Transparency for an example of this",
+          "createdAt": "2024-04-05T15:33:46Z",
+          "updatedAt": "2024-04-05T15:33:46Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> See https://wiki.mozilla.org/Security/Binary_Transparency for an example of this\r\n\r\nThanks for finding this, I was searching email and Slack and could not find what software/group used this is when you posted but I swore I had seen it. There it is!",
+          "createdAt": "2024-04-05T15:44:05Z",
+          "updatedAt": "2024-04-05T15:44:05Z"
         }
       ]
     }
@@ -28943,7 +28992,7 @@
       "labels": [],
       "body": "Fixes #221 ",
       "createdAt": "2024-04-03T15:43:09Z",
-      "updatedAt": "2024-04-03T15:43:11Z",
+      "updatedAt": "2024-04-05T16:08:58Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
@@ -28954,8 +29003,90 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Feedback from @henkbirkholz, \"Registered\" is a superset of \"Signed\", as it includes the meaning of \"Signed\", making it redundant and long. Simplifying with \"Registered Statement\" would accomplish the same result with fewer words. ",
+          "createdAt": "2024-04-05T16:08:57Z",
+          "updatedAt": "2024-04-05T16:08:57Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss52OTfN",
+          "commit": {
+            "abbreviatedOid": "f909c82"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-05T15:04:52Z",
+          "updatedAt": "2024-04-05T15:04:53Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\n: a Signed Statement that has passed the Registration Policy, has been committed to the Append-only Log.\r\n```",
+              "createdAt": "2024-04-05T15:04:52Z",
+              "updatedAt": "2024-04-05T15:04:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52OT3E",
+          "commit": {
+            "abbreviatedOid": "f909c82"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-05T15:05:40Z",
+          "updatedAt": "2024-04-05T15:05:40Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "counter signatures are a different thing.. the definition of registration is inclusion in the log... not signing receipts.",
+              "createdAt": "2024-04-05T15:05:40Z",
+              "updatedAt": "2024-04-05T15:05:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52OUO9",
+          "commit": {
+            "abbreviatedOid": "f909c82"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-05T15:06:26Z",
+          "updatedAt": "2024-04-05T15:06:26Z",
+          "comments": [
+            {
+              "originalPosition": 49,
+              "body": "I think is in an improvement",
+              "createdAt": "2024-04-05T15:06:26Z",
+              "updatedAt": "2024-04-05T15:06:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52OVfG",
+          "commit": {
+            "abbreviatedOid": "f909c82"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "I think we should not confuse people by saying \"counter-signature\" when we do not mean to imply https://datatracker.ietf.org/doc/html/rfc9338",
+          "createdAt": "2024-04-05T15:08:27Z",
+          "updatedAt": "2024-04-05T15:08:27Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
