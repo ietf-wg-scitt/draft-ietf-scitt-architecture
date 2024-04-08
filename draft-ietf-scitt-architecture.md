@@ -917,17 +917,16 @@ To indicate that the content is an scitt configuration represented as JSON:
 - Provisional registration?  No
 --- back
 
-
 # Common Terminology Disambiguation
 
 This document has been developed in coordination COSE, OAUTH and RATS and uses terminology common to these working groups.
 
 This document uses the terms "issuer", and "subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and in particular, the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
 
-The terms "verifier" and "relying party" are used interchangeably through the document, however the seperation of these terms as described in {{RFC9334}} is compatible with the use of these terms in this document.
+The terms "verifier" and "relying party" are used interchangeably through the document, however the separation of these terms as described in {{RFC9334}} is compatible with the use of these terms in this document.
 For example: A relying party might delegate verification to an independent entity, or a relying party might encapsulate a verification capability.
 
-The terms "claim" and "statement" are used throught this document, where claim is consistent with the usage in {{-draft-ietf-rats-eat}} and {{RFC7523}}, and statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the claims are made.
+The terms "claim" and "statement" are used throughout this document, where claim is consistent with the usage in {{-draft-ietf-rats-eat}} and {{RFC7523}}, and statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the claims are made.
 
 The term "subject" provides an identifier of the issuer's choosing to refer to a given statement, and ensure that all associated claims can be attributed to the identifier chosen by the issuer.
 
@@ -935,7 +934,7 @@ In simpler language, a statement could be some vendor specific software bill of 
 
 In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer". This means the AS initially acts as a Verifier, and then later as an Issuer.
 
-In {{-rats-arch}} and {{-draft-ietf-rats-eat}}, when coveying Digital Letters of Approval (dloas), these claims are typically issued by a RATS Verifier, not a RATS attester, whereas Software Manifests (manifests) are issued by the software manufacturer.
+In {{-rats-arch}} and {{-draft-ietf-rats-eat}}, when conveying Digital Letters of Approval (DLOAs), these claims are typically issued by a RATS Verifier, not a RATS attester, whereas Software Manifests (manifests) are issued by the software manufacturer.
 
 Section 6.3.6 and Section 6.3.7 of {{-draft-ietf-rats-eat}} comment on the use of COSE profiles, and uses the term "attester" to refer to the party which chooses a supported signature or encryption algorithm to secure claims (the act of issuance), and uses the term "verifier" to refer to the party which supports all allowed algorithms, and performs the decryption or verification operation (the act of verifying).
 
@@ -946,7 +945,7 @@ The term "verifier policy" is conceptually similar to the term "registration pol
 
 {{NIST.SP.800-63-3}} defines "assertion" as "A statement from a verifier to an RP that contains information about a subscriber. Assertions may also contain verified attributes."
 
-This document uses the term statement to refer to potentially unsecured data and associated claims, and Signed Statment and Receipt to refer to assertions from an issuer, or the transparency service.
+This document uses the term statement to refer to potentially unsecured data and associated claims, and Signed Statement and Receipt to refer to assertions from an issuer, or the transparency service.
 
 {{NIST.SP.1800-19}} defines "attestation" as "The process of providing a digital signature for a set of measurements securely stored in hardware, and then having the requester validate the signature and the set of measurements."
 
@@ -955,7 +954,6 @@ NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the defini
 This document uses the term Statement to refer to the "statement" or "measurement set", and Signed Statement or Receipt to refer to the digital signature secured representation of the "statement" or "measurement set".
 
 The verifier policy or registration policy may or may not require a Signed Statement or Receipt may or may not be securely stored in hardware.
-
 
 # Identifiers
 
