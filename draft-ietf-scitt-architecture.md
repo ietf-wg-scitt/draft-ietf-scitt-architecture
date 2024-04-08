@@ -943,7 +943,8 @@ The term "verifier policy" is conceptually similar to the term "registration pol
 
 {{FIPS.201}} defines "assertion" as "A verifiable statement from an IdP to an RP that contains information about an end user.".
 
-{{NIST.SP.800-63-3}} defines "assertion" as "A statement from a verifier to an RP that contains information about a subscriber. Assertions may also contain verified attributes."
+{{NIST.SP.800-63-3}} defines "assertion" as "A statement from a verifier to an RP that contains information about a subscriber.
+Assertions may also contain verified attributes."
 
 This document uses the term statement to refer to potentially unsecured data and associated claims, and Signed Statement and Receipt to refer to assertions from an issuer, or the transparency service.
 
