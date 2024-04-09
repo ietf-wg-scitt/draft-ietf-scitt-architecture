@@ -930,7 +930,7 @@ The terms "claim" and "statement" are used throughout this document, where claim
 
 The term "subject" provides an identifier of the issuer's choosing to refer to a given artifact, and ensures that all associated statements can be attributed to the identifier chosen by the issuer.
 
-In simpler language, a statement could be some vendor specific software bill of materials, or results from a model checker, or static analyzer, where the issuer might identify themselves using via the `iss` claim, and the specific software that was analyzed via the `sub` claim.
+In simpler language, a statement could be some vendor-specific software bill of materials (SBOM), or results from a model checker, or static analyzer, where the issuer identifies themselves using the `iss` claim, and the specific software that was analyzed using the `sub` claim.
 
 In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer". This means the AS initially acts as a Verifier, and then later as an Issuer.
 
