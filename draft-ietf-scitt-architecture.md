@@ -934,7 +934,7 @@ In simpler language, a statement could be some vendor-specific software bill of 
 
 In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer". This means the AS initially acts as a Verifier, and then later as an Issuer.
 
-In {{-rats-arch}} and {{-draft-ietf-rats-eat}}, when conveying Digital Letters of Approval (DLOAs), these claims are typically issued by a RATS Verifier, not a RATS attester, whereas Software Manifests (manifests) are issued by the software manufacturer.
+In {{-rats-arch}} and {{-draft-ietf-rats-eat}}, when conveying Digital Letters of Approval (DLOA), these claims are typically issued by a RATS Verifier, not a RATS attester, whereas Software Manifests (manifests) are issued by the software manufacturer.
 
 Section 6.3.6 and Section 6.3.7 of {{-draft-ietf-rats-eat}} comment on the use of COSE profiles, and uses the term "attester" to refer to the party which chooses a supported signature or encryption algorithm to secure claims (the act of issuance), and uses the term "verifier" to refer to the party which supports all allowed algorithms, and performs the decryption or verification operation (the act of verifying).
 
