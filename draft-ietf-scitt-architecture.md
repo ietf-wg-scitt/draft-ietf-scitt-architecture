@@ -231,7 +231,7 @@ Receipts are based on Signed Inclusion Proofs, such as those as described in COS
 they can be built on different verifiable data structures, not just binary merkle trees.
 A Receipt consists of a Transparency Service-specific inclusion proof for the Signed Statement, a signature by the Transparency Service of the state of the Append-only Log after the inclusion, and additional metadata (contained in the signature's protected headers) to assist in auditing.
 
-Registered Signed Statement:
+Registered Statement:
 
 : a Signed Statement that has passed the Registration Policy, has been counter-signed by the Transparency Service and has been committed to the Append-only Log.
 A Registered Signed Statement is represented as a Receipt.
