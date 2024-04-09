@@ -941,7 +941,7 @@ Section 6.3.6 and Section 6.3.7 of {{-draft-ietf-rats-eat}} comment on the use o
 Section 1.3.1 of {{-draft-ietf-rats-eat}} describes the relationship between Attesters which "issue Evidence", Verifiers which verify Evidence and "produce Attestation Results" which are consumed by Relying Parties.
 The term "verifier policy" is conceptually similar to the term "registration policy".
 
-{{FIPS.201}} defines "assertion" as "A verifiable statement from an IdP to an RP that contains information about an end user.".
+{{FIPS.201}} defines "assertion" as "A verifiable statement from an IdP to an RP that contains information about an end user".
 
 {{NIST.SP.800-63-3}} defines "assertion" as "A statement from a verifier to an RP that contains information about a subscriber.
 Assertions may also contain verified attributes."
