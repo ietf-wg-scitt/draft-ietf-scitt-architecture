@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-07T00:38:54.726841+00:00",
+  "timestamp": "2024-04-09T00:35:21.486998+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4489,6 +4489,22 @@
           "updatedAt": "2024-04-05T15:44:05Z"
         }
       ]
+    },
+    {
+      "number": 226,
+      "id": "I_kwDOIvmHss6E6F6s",
+      "title": "Update receipts header parameter references",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/226",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Assuming https://github.com/cose-wg/draft-ietf-cose-merkle-tree-proofs/pull/18 is merged, that document will register everything that is needed for SCITT Receipts (a profile of COSE Receipts).\r\n\r\nThere is clean up work to do in the architecture.\r\n\r\n- Remove the editorial notes regarding 394.\r\n- Review IANA considerations (AFAIK, 394 was never requested for registration in the document, despite the editor notes).",
+      "createdAt": "2024-04-07T15:32:43Z",
+      "updatedAt": "2024-04-07T15:32:43Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -28992,7 +29008,7 @@
       "labels": [],
       "body": "Fixes #221 ",
       "createdAt": "2024-04-03T15:43:09Z",
-      "updatedAt": "2024-04-05T16:08:58Z",
+      "updatedAt": "2024-04-08T17:20:51Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
@@ -29085,6 +29101,123 @@
           "createdAt": "2024-04-05T15:08:27Z",
           "updatedAt": "2024-04-05T15:08:27Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss52b0O_",
+          "commit": {
+            "abbreviatedOid": "f909c82"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-08T17:20:51Z",
+          "updatedAt": "2024-04-08T17:20:51Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I see your point. However, is there a scenario by which a statement is recorded in the log that wasn't counter-signed? A TS must be able to return receipts, that would represent the counter-signature (notarization). Seems we should incorporate that. ",
+              "createdAt": "2024-04-08T17:20:51Z",
+              "updatedAt": "2024-04-08T17:20:52Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 227,
+      "id": "PR_kwDOIvmHss5r8GT4",
+      "title": "Add appendix section on term disambiguation",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/227",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "cc @henkbirkholz will need you to review this.",
+      "createdAt": "2024-04-07T17:15:18Z",
+      "updatedAt": "2024-04-08T17:22:19Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "feat-terms",
+      "headRefOid": "d3a65499c7f8bdb302984c013c5b0f08a7a3aa0e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss52bONx",
+          "commit": {
+            "abbreviatedOid": "07873c3"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks, @OR13 \r\nA few nits for review, and some spelling and markdown that I've already committed. ",
+          "createdAt": "2024-04-08T15:56:00Z",
+          "updatedAt": "2024-04-08T17:16:12Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "The statement refers to the artifact, with the subject.\r\n```suggestion\r\nThe term \"subject\" provides an identifier of the issuer's choosing to refer to a given artifact, and ensures that all associated statements can be attributed to the identifier chosen by the issuer.\r\n```",
+              "createdAt": "2024-04-08T15:56:00Z",
+              "updatedAt": "2024-04-08T17:16:12Z"
+            },
+            {
+              "originalPosition": 35,
+              "body": "```suggestion\r\nIn simpler language, a statement could be some vendor-specific software bill of materials (SBOM), or results from a model checker, or static analyzer, where the issuer identifies themselves using the `iss` claim, and the specific software that was analyzed using the `sub` claim.\r\n```",
+              "createdAt": "2024-04-08T15:58:30Z",
+              "updatedAt": "2024-04-08T17:16:12Z"
+            },
+            {
+              "originalPosition": 39,
+              "body": "```suggestion\r\nIn {{-rats-arch}} and {{-draft-ietf-rats-eat}}, when conveying Digital Letters of Approval (DLOA), these claims are typically issued by a RATS Verifier, not a RATS attester, whereas Software Manifests (manifests) are issued by the software manufacturer.\r\n```",
+              "createdAt": "2024-04-08T15:59:39Z",
+              "updatedAt": "2024-04-08T17:16:12Z"
+            },
+            {
+              "originalPosition": 46,
+              "body": "```suggestion\r\n{{FIPS.201}} defines \"assertion\" as \"A verifiable statement from an IdP to an RP that contains information about an end user\".\r\n```",
+              "createdAt": "2024-04-08T17:13:10Z",
+              "updatedAt": "2024-04-08T17:16:12Z"
+            },
+            {
+              "originalPosition": 48,
+              "body": "```suggestion\r\n{{NIST.SP.800-63-3}} defines \"assertion\" as \"A statement from a verifier to an RP that contains information about a subscriber.\r\nAssertions may also contain verified attributes.\"\r\n```",
+              "createdAt": "2024-04-08T17:13:27Z",
+              "updatedAt": "2024-04-08T17:16:12Z"
+            },
+            {
+              "originalPosition": 50,
+              "body": "```suggestion\r\nThis document uses the term Statement to refer to potentially unsecured data and associated claims, and Signed Statement and Receipt to refer to assertions from an Issuer, or the transparency service.\r\n```",
+              "createdAt": "2024-04-08T17:14:43Z",
+              "updatedAt": "2024-04-08T17:16:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52b0xs",
+          "commit": {
+            "abbreviatedOid": "d3a6549"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-04-08T17:22:13Z",
+          "updatedAt": "2024-04-08T17:22:19Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Can someone explain to me what an NCCoE implementation guide regarding \"Security Practice Guide for VMware Hybrid Cloud Infrastructure as a Service (IaaS) Environments\" has to do with SCITT?\r\n\r\n```suggestion\r\n```",
+              "createdAt": "2024-04-08T17:22:13Z",
+              "updatedAt": "2024-04-08T17:22:19Z"
+            }
+          ]
         }
       ]
     }
