@@ -335,10 +335,10 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
  | Statement ||  Envelope  +<-------------.
   '----+----'  '-----+----'                |
        |             |            .--------+--.
-        '----. .----'            |  Identity   |
-              |                  |  Documents  +---.
-              v                   '------+----'     |
-         .----+----.                     |          |
+        '--.     .--'            |  Identity   |
+            |   |                |  Documents  +---.
+            v   v                 '------+----'     |
+         .--+---+--.                     |          |
         |  Signed   |    COSE Signing    |          |
         | Statement +<-------------------+          |
          '----+----'                     |          |
