@@ -417,10 +417,10 @@ Table of Contents
     | Statement ||  Envelope  +<-------------.
      '----+----'  '-----+----'                |
           |             |            .--------+--.
-           '----. .----'            |  Identity   |
-                 |                  |  Documents  +---.
-                 v                   '------+----'     |
-            .----+----.                     |          |
+           '--.     .--'            |  Identity   |
+               |   |                |  Documents  +---.
+               v   v                 '------+----'     |
+            .--+---+--.                     |          |
            |  Signed   |    COSE Signing    |          |
            | Statement +<-------------------+          |
             '----+----'                     |          |
