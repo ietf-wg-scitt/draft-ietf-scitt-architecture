@@ -349,11 +349,11 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
           |  |          +.      +--+------------+ | |
           |   '-+------'  |        | Transparency | |
           |     | Receipt +<-------+              | |
-          |      '------+'         | Service      | |
-           '-------. .-'           +------------+-+ |
-                    |                           |   |
-                    v                           |   |
-              .-----+-----.                     |   |
+          |      '-----+-'         | Service      | |
+           '----.      |           +------------+-+ |
+                 |     |                        |   |
+                 v     v                        |   |
+              .--+-----+--.                     |   |
              | Transparent |                    |   |
              |  Statement  |                    |   |
               '-----+-----'                     |   |
