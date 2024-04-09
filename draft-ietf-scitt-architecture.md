@@ -946,7 +946,7 @@ The term "verifier policy" is conceptually similar to the term "registration pol
 {{NIST.SP.800-63-3}} defines "assertion" as "A statement from a verifier to an RP that contains information about a subscriber.
 Assertions may also contain verified attributes."
 
-This document uses the term statement to refer to potentially unsecured data and associated claims, and Signed Statement and Receipt to refer to assertions from an issuer, or the transparency service.
+This document uses the term Statement to refer to potentially unsecured data and associated claims, and Signed Statement and Receipt to refer to assertions from an Issuer, or the transparency service.
 
 {{NIST.SP.1800-19}} defines "attestation" as "The process of providing a digital signature for a set of measurements securely stored in hardware, and then having the requester validate the signature and the set of measurements."
 
