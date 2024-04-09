@@ -928,7 +928,7 @@ For example: A relying party might delegate verification to an independent entit
 
 The terms "claim" and "statement" are used throughout this document, where claim is consistent with the usage in {{-draft-ietf-rats-eat}} and {{RFC7523}}, and statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the claims are made.
 
-The term "subject" provides an identifier of the issuer's choosing to refer to a given statement, and ensure that all associated claims can be attributed to the identifier chosen by the issuer.
+The term "subject" provides an identifier of the issuer's choosing to refer to a given artifact, and ensures that all associated statements can be attributed to the identifier chosen by the issuer.
 
 In simpler language, a statement could be some vendor specific software bill of materials, or results from a model checker, or static analyzer, where the issuer might identify themselves using via the `iss` claim, and the specific software that was analyzed via the `sub` claim.
 
