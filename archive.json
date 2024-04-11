@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-09T00:35:21.486998+00:00",
+  "timestamp": "2024-04-11T00:35:38.318073+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4333,7 +4333,7 @@
       ],
       "body": "The TS stores Signed Statements. When we started SCITT, I believe several folks had the position that TS would create and store Transparent Statements. \r\nAs of draft 06, a Transparent Statement is assembled on the client, outside the scope of the TS. Yet, we still refer to Transparent Statements. \r\nShould we add a term called Registered Signed Statement, which differentiates a Signed Statement that hasn't yet been registered, and a Signed Statement that has been registered, but isn't Transparent as the TS doesn't staple the receipt to the Signed Statement?",
       "createdAt": "2024-03-18T06:24:43Z",
-      "updatedAt": "2024-04-03T15:45:41Z",
+      "updatedAt": "2024-04-09T14:20:35Z",
       "closedAt": null,
       "comments": [
         {
@@ -4363,6 +4363,13 @@
           "body": "I would prefer to see that the format of the final registered signed statement be defined because it appears that this will be likely something that is published along with an artifact in many use cases.",
           "createdAt": "2024-03-22T00:09:48Z",
           "updatedAt": "2024-03-22T00:09:48Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Consider re-wording a transparent statement as a state that comes after registration and the append-only log. Not just when it's stapled to the signed statement ",
+          "createdAt": "2024-04-09T14:20:33Z",
+          "updatedAt": "2024-04-09T14:20:33Z"
         }
       ]
     },
@@ -4374,13 +4381,15 @@
       "state": "OPEN",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "ad-l"
+      ],
       "labels": [
         "ready-for-pr"
       ],
       "body": "At the IETF 119 Hackathon, it became confusing when/if `33 x5chain` should be added to the protected header, the unprotected header, or not at all.\r\n\r\nWhile adding the x5chain to the statement can help discoverability, it expands the CBOR content, which is intended to be as small as possible.\r\nPlacing x5Chain in the protected header also means it's included in the signature, which really adds no value.\r\nAlternatives are to place it in the unprotected header, which isn't signed and could be stripped, but typically isn't in practice, so it still adds bloat.\r\n\r\nLastly, the spec speaks to different options: `x5t` (34), `x5chain`(33) or `kid`(4) \r\n[Line: 404](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L404) says:\r\n> During registration, a Transparency Service MUST, at a minimum, authenticate the Issuer of the Signed Statement by validating the CBOR signature and checking the identity of the issuer against one of its currently configured trust anchors, using the `x5t` (34), `x5chain`(33) or `kid`(4) protected headers of the Signed Statement as hints.\r\n> For instance, in order to authenticate X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.\r\n\r\nProposal would be to:\r\n1. Move x5Chain to the unprotected header\r\n1. Remove x5Chain\r\n1. Update the samples to show the different combinations. The [current sample](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L523) shows all as options, which has confused implementers.",
       "createdAt": "2024-03-19T06:51:45Z",
-      "updatedAt": "2024-04-05T18:12:34Z",
+      "updatedAt": "2024-04-10T16:59:10Z",
       "closedAt": null,
       "comments": [
         {
@@ -4424,6 +4433,27 @@
           "body": "@henkbirkholz, my concrete suggestion:\r\n1. `x5t` in the protected header: MUST if an X.509 certificate is the Identity Document\r\n2. `x5chain` in the *unprotected* header: MAY\r\n3. `x5chain` in the *protected* header: SHOULD NOT for the reasons you outlined in the comment [above](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/222#issuecomment-2040311441)\r\n\r\nAs you mentioned, policy can profile these MAYs and SHOULD NOTs to stronger RFC 2119 words if needed.",
           "createdAt": "2024-04-05T18:06:25Z",
           "updatedAt": "2024-04-05T18:12:34Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@ad-l to respond, keeping the `x5t` in the protected header, and when x5chain is maintained in the unprotected header.",
+          "createdAt": "2024-04-09T15:02:41Z",
+          "updatedAt": "2024-04-09T15:02:41Z"
+        },
+        {
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The point of `x5chain` is to make the full identity of the issuer verifiable by relying parties. Transparency services are allowed to alter any unprotected header, so verifiers and auditors MUST NOT rely on any unprotected `x5chain` header to identify issuers, as a malicious transparency service can always substitute a partial chain with another one on a different root (it is even possible to do so while preserving the `x5t` of the leaf certificate and the AKI/SKI of all intermediates, by extending the chain at the root).\r\n\r\nThe policy for issuers is that if they intend their identity to be verifiable by auditors and verifiers, then they should include `x5chain`  in the protected headers. If only `x5t` is included then the configuration of the TS at the time of registration is trusted to identify the issuer (this is explained in the auditability of registration section).\r\n\r\nVerifiers and auditors MUST ignore unprotected `x5chain` headers. TS may use unprotected `x5chain` as a hint to reconstruct the issuer chain but MUST validate the `x5t`.\r\n\r\nI hope that clarifies the intent of how `x5chain` should be used, now we can discuss how these can be made explicit in the architecture",
+          "createdAt": "2024-04-09T16:10:27Z",
+          "updatedAt": "2024-04-09T16:10:27Z"
+        },
+        {
+          "author": "CBonnell",
+          "authorAssociation": "NONE",
+          "body": "My understanding is that any verifier or auditor will need to perform certification path validation and not solely rely on the presence of `x5t` or `x5chain` in either the unprotected or protected header. RFC 9360, section 2 says:\r\n\r\n> Parties that intend to rely on the assertions made by a certificate obtained from any of these methods still need to validate it. This validation can be done according to the PKIX rules specified in [[RFC5280](https://datatracker.ietf.org/doc/html/rfc5280)] or by using a different trust structure, such as a trusted certificate distributor for self-signed certificates. The PKIX validation includes matching against the trust anchors configured for the application. These rules apply when the validation succeeds in a single step as well as when certificate chains need to be built. If the application cannot establish trust in the certificate, the public key contained in the certificate cannot be used for cryptographic operations.\r\n\r\nPerhaps this can be stated again in the current document to reduce potential ambiguity, but I think this validation will prevent any substitution attacks/fake chains presented by malicious transparency services.",
+          "createdAt": "2024-04-10T16:59:10Z",
+          "updatedAt": "2024-04-10T16:59:10Z"
         }
       ]
     },
@@ -4505,6 +4535,30 @@
       "updatedAt": "2024-04-07T15:32:43Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 228,
+      "id": "I_kwDOIvmHss6FIqKM",
+      "title": "Automate summarizing issues and PRs to the SCITT mailing list",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/228",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Vote with +1 for automating this, making the changes more visible to folks tracking the mailing list",
+      "createdAt": "2024-04-09T14:52:22Z",
+      "updatedAt": "2024-04-09T18:47:03Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "+1",
+          "createdAt": "2024-04-09T14:53:27Z",
+          "updatedAt": "2024-04-09T14:53:27Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -29008,13 +29062,13 @@
       "labels": [],
       "body": "Fixes #221 ",
       "createdAt": "2024-04-03T15:43:09Z",
-      "updatedAt": "2024-04-08T17:20:51Z",
+      "updatedAt": "2024-04-09T20:53:50Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/221-registered-signed-statement",
-      "headRefOid": "f909c82c17acb3c42143f72322cba6c5511bee67",
+      "headRefOid": "47c21c683eab651fa17da723cef6ef824f7aae49",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -29026,6 +29080,20 @@
           "body": "Feedback from @henkbirkholz, \"Registered\" is a superset of \"Signed\", as it includes the meaning of \"Signed\", making it redundant and long. Simplifying with \"Registered Statement\" would accomplish the same result with fewer words. ",
           "createdAt": "2024-04-05T16:08:57Z",
           "updatedAt": "2024-04-05T16:08:57Z"
+        },
+        {
+          "author": "ad-l",
+          "authorAssociation": "COLLABORATOR",
+          "body": "As discussed on 09/04 I don't think the new terminology for registered signed statement is necessary. From an external point of view users should only consider signed statements and transparent statements.",
+          "createdAt": "2024-04-09T14:21:02Z",
+          "updatedAt": "2024-04-09T14:21:02Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Consider re-wording a transparent statement as a state that comes after registration and the append-only log. Not just when it's stapled to the signed statement",
+          "createdAt": "2024-04-09T14:21:17Z",
+          "updatedAt": "2024-04-09T14:21:17Z"
         }
       ],
       "reviews": [
@@ -29121,6 +29189,119 @@
               "updatedAt": "2024-04-08T17:20:52Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52jQJ8",
+          "commit": {
+            "abbreviatedOid": "f909c82"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T12:49:17Z",
+          "updatedAt": "2024-04-09T12:49:17Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Technically there can be lots of statements in the log, for which no signed inclusion proof has yet or ever will be produced.\n\nA signed inclusion proof is a kind of counter signature, but we also use the term receipt for it... Less terms is better, if we can avoid using the word counter signature, we should.",
+              "createdAt": "2024-04-09T12:49:17Z",
+              "updatedAt": "2024-04-09T12:49:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52jY44",
+          "commit": {
+            "abbreviatedOid": "f909c82"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T13:05:24Z",
+          "updatedAt": "2024-04-09T13:05:24Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Russ told us that a countersignature is a countersignature :-) By which he means that it is just that, add more data to it and it becomes its own thing - hence Receipt.",
+              "createdAt": "2024-04-09T13:05:24Z",
+              "updatedAt": "2024-04-09T13:05:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52jZoq",
+          "commit": {
+            "abbreviatedOid": "f909c82"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T13:06:54Z",
+          "updatedAt": "2024-04-09T13:06:54Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I do not think, there is a need of a Registered Signed Statement in the specification. It will be more confusing than doing anything good!.\r\n\r\nWe have `Signed Statement` and we have `Transparent Statement` \r\n\r\nThey are good enough concepts, no need to introduce this new term.\r\n\r\nI strongly suggest we drop this Pull Request!",
+              "createdAt": "2024-04-09T13:06:54Z",
+              "updatedAt": "2024-04-09T13:06:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52jZ2L",
+          "commit": {
+            "abbreviatedOid": "f909c82"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T13:07:15Z",
+          "updatedAt": "2024-04-09T13:07:15Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\n: a Signed Statement that has passed the Registration Policy and has been committed to the Append-only Log.\r\n```\r\nwhy the semicolon?",
+              "createdAt": "2024-04-09T13:07:15Z",
+              "updatedAt": "2024-04-09T13:07:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52jyff",
+          "commit": {
+            "abbreviatedOid": "f909c82"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "I think, we should drop the PR!",
+          "createdAt": "2024-04-09T13:48:39Z",
+          "updatedAt": "2024-04-09T13:48:39Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss52kAWQ",
+          "commit": {
+            "abbreviatedOid": "f909c82"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T14:05:26Z",
+          "updatedAt": "2024-04-09T14:05:27Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\nRegistered Statement:\r\n```\r\nRegistered means signed.",
+              "createdAt": "2024-04-09T14:05:26Z",
+              "updatedAt": "2024-04-09T14:05:27Z"
+            }
+          ]
         }
       ]
     },
@@ -29132,22 +29313,32 @@
       "state": "OPEN",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "henkbirkholz"
+      ],
       "labels": [],
       "body": "cc @henkbirkholz will need you to review this.",
       "createdAt": "2024-04-07T17:15:18Z",
-      "updatedAt": "2024-04-08T17:22:19Z",
+      "updatedAt": "2024-04-09T14:47:04Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "feat-terms",
-      "headRefOid": "d3a65499c7f8bdb302984c013c5b0f08a7a3aa0e",
+      "headRefOid": "3f6835ab307a32acd74c9e8016e955eac4ca952a",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Action item for @henkbirkholz to make some proposals",
+          "createdAt": "2024-04-09T14:46:55Z",
+          "updatedAt": "2024-04-09T14:46:55Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss52bONx",
@@ -29218,8 +29409,277 @@
               "updatedAt": "2024-04-08T17:22:19Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52jQOj",
+          "commit": {
+            "abbreviatedOid": "d3a6549"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T12:49:25Z",
+          "updatedAt": "2024-04-09T13:01:52Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "yeah... I am not sure about the Verifier part, honestly. A SCITT Verifier should be trustworthy and should take on the role of an RFC9334 Attester. A SCITT Verifier is not conducting the appraisal of RFC9334 Evidence, I think.",
+              "createdAt": "2024-04-09T12:49:25Z",
+              "updatedAt": "2024-04-09T13:01:52Z"
+            },
+            {
+              "originalPosition": 41,
+              "body": "The act of producing Evidence is comparable with the act of issuance, but it is quite specific subset (which distinguishes it from \"self-assertion\"/\"self-signing\" aka a NIST 1st party attestation).",
+              "createdAt": "2024-04-09T12:52:50Z",
+              "updatedAt": "2024-04-09T13:01:52Z"
+            },
+            {
+              "originalPosition": 43,
+              "body": "I agree that the process steps are semantically similar and the sequence of similar steps is the same, but you achieve very different goals here. Also EAT just repeats RFC9334 here.",
+              "createdAt": "2024-04-09T12:54:33Z",
+              "updatedAt": "2024-04-09T13:01:52Z"
+            },
+            {
+              "originalPosition": 44,
+              "body": "The actual correct term is \"Appraisal Policy for Evidence\", which also shows that the output (Attestation Result) is intended to solve a different problem. By introducing this whole analogy here, we come dangerously close to implying that \"Evidence\" is an analog to \"NIST 1st-party Attestation\" (which it is not, but semantically very different things).",
+              "createdAt": "2024-04-09T12:57:19Z",
+              "updatedAt": "2024-04-09T13:03:21Z"
+            },
+            {
+              "originalPosition": 6,
+              "body": "your answer is where the ref is used. In this PR that is line 951, currently.",
+              "createdAt": "2024-04-09T12:58:07Z",
+              "updatedAt": "2024-04-09T13:01:52Z"
+            },
+            {
+              "originalPosition": 55,
+              "body": "And ISO 17000 Attestation is the basis for NIST Attestation (https://www.nist.gov/itl/executive-order-improving-nations-cybersecurity/software-supply-chain-security-guidance-2), which, e.g., conflicts with IETF RFC9334 Evidence or TCG Attestation. There be dragons.",
+              "createdAt": "2024-04-09T13:01:34Z",
+              "updatedAt": "2024-04-09T13:01:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52j3sK",
+          "commit": {
+            "abbreviatedOid": "d3a6549"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T13:56:16Z",
+          "updatedAt": "2024-04-09T13:56:17Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "more detailed answer: because NIST defined \"assertion\" and \"attestation\" which are terms that need disambiguation in the context of SCITT.",
+              "createdAt": "2024-04-09T13:56:16Z",
+              "updatedAt": "2024-04-09T13:56:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52j4qZ",
+          "commit": {
+            "abbreviatedOid": "d3a6549"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T13:57:48Z",
+          "updatedAt": "2024-04-09T13:57:48Z",
+          "comments": [
+            {
+              "originalPosition": 43,
+              "body": "Not sure what to do with this comment... resolve it?",
+              "createdAt": "2024-04-09T13:57:48Z",
+              "updatedAt": "2024-04-09T13:57:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52j5R2",
+          "commit": {
+            "abbreviatedOid": "d3a6549"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T13:58:46Z",
+          "updatedAt": "2024-04-09T13:58:47Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "^ can you suggest text / changes? The goal of this section is specifically to avoid dangerous implications, and I am not a RATS expert : )",
+              "createdAt": "2024-04-09T13:58:46Z",
+              "updatedAt": "2024-04-09T13:58:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52j5n9",
+          "commit": {
+            "abbreviatedOid": "d3a6549"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T13:59:18Z",
+          "updatedAt": "2024-04-09T13:59:19Z",
+          "comments": [
+            {
+              "originalPosition": 55,
+              "body": "Lets identify them, and explain their conflict, thats the purpose of this section.",
+              "createdAt": "2024-04-09T13:59:19Z",
+              "updatedAt": "2024-04-09T13:59:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52j6B6",
+          "commit": {
+            "abbreviatedOid": "d3a6549"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T13:59:53Z",
+          "updatedAt": "2024-04-09T13:59:53Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "Not sure what to do with this comment. resolve it?",
+              "createdAt": "2024-04-09T13:59:53Z",
+              "updatedAt": "2024-04-09T13:59:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52j6xc",
+          "commit": {
+            "abbreviatedOid": "3f6835a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T14:01:06Z",
+          "updatedAt": "2024-04-09T14:01:06Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "I think, we should write a generic statement on Disambiguation. Otherwise, this list can keep evolving and we never finish the document!",
+              "createdAt": "2024-04-09T14:01:06Z",
+              "updatedAt": "2024-04-09T14:01:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52j61F",
+          "commit": {
+            "abbreviatedOid": "d3a6549"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T14:01:12Z",
+          "updatedAt": "2024-04-09T14:01:12Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": ">  A SCITT Verifier is not conducting the appraisal of RFC9334 Evidence, I think.\r\n\r\nWhy not, a SCITT verifier checks signatures and applies registration policy or verifier policy to the resulting claim set... If this is not compatible, what causes the incompatibility?",
+              "createdAt": "2024-04-09T14:01:12Z",
+              "updatedAt": "2024-04-09T14:01:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52kW4Y",
+          "commit": {
+            "abbreviatedOid": "3f6835a"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-04-09T14:36:45Z",
+          "updatedAt": "2024-04-09T14:36:45Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss52kXLD",
+          "commit": {
+            "abbreviatedOid": "3f6835a"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T14:37:13Z",
+          "updatedAt": "2024-04-09T14:37:13Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "A RATS Verifier consumes Evidence from the Issuer (the Attester). A Signed Statement is not Evidence, you can add Evidence to it, if the TS takes on the role of Attester.",
+              "createdAt": "2024-04-09T14:37:13Z",
+              "updatedAt": "2024-04-09T14:37:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss52kaks",
+          "commit": {
+            "abbreviatedOid": "3f6835a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-09T14:42:12Z",
+          "updatedAt": "2024-04-09T14:42:12Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "@henkbirkholz can you make a suggestion for a change?",
+              "createdAt": "2024-04-09T14:42:12Z",
+              "updatedAt": "2024-04-09T14:42:12Z"
+            }
+          ]
         }
       ]
+    },
+    {
+      "number": 229,
+      "id": "PR_kwDOIvmHss5sLUlh",
+      "title": "Update diagram lines",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/229",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Minor tweak to separating the lines for different properties\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/e5ca06a8-1cd5-47ab-a711-671133f6a9ae)\r\n\r\n",
+      "createdAt": "2024-04-09T21:00:41Z",
+      "updatedAt": "2024-04-09T21:07:42Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/diagram-update",
+      "headRefOid": "cb5847ab64a055f8aaa90ccd14b0d9db7208abe3",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
