@@ -487,6 +487,9 @@ Multiple Issuers can make the same Statement about a single Artifact, affirming 
 
 At least one identifier for an identity document MUST be included in the protected header of the COSE envelope, as one of `x5t`, `x5chain` or `kid`.
 
+- When using x509, Support for `x5t` is mandatory to implement.
+- Support for `kid` and `x5chain` is optional.
+
 When `x5t` or `x5chain` is present, `iss` MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
 
 The mechanisms for how Transparency Services obtain identity documents is out-of-scope of this document.
