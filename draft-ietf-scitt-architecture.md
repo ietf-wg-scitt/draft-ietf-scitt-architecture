@@ -446,7 +446,6 @@ Specific verifiable data structures, such those describes in {{-CT}} and {{-COME
 
 Transparency Services can be deployed along side other database or object storage technologies.
 For example, a Transparency Service that is supporting a software package management system, might be referenced from the APIs exposed for package management.
-Each version of the package would represent an artifact, by which Signed Statements are registered, including provenance of the package, known vulnerabilities or newer version information.
 Providing an ability to request a fresh receipt for a given software package, or to request a list of Signed Statements associated with the software package.
 
 ## Signed Statements
