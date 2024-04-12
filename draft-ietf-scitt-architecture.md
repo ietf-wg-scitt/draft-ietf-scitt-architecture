@@ -944,7 +944,7 @@ To promote interoperability, the base encoding MUST be "base64url".
 
 In the blocks and examples that follow, note '\' line wrapping per RFC 8792.
 
-## For Binary Content
+## Identifiers For Binary Content
 
 Identifiers for binary content, such as Statements, or even Artifacts themselves are computed as follows:
 
@@ -961,7 +961,7 @@ urn:ietf:params:scitt:\
 {base64url-encoded-bytes-digest}
 ~~~
 
-## For SCITT Messages
+## Identifiers For SCITT Messages
 
 Identifiers for COSE Sign 1 based messages, such as identifiers for Signed Statements and Receipts are computed as follows:
 
@@ -982,7 +982,7 @@ Note that this means the content of the signature is not included in the identif
 
 As a result, an attacker may construct a new signed statement that has the same identifier as a previous signed statement, but has a different signature.
 
-## For Transparent Statements
+## Identifiers For Transparent Statements
 
 Identifiers for Transparent Statements are defined as identifiers for binary content, but with "transparent-statement" as the `message-type`.
 
