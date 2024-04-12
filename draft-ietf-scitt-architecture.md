@@ -401,7 +401,9 @@ This specification leaves implementation, encoding and documentation of Registra
 
 #### Mandatory Registration Checks
 
-During registration, a Transparency Service MUST, at a minimum, syntactically check the Issuer of the Signed Statement by validating the COSE signature and checking the Issuer details are consistent with one of its supported trust anchors. The Issuer identity MUST be bound to the Signed Statement by including a commitment to it in the protected header. If the protected header includes multiple commitments, all those that are registered by the Transparency Service MUST be checked.
+During registration, a Transparency Service MUST, at a minimum, syntactically check the Issuer of the Signed Statement by validating the COSE signature and checking the Issuer details are consistent with one of its supported trust anchors.
+The Issuer identity MUST be bound to the Signed Statement by including a commitment to it in the protected header.
+If the protected header includes multiple commitments, all those that are registered by the Transparency Service MUST be checked.
 
 The Transparency Service MUST apply the Registration Policy that was most recently added to the Append-only Log at the time of registration.
 
