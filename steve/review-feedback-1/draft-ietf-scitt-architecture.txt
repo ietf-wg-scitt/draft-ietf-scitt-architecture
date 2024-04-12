@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 13 September 2024                                    C. Fournet
+Expires: 14 October 2024                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                           12 March 2024
+                                                           12 April 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 September 2024.
+   This Internet-Draft will expire on 14 October 2024.
 
 Copyright Notice
 
@@ -266,8 +266,10 @@ Table of Contents
       information in the non-opaque header and metadata contained in its
       COSE Envelope.
 
-   Relying Party:  a relying party depends on Signed or Transparent
-      Statements to verify an Artifact.
+   Relying Party:  a Relying Parties consumes Transparent Statements,
+      verifying their proofs and inspecting the Statement payload,
+      either before using corresponding Artifacts, or later to audit an
+      Artifact's provenance on the supply chain.
 
    Signed Statement:  an identifiable and non-repudiable Statement about
       an Artifact signed by an Issuer.  In SCITT, Signed Statements are
@@ -301,11 +303,11 @@ Table of Contents
 
    Transparency Service:  an entity that maintains and extends the
       Append-only Log, and endorses its state.  A Transparency Service
-      can be a complex distributed system, and SCITT requires the
-      Transparency Service to provide many security guarantees about its
-      Append-only Log. The identity of a Transparency Service is
-      captured by a public key that must be known by Relying Parties in
-      order to validate Receipts.
+      can be a complex system, requiring the Transparency Service to
+      provide many security guarantees about its Append-only Log. The
+      identity of a Transparency Service is captured by a public key
+      that must be known by Relying Parties in order to validate
+      Receipts.
 
    Transparent Statement:  a Signed Statement that is augmented with a
       Receipt created via Registration in a Transparency Service.  The
@@ -313,12 +315,6 @@ Table of Contents
       the Signed Statement.  A Transparent Statement remains a valid
       Signed Statement, and may be registered again in a different
       Transparency Service.
-
-   Relying Party:  organizations, stakeholders, and users involved in
-      validating supply chain Artifacts.  Relying Parties consume
-      Transparent Statements, verifying their proofs and inspecting the
-      Statement payload, either before using corresponding Artifacts, or
-      later to audit an Artifact's provenance on the supply chain.
 
 3.  Definition of Transparency
 
@@ -713,6 +709,7 @@ Table of Contents
 
    Unprotected_Header = {
      ? &(receipts: 394)  => [+ Receipt]
+     * int => any
    }
 
         Figure 1: CDDL definition for Signed Statements and Receipts
