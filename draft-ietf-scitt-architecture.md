@@ -371,7 +371,7 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
          '------------------'      '----------------'
 ~~~
 
-This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and Signed Statements, Transparency Service and the Signed Statement Registration process, as well as Relying Parties of the Transparent Statements and the Receipt validation process.
+This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and Signed Statements, Transparency Service, the Signed Statement Registration process, as well as Relying Parties of the Transparent Statements and the Receipt validation process.
 
 ## Transparency Service
 
