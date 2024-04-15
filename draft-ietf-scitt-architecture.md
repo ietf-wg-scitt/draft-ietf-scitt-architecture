@@ -327,34 +327,35 @@ In order to accommodate as many Transparency Service implementations as possible
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
 
 ~~~aasvg
-  .----------.
- |  Artifact  |
-  '----+-----'
-       v
-  .----+----.  .----------.   Identifiers
- | Statement ||  Envelope  +<-------------.
-  '----+----'  '-----+----'                |
-       |             |            .--------+--.
-        '--.     .--'            |  Identity   |
-            |   |                |  Documents  +---.
-            v   v                 '------+----'     |
-         .--+---+--.                     |          |
-        |  Signed   |    COSE Signing    |          |
-        | Statement +<-------------------+          |
-         '----+----'                     |          |
-              |                 +--------+------+   |
-           .-' '--------------->+ Transparency  |   |
-          |   .--------.        |               |   |
-          |  | Receipt  +<------+  Service      +-+ |
-          |  |          +.      +--+------------+ | |
-          |   '-+------'  |        | Transparency | |
-          |     | Receipt +<-------+              | |
-          |      '-----+-'         | Service      | |
-           '----.      |           +------------+-+ |
-                 |     |                        |   |
-                 v     v                        |   |
-              .--+-----+--.                     |   |
-             | Transparent |                    |   |
+          .----------.
+         |  Artifact  |
+          '----+-----'
+ .---------.   |    .----------.
+|           |  |   | Identity   +------------------.
+| Statement |  |   | Documents  |                   |
+ '----+----'   |    '---+--+---'                    |
+      |        |        |  |                        |
+       '---.   |   .---'    '------.                |
+            |  |  |                 |               |
+            v  v  v                 |               |
+         .--+--+--+--.   COSE       |               |
+        |   Signed    | Signing     |               |
+        |  Statement  +<-----------'                |
+        | (Envelope)  |                             |
+         '----+------'                              |
+              |                 +---------------+   |
+         .---' '--------------->+ Transparency  |   |
+        |     .--------.        |               |   |
+        |    | Receipt  +<------+  Service      +-+ |
+        |    |          +.      +--+------------+ | |
+        |     '-+------'  |        | Transparency | |
+        |       | Receipt +<-------+              | |
+        |        '---+---'         | Service      | |
+        |            |             +------------+-+ |
+        |            |                          |   |
+        |            v                          |   |
+        |     .------+----.                     |   |
+         '-->+ Transparent |                    |   |
              |  Statement  |                    |   |
               '-----+-----'                     |   |
                     |                           |   |
