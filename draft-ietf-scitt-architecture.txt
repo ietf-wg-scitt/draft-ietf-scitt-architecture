@@ -526,9 +526,9 @@ Table of Contents
    Transparency Services MUST ensure that for any Signed Statement they
    register, enough information is made available to Auditors (either in
    the Append-only Log and retrievable through audit APIs, or included
-   in the Receipt) to authenticate and retrieve the Transparent
-   Statements describing the registration policy and trust anchors that
-   apply to this registration.
+   in the Receipt) to authenticate and retrieve the Signed Statements
+   describing the registration policy and trust anchors that apply to
+   this registration.
 
 4.1.2.  Initialization and bootstrapping
 
@@ -580,8 +580,8 @@ Table of Contents
    that is supporting a software package management system, might be
    referenced from the APIs exposed for package management.  Providing
    an ability to request a fresh receipt for a given software package,
-   or to request a list of Signed Statements and Artifacts associated
-   with a software package.
+   or to request a list of Signed Statements associated with the
+   software package.
 
 4.2.  Signed Statements
 
