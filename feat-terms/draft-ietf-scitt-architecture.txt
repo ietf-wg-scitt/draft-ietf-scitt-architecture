@@ -1541,7 +1541,8 @@ Appendix A.  Common Terminology Disambiguation
    client authentication requests, and issues access tokens to clients
    configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-
    bearer".  This means the AS initially acts as a "verifier", and then
-   later as an "issuer".
+   later as an "issuer".  This mirrors how Signed Statements are
+   verified before Receipts are issued by a Transparency Service.
 
    [FIPS.201] defines "assertion" as "A verifiable statement from an IdP
    to an RP that contains information about an end user".
