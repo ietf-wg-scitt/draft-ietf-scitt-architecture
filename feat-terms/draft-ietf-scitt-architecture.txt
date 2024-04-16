@@ -1512,13 +1512,13 @@ Appendix A.  Common Terminology Disambiguation
    and "Relying Party" as used in [RFC9334], they do not imply the
    processing of RATS conceptual messages, such as Evidence or
    Attestation Results that are specific to remote attestation.  A SCITT
-   "verifier" and "relying party", as well as an "issuer" of SCITT
-   Statements and a Transparency Services may also take on the role of a
-   RATS "Attester".  Correspondingly, all RATS conceptual messages, such
-   as Evidence and Attestation Results, can be the content of SCITT
-   Statements and a SCITT "verifier" can also take on the role of a RATS
-   "Verifier" to, for example, conduct the procedure of Appraisal of
-   Evidence as a part of a SCITT "verifier"'s verification capabilities.
+   "verifier" and "relying party" and "issuer" of Receipts or Statements
+   might take on the role of a RATS "Attester".  Correspondingly, all
+   RATS conceptual messages, such as Evidence and Attestation Results,
+   can be the content of SCITT Statements and a SCITT "verifier" can
+   also take on the role of a RATS "Verifier" to, for example, conduct
+   the procedure of Appraisal of Evidence as a part of a SCITT
+   "verifier"'s verification capabilities.
 
    The terms "claim" and "statement" are used throughout this document,
    where claim is consistent with the usage in [I-D.draft-ietf-rats-eat]
