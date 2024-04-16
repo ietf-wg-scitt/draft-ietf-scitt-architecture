@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-14T00:40:49.739109+00:00",
+  "timestamp": "2024-04-16T00:34:56.125882+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -29089,21 +29089,21 @@
       "id": "PR_kwDOIvmHss5rlh-N",
       "title": "Add Registered Signed Statement",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/225",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #221 ",
       "createdAt": "2024-04-03T15:43:09Z",
-      "updatedAt": "2024-04-13T10:53:44Z",
+      "updatedAt": "2024-04-15T14:24:33Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/221-registered-signed-statement",
       "headRefOid": "47c21c683eab651fa17da723cef6ef824f7aae49",
-      "closedAt": null,
+      "closedAt": "2024-04-15T14:24:33Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -29741,19 +29741,48 @@
       "labels": [],
       "body": "Minor tweak to separating the lines for different properties\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/e5ca06a8-1cd5-47ab-a711-671133f6a9ae)\r\n\r\n",
       "createdAt": "2024-04-09T21:00:41Z",
-      "updatedAt": "2024-04-12T22:58:13Z",
+      "updatedAt": "2024-04-15T21:57:15Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/diagram-update",
-      "headRefOid": "0b241a30f04a73652ce89f2766ace3047e45d939",
+      "headRefOid": "c30bcbb49149a50ceaa8221fbb72ae2b8f1a6986",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I am not trying to be pedantic and onerous here, so I apologize in advance. Don't you have to \"envelope\" the statements with encoding and signing and the arrows cannot, in fact, be separated?\r\n\r\nActually, you bring up a great point. I originally only separated the Transparent Statement as there are separate properties for the receipt in the unprotected header and the signed statement. \r\nLet me take another pass on it. Thanks, @aj-stein-nist, great catch.",
+          "createdAt": "2024-04-15T19:35:45Z",
+          "updatedAt": "2024-04-15T19:35:45Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Updated to reflect: \r\n- Issuers make Statements about Artifacts\r\n- Issuers, through Identity Documents sign the payload and protected header to create Signed Statements, which are COSE Sign1 envelopes\r\n- A transparent statement is a Signed Statement with the receipt in the unprotected header\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/fbd12024-2313-4233-97f6-7f4f10167179)\r\n",
+          "createdAt": "2024-04-15T21:57:13Z",
+          "updatedAt": "2024-04-15T21:57:13Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss53UOgj",
+          "commit": {
+            "abbreviatedOid": "0b241a3"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "I am not trying to be pedantic and onerous here, so I apologize in advance. Don't you have to \"envelope\" the statements with encoding and signing and the arrows cannot, in fact, be separated?",
+          "createdAt": "2024-04-15T17:32:56Z",
+          "updatedAt": "2024-04-15T17:33:08Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 230,
@@ -29767,7 +29796,7 @@
       "labels": [],
       "body": "Addressing feedback to the SCITT alias\r\n> 1)\tThe introduction discusses distributed, but there is no real discussion of how or what that means and it leads readers to set an expectation that is incorrect.  This word should be deleted.",
       "createdAt": "2024-04-12T16:11:34Z",
-      "updatedAt": "2024-04-12T16:11:35Z",
+      "updatedAt": "2024-04-15T13:18:36Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
@@ -29779,7 +29808,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss53RjNI",
+          "commit": {
+            "abbreviatedOid": "7e2a924"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-04-15T13:18:36Z",
+          "updatedAt": "2024-04-15T13:18:36Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 231,
@@ -29793,13 +29836,13 @@
       "labels": [],
       "body": "Hi all,\r\n\r\nThis PR comes from a place that agrees: If using an identity scheme, then yes, it must be used in maner consistent with that scheme, But aslo that\r\n\r\n1. There is no identity scheme we could all agree on as universally applicable or agreable, further, the space continues to evolve.\r\n\r\nAnd,\r\n\r\n2. The trustworthiness or otherwise of issuers identity, in the context of a transparency ledger, is temporal and subjective in nature. It's just a question of time frame. This means that regardless of registration time checks, relying parties, auditors and general consumers will have to re evaluate regardless. And will do so according to their own subjective context. Remembering that \"It can never be assumed that some Issuers and some Transparency Services will not be corrupt.\". And also \"A Verifier SHOULD validate a Transparent Statement originating from a given Issuer\" ... \"and would not depend on any other Issuer or Transparency Services.\"\r\n\r\nIt does seem obvious that,\r\n\r\n3. Syntactic validation of the issuer identity claims makes good sense and supports interoperability.\r\n\r\nBut,\r\n\r\n4. Specifying a single identity scheme in the core architecture as \"minimally required\" does not meaningfully help interoperability when there is no single agreeable scheme, and especially when a TS may be used to underpin identity schemes themselves.\r\n\r\nRegarding the burden on Relying Parties and Auditors,\r\n\r\n5. The definition for \"Relying Party\" states \"a Relying Parties consumes Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain\". IOW: Relying parties are already expected to deeply consider statements. Assessing the identity asserted by the issuer, at the time the artifact is being considered, seems to be a natural and useful part of that process.\r\n6. Registration Auditability: Requiring that Transparency Services \"enough information is made available to Auditors\" ... \"to authenticate and retrieve the Transparent Statements\" is essentially impossible to specify at this level, imposes un-bounded maintenance and storage issues on implementations, and represents a significant layering violation in the architecture.\r\n\r\n",
       "createdAt": "2024-04-12T18:12:25Z",
-      "updatedAt": "2024-04-13T22:55:46Z",
+      "updatedAt": "2024-04-15T16:37:57Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
       "headRepository": "robinbryce/draft-ietf-scitt-architecture",
       "headRefName": "robin/issuer-authentication-is-temporal-and-subjective",
-      "headRefOid": "5bae4e88425cb06ac9dbdfb8b7380c967a16dcfb",
+      "headRefOid": "03220eb6bcdc52fdc313149fd5a87b0568d23606",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -29970,6 +30013,46 @@
               "updatedAt": "2024-04-13T22:55:46Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53SwGv",
+          "commit": {
+            "abbreviatedOid": "5bae4e8"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-15T15:18:22Z",
+          "updatedAt": "2024-04-15T15:18:22Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "I believe this is threading the needle, saying a registered statement must have enough info for it to be auditable, while leaving the details to be implementation-specific. Otherwise, what's the point? \r\nThe [Registration Policies section](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-registration-policies) defines this:\r\n> This specification leaves implementation, encoding and documentation of Registration Policies and trust anchors to the operator of the Transparency Service.",
+              "createdAt": "2024-04-15T15:18:22Z",
+              "updatedAt": "2024-04-15T15:18:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53S1vs",
+          "commit": {
+            "abbreviatedOid": "03220eb"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-15T15:28:26Z",
+          "updatedAt": "2024-04-15T15:28:26Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "Yes, that was exactly the intent",
+              "createdAt": "2024-04-15T15:28:26Z",
+              "updatedAt": "2024-04-15T15:28:26Z"
+            }
+          ]
         }
       ]
     },
@@ -30013,7 +30096,7 @@
       ],
       "body": "A few headings start with \"For X...\"\r\nSimply adds what the For is relating to.",
       "createdAt": "2024-04-12T23:13:23Z",
-      "updatedAt": "2024-04-12T23:13:27Z",
+      "updatedAt": "2024-04-15T13:13:57Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
@@ -30025,7 +30108,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss53Rf2-",
+          "commit": {
+            "abbreviatedOid": "ea14520"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-04-15T13:13:57Z",
+          "updatedAt": "2024-04-15T13:13:57Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
