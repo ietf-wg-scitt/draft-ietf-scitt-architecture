@@ -115,9 +115,9 @@ Table of Contents
      8.1.  Normative References
      8.2.  Informative References
    Appendix A.  Identifiers
-     A.1.  For Binary Content
-     A.2.  For SCITT Messages
-     A.3.  For Transparent Statements
+     A.1.  Identifiers For Binary Content
+     A.2.  Identifiers For SCITT Messages
+     A.3.  Identifiers For Transparent Statements
      A.4.  Statements
        A.4.1.  Statement URN
        A.4.2.  Statement URL
@@ -1498,7 +1498,7 @@ Appendix A.  Identifiers
    In the blocks and examples that follow, note '' line wrapping per RFC
    8792.
 
-A.1.  For Binary Content
+A.1.  Identifiers For Binary Content
 
    Identifiers for binary content, such as Statements, or even Artifacts
    themselves are computed as follows:
@@ -1517,7 +1517,7 @@ A.1.  For Binary Content
    {hash-name}:{base-encoding}:\
    {base64url-encoded-bytes-digest}
 
-A.2.  For SCITT Messages
+A.2.  Identifiers For SCITT Messages
 
    Identifiers for COSE Sign 1 based messages, such as identifiers for
    Signed Statements and Receipts are computed as follows:
@@ -1546,7 +1546,7 @@ A.2.  For SCITT Messages
    has the same identifier as a previous signed statement, but has a
    different signature.
 
-A.3.  For Transparent Statements
+A.3.  Identifiers For Transparent Statements
 
    Identifiers for Transparent Statements are defined as identifiers for
    binary content, but with "transparent-statement" as the message-type.

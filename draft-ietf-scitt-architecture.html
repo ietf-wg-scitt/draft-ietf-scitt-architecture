@@ -1265,13 +1265,13 @@ Issuers can register their Signed Statements on any Transparency Service, with t
             <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-identifiers" class="internal xref">Identifiers</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
-                <p id="section-toc.1-1.9.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-for-binary-content" class="internal xref">For Binary Content</a></p>
+                <p id="section-toc.1-1.9.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-identifiers-for-binary-cont" class="internal xref">Identifiers For Binary Content</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
-                <p id="section-toc.1-1.9.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-for-scitt-messages" class="internal xref">For SCITT Messages</a></p>
+                <p id="section-toc.1-1.9.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-identifiers-for-scitt-messa" class="internal xref">Identifiers For SCITT Messages</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3">
-                <p id="section-toc.1-1.9.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-for-transparent-statements" class="internal xref">For Transparent Statements</a></p>
+                <p id="section-toc.1-1.9.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-identifiers-for-transparent" class="internal xref">Identifiers For Transparent Statements</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.4">
                 <p id="section-toc.1-1.9.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-statements" class="internal xref">Statements</a></p>
@@ -2612,10 +2612,10 @@ resource: content-type = dereference(identifier: identifier-type)
 <p id="appendix-A-14">Let base-encoding, be a base encoding defined in <span>[<a href="#RFC4648" class="cite xref">RFC4648</a>]</span>.<a href="#appendix-A-14" class="pilcrow">¶</a></p>
 <p id="appendix-A-15">To promote interoperability, the base encoding <span class="bcp14">MUST</span> be "base64url".<a href="#appendix-A-15" class="pilcrow">¶</a></p>
 <p id="appendix-A-16">In the blocks and examples that follow, note '' line wrapping per RFC 8792.<a href="#appendix-A-16" class="pilcrow">¶</a></p>
-<div id="sec-for-binary-content">
+<div id="sec-identifiers-for-binary-content">
 <section id="appendix-A.1">
-        <h3 id="name-for-binary-content">
-<a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-for-binary-content" class="section-name selfRef">For Binary Content</a>
+        <h3 id="name-identifiers-for-binary-cont">
+<a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-identifiers-for-binary-cont" class="section-name selfRef">Identifiers For Binary Content</a>
         </h3>
 <p id="appendix-A.1-1">Identifiers for binary content, such as Statements, or even Artifacts themselves are computed as follows:<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.1-2">Let the <code>base64url-encoded-bytes-digest</code> for the message be the base64url encoded digest with the chosen hash algorithm of bytes / octets.<a href="#appendix-A.1-2" class="pilcrow">¶</a></p>
@@ -2631,10 +2631,10 @@ urn:ietf:params:scitt:\
 </div>
 </section>
 </div>
-<div id="sec-for-scitt-messages">
+<div id="sec-identifiers-for-scitt-messages">
 <section id="appendix-A.2">
-        <h3 id="name-for-scitt-messages">
-<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-for-scitt-messages" class="section-name selfRef">For SCITT Messages</a>
+        <h3 id="name-identifiers-for-scitt-messa">
+<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-identifiers-for-scitt-messa" class="section-name selfRef">Identifiers For SCITT Messages</a>
         </h3>
 <p id="appendix-A.2-1">Identifiers for COSE Sign 1 based messages, such as identifiers for Signed Statements and Receipts are computed as follows:<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-2">Let the <code>base64url-encoded-to-be-signed-bytes-digest</code> for the message be the base64url encoded digest with the chosen hash algorithm of the "to-be-signed bytes", according to <span><a href="https://rfc-editor.org/rfc/rfc9052#section-8.1" class="relref">Section 8.1</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
@@ -2652,10 +2652,10 @@ urn:ietf:params:scitt:\
 <p id="appendix-A.2-7">As a result, an attacker may construct a new signed statement that has the same identifier as a previous signed statement, but has a different signature.<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sec-for-transparent-statements">
+<div id="sec-identifiers-for-transparent-statements">
 <section id="appendix-A.3">
-        <h3 id="name-for-transparent-statements">
-<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-for-transparent-statements" class="section-name selfRef">For Transparent Statements</a>
+        <h3 id="name-identifiers-for-transparent">
+<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-identifiers-for-transparent" class="section-name selfRef">Identifiers For Transparent Statements</a>
         </h3>
 <p id="appendix-A.3-1">Identifiers for Transparent Statements are defined as identifiers for binary content, but with "transparent-statement" as the <code>message-type</code>.<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.3-2">
