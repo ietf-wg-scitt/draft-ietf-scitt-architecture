@@ -410,7 +410,7 @@ The Transparency Service MUST apply the Registration Policy that was most recent
 
 The operator of a Transparency Service MAY update the Registration Policy or the trust anchors of a Transparency Service at any time.
 
-Transparency Services MUST ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to authenticate and retrieve the Transparent Statements describing the registration policy and trust anchors that apply to this registration.
+Transparency Services MUST ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to authenticate and retrieve the Signed Statements describing the registration policy and trust anchors that apply to this registration.
 
 ### Initialization and bootstrapping {#ts-initialization}
 
@@ -446,7 +446,7 @@ Specific verifiable data structures, such those describes in {{-CT}} and {{-COME
 
 Transparency Services can be deployed along side other database or object storage technologies.
 For example, a Transparency Service that is supporting a software package management system, might be referenced from the APIs exposed for package management.
-Providing an ability to request a fresh receipt for a given software package, or to request a list of Signed Statements and Artifacts associated with a software package.
+Providing an ability to request a fresh receipt for a given software package, or to request a list of Signed Statements associated with the software package.
 
 ## Signed Statements
 
