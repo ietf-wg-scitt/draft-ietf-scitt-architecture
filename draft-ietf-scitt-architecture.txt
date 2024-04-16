@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 21 September 2024                                    C. Fournet
+Expires: 18 October 2024                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                           20 March 2024
+                                                           16 April 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 September 2024.
+   This Internet-Draft will expire on 18 October 2024.
 
 Copyright Notice
 
@@ -303,11 +303,11 @@ Table of Contents
 
    Transparency Service:  an entity that maintains and extends the
       Append-only Log, and endorses its state.  A Transparency Service
-      can be a complex distributed system, and SCITT requires the
-      Transparency Service to provide many security guarantees about its
-      Append-only Log. The identity of a Transparency Service is
-      captured by a public key that must be known by Relying Parties in
-      order to validate Receipts.
+      can be a complex system, requiring the Transparency Service to
+      provide many security guarantees about its Append-only Log. The
+      identity of a Transparency Service is captured by a public key
+      that must be known by Relying Parties in order to validate
+      Receipts.
 
    Transparent Statement:  a Signed Statement that is augmented with a
       Receipt created via Registration in a Transparency Service.  The
