@@ -401,7 +401,7 @@ Registration Policies refer to additional checks over and above the Mandatory Re
 
 Transparency Services MUST maintain Registration Policies.
 
-Transparency Services MUST also maintain a list of trust anchors used to authenticate Issuers, which MAY be included in a registration policy statement.
+Transparency Services MUST also maintain a list of trust anchors, which SHOULD be used by Relying Parties to authenticate Issuers, and which MAY be included in a registration policy statement.
 For instance, a trust anchor could be an X.509 root certificate, the discovery URL of an OpenID Connect identity provider, or any other COSE compatible PKI trust anchor.
 
 Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing the associated Receipts.
@@ -410,8 +410,11 @@ This specification leaves implementation, encoding and documentation of Registra
 
 #### Mandatory Registration Checks
 
-During registration, a Transparency Service MUST, at a minimum, authenticate the Issuer of the Signed Statement by validating the COSE signature and checking the identity of the issuer against one of its currently configured trust anchors, using the `x5t` (34), `x5chain`(33) or `kid`(4) protected headers of the Signed Statement as hints.
-For instance, in order to authenticate X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.
+During registration, a Transparency Service MUST, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to {{RFC9052}}.
+The Issuer identity MUST be bound to the Signed Statement by including an identifier in the protected header.
+If the protected header includes multiple identifiers, all those that are registered by the Transparency Service MUST be checked.
+
+For instance, when using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.
 
 The Transparency Service MUST apply the Registration Policy that was most recently added to the Append-only Log at the time of registration.
 
@@ -419,7 +422,7 @@ The Transparency Service MUST apply the Registration Policy that was most recent
 
 The operator of a Transparency Service MAY update the Registration Policy or the trust anchors of a Transparency Service at any time.
 
-Transparency Services MUST ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to authenticate and retrieve the Signed Statements describing the registration policy and trust anchors that apply to this registration.
+Transparency Services MUST ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to reproduce the Registration checks that were defined by the Registration Policies at the time of Registration.
 
 ### Initialization and bootstrapping {#ts-initialization}
 
@@ -495,7 +498,7 @@ Multiple Issuers can make the same Statement about a single Artifact, affirming 
 
 At least one identifier for an identity document MUST be included in the protected header of the COSE envelope, as one of `x5t`, `x5chain` or `kid`.
 
-- Support for `x5t` is mandatory to implement.
+- When using x509, Support for `x5t` is mandatory to implement.
 - Support for `kid` and `x5chain` is optional.
 
 When `x5t` or `x5chain` is present, `iss` MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
@@ -590,9 +593,7 @@ To register a Signed Statement, the Transparency Service performs the following 
 
 1. **Client authentication:** A Client authenticates with the Transparency Service, to Register Signed Statements on behalf of one or more issuers.
 Authentication and authorization is implementation-specific, and out of scope of the SCITT Architecture.
-1. **Issuer Verification:** The Transparency Service MUST perform resolution of the Issuer's identity, which may be different than the Client identity.
-  This step may require that the service retrieves the Issuer ID in real-time, or rely on a cache of recent resolutions.
-  For auditing, during Registration, the Transparency Service MUST store evidence of the lookup, including if it was resolved from a cache.
+1. **Issuer Verification:** The Transparency Service MUST syntactically validate the Issuer's identity claims, which may be different than the Client identity.
 1. **Signature verification:** The Transparency Service MUST verify the signature of the Signed Statement, as described in {{RFC9360}}, using the signature algorithm and verification key of the Issuer.
 1. **Signed Statement validation:** The Transparency Service MUST check that the Signed Statement includes the required protected headers listed above.
 The Transparency Service MAY verify the Statement payload format, content and other optional properties.
@@ -746,7 +747,7 @@ However, once a Signed Statement is inserted into the Append-only Log maintained
 
 On its own, verifying a Transparent Statement does not guarantee that its Envelope or contents are trustworthy.
 Just that they have been signed by the apparent Issuer and counter-signed by the Transparency Service.
-If the Verifier trusts the Issuer, it can infer that an Issuer's Signed Statement was issued with this Envelope and contents, which may be interpreted as the Issuer saying the Artifact is fit for its intended purpose.
+If the Verifier trusts the Issuer, after validation of the Issuer identity, it can infer that an Issuer's Signed Statement was issued with this Envelope and contents, which may be interpreted as the Issuer saying the Artifact is fit for its intended purpose.
 If the Verifier trusts the Transparency Service, it can independently infer that the Signed Statement passed the Transparency Service Registration Policy and that has been persisted in the Append-only Log.
 Unless advertised in the Transparency Service Registration Policy, the Verifier cannot assume that the ordering of Signed Statements in the Append-only Log matches the ordering of their issuance.
 
@@ -779,7 +780,7 @@ For example, if a Transparency Service is implemented using a set of redundant r
 
 SCITT provides the following security guarantees:
 
-1. Statements made by Issuers about supply chain Artifacts are identifiable, authentic, and non-repudiable
+1. Statements made by Issuers about supply chain Artifacts are identifiable, can be authenticated, and once authenticated, are non-repudiable
 1. Statement provenance and history can be independently and consistently audited
 1. Issuers can efficiently prove that their Statement is logged by a Transparency Service
 
