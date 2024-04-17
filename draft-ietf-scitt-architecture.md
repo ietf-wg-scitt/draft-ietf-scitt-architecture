@@ -403,7 +403,7 @@ This specification leaves implementation, encoding and documentation of Registra
 
 During registration, a Transparency Service MUST, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to {{RFC9052}},
 
-The Issuer identity MUST be bound to the Signed Statement by including a commitment to it in the protected header.
+The Issuer identity MUST be bound to the Signed Statement by including an identifier in the protected header.
 
 If the protected header includes multiple commitments, all those that are registered by the Transparency Service MUST be checked.
 
