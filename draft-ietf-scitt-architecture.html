@@ -1751,7 +1751,7 @@ The Append-only Log is the verifiable data structure that records Signed Stateme
           </h4>
 <p id="section-4.1.1-1">Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is accepted to be registered to the Append-only Log.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.1.1-2">Transparency Services <span class="bcp14">MUST</span> maintain Registration Policies.<a href="#section-4.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.1.1-3">Transparency Services <span class="bcp14">MUST</span> also maintain a list of trust anchors used to authenticate Issuers, which <span class="bcp14">MAY</span> be included in a registration policy statement.
+<p id="section-4.1.1-3">Transparency Services <span class="bcp14">MUST</span> also maintain a list of trust anchors, which <span class="bcp14">SHOULD</span> be used by Relying Parties to authenticate Issuers, and which <span class="bcp14">MAY</span> be included in a registration policy statement.
 For instance, a trust anchor could be an X.509 root certificate, the discovery URL of an OpenID Connect identity provider, or any other COSE compatible PKI trust anchor.<a href="#section-4.1.1-3" class="pilcrow">¶</a></p>
 <p id="section-4.1.1-4">Registration Policies and trust anchors <span class="bcp14">MUST</span> be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing the associated Receipts.<a href="#section-4.1.1-4" class="pilcrow">¶</a></p>
 <p id="section-4.1.1-5">This specification leaves implementation, encoding and documentation of Registration Policies and trust anchors to the operator of the Transparency Service.<a href="#section-4.1.1-5" class="pilcrow">¶</a></p>
@@ -1760,9 +1760,11 @@ For instance, a trust anchor could be an X.509 root certificate, the discovery U
             <h5 id="name-mandatory-registration-chec">
 <a href="#section-4.1.1.1" class="section-number selfRef">4.1.1.1. </a><a href="#name-mandatory-registration-chec" class="section-name selfRef">Mandatory Registration Checks</a>
             </h5>
-<p id="section-4.1.1.1-1">During registration, a Transparency Service <span class="bcp14">MUST</span>, at a minimum, authenticate the Issuer of the Signed Statement by validating the COSE signature and checking the identity of the issuer against one of its currently configured trust anchors, using the <code>x5t</code> (34), <code>x5chain</code>(33) or <code>kid</code>(4) protected headers of the Signed Statement as hints.
-For instance, in order to authenticate X.509 Signed Statements, the Transparency Service <span class="bcp14">MUST</span> build and validate a complete certificate chain from the Issuer's certificate identified by <code>x5t</code>, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.<a href="#section-4.1.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.1.1-2">The Transparency Service <span class="bcp14">MUST</span> apply the Registration Policy that was most recently added to the Append-only Log at the time of registration.<a href="#section-4.1.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.1.1.1-1">During registration, a Transparency Service <span class="bcp14">MUST</span>, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.
+The Issuer identity <span class="bcp14">MUST</span> be bound to the Signed Statement by including an identifier in the protected header.
+If the protected header includes multiple identifiers, all those that are registered by the Transparency Service <span class="bcp14">MUST</span> be checked.<a href="#section-4.1.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.1.1-2">For instance, when using X.509 Signed Statements, the Transparency Service <span class="bcp14">MUST</span> build and validate a complete certificate chain from the Issuer's certificate identified by <code>x5t</code>, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.<a href="#section-4.1.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.1.1.1-3">The Transparency Service <span class="bcp14">MUST</span> apply the Registration Policy that was most recently added to the Append-only Log at the time of registration.<a href="#section-4.1.1.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-auditability-of-registration">
@@ -1771,7 +1773,7 @@ For instance, in order to authenticate X.509 Signed Statements, the Transparency
 <a href="#section-4.1.1.2" class="section-number selfRef">4.1.1.2. </a><a href="#name-auditability-of-registratio" class="section-name selfRef">Auditability of Registration</a>
             </h5>
 <p id="section-4.1.1.2-1">The operator of a Transparency Service <span class="bcp14">MAY</span> update the Registration Policy or the trust anchors of a Transparency Service at any time.<a href="#section-4.1.1.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.1.2-2">Transparency Services <span class="bcp14">MUST</span> ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to authenticate and retrieve the Signed Statements describing the registration policy and trust anchors that apply to this registration.<a href="#section-4.1.1.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.1.1.2-2">Transparency Services <span class="bcp14">MUST</span> ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to reproduce the Registration checks that were defined by the Registration Policies at the time of Registration.<a href="#section-4.1.1.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1885,7 +1887,7 @@ Relying Parties can choose which Issuers they trust.<a href="#section-4.2-8" cla
 <p id="section-4.2-10">At least one identifier for an identity document <span class="bcp14">MUST</span> be included in the protected header of the COSE envelope, as one of <code>x5t</code>, <code>x5chain</code> or <code>kid</code>.<a href="#section-4.2-10" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.2-11.1">
-            <p id="section-4.2-11.1.1">Support for <code>x5t</code> is mandatory to implement.<a href="#section-4.2-11.1.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-11.1.1">When using x509, Support for <code>x5t</code> is mandatory to implement.<a href="#section-4.2-11.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-4.2-11.2">
             <p id="section-4.2-11.2.1">Support for <code>kid</code> and <code>x5chain</code> is optional.<a href="#section-4.2-11.2.1" class="pilcrow">¶</a></p>
@@ -2004,9 +2006,7 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
 Authentication and authorization is implementation-specific, and out of scope of the SCITT Architecture.<a href="#section-4.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-4.3-2.2">
-            <p id="section-4.3-2.2.1"><strong>Issuer Verification:</strong> The Transparency Service <span class="bcp14">MUST</span> perform resolution of the Issuer's identity, which may be different than the Client identity.
-  This step may require that the service retrieves the Issuer ID in real-time, or rely on a cache of recent resolutions.
-  For auditing, during Registration, the Transparency Service <span class="bcp14">MUST</span> store evidence of the lookup, including if it was resolved from a cache.<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-2.2.1"><strong>Issuer Verification:</strong> The Transparency Service <span class="bcp14">MUST</span> syntactically validate the Issuer's identity claims, which may be different than the Client identity.<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-4.3-2.3">
             <p id="section-4.3-2.3.1"><strong>Signature verification:</strong> The Transparency Service <span class="bcp14">MUST</span> verify the signature of the Signed Statement, as described in <span>[<a href="#RFC9360" class="cite xref">RFC9360</a>]</span>, using the signature algorithm and verification key of the Issuer.<a href="#section-4.3-2.3.1" class="pilcrow">¶</a></p>
@@ -2201,7 +2201,7 @@ However, once a Signed Statement is inserted into the Append-only Log maintained
       </h2>
 <p id="section-6-1">On its own, verifying a Transparent Statement does not guarantee that its Envelope or contents are trustworthy.
 Just that they have been signed by the apparent Issuer and counter-signed by the Transparency Service.
-If the Verifier trusts the Issuer, it can infer that an Issuer's Signed Statement was issued with this Envelope and contents, which may be interpreted as the Issuer saying the Artifact is fit for its intended purpose.
+If the Verifier trusts the Issuer, after validation of the Issuer identity, it can infer that an Issuer's Signed Statement was issued with this Envelope and contents, which may be interpreted as the Issuer saying the Artifact is fit for its intended purpose.
 If the Verifier trusts the Transparency Service, it can independently infer that the Signed Statement passed the Transparency Service Registration Policy and that has been persisted in the Append-only Log.
 Unless advertised in the Transparency Service Registration Policy, the Verifier cannot assume that the ordering of Signed Statements in the Append-only Log matches the ordering of their issuance.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">Similarly, the fact that an Issuer can be held accountable for its Transparent Statements does not on its own provide any mitigation or remediation mechanism in case one of these Transparent Statements turned out to be misleading or malicious.
@@ -2227,7 +2227,7 @@ An example of Signed Statement's payloads that can improve authenticity assuranc
 <p id="section-6.1-1">SCITT provides the following security guarantees:<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-6.1-2">
 <li id="section-6.1-2.1">
-            <p id="section-6.1-2.1.1">Statements made by Issuers about supply chain Artifacts are identifiable, authentic, and non-repudiable<a href="#section-6.1-2.1.1" class="pilcrow">¶</a></p>
+            <p id="section-6.1-2.1.1">Statements made by Issuers about supply chain Artifacts are identifiable, can be authenticated, and once authenticated, are non-repudiable<a href="#section-6.1-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-6.1-2.2">
             <p id="section-6.1-2.2.1">Statement provenance and history can be independently and consistently audited<a href="#section-6.1-2.2.1" class="pilcrow">¶</a></p>
