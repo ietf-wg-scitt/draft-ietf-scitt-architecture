@@ -405,7 +405,7 @@ During registration, a Transparency Service MUST, at a minimum, syntactically ch
 
 The Issuer identity MUST be bound to the Signed Statement by including an identifier in the protected header.
 
-If the protected header includes multiple commitments, all those that are registered by the Transparency Service MUST be checked.
+If the protected header includes multiple identifiers, all those that are registered by the Transparency Service MUST be checked.
 
 For instance, when using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.
 
