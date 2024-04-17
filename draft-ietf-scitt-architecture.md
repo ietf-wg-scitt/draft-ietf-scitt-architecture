@@ -271,7 +271,7 @@ Transparency Services use `sub` to identify the entity about which they are issu
 Transparency Service:
 
 : an entity that maintains and extends the Append-only Log, and endorses its state.
-A Transparency Service can be a complex distributed system, and SCITT requires the Transparency Service to provide many security guarantees about its Append-only Log.
+A Transparency Service can be a complex system, requiring the Transparency Service to provide many security guarantees about its Append-only Log.
 The identity of a Transparency Service is captured by a public key that must be known by Relying Parties in order to validate Receipts.
 
 Transparent Statement:
@@ -449,7 +449,7 @@ Specific verifiable data structures, such those describes in {{-CT}} and {{-COME
 
 Transparency Services can be deployed along side other database or object storage technologies.
 For example, a Transparency Service that is supporting a software package management system, might be referenced from the APIs exposed for package management.
-Providing an ability to request a fresh receipt for a given software package, or to request a list of Signed Statements and Artifacts associated with a software package.
+Providing an ability to request a fresh receipt for a given software package, or to request a list of Signed Statements associated with the software package.
 
 ## Signed Statements
 
@@ -945,7 +945,7 @@ To promote interoperability, the base encoding MUST be "base64url".
 
 In the blocks and examples that follow, note '\' line wrapping per RFC 8792.
 
-## For Binary Content
+## Identifiers For Binary Content
 
 Identifiers for binary content, such as Statements, or even Artifacts themselves are computed as follows:
 
@@ -962,7 +962,7 @@ urn:ietf:params:scitt:\
 {base64url-encoded-bytes-digest}
 ~~~
 
-## For SCITT Messages
+## Identifiers For SCITT Messages
 
 Identifiers for COSE Sign 1 based messages, such as identifiers for Signed Statements and Receipts are computed as follows:
 
@@ -983,7 +983,7 @@ Note that this means the content of the signature is not included in the identif
 
 As a result, an attacker may construct a new signed statement that has the same identifier as a previous signed statement, but has a different signature.
 
-## For Transparent Statements
+## Identifiers For Transparent Statements
 
 Identifiers for Transparent Statements are defined as identifiers for binary content, but with "transparent-statement" as the `message-type`.
 
