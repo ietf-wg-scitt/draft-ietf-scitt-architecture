@@ -401,7 +401,7 @@ This specification leaves implementation, encoding and documentation of Registra
 
 #### Mandatory Registration Checks
 
-During registration, a Transparency Service MUST, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to {{RFC9052}},
+During registration, a Transparency Service MUST, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to {{RFC9052}}.
 
 The Issuer identity MUST be bound to the Signed Statement by including an identifier in the protected header.
 
