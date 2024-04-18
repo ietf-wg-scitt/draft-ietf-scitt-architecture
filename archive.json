@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-16T00:34:56.125882+00:00",
+  "timestamp": "2024-04-18T00:34:53.250264+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4462,7 +4462,7 @@
       "id": "I_kwDOIvmHss6DNwIQ",
       "title": "Add common usage of terminology",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/223",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -4471,8 +4471,8 @@
       ],
       "body": "Justin suggested adding an appendix section to disambiguage common usage of terms, such as Issuer, Verifier, Attestation and Assertion.",
       "createdAt": "2024-03-21T23:59:52Z",
-      "updatedAt": "2024-04-03T15:45:59Z",
-      "closedAt": null,
+      "updatedAt": "2024-04-17T17:40:28Z",
+      "closedAt": "2024-04-17T17:40:27Z",
       "comments": []
     },
     {
@@ -4544,11 +4544,13 @@
       "state": "OPEN",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "aj-stein-nist"
+      ],
       "labels": [],
       "body": "Vote with +1 for automating this, making the changes more visible to folks tracking the mailing list",
       "createdAt": "2024-04-09T14:52:22Z",
-      "updatedAt": "2024-04-09T18:47:03Z",
+      "updatedAt": "2024-04-17T17:43:52Z",
       "closedAt": null,
       "comments": [
         {
@@ -4591,6 +4593,22 @@
       "body": "Resolve Section [4.3. Transparent Statements](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-06.html#section-4.3-5):\r\n> **Editor's Note**: The WG is discussing if existing CWT claims might better support these design principles.\r\n",
       "createdAt": "2024-04-12T23:07:07Z",
       "updatedAt": "2024-04-12T23:07:10Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 236,
+      "id": "I_kwDOIvmHss6F88S1",
+      "title": "Clarify MUST/SHOULD within the Registration Policy",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/236",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "```suggestion\r\nTransparency Services SHOULD ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to reproduce the Registration checks that were defined by the Registration Policies at the time of Registration.\r\n```\r\n\r\nIf not, I expect a cross-linked PR to explicate all the registration policy specification that was removed in the past (for lack of alignment and ambiguity and generalities) and explicate it all. The WG considered this not ideal in previous editorial review, so I assume this alternative approach is unlikely. So I would change it to SHOULD.\r\n\r\n_Originally posted by @aj-stein-nist in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/231#discussion_r1567490916_",
+      "createdAt": "2024-04-17T04:27:53Z",
+      "updatedAt": "2024-04-17T04:27:53Z",
       "closedAt": null,
       "comments": []
     }
@@ -29384,7 +29402,7 @@
       "id": "PR_kwDOIvmHss5r8GT4",
       "title": "Add appendix section on term disambiguation",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/227",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -29393,17 +29411,19 @@
       "labels": [],
       "body": "cc @henkbirkholz will need you to review this.",
       "createdAt": "2024-04-07T17:15:18Z",
-      "updatedAt": "2024-04-09T14:47:04Z",
+      "updatedAt": "2024-04-17T17:40:26Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "feat-terms",
-      "headRefOid": "3f6835ab307a32acd74c9e8016e955eac4ca952a",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "d2605be065760ec198469385ccc69d4c4be90ea9",
+      "closedAt": "2024-04-17T17:40:26Z",
+      "mergedAt": "2024-04-17T17:40:26Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "d8c7fc4f55ace7855d98037d4439dd9aeac2815d"
+      },
       "comments": [
         {
           "author": "SteveLasker",
@@ -29411,6 +29431,20 @@
           "body": "Action item for @henkbirkholz to make some proposals",
           "createdAt": "2024-04-09T14:46:55Z",
           "updatedAt": "2024-04-09T14:46:55Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "[ac14a34](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/227/commits/ac14a34ee3b4f0136eeb1ffe45be02997a1e4ef2) is a larger refactoring of the text originally created by Orie and modified by other contributors during review. The main goals were to shorten the section and to change the stance on SCITT & RATS verifier and relying party relationships. I also added a more thorough disambiguation of the term \"attestation\" at the end based on the text Orie wrote. Please review the changes in [ac14a34](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/227/commits/ac14a34ee3b4f0136eeb1ffe45be02997a1e4ef2).",
+          "createdAt": "2024-04-16T10:42:24Z",
+          "updatedAt": "2024-04-16T10:42:24Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Ad discussed on the editors call, we'll review and merge in 24 hours with no objections.",
+          "createdAt": "2024-04-16T14:11:08Z",
+          "updatedAt": "2024-04-16T14:11:08Z"
         }
       ],
       "reviews": [
@@ -29726,6 +29760,166 @@
               "updatedAt": "2024-04-09T14:42:12Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53bjri",
+          "commit": {
+            "abbreviatedOid": "ac14a34"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-16T13:48:20Z",
+          "updatedAt": "2024-04-16T13:48:20Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "```suggestion\r\nThe terms \"verifier\" and \"relying party\" are used interchangeably through the document. While these terms are related to \"Verifier\" and \"Relying Party\" as used in {{RFC9334}}, they do not imply the processing of RATS conceptual messages, such as Evidence or Attestation Results that are specific to remote attestation. A SCITT \"verifier\" and \"relying party\" and \"issuer\" of Receipts or Statements might take on the role of a RATS \"Attester\". Correspondingly, all RATS conceptual messages, such as Evidence and Attestation Results, can be the content of SCITT Statements and a SCITT \"verifier\" can also take on the role of a RATS \"Verifier\" to, for example, conduct the procedure of Appraisal of Evidence as a part of a SCITT \"verifier\"'s verification capabilities.\r\n```",
+              "createdAt": "2024-04-16T13:48:20Z",
+              "updatedAt": "2024-04-16T13:48:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53bkB_",
+          "commit": {
+            "abbreviatedOid": "ac14a34"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-16T13:48:53Z",
+          "updatedAt": "2024-04-16T13:48:53Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "```suggestion\r\nIn simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the issuer identifies themselves using the `iss` claim, and the specific software that was analyzed as the subject using the `sub` claim.\r\n```",
+              "createdAt": "2024-04-16T13:48:53Z",
+              "updatedAt": "2024-04-16T13:50:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53blu9",
+          "commit": {
+            "abbreviatedOid": "ac14a34"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-16T13:51:29Z",
+          "updatedAt": "2024-04-16T13:51:29Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "```suggestion\r\nIn {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use \"urn:ietf:params:oauth:client-assertion-type:jwt-bearer\". This means the AS initially acts as a \"verifier\", and then later as an \"issuer\". This mirrors how Signed Statements are verified before Receipts are issued by a Transparency Service.\r\n```",
+              "createdAt": "2024-04-16T13:51:29Z",
+              "updatedAt": "2024-04-16T13:51:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53bnJy",
+          "commit": {
+            "abbreviatedOid": "ac14a34"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-16T13:53:38Z",
+          "updatedAt": "2024-04-16T13:53:38Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "```suggestion\r\nNIST guidance \"Software Supply Chain Security Guidance EO 14028\" uses the definition from {{ISO.17000.2020}}, which states that an \"attestation\" is \"The issue of a statement, based on a decision, that fulfillment of specified requirements has been demonstrated.\". In the RATS context, a \"NIST attestation\" is similar to a RATS \"Endorsement\". Occasionally, RATS Evidence and RATS Attestation Results or the procedures of creating these conceptual messages are referred to as \"attestation\" or (in cases of the use as a verb) \"to attest\". The stand-alone use of \"attestation\" and \"to attest\" is discouraged outside a well-defined context, such as specification text that highlights the application of terminology, explicitly. Correspondingly, it is often useful for the intended audience to qualify the term \"attestation\" to avoid confusion and ambiguity.\r\n```",
+              "createdAt": "2024-04-16T13:53:38Z",
+              "updatedAt": "2024-04-16T13:53:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53bokW",
+          "commit": {
+            "abbreviatedOid": "ac14a34"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-16T13:55:24Z",
+          "updatedAt": "2024-04-16T13:55:24Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "We've got lots of detail on RATS here, but did we clearly communicate how \"attestation\" is related to scitt signed statements and receipts?\r\n\r\nPerhaps we should say: Issuer issue/assert signed statements, the do not attest them. Transparency services issue/assert receipts, they do not attest them. ",
+              "createdAt": "2024-04-16T13:55:24Z",
+              "updatedAt": "2024-04-16T13:56:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53b0iK",
+          "commit": {
+            "abbreviatedOid": "ac14a34"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-16T14:13:38Z",
+          "updatedAt": "2024-04-16T14:13:38Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "> Perhaps we should say: Issuer issue/assert signed statements, the do not attest them\r\n\r\n\"to attest\"? Hm... not recommending that phrasing. Yes, we communicated how RATS conceptual relate to SCITT above. Here we basically say: attestation can be a confusing term, take care using it.",
+              "createdAt": "2024-04-16T14:13:38Z",
+              "updatedAt": "2024-04-16T14:13:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53ezQi",
+          "commit": {
+            "abbreviatedOid": "d3a6549"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-16T20:41:39Z",
+          "updatedAt": "2024-04-16T20:41:40Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "@henkbirkholz, I'm resolving per today's discussion. Please re-activate if needed. ",
+              "createdAt": "2024-04-16T20:41:39Z",
+              "updatedAt": "2024-04-16T20:41:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53ezgE",
+          "commit": {
+            "abbreviatedOid": "d3a6549"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-16T20:42:21Z",
+          "updatedAt": "2024-04-16T20:42:21Z",
+          "comments": [
+            {
+              "originalPosition": 43,
+              "body": "@henkbirkholz, I'm resolving per today's conversation. Please activate if needed. ",
+              "createdAt": "2024-04-16T20:42:21Z",
+              "updatedAt": "2024-04-16T20:42:22Z"
+            }
+          ]
         }
       ]
     },
@@ -29734,21 +29928,21 @@
       "id": "PR_kwDOIvmHss5sLUlh",
       "title": "Update diagram lines",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/229",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Minor tweak to separating the lines for different properties\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/e5ca06a8-1cd5-47ab-a711-671133f6a9ae)\r\n\r\n",
       "createdAt": "2024-04-09T21:00:41Z",
-      "updatedAt": "2024-04-15T21:57:15Z",
+      "updatedAt": "2024-04-16T14:32:54Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/diagram-update",
       "headRefOid": "c30bcbb49149a50ceaa8221fbb72ae2b8f1a6986",
-      "closedAt": null,
+      "closedAt": "2024-04-16T14:32:39Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -29766,6 +29960,20 @@
           "body": "Updated to reflect: \r\n- Issuers make Statements about Artifacts\r\n- Issuers, through Identity Documents sign the payload and protected header to create Signed Statements, which are COSE Sign1 envelopes\r\n- A transparent statement is a Signed Statement with the receipt in the unprotected header\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/fbd12024-2313-4233-97f6-7f4f10167179)\r\n",
           "createdAt": "2024-04-15T21:57:13Z",
           "updatedAt": "2024-04-15T21:57:13Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "What are statements? ... forget about SCITT for a second and just consider COSE.\r\n\r\nCOSE has Payloads (content with a way to express its media type)\r\nCOSE has Claims (Something an issuer says about a subject, or more formally, predicates asserted by issuers).\r\n\r\nSCITT has Statements, which have become a confusing mix of both Claims and Payloads.\r\n\r\nIMO:\r\n\r\nA Statement is a COSE Envelope with claims in the header, and an artifact in the payload.\r\nA Signed Statement is just a Statements with a Signature.\r\n\r\n",
+          "createdAt": "2024-04-16T14:20:52Z",
+          "updatedAt": "2024-04-16T14:22:51Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Delete the arrow from \"Identity Document\" to \"Signed Statement\", that has no label (preserve the arrow that says \"COSE Signing\").",
+          "createdAt": "2024-04-16T14:32:52Z",
+          "updatedAt": "2024-04-16T14:32:52Z"
         }
       ],
       "reviews": [
@@ -29789,24 +29997,26 @@
       "id": "PR_kwDOIvmHss5sgkI7",
       "title": "Remove distributed from intro",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/230",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Addressing feedback to the SCITT alias\r\n> 1)\tThe introduction discusses distributed, but there is no real discussion of how or what that means and it leads readers to set an expectation that is incorrect.  This word should be deleted.",
       "createdAt": "2024-04-12T16:11:34Z",
-      "updatedAt": "2024-04-15T13:18:36Z",
+      "updatedAt": "2024-04-16T14:52:31Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/review-feedback-1",
       "headRefOid": "7e2a924a5fcffee286078352ae2cad8409834f09",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-04-16T14:52:31Z",
+      "mergedAt": "2024-04-16T14:52:31Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "a66e55bac2c69edab186f329d15feeeb20b36ba7"
+      },
       "comments": [],
       "reviews": [
         {
@@ -29821,6 +30031,32 @@
           "createdAt": "2024-04-15T13:18:36Z",
           "updatedAt": "2024-04-15T13:18:36Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss53cCFh",
+          "commit": {
+            "abbreviatedOid": "7e2a924"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-04-16T14:33:56Z",
+          "updatedAt": "2024-04-16T14:33:56Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss53cCLJ",
+          "commit": {
+            "abbreviatedOid": "7e2a924"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "simplification",
+          "createdAt": "2024-04-16T14:34:04Z",
+          "updatedAt": "2024-04-16T14:34:04Z",
+          "comments": []
         }
       ]
     },
@@ -29829,25 +30065,49 @@
       "id": "PR_kwDOIvmHss5shRnW",
       "title": "issuer authentication is temporal and subjective",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/231",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "robinbryce",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Hi all,\r\n\r\nThis PR comes from a place that agrees: If using an identity scheme, then yes, it must be used in maner consistent with that scheme, But aslo that\r\n\r\n1. There is no identity scheme we could all agree on as universally applicable or agreable, further, the space continues to evolve.\r\n\r\nAnd,\r\n\r\n2. The trustworthiness or otherwise of issuers identity, in the context of a transparency ledger, is temporal and subjective in nature. It's just a question of time frame. This means that regardless of registration time checks, relying parties, auditors and general consumers will have to re evaluate regardless. And will do so according to their own subjective context. Remembering that \"It can never be assumed that some Issuers and some Transparency Services will not be corrupt.\". And also \"A Verifier SHOULD validate a Transparent Statement originating from a given Issuer\" ... \"and would not depend on any other Issuer or Transparency Services.\"\r\n\r\nIt does seem obvious that,\r\n\r\n3. Syntactic validation of the issuer identity claims makes good sense and supports interoperability.\r\n\r\nBut,\r\n\r\n4. Specifying a single identity scheme in the core architecture as \"minimally required\" does not meaningfully help interoperability when there is no single agreeable scheme, and especially when a TS may be used to underpin identity schemes themselves.\r\n\r\nRegarding the burden on Relying Parties and Auditors,\r\n\r\n5. The definition for \"Relying Party\" states \"a Relying Parties consumes Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain\". IOW: Relying parties are already expected to deeply consider statements. Assessing the identity asserted by the issuer, at the time the artifact is being considered, seems to be a natural and useful part of that process.\r\n6. Registration Auditability: Requiring that Transparency Services \"enough information is made available to Auditors\" ... \"to authenticate and retrieve the Transparent Statements\" is essentially impossible to specify at this level, imposes un-bounded maintenance and storage issues on implementations, and represents a significant layering violation in the architecture.\r\n\r\n",
       "createdAt": "2024-04-12T18:12:25Z",
-      "updatedAt": "2024-04-15T16:37:57Z",
+      "updatedAt": "2024-04-17T17:43:06Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
-      "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
+      "baseRefOid": "91383884bcb3a8cdf2b6db7bca4204fbeec853a9",
       "headRepository": "robinbryce/draft-ietf-scitt-architecture",
       "headRefName": "robin/issuer-authentication-is-temporal-and-subjective",
-      "headRefOid": "03220eb6bcdc52fdc313149fd5a87b0568d23606",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "headRefOid": "78008ea71b41200eff8941ca56e1addcbdc25e1d",
+      "closedAt": "2024-04-17T17:43:06Z",
+      "mergedAt": "2024-04-17T17:43:06Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "3ab2dd2d6623b4f81d63dad3a850320cb5908ca3"
+      },
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Editors meeting: will wait 24hours for reviews, with merger if no objections.",
+          "createdAt": "2024-04-16T14:51:45Z",
+          "updatedAt": "2024-04-16T14:51:45Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Per the editors meeting, I've merged the discussed changes and resolved the discussed topics. \r\nI've opened #236 to track the MUST/Should discussion, which wasn't part of this PR.\r\nPlease review and we'll merge Wednesday morning US Pacific time if there are no objections. I'll incorporate agreed suggestions as well.",
+          "createdAt": "2024-04-17T04:30:56Z",
+          "updatedAt": "2024-04-17T04:32:19Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Merging with no other feedback.",
+          "createdAt": "2024-04-17T17:43:04Z",
+          "updatedAt": "2024-04-17T17:43:04Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss53KlU7",
@@ -30053,6 +30313,219 @@
               "updatedAt": "2024-04-15T15:28:26Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53cD4n",
+          "commit": {
+            "abbreviatedOid": "03220eb"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "good enough",
+          "createdAt": "2024-04-16T14:36:40Z",
+          "updatedAt": "2024-04-16T14:36:40Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss53cGpC",
+          "commit": {
+            "abbreviatedOid": "9ee87f9"
+          },
+          "author": "roywill",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-16T14:40:50Z",
+          "updatedAt": "2024-04-16T14:40:50Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "The introduction of commitments here is a concern.  Can we use an existing term instead of adding a new one.",
+              "createdAt": "2024-04-16T14:40:50Z",
+              "updatedAt": "2024-04-16T14:40:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53cIyL",
+          "commit": {
+            "abbreviatedOid": "03220eb"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "DISMISSED",
+          "body": "",
+          "createdAt": "2024-04-16T14:44:04Z",
+          "updatedAt": "2024-04-17T04:29:34Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "Others are free to approve, I will not approve without the change below.\r\n\r\n```suggestion\r\nTransparency Services SHOULD ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to reproduce the Registration checks that were defined by the Registration Policies at the time of Registration.\r\n```\r\n\r\nIf not, I expect a cross-linked PR to explicate all the registration policy specification that was removed in the past (for lack of alignment and ambiguity and generalities) and explicate it all. The WG considered this not ideal in previous editorial review, so I assume this alternative approach is unlikely. So I would change it to SHOULD.",
+              "createdAt": "2024-04-16T14:44:04Z",
+              "updatedAt": "2024-04-16T14:44:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53cLhF",
+          "commit": {
+            "abbreviatedOid": "03220eb"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-16T14:48:11Z",
+          "updatedAt": "2024-04-16T14:48:12Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\r\nThe Issuer identity MUST be bound to the Signed Statement by including an identifier in the protected header.\r\n```",
+              "createdAt": "2024-04-16T14:48:12Z",
+              "updatedAt": "2024-04-16T14:48:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53cMWo",
+          "commit": {
+            "abbreviatedOid": "03220eb"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-16T14:49:28Z",
+          "updatedAt": "2024-04-16T14:49:28Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\nIf the protected header includes multiple identifiers, all those that are registered by the Transparency Service MUST be checked.\r\n```",
+              "createdAt": "2024-04-16T14:49:28Z",
+              "updatedAt": "2024-04-16T14:49:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53gW6-",
+          "commit": {
+            "abbreviatedOid": "9ee87f9"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-17T04:00:47Z",
+          "updatedAt": "2024-04-17T04:00:47Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "Agreed, a new term \"commitment\" is something we'd like to avoid\r\nCan folks please review the [suggestion from the editors meeting for using \"identifier'](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/231/files#r1567497546). Please +1, -1, or propose an alternative on that suggestion, .",
+              "createdAt": "2024-04-17T04:00:47Z",
+              "updatedAt": "2024-04-17T04:00:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53gXm1",
+          "commit": {
+            "abbreviatedOid": "5bae4e8"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-17T04:04:45Z",
+          "updatedAt": "2024-04-17T04:04:45Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "@aj-stein-nist, I agree the MUST/SHOULD warrants some more discussion. Purely from a focus of the changes in this PR perspective, can we open a separate PR for tracking the normative references without more clarity on details?",
+              "createdAt": "2024-04-17T04:04:45Z",
+              "updatedAt": "2024-04-17T04:04:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53gYno",
+          "commit": {
+            "abbreviatedOid": "03220eb"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-17T04:09:27Z",
+          "updatedAt": "2024-04-17T04:09:28Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "Since we discussed \"identifier\" this morning, I committed the change. But, folks can still make suggestions for alternatives. ",
+              "createdAt": "2024-04-17T04:09:27Z",
+              "updatedAt": "2024-04-17T04:09:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53gYx2",
+          "commit": {
+            "abbreviatedOid": "03220eb"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-17T04:10:20Z",
+          "updatedAt": "2024-04-17T04:10:21Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "```suggestion\r\nDuring registration, a Transparency Service MUST, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to {{RFC9052}}.\r\n```",
+              "createdAt": "2024-04-17T04:10:20Z",
+              "updatedAt": "2024-04-17T04:10:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53gY_5",
+          "commit": {
+            "abbreviatedOid": "03220eb"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-17T04:11:26Z",
+          "updatedAt": "2024-04-17T04:11:26Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-04-17T04:11:26Z",
+              "updatedAt": "2024-04-17T04:11:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53gZHD",
+          "commit": {
+            "abbreviatedOid": "03220eb"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-17T04:12:08Z",
+          "updatedAt": "2024-04-17T04:12:08Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-04-17T04:12:08Z",
+              "updatedAt": "2024-04-17T04:12:08Z"
+            }
+          ]
         }
       ]
     },
@@ -30061,33 +30534,95 @@
       "id": "PR_kwDOIvmHss5sib0q",
       "title": "Update Transparent Statement to Signed Statement. ",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/233",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "from [scitt alias feedback](https://mailarchive.ietf.org/arch/msg/scitt/O3nkTYsEqYzA-DF1wVW-Q7cpJn4/):\r\n> In section 4.1.1.2 it alludes that an auditor can mine the log to authenticate and retrieve the transparent statement.  Based on the last statement this has two problems.  The first it assumes that the signed statement is kept and that it can generate a new receipt (see 3) and produce a transparent statement.  If it could this would be equivalent to the original in intent but not binary equal.   The original receipt (or last created receipt from a refresh) is not required (or intended) to be kept in the ledger.  Generically then this is impossible and may be where we would leverage consistency proofs in a later version.\r\n\r\n\r\n\r\n",
       "createdAt": "2024-04-12T21:52:21Z",
-      "updatedAt": "2024-04-12T21:52:22Z",
+      "updatedAt": "2024-04-16T14:56:42Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/review-feedback-5",
       "headRefOid": "198573fbacfae1790d4c6dd6e2ea93003f88895a",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-04-16T14:56:42Z",
+      "mergedAt": "2024-04-16T14:56:42Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "7258bbbfa0750bacb412c46e2f8ac35d16bac215"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss53cPlF",
+          "commit": {
+            "abbreviatedOid": "198573f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-04-16T14:54:22Z",
+          "updatedAt": "2024-04-16T14:54:22Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss53cPrP",
+          "commit": {
+            "abbreviatedOid": "198573f"
+          },
+          "author": "roywill",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "May be we have to tighten up the you can retrieve the signed statement to something in the future that may only get the hash",
+          "createdAt": "2024-04-16T14:54:31Z",
+          "updatedAt": "2024-04-16T14:54:31Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss53cQrI",
+          "commit": {
+            "abbreviatedOid": "198573f"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "MUST and \"enough\" does not seem suffi",
+          "createdAt": "2024-04-16T14:56:03Z",
+          "updatedAt": "2024-04-16T14:56:10Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "MUST and \"enough\" does not seem sufficient for a requirement.",
+              "createdAt": "2024-04-16T14:56:03Z",
+              "updatedAt": "2024-04-16T14:56:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss53cQ3x",
+          "commit": {
+            "abbreviatedOid": "198573f"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "more correct than before, still a MUST that is tad bit hard to follow. the change in this scope is okay",
+          "createdAt": "2024-04-16T14:56:21Z",
+          "updatedAt": "2024-04-16T14:56:21Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 235,
       "id": "PR_kwDOIvmHss5sizPl",
       "title": "Clarify Identifier Headings",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/235",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -30096,17 +30631,19 @@
       ],
       "body": "A few headings start with \"For X...\"\r\nSimply adds what the For is relating to.",
       "createdAt": "2024-04-12T23:13:23Z",
-      "updatedAt": "2024-04-15T13:13:57Z",
+      "updatedAt": "2024-04-16T14:58:09Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "d9935ce01c68229c31aa9c1f322acfb0aa0c587b",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/clarify-identifier-headings",
       "headRefOid": "ea14520571c5fb6b6698d1be886263d1435122cf",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-04-16T14:58:09Z",
+      "mergedAt": "2024-04-16T14:58:09Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "91383884bcb3a8cdf2b6db7bca4204fbeec853a9"
+      },
       "comments": [],
       "reviews": [
         {
@@ -30120,6 +30657,19 @@
           "body": "",
           "createdAt": "2024-04-15T13:13:57Z",
           "updatedAt": "2024-04-15T13:13:57Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss53cR1K",
+          "commit": {
+            "abbreviatedOid": "ea14520"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-04-16T14:57:51Z",
+          "updatedAt": "2024-04-16T14:57:51Z",
           "comments": []
         }
       ]
