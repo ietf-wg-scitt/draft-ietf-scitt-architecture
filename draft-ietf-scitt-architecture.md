@@ -220,7 +220,7 @@ Equivocation:
 
 Issuer:
 
-: an identifier that represents the organization, stakeholder, or user responsible for creating Statements about supply chain Artifacts and Receipts.
+: an identifier that represents the organization, device, user or entity responsible for securing Statements about supply chain Artifacts and Receipts.
 An Issuer may be the owner or author of Artifacts, or an independent third party such as an auditor, reviewer or an endorser.
 In SCITT Statements and Receipts, `Issuer` is a member of the COSE header parameter `15: CWT_Claims` within the protected header of a COSE envelope.
 
