@@ -1430,7 +1430,7 @@ In COSE, an Envelope consists of a protected header (included in the Issuer's si
         <dd class="break"></dd>
 <dt id="section-2-5.15">Issuer:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.16">
-          <p id="section-2-5.16.1">an identifier that represents the organization, stakeholder, or user responsible for creating Statements about supply chain Artifacts and Receipts.
+          <p id="section-2-5.16.1">an identifier that represents the organization, device, user or entity responsible for securing Statements about supply chain Artifacts and Receipts.
 An Issuer may be the owner or author of Artifacts, or an independent third party such as an auditor, reviewer or an endorser.
 In SCITT Statements and Receipts, <code>Issuer</code> is a member of the COSE header parameter <code>15: CWT_Claims</code> within the protected header of a COSE envelope.<a href="#section-2-5.16.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1481,7 +1481,7 @@ The Statement is considered opaque to Transparency Service, and <span class="bcp
         <dd class="break"></dd>
 <dt id="section-2-5.31">Subject:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.32">
-          <p id="section-2-5.32.1">an identifier that represents the Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements about the same Artifact can be grouped.
+          <p id="section-2-5.32.1">an identifier that represents the organization, device, user, entity or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements can be grouped.
 It is possible that there are multiple Statements about the same Artifact.
 In these cases, Issuers use <code>Subject</code> to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage <code>Subject</code> to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific one.
 In SCITT Statements and Receipts, <code>Subject</code> is a member of the COSE header parameter <code>15: CWT_Claims</code> within the protected header of a COSE envelope.<a href="#section-2-5.32.1" class="pilcrow">¶</a></p>
