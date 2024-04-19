@@ -263,7 +263,7 @@ The Statement is considered opaque to Transparency Service, and MAY be encrypted
 
 Subject:
 
-: an identifier that represents the Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements about the same Artifact can be grouped.
+: an identifier that represents the organization, device, user, entity or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements can be grouped.
 It is possible that there are multiple Statements about the same Artifact.
 In these cases, Issuers use `Subject` to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `Subject` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific one.
 In SCITT Statements and Receipts, `Subject` is a member of the COSE header parameter `15: CWT_Claims` within the protected header of a COSE envelope.
