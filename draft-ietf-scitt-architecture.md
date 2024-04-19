@@ -218,15 +218,11 @@ Equivocation:
 
 : a state where it is possible for a Transparency Service to provide different views of its Append-only log to Relying Parties about the same Artifact {{EQUIVOCATION}}.
 
-Feed:
-
-: A collection of Receipts, as recorded by the Transparency Service, based on filtering of properties from the envelope including, but not limited to the `sub` field of the `CWT_Claims`.
-Relying Parties may use the Feed to ensure completeness and Non-equivocation in supply chain evidence by identifying all Transparent Statements linked to the Artifact they are evaluating.
-
 Issuer:
 
-: organizations, stakeholders, and users involved in creating or attesting to supply chain artifacts, releasing authentic Statements to a definable set of peers.
+: an identifier that represents the organization, stakeholder, or user responsible for creating Statements about supply chain Artifacts and Receipts.
 An Issuer may be the owner or author of Artifacts, or an independent third party such as an auditor, reviewer or an endorser.
+In SCITT Statements and Receipts, `Issuer` is a member of the COSE header parameter `15: CWT_Claims` within the protected header of a COSE envelope.
 
 Non-equivocation:
 
@@ -267,15 +263,10 @@ The Statement is considered opaque to Transparency Service, and MAY be encrypted
 
 Subject:
 
-: This term has the same definition as in {{RFC8392}}, which relies on the definition in RFC7519.
-The `sub` (subject) claim identifies the principal that is the subject of the CWT.
-The claims in a CWT are normally statements about the subject.
-In SCITT, `sub` identifies the entity about which statements, and receipts are made.
-The subject value MUST either be scoped to be locally unique in the context of the Issuer or be globally unique.
-The processing of this claim is generally application specific.
-The `sub` value is a case-sensitive string containing a StringOrURI value.
-Issuers use `sub` to identify the entity about which they are making Signed Statements.
-Transparency Services use `sub` to identify the entity about which they are issuing a Receipt.
+: an identifier that represents the Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements about the same Artifact can be grouped.
+It is possible that there are multiple Statements about the same Artifact.
+In these cases, Issuers use `Subject` to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `Subject` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific one.
+In SCITT Statements and Receipts, `Subject` is a member of the COSE header parameter `15: CWT_Claims` within the protected header of a COSE envelope.
 
 Transparency Service:
 
