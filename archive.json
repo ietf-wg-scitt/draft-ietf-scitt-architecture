@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-18T00:34:53.250264+00:00",
+  "timestamp": "2024-04-21T00:38:26.891171+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4550,7 +4550,7 @@
       "labels": [],
       "body": "Vote with +1 for automating this, making the changes more visible to folks tracking the mailing list",
       "createdAt": "2024-04-09T14:52:22Z",
-      "updatedAt": "2024-04-17T17:43:52Z",
+      "updatedAt": "2024-04-19T18:05:58Z",
       "closedAt": null,
       "comments": [
         {
@@ -4559,6 +4559,20 @@
           "body": "+1",
           "createdAt": "2024-04-09T14:53:27Z",
           "updatedAt": "2024-04-09T14:53:27Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I haven't heard back from those in the know but I may just try [to mimic the code recommended to Steve by others in the Slack](https://github.com/ietf-github-services/issue-summary) accordingly. I guess I have to figure out which email credentials I can use to send it for this GH org, but that will come later.\r\n\r\n",
+          "createdAt": "2024-04-19T14:21:29Z",
+          "updatedAt": "2024-04-19T14:21:29Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks, @aj-stein-nist for taking this up. ",
+          "createdAt": "2024-04-19T18:05:57Z",
+          "updatedAt": "2024-04-19T18:05:57Z"
         }
       ]
     },
@@ -30671,6 +30685,167 @@
           "createdAt": "2024-04-16T14:57:51Z",
           "updatedAt": "2024-04-16T14:57:51Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 237,
+      "id": "PR_kwDOIvmHss5tLZuj",
+      "title": "Redistributing the content of the Feed definition back to subject (and removing the Feed definition)",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/237",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "so that Feed can be defined in an adjacent I-D outside of the architecture.",
+      "createdAt": "2024-04-19T13:58:49Z",
+      "updatedAt": "2024-04-19T17:50:00Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "3ab2dd2d6623b4f81d63dad3a850320cb5908ca3",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "wo-feed",
+      "headRefOid": "83cc7634dde94871ab95a80c4924d6d76cf2d03d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "mprorock",
+          "authorAssociation": "NONE",
+          "body": "This looks great!",
+          "createdAt": "2024-04-19T14:18:35Z",
+          "updatedAt": "2024-04-19T14:18:35Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss535bDy",
+          "commit": {
+            "abbreviatedOid": "389c0cd"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-19T14:09:03Z",
+          "updatedAt": "2024-04-19T14:09:03Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\n: an identifier that represents the organization, device, user or entity responsible for securing Statements about supply chain Artifacts and Receipts.\r\n```",
+              "createdAt": "2024-04-19T14:09:03Z",
+              "updatedAt": "2024-04-19T14:09:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss535cp0",
+          "commit": {
+            "abbreviatedOid": "389c0cd"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-19T14:11:45Z",
+          "updatedAt": "2024-04-19T14:11:45Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\n: an identifier that represents the organization, device, user, entity or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements can be grouped.\r\n```",
+              "createdAt": "2024-04-19T14:11:45Z",
+              "updatedAt": "2024-04-19T14:11:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss535c4k",
+          "commit": {
+            "abbreviatedOid": "389c0cd"
+          },
+          "author": "roywill",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "Thanks for doing this.  If in the future we get to a higher level abstract in the charter this can come back.",
+          "createdAt": "2024-04-19T14:12:10Z",
+          "updatedAt": "2024-04-19T14:12:10Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss535dOO",
+          "commit": {
+            "abbreviatedOid": "389c0cd"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-19T14:12:48Z",
+          "updatedAt": "2024-04-19T14:12:48Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "```suggestion\r\nIn these cases, distinct Issuers might agree to use `Subject` to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `Subject` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements related to a specific subject.\r\n```",
+              "createdAt": "2024-04-19T14:12:48Z",
+              "updatedAt": "2024-04-19T14:13:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss535eAA",
+          "commit": {
+            "abbreviatedOid": "389c0cd"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-19T14:14:16Z",
+          "updatedAt": "2024-04-19T14:14:16Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "Add an example after this, where the issuers are library authors and the subject is a library with multiple dependencies.",
+              "createdAt": "2024-04-19T14:14:16Z",
+              "updatedAt": "2024-04-19T14:14:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss535g6n",
+          "commit": {
+            "abbreviatedOid": "83cc763"
+          },
+          "author": "mprorock",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-04-19T14:18:55Z",
+          "updatedAt": "2024-04-19T14:18:55Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss537SUh",
+          "commit": {
+            "abbreviatedOid": "83cc763"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-19T17:50:00Z",
+          "updatedAt": "2024-04-19T17:50:00Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "replacing \"attesting\" with \"securing\" seems a bit confusing as what does \"securing mean\". Issuers make statements about artifacts. That is synonymous with Issuers attest...\r\n```suggestion\r\n: an identifier representing an organization, device, user, or entity attesting to Statements about supply chain Artifacts.\r\n```",
+              "createdAt": "2024-04-19T17:50:00Z",
+              "updatedAt": "2024-04-19T17:50:00Z"
+            }
+          ]
         }
       ]
     }
