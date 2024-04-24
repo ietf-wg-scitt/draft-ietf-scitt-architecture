@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 25 October 2024                                      C. Fournet
+Expires: 26 October 2024                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                           23 April 2024
+                                                           24 April 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 October 2024.
+   This Internet-Draft will expire on 26 October 2024.
 
 Copyright Notice
 
@@ -293,9 +293,9 @@ Table of Contents
       about the same Artifact and Verifiers can leverage Subject to
       ensure completeness and Non-equivocation across Statements by
       identifying all Transparent Statements associated to a specific
-      one.  In SCITT Statements and Receipts, Subject is a member of the
-      COSE header parameter 15: CWT_Claims within the protected header
-      of a COSE envelope.
+      subject.  In SCITT Statements and Receipts, Subject is a member of
+      the COSE header parameter 15: CWT_Claims within the protected
+      header of a COSE envelope.
 
    Transparency Service:  an entity that maintains and extends the
       Append-only Log, and endorses its state.  A Transparency Service
