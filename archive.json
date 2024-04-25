@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-23T00:36:00.855931+00:00",
+  "timestamp": "2024-04-25T00:38:04.109554+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4623,6 +4623,22 @@
       "body": "```suggestion\r\nTransparency Services SHOULD ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to reproduce the Registration checks that were defined by the Registration Policies at the time of Registration.\r\n```\r\n\r\nIf not, I expect a cross-linked PR to explicate all the registration policy specification that was removed in the past (for lack of alignment and ambiguity and generalities) and explicate it all. The WG considered this not ideal in previous editorial review, so I assume this alternative approach is unlikely. So I would change it to SHOULD.\r\n\r\n_Originally posted by @aj-stein-nist in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/231#discussion_r1567490916_",
       "createdAt": "2024-04-17T04:27:53Z",
       "updatedAt": "2024-04-17T04:27:53Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 238,
+      "id": "I_kwDOIvmHss6GpUfi",
+      "title": "Register unsigned artifacts?",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/238",
+      "state": "OPEN",
+      "author": "raylutz",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Recent CISA/NIST work creates a self-attestation for software, which is not signed. This can't be easily submitted to SCITT without prior signing, but it is a gap in the current capabilities at most orgs creating a digital signature. Need to either find a way for orgs to easily sign the artifact, allow unsigned artifacts in SCITT, or ??\r\n\r\n\r\nhttps://www.cisa.gov/resources-tools/resources/repository-software-attestations-and-artifacts-rsaa-user-guide\r\n\r\nhttps://www.cisa.gov/sites/default/files/2024-03/CISA_RSAA_User_Guide_18_March_2024.pdf\r\n\r\nand they use this self-attestation form:\r\nhttps://www.cisa.gov/sites/default/files/2024-03/Self-Attestation-Common-Form-03082024-FINAL.pdf\r\n",
+      "createdAt": "2024-04-23T14:07:09Z",
+      "updatedAt": "2024-04-23T14:07:09Z",
       "closedAt": null,
       "comments": []
     }
@@ -30700,13 +30716,13 @@
       "labels": [],
       "body": "so that Feed can be defined in an adjacent I-D outside of the architecture.",
       "createdAt": "2024-04-19T13:58:49Z",
-      "updatedAt": "2024-04-19T17:50:00Z",
+      "updatedAt": "2024-04-24T17:27:49Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "3ab2dd2d6623b4f81d63dad3a850320cb5908ca3",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "wo-feed",
-      "headRefOid": "83cc7634dde94871ab95a80c4924d6d76cf2d03d",
+      "headRefOid": "df6306969675cb9481f7c2e8cda4835164c41ed7",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -30841,9 +30857,162 @@
           "comments": [
             {
               "originalPosition": 12,
-              "body": "replacing \"attesting\" with \"securing\" seems a bit confusing as what does \"securing mean\". Issuers make statements about artifacts. That is synonymous with Issuers attest...\r\n```suggestion\r\n: an identifier representing an organization, device, user, or entity attesting to Statements about supply chain Artifacts.\r\n```",
+              "body": "replacing \"attesting\" with \"securing\" seems a bit confusing as what does \"securing mean\". Issuers make statements about artifacts. That is synonymous with Issuers attest...\r\n```suggestion\r\n: an identifier representing an organization, device, user, or entity securing Statements about supply chain Artifacts.\r\n```",
               "createdAt": "2024-04-19T17:50:00Z",
-              "updatedAt": "2024-04-19T17:50:00Z"
+              "updatedAt": "2024-04-23T14:14:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss54PveW",
+          "commit": {
+            "abbreviatedOid": "83cc763"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-23T14:11:04Z",
+          "updatedAt": "2024-04-23T14:11:04Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "I don't think we should us the word \"attest\"",
+              "createdAt": "2024-04-23T14:11:04Z",
+              "updatedAt": "2024-04-23T14:11:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss54PykA",
+          "commit": {
+            "abbreviatedOid": "83cc763"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-23T14:15:39Z",
+          "updatedAt": "2024-04-23T14:15:40Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "I reverted 'attesting to' to 'securing'. @SteveLasker, that good enough?",
+              "createdAt": "2024-04-23T14:15:40Z",
+              "updatedAt": "2024-04-23T14:15:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss54bL7-",
+          "commit": {
+            "abbreviatedOid": "59607d2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-24T16:33:26Z",
+          "updatedAt": "2024-04-24T16:33:26Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\n: an identifier that represents the organization, device, user, entity or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements, Receipts, Artifacts or additional relevant media can be grouped.\r\n```",
+              "createdAt": "2024-04-24T16:33:26Z",
+              "updatedAt": "2024-04-24T17:28:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss54bMcW",
+          "commit": {
+            "abbreviatedOid": "59607d2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-24T16:34:21Z",
+          "updatedAt": "2024-04-24T16:34:21Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "Attempting to communicate that a subject can resolve to a collection of media, including but not limited to statements and receipts.",
+              "createdAt": "2024-04-24T16:34:21Z",
+              "updatedAt": "2024-04-24T16:34:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss54bMr2",
+          "commit": {
+            "abbreviatedOid": "59607d2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-24T16:34:53Z",
+          "updatedAt": "2024-04-24T16:34:53Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "```suggestion\r\nIn these cases, distinct Issuers might agree to use `Subject` to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `Subject` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific subject.\r\n```",
+              "createdAt": "2024-04-24T16:34:53Z",
+              "updatedAt": "2024-04-24T16:34:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss54bM1R",
+          "commit": {
+            "abbreviatedOid": "59607d2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "approved with nits",
+          "createdAt": "2024-04-24T16:35:12Z",
+          "updatedAt": "2024-04-24T16:35:12Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss54bcRi",
+          "commit": {
+            "abbreviatedOid": "59607d2"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-24T17:06:22Z",
+          "updatedAt": "2024-04-24T17:06:22Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "Can you elaborate a bit. The subject is on the header of a statement. A statement payload can be anything, including a receipt that is re-registered. But, it's still a statement. ",
+              "createdAt": "2024-04-24T17:06:22Z",
+              "updatedAt": "2024-04-24T17:06:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss54bmqb",
+          "commit": {
+            "abbreviatedOid": "59607d2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-04-24T17:27:49Z",
+          "updatedAt": "2024-04-24T17:27:49Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "its less to do with \"subject\" which is a text string... and more to do with \"logical collection of...\" which is limited to specific media types or is not... current text suggests its limited, I disagree with that.",
+              "createdAt": "2024-04-24T17:27:49Z",
+              "updatedAt": "2024-04-24T17:27:49Z"
             }
           ]
         }
