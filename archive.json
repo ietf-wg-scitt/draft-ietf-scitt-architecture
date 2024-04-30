@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-28T00:39:05.707959+00:00",
+  "timestamp": "2024-04-30T00:35:22.369156+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4323,7 +4323,7 @@
       "id": "I_kwDOIvmHss6CnRxH",
       "title": "Should we add Registered Signed Statement to the terminology",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/221",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -4333,8 +4333,8 @@
       ],
       "body": "The TS stores Signed Statements. When we started SCITT, I believe several folks had the position that TS would create and store Transparent Statements. \r\nAs of draft 06, a Transparent Statement is assembled on the client, outside the scope of the TS. Yet, we still refer to Transparent Statements. \r\nShould we add a term called Registered Signed Statement, which differentiates a Signed Statement that hasn't yet been registered, and a Signed Statement that has been registered, but isn't Transparent as the TS doesn't staple the receipt to the Signed Statement?",
       "createdAt": "2024-03-18T06:24:43Z",
-      "updatedAt": "2024-04-09T14:20:35Z",
-      "closedAt": null,
+      "updatedAt": "2024-04-29T15:03:35Z",
+      "closedAt": "2024-04-29T15:03:35Z",
       "comments": [
         {
           "author": "aj-stein-nist",
@@ -4370,6 +4370,13 @@
           "body": "Consider re-wording a transparent statement as a state that comes after registration and the append-only log. Not just when it's stapled to the signed statement ",
           "createdAt": "2024-04-09T14:20:33Z",
           "updatedAt": "2024-04-09T14:20:33Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as the group felt we didn't need another definition. ",
+          "createdAt": "2024-04-29T15:03:35Z",
+          "updatedAt": "2024-04-29T15:03:35Z"
         }
       ]
     },
@@ -4550,7 +4557,7 @@
       "labels": [],
       "body": "Vote with +1 for automating this, making the changes more visible to folks tracking the mailing list",
       "createdAt": "2024-04-09T14:52:22Z",
-      "updatedAt": "2024-04-19T18:05:58Z",
+      "updatedAt": "2024-04-29T13:17:05Z",
       "closedAt": null,
       "comments": [
         {
@@ -4573,6 +4580,13 @@
           "body": "Thanks, @aj-stein-nist for taking this up. ",
           "createdAt": "2024-04-19T18:05:57Z",
           "updatedAt": "2024-04-19T18:05:57Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Apologies for the delay. I did receive an email on how to set this up over the last week. Will open the PR in the relevant IETF tools repo and close this issue accordingly once merged (Steve, it wasn't the one referenced in IETF Slack like I had thought).",
+          "createdAt": "2024-04-29T13:17:04Z",
+          "updatedAt": "2024-04-29T13:17:04Z"
         }
       ]
     },
@@ -4638,9 +4652,17 @@
       "labels": [],
       "body": "Recent CISA/NIST work creates a self-attestation for software, which is not signed. This can't be easily submitted to SCITT without prior signing, but it is a gap in the current capabilities at most orgs creating a digital signature. Need to either find a way for orgs to easily sign the artifact, allow unsigned artifacts in SCITT, or ??\r\n\r\n\r\nhttps://www.cisa.gov/resources-tools/resources/repository-software-attestations-and-artifacts-rsaa-user-guide\r\n\r\nhttps://www.cisa.gov/sites/default/files/2024-03/CISA_RSAA_User_Guide_18_March_2024.pdf\r\n\r\nand they use this self-attestation form:\r\nhttps://www.cisa.gov/sites/default/files/2024-03/Self-Attestation-Common-Form-03082024-FINAL.pdf\r\n",
       "createdAt": "2024-04-23T14:07:09Z",
-      "updatedAt": "2024-04-23T14:07:09Z",
+      "updatedAt": "2024-04-29T15:19:23Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks, @raylutz,\r\nThis was discussed as part of SCRAPI, where a Transparency Service could implement signing on-behalf of the user, based on their identity to the service. This would be consistent with the architecture, where the statement is signed. It's just a matter of whether it's signed on ingress to the service, before being registered on SCITT. \r\nSuggest moving this to [SCRAPI](https://github.com/ietf-wg-scitt/draft-ietf-scitt-scrapi).",
+          "createdAt": "2024-04-29T15:19:22Z",
+          "updatedAt": "2024-04-29T15:19:22Z"
+        }
+      ]
     }
   ],
   "pulls": [
