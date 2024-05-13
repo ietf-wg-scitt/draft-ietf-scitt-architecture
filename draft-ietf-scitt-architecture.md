@@ -220,7 +220,7 @@ Equivocation:
 
 Issuer:
 
-: an identifier that represents the organization, device, user or entity responsible for securing Statements about supply chain Artifacts and Receipts.
+: an identifier representing an organization, device, user, or entity securing Statements about supply chain Artifacts.
 An Issuer may be the owner or author of Artifacts, or an independent third party such as an auditor, reviewer or an endorser.
 In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE header parameter `15: CWT_Claims` within the protected header of a COSE envelope.
 
@@ -265,8 +265,7 @@ Subject:
 
 : an identifier that represents the organization, device, user, entity or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements can be grouped.
 It is possible that there are multiple Statements about the same Artifact.
-In these cases, distinct Issuers ('iss') might agree to use the `sub` CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific one.
-In SCITT Statements and Receipts, `sub` is a member of the COSE header parameter `15: CWT_Claims` within the protected header of a COSE envelope.
+In these cases, distinct Issuers ('iss') might agree to use the `sub` CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific subject.
 
 Transparency Service:
 
