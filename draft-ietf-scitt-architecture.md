@@ -339,9 +339,9 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
               v                   '------+----'     |
          .----+----.                     |          |
         |  Signed   |    COSE Signing    |          |
-        | Statement +<-------------------+          |
-         '----+----'                     |          |
-              |                 +--------+------+   |
+        | Statement +<------------------'          |
+         '----+----'                                |
+              |                 +---------------+   |
            .-' '--------------->+ Transparency  |   |
           |   .--------.        |               |   |
           |  | Receipt  +<------+  Service      +-+ |
