@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-12T00:39:55.198971+00:00",
+  "timestamp": "2024-05-14T00:36:34.926482+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -30792,13 +30792,13 @@
       "labels": [],
       "body": "so that Feed can be defined in an adjacent I-D outside of the architecture.",
       "createdAt": "2024-04-19T13:58:49Z",
-      "updatedAt": "2024-05-03T12:38:14Z",
+      "updatedAt": "2024-05-13T23:46:30Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "3ab2dd2d6623b4f81d63dad3a850320cb5908ca3",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "wo-feed",
-      "headRefOid": "df6306969675cb9481f7c2e8cda4835164c41ed7",
+      "headRefOid": "59e3dd2a2320c6b6c7f70233872fbf838e926688",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -31103,6 +31103,79 @@
           "body": "",
           "createdAt": "2024-05-03T12:38:14Z",
           "updatedAt": "2024-05-03T12:38:14Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss56XHbG",
+          "commit": {
+            "abbreviatedOid": "df63069"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Overall, it looks good. I do find the `Subject` bit confusing. If that is cleared up, I would approve.",
+          "createdAt": "2024-05-13T14:26:14Z",
+          "updatedAt": "2024-05-13T14:26:42Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "Do we not specifically mean `sub` and not `Subject` if we are specifically talking about the key name in the CWT? I would presume so since we fenced it like code syntax in backticks.\r\n\r\n```suggestion\r\nIt is possible that there are multiple Statements about the same Artifact.\r\nIn these cases, distinct Issuers might agree to use `sub` to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific subject.\r\n```",
+              "createdAt": "2024-05-13T14:26:14Z",
+              "updatedAt": "2024-05-13T14:26:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss56XIdL",
+          "commit": {
+            "abbreviatedOid": "df63069"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-05-13T14:27:53Z",
+          "updatedAt": "2024-05-13T14:27:57Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "Also does that not need to be fixed here?\r\n\r\n```suggestion\r\nIn SCITT Statements and Receipts, `sub` is a member of the COSE header parameter `15: CWT_Claims` within the protected header of a COSE envelope.\r\n```",
+              "createdAt": "2024-05-13T14:27:53Z",
+              "updatedAt": "2024-05-13T14:27:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss56YWXO",
+          "commit": {
+            "abbreviatedOid": "59e3dd2"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Minor style formatting issue that can be committed before merge, but I am otherwise ok with these changes.",
+          "createdAt": "2024-05-13T16:42:11Z",
+          "updatedAt": "2024-05-13T16:42:36Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "Minor, non-blocking recommendation to make the formatting consistent between iss and the following referenced to sub in code fences that designate it is syntax.\r\n\r\n```suggestion\r\nIn these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific subject.\r\n```",
+              "createdAt": "2024-05-13T16:42:11Z",
+              "updatedAt": "2024-05-13T16:42:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss56bV2O",
+          "commit": {
+            "abbreviatedOid": "59e3dd2"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-05-13T23:46:30Z",
+          "updatedAt": "2024-05-13T23:46:30Z",
           "comments": []
         }
       ]
