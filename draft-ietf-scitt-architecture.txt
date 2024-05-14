@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 19 October 2024                                      C. Fournet
+Expires: 15 November 2024                                     C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                           17 April 2024
+                                                             14 May 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 October 2024.
+   This Internet-Draft will expire on 15 November 2024.
 
 Copyright Notice
 
@@ -225,18 +225,13 @@ Table of Contents
       Service to provide different views of its Append-only log to
       Relying Parties about the same Artifact [EQUIVOCATION].
 
-   Feed:  A collection of Receipts, as recorded by the Transparency
-      Service, based on filtering of properties from the envelope
-      including, but not limited to the sub field of the CWT_Claims.
-      Relying Parties may use the Feed to ensure completeness and Non-
-      equivocation in supply chain evidence by identifying all
-      Transparent Statements linked to the Artifact they are evaluating.
-
-   Issuer:  organizations, stakeholders, and users involved in creating
-      or attesting to supply chain artifacts, releasing authentic
-      Statements to a definable set of peers.  An Issuer may be the
-      owner or author of Artifacts, or an independent third party such
-      as an auditor, reviewer or an endorser.
+   Issuer:  an identifier representing an organization, device, user, or
+      entity securing Statements about supply chain Artifacts.  An
+      Issuer may be the owner or author of Artifacts, or an independent
+      third party such as an auditor, reviewer or an endorser.  In SCITT
+      Statements and Receipts, the iss CWT Claim is a member of the COSE
+      header parameter 15: CWT_Claims within the protected header of a
+      COSE envelope.
 
    Non-equivocation:  a state where it is impossible for a Transparency
       Service to provide different views of its append-only log to
@@ -289,18 +284,16 @@ Table of Contents
       header.  The Statement is considered opaque to Transparency
       Service, and MAY be encrypted.
 
-   Subject:  This term has the same definition as in [RFC8392], which
-      relies on the definition in RFC7519.  The sub (subject) claim
-      identifies the principal that is the subject of the CWT.  The
-      claims in a CWT are normally statements about the subject.  In
-      SCITT, sub identifies the entity about which statements, and
-      receipts are made.  The subject value MUST either be scoped to be
-      locally unique in the context of the Issuer or be globally unique.
-      The processing of this claim is generally application specific.
-      The sub value is a case-sensitive string containing a StringOrURI
-      value.  Issuers use sub to identify the entity about which they
-      are making Signed Statements.  Transparency Services use sub to
-      identify the entity about which they are issuing a Receipt.
+   Subject:  an identifier, defined by the Issuer, that represents the
+      organization, device, user, entity, or Artifact about which
+      Statements (and Receipts) are made and by which a logical
+      collection of Statements can be grouped.  It is possible that
+      there are multiple Statements about the same Artifact.  In these
+      cases, distinct Issuers (iss) might agree to use the sub CWT Claim
+      to create a coherent sequence of Signed Statements about the same
+      Artifact and Verifiers can leverage sub to ensure completeness and
+      Non-equivocation across Statements by identifying all Transparent
+      Statements associated to a specific subject.
 
    Transparency Service:  an entity that maintains and extends the
       Append-only Log, and endorses its state.  A Transparency Service
@@ -1386,9 +1379,9 @@ Table of Contents
    [I-D.draft-ietf-core-href]
               Bormann, C. and H. Birkholz, "Constrained Resource
               Identifiers", Work in Progress, Internet-Draft, draft-
-              ietf-core-href-14, 9 January 2024,
+              ietf-core-href-15, 21 April 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-core-
-              href-14>.
+              href-15>.
 
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
@@ -1400,9 +1393,9 @@ Table of Contents
    [I-D.draft-ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
               Wallace, "The Entity Attestation Token (EAT)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-eat-25, 15
-              January 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-rats-eat-25>.
+              Progress, Internet-Draft, draft-ietf-rats-eat-26, 5 May
+              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              rats-eat-26>.
 
    [in-toto]  "in-toto", n.d., <https://in-toto.io/>.
 
