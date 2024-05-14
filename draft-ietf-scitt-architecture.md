@@ -265,7 +265,7 @@ Subject:
 
 : an identifier that represents the organization, device, user, entity or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements can be grouped.
 It is possible that there are multiple Statements about the same Artifact.
-In these cases, distinct Issuers ('iss') might agree to use the `sub` CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific subject.
+In these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific subject.
 
 Transparency Service:
 
