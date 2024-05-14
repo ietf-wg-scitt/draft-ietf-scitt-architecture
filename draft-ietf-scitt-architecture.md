@@ -329,19 +329,19 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
   .----------.
  |  Artifact  |
   '----+-----'
-       v
-  .----+----.  .----------.   Identifiers
- | Statement ||  Envelope  +<-------------.
-  '----+----'  '-----+----'                |
-       |             |            .--------+--.
-        '----. .----'            |  Identity   |
-              |                  |  Documents  +---.
-              v                   '------+----'     |
-         .----+----.                     |          |
-        |  Signed   |    COSE Signing    |          |
-        | Statement +<------------------'           |
-         '----+----'                                |
-              |                 +---------------+   |
+       v                          .-----------.
+  .----+----.  .----------.      |  Identity   |
+ | Statement ||  Envelope  +     |  Documents  +---.
+  '----+----'  '-----+----'      | Sign/Verify |    |
+       |             |            '----+-+----'     |
+        '----. .----'                  | |          |
+              |                        | |          |
+              v                        | |          |
+         .----+----.                   | |          |
+        |  Signed   |    COSE Signing  | |          |
+        | Statement +<----------------'  |          |
+         '----+----'                     v          |
+              |                 +--------+------+   |
            .-' '--------------->+ Transparency  |   |
           |   .--------.        |               |   |
           |  | Receipt  +<------+  Service      +-+ |
