@@ -70,7 +70,9 @@ contributor:
 
 normative:
   RFC2046:
+  RFC5280: PKIX
   RFC6838:
+  RFC8610: CDDL
   RFC9052: COSE
   RFC9360:
   RFC8392:
@@ -182,9 +184,9 @@ To ensure readability, only a core set of terms is included in this section.
 
 **Editor's Note:**: *The label "394" is expected to be reserved by this document, in the COSE Header Parameters Registry.*
 
-The terms "header", "payload", and "to-be-signed bytes" are defined in {{RFC9052}}.
+The terms "header", "payload", and "to-be-signed bytes" are defined in {{-COSE}}.
 
-The terms claim is defined in {{RFC8392}}, and is repeated here for readability:
+The term "claim" is defined in {{RFC8392}} and is repeated here for readability:
 
 Append-only Log (Ledger):
 
@@ -381,9 +383,9 @@ All Transparency Services MUST expose APIs for the registration of Signed Statem
 
 Transparency Services MAY support additional APIs for auditing, for instance, to query the history of Signed Statements.
 
-Typically a Transparency Service has a single Issuer identity which is present in the `iss` claim of Receipts for that service.
+Typically a Transparency Service has a single Issuer identity which is present in the `iss` Claim of Receipts for that service.
 
-Multi-tenant support can be enabled through the use of identifiers in the `iss` claim, for example, `ts.example` may have a distinct Issuer identity for each sub domain, such as `customer1.ts.example` and `customer2.ts.example`.
+Multi-tenant support can be enabled through the use of identifiers in the `iss` Claim, for example, `ts.example` may have a distinct Issuer identity for each sub domain, such as `customer1.ts.example` and `customer2.ts.example`.
 
 ### Registration Policies
 
@@ -474,7 +476,7 @@ The SCITT tag `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indi
 
 Issuers MAY produce Signed Statements about different Artifacts under the same Identity.
 Issuers and Relying Parties must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
-The `iss` and `sub` claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.
+The `iss` and `sub` Claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.
 (See Subject under {{terminology}} Terminology.)
 
 Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
@@ -503,13 +505,13 @@ Key discovery protocols are out-of-scope of this document.
 The protected header of a Signed Statement and a Receipt MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}.
 The `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `Subject Claim` (Claim label 2) {{IANA.cwt}}.
 
-A Receipt is a Signed Statement, (cose-sign1), with addition claims in its protected header related to verifying the inclusion proof in its unprotected header. See {{-COMETRE}}.
+A Receipt is a Signed Statement, (cose-sign1), with addition Claims in its protected header related to verifying the inclusion proof in its unprotected header. See {{-COMETRE}}.
 
 ### Signed Statement Examples
 
-{{fig-signed-statement-cddl}} illustrates a normative CDDL definition for of the protected header for Signed Statements and Receipts.
+{{fig-signed-statement-cddl}} illustrates a normative CDDL definition (see {{-CDDL}}) for of the protected header and unprotected header of Signed Statements and Receipts.
 
-Everything that is optional in the following CDDL can potentially be discovered out of band and Registration Policies are not assured on the presence of these optional fields.
+Everything that is optional in the following CDDL definition can potentially be discovered out of band and Registration Policies are not assured on the presence of these optional fields.
 A Registration Policy that requires an optional field to be present MUST reject any Signed Statements or Receipts that are invalid according to the policy.
 
 ~~~ cddl
@@ -564,7 +566,7 @@ Detached payloads support large artifacts, and ensure Signed Statements can inte
 {: #fig-signed-statement-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement"}
 
 {{fig-signed-statement-protected-header-edn}} illustrates the decoded protected header of the Signed Statement in {{fig-signed-statement-edn}}.
-It indicates the Signed Statement is securing a JSON content type, and identifying the content with the `sub` claim "vendor.product.example".
+It indicates the Signed Statement is securing a JSON content type, and identifying the content with the `sub` Claim "vendor.product.example".
 
 ~~~ cbor-diag
 {                                   / Protected                     /
@@ -585,7 +587,7 @@ To register a Signed Statement, the Transparency Service performs the following 
 
 1. **Client authentication:** A Client authenticates with the Transparency Service, to Register Signed Statements on behalf of one or more issuers.
 Authentication and authorization is implementation-specific, and out of scope of the SCITT Architecture.
-1. **Issuer Verification:** The Transparency Service MUST syntactically validate the Issuer's identity claims, which may be different than the Client identity.
+1. **Issuer Verification:** The Transparency Service MUST syntactically validate the Issuer's identity Claims, which may be different than the Client identity.
 1. **Signature verification:** The Transparency Service MUST verify the signature of the Signed Statement, as described in {{RFC9360}}, using the signature algorithm and verification key of the Issuer.
 1. **Signed Statement validation:** The Transparency Service MUST check that the Signed Statement includes the required protected headers listed above.
 The Transparency Service MAY verify the Statement payload format, content and other optional properties.
@@ -617,7 +619,7 @@ Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle
 
 The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.
 
-**Editor's Note:** The WG is discussing if existing CWT claims might better support these design principles.
+**Editor's Note:** The WG is discussing if existing CWT Claims might better support these design principles.
 
 {{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements.
 
@@ -716,7 +718,7 @@ A Relying Party MUST trust the verification key or certificate and the associate
 A Relying Party MAY decide to verify only a single Receipt that is acceptable to them, and not check the signature on the Signed Statement or Receipts which rely on verifiable data structures which they do not understand.
 
 APIs exposing verification logic for Transparent Statements may provide more details than a single boolean result.
-For example, an API may indicate if the signature on the Receipt or Signed Statement is valid, if claims related to the validity period are valid, or if the inclusion proof in the Receipt is valid.
+For example, an API may indicate if the signature on the Receipt or Signed Statement is valid, if Claims related to the validity period are valid, or if the inclusion proof in the Receipt is valid.
 
 Relying Parties MAY be configured to re-verify the Issuer's Signed Statement locally.
 
@@ -746,7 +748,7 @@ Unless advertised in the Transparency Service Registration Policy, the Verifier 
 Similarly, the fact that an Issuer can be held accountable for its Transparent Statements does not on its own provide any mitigation or remediation mechanism in case one of these Transparent Statements turned out to be misleading or malicious.
 Just that signed evidence will be available to support them.
 
-An Issuer that knows of a changed state of quality for an Artifact, SHOULD Register a new Signed Statement, using the same `15` CWT `iss` and `sub` claims.
+An Issuer that knows of a changed state of quality for an Artifact, SHOULD Register a new Signed Statement, using the same `15` CWT `iss` and `sub` Claims.
 
 Issuers MUST ensure that the Statement payloads in their Signed Statements are correct and unambiguous, for example by avoiding ill-defined or ambiguous formats that may cause Relying Parties to interpret the Signed Statement as valid for some other purpose.
 
@@ -767,6 +769,10 @@ If present, these additional authenticity assurances MUST be registered in the A
 An example of Signed Statement's payloads that can improve authenticity assurances are trustworthiness assessments that are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see {{-rats-arch}}).
 
 For example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs. The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts. The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a trusted Verifier and complies with well-known Reference Values and Endorsements.
+
+Auditors should be aware that the certification path information included in an unprotected `x5chain` header of a to-be-registered Signed Statement can be tampered with by a malicious Transparency Service (e.g., one that does not incorporate remote attestation), which may replace the intermediate certificates and ultimately connect to an unexpected root.
+This modification can allow malicious TS to forge Claims that look genuine except for the wrong trust anchor.
+In addition to performing chain validation in accordance with PKIX rules specified in {{-PKIX}}, auditors should explicitly verify the root certificates are genuine.
 
 ## Security Guarantees
 
@@ -918,11 +924,11 @@ This document uses the terms "issuer", and "subject" as described in {{RFC8392}}
 
 The terms "verifier" and "relying party" are used interchangeably through the document. While these terms are related to "Verifier" and "Relying Party" as used in {{RFC9334}}, they do not imply the processing of RATS conceptual messages, such as Evidence or Attestation Results that are specific to remote attestation. A SCITT "verifier" and "relying party" and "issuer" of Receipts or Statements might take on the role of a RATS "Attester". Correspondingly, all RATS conceptual messages, such as Evidence and Attestation Results, can be the content of SCITT Statements and a SCITT "verifier" can also take on the role of a RATS "Verifier" to, for example, conduct the procedure of Appraisal of Evidence as a part of a SCITT "verifier"'s verification capabilities.
 
-The terms "claim" and "statement" are used throughout this document, where claim is consistent with the usage in {{-draft-ietf-rats-eat}} and {{RFC7523}}, and statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the claims are made.
+The terms "Claim" and "Statement" are used throughout this document, where Claim is consistent with the usage in {{-draft-ietf-rats-eat}} and {{RFC7523}}, and Statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the Claims are made.
 
-The term "subject" provides an identifier of the issuer's choosing to refer to a given artifact, and ensures that all associated statements can be attributed to the identifier chosen by the issuer.
+The term "Subject" provides an identifier of the issuer's choosing to refer to a given artifact, and ensures that all associated statements can be attributed to the identifier chosen by the issuer.
 
-In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the issuer identifies themselves using the `iss` claim, and the specific software that was analyzed as the subject using the `sub` claim.
+In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the issuer identifies themselves using the `iss` Claim, and the specific software that was analyzed as the subject using the `sub` Claim.
 
 In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer". This means the AS initially acts as a "verifier", and then later as an "issuer". This mirrors how Signed Statements are verified before Receipts are issued by a Transparency Service.
 
@@ -931,7 +937,7 @@ In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client au
 {{NIST.SP.800-63-3}} defines "assertion" as "A statement from a verifier to an RP that contains information about a subscriber.
 Assertions may also contain verified attributes."
 
-This document uses the term Statement to refer to potentially unsecured data and associated claims, and Signed Statement and Receipt to refer to assertions from an Issuer, or the transparency service.
+This document uses the term Statement to refer to potentially unsecured data and associated Claims, and Signed Statement and Receipt to refer to assertions from an Issuer, or the transparency service.
 
 {{NIST.SP.1800-19}} defines "attestation" as "The process of providing a digital signature for a set of measurements securely stored in hardware, and then having the requester validate the signature and the set of measurements."
 
@@ -1007,7 +1013,7 @@ urn:ietf:params:scitt:\
 {base64url-encoded-to-be-signed-bytes-digest}
 ~~~
 
-Note that this means the content of the signature is not included in the identifier, even though signature related claims, such as activation or expiration information in protected headers are included.
+Note that this means the content of the signature is not included in the identifier, even though signature related Claims, such as activation or expiration information in protected headers are included.
 
 As a result, an attacker may construct a new signed statement that has the same identifier as a previous signed statement, but has a different signature.
 
