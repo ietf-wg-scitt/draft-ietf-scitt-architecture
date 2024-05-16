@@ -404,7 +404,8 @@ During registration, a Transparency Service MUST, at a minimum, syntactically ch
 The Issuer identity MUST be bound to the Signed Statement by including an identifier in the protected header.
 If the protected header includes multiple identifiers, all those that are registered by the Transparency Service MUST be checked.
 
-In essence, when using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.
+In essence, when using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t` located in the protected header of the COSE_Sign1 envelope, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.
+An `x5chain` with a lead certificate that corresponds to the `x5t` value MAY be included in the unprotected header in support of certain supply chain scenarios.
 
 The Transparency Service MUST apply the Registration Policy that was most recently added to the Append-only Log at the time of registration.
 
