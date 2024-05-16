@@ -187,7 +187,7 @@ Table of Contents
    The terms "header", "payload", and "to-be-signed bytes" are defined
    in [RFC9052].
 
-   The terms claim is defined in [RFC8392], and is repeated here for
+   The term "claim" is defined in [RFC8392] and is repeated here for
    readability:
 
    Append-only Log (Ledger):  the verifiable append-only data structure
@@ -465,10 +465,10 @@ Table of Contents
    instance, to query the history of Signed Statements.
 
    Typically a Transparency Service has a single Issuer identity which
-   is present in the iss claim of Receipts for that service.
+   is present in the iss Claim of Receipts for that service.
 
    Multi-tenant support can be enabled through the use of identifiers in
-   the iss claim, for example, ts.example may have a distinct Issuer
+   the iss Claim, for example, ts.example may have a distinct Issuer
    identity for each sub domain, such as customer1.ts.example and
    customer2.ts.example.
 
@@ -621,7 +621,7 @@ Table of Contents
    Issuers MAY produce Signed Statements about different Artifacts under
    the same Identity.  Issuers and Relying Parties must be able to
    recognize the Artifact to which the statements pertain by looking at
-   the Signed Statement.  The iss and sub claims, within the CWT_Claims
+   the Signed Statement.  The iss and sub Claims, within the CWT_Claims
    protected header, are used to identify the Artifact the statement
    pertains to.  (See Subject under Section 2 Terminology.)
 
@@ -667,21 +667,23 @@ Table of Contents
    Claim (Claim label 1) and the Subject Claim (Claim label 2)
    [IANA.cwt].
 
-   A Receipt is a Signed Statement, (cose-sign1), with addition claims
+   A Receipt is a Signed Statement, (cose-sign1), with addition Claims
    in its protected header related to verifying the inclusion proof in
    its unprotected header.  See
    [I-D.draft-ietf-cose-merkle-tree-proofs].
 
 4.2.1.  Signed Statement Examples
 
-   Figure 1 illustrates a normative CDDL definition for of the protected
-   header for Signed Statements and Receipts.
+   Figure 1 illustrates a normative CDDL definition (see [RFC8610]) for
+   of the protected header and unprotected header of Signed Statements
+   and Receipts.
 
-   Everything that is optional in the following CDDL can potentially be
-   discovered out of band and Registration Policies are not assured on
-   the presence of these optional fields.  A Registration Policy that
-   requires an optional field to be present MUST reject any Signed
-   Statements or Receipts that are invalid according to the policy.
+   Everything that is optional in the following CDDL definition can
+   potentially be discovered out of band and Registration Policies are
+   not assured on the presence of these optional fields.  A Registration
+   Policy that requires an optional field to be present MUST reject any
+   Signed Statements or Receipts that are invalid according to the
+   policy.
 
    Signed_Statement = #6.18(COSE_Sign1)
    Receipt = #6.18(COSE_Sign1)
@@ -735,7 +737,7 @@ Table of Contents
 
    Figure 3 illustrates the decoded protected header of the Signed
    Statement in Figure 2.  It indicates the Signed Statement is securing
-   a JSON content type, and identifying the content with the sub claim
+   a JSON content type, and identifying the content with the sub Claim
    "vendor.product.example".
 
    {                                   / Protected                     /
@@ -763,7 +765,7 @@ Table of Contents
        Architecture.
 
    2.  *Issuer Verification:* The Transparency Service MUST
-       syntactically validate the Issuer's identity claims, which may be
+       syntactically validate the Issuer's identity Claims, which may be
        different than the Client identity.
 
    3.  *Signature verification:* The Transparency Service MUST verify
@@ -822,7 +824,7 @@ Table of Contents
    Transparency Service has added this Signed Statement to its Append-
    only Log.
 
-   *Editor's Note:* The WG is discussing if existing CWT claims might
+   *Editor's Note:* The WG is discussing if existing CWT Claims might
    better support these design principles.
 
    Figure 4 illustrates a normative CDDL definition of Transparent
@@ -935,7 +937,7 @@ Table of Contents
    APIs exposing verification logic for Transparent Statements may
    provide more details than a single boolean result.  For example, an
    API may indicate if the signature on the Receipt or Signed Statement
-   is valid, if claims related to the validity period are valid, or if
+   is valid, if Claims related to the validity period are valid, or if
    the inclusion proof in the Receipt is valid.
 
    Relying Parties MAY be configured to re-verify the Issuer's Signed
@@ -987,7 +989,7 @@ Table of Contents
 
    An Issuer that knows of a changed state of quality for an Artifact,
    SHOULD Register a new Signed Statement, using the same 15 CWT iss and
-   sub claims.
+   sub Claims.
 
    Issuers MUST ensure that the Statement payloads in their Signed
    Statements are correct and unambiguous, for example by avoiding ill-
@@ -1039,6 +1041,17 @@ Table of Contents
    example, can show that the remote attestation Evidence was appraised
    by a trusted Verifier and complies with well-known Reference Values
    and Endorsements.
+
+   Auditors should be aware that the certification path information
+   included in an unprotected x5chain header of a to-be-registered
+   Signed Statement can be tampered with by a malicious Transparency
+   Service (e.g., one that does not incorporate remote attestation),
+   which may replace the intermediate certificates and ultimately
+   connect to an unexpected root.  This modification can allow malicious
+   TS to forge Claims that look genuine except for the wrong trust
+   anchor.  In addition to performing chain validation in accordance
+   with PKIX rules specified in [RFC5280], auditors should explicitly
+   verify the root certificates are genuine.
 
 6.1.  Security Guarantees
 
@@ -1329,6 +1342,12 @@ Table of Contents
               Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
               <https://www.rfc-editor.org/rfc/rfc4648>.
 
+   [RFC5280]  Cooper, D., Santesson, S., Farrell, S., Boeyen, S.,
+              Housley, R., and W. Polk, "Internet X.509 Public Key
+              Infrastructure Certificate and Certificate Revocation List
+              (CRL) Profile", RFC 5280, DOI 10.17487/RFC5280, May 2008,
+              <https://www.rfc-editor.org/rfc/rfc5280>.
+
    [RFC6570]  Gregorio, J., Fielding, R., Hadley, M., Nottingham, M.,
               and D. Orchard, "URI Template", RFC 6570,
               DOI 10.17487/RFC6570, March 2012,
@@ -1346,6 +1365,12 @@ Table of Contents
    [RFC8392]  Jones, M., Wahlstroem, E., Erdtman, S., and H. Tschofenig,
               "CBOR Web Token (CWT)", RFC 8392, DOI 10.17487/RFC8392,
               May 2018, <https://www.rfc-editor.org/rfc/rfc8392>.
+
+   [RFC8610]  Birkholz, H., Vigano, C., and C. Bormann, "Concise Data
+              Definition Language (CDDL): A Notational Convention to
+              Express Concise Binary Object Representation (CBOR) and
+              JSON Data Structures", RFC 8610, DOI 10.17487/RFC8610,
+              June 2019, <https://www.rfc-editor.org/rfc/rfc8610>.
 
    [RFC9052]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
               Structures and Process", STD 96, RFC 9052,
@@ -1519,13 +1544,13 @@ Appendix A.  Common Terminology Disambiguation
    the procedure of Appraisal of Evidence as a part of a SCITT
    "verifier"'s verification capabilities.
 
-   The terms "claim" and "statement" are used throughout this document,
-   where claim is consistent with the usage in [I-D.draft-ietf-rats-eat]
-   and [RFC7523], and statement is reserved for any arbitrary bytes,
-   possibly identified with a media type, about which the claims are
+   The terms "Claim" and "Statement" are used throughout this document,
+   where Claim is consistent with the usage in [I-D.draft-ietf-rats-eat]
+   and [RFC7523], and Statement is reserved for any arbitrary bytes,
+   possibly identified with a media type, about which the Claims are
    made.
 
-   The term "subject" provides an identifier of the issuer's choosing to
+   The term "Subject" provides an identifier of the issuer's choosing to
    refer to a given artifact, and ensures that all associated statements
    can be attributed to the identifier chosen by the issuer.
 
@@ -1533,8 +1558,8 @@ Appendix A.  Common Terminology Disambiguation
    software bill of materials (SBOM), results from a model checker,
    static analyzer, or RATS Evidence about the authenticity of an SBOM
    creation process, where the issuer identifies themselves using the
-   iss claim, and the specific software that was analyzed as the subject
-   using the sub claim.
+   iss Claim, and the specific software that was analyzed as the subject
+   using the sub Claim.
 
    In [RFC7523], the Authorization Server (AS) verifies Private Key JWT
    client authentication requests, and issues access tokens to clients
@@ -1551,7 +1576,7 @@ Appendix A.  Common Terminology Disambiguation
    Assertions may also contain verified attributes."
 
    This document uses the term Statement to refer to potentially
-   unsecured data and associated claims, and Signed Statement and
+   unsecured data and associated Claims, and Signed Statement and
    Receipt to refer to assertions from an Issuer, or the transparency
    service.
 
@@ -1666,7 +1691,7 @@ B.2.  Identifiers For SCITT Messages
    {base64url-encoded-to-be-signed-bytes-digest}
 
    Note that this means the content of the signature is not included in
-   the identifier, even though signature related claims, such as
+   the identifier, even though signature related Claims, such as
    activation or expiration information in protected headers are
    included.
 
