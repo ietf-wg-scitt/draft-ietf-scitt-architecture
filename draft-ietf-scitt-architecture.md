@@ -335,7 +335,7 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
   '----+----'  '-----+----'    |  Documents  |
        |             |          '---+--+----'
         '----. .----'     cose sign |  | cose verify
-              |                     |  | 
+              |                     |  |
               v                     |  |'----------.
          .----+----.                |  |            |
         |  Signed   |               |  |            |
