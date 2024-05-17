@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 15 November 2024                                     C. Fournet
+Expires: 18 November 2024                                     C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                             14 May 2024
+                                                             17 May 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 November 2024.
+   This Internet-Draft will expire on 18 November 2024.
 
 Copyright Notice
 
@@ -406,19 +406,19 @@ Table of Contents
      .----------.
     |  Artifact  |
      '----+-----'
-          v                          .-----------.
-     .----+----.  .----------.      |  Identity   |
-    | Statement ||  Envelope  +     |  Documents  +---.
-     '----+----'  '-----+----'      | Sign/Verify |    |
-          |             |            '----+-+----'     |
-           '----. .----'                  | |          |
-                 |                        | |          |
-                 v                        | |          |
-            .----+----.                   | |          |
-           |  Signed   |    COSE Signing  | |          |
-           | Statement +<----------------'  |          |
-            '----+----'                     v          |
-                 |                 +--------+------+   |
+          v
+     .----+----.  .----------.     .-----------.
+    | Statement ||  Envelope  +   |  Identity   |
+     '----+----'  '-----+----'    |  Documents  |
+          |             |          '---+--+----'
+           '----. .----'     cose sign |  | cose verify
+                 |                     |  |
+                 v                     |  |'----------.
+            .----+----.                |  |            |
+           |  Signed   |               |  |            |
+           | Statement +<-------------'|  |            |
+            '----+----'                v  v            |
+                 |                 +---+--+--------+   |
               .-' '--------------->+ Transparency  |   |
              |   .--------.        |               |   |
              |  | Receipt  +<------+  Service      +-+ |
@@ -434,10 +434,10 @@ Table of Contents
                 |  Statement  |                    |   |
                  '-----+-----'                     |   |
                        |                           |   |
-                       |'-------.     .------------)--'
-                       |         |   |             |
-                       |         v   v             |
-                       |    .----+---+-----------. |
+                       |'-----------.   .----------)--'
+                       |             | |           |
+                       |             v v           |
+                       |    .--------+-+---------. |
                        |   / Verify Transparent /  |
                        |  /      Statement     /   |
                        | '--------------------'    |
