@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-16T00:36:43.589329+00:00",
+  "timestamp": "2024-05-19T00:40:02.141354+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4752,6 +4752,22 @@
           "updatedAt": "2024-05-07T14:51:41Z"
         }
       ]
+    },
+    {
+      "number": 243,
+      "id": "I_kwDOIvmHss6JFsCT",
+      "title": "After introduction of a term in the Terminology Section corresponding terms are not capitalized consequently",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/243",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "This needs an editorial run through, when we get to zero open PRs in the next meeting.",
+      "createdAt": "2024-05-16T10:14:53Z",
+      "updatedAt": "2024-05-16T10:14:54Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -31449,20 +31465,91 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "PR over 239 to clarify Identity Documents are used for Signing and Verifying in the Architecture conceptual diagram:\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/c6d4f053-2177-46e7-b464-8628633f6e7a)\r\n\r\n1. Sign the statement with a private key\r\n2. Both verify the signed statement using the public key from 1 above, and sign the receipt with a private key from a different identity document for the transparency service\r\n3. Verify the signed statement, or the receipt, with the public key of the identity",
+      "body": "PR over #239 to clarify Identity Documents are used for Signing and Verifying in the Architecture conceptual diagram:\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/a404b2c2-4597-49e3-a8d9-29793a130139)\r\n\r\n1. Sign the statement with a private key\r\n2. Both verify the signed statement using the public key from 1 above, and sign the receipt with a private key from a different identity document for the transparency service\r\n3. Verify the signed statement, or the receipt, with the public key of the identity\r\n\r\n_Note: I've updated the diagram to reflect the latest pr_",
       "createdAt": "2024-05-14T17:22:48Z",
-      "updatedAt": "2024-05-14T17:46:44Z",
+      "updatedAt": "2024-05-17T16:47:02Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "dd05c9070e0397bfac980f2beb290e03daeb8c1b",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/sign-verify-diagram",
-      "headRefOid": "3c2ddc6218284bb2fbd688471719011542f213d6",
+      "headRefOid": "53479cff2e12d83536df1bbdefeecb113a3bbae8",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "Instead of pulling Sign/Verify into the box, I'd but a\r\n```\r\nCOSE\r\nVerify\r\n```\r\nclose to where the number (2) is, right of the \"new\" straight arrow down.\r\n\r\nI get A.J.'s comment, but I do not hate this, too.",
+          "createdAt": "2024-05-16T09:29:25Z",
+          "updatedAt": "2024-05-16T09:29:25Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "> 3. Verify the signed statement, or the receipt, with the public key of the identity\r\n\r\nI assume (3) also applies to the \"Verify Transparent Statement\" function?\r\n",
+          "createdAt": "2024-05-16T10:08:03Z",
+          "updatedAt": "2024-05-16T10:08:03Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I assume (3) also applies to the \"Verify Transparent Statement\" function?\r\n\r\nOh, I fell in the trap of tracing the lines. Yes, (3) should be moved. I'll update",
+          "createdAt": "2024-05-16T17:57:00Z",
+          "updatedAt": "2024-05-16T17:57:44Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Instead of pulling Sign/Verify into the box, I'd but a\r\n> \r\n> ```\r\n> COSE\r\n> Verify\r\n> ```\r\n> \r\n> close to where the number (2) is, right of the \"new\" straight arrow down.\r\n\r\nHow's this look, w/comparison to the current draft. \r\nWith some thumbs up, I'll apply the change to the PR:\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/d77552ba-1eff-4e78-a8e1-08b66c976058)",
+          "createdAt": "2024-05-16T18:20:09Z",
+          "updatedAt": "2024-05-16T18:32:35Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> How's this look. If I get thumbs up, I'll apply the change to the PR\r\n\r\nBut you are not verifying the identity documents, you are verifying something related to those identity documents in the signed statement. This goes back to my preference of \"less is more\" and avoiding lines to convey this kind of complexity.",
+          "createdAt": "2024-05-16T18:32:41Z",
+          "updatedAt": "2024-05-16T18:32:41Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> But you are not verifying the identity documents, you are verifying something related to those identity documents in the signed statement. \r\n\r\nTrue, we're not _verifying_ the identity documents. The identity documents _are being used to_ sign or verify signed statements. I was intending the verbs to be applied to the directionality of the arrows\r\n\r\n> This goes back to my preference of \"less is more\" and avoiding lines to convey this kind of complexity.\r\n\r\nI'd be ok with removing the lines, but the identity documents box was added to help signify SCITT brings together a triple of Issuers making Statements about Artifacts\r\n\r\n",
+          "createdAt": "2024-05-16T18:43:20Z",
+          "updatedAt": "2024-05-16T18:43:20Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Would this help:\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/968c6679-549c-4aa4-a617-e45384740ea8)\r\n",
+          "createdAt": "2024-05-16T19:10:38Z",
+          "updatedAt": "2024-05-16T19:10:38Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "Was `COSE signing` somehow bad? Would a complementary `COSE verifying` have worked?",
+          "createdAt": "2024-05-17T10:20:00Z",
+          "updatedAt": "2024-05-17T10:20:00Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> > But you are not verifying the identity documents, you are verifying something related to those identity documents in the signed statement.\r\n> \r\n> True, we're not _verifying_ the identity documents. The identity documents _are being used to_ sign or verify signed statements. I was intending the verbs to be applied to the directionality of the arrows\r\n\r\nAgain, then I would remove the line, it was the source of confusion. Because if you add the line, you start to need information beyond the visual semantics of a diagram. If anything, you are verifying the Signed Statement. I will mull over more constructive feedback for later today.\r\n",
+          "createdAt": "2024-05-17T12:07:38Z",
+          "updatedAt": "2024-05-17T12:07:38Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Was `COSE signing` somehow bad? Would a complementary `COSE verifying` have worked?\r\n\r\nNot at all, it just was a bit longer, trying to keep the image content smaller. I'll make a tweak, moving the box to the left.\r\n\r\n> then I would remove the line,\r\n\r\nWe either need to remove all the lines or keep them consistent. In PR #239, we removed the line to the Transparency Service which is used to verify signed statements from the issuer, and counter-sign statements from the Transparency Service, but left the line to the Transparent Statement.\r\n\r\n> you are verifying the Signed Statement\r\n\r\nYes, the notary, within the Transparency Service, verifies the identity of the signed statement, before counter-signing.  That's the left split of the \"to verify\" line.  \r\n\r\nThe other verify line could go to receipts which can be verified (but too crowded), or the Transparent Statement which is the Registered Statement (we didn't want to identify with a name) with the receipt attached. \r\n\r\nThe way I'm reading the lines is the thing at the source is used to apply to the directionality of the arrow. The Identity Documents are used to _close_ sign or _close_ verify the item at the end of the arrow.\r\n\r\nHere are two different versions:\r\n\r\n**A: Keeping the sign/verify identity references where they're used**\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/7f87f25d-36ed-4fd1-a9b7-10d8b4534077)\r\n\r\n**B: Removing the sign/verify from the Transparency Service.**\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/c8b8fba6-36fa-4cf4-a03a-e5637e9a3f56)\r\n\r\nWhile B is a bit cleaner, it completely removes the value the Transparency Service provides by validating the identity documents coming into the Transparency Service. It shows the Append-only Log is a collection of statements from anyone that has write access to the Transparency Service, with no pre-qualification shown, putting all the burden on verifiers to do all the work.  At that point, why do we issue counter-signed receipts? \r\n",
+          "createdAt": "2024-05-17T16:40:18Z",
+          "updatedAt": "2024-05-17T16:40:18Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss56jHUd",
@@ -31475,6 +31562,160 @@
           "body": "I am a believer in the tenet of less is more. As I had indicated, I do strongly prefer my original change (remove the line that denotes a direct relationship between identity documents and the TS itself), and think the diagram, as an abstraction that papers over the mechanics of an architecture and conforming implementation, should convey the general message. It should not (maybe even must not) get into specifics of nitpicking details. So, I am not sure I like adding back the line with the arrow the subsequent commits.\r\n\r\nI presume others in the WG agreed this change, which more or less returns the diagram to the original state, is preferable. I disagree it better communicates the intent after listening to author's answers to an implementer's question, but I will accept it for now.",
           "createdAt": "2024-05-14T17:34:50Z",
           "updatedAt": "2024-05-14T17:36:00Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 241,
+      "id": "PR_kwDOIvmHss5vpEjg",
+      "title": "Conslidate normative lanugage on x5t and x5chain usage (plus SecConSec content)",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/241",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #222 ",
+      "createdAt": "2024-05-16T10:03:57Z",
+      "updatedAt": "2024-05-17T10:08:45Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "dd05c9070e0397bfac980f2beb290e03daeb8c1b",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "x5chain-usage",
+      "headRefOid": "8556320044b7bb78659e480a2b877608ce10eb1d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss561G0w",
+          "commit": {
+            "abbreviatedOid": "8556320"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-05-16T13:23:27Z",
+          "updatedAt": "2024-05-16T13:29:38Z",
+          "comments": [
+            {
+              "originalPosition": 160,
+              "body": "Genuine sounds subjective.\r\n\r\n```suggestion\r\nIn addition to performing chain validation in accordance with PKIX rules specified in {{-PKIX}}, auditors should explicitly verify the root certificates.\r\n```",
+              "createdAt": "2024-05-16T13:23:27Z",
+              "updatedAt": "2024-05-16T13:29:39Z"
+            },
+            {
+              "originalPosition": 18,
+              "body": "We also still have the term \"Claim\" in [the terminology section](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/x5chain-usage/draft-ietf-scitt-architecture.html#section-2). Should we not remove that and replace it with this wording? Because of his git diffs work I cannot recommend that here, or I would do it for you, but this seems like an important change to not cause confusion down the road.\r\n\r\n",
+              "createdAt": "2024-05-16T13:29:33Z",
+              "updatedAt": "2024-05-16T13:29:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss569VMx",
+          "commit": {
+            "abbreviatedOid": "8556320"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-05-17T10:08:45Z",
+          "updatedAt": "2024-05-17T10:08:45Z",
+          "comments": [
+            {
+              "originalPosition": 160,
+              "body": "Not much lost here. I'd be okay with that suggestion.",
+              "createdAt": "2024-05-17T10:08:45Z",
+              "updatedAt": "2024-05-17T10:08:45Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 242,
+      "id": "PR_kwDOIvmHss5vpKSA",
+      "title": "Removed note on CWT Claims",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/242",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #234 ",
+      "createdAt": "2024-05-16T10:13:26Z",
+      "updatedAt": "2024-05-16T18:20:39Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "dd05c9070e0397bfac980f2beb290e03daeb8c1b",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "fix-cwt-note",
+      "headRefOid": "49e65576d1c17cefe5b4df438ca28db9ce68eff4",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> To be clear, this removal means CWT is mandatory for SCITT implementation and is no longer under discussion and evaluation?\r\n\r\nThis is how a SCITT Signed Statement associates an Issuer making a statement about an Artifact, which has been core to the draft from the start. \r\n\r\nPreviously, these were properties in the protected header, aligned with DIDs: See [draft 03](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-03.html#name-signed-statement-envelope) The use of `cwt_claims` was to align with other existing standards, for _how_ we associate these concepts. \r\n\r\nAn alternative is to lift these two properties, independently, to the protected header. We already have an `* int => any` in the protected header for additional properties, reducing the duplicity of `* int => any` in the cwt_claims and protected header, potentially simplifing the model.\r\n\r\nThe approach of using cwt claims allows users to benefit from existing cwt libraries, which seemed the better of the choices.",
+          "createdAt": "2024-05-16T17:54:06Z",
+          "updatedAt": "2024-05-16T17:54:06Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> > To be clear, this removal means CWT is mandatory for SCITT implementation and is no longer under discussion and \r\n>\r\n> The approach of using cwt claims allows users to benefit from existing cwt libraries, which seemed the better of the choices.\r\n\r\nOK so the answer is yes then. I am happy with it, but this is a small, tight PR deleting the editors note, I wanted to understand the implication before I (and maybe others) understand before I approve. \ud83d\ude04 \r\n",
+          "createdAt": "2024-05-16T18:20:30Z",
+          "updatedAt": "2024-05-16T18:20:30Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss5604gB",
+          "commit": {
+            "abbreviatedOid": "49e6557"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-05-16T13:02:17Z",
+          "updatedAt": "2024-05-16T13:02:17Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss561Rev",
+          "commit": {
+            "abbreviatedOid": "49e6557"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "To be clear, this removal means CWT is mandatory for SCITT implementation and is no longer under discussion and evaluation?",
+          "createdAt": "2024-05-16T13:33:32Z",
+          "updatedAt": "2024-05-16T13:33:32Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss564UkI",
+          "commit": {
+            "abbreviatedOid": "49e6557"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-05-16T18:20:39Z",
+          "updatedAt": "2024-05-16T18:20:39Z",
           "comments": []
         }
       ]
