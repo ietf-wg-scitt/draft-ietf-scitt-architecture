@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-19T00:40:02.141354+00:00",
+  "timestamp": "2024-05-21T00:37:14.324901+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4682,7 +4682,7 @@
       "labels": [],
       "body": "```suggestion\r\nTransparency Services SHOULD ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to reproduce the Registration checks that were defined by the Registration Policies at the time of Registration.\r\n```\r\n\r\nIf not, I expect a cross-linked PR to explicate all the registration policy specification that was removed in the past (for lack of alignment and ambiguity and generalities) and explicate it all. The WG considered this not ideal in previous editorial review, so I assume this alternative approach is unlikely. So I would change it to SHOULD.\r\n\r\n_Originally posted by @aj-stein-nist in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/231#discussion_r1567490916_",
       "createdAt": "2024-04-17T04:27:53Z",
-      "updatedAt": "2024-05-14T14:41:54Z",
+      "updatedAt": "2024-05-19T11:35:55Z",
       "closedAt": null,
       "comments": [
         {
@@ -4719,6 +4719,13 @@
           "body": "This sounds very practical to me. Thanks!",
           "createdAt": "2024-05-14T14:41:52Z",
           "updatedAt": "2024-05-14T14:41:52Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "IMO, the Transparency Service registration policy MUST state the type of payloads that are acceptable along with specific requirements and/or constraints. Here is an example of a policy where anything goes:\r\n\r\n\"This Transparency Service Registry will accept any type of payload with no specific requirements or constraints.\"\r\n\r\nPolicy Requirements/Constraints SHOULD specify maximum payload size, acceptable payload content types (mime type), acceptable payload content materials i.e. SBOMs, ",
+          "createdAt": "2024-05-19T11:28:47Z",
+          "updatedAt": "2024-05-19T11:35:55Z"
         }
       ]
     },
