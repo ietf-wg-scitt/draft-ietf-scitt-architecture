@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 15 November 2024                                     C. Fournet
+Expires: 22 November 2024                                     C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                             14 May 2024
+                                                             21 May 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 November 2024.
+   This Internet-Draft will expire on 22 November 2024.
 
 Copyright Notice
 
@@ -816,9 +816,6 @@ Table of Contents
    The registration time is defined as the timestamp at which the
    Transparency Service has added this Signed Statement to its Append-
    only Log.
-
-   *Editor's Note:* The WG is discussing if existing CWT claims might
-   better support these design principles.
 
    Figure 4 illustrates a normative CDDL definition of Transparent
    Statements.
