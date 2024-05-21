@@ -187,8 +187,7 @@ Table of Contents
    The terms "header", "payload", and "to-be-signed bytes" are defined
    in [RFC9052].
 
-   The term "claim" is defined in [RFC8392] and is repeated here for
-   readability:
+   The term "claim" is defined in [RFC8392].
 
    Append-only Log (Ledger):  the verifiable append-only data structure
       that stores Signed Statements in a Transparency Service, often
@@ -202,10 +201,6 @@ Table of Contents
 
    Auditor:  an entity that checks the correctness and consistency of
       all Transparent Statements issued by a Transparency Service.
-
-   Claim:  A claim is a piece of information asserted about a subject
-      and is represented as a name/value pair consisting of a claim name
-      and a claim value.
 
    Client:  an application making protected Transparency Service
       resource requests on behalf of the resource owner and with its
