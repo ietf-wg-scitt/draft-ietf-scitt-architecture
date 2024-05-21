@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 17 November 2024                                     C. Fournet
+Expires: 22 November 2024                                     C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                             16 May 2024
+                                                             21 May 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 November 2024.
+   This Internet-Draft will expire on 22 November 2024.
 
 Copyright Notice
 
@@ -1051,7 +1051,7 @@ Table of Contents
    TS to forge Claims that look genuine except for the wrong trust
    anchor.  In addition to performing chain validation in accordance
    with PKIX rules specified in [RFC5280], auditors should explicitly
-   verify the root certificates are genuine.
+   verify the root certificates.
 
 6.1.  Security Guarantees
 
