@@ -328,18 +328,18 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
  |  Artifact  |
   '----+-----'
        v
-  .----+----.  .----------.   Identifiers
- | Statement ||  Envelope  +<-------------.
-  '----+----'  '-----+----'                |
-       |             |            .--------+--.
-        '----. .----'            |  Identity   |
-              |                  |  Documents  +---.
-              v                   '------+----'     |
-         .----+----.                     |          |
-        |  Signed   |    COSE Signing    |          |
-        | Statement +<-------------------+          |
-         '----+----'                     |          |
-              |                 +--------+------+   |
+  .----+----.  .----------.     .-----------.
+ | Statement ||  Envelope  +   |  Identity   |
+  '----+----'  '-----+----'    |  Documents  |
+       |             |          '---+--+----'
+        '----. .----'     cose sign |  | cose verify
+              |                     |  |
+              v                     |  |'----------.
+         .----+----.                |  |            |
+        |  Signed   |               |  |            |
+        | Statement +<-------------'|  |            |
+         '----+----'                v  v            |
+              |                 +---+--+--------+   |
            .-' '--------------->+ Transparency  |   |
           |   .--------.        |               |   |
           |  | Receipt  +<------+  Service      +-+ |
@@ -355,10 +355,10 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
              |  Statement  |                    |   |
               '-----+-----'                     |   |
                     |                           |   |
-                    |'-------.     .------------)--'
-                    |         |   |             |
-                    |         v   v             |
-                    |    .----+---+-----------. |
+                    |'-----------.   .----------)--'
+                    |             | |           |
+                    |             v v           |
+                    |    .--------+-+---------. |
                     |   / Verify Transparent /  |
                     |  /      Statement     /   |
                     | '--------------------'    |
@@ -614,8 +614,6 @@ When a Receipt is included in a Signed Statement a Transparent Statement is prod
 Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}).
 
 The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.
-
-**Editor's Note:** The WG is discussing if existing CWT Claims might better support these design principles.
 
 {{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements.
 
