@@ -474,7 +474,7 @@ For a software supply chain, payloads describing the software artifacts may incl
 Once all the Envelope headers are set, an Issuer MUST use a standard COSE implementation to produce an appropriately serialized Signed Statement.
 The SCITT tag `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement.
 
-Issuers MAY produce Signed Statements about different Artifacts under the same Identity.
+Issuers can produce Signed Statements about different Artifacts under the same Identity.
 Issuers and Relying Parties must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
 The `iss` and `sub` Claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.
 (See Subject under {{terminology}} Terminology.)
