@@ -1049,9 +1049,10 @@ Table of Contents
    which may replace the intermediate certificates and ultimately
    connect to an unexpected root.  This modification can allow malicious
    TS to forge Claims that look genuine except for the wrong trust
-   anchor.  In addition to performing chain validation in accordance
-   with PKIX rules specified in [RFC5280], auditors should explicitly
-   verify the root certificates.
+   anchor.  Auditors MUST perform certification path validation in
+   accordance with PKIX rules specified in [RFC5280].  In particular,
+   auditors MUST verify that certification paths chain to one or more
+   trust anchors (often represented as root certificates).
 
 6.1.  Security Guarantees
 
