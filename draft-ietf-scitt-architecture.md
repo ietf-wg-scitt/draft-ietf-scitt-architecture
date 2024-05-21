@@ -772,7 +772,7 @@ For example, if a Transparency Service is implemented using a set of redundant r
 
 Auditors should be aware that the certification path information included in an unprotected `x5chain` header of a to-be-registered Signed Statement can be tampered with by a malicious Transparency Service (e.g., one that does not incorporate remote attestation), which may replace the intermediate certificates and ultimately connect to an unexpected root.
 This modification can allow malicious TS to forge Claims that look genuine except for the wrong trust anchor.
-In addition to performing chain validation in accordance with PKIX rules specified in {{-PKIX}}, auditors should explicitly verify the root certificates are genuine.
+In addition to performing chain validation in accordance with PKIX rules specified in {{-PKIX}}, auditors should explicitly verify the root certificates.
 
 ## Security Guarantees
 
