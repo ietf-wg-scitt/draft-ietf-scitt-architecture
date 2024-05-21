@@ -186,7 +186,7 @@ To ensure readability, only a core set of terms is included in this section.
 
 The terms "header", "payload", and "to-be-signed bytes" are defined in {{-COSE}}.
 
-The term "claim" is defined in {{RFC8392}} and is repeated here for readability:
+The term "claim" is defined in {{RFC8392}}.
 
 Append-only Log (Ledger):
 
@@ -200,10 +200,6 @@ Artifact:
 Auditor:
 
 : an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.
-
-Claim:
-
-: A claim is a piece of information asserted about a subject and is represented as a name/value pair consisting of a claim name and a claim value.
 
 Client:
 
