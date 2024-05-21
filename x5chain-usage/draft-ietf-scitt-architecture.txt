@@ -402,18 +402,18 @@ Table of Contents
     |  Artifact  |
      '----+-----'
           v
-     .----+----.  .----------.   Identifiers
-    | Statement ||  Envelope  +<-------------.
-     '----+----'  '-----+----'                |
-          |             |            .--------+--.
-           '----. .----'            |  Identity   |
-                 |                  |  Documents  +---.
-                 v                   '------+----'     |
-            .----+----.                     |          |
-           |  Signed   |    COSE Signing    |          |
-           | Statement +<-------------------+          |
-            '----+----'                     |          |
-                 |                 +--------+------+   |
+     .----+----.  .----------.     .-----------.
+    | Statement ||  Envelope  +   |  Identity   |
+     '----+----'  '-----+----'    |  Documents  |
+          |             |          '---+--+----'
+           '----. .----'     cose sign |  | cose verify
+                 |                     |  |
+                 v                     |  |'----------.
+            .----+----.                |  |            |
+           |  Signed   |               |  |            |
+           | Statement +<-------------'|  |            |
+            '----+----'                v  v            |
+                 |                 +---+--+--------+   |
               .-' '--------------->+ Transparency  |   |
              |   .--------.        |               |   |
              |  | Receipt  +<------+  Service      +-+ |
@@ -429,10 +429,10 @@ Table of Contents
                 |  Statement  |                    |   |
                  '-----+-----'                     |   |
                        |                           |   |
-                       |'-------.     .------------)--'
-                       |         |   |             |
-                       |         v   v             |
-                       |    .----+---+-----------. |
+                       |'-----------.   .----------)--'
+                       |             | |           |
+                       |             v v           |
+                       |    .--------+-+---------. |
                        |   / Verify Transparent /  |
                        |  /      Statement     /   |
                        | '--------------------'    |
@@ -818,9 +818,6 @@ Table of Contents
    The registration time is defined as the timestamp at which the
    Transparency Service has added this Signed Statement to its Append-
    only Log.
-
-   *Editor's Note:* The WG is discussing if existing CWT Claims might
-   better support these design principles.
 
    Figure 4 illustrates a normative CDDL definition of Transparent
    Statements.
