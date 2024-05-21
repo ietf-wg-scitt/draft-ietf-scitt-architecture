@@ -330,18 +330,18 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
  |  Artifact  |
   '----+-----'
        v
-  .----+----.  .----------.   Identifiers
- | Statement ||  Envelope  +<-------------.
-  '----+----'  '-----+----'                |
-       |             |            .--------+--.
-        '----. .----'            |  Identity   |
-              |                  |  Documents  +---.
-              v                   '------+----'     |
-         .----+----.                     |          |
-        |  Signed   |    COSE Signing    |          |
-        | Statement +<-------------------+          |
-         '----+----'                     |          |
-              |                 +--------+------+   |
+  .----+----.  .----------.     .-----------.
+ | Statement ||  Envelope  +   |  Identity   |
+  '----+----'  '-----+----'    |  Documents  |
+       |             |          '---+--+----'
+        '----. .----'     cose sign |  | cose verify
+              |                     |  |
+              v                     |  |'----------.
+         .----+----.                |  |            |
+        |  Signed   |               |  |            |
+        | Statement +<-------------'|  |            |
+         '----+----'                v  v            |
+              |                 +---+--+--------+   |
            .-' '--------------->+ Transparency  |   |
           |   .--------.        |               |   |
           |  | Receipt  +<------+  Service      +-+ |
@@ -357,10 +357,10 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
              |  Statement  |                    |   |
               '-----+-----'                     |   |
                     |                           |   |
-                    |'-------.     .------------)--'
-                    |         |   |             |
-                    |         v   v             |
-                    |    .----+---+-----------. |
+                    |'-----------.   .----------)--'
+                    |             | |           |
+                    |             v v           |
+                    |    .--------+-+---------. |
                     |   / Verify Transparent /  |
                     |  /      Statement     /   |
                     | '--------------------'    |
