@@ -618,7 +618,7 @@ Table of Contents
    COSE, and used to indicate that a signed object is a Signed
    Statement.
 
-   Issuers MAY produce Signed Statements about different Artifacts under
+   Issuers can produce Signed Statements about different Artifacts under
    the same Identity.  Issuers and Relying Parties must be able to
    recognize the Artifact to which the statements pertain by looking at
    the Signed Statement.  The iss and sub Claims, within the CWT_Claims
