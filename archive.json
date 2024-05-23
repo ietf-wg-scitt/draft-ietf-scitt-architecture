@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-21T00:37:14.324901+00:00",
+  "timestamp": "2024-05-23T00:36:51.115650+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -303,7 +303,7 @@
         },
         {
           "author": "letmaik",
-          "authorAssociation": "COLLABORATOR",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "I think introducing a term for the envelope without its signature (\"statement\" above) is confusing, simply because this piece does not exist as such (it's not something you can easily point to or even write to a file, or hash, etc.). And because of that, the transition would in practice be document -> signed statement, which is confusing. \r\n\r\nI think statement -> signed statement makes sense, even though it's a bit cumbersome and a single word for the latter would be nicer (thinking of APIs etc.). In practice, I think that's where it ends, and whether receipts from one or more TS exist (and are bundled in some way) and whether verifiers therefore consider the signed statement as more or less transparent is a policy decision I think. ",
           "createdAt": "2023-03-02T19:18:39Z",
           "updatedAt": "2023-03-02T19:18:39Z"
@@ -690,7 +690,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/17",
       "state": "CLOSED",
       "author": "letmaik",
-      "authorAssociation": "COLLABORATOR",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "From https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/3#discussion_r1114223387.\r\n\r\nMore error codes should be defined.",
@@ -4385,7 +4385,7 @@
       "id": "I_kwDOIvmHss6CyHR8",
       "title": "Clarify if/when X5Chain should be included",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/222",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4396,12 +4396,12 @@
       ],
       "body": "At the IETF 119 Hackathon, it became confusing when/if `33 x5chain` should be added to the protected header, the unprotected header, or not at all.\r\n\r\nWhile adding the x5chain to the statement can help discoverability, it expands the CBOR content, which is intended to be as small as possible.\r\nPlacing x5Chain in the protected header also means it's included in the signature, which really adds no value.\r\nAlternatives are to place it in the unprotected header, which isn't signed and could be stripped, but typically isn't in practice, so it still adds bloat.\r\n\r\nLastly, the spec speaks to different options: `x5t` (34), `x5chain`(33) or `kid`(4) \r\n[Line: 404](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L404) says:\r\n> During registration, a Transparency Service MUST, at a minimum, authenticate the Issuer of the Signed Statement by validating the CBOR signature and checking the identity of the issuer against one of its currently configured trust anchors, using the `x5t` (34), `x5chain`(33) or `kid`(4) protected headers of the Signed Statement as hints.\r\n> For instance, in order to authenticate X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.\r\n\r\nProposal would be to:\r\n1. Move x5Chain to the unprotected header\r\n1. Remove x5Chain\r\n1. Update the samples to show the different combinations. The [current sample](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L523) shows all as options, which has confused implementers.",
       "createdAt": "2024-03-19T06:51:45Z",
-      "updatedAt": "2024-05-14T13:56:10Z",
-      "closedAt": null,
+      "updatedAt": "2024-05-21T15:30:29Z",
+      "closedAt": "2024-05-21T15:30:29Z",
       "comments": [
         {
           "author": "CBonnell",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "If an X.509 certificate is used as the identity document of the Issuer, then it's reasonable to require the thumbprint of the end-entity certificate to be included in the protected header. Additionally, the x5chain can optionally be included in the unprotected header. This approach has several benefits:\r\n\r\n1. If there is an alternate discovery mechanism for X.509-based identity documents, the `x5t` value can be used to retrieve such documents. Given the existence of this alternate discovery mechanism, the chain included in the unprotected header can be removed to reduce the amount of (unnecessary) data in the Transparency Service.\r\n2. If there is no such discovery mechanism, the presence of the x5chain in the unprotected header provides the necessary information to relying parties to validate the signature on the Statement.\r\n3. RFC 9360 requires that information regarding the end-entity certificate for the identity be integrity-protected. Including the `x5t` in the protected header accomplishes this. However, there is no requirement for the `x5chain` to be protected, so it can be included in the unprotected header.",
           "createdAt": "2024-03-27T18:42:02Z",
           "updatedAt": "2024-03-27T18:42:02Z"
@@ -4436,7 +4436,7 @@
         },
         {
           "author": "CBonnell",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "@henkbirkholz, my concrete suggestion:\r\n1. `x5t` in the protected header: MUST if an X.509 certificate is the Identity Document\r\n2. `x5chain` in the *unprotected* header: MAY\r\n3. `x5chain` in the *protected* header: SHOULD NOT for the reasons you outlined in the comment [above](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/222#issuecomment-2040311441)\r\n\r\nAs you mentioned, policy can profile these MAYs and SHOULD NOTs to stronger RFC 2119 words if needed.",
           "createdAt": "2024-04-05T18:06:25Z",
           "updatedAt": "2024-04-05T18:12:34Z"
@@ -4457,7 +4457,7 @@
         },
         {
           "author": "CBonnell",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "My understanding is that any verifier or auditor will need to perform certification path validation and not solely rely on the presence of `x5t` or `x5chain` in either the unprotected or protected header. RFC 9360, section 2 says:\r\n\r\n> Parties that intend to rely on the assertions made by a certificate obtained from any of these methods still need to validate it. This validation can be done according to the PKIX rules specified in [[RFC5280](https://datatracker.ietf.org/doc/html/rfc5280)] or by using a different trust structure, such as a trusted certificate distributor for self-signed certificates. The PKIX validation includes matching against the trust anchors configured for the application. These rules apply when the validation succeeds in a single step as well as when certificate chains need to be built. If the application cannot establish trust in the certificate, the public key contained in the certificate cannot be used for cryptographic operations.\r\n\r\nPerhaps this can be stated again in the current document to reduce potential ambiguity, but I think this validation will prevent any substitution attacks/fake chains presented by malicious transparency services.",
           "createdAt": "2024-04-10T16:59:10Z",
           "updatedAt": "2024-04-10T16:59:10Z"
@@ -4657,7 +4657,7 @@
       "id": "I_kwDOIvmHss6FlGwl",
       "title": "Resolve Note: deferral to CWT claims ",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/234",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4666,8 +4666,8 @@
       "labels": [],
       "body": "Resolve Section [4.3. Transparent Statements](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-06.html#section-4.3-5):\r\n> **Editor's Note**: The WG is discussing if existing CWT claims might better support these design principles.\r\n",
       "createdAt": "2024-04-12T23:07:07Z",
-      "updatedAt": "2024-05-07T14:39:16Z",
-      "closedAt": null,
+      "updatedAt": "2024-05-21T14:13:54Z",
+      "closedAt": "2024-05-21T14:13:53Z",
       "comments": []
     },
     {
@@ -4682,7 +4682,7 @@
       "labels": [],
       "body": "```suggestion\r\nTransparency Services SHOULD ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to reproduce the Registration checks that were defined by the Registration Policies at the time of Registration.\r\n```\r\n\r\nIf not, I expect a cross-linked PR to explicate all the registration policy specification that was removed in the past (for lack of alignment and ambiguity and generalities) and explicate it all. The WG considered this not ideal in previous editorial review, so I assume this alternative approach is unlikely. So I would change it to SHOULD.\r\n\r\n_Originally posted by @aj-stein-nist in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/231#discussion_r1567490916_",
       "createdAt": "2024-04-17T04:27:53Z",
-      "updatedAt": "2024-05-19T11:35:55Z",
+      "updatedAt": "2024-05-23T00:04:41Z",
       "closedAt": null,
       "comments": [
         {
@@ -4726,6 +4726,97 @@
           "body": "IMO, the Transparency Service registration policy MUST state the type of payloads that are acceptable along with specific requirements and/or constraints. Here is an example of a policy where anything goes:\r\n\r\n\"This Transparency Service Registry will accept any type of payload with no specific requirements or constraints.\"\r\n\r\nPolicy Requirements/Constraints SHOULD specify maximum payload size, acceptable payload content types (mime type), acceptable payload content materials i.e. SBOMs, ",
           "createdAt": "2024-05-19T11:28:47Z",
           "updatedAt": "2024-05-19T11:35:55Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> IMO, the Transparency Service registration policy MUST state the type of payloads that are acceptable along with specific requirements and/or constraints. Here is an example of a policy where anything goes:\r\n\r\nAs this pertains to my position on this issue, we cannot agree to the type of payloads or their type. Even \"a policy anything goes\" side steps the type. I stand by recommendation in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/236#issuecomment-2098721464. If we only say you must have a policy where, at a minimum, anything goes, that is what we encourage. Implementers will implement only that. That is what we shall get.\r\n\r\n@rjb4standards, do you have an anything goes registration policy in practice or something else?",
+          "createdAt": "2024-05-21T15:43:59Z",
+          "updatedAt": "2024-05-21T15:43:59Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "Email MIME payloads are a good example of anything goes.",
+          "createdAt": "2024-05-21T16:42:35Z",
+          "updatedAt": "2024-05-21T16:42:35Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Email MIME payloads are a good example of anything goes.\r\n\r\nThanks for that example. MIME payloads are informative. Let's consider [the different MIME transfer encodings](https://www.iana.org/assignments/transfer-encodings/transfer-encodings.txt), we have plain text, 7-bit, 8-bit, binary, quoted, and base64. Of those there can be a variety of payloads in a payload with their own type.\r\n\r\nAnything goes: let's say we use `text/plain` per one of *several* layered RFCs [per the IANA media type registry](https://www.iana.org/assignments/media-types/media-types.xhtml) is completely free form. That is a media type with guidelines, but I can write anything in there at all. How will it help Verifier and Auditor tools in architecture understand the policy *programmatically*? How will clients know how to facilitate Issuers' making Signed Statements? \r\n\r\nYou could say it'll just be plain text, but you will still need to explain the structure. Same with JSON (just that, very loose structure) and CWT (more structured with caveats), but you need definitions of anything goes.\r\n\r\nI would say anything goes *for programmatic usage of a TS* is interesting to me but others have explained in the mailing list and other venues that is impractical or undesired. So how would this be used in practice? A key design principle, given authentication requirements prohibiting anonymous Statement creation and issuance in the draft, contradict, even if not practical. Am I misunderstanding a key design decision?",
+          "createdAt": "2024-05-21T18:04:43Z",
+          "updatedAt": "2024-05-21T18:04:43Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "AJ, consider a scenario where an entity is providing \"evidence locker\" services, which can be presented in court. The party operating the evidence locker service doesn't need to know what the evidence payload contains, or what format is is provided in, but they must be able to produce and present the original evidence data, whatever it may be. \r\nREA does this today in order to satisfy US SEC regulations to prove that cybersecurity controls are in place and functioning regularly within a company, just in case the data needs to be presented in court.. This is all part of our \"Trust Registry\" offering called SAG-CTR. ",
+          "createdAt": "2024-05-21T18:19:55Z",
+          "updatedAt": "2024-05-21T18:21:12Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think your replies convey part of my confusion. Your description describes an application that \"wraps\" or contains a SCITT Transparency Service (you talk about SAG-CTR and Trust Registry Concept). That may be an interesting application, but it extends the core requirements and architecture philosophy of a SCITT Transparency service. It is an application with a TS store, not a pure TS. Is that correct? It seems we are confusing both of these concepts, perhaps you can clarify if I am understanding correctly.\r\n\r\nTo that point, let me say I want to build a pluggable TS client, perhaps to perform an Auditor role. I want to be able to read the TS inside your SAG-CTR app via API conforming to WG specs (we will presume you offer this feature to clients, it's already been decided for this hypothetical scenario). Via the API, I find one or more registered Transparent Statements and there are server records that indicate two different registry policies over the course of time, how would I interact with your SAG-CTR Trust Registry) *in a conformant way with draft standard in this I-D*? It would be exceedingly difficult, or perhaps  not possible, without writing custom code to understand each successive change in the free-form text registration policy? Should I just email you or your support engineer to know how I interpret words or phrases in that free-form text registration policy when it is ambiguous and I need to write code for that?\r\n\r\nI ask because it seems for your application, built on top of spec-conformant TS, why have a registration policy at all? Again, I am talking about *programmatic access* for client operations to *register* the payload. I know talking about the content of any other payload itself is different, and I completely understand the context you presented here for your application layer.",
+          "createdAt": "2024-05-21T18:32:19Z",
+          "updatedAt": "2024-05-21T18:32:19Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "Fair question AJ.\r\n\r\nThe SAG-CTR Trust Registry provides client with two main services:\r\n1. Evidence locker (anything goes), but it currently only works with SAG-PM evidence data today, but can support any type of evidence artifacts\r\n2. Registry of Trust Scores where software consumers can check the trust score for a specific product; this requires a well known payload. Trusted parties upload SAG-PM evidence data containing a SAGScore and other information, which the Gatekeep examines before registering a product in the \"Trust Registry\", kind of like a Registry of Deeds. [I demonstrated this risk sharing info service to NASA and the DOE ](https://github.com/rjb4standards/Presentations/raw/master/NASA-Presentation-ICT_SCRM%20(003)-GEORGE-V3.pptx) as a means to share risk assessment scores related to the CISA Secure Attestation Form collection and risk assessment processing that begins in June. ",
+          "createdAt": "2024-05-21T18:43:00Z",
+          "updatedAt": "2024-05-21T18:43:00Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "OK, so re scenario 2, since that application layers on top of the SCITT Architecture more closely than one, how would we account for this scenario, what would I or others do?\r\n\r\n> Via the API, I find one or more registered Transparent Statements and there are server records that indicate two different registry policies over the course of time, how would I interact with your SAG-CTR Trust Registry) in a conformant way with draft standard in this I-D?",
+          "createdAt": "2024-05-21T18:54:32Z",
+          "updatedAt": "2024-05-21T18:54:32Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "AJ, IMO, the SCITT architecture can easily support both use cases presented. \r\n\r\nWe demonstrated how SCITT can be used for discovery of key artifacts during the 117 Hackathon using an FDA use case, including Trust Scores stored in a SCITT Trust Registry. A VRF was uploaded into the Trust Registry, which contains links to all required artifacts to perform a risk assessment. A software vendor simply provides a link to the VRF in the Trust Registry, just how [Jon and I demonstrated this use case during the Hackathon](https://energycentral.com/c/iu/international-trust-registry-demonstration-success) .\r\n\r\nREA will identify the SAG-CTR Trust Registry with two SCITT registration policies - one for evidence data preservation and the other to post trust scores. IMO, SCITT supports both of these use case scenarios.",
+          "createdAt": "2024-05-21T19:07:07Z",
+          "updatedAt": "2024-05-21T19:07:07Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> AJ, IMO, the SCITT architecture can easily support both use cases presented.\r\n\r\nI would disagree that it should long-term, even if it can today (and largely to make the draft convenient for review in my opinion). I think we are getting caught in the weeds regarding two use cases for a specific application that layer *on top of* a notional SCITT Transparency Service, but we are not addressing the key concern in this GitHub issue with ones of those two use cases through the question I asked. I will come back to that. To reiterate: it is not effective to support a mandatory MUST requirement on a registration policy that is, essentially, not a policy with any consistency or reason that we understand as human operators, but not computers (e.g. anything goes). If we want that, change the qualifier to SHOULD, at least for now, as we are requiring something we cannot define beyond \"well I have something, it can be whatever.\" That does not befit a RFC. Long term, it appears we are building a system for programmatic access and automation with no ability to bootstrap clients to read or write to the Ledger.\r\n\r\n> We demonstrated how SCITT can be used for discovery of key artifacts during the 117 Hackathon using an FDA use case,\r\n\r\nRest assured, I was in attendance at 117 during the Hackathon and I have not forgotten your demonstration of a use case, but the architecture I-D has changed over time (as we approach 120) and the lack of consensus and changes around the registration policy was one of the key issues at 117 and subsequent IETF meetings up until now. I hope others will chime in.\r\n\r\n> REA will identify the SAG-CTR Trust Registry with two SCITT registration policies - one for evidence data preservation and the other to post trust scores. IMO, SCITT supports both of these use case scenarios.\r\n\r\nSo regarding use case 1, what would the actual registration policy in plain text contain verbatim? I am going to copy-paste [the current edtior draft's section on registration policy](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-registration-policies). If anything goes is the default, can it be a `text/plain` document with no content to *imply* that? Would it say `NO` or `no` or `NONE` or `None`? Even this baseline I can think of a few ways to encode it, all less than ideal if not \"empty\" content in an media type, and that is only those that I can think of. We MUST have something (as it stands, I oppose that for being logically inconsistent) but cannot even agree on that without some amount of discussion. So this further motivates my belief that we need profiling.\r\n\r\n[4.1.1. ](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#section-4.1.1)[Registration Policies](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-registration-policies)\r\n\r\n> Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is accepted to be registered to the Append-only Log.\r\n>\r\n> Transparency Services MUST maintain Registration Policies.\r\n>\r\n> Transparency Services MUST also maintain a list of trust anchors, which SHOULD be used by Relying Parties to authenticate Issuers, and which MAY be included in a registration policy statement. For instance, a trust anchor could be an X.509 root certificate, the discovery URL of an OpenID Connect identity provider, or any other COSE compatible PKI trust anchor.\r\n>\r\n> Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing the associated Receipts.\r\n>\r\n> This specification leaves implementation, encoding and documentation of Registration Policies and trust anchors to the operator of the Transparency Service.\r\n\r\nAgain, registration policy at this time is not actionable. I appreciate the context from your product solutions *on top of* a possibly conformant TS, but it further supports my impression that we cannot.",
+          "createdAt": "2024-05-22T14:11:55Z",
+          "updatedAt": "2024-05-22T14:11:55Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "REA supports the current Registration Policy language contained in section 4.1.1 and encourages others to support this description of the Registration Policy, which empowers the TS operator to decide what type of payloads they will register.\r\n\r\nREA's SCITT Trust Registry implementation, SAG-CTR, will be fully compliant with the SCITT protocol, when the SCITT specifications are compete and approved using the IETF consensus process. REA is a fully committed supporter of SCITT, from the beginning, and will remain so as radical transparency practices continue to be adopted and a trust anchor capability evolves. \r\nIn the mean time, REA will continue to operate and improve its SAG-CTR Trust Registry conceptual implementation of SCITT to provide the radical transparency consumers need in the software supply chain.\r\nHoping to see everyone at the CISA ICT_SCRM Task Force conference on June 12 where C-SCRM implementation topics will be discussed: \r\nhttps://www.cisa.gov/news-events/events/innovations-ict-supply-chain-risk-management-conference\r\n",
+          "createdAt": "2024-05-22T14:57:52Z",
+          "updatedAt": "2024-05-22T15:06:04Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> REA supports the current Registration Policy language contained in section 4.1.1 and encourages others to support this description of the Registration Policy, which empowers the TS operator to decide what type of payloads they will register.\r\n\r\nThis is a GitHub issue regarding a concern and an interest in changing it. It seems we are talking in circles, I will interpret your feedback to me you are in favor of SHOULD. As it stands, your current position on the I-D and your implementation conflict with the very intent of the MUST in question in the issue.\r\n\r\n> Hoping to see everyone at the CISA ICT_SCRM Task Force conference on June 12 where C-SCRM implementation topics will be discussed: https://www.cisa.gov/news-events/events/innovations-ict-supply-chain-risk-management-conference\r\n\r\nI do not see how that is immediately relevant to the IETF specification in general or this issue in particular, but I will be in attendance. I was under the impression the mechanics of a SCITT Transparency Service implementation are far in the weeds, but if not, that is exciting and I look forward even more to attendance.\r\n",
+          "createdAt": "2024-05-22T15:09:07Z",
+          "updatedAt": "2024-05-22T15:10:36Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "See you on June 12.\r\n\r\nI will reiterate my position on this matter:\r\n\"REA supports the current Registration Policy language contained in section 4.1.1 and encourages others to support this description of the Registration Policy, which empowers the TS operator to decide what type of payloads they will register.\"",
+          "createdAt": "2024-05-22T15:22:52Z",
+          "updatedAt": "2024-05-22T15:23:47Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "There's a lot of great discussion here for various points:\r\n- Some Transparency Services will operate with generic use cases. The Evidence Locker is an interesting one where there's effectively no content type filtering. Generic for content type, but specific to a legal arena, for a set of constrained users that would have Access Rights to the instance. The discussions on registration policies have been more specific to the indentity (issuer), but it's a good example of open types.\r\n- Many Transparency Services will be alongside other storage solutions ([SCITT.io scenarios](https://scitt.io/scenarios/extending-existing-services.html)) as SCITT is not a storage service, rather a means to record Who said What about an Artifact, recorded at a specific time. The \"What\" could be an SBOM about a binary. \r\n- What the doc does focus on is the issuer validation, to assure the issuer is a valid identity, in a valid format. For instance, some Transparency Services may only accept issuers from 1 or a few roots. It's not scoped to support rando identities, or even very valid identities that don't pertain to it's scenario. Imagine a Content Authenticity service that records C2PA metadata. Maybe it doesn't support code-signing certs, and requires other EKUs.\r\n\r\nBack to the registration policies and policy language. There are no clear winners for policy languages, even for specific domains. What the spec says is a Transparency Service must provide the details of the registration policy. It should be in the docs, and we might even add a discovery API to SCRAPI. By allowing different Transparency Services to support different registration policy languages, we allow the ecosystems to grow, and adopt ones that become a well-known for that industry or horizontal.\r\n\r\nConsider different CA's that have different policies for what types of entities they'll issue keys. You may trust some more than others, because of their strict policies. For instance, 3 years of business records, while others may accept anything that's sent to them. Buying tickets through TicketMaster has more trust than buying tickets on craigslist. Both are valid, and both have enough info to trust them for what they are. ",
+          "createdAt": "2024-05-23T00:04:40Z",
+          "updatedAt": "2024-05-23T00:04:40Z"
         }
       ]
     },
@@ -4772,9 +4863,44 @@
       "labels": [],
       "body": "This needs an editorial run through, when we get to zero open PRs in the next meeting.",
       "createdAt": "2024-05-16T10:14:53Z",
-      "updatedAt": "2024-05-16T10:14:54Z",
+      "updatedAt": "2024-05-21T14:49:11Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 244,
+      "id": "I_kwDOIvmHss6JlhE9",
+      "title": "Make CDDL definitions separate files and import to draft",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/244",
+      "state": "OPEN",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "aj-stein-nist"
+      ],
+      "labels": [
+        "ready-for-pr"
+      ],
+      "body": "As an implementer, in order to directly use the CDDL definition(s) without having to extract the definitions with custom code or copy-pasting, I would like if the source code and tools in this repository to define the CDDL definitions as discrete files and import them the Kramdown RFC mechanisms, so my code can you the CDDL directly without those steps.\r\n\r\nSee `{::include ...}` directives from other sample drafts, [such as the current CBOR EDN Literals I-D](https://github.com/cbor-wg/edn-literal/blob/a5f3cb1f115f9d5adae812e3f38a0451f233c4a3/draft-ietf-cbor-edn-literals.md).",
+      "createdAt": "2024-05-21T13:26:49Z",
+      "updatedAt": "2024-05-21T14:48:57Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "If others do not object and/or would find this useful, I am voluteering to open a PR to make this change later this week.",
+          "createdAt": "2024-05-21T13:27:24Z",
+          "updatedAt": "2024-05-21T13:27:24Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@aj-stein-nist, there's a comment of concern we're not at this point of complexity, but we're open to viewing a PR to try this change. \r\n",
+          "createdAt": "2024-05-21T14:48:38Z",
+          "updatedAt": "2024-05-21T14:48:38Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -4785,7 +4911,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/1",
       "state": "MERGED",
       "author": "letmaik",
-      "authorAssociation": "COLLABORATOR",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "This PR is a duplicate of what had been already merged in the old repository:\r\n\r\nhttps://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/41\r\n\r\nOriginal author: @darracott",
@@ -4813,7 +4939,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/2",
       "state": "MERGED",
       "author": "letmaik",
-      "authorAssociation": "COLLABORATOR",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "This PR is a duplicate of what had been already merged in the old repository:\r\n\r\nhttps://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/39\r\n\r\nOriginal author: @cabo",
@@ -4841,7 +4967,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/3",
       "state": "MERGED",
       "author": "letmaik",
-      "authorAssociation": "COLLABORATOR",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "This PR is a duplicate of what had already been reviewed in the old repository:\r\n\r\nhttps://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/44\r\n",
@@ -4869,7 +4995,7 @@
         },
         {
           "author": "letmaik",
-          "authorAssociation": "COLLABORATOR",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "@yogeshbdeshpande Thanks for the review. I addressed your comments, please approve if you think it's good to go.",
           "createdAt": "2023-02-22T12:55:28Z",
           "updatedAt": "2023-02-22T12:55:28Z"
@@ -4927,7 +5053,7 @@
             "abbreviatedOid": "b81183f"
           },
           "author": "letmaik",
-          "authorAssociation": "COLLABORATOR",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-02-17T12:07:22Z",
@@ -4947,7 +5073,7 @@
             "abbreviatedOid": "b81183f"
           },
           "author": "letmaik",
-          "authorAssociation": "COLLABORATOR",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-02-17T12:07:45Z",
@@ -4967,7 +5093,7 @@
             "abbreviatedOid": "b81183f"
           },
           "author": "letmaik",
-          "authorAssociation": "COLLABORATOR",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-02-17T12:07:50Z",
@@ -5093,7 +5219,7 @@
             "abbreviatedOid": "fa3c51b"
           },
           "author": "letmaik",
-          "authorAssociation": "COLLABORATOR",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-02-22T12:39:37Z",
@@ -5113,7 +5239,7 @@
             "abbreviatedOid": "fa3c51b"
           },
           "author": "letmaik",
-          "authorAssociation": "COLLABORATOR",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-02-22T12:52:51Z",
@@ -5133,7 +5259,7 @@
             "abbreviatedOid": "fa3c51b"
           },
           "author": "letmaik",
-          "authorAssociation": "COLLABORATOR",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-02-22T12:54:29Z",
@@ -5246,7 +5372,7 @@
             "abbreviatedOid": "69371b9"
           },
           "author": "letmaik",
-          "authorAssociation": "COLLABORATOR",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-02-22T11:43:45Z",
@@ -7702,7 +7828,7 @@
             "abbreviatedOid": "12a0d20"
           },
           "author": "letmaik",
-          "authorAssociation": "COLLABORATOR",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-03-26T10:33:51Z",
@@ -19988,7 +20114,7 @@
             "abbreviatedOid": "28a8624"
           },
           "author": "CBonnell",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-01-18T23:38:56Z",
@@ -31467,24 +31593,26 @@
       "id": "PR_kwDOIvmHss5vbhYp",
       "title": "Suggestion to PR #239",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/240",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "PR over #239 to clarify Identity Documents are used for Signing and Verifying in the Architecture conceptual diagram:\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/a404b2c2-4597-49e3-a8d9-29793a130139)\r\n\r\n1. Sign the statement with a private key\r\n2. Both verify the signed statement using the public key from 1 above, and sign the receipt with a private key from a different identity document for the transparency service\r\n3. Verify the signed statement, or the receipt, with the public key of the identity\r\n\r\n_Note: I've updated the diagram to reflect the latest pr_",
       "createdAt": "2024-05-14T17:22:48Z",
-      "updatedAt": "2024-05-17T16:47:02Z",
+      "updatedAt": "2024-05-21T14:26:10Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "dd05c9070e0397bfac980f2beb290e03daeb8c1b",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/sign-verify-diagram",
       "headRefOid": "53479cff2e12d83536df1bbdefeecb113a3bbae8",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-05-21T14:26:10Z",
+      "mergedAt": "2024-05-21T14:26:10Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "a53bb6f5879432e0dae832de38da6b2e219e6641"
+      },
       "comments": [
         {
           "author": "henkbirkholz",
@@ -31555,6 +31683,20 @@
           "body": "> Was `COSE signing` somehow bad? Would a complementary `COSE verifying` have worked?\r\n\r\nNot at all, it just was a bit longer, trying to keep the image content smaller. I'll make a tweak, moving the box to the left.\r\n\r\n> then I would remove the line,\r\n\r\nWe either need to remove all the lines or keep them consistent. In PR #239, we removed the line to the Transparency Service which is used to verify signed statements from the issuer, and counter-sign statements from the Transparency Service, but left the line to the Transparent Statement.\r\n\r\n> you are verifying the Signed Statement\r\n\r\nYes, the notary, within the Transparency Service, verifies the identity of the signed statement, before counter-signing.  That's the left split of the \"to verify\" line.  \r\n\r\nThe other verify line could go to receipts which can be verified (but too crowded), or the Transparent Statement which is the Registered Statement (we didn't want to identify with a name) with the receipt attached. \r\n\r\nThe way I'm reading the lines is the thing at the source is used to apply to the directionality of the arrow. The Identity Documents are used to _close_ sign or _close_ verify the item at the end of the arrow.\r\n\r\nHere are two different versions:\r\n\r\n**A: Keeping the sign/verify identity references where they're used**\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/7f87f25d-36ed-4fd1-a9b7-10d8b4534077)\r\n\r\n**B: Removing the sign/verify from the Transparency Service.**\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/c8b8fba6-36fa-4cf4-a03a-e5637e9a3f56)\r\n\r\nWhile B is a bit cleaner, it completely removes the value the Transparency Service provides by validating the identity documents coming into the Transparency Service. It shows the Append-only Log is a collection of statements from anyone that has write access to the Transparency Service, with no pre-qualification shown, putting all the burden on verifiers to do all the work.  At that point, why do we issue counter-signed receipts? \r\n",
           "createdAt": "2024-05-17T16:40:18Z",
           "updatedAt": "2024-05-17T16:40:18Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "I do not hate the new \"(A) right\"\r\n\r\n[edit] B -> A",
+          "createdAt": "2024-05-21T12:03:35Z",
+          "updatedAt": "2024-05-21T14:18:31Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Merging to make forward progress.\r\nDiscussion in the meeting to converge Envelope and Signed Statement in a separate PR.",
+          "createdAt": "2024-05-21T14:26:06Z",
+          "updatedAt": "2024-05-21T14:26:06Z"
         }
       ],
       "reviews": [
@@ -31570,6 +31712,45 @@
           "createdAt": "2024-05-14T17:34:50Z",
           "updatedAt": "2024-05-14T17:36:00Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss57TGij",
+          "commit": {
+            "abbreviatedOid": "53479cf"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "> I will mull over more constructive feedback for later today.\r\n\r\nI thought about it more and more and the only constructive feedback I have is to remove lines from identity documents except as an input to the envelope. You can add more clarifying detail as labels on the lines, but I still do not find that particularly helpful.\r\n\r\nSo I will convert my approval to comment. If others have consensus on this and approve with me, I can support that to move the work forward, but I would prefer we remove additional context if it is not core to the document.",
+          "createdAt": "2024-05-21T13:09:40Z",
+          "updatedAt": "2024-05-21T13:09:40Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss57Tur0",
+          "commit": {
+            "abbreviatedOid": "53479cf"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-05-21T14:13:00Z",
+          "updatedAt": "2024-05-21T14:13:00Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss57Tyco",
+          "commit": {
+            "abbreviatedOid": "53479cf"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "sure, why not",
+          "createdAt": "2024-05-21T14:18:50Z",
+          "updatedAt": "2024-05-21T14:18:50Z",
+          "comments": []
         }
       ]
     },
@@ -31578,25 +31759,35 @@
       "id": "PR_kwDOIvmHss5vpEjg",
       "title": "Conslidate normative lanugage on x5t and x5chain usage (plus SecConSec content)",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/241",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "fixes #222 ",
       "createdAt": "2024-05-16T10:03:57Z",
-      "updatedAt": "2024-05-17T10:08:45Z",
+      "updatedAt": "2024-05-21T15:30:28Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
-      "baseRefOid": "dd05c9070e0397bfac980f2beb290e03daeb8c1b",
+      "baseRefOid": "a53bb6f5879432e0dae832de38da6b2e219e6641",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "x5chain-usage",
-      "headRefOid": "8556320044b7bb78659e480a2b877608ce10eb1d",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "headRefOid": "76dbc35803964ddcb024035bf74513ba36a32940",
+      "closedAt": "2024-05-21T15:30:28Z",
+      "mergedAt": "2024-05-21T15:30:28Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "c908b73f459d8c817bbb7be7f0e4369e703bb0e1"
+      },
+      "comments": [
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "good enough!",
+          "createdAt": "2024-05-21T14:34:18Z",
+          "updatedAt": "2024-05-21T14:34:18Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss561G0w",
@@ -31605,10 +31796,10 @@
           },
           "author": "aj-stein-nist",
           "authorAssociation": "COLLABORATOR",
-          "state": "CHANGES_REQUESTED",
+          "state": "DISMISSED",
           "body": "",
           "createdAt": "2024-05-16T13:23:27Z",
-          "updatedAt": "2024-05-16T13:29:38Z",
+          "updatedAt": "2024-05-21T15:02:52Z",
           "comments": [
             {
               "originalPosition": 160,
@@ -31643,6 +31834,178 @@
               "updatedAt": "2024-05-17T10:08:45Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss57ScAE",
+          "commit": {
+            "abbreviatedOid": "940c673"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-05-21T12:01:01Z",
+          "updatedAt": "2024-05-21T12:01:02Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "Let's solve this in under 10 min meeting time and move one.",
+              "createdAt": "2024-05-21T12:01:02Z",
+              "updatedAt": "2024-05-21T12:01:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss57T32_",
+          "commit": {
+            "abbreviatedOid": "940c673"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-05-21T14:27:18Z",
+          "updatedAt": "2024-05-21T14:27:18Z",
+          "comments": [
+            {
+              "originalPosition": 49,
+              "body": "This is a throwaway, consider just removing this normative statement.",
+              "createdAt": "2024-05-21T14:27:18Z",
+              "updatedAt": "2024-05-21T14:27:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss57T4ZP",
+          "commit": {
+            "abbreviatedOid": "940c673"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-05-21T14:28:07Z",
+          "updatedAt": "2024-05-21T14:28:07Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss57T8A7",
+          "commit": {
+            "abbreviatedOid": "940c673"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-05-21T14:33:44Z",
+          "updatedAt": "2024-05-21T14:33:44Z",
+          "comments": [
+            {
+              "originalPosition": 49,
+              "body": "Keeping this line puts context to how multiple Signed Signed Statements can be used. \r\nChanging to a colocial \"can\" to keep the description, without making it vague normative language. \r\n```suggestion\r\nIssuers can produce Signed Statements about different Artifacts under the same Identity.\r\n```",
+              "createdAt": "2024-05-21T14:33:44Z",
+              "updatedAt": "2024-05-21T14:33:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss57UC_d",
+          "commit": {
+            "abbreviatedOid": "a1c01b6"
+          },
+          "author": "CBonnell",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-05-21T14:44:48Z",
+          "updatedAt": "2024-05-21T14:44:48Z",
+          "comments": [
+            {
+              "originalPosition": 160,
+              "body": "```suggestion\r\nAuditors MUST perform certification path validation in accordance with PKIX rules specified in {{-PKIX}}.\r\nIn particular, auditors MUST verify that certification paths chain to one or more trust anchors (often represented as root certificates).\r\n```",
+              "createdAt": "2024-05-21T14:44:48Z",
+              "updatedAt": "2024-05-21T14:50:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss57UH17",
+          "commit": {
+            "abbreviatedOid": "135e89b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-05-21T14:52:31Z",
+          "updatedAt": "2024-05-21T14:52:32Z",
+          "comments": [
+            {
+              "originalPosition": 161,
+              "body": "Editors call: agreeing to the content, question if this is the correct section, which we can move in another PR.",
+              "createdAt": "2024-05-21T14:52:31Z",
+              "updatedAt": "2024-05-21T14:52:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss57UNmG",
+          "commit": {
+            "abbreviatedOid": "135e89b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-05-21T15:01:45Z",
+          "updatedAt": "2024-05-21T15:01:45Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "Agreed to remove claims in the terminology section.",
+              "createdAt": "2024-05-21T15:01:45Z",
+              "updatedAt": "2024-05-21T15:01:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss57UN0o",
+          "commit": {
+            "abbreviatedOid": "135e89b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-05-21T15:02:08Z",
+          "updatedAt": "2024-05-21T15:02:08Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss57UOqo",
+          "commit": {
+            "abbreviatedOid": "b127acd"
+          },
+          "author": "CBonnell",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-05-21T15:03:32Z",
+          "updatedAt": "2024-05-21T15:03:32Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss57UUun",
+          "commit": {
+            "abbreviatedOid": "76dbc35"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks for the update. With the last commits and merge, I am happy with this change and have no other objections.",
+          "createdAt": "2024-05-21T15:13:42Z",
+          "updatedAt": "2024-05-21T15:13:42Z",
+          "comments": []
         }
       ]
     },
@@ -31651,24 +32014,26 @@
       "id": "PR_kwDOIvmHss5vpKSA",
       "title": "Removed note on CWT Claims",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/242",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "fixes #234 ",
       "createdAt": "2024-05-16T10:13:26Z",
-      "updatedAt": "2024-05-16T18:20:39Z",
+      "updatedAt": "2024-05-21T14:13:53Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "dd05c9070e0397bfac980f2beb290e03daeb8c1b",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "fix-cwt-note",
       "headRefOid": "49e65576d1c17cefe5b4df438ca28db9ce68eff4",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-05-21T14:13:52Z",
+      "mergedAt": "2024-05-21T14:13:52Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "035dd4408fd645646140dde16f719912f5573373"
+      },
       "comments": [
         {
           "author": "SteveLasker",
@@ -31723,6 +32088,19 @@
           "body": "",
           "createdAt": "2024-05-16T18:20:39Z",
           "updatedAt": "2024-05-16T18:20:39Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss57ToTJ",
+          "commit": {
+            "abbreviatedOid": "49e6557"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-05-21T14:02:56Z",
+          "updatedAt": "2024-05-21T14:02:56Z",
           "comments": []
         }
       ]
