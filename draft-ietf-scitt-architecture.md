@@ -324,23 +324,21 @@ In order to accommodate as many Transparency Service implementations as possible
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
 
 ~~~aasvg
-  .----------.
- |  Artifact  |
-  '----+-----'
-       v
-  .----+----.  .----------.     .-----------.
- | Statement ||  Envelope  +   |  Identity   |
-  '----+----'  '-----+----'    |  Documents  |
-       |             |          '---+--+----'
-        '----. .----'     cose sign |  | cose verify
-              |                     |  |
-              v                     |  |'----------.
-         .----+----.                |  |            |
-        |  Signed   |               |  |            |
-        | Statement +<-------------'|  |            |
-         '----+----'                v  v            |
-              |                 +---+--+--------+   |
-           .-' '--------------->+ Transparency  |   |
+   .----+----.   .----------.   .-----------.
+  | Statement | |  Artifact  | |  Identity   |
+   '----+----'   '-----+----'  |  Documents  |
+        |               |        '---+--+----'
+         '--.   .-----'   cose sign |  | cose verify
+             | |  .----------------'|  |
+             | | |                  |  |
+             v v v                  |  |'----------.
+       .-----+-+-+---.              |  |            |
+      |    Signed     |             |  |            |
+      |   Statement   |             |  |            |
+      |(COSE Envelope)|             |  |            |
+       '-------+-----'              v  v            |
+               |                +---+--+--------+   |
+           .--' '-------------->+ Transparency  |   |
           |   .--------.        |               |   |
           |  | Receipt  +<------+  Service      +-+ |
           |  |          +.      +--+------------+ | |
