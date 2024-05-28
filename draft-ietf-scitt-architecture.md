@@ -327,16 +327,16 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
    .----+----.   .----------.   .-----------.
   | Statement | |  Artifact  | |  Identity   |
    '----+----'   '-----+----'  |  Documents  |
-        |               |        '---+--+----'
+        |              |        '---+--+----'
          '--.   .-----'   cose sign |  | cose verify
              | |  .----------------'|  |
              | | |                  |  |
              v v v                  |  |'----------.
-       .-----+-+-+---.              |  |            |
-      |    Signed     |             |  |            |
-      |   Statement   |             |  |            |
-      |(COSE Envelope)|             |  |            |
-       '-------+-----'              v  v            |
+        .----+-+-+---.              |  |            |
+       |    Signed    |             |  |            |
+       |   Statement  |             |  |            |
+       | (COSE_Sign1) |             |  |            |
+        '------+-----'              v  v            |
                |                +---+--+--------+   |
            .--' '-------------->+ Transparency  |   |
           |   .--------.        |               |   |
