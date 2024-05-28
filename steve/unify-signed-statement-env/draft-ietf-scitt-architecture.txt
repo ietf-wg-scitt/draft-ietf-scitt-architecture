@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 24 November 2024                                     C. Fournet
+Expires: 29 November 2024                                     C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                             23 May 2024
+                                                             28 May 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 November 2024.
+   This Internet-Draft will expire on 29 November 2024.
 
 Copyright Notice
 
@@ -401,16 +401,16 @@ Table of Contents
       .----+----.   .----------.   .-----------.
      | Statement | |  Artifact  | |  Identity   |
       '----+----'   '-----+----'  |  Documents  |
-           |               |        '---+--+----'
+           |              |        '---+--+----'
             '--.   .-----'   cose sign |  | cose verify
                 | |  .----------------'|  |
                 | | |                  |  |
                 v v v                  |  |'----------.
-          .-----+-+-+---.              |  |            |
-         |    Signed     |             |  |            |
-         |   Statement   |             |  |            |
-         |(COSE Envelope)|             |  |            |
-          '-------+-----'              v  v            |
+           .----+-+-+---.              |  |            |
+          |    Signed    |             |  |            |
+          |   Statement  |             |  |            |
+          | (COSE_Sign1) |             |  |            |
+           '------+-----'              v  v            |
                   |                +---+--+--------+   |
               .--' '-------------->+ Transparency  |   |
              |   .--------.        |               |   |
@@ -1414,9 +1414,9 @@ Table of Contents
    [I-D.draft-ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
               Wallace, "The Entity Attestation Token (EAT)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-eat-26, 5 May
+              Progress, Internet-Draft, draft-ietf-rats-eat-27, 26 May
               2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              rats-eat-26>.
+              rats-eat-27>.
 
    [in-toto]  "in-toto", n.d., <https://in-toto.io/>.
 
