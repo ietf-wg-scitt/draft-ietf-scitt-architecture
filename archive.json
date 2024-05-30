@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-28T00:37:18.181290+00:00",
+  "timestamp": "2024-05-30T00:37:35.134683+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -32115,15 +32115,15 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "Resolving the duplicity of a Signed Statement, which is a COSE Envelope.\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/f30755db-77c9-4408-a7c4-954bc4dc6267)\r\n",
+      "body": "Resolving the duplicity of a Signed Statement, which is a COSE Envelope.\r\n\r\nNOTE: Updating the image to reflect the PR's current state\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/defeebd3-18e4-4cdd-a4e8-b259f81dd548)\r\n",
       "createdAt": "2024-05-23T21:19:52Z",
-      "updatedAt": "2024-05-23T22:49:04Z",
+      "updatedAt": "2024-05-28T17:58:40Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "c908b73f459d8c817bbb7be7f0e4369e703bb0e1",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/unify-signed-statement-env",
-      "headRefOid": "bb986528232d6e82813a00a52cd7d73ddea76105",
+      "headRefOid": "c6dccd50903953396e5bd2775c679994c807cc36",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -32142,6 +32142,72 @@
           "createdAt": "2024-05-23T22:49:04Z",
           "updatedAt": "2024-05-23T22:49:04Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss58KVty",
+          "commit": {
+            "abbreviatedOid": "bb98652"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-05-28T14:57:11Z",
+          "updatedAt": "2024-05-28T14:57:43Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "```suggestion\r\n      .---------.  \r\n     |  Artifact |\r\n      '----+----'\r\n           |\r\n           v                    .-----------.\r\n      .----+----.              |  Identity   |\r\n     | Statement |             |  Documents  |\r\n      '----+----'               '---+--+----'\r\n           |           cose sign    |  | cose verify\r\n           |    .------------------'|  |\r\n           |   |                    |  |\r\n           v   v                    |  |'----------.\r\n       .---+---+-----.              |  |            |\r\n      |    Signed     |             |  |            |\r\n      |   Statement   |             |  |            |\r\n      | (COSE_Sign1)  |             |  |            |\r\n       '-------+-----'              v  v            |\r\n```",
+              "createdAt": "2024-05-28T14:57:11Z",
+              "updatedAt": "2024-05-28T14:57:43Z"
+            },
+            {
+              "originalPosition": 33,
+              "body": "Maybe like this?",
+              "createdAt": "2024-05-28T14:57:38Z",
+              "updatedAt": "2024-05-28T14:57:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss58LuyV",
+          "commit": {
+            "abbreviatedOid": "bb98652"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-05-28T17:14:20Z",
+          "updatedAt": "2024-05-28T17:14:20Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "Per conversation in today's editor's meeting:\r\nI like the change for changing line 342 to include (Cose_Sign1)\r\n\r\nI'd like to continue the discussion for an artifact going into Statement. \r\n- A statement (and its type) is opaque to SCITT and I would assume any statement that is a stand-alone element of content should know what Artifact it's a statement about. \r\n- Knowing what the artifact is about, as a separate reference to SCITT enables the service communicate to verifiers. The `cwt_clamins.sub` is the property, very similar to the content-type is lifted to communicate and other signing properties. \r\n\r\nIssuers make statements about artifacts, which may be software, hardware, physical goods, they all transcend this triple.",
+              "createdAt": "2024-05-28T17:14:20Z",
+              "updatedAt": "2024-05-28T17:14:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss58MBV5",
+          "commit": {
+            "abbreviatedOid": "bb98652"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-05-28T17:55:09Z",
+          "updatedAt": "2024-05-28T17:55:10Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "I pushed the (COSE_Sign1) change\r\nI found 19 references to \"envelope\" in the architecture",
+              "createdAt": "2024-05-28T17:55:09Z",
+              "updatedAt": "2024-05-28T17:55:10Z"
+            }
+          ]
         }
       ]
     }
