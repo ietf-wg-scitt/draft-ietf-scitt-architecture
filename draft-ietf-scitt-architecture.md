@@ -324,46 +324,48 @@ In order to accommodate as many Transparency Service implementations as possible
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
 
 ~~~aasvg
-   .----+----.   .----------.   .-----------.
-  | Statement | |  Artifact  | |  Identity   |
-   '----+----'   '-----+----'  |  Documents  |
-        |              |        '---+--+----'
-         '--.   .-----'   cose sign |  | cose verify
-             | |  .----------------'|  |
-             | | |                  |  |
-             v v v                  |  |'----------.
-        .----+-+-+---.              |  |            |
-       |    Signed    |             |  |            |
-       |   Statement  |             |  |            |
-       | (COSE_Sign1) |             |  |            |
-        '------+-----'              v  v            |
-               |                +---+--+--------+   |
-           .--' '-------------->+ Transparency  |   |
-          |   .--------.        |               |   |
-          |  | Receipt  +<------+  Service      +-+ |
-          |  |          +.      +--+------------+ | |
-          |   '-+------'  |        | Transparency | |
-          |     | Receipt +<-------+              | |
-          |      '------+'         | Service      | |
-           '-------. .-'           +------------+-+ |
-                    |                           |   |
-                    v                           |   |
-              .-----+-----.                     |   |
-             | Transparent |                    |   |
-             |  Statement  |                    |   |
-              '-----+-----'                     |   |
-                    |                           |   |
-                    |'-----------.   .----------)--'
-                    |             | |           |
-                    |             v v           |
-                    |    .--------+-+---------. |
-                    |   / Verify Transparent /  |
-                    |  /      Statement     /   |
-                    | '--------------------'    |
-                    v                           v
-           .--------+---------.      .----------+-----.
-          / Collect Receipts /      /   Replay Log   /
-         '------------------'      '----------------'
+ .----------.
+|  Artifact  |
+ '-----+----'             .-----------.
+       v                 |  Identity   |
+  .----+----.            |  Documents  |
+ | Statement |            '---+--+----'
+  '----+----'       cose sign |  | cose verify
+       |    .----------------'|  |
+       |   |                  |  |
+       v   v                  |  |'----------.
+  .----+---+---.              |  |            |
+ |    Signed    |             |  |            |
+ |   Statement  |             |  |            |
+ | (COSE_Sign1) |             |  |            |
+  '------+-----'              v  v            |
+         |                +---+--+--------+   |
+     .--' '-------------->+ Transparency  |   |
+    |   .--------.        |               |   |
+    |  | Receipt  +<------+  Service      +-+ |
+    |  |          +.      +--+------------+ | |
+    |   '-+------'  |        | Transparency | |
+    |     | Receipt +<-------+              | |
+    |      '------+'         | Service      | |
+     '-------. .-'           +------------+-+ |
+              |                           |   |
+              v                           |   |
+        .-----+-----.                     |   |
+       | Transparent |                    |   |
+       |  Statement  |                    |   |
+        '-----+-----'                     |   |
+              |                           |   |
+              |'-----------.   .----------)--'
+              |             | |           |
+              |             v v           |
+              |    .--------+-+---------. |
+              |   / Verify Transparent /  |
+              |  /      Statement     /   |
+              | '--------------------'    |
+              v                           v
+     .--------+---------.      .----------+-----.
+    / Collect Receipts /      /   Replay Log   /
+   '------------------'      '----------------'
 ~~~
 
 This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and Signed Statements, Transparency Service and the Signed Statement Registration process, as well as Relying Parties of the Transparent Statements and the Receipt validation process.
