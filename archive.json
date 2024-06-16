@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-13T00:38:22.977043+00:00",
+  "timestamp": "2024-06-16T00:42:06.006318+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -32117,7 +32117,7 @@
       "labels": [],
       "body": "Resolving the duplicity of a Signed Statement, which is a COSE Envelope.\r\n\r\nNOTE: Updating the image to reflect the PR's current state\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/b0de8d83-dbc1-4d48-8042-a2c5ca93a3cc)\r\n",
       "createdAt": "2024-05-23T21:19:52Z",
-      "updatedAt": "2024-06-11T15:17:39Z",
+      "updatedAt": "2024-06-14T14:46:19Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "c908b73f459d8c817bbb7be7f0e4369e703bb0e1",
@@ -32206,6 +32206,166 @@
               "body": "I pushed the (COSE_Sign1) change\r\nI found 19 references to \"envelope\" in the architecture",
               "createdAt": "2024-05-28T17:55:09Z",
               "updatedAt": "2024-05-28T17:55:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5-RBA-",
+          "commit": {
+            "abbreviatedOid": "bb98652"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-14T13:23:44Z",
+          "updatedAt": "2024-06-14T13:23:44Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "Yeah, this is great actually. When we did this the first time around, as implementors new to the cose landscape, the link with COSE_Sign1 wasn't super clear. We essentially *guessed* that was the right thing. It is really helpful to call out the link between an abstract notion of a signed statement and its concrete realisation like this.",
+              "createdAt": "2024-06-14T13:23:44Z",
+              "updatedAt": "2024-06-14T13:24:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5-RFSa",
+          "commit": {
+            "abbreviatedOid": "bb98652"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-14T13:31:44Z",
+          "updatedAt": "2024-06-14T13:31:44Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "This architectural model fits well within our own implementation as well:\r\nA \"Trust Declaration\" (statement) is accompanied by an artifact (payload, i.e. SBOM, etc.) that is signed by a trusted party requesting to have the signed statement registered in a Trust Registry. \r\n\r\n100% support this model.",
+              "createdAt": "2024-06-14T13:31:44Z",
+              "updatedAt": "2024-06-14T13:31:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5-RTnA",
+          "commit": {
+            "abbreviatedOid": "bb98652"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-14T13:57:47Z",
+          "updatedAt": "2024-06-14T13:57:47Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "This is a minor nit but I will repeat another time that one could consider: have you ever made a statement about an artifact (software) for which the artifact is *not a necessary input*? Do SCRM tools never talk about the creator of the artifact or their host organization that is logically related, and not an input? We as a group seem focused on SBOM and an implied invariant that I am not sure is true 100% of the time, is every statement an explicit output from directly processing the artifact itself as the input? From experience, it is not always. These line changes confuse that, and should not even be in the diagram in my opinion.\r\n\r\nThis does not change the COSE structure or the document, but these minor changes in the diagram over-specify imply overly specific requirements that lead people astray. I will just repeat this comment, again, as this is why I am going to argue for removal the diagram soon.",
+              "createdAt": "2024-06-14T13:57:47Z",
+              "updatedAt": "2024-06-14T13:59:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5-RV6a",
+          "commit": {
+            "abbreviatedOid": "bb98652"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-14T14:02:03Z",
+          "updatedAt": "2024-06-14T14:02:04Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "I would be opposed to removal of this diagram becasue it is an actual reflection of how several existing \"Trust Registry\" implementations work today, making it easy to adopt the SCITT vision in the Software Supply Chain (SCRM) when the protocol is finalized.",
+              "createdAt": "2024-06-14T14:02:03Z",
+              "updatedAt": "2024-06-14T14:02:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5-RZ8X",
+          "commit": {
+            "abbreviatedOid": "bb98652"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-14T14:09:36Z",
+          "updatedAt": "2024-06-14T14:09:37Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "An implementation should be a reflection of the full draft, diagram or not, to be conformant, correct?\r\n\r\nI am not sure a diagram without the use of the COSE structures defined in CDDL and the other normative references would be effective to design a system. Is that not an issue here?\r\n\r\nTrust Registry is not a notion in this I-D or in IETF, do you mean a Transparency Service? That is what is defined in the spec. That we add terms and deviate from the core requirements of the spec is my main concern, and generates a lot of discussion and churn so that very protocol is not finalized.",
+              "createdAt": "2024-06-14T14:09:37Z",
+              "updatedAt": "2024-06-14T14:12:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5-RdGx",
+          "commit": {
+            "abbreviatedOid": "bb98652"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-14T14:15:30Z",
+          "updatedAt": "2024-06-14T14:15:30Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "A Trust Registry is an implementation of a \"Transparency Service\" that is used to register trusted statements following \"registration policy\" criteria expressed by the operator (Gatekeeper) of a generic Transparency Service.",
+              "createdAt": "2024-06-14T14:15:30Z",
+              "updatedAt": "2024-06-14T14:15:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5-RqkP",
+          "commit": {
+            "abbreviatedOid": "bb98652"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-14T14:39:32Z",
+          "updatedAt": "2024-06-14T14:39:32Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "Sure, but if we continue to add additional terms and concepts in this discussion, the diagram, and/or spec overall, we run the risk of perpetuating the same problem I have cited before: we are muddling the spec. ",
+              "createdAt": "2024-06-14T14:39:32Z",
+              "updatedAt": "2024-06-14T14:39:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss5-RuDM",
+          "commit": {
+            "abbreviatedOid": "bb98652"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-06-14T14:46:18Z",
+          "updatedAt": "2024-06-14T14:46:18Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "We do not need to make any changes to the architecture because a \"generic\" Transparency Service can be instantiated to serve as a \"Trust Registry\" that contains specific artifacts/payloads and signed statements based on registration policy, very similar to the way a \"Registry of Deeds\" and a \"Registry of Motor Vehicles\" are both \"Trust Anchors\" for different legal artifacts. These could both be implemented as SCITT \"Trust Registries\" that follow the generic Transparency Service protocol defined in SCITT. This is how I see SCITT being used broadly, in addition to a \"Trust Registry\" of trusted digital products, such as software and IoT devices.",
+              "createdAt": "2024-06-14T14:46:18Z",
+              "updatedAt": "2024-06-14T14:46:19Z"
             }
           ]
         }
