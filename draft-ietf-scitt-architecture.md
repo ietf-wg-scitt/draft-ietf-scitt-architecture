@@ -471,8 +471,8 @@ Once all the Envelope headers are set, an Issuer MUST use a standard COSE implem
 The SCITT tag `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement.
 
 Issuers can produce Signed Statements about different Artifacts under the same Identity.
-Issuers and Relying Parties must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
-The `iss` and `sub` Claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.
+Issuers and Relying Parties must be able to recognize the Artifact to which the Statements pertain by looking at the Signed Statement.
+The `iss` and `sub` Claims, within the CWT_Claims protected header, are used to identify the Artifact the Statement pertains to.
 (See Subject under {{terminology}} Terminology.)
 
 Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
@@ -851,8 +851,8 @@ Transparency Services MAY return Receipts to Client applications synchronously o
 A collection of Signed Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.
 
 Issuers must carefully review the inclusion of private/confidential materials in their Statements.
-For example, Issuers must remove Personally Identifiable Information (PII) as clear text in the statement.
-Alternatively, Issuers may include opaque cryptographic statements, such as hashes.
+For example, Issuers must remove Personally Identifiable Information (PII) as clear text in the Statement.
+Alternatively, Issuers may include opaque cryptographic Statements, such as hashes.
 
 The confidentiality of queries is implementation-specific, and generally not guaranteed.
 For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.
@@ -921,7 +921,7 @@ The terms "verifier" and "Relying Party" are used interchangeably through the do
 
 The terms "Claim" and "Statement" are used throughout this document, where Claim is consistent with the usage in {{-draft-ietf-rats-eat}} and {{RFC7523}}, and Statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the Claims are made.
 
-The term "Subject" provides an identifier of the Issuer's choosing to refer to a given Artifact, and ensures that all associated statements can be attributed to the identifier chosen by the Issuer.
+The term "Subject" provides an identifier of the Issuer's choosing to refer to a given Artifact, and ensures that all associated Statements can be attributed to the identifier chosen by the Issuer.
 
 In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the Issuer identifies themselves using the `iss` Claim, and the specific software that was analyzed as the subject using the `sub` Claim.
 
@@ -940,7 +940,7 @@ NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the defini
 
 # Identifiers
 
-This section provides informative examples of identifiers for statements, Signed Statements, and Receipts.
+This section provides informative examples of identifiers for Statements, Signed Statements, and Receipts.
 
 SCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats.
 
@@ -982,7 +982,7 @@ Let the `base64url-encoded-bytes-digest` for the message be the base64url encode
 
 Let the SCITT name for the message be the URN constructed from the following URI template, according to {{-URITemplate}}:
 
-Let the `message-type`, be "statement" for Statements and Artifacts.
+Let the `message-type`, be "statement" for Statements about Artifacts.
 
 ~~~
 urn:ietf:params:scitt:\
@@ -1023,7 +1023,7 @@ urn:ietf:params:scitt:\
 {base64url-encoded-bytes-digest}
 ~~~
 
-Note that because this identifier is computed over the unprotected header of the Signed Statement, any changes to the unprotected header, such as changing the order of the unprotected header map key value pairs, adding additional Receipts, or adding additional proofs to a Receipt, will change the identifier of a transparent statement.
+Note that because this identifier is computed over the unprotected header of the Signed Statement, any changes to the unprotected header, such as changing the order of the unprotected header map key value pairs, adding additional Receipts, or adding additional proofs to a Receipt, will change the identifier of a Transparent Statement.
 
 Note that because this identifier is computed over the signatures of the Signed Statement and signatures in each Receipt, any canonicalization of the signatures after the fact will produce a distinct identifier.
 
@@ -1130,7 +1130,7 @@ data:application/cose;base64,SGVsb...xkIQ==
 # Signing Statements Remotely
 
 Statements about digital Artifacts, containing digital Artifacts, or structured data regarding any type of Artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
-In these cases a statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
+In these cases a Statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
 A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of RFC9052}}.
 
 ~~~aasvg
