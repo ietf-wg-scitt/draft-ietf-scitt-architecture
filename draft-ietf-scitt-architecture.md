@@ -165,7 +165,7 @@ The complexity of traceability and quality control for these supply chains incre
 There are many parties who publish information about artifacts:
 For example, the original manufacturer may provide information about the state of the artifact when it left the factory.
 The shipping company may add information about the transport environment of the artifact.
-Compliance auditors may provide information about their compliance assessment of the artifact.
+Compliance Auditors may provide information about their compliance assessment of the artifact.
 Security companies may publish vulnerability information about an artifact.
 Some of these parties may publish information about their analysis or use of an artifact.
 
@@ -219,7 +219,7 @@ Equivocation:
 Issuer:
 
 : an identifier representing an organization, device, user, or entity securing Statements about supply chain Artifacts.
-An Issuer may be the owner or author of Artifacts, or an independent third party such as an auditor, reviewer or an endorser.
+An Issuer may be the owner or author of Artifacts, or an independent third party such as an Auditor, reviewer or an endorser.
 In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE header parameter `15: CWT_Claims` within the protected header of a COSE envelope.
 
 Non-equivocation:
@@ -767,7 +767,7 @@ For example, if a Transparency Service is implemented using a set of redundant r
 Auditors should be aware that the certification path information included in an unprotected `x5chain` header of a to-be-registered Signed Statement can be tampered with by a malicious Transparency Service (e.g., one that does not incorporate remote attestation), which may replace the intermediate certificates and ultimately connect to an unexpected root.
 This modification can allow malicious TS to forge Claims that look genuine except for the wrong trust anchor.
 Auditors MUST perform certification path validation in accordance with PKIX rules specified in {{-PKIX}}.
-In particular, auditors MUST verify that certification paths chain to one or more trust anchors (often represented as root certificates).
+In particular, Auditors MUST verify that certification paths chain to one or more trust anchors (often represented as root certificates).
 
 ## Security Guarantees
 
