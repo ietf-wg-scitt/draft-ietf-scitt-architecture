@@ -160,14 +160,14 @@ Issuers can register their Signed Statements on any Transparency Service, with t
 This document describes the scalable, flexible, and decentralized SCITT architecture.
 Its goal is to enhance auditability and accountability across supply chains.
 
-In supply chains, downstream artifacts are built upon upstream artifacts.
-The complexity of traceability and quality control for these supply chains increases with the number of artifacts and parties contributing to them.
-There are many parties who publish information about artifacts:
-For example, the original manufacturer may provide information about the state of the artifact when it left the factory.
-The shipping company may add information about the transport environment of the artifact.
-Compliance Auditors may provide information about their compliance assessment of the artifact.
-Security companies may publish vulnerability information about an artifact.
-Some of these parties may publish information about their analysis or use of an artifact.
+In supply chains, downstream Artifacts are built upon upstream Artifacts.
+The complexity of traceability and quality control for these supply chains increases with the number of Artifacts and parties contributing to them.
+There are many parties who publish information about Artifacts:
+For example, the original manufacturer may provide information about the state of the Artifact when it left the factory.
+The shipping company may add information about the transport environment of the Artifact.
+Compliance Auditors may provide information about their compliance assessment of the Artifact.
+Security companies may publish vulnerability information about an Artifact.
+Some of these parties may publish information about their analysis or use of an Artifact.
 
 SCITT provides a way for Relying Parties to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
 SCITT achieves this by having producers publish information in a Transparency Service, where Relying Parties can check the information.
