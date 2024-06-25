@@ -349,7 +349,7 @@ Table of Contents
    a separate Transparency Service is generally disjoint, though it is
    possible to take a Transparent Statement (i.e. a Signed Statement
    with a Receipt in its unprotected header, from a from the first
-   Transparency Service ) and register it on another Transparency
+   Transparency Service) and register it on another Transparency
    Service, where the second Receipt will be over the first Receipt in
    the unprotected header.
 
@@ -894,7 +894,7 @@ Table of Contents
                          Receipt's Protected Header
 
    Figure 8 illustrates the decoded inclusion proof from Figure 6.  This
-   inclusion proof indicates that the size of the transparency log was 8
+   inclusion proof indicates that the size of the Append-only Log was 8
    at the time the Receipt was issued.  The structure of this inclusion
    proof is specific to the verifiable data structure used
    (RFC9162_SHA256).
@@ -1570,8 +1570,8 @@ Appendix A.  Common Terminology Disambiguation
 
    This document uses the term Statement to refer to potentially
    unsecured data and associated Claims, and Signed Statement and
-   Receipt to refer to assertions from an Issuer, or the transparency
-   service.
+   Receipt to refer to assertions from an Issuer, or the Transparency
+   Service.
 
    [NIST.SP.1800-19] defines "attestation" as "The process of providing
    a digital signature for a set of measurements securely stored in
