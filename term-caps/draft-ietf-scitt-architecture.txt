@@ -152,7 +152,7 @@ Table of Contents
    information about artifacts: For example, the original manufacturer
    may provide information about the state of the artifact when it left
    the factory.  The shipping company may add information about the
-   transport environment of the artifact.  Compliance auditors may
+   transport environment of the artifact.  Compliance Auditors may
    provide information about their compliance assessment of the
    artifact.  Security companies may publish vulnerability information
    about an artifact.  Some of these parties may publish information
@@ -223,7 +223,7 @@ Table of Contents
    Issuer:  an identifier representing an organization, device, user, or
       entity securing Statements about supply chain Artifacts.  An
       Issuer may be the owner or author of Artifacts, or an independent
-      third party such as an auditor, reviewer or an endorser.  In SCITT
+      third party such as an Auditor, reviewer or an endorser.  In SCITT
       Statements and Receipts, the iss CWT Claim is a member of the COSE
       header parameter 15: CWT_Claims within the protected header of a
       COSE envelope.
@@ -1043,7 +1043,7 @@ Table of Contents
    TS to forge Claims that look genuine except for the wrong trust
    anchor.  Auditors MUST perform certification path validation in
    accordance with PKIX rules specified in [RFC5280].  In particular,
-   auditors MUST verify that certification paths chain to one or more
+   Auditors MUST verify that certification paths chain to one or more
    trust anchors (often represented as root certificates).
 
 6.1.  Security Guarantees

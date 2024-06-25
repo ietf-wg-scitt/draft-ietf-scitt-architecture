@@ -1359,7 +1359,7 @@ The complexity of traceability and quality control for these supply chains incre
 There are many parties who publish information about artifacts:
 For example, the original manufacturer may provide information about the state of the artifact when it left the factory.
 The shipping company may add information about the transport environment of the artifact.
-Compliance auditors may provide information about their compliance assessment of the artifact.
+Compliance Auditors may provide information about their compliance assessment of the artifact.
 Security companies may publish vulnerability information about an artifact.
 Some of these parties may publish information about their analysis or use of an artifact.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">SCITT provides a way for Relying Parties to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
@@ -1426,7 +1426,7 @@ In COSE, an Envelope consists of a protected header (included in the Issuer's si
 <dt id="section-2-5.13">Issuer:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.14">
           <p id="section-2-5.14.1">an identifier representing an organization, device, user, or entity securing Statements about supply chain Artifacts.
-An Issuer may be the owner or author of Artifacts, or an independent third party such as an auditor, reviewer or an endorser.
+An Issuer may be the owner or author of Artifacts, or an independent third party such as an Auditor, reviewer or an endorser.
 In SCITT Statements and Receipts, the <code>iss</code> CWT Claim is a member of the COSE header parameter <code>15: CWT_Claims</code> within the protected header of a COSE envelope.<a href="#section-2-5.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
@@ -2198,7 +2198,7 @@ An example of Signed Statement's payloads that can improve authenticity assuranc
 <p id="section-6-12">Auditors should be aware that the certification path information included in an unprotected <code>x5chain</code> header of a to-be-registered Signed Statement can be tampered with by a malicious Transparency Service (e.g., one that does not incorporate remote attestation), which may replace the intermediate certificates and ultimately connect to an unexpected root.
 This modification can allow malicious TS to forge Claims that look genuine except for the wrong trust anchor.
 Auditors <span class="bcp14">MUST</span> perform certification path validation in accordance with PKIX rules specified in <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>.
-In particular, auditors <span class="bcp14">MUST</span> verify that certification paths chain to one or more trust anchors (often represented as root certificates).<a href="#section-6-12" class="pilcrow">¶</a></p>
+In particular, Auditors <span class="bcp14">MUST</span> verify that certification paths chain to one or more trust anchors (often represented as root certificates).<a href="#section-6-12" class="pilcrow">¶</a></p>
 <div id="sec-security-guarantees">
 <section id="section-6.1">
         <h3 id="name-security-guarantees">
