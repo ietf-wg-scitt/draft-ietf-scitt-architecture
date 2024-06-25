@@ -361,7 +361,7 @@ Table of Contents
 
    The building blocks defined in SCITT are intended to support
    applications in any supply chain that produces or relies upon digital
-   artifacts, from the build and supply of software and IoT devices to
+   Artifacts, from the build and supply of software and IoT devices to
    advanced manufacturing and food supply.
 
    SCITT is a generalization of Certificate Transparency [RFC9162],
@@ -591,7 +591,7 @@ Table of Contents
    audit reports, policy definitions) that Issuers may want to turn into
    Signed Statements.  An Issuer must first decide on a suitable format
    (3: payload type) to serialize the Statement payload.  For a software
-   supply chain, payloads describing the software artifacts may include:
+   supply chain, payloads describing the software Artifacts may include:
 
    *  [COSWID]
 
@@ -714,9 +714,9 @@ Table of Contents
         Figure 1: CDDL definition for Signed Statements and Receipts
 
    Figure 2 illustrates an instance of a Signed Statement in EDN, with a
-   payload that is detached.  Detached payloads support large artifacts,
-   and ensure Signed Statements can integrate with existing storage
-   systems.
+   payload that is detached.  Detached payloads support large
+   Statements, and ensure Signed Statements can integrate with existing
+   storage systems.
 
    18(                                 / COSE Sign 1                   /
        [
@@ -1544,7 +1544,7 @@ Appendix A.  Common Terminology Disambiguation
    made.
 
    The term "Subject" provides an identifier of the issuer's choosing to
-   refer to a given artifact, and ensures that all associated statements
+   refer to a given Artifact, and ensures that all associated statements
    can be attributed to the identifier chosen by the issuer.
 
    In simpler language, a SCITT Statement could be some vendor-specific
@@ -1803,12 +1803,13 @@ B.7.3.  Transparent Statement Data URL
 
 Appendix C.  Signing Statements Remotely
 
-   Statements, such as digital artifacts or structured data regarding
-   artifacts, can be too large or too sensitive to be send to a remote
-   Transparency Services over the Internet.  In these cases a statement
-   can also be hash, which becomes the payload included in COSE to-be-
-   signed bytes.  A Signed Statement (cose-sign1) MUST be produced from
-   the to-be-signed bytes according to Section 4.4 of [RFC9052].
+   Statements about digital Artifacts, containing digital Artifacts, or
+   structured data regarding any type of Artifacts, can be too large or
+   too sensitive to be send to a remote Transparency Services over the
+   Internet.  In these cases a statement can also be hash, which becomes
+   the payload included in COSE to-be-signed bytes.  A Signed Statement
+   (cose-sign1) MUST be produced from the to-be-signed bytes according
+   to Section 4.4 of [RFC9052].
 
       .----+-----.
      |  Artifact  |
