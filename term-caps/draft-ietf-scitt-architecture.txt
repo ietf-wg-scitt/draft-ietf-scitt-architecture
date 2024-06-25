@@ -226,7 +226,7 @@ Table of Contents
       third party such as an Auditor, reviewer or an endorser.  In SCITT
       Statements and Receipts, the iss CWT Claim is a member of the COSE
       header parameter 15: CWT_Claims within the protected header of a
-      COSE envelope.
+      COSE Envelope.
 
    Non-equivocation:  a state where it is impossible for a Transparency
       Service to provide different views of its Append-only Log to
@@ -504,7 +504,7 @@ Table of Contents
    In essence, when using X.509 Signed Statements, the Transparency
    Service MUST build and validate a complete certificate chain from the
    Issuer's certificate identified by x5t located in the protected
-   header of the COSE_Sign1 envelope, to one of the root certificates
+   header of the COSE_Sign1 Envelope, to one of the root certificates
    most recently registered as a trust anchor of the Transparency
    Service.  An x5chain with a leaf certificate that corresponds to the
    x5t value MAY be included in the unprotected header in support of
@@ -636,10 +636,10 @@ Table of Contents
    affirming multiple Issuers agree.
 
    At least one identifier for an identity document MUST be included in
-   the protected header of the COSE envelope, as one of x5t or kid.
+   the protected header of the COSE Envelope, as one of x5t or kid.
    Additionally, x5chain that corresponds to either x5t or kid
    identifying the leaf certificate in the included certification path
-   MAY be included in the unprotected header of the COSE envelope.
+   MAY be included in the unprotected header of the COSE Envelope.
 
    *  When using x509, Support for x5t is mandatory to implement.
 
