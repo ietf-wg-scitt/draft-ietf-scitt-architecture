@@ -866,7 +866,7 @@ This enables the gradual transition to stronger algorithms, including e.g. post-
 ### Transparency Service Client Applications
 
 Authentication of Client applications is out of scope for this document.
-Transparency Services MUST authenticate both Client applications and the Issuer of signed statements in order to ensure that implementation specific authentication and authorization policies are enforced.
+Transparency Services MUST authenticate both Client applications and the Issuer of Signed Statements in order to ensure that implementation specific authentication and authorization policies are enforced.
 The specification of authentication and authorization policies is out of scope for this document.
 
 ### Impersonation
@@ -940,7 +940,7 @@ NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the defini
 
 # Identifiers
 
-This section provides informative examples of identifiers for statements, signed statements, and Receipts.
+This section provides informative examples of identifiers for statements, Signed Statements, and Receipts.
 
 SCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats.
 
@@ -958,7 +958,7 @@ resource: content-type = dereference(identifier: identifier-type)
 
 These identifiers MAY be present in a `tstr` field that does not otherwise restrict the string in ways that prevent a URN or URL from being present.
 
-This includes `iss`, and `sub` which are used to express the Issuer and subject of a signed statement or Receipt.
+This includes `iss`, and `sub` which are used to express the Issuer and subject of a Signed Statement or Receipt.
 
 This also includes `kid` which is used to express a hint for which public key should be used to verify a signature.
 
@@ -1010,7 +1010,7 @@ urn:ietf:params:scitt:\
 
 Note that this means the content of the signature is not included in the identifier, even though signature related Claims, such as activation or expiration information in protected headers are included.
 
-As a result, an attacker may construct a new signed statement that has the same identifier as a previous signed statement, but has a different signature.
+As a result, an attacker may construct a new Signed Statement that has the same identifier as a previous Signed Statement, but has a different signature.
 
 ## Identifiers For Transparent Statements
 
@@ -1025,7 +1025,7 @@ urn:ietf:params:scitt:\
 
 Note that because this identifier is computed over the unprotected header of the Signed Statement, any changes to the unprotected header, such as changing the order of the unprotected header map key value pairs, adding additional Receipts, or adding additional proofs to a Receipt, will change the identifier of a transparent statement.
 
-Note that because this identifier is computed over the signatures of the signed statement and signatures in each Receipt, any canonicalization of the signatures after the fact will produce a distinct identifier.
+Note that because this identifier is computed over the signatures of the Signed Statement and signatures in each Receipt, any canonicalization of the signatures after the fact will produce a distinct identifier.
 
 ## Statements
 
