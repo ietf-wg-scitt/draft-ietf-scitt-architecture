@@ -224,7 +224,7 @@ In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE he
 
 Non-equivocation:
 
-: a state where it is impossible for a Transparency Service to provide different views of its append-only log to Relying Parties about the same Artifact.
+: a state where it is impossible for a Transparency Service to provide different views of its Append-only Log to Relying Parties about the same Artifact.
 Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Relying Parties.
 
 Receipt:
@@ -589,7 +589,7 @@ Authentication and authorization is implementation-specific, and out of scope of
 The Transparency Service MAY verify the Statement payload format, content and other optional properties.
 1. **Apply Registration Policy:** The Transparency Service MUST check the attributes required by a policy are present in the protected headers.
   Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.
-1. **Register the Signed Statement** to the append-only log.
+1. **Register the Signed Statement** to the Append-only Log.
 1. **Return the Receipt**, which MAY be asynchronous from registration.
 The Transparency Service MUST be able to provide a receipt for all registered Statements.
 A receipt for a Signed Statement MAY be provided asynchronously.
