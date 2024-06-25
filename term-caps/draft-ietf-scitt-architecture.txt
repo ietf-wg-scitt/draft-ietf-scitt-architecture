@@ -453,7 +453,7 @@ Table of Contents
    only Log is the verifiable data structure that records Signed
    Statements and supports the production of Receipts.
 
-   All Transparency Services MUST expose APIs for the registration of
+   All Transparency Services MUST expose APIs for the Registration of
    Signed Statements and issuance of Receipts.
 
    Transparency Services MAY support additional APIs for auditing, for
@@ -477,7 +477,7 @@ Table of Contents
 
    Transparency Services MUST also maintain a list of trust anchors,
    which SHOULD be used by Relying Parties to authenticate Issuers, and
-   which MAY be included in a registration policy statement.  For
+   which MAY be included in a Registration Policy statement.  For
    instance, a trust anchor could be an X.509 root certificate, the
    discovery URL of an OpenID Connect identity provider, or any other
    COSE compatible PKI trust anchor.
@@ -493,7 +493,7 @@ Table of Contents
 
 4.1.1.1.  Mandatory Registration Checks
 
-   During registration, a Transparency Service MUST, at a minimum,
+   During Registration, a Transparency Service MUST, at a minimum,
    syntactically check the Issuer of the Signed Statement by
    cryptographically verifying the COSE signature according to
    [RFC9052].  The Issuer identity MUST be bound to the Signed Statement
@@ -512,7 +512,7 @@ Table of Contents
 
    The Transparency Service MUST apply the Registration Policy that was
    most recently added to the Append-only Log at the time of
-   registration.
+   Registration.
 
 4.1.1.2.  Auditability of Registration
 
@@ -527,15 +527,15 @@ Table of Contents
 
 4.1.2.  Initialization and bootstrapping
 
-   Since the mandatory registration checks rely on having registered
-   Signed Statements for the registration policy and trust anchors,
+   Since the mandatory Registration checks rely on having registered
+   Signed Statements for the Registration Policy and trust anchors,
    Transparency Services MUST support at least one of the three
    following bootstrapping mechanisms:
 
    *  A built-in default Registration Policy and default trust anchors;
 
    *  Acceptance of a first Signed Statement whose payload is a valid
-      Registration Policy, without performing registration checks
+      Registration Policy, without performing Registration checks
 
    *  An out-of-band authenticated management interface
 
@@ -548,7 +548,7 @@ Table of Contents
 
    Append-Only:  once included in the verifiable data structure, a
       Signed Statement cannot be modified, deleted, or reordered; hence
-      its Receipt provides an offline verifiable proof of registration.
+      its Receipt provides an offline verifiable proof of Registration.
 
    Non-equivocation:  there is no fork in the Append-only Log. Everyone
       with access to its content sees the same collection of Signed
@@ -678,7 +678,7 @@ Table of Contents
    not assured on the presence of these optional fields.  A Registration
    Policy that requires an optional field to be present MUST reject any
    Signed Statements or Receipts that are invalid according to the
-   policy.
+   Registration Policy.
 
    Signed_Statement = #6.18(COSE_Sign1)
    Receipt = #6.18(COSE_Sign1)
@@ -773,16 +773,16 @@ Table of Contents
        Statement payload format, content and other optional properties.
 
    5.  *Apply Registration Policy:* The Transparency Service MUST check
-       the attributes required by a policy are present in the protected
-       headers.  Custom Signed Statements are evaluated given the
-       current Transparency Service state and the entire Envelope, and
-       may use information contained in the attributes of named
-       policies.
+       the attributes required by a Registration Policy are present in
+       the protected headers.  Custom Signed Statements are evaluated
+       given the current Transparency Service state and the entire
+       Envelope, and may use information contained in the attributes of
+       named policies.
 
    6.  *Register the Signed Statement* to the Append-only Log.
 
    7.  *Return the Receipt*, which MAY be asynchronous from
-       registration.  The Transparency Service MUST be able to provide a
+       Registration.  The Transparency Service MUST be able to provide a
        Receipt for all registered Statements.  A Receipt for a Signed
        Statement MAY be provided asynchronously.  Details about
        generating Receipts are described in Section 4.4.
@@ -815,7 +815,7 @@ Table of Contents
    Receipts are based on Signed Inclusion Proofs as described in COSE
    Signed Merkle Tree Proofs ([I-D.draft-ietf-cose-merkle-tree-proofs]).
 
-   The registration time is defined as the timestamp at which the
+   The Registration time is defined as the timestamp at which the
    Transparency Service has added this Signed Statement to its Append-
    only Log.
 
