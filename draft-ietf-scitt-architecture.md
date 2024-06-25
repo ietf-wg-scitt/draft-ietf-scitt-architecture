@@ -375,7 +375,7 @@ This section describes at a high level, the three main roles and associated proc
 Transparency Services MUST feature an Append-only Log.
 The Append-only Log is the verifiable data structure that records Signed Statements and supports the production of Receipts.
 
-All Transparency Services MUST expose APIs for the registration of Signed Statements and issuance of Receipts.
+All Transparency Services MUST expose APIs for the Registration of Signed Statements and issuance of Receipts.
 
 Transparency Services MAY support additional APIs for auditing, for instance, to query the history of Signed Statements.
 
@@ -389,7 +389,7 @@ Registration Policies refer to additional checks over and above the Mandatory Re
 
 Transparency Services MUST maintain Registration Policies.
 
-Transparency Services MUST also maintain a list of trust anchors, which SHOULD be used by Relying Parties to authenticate Issuers, and which MAY be included in a registration policy statement.
+Transparency Services MUST also maintain a list of trust anchors, which SHOULD be used by Relying Parties to authenticate Issuers, and which MAY be included in a Registration Policy statement.
 For instance, a trust anchor could be an X.509 root certificate, the discovery URL of an OpenID Connect identity provider, or any other COSE compatible PKI trust anchor.
 
 Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing the associated Receipts.
@@ -398,14 +398,14 @@ This specification leaves implementation, encoding and documentation of Registra
 
 #### Mandatory Registration Checks
 
-During registration, a Transparency Service MUST, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to {{RFC9052}}.
+During Registration, a Transparency Service MUST, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to {{RFC9052}}.
 The Issuer identity MUST be bound to the Signed Statement by including an identifier in the protected header.
 If the protected header includes multiple identifiers, all those that are registered by the Transparency Service MUST be checked.
 
 In essence, when using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t` located in the protected header of the COSE_Sign1 Envelope, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.
 An `x5chain` with a leaf certificate that corresponds to the `x5t` value MAY be included in the unprotected header in support of certain supply chain scenarios.
 
-The Transparency Service MUST apply the Registration Policy that was most recently added to the Append-only Log at the time of registration.
+The Transparency Service MUST apply the Registration Policy that was most recently added to the Append-only Log at the time of Registration.
 
 #### Auditability of Registration
 
@@ -415,10 +415,10 @@ Transparency Services MUST ensure that for any Signed Statement they register, e
 
 ### Initialization and bootstrapping {#ts-initialization}
 
-Since the mandatory registration checks rely on having registered Signed Statements for the registration policy and trust anchors, Transparency Services MUST support at least one of the three following bootstrapping mechanisms:
+Since the mandatory Registration checks rely on having registered Signed Statements for the Registration Policy and trust anchors, Transparency Services MUST support at least one of the three following bootstrapping mechanisms:
 
 - A built-in default Registration Policy and default trust anchors;
-- Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks
+- Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing Registration checks
 - An out-of-band authenticated management interface
 
 ### Append-only Log
@@ -428,7 +428,7 @@ This verifiable data structure MUST support the following security requirements:
 
 Append-Only:
 
-: once included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides an offline verifiable proof of registration.
+: once included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides an offline verifiable proof of Registration.
 
 Non-equivocation:
 
@@ -508,7 +508,7 @@ A Receipt is a Signed Statement, (cose-sign1), with addition Claims in its prote
 {{fig-signed-statement-cddl}} illustrates a normative CDDL definition (see {{-CDDL}}) for of the protected header and unprotected header of Signed Statements and Receipts.
 
 Everything that is optional in the following CDDL definition can potentially be discovered out of band and Registration Policies are not assured on the presence of these optional fields.
-A Registration Policy that requires an optional field to be present MUST reject any Signed Statements or Receipts that are invalid according to the policy.
+A Registration Policy that requires an optional field to be present MUST reject any Signed Statements or Receipts that are invalid according to the Registration Policy.
 
 ~~~ cddl
 
@@ -587,10 +587,10 @@ Authentication and authorization is implementation-specific, and out of scope of
 1. **Signature verification:** The Transparency Service MUST verify the signature of the Signed Statement, as described in {{RFC9360}}, using the signature algorithm and verification key of the Issuer.
 1. **Signed Statement validation:** The Transparency Service MUST check that the Signed Statement includes the required protected headers listed above.
 The Transparency Service MAY verify the Statement payload format, content and other optional properties.
-1. **Apply Registration Policy:** The Transparency Service MUST check the attributes required by a policy are present in the protected headers.
+1. **Apply Registration Policy:** The Transparency Service MUST check the attributes required by a Registration Policy are present in the protected headers.
   Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.
 1. **Register the Signed Statement** to the Append-only Log.
-1. **Return the Receipt**, which MAY be asynchronous from registration.
+1. **Return the Receipt**, which MAY be asynchronous from Registration.
 The Transparency Service MUST be able to provide a Receipt for all registered Statements.
 A Receipt for a Signed Statement MAY be provided asynchronously.
 Details about generating Receipts are described in {{Receipt}}.
@@ -613,7 +613,7 @@ When a Receipt is included in a Signed Statement a Transparent Statement is prod
 
 Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}).
 
-The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.
+The Registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.
 
 {{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements.
 
