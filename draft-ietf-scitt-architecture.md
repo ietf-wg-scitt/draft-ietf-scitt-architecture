@@ -274,7 +274,7 @@ The identity of a Transparency Service is captured by a public key that must be 
 Transparent Statement:
 
 : a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
-The receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
+The Receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
 A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.
 
 {: #mybody}
@@ -300,7 +300,7 @@ A Receipt is an offline, universally-verifiable proof that an entry is recorded 
 Receipts do not expire, but it is possible to append new entries (more recent Signed Statements) that subsume older entries (less recent Signed Statements).
 
 Anyone with access to the Transparency Service can independently verify its consistency and review the complete list of Transparent Statements registered by each Issuer.
-However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, from a from the first Transparency Service ) and register it on another Transparency Service, where the second receipt will be over the first Receipt in the unprotected header.
+However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, from a from the first Transparency Service ) and register it on another Transparency Service, where the second Receipt will be over the first Receipt in the unprotected header.
 
 Reputable Issuers are thus incentivized to carefully review their Statements before signing them to produce Signed Statements.
 Similarly, reputable Transparency Services are incentivized to secure their Append-only Log, as any inconsistency can easily be pinpointed by any Auditor with read access to the Transparency Service.
@@ -447,7 +447,7 @@ Specific verifiable data structures, such those describes in {{-CT}} and {{-COME
 
 Transparency Services can be deployed along side other database or object storage technologies.
 For example, a Transparency Service that is supporting a software package management system, might be referenced from the APIs exposed for package management.
-Providing an ability to request a fresh receipt for a given software package, or to request a list of Signed Statements associated with the software package.
+Providing an ability to request a fresh Receipt for a given software package, or to request a list of Signed Statements associated with the software package.
 
 ## Signed Statements
 
@@ -591,8 +591,8 @@ The Transparency Service MAY verify the Statement payload format, content and ot
   Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.
 1. **Register the Signed Statement** to the Append-only Log.
 1. **Return the Receipt**, which MAY be asynchronous from registration.
-The Transparency Service MUST be able to provide a receipt for all registered Statements.
-A receipt for a Signed Statement MAY be provided asynchronously.
+The Transparency Service MUST be able to provide a Receipt for all registered Statements.
+A Receipt for a Signed Statement MAY be provided asynchronously.
 Details about generating Receipts are described in {{Receipt}}.
 
 The last two steps may be shared between a batch of Signed Statements recorded in the Append-only Log.
@@ -600,7 +600,7 @@ The last two steps may be shared between a batch of Signed Statements recorded i
 A Transparency Service MUST ensure that a Signed Statement is registered before releasing its Receipt.
 
 The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
-The multiple receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.
+The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.
 
 ## Transparent Statements {#Receipt}
 
@@ -626,8 +626,8 @@ Unprotected_Header = {
 ~~~
 {: #fig-transparent-statement-cddl title="CDDL definition for a Transparent Statement"}
 
-{{fig-transparent-statement-edn}} illustrates a Transparent Statement with a detached payload, and two receipts in its unprotected header.
-The label 394 `receipts` in unprotected header can contain multiple receipts.
+{{fig-transparent-statement-edn}} illustrates a Transparent Statement with a detached payload, and two Receipts in its unprotected header.
+The label 394 `receipts` in unprotected header can contain multiple Receipts.
 
 ~~~ cbor-diag
 18(                                 / COSE Sign 1                   /
@@ -687,7 +687,7 @@ The verifiable data structure (`-111`) uses `1` from (RFC9162_SHA256).
 {: #fig-receipt-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Protected Header"}
 
 {{fig-receipt-inclusion-proof-edn}} illustrates the decoded inclusion proof from {{fig-receipt-edn}}.
-This inclusion proof indicates that the size of the transparency log was `8` at the time the receipt was issued.
+This inclusion proof indicates that the size of the transparency log was `8` at the time the Receipt was issued.
 The structure of this inclusion proof is specific to the verifiable data structure used (RFC9162_SHA256).
 
 ~~~ cbor-diag
@@ -940,7 +940,7 @@ NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the defini
 
 # Identifiers
 
-This section provides informative examples of identifiers for statements, signed statements, and receipts.
+This section provides informative examples of identifiers for statements, signed statements, and Receipts.
 
 SCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats.
 
@@ -958,7 +958,7 @@ resource: content-type = dereference(identifier: identifier-type)
 
 These identifiers MAY be present in a `tstr` field that does not otherwise restrict the string in ways that prevent a URN or URL from being present.
 
-This includes `iss`, and `sub` which are used to express the Issuer and subject of a signed statement or receipt.
+This includes `iss`, and `sub` which are used to express the Issuer and subject of a signed statement or Receipt.
 
 This also includes `kid` which is used to express a hint for which public key should be used to verify a signature.
 
@@ -1023,9 +1023,9 @@ urn:ietf:params:scitt:\
 {base64url-encoded-bytes-digest}
 ~~~
 
-Note that because this identifier is computed over the unprotected header of the Signed Statement, any changes to the unprotected header, such as changing the order of the unprotected header map key value pairs, adding additional receipts, or adding additional proofs to a receipt, will change the identifier of a transparent statement.
+Note that because this identifier is computed over the unprotected header of the Signed Statement, any changes to the unprotected header, such as changing the order of the unprotected header map key value pairs, adding additional Receipts, or adding additional proofs to a Receipt, will change the identifier of a transparent statement.
 
-Note that because this identifier is computed over the signatures of the signed statement and signatures in each receipt, any canonicalization of the signatures after the fact will produce a distinct identifier.
+Note that because this identifier is computed over the signatures of the signed statement and signatures in each Receipt, any canonicalization of the signatures after the fact will produce a distinct identifier.
 
 ## Statements
 
