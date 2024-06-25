@@ -2317,7 +2317,7 @@ This enables the gradual transition to stronger algorithms, including e.g. post-
 <a href="#section-6.2.5" class="section-number selfRef">6.2.5. </a><a href="#name-transparency-service-client" class="section-name selfRef">Transparency Service Client Applications</a>
           </h4>
 <p id="section-6.2.5-1">Authentication of Client applications is out of scope for this document.
-Transparency Services <span class="bcp14">MUST</span> authenticate both Client applications and the Issuer of signed statements in order to ensure that implementation specific authentication and authorization policies are enforced.
+Transparency Services <span class="bcp14">MUST</span> authenticate both Client applications and the Issuer of Signed Statements in order to ensure that implementation specific authentication and authorization policies are enforced.
 The specification of authentication and authorization policies is out of scope for this document.<a href="#section-6.2.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2631,7 +2631,7 @@ Assertions may also contain verified attributes."<a href="#appendix-A-9" class="
       <h2 id="name-identifiers">
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-identifiers" class="section-name selfRef">Identifiers</a>
       </h2>
-<p id="appendix-B-1">This section provides informative examples of identifiers for statements, signed statements, and Receipts.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">This section provides informative examples of identifiers for statements, Signed Statements, and Receipts.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <p id="appendix-B-2">SCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <p id="appendix-B-3">SCITT Identifiers for URLs and URNs that are not Data URLs <span class="bcp14">MUST</span> be represented in binary using <span>[<a href="#I-D.draft-ietf-core-href" class="cite xref">I-D.draft-ietf-core-href</a>]</span>.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
 <p id="appendix-B-4">For each SCITT conceptual message, we define a Data URL format according to <span>[<a href="#RFC2397" class="cite xref">RFC2397</a>]</span>, a URN format according to <span>[<a href="#RFC8141" class="cite xref">RFC8141</a>]</span> and a URL format according to <span>[<a href="#URLs" class="cite xref">URLs</a>]</span>.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
@@ -2643,7 +2643,7 @@ resource: content-type = dereference(identifier: identifier-type)
 </pre><a href="#appendix-B-7" class="pilcrow">¶</a>
 </div>
 <p id="appendix-B-8">These identifiers <span class="bcp14">MAY</span> be present in a <code>tstr</code> field that does not otherwise restrict the string in ways that prevent a URN or URL from being present.<a href="#appendix-B-8" class="pilcrow">¶</a></p>
-<p id="appendix-B-9">This includes <code>iss</code>, and <code>sub</code> which are used to express the Issuer and subject of a signed statement or Receipt.<a href="#appendix-B-9" class="pilcrow">¶</a></p>
+<p id="appendix-B-9">This includes <code>iss</code>, and <code>sub</code> which are used to express the Issuer and subject of a Signed Statement or Receipt.<a href="#appendix-B-9" class="pilcrow">¶</a></p>
 <p id="appendix-B-10">This also includes <code>kid</code> which is used to express a hint for which public key should be used to verify a signature.<a href="#appendix-B-10" class="pilcrow">¶</a></p>
 <p id="appendix-B-11">All SCITT identifiers share common parameters to promote interoperability:<a href="#appendix-B-11" class="pilcrow">¶</a></p>
 <p id="appendix-B-12">Let hash-name be an algorithm name registered in <span>[<a href="#IANA.named-information" class="cite xref">IANA.named-information</a>]</span>.<a href="#appendix-B-12" class="pilcrow">¶</a></p>
@@ -2688,7 +2688,7 @@ urn:ietf:params:scitt:\
 </pre><a href="#appendix-B.2-5" class="pilcrow">¶</a>
 </div>
 <p id="appendix-B.2-6">Note that this means the content of the signature is not included in the identifier, even though signature related Claims, such as activation or expiration information in protected headers are included.<a href="#appendix-B.2-6" class="pilcrow">¶</a></p>
-<p id="appendix-B.2-7">As a result, an attacker may construct a new signed statement that has the same identifier as a previous signed statement, but has a different signature.<a href="#appendix-B.2-7" class="pilcrow">¶</a></p>
+<p id="appendix-B.2-7">As a result, an attacker may construct a new Signed Statement that has the same identifier as a previous Signed Statement, but has a different signature.<a href="#appendix-B.2-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-identifiers-for-transparent-statements">
@@ -2706,7 +2706,7 @@ urn:ietf:params:scitt:\
 </pre><a href="#appendix-B.3-2" class="pilcrow">¶</a>
 </div>
 <p id="appendix-B.3-3">Note that because this identifier is computed over the unprotected header of the Signed Statement, any changes to the unprotected header, such as changing the order of the unprotected header map key value pairs, adding additional Receipts, or adding additional proofs to a Receipt, will change the identifier of a transparent statement.<a href="#appendix-B.3-3" class="pilcrow">¶</a></p>
-<p id="appendix-B.3-4">Note that because this identifier is computed over the signatures of the signed statement and signatures in each Receipt, any canonicalization of the signatures after the fact will produce a distinct identifier.<a href="#appendix-B.3-4" class="pilcrow">¶</a></p>
+<p id="appendix-B.3-4">Note that because this identifier is computed over the signatures of the Signed Statement and signatures in each Receipt, any canonicalization of the signatures after the fact will produce a distinct identifier.<a href="#appendix-B.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-statements">
