@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 22 November 2024                                     C. Fournet
+Expires: 27 December 2024                                     C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                             21 May 2024
+                                                            25 June 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 November 2024.
+   This Internet-Draft will expire on 27 December 2024.
 
 Copyright Notice
 
@@ -229,7 +229,7 @@ Table of Contents
       COSE envelope.
 
    Non-equivocation:  a state where it is impossible for a Transparency
-      Service to provide different views of its append-only log to
+      Service to provide different views of its Append-only Log to
       Relying Parties about the same Artifact.  Over time, an Issuer may
       register new Signed Statements about an Artifact in a Transparency
       Service with new information.  However, the consistency of a
@@ -398,48 +398,48 @@ Table of Contents
    COSE Signed Merkle Tree Proof document
    [I-D.draft-ietf-cose-merkle-tree-proofs].
 
-     .----------.
-    |  Artifact  |
-     '----+-----'
-          v
-     .----+----.  .----------.     .-----------.
-    | Statement ||  Envelope  +   |  Identity   |
-     '----+----'  '-----+----'    |  Documents  |
-          |             |          '---+--+----'
-           '----. .----'     cose sign |  | cose verify
-                 |                     |  |
-                 v                     |  |'----------.
-            .----+----.                |  |            |
-           |  Signed   |               |  |            |
-           | Statement +<-------------'|  |            |
-            '----+----'                v  v            |
-                 |                 +---+--+--------+   |
-              .-' '--------------->+ Transparency  |   |
-             |   .--------.        |               |   |
-             |  | Receipt  +<------+  Service      +-+ |
-             |  |          +.      +--+------------+ | |
-             |   '-+------'  |        | Transparency | |
-             |     | Receipt +<-------+              | |
-             |      '------+'         | Service      | |
-              '-------. .-'           +------------+-+ |
-                       |                           |   |
-                       v                           |   |
-                 .-----+-----.                     |   |
-                | Transparent |                    |   |
-                |  Statement  |                    |   |
-                 '-----+-----'                     |   |
-                       |                           |   |
-                       |'-----------.   .----------)--'
-                       |             | |           |
-                       |             v v           |
-                       |    .--------+-+---------. |
-                       |   / Verify Transparent /  |
-                       |  /      Statement     /   |
-                       | '--------------------'    |
-                       v                           v
-              .--------+---------.      .----------+-----.
-             / Collect Receipts /      /   Replay Log   /
-            '------------------'      '----------------'
+    .----------.
+   |  Artifact  |
+    '-----+----'             .-----------.
+          v                 |  Identity   |
+     .----+----.            |  Documents  |
+    | Statement |            '---+--+----'
+     '----+----'       cose sign |  | cose verify
+          |    .----------------'|  |
+          |   |                  |  |
+          v   v                  |  |'----------.
+     .----+---+---.              |  |            |
+    |    Signed    |             |  |            |
+    |   Statement  |             |  |            |
+    | (COSE_Sign1) |             |  |            |
+     '------+-----'              v  v            |
+            |                +---+--+--------+   |
+        .--' '-------------->+ Transparency  |   |
+       |   .--------.        |               |   |
+       |  | Receipt  +<------+  Service      +-+ |
+       |  |          +.      +--+------------+ | |
+       |   '-+------'  |        | Transparency | |
+       |     | Receipt +<-------+              | |
+       |      '------+'         | Service      | |
+        '-------. .-'           +------------+-+ |
+                 |                           |   |
+                 v                           |   |
+           .-----+-----.                     |   |
+          | Transparent |                    |   |
+          |  Statement  |                    |   |
+           '-----+-----'                     |   |
+                 |                           |   |
+                 |'-----------.   .----------)--'
+                 |             | |           |
+                 |             v v           |
+                 |    .--------+-+---------. |
+                 |   / Verify Transparent /  |
+                 |  /      Statement     /   |
+                 | '--------------------'    |
+                 v                           v
+        .--------+---------.      .----------+-----.
+       / Collect Receipts /      /   Replay Log   /
+      '------------------'      '----------------'
 
    This section describes at a high level, the three main roles and
    associated processes in SCITT: Issuers and Signed Statements,
@@ -779,7 +779,7 @@ Table of Contents
        may use information contained in the attributes of named
        policies.
 
-   6.  *Register the Signed Statement* to the append-only log.
+   6.  *Register the Signed Statement* to the Append-only Log.
 
    7.  *Return the Receipt*, which MAY be asynchronous from
        registration.  The Transparency Service MUST be able to provide a
@@ -1409,16 +1409,16 @@ Table of Contents
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-04, 2 March
+              Draft, draft-ietf-cose-merkle-tree-proofs-05, 18 June
               2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-04>.
+              cose-merkle-tree-proofs-05>.
 
    [I-D.draft-ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
               Wallace, "The Entity Attestation Token (EAT)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-eat-26, 5 May
+              Progress, Internet-Draft, draft-ietf-rats-eat-27, 26 May
               2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              rats-eat-26>.
+              rats-eat-27>.
 
    [in-toto]  "in-toto", n.d., <https://in-toto.io/>.
 
