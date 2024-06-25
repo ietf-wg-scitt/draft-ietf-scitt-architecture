@@ -263,7 +263,7 @@ Subject:
 
 : an identifier, defined by the Issuer, that represents the organization, device, user, entity, or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements can be grouped.
 It is possible that there are multiple Statements about the same Artifact.
-In these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific subject.
+In these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific Subject.
 
 Transparency Service:
 
@@ -915,7 +915,7 @@ To indicate that the content is an scitt configuration represented as JSON:
 
 This document has been developed in coordination with the COSE, OAUTH and RATS WG and uses terminology common to these working groups.
 
-This document uses the terms "Issuer", and "subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and in particular, the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
+This document uses the terms "Issuer", and "Subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and in particular, the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
 
 The terms "verifier" and "Relying Party" are used interchangeably through the document. While these terms are related to "Verifier" and "Relying Party" as used in {{RFC9334}}, they do not imply the processing of RATS conceptual messages, such as Evidence or Attestation Results that are specific to remote attestation. A SCITT "verifier" and "Relying Party" and "Issuer" of Receipts or Statements might take on the role of a RATS "Attester". Correspondingly, all RATS conceptual messages, such as Evidence and Attestation Results, can be the content of SCITT Statements and a SCITT "verifier" can also take on the role of a RATS "Verifier" to, for example, conduct the procedure of Appraisal of Evidence as a part of a SCITT "verifier"'s verification capabilities.
 
@@ -923,7 +923,7 @@ The terms "Claim" and "Statement" are used throughout this document, where Claim
 
 The term "Subject" provides an identifier of the Issuer's choosing to refer to a given Artifact, and ensures that all associated Statements can be attributed to the identifier chosen by the Issuer.
 
-In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the Issuer identifies themselves using the `iss` Claim, and the specific software that was analyzed as the subject using the `sub` Claim.
+In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the Issuer identifies themselves using the `iss` Claim, and the specific software that was analyzed as the Subject using the `sub` Claim.
 
 In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer". This means the AS initially acts as a "verifier", and then later as an "Issuer". This mirrors how Signed Statements are verified before Receipts are issued by a Transparency Service.
 
@@ -958,7 +958,7 @@ resource: content-type = dereference(identifier: identifier-type)
 
 These identifiers MAY be present in a `tstr` field that does not otherwise restrict the string in ways that prevent a URN or URL from being present.
 
-This includes `iss`, and `sub` which are used to express the Issuer and subject of a Signed Statement or Receipt.
+This includes `iss`, and `sub` which are used to express the Issuer and Subject of a Signed Statement or Receipt.
 
 This also includes `kid` which is used to express a hint for which public key should be used to verify a signature.
 
