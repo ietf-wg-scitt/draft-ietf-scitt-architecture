@@ -1218,7 +1218,7 @@ Table of Contents
 
    Authentication of Client applications is out of scope for this
    document.  Transparency Services MUST authenticate both Client
-   applications and the Issuer of signed statements in order to ensure
+   applications and the Issuer of Signed Statements in order to ensure
    that implementation specific authentication and authorization
    policies are enforced.  The specification of authentication and
    authorization policies is out of scope for this document.
@@ -1595,7 +1595,7 @@ Appendix A.  Common Terminology Disambiguation
 Appendix B.  Identifiers
 
    This section provides informative examples of identifiers for
-   statements, signed statements, and Receipts.
+   statements, Signed Statements, and Receipts.
 
    SCITT Identifiers are primarily meant to be understood by humans and
    secondarily meant to be understood by machines, as such we define
@@ -1624,7 +1624,7 @@ Appendix B.  Identifiers
    being present.
 
    This includes iss, and sub which are used to express the Issuer and
-   subject of a signed statement or Receipt.
+   subject of a Signed Statement or Receipt.
 
    This also includes kid which is used to express a hint for which
    public key should be used to verify a signature.
@@ -1688,8 +1688,8 @@ B.2.  Identifiers For SCITT Messages
    activation or expiration information in protected headers are
    included.
 
-   As a result, an attacker may construct a new signed statement that
-   has the same identifier as a previous signed statement, but has a
+   As a result, an attacker may construct a new Signed Statement that
+   has the same identifier as a previous Signed Statement, but has a
    different signature.
 
 B.3.  Identifiers For Transparent Statements
@@ -1709,7 +1709,7 @@ B.3.  Identifiers For Transparent Statements
    to a Receipt, will change the identifier of a transparent statement.
 
    Note that because this identifier is computed over the signatures of
-   the signed statement and signatures in each Receipt, any
+   the Signed Statement and signatures in each Receipt, any
    canonicalization of the signatures after the fact will produce a
    distinct identifier.
 
