@@ -846,7 +846,7 @@ All contents exchanged between actors is protected using secure authenticated ch
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
 Some Transparency Services may publish every Signed Statement in their logs, to facilitate their dissemination and auditing.
-Transparency Services MAY return Receipts to client applications synchronously or asynchronously.
+Transparency Services MAY return Receipts to Client applications synchronously or asynchronously.
 
 A collection of Signed Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.
 
@@ -866,7 +866,7 @@ This enables the gradual transition to stronger algorithms, including e.g. post-
 ### Transparency Service Client Applications
 
 Authentication of Client applications is out of scope for this document.
-Transparency Services MUST authenticate both client applications and the Issuer of signed statements in order to ensure that implementation specific authentication and authorization policies are enforced.
+Transparency Services MUST authenticate both Client applications and the Issuer of signed statements in order to ensure that implementation specific authentication and authorization policies are enforced.
 The specification of authentication and authorization policies is out of scope for this document.
 
 ### Impersonation
