@@ -1524,12 +1524,12 @@ Appendix A.  Common Terminology Disambiguation
    particular, the guidance in [RFC8725] generally applies the COSE
    equivalent terms with consistent semantics.
 
-   The terms "verifier" and "relying party" are used interchangeably
+   The terms "verifier" and "Relying Party" are used interchangeably
    through the document.  While these terms are related to "Verifier"
    and "Relying Party" as used in [RFC9334], they do not imply the
    processing of RATS conceptual messages, such as Evidence or
    Attestation Results that are specific to remote attestation.  A SCITT
-   "verifier" and "relying party" and "Issuer" of Receipts or Statements
+   "verifier" and "Relying Party" and "Issuer" of Receipts or Statements
    might take on the role of a RATS "Attester".  Correspondingly, all
    RATS conceptual messages, such as Evidence and Attestation Results,
    can be the content of SCITT Statements and a SCITT "verifier" can
