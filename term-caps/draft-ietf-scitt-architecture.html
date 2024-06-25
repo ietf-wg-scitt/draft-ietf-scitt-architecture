@@ -1491,7 +1491,7 @@ The identity of a Transparency Service is captured by a public key that must be 
 <dt id="section-2-5.33">Transparent Statement:</dt>
         <dd style="margin-left: 1.5em" id="section-2-5.34">
           <p id="section-2-5.34.1">a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
-The receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
+The Receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
 A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.<a href="#section-2-5.34.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
@@ -1518,7 +1518,7 @@ Implementations of Transparency Services may protect their Append-only Log using
 A Receipt is an offline, universally-verifiable proof that an entry is recorded in the Append-only Log.
 Receipts do not expire, but it is possible to append new entries (more recent Signed Statements) that subsume older entries (less recent Signed Statements).<a href="#section-3-4" class="pilcrow">¶</a></p>
 <p id="section-3-5">Anyone with access to the Transparency Service can independently verify its consistency and review the complete list of Transparent Statements registered by each Issuer.
-However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, from a from the first Transparency Service ) and register it on another Transparency Service, where the second receipt will be over the first Receipt in the unprotected header.<a href="#section-3-5" class="pilcrow">¶</a></p>
+However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, from a from the first Transparency Service ) and register it on another Transparency Service, where the second Receipt will be over the first Receipt in the unprotected header.<a href="#section-3-5" class="pilcrow">¶</a></p>
 <p id="section-3-6">Reputable Issuers are thus incentivized to carefully review their Statements before signing them to produce Signed Statements.
 Similarly, reputable Transparency Services are incentivized to secure their Append-only Log, as any inconsistency can easily be pinpointed by any Auditor with read access to the Transparency Service.<a href="#section-3-6" class="pilcrow">¶</a></p>
 <p id="section-3-7">The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital Artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.<a href="#section-3-7" class="pilcrow">¶</a></p>
@@ -1809,7 +1809,7 @@ Everyone with access to its content sees the same collection of Signed Statement
           </h4>
 <p id="section-4.1.4-1">Transparency Services can be deployed along side other database or object storage technologies.
 For example, a Transparency Service that is supporting a software package management system, might be referenced from the APIs exposed for package management.
-Providing an ability to request a fresh receipt for a given software package, or to request a list of Signed Statements associated with the software package.<a href="#section-4.1.4-1" class="pilcrow">¶</a></p>
+Providing an ability to request a fresh Receipt for a given software package, or to request a list of Signed Statements associated with the software package.<a href="#section-4.1.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2001,15 +2001,15 @@ The Transparency Service <span class="bcp14">MAY</span> verify the Statement pay
 </li>
           <li id="section-4.3-2.7">
             <p id="section-4.3-2.7.1"><strong>Return the Receipt</strong>, which <span class="bcp14">MAY</span> be asynchronous from registration.
-The Transparency Service <span class="bcp14">MUST</span> be able to provide a receipt for all registered Statements.
-A receipt for a Signed Statement <span class="bcp14">MAY</span> be provided asynchronously.
+The Transparency Service <span class="bcp14">MUST</span> be able to provide a Receipt for all registered Statements.
+A Receipt for a Signed Statement <span class="bcp14">MAY</span> be provided asynchronously.
 Details about generating Receipts are described in <a href="#Receipt" class="auto internal xref">Section 4.4</a>.<a href="#section-4.3-2.7.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
 <p id="section-4.3-3">The last two steps may be shared between a batch of Signed Statements recorded in the Append-only Log.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
 <p id="section-4.3-4">A Transparency Service <span class="bcp14">MUST</span> ensure that a Signed Statement is registered before releasing its Receipt.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
 <p id="section-4.3-5">The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
-The multiple receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.<a href="#section-4.3-5" class="pilcrow">¶</a></p>
+The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.<a href="#section-4.3-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="Receipt">
@@ -2040,8 +2040,8 @@ Unprotected_Header = {
 <a href="#name-cddl-definition-for-a-trans" class="selfRef">CDDL definition for a Transparent Statement</a>
           </figcaption></figure>
 </div>
-<p id="section-4.4-7"><a href="#fig-transparent-statement-edn" class="auto internal xref">Figure 5</a> illustrates a Transparent Statement with a detached payload, and two receipts in its unprotected header.
-The label 394 <code>receipts</code> in unprotected header can contain multiple receipts.<a href="#section-4.4-7" class="pilcrow">¶</a></p>
+<p id="section-4.4-7"><a href="#fig-transparent-statement-edn" class="auto internal xref">Figure 5</a> illustrates a Transparent Statement with a detached payload, and two Receipts in its unprotected header.
+The label 394 <code>receipts</code> in unprotected header can contain multiple Receipts.<a href="#section-4.4-7" class="pilcrow">¶</a></p>
 <span id="name-cbor-extended-diagnostic-nota"></span><div id="fig-transparent-statement-edn">
 <figure id="figure-5">
           <div class="lang-cbor-diag sourcecode" id="section-4.4-8.1">
@@ -2116,7 +2116,7 @@ The verifiable data structure (<code>-111</code>) uses <code>1</code> from (RFC9
           </figcaption></figure>
 </div>
 <p id="section-4.4-13"><a href="#fig-receipt-inclusion-proof-edn" class="auto internal xref">Figure 8</a> illustrates the decoded inclusion proof from <a href="#fig-receipt-edn" class="auto internal xref">Figure 6</a>.
-This inclusion proof indicates that the size of the transparency log was <code>8</code> at the time the receipt was issued.
+This inclusion proof indicates that the size of the transparency log was <code>8</code> at the time the Receipt was issued.
 The structure of this inclusion proof is specific to the verifiable data structure used (RFC9162_SHA256).<a href="#section-4.4-13" class="pilcrow">¶</a></p>
 <span id="name-cbor-extended-diagnostic-notatio"></span><div id="fig-receipt-inclusion-proof-edn">
 <figure id="figure-8">
@@ -2631,7 +2631,7 @@ Assertions may also contain verified attributes."<a href="#appendix-A-9" class="
       <h2 id="name-identifiers">
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-identifiers" class="section-name selfRef">Identifiers</a>
       </h2>
-<p id="appendix-B-1">This section provides informative examples of identifiers for statements, signed statements, and receipts.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">This section provides informative examples of identifiers for statements, signed statements, and Receipts.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <p id="appendix-B-2">SCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <p id="appendix-B-3">SCITT Identifiers for URLs and URNs that are not Data URLs <span class="bcp14">MUST</span> be represented in binary using <span>[<a href="#I-D.draft-ietf-core-href" class="cite xref">I-D.draft-ietf-core-href</a>]</span>.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
 <p id="appendix-B-4">For each SCITT conceptual message, we define a Data URL format according to <span>[<a href="#RFC2397" class="cite xref">RFC2397</a>]</span>, a URN format according to <span>[<a href="#RFC8141" class="cite xref">RFC8141</a>]</span> and a URL format according to <span>[<a href="#URLs" class="cite xref">URLs</a>]</span>.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
@@ -2643,7 +2643,7 @@ resource: content-type = dereference(identifier: identifier-type)
 </pre><a href="#appendix-B-7" class="pilcrow">¶</a>
 </div>
 <p id="appendix-B-8">These identifiers <span class="bcp14">MAY</span> be present in a <code>tstr</code> field that does not otherwise restrict the string in ways that prevent a URN or URL from being present.<a href="#appendix-B-8" class="pilcrow">¶</a></p>
-<p id="appendix-B-9">This includes <code>iss</code>, and <code>sub</code> which are used to express the Issuer and subject of a signed statement or receipt.<a href="#appendix-B-9" class="pilcrow">¶</a></p>
+<p id="appendix-B-9">This includes <code>iss</code>, and <code>sub</code> which are used to express the Issuer and subject of a signed statement or Receipt.<a href="#appendix-B-9" class="pilcrow">¶</a></p>
 <p id="appendix-B-10">This also includes <code>kid</code> which is used to express a hint for which public key should be used to verify a signature.<a href="#appendix-B-10" class="pilcrow">¶</a></p>
 <p id="appendix-B-11">All SCITT identifiers share common parameters to promote interoperability:<a href="#appendix-B-11" class="pilcrow">¶</a></p>
 <p id="appendix-B-12">Let hash-name be an algorithm name registered in <span>[<a href="#IANA.named-information" class="cite xref">IANA.named-information</a>]</span>.<a href="#appendix-B-12" class="pilcrow">¶</a></p>
@@ -2705,8 +2705,8 @@ urn:ietf:params:scitt:\
 {base64url-encoded-bytes-digest}
 </pre><a href="#appendix-B.3-2" class="pilcrow">¶</a>
 </div>
-<p id="appendix-B.3-3">Note that because this identifier is computed over the unprotected header of the Signed Statement, any changes to the unprotected header, such as changing the order of the unprotected header map key value pairs, adding additional receipts, or adding additional proofs to a receipt, will change the identifier of a transparent statement.<a href="#appendix-B.3-3" class="pilcrow">¶</a></p>
-<p id="appendix-B.3-4">Note that because this identifier is computed over the signatures of the signed statement and signatures in each receipt, any canonicalization of the signatures after the fact will produce a distinct identifier.<a href="#appendix-B.3-4" class="pilcrow">¶</a></p>
+<p id="appendix-B.3-3">Note that because this identifier is computed over the unprotected header of the Signed Statement, any changes to the unprotected header, such as changing the order of the unprotected header map key value pairs, adding additional Receipts, or adding additional proofs to a Receipt, will change the identifier of a transparent statement.<a href="#appendix-B.3-3" class="pilcrow">¶</a></p>
+<p id="appendix-B.3-4">Note that because this identifier is computed over the signatures of the signed statement and signatures in each Receipt, any canonicalization of the signatures after the fact will produce a distinct identifier.<a href="#appendix-B.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-statements">
