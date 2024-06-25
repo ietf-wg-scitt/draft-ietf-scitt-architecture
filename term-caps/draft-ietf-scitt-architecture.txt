@@ -300,7 +300,7 @@ Table of Contents
 
    Transparent Statement:  a Signed Statement that is augmented with a
       Receipt created via Registration in a Transparency Service.  The
-      receipt is stored in the unprotected header of COSE Envelope of
+      Receipt is stored in the unprotected header of COSE Envelope of
       the Signed Statement.  A Transparent Statement remains a valid
       Signed Statement, and may be registered again in a different
       Transparency Service.
@@ -350,7 +350,7 @@ Table of Contents
    possible to take a Transparent Statement (i.e. a Signed Statement
    with a Receipt in its unprotected header, from a from the first
    Transparency Service ) and register it on another Transparency
-   Service, where the second receipt will be over the first Receipt in
+   Service, where the second Receipt will be over the first Receipt in
    the unprotected header.
 
    Reputable Issuers are thus incentivized to carefully review their
@@ -574,7 +574,7 @@ Table of Contents
    object storage technologies.  For example, a Transparency Service
    that is supporting a software package management system, might be
    referenced from the APIs exposed for package management.  Providing
-   an ability to request a fresh receipt for a given software package,
+   an ability to request a fresh Receipt for a given software package,
    or to request a list of Signed Statements associated with the
    software package.
 
@@ -783,7 +783,7 @@ Table of Contents
 
    7.  *Return the Receipt*, which MAY be asynchronous from
        registration.  The Transparency Service MUST be able to provide a
-       receipt for all registered Statements.  A receipt for a Signed
+       Receipt for all registered Statements.  A Receipt for a Signed
        Statement MAY be provided asynchronously.  Details about
        generating Receipts are described in Section 4.4.
 
@@ -795,7 +795,7 @@ Table of Contents
 
    The same Signed Statement may be independently registered in multiple
    Transparency Services, producing multiple, independent Receipts.  The
-   multiple receipts may be attached to the unprotected header of the
+   multiple Receipts may be attached to the unprotected header of the
    Signed Statement, creating a Transparent Statement.
 
 4.4.  Transparent Statements
@@ -831,8 +831,8 @@ Table of Contents
            Figure 4: CDDL definition for a Transparent Statement
 
    Figure 5 illustrates a Transparent Statement with a detached payload,
-   and two receipts in its unprotected header.  The label 394 receipts
-   in unprotected header can contain multiple receipts.
+   and two Receipts in its unprotected header.  The label 394 receipts
+   in unprotected header can contain multiple Receipts.
 
    18(                                 / COSE Sign 1                   /
        [
@@ -895,7 +895,7 @@ Table of Contents
 
    Figure 8 illustrates the decoded inclusion proof from Figure 6.  This
    inclusion proof indicates that the size of the transparency log was 8
-   at the time the receipt was issued.  The structure of this inclusion
+   at the time the Receipt was issued.  The structure of this inclusion
    proof is specific to the verifiable data structure used
    (RFC9162_SHA256).
 
@@ -1595,7 +1595,7 @@ Appendix A.  Common Terminology Disambiguation
 Appendix B.  Identifiers
 
    This section provides informative examples of identifiers for
-   statements, signed statements, and receipts.
+   statements, signed statements, and Receipts.
 
    SCITT Identifiers are primarily meant to be understood by humans and
    secondarily meant to be understood by machines, as such we define
@@ -1624,7 +1624,7 @@ Appendix B.  Identifiers
    being present.
 
    This includes iss, and sub which are used to express the Issuer and
-   subject of a signed statement or receipt.
+   subject of a signed statement or Receipt.
 
    This also includes kid which is used to express a hint for which
    public key should be used to verify a signature.
@@ -1705,11 +1705,11 @@ B.3.  Identifiers For Transparent Statements
    Note that because this identifier is computed over the unprotected
    header of the Signed Statement, any changes to the unprotected
    header, such as changing the order of the unprotected header map key
-   value pairs, adding additional receipts, or adding additional proofs
-   to a receipt, will change the identifier of a transparent statement.
+   value pairs, adding additional Receipts, or adding additional proofs
+   to a Receipt, will change the identifier of a transparent statement.
 
    Note that because this identifier is computed over the signatures of
-   the signed statement and signatures in each receipt, any
+   the signed statement and signatures in each Receipt, any
    canonicalization of the signatures after the fact will produce a
    distinct identifier.
 
