@@ -220,7 +220,7 @@ Issuer:
 
 : an identifier representing an organization, device, user, or entity securing Statements about supply chain Artifacts.
 An Issuer may be the owner or author of Artifacts, or an independent third party such as an Auditor, reviewer or an endorser.
-In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE header parameter `15: CWT_Claims` within the protected header of a COSE envelope.
+In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE header parameter `15: CWT_Claims` within the protected header of a COSE Envelope.
 
 Non-equivocation:
 
@@ -402,7 +402,7 @@ During registration, a Transparency Service MUST, at a minimum, syntactically ch
 The Issuer identity MUST be bound to the Signed Statement by including an identifier in the protected header.
 If the protected header includes multiple identifiers, all those that are registered by the Transparency Service MUST be checked.
 
-In essence, when using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t` located in the protected header of the COSE_Sign1 envelope, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.
+In essence, when using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t` located in the protected header of the COSE_Sign1 Envelope, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.
 An `x5chain` with a leaf certificate that corresponds to the `x5t` value MAY be included in the unprotected header in support of certain supply chain scenarios.
 
 The Transparency Service MUST apply the Registration Policy that was most recently added to the Append-only Log at the time of registration.
@@ -485,8 +485,8 @@ Relying Parties can choose which Issuers they trust.
 
 Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.
 
-At least one identifier for an identity document MUST be included in the protected header of the COSE envelope, as one of `x5t` or `kid`.
-Additionally, `x5chain` that corresponds to either `x5t` or `kid` identifying the leaf certificate in the included certification path MAY be included in the unprotected header of the COSE envelope.
+At least one identifier for an identity document MUST be included in the protected header of the COSE Envelope, as one of `x5t` or `kid`.
+Additionally, `x5chain` that corresponds to either `x5t` or `kid` identifying the leaf certificate in the included certification path MAY be included in the unprotected header of the COSE Envelope.
 
 - When using x509, Support for `x5t` is mandatory to implement.
 - Support for `kid` in the protected header and `x5chain` in the unprotected heaer is optional.
