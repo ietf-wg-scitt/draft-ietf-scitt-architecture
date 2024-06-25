@@ -305,7 +305,7 @@ However, the Registrations on a separate Transparency Service is generally disjo
 Reputable Issuers are thus incentivized to carefully review their Statements before signing them to produce Signed Statements.
 Similarly, reputable Transparency Services are incentivized to secure their Append-only Log, as any inconsistency can easily be pinpointed by any Auditor with read access to the Transparency Service.
 
-The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.
+The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital Artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.
 
 SCITT is a generalization of Certificate Transparency {{-CT}}, which can be interpreted as a transparency architecture for the supply chain of X.509 certificates.
 Considering CT in terms of SCITT:
@@ -457,7 +457,7 @@ This specification is left intentionally open to allow implementations to make t
 
 There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
 An Issuer must first decide on a suitable format (`3`: payload type) to serialize the Statement payload.
-For a software supply chain, payloads describing the software artifacts may include:
+For a software supply chain, payloads describing the software Artifacts may include:
 
 - {{COSWID}}
 - {{CycloneDX}}
@@ -547,7 +547,7 @@ Unprotected_Header = {
 {: #fig-signed-statement-cddl title="CDDL definition for Signed Statements and Receipts"}
 
 {{fig-signed-statement-edn}} illustrates an instance of a Signed Statement in EDN, with a payload that is detached.
-Detached payloads support large artifacts, and ensure Signed Statements can integrate with existing storage systems.
+Detached payloads support large Statements, and ensure Signed Statements can integrate with existing storage systems.
 
 ~~~ cbor-diag
 18(                                 / COSE Sign 1                   /
@@ -921,7 +921,7 @@ The terms "verifier" and "relying party" are used interchangeably through the do
 
 The terms "Claim" and "Statement" are used throughout this document, where Claim is consistent with the usage in {{-draft-ietf-rats-eat}} and {{RFC7523}}, and Statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the Claims are made.
 
-The term "Subject" provides an identifier of the issuer's choosing to refer to a given artifact, and ensures that all associated statements can be attributed to the identifier chosen by the issuer.
+The term "Subject" provides an identifier of the issuer's choosing to refer to a given Artifact, and ensures that all associated statements can be attributed to the identifier chosen by the issuer.
 
 In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the issuer identifies themselves using the `iss` Claim, and the specific software that was analyzed as the subject using the `sub` Claim.
 
@@ -1129,7 +1129,7 @@ data:application/cose;base64,SGVsb...xkIQ==
 
 # Signing Statements Remotely
 
-Statements, such as digital artifacts or structured data regarding artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
+Statements about digital Artifacts, containing digital Artifacts, or structured data regarding any type of Artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
 In these cases a statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
 A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of RFC9052}}.
 
