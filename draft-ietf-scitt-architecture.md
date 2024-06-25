@@ -581,7 +581,7 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
 
 To register a Signed Statement, the Transparency Service performs the following steps:
 
-1. **Client authentication:** A Client authenticates with the Transparency Service, to Register Signed Statements on behalf of one or more issuers.
+1. **Client authentication:** A Client authenticates with the Transparency Service, to Register Signed Statements on behalf of one or more Issuers.
 Authentication and authorization is implementation-specific, and out of scope of the SCITT Architecture.
 1. **Issuer Verification:** The Transparency Service MUST syntactically validate the Issuer's identity Claims, which may be different than the Client identity.
 1. **Signature verification:** The Transparency Service MUST verify the signature of the Signed Statement, as described in {{RFC9360}}, using the signature algorithm and verification key of the Issuer.
@@ -707,7 +707,7 @@ The structure of this inclusion proof is specific to the verifiable data structu
 
 Relying Parties MUST apply the verification process as described in Section 4.4 of RFC9052, when checking the signature of Signed Statements and Receipts.
 
-A Relying Party MUST trust the verification key or certificate and the associated identity of at least one issuer of a Receipt.
+A Relying Party MUST trust the verification key or certificate and the associated identity of at least one Issuer of a Receipt.
 
 A Relying Party MAY decide to verify only a single Receipt that is acceptable to them, and not check the signature on the Signed Statement or Receipts which rely on verifiable data structures which they do not understand.
 
@@ -915,17 +915,17 @@ To indicate that the content is an scitt configuration represented as JSON:
 
 This document has been developed in coordination with the COSE, OAUTH and RATS WG and uses terminology common to these working groups.
 
-This document uses the terms "issuer", and "subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and in particular, the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
+This document uses the terms "Issuer", and "subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and in particular, the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
 
-The terms "verifier" and "relying party" are used interchangeably through the document. While these terms are related to "Verifier" and "Relying Party" as used in {{RFC9334}}, they do not imply the processing of RATS conceptual messages, such as Evidence or Attestation Results that are specific to remote attestation. A SCITT "verifier" and "relying party" and "issuer" of Receipts or Statements might take on the role of a RATS "Attester". Correspondingly, all RATS conceptual messages, such as Evidence and Attestation Results, can be the content of SCITT Statements and a SCITT "verifier" can also take on the role of a RATS "Verifier" to, for example, conduct the procedure of Appraisal of Evidence as a part of a SCITT "verifier"'s verification capabilities.
+The terms "verifier" and "relying party" are used interchangeably through the document. While these terms are related to "Verifier" and "Relying Party" as used in {{RFC9334}}, they do not imply the processing of RATS conceptual messages, such as Evidence or Attestation Results that are specific to remote attestation. A SCITT "verifier" and "relying party" and "Issuer" of Receipts or Statements might take on the role of a RATS "Attester". Correspondingly, all RATS conceptual messages, such as Evidence and Attestation Results, can be the content of SCITT Statements and a SCITT "verifier" can also take on the role of a RATS "Verifier" to, for example, conduct the procedure of Appraisal of Evidence as a part of a SCITT "verifier"'s verification capabilities.
 
 The terms "Claim" and "Statement" are used throughout this document, where Claim is consistent with the usage in {{-draft-ietf-rats-eat}} and {{RFC7523}}, and Statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the Claims are made.
 
-The term "Subject" provides an identifier of the issuer's choosing to refer to a given Artifact, and ensures that all associated statements can be attributed to the identifier chosen by the issuer.
+The term "Subject" provides an identifier of the Issuer's choosing to refer to a given Artifact, and ensures that all associated statements can be attributed to the identifier chosen by the Issuer.
 
-In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the issuer identifies themselves using the `iss` Claim, and the specific software that was analyzed as the subject using the `sub` Claim.
+In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the Issuer identifies themselves using the `iss` Claim, and the specific software that was analyzed as the subject using the `sub` Claim.
 
-In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer". This means the AS initially acts as a "verifier", and then later as an "issuer". This mirrors how Signed Statements are verified before Receipts are issued by a Transparency Service.
+In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer". This means the AS initially acts as a "verifier", and then later as an "Issuer". This mirrors how Signed Statements are verified before Receipts are issued by a Transparency Service.
 
 {{FIPS.201}} defines "assertion" as "A verifiable statement from an IdP to an RP that contains information about an end user".
 
