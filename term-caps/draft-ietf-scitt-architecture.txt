@@ -755,7 +755,7 @@ Table of Contents
 
    1.  *Client authentication:* A Client authenticates with the
        Transparency Service, to Register Signed Statements on behalf of
-       one or more issuers.  Authentication and authorization is
+       one or more Issuers.  Authentication and authorization is
        implementation-specific, and out of scope of the SCITT
        Architecture.
 
@@ -919,7 +919,7 @@ Table of Contents
    Statements and Receipts.
 
    A Relying Party MUST trust the verification key or certificate and
-   the associated identity of at least one issuer of a Receipt.
+   the associated identity of at least one Issuer of a Receipt.
 
    A Relying Party MAY decide to verify only a single Receipt that is
    acceptable to them, and not check the signature on the Signed
@@ -1518,7 +1518,7 @@ Appendix A.  Common Terminology Disambiguation
    This document has been developed in coordination with the COSE, OAUTH
    and RATS WG and uses terminology common to these working groups.
 
-   This document uses the terms "issuer", and "subject" as described in
+   This document uses the terms "Issuer", and "subject" as described in
    [RFC8392], however the usage is consistent with the broader
    interpretation of these terms in both JOSE and COSE, and in
    particular, the guidance in [RFC8725] generally applies the COSE
@@ -1529,7 +1529,7 @@ Appendix A.  Common Terminology Disambiguation
    and "Relying Party" as used in [RFC9334], they do not imply the
    processing of RATS conceptual messages, such as Evidence or
    Attestation Results that are specific to remote attestation.  A SCITT
-   "verifier" and "relying party" and "issuer" of Receipts or Statements
+   "verifier" and "relying party" and "Issuer" of Receipts or Statements
    might take on the role of a RATS "Attester".  Correspondingly, all
    RATS conceptual messages, such as Evidence and Attestation Results,
    can be the content of SCITT Statements and a SCITT "verifier" can
@@ -1543,14 +1543,14 @@ Appendix A.  Common Terminology Disambiguation
    possibly identified with a media type, about which the Claims are
    made.
 
-   The term "Subject" provides an identifier of the issuer's choosing to
+   The term "Subject" provides an identifier of the Issuer's choosing to
    refer to a given Artifact, and ensures that all associated statements
-   can be attributed to the identifier chosen by the issuer.
+   can be attributed to the identifier chosen by the Issuer.
 
    In simpler language, a SCITT Statement could be some vendor-specific
    software bill of materials (SBOM), results from a model checker,
    static analyzer, or RATS Evidence about the authenticity of an SBOM
-   creation process, where the issuer identifies themselves using the
+   creation process, where the Issuer identifies themselves using the
    iss Claim, and the specific software that was analyzed as the subject
    using the sub Claim.
 
@@ -1558,7 +1558,7 @@ Appendix A.  Common Terminology Disambiguation
    client authentication requests, and issues access tokens to clients
    configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-
    bearer".  This means the AS initially acts as a "verifier", and then
-   later as an "issuer".  This mirrors how Signed Statements are
+   later as an "Issuer".  This mirrors how Signed Statements are
    verified before Receipts are issued by a Transparency Service.
 
    [FIPS.201] defines "assertion" as "A verifiable statement from an IdP
