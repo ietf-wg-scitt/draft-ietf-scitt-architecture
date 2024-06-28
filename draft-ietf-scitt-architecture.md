@@ -511,38 +511,7 @@ Everything that is optional in the following CDDL definition can potentially be 
 A Registration Policy that requires an optional field to be present MUST reject any Signed Statements or Receipts that are invalid according to the policy.
 
 ~~~ cddl
-
-Signed_Statement = #6.18(COSE_Sign1)
-Receipt = #6.18(COSE_Sign1)
-
-COSE_Sign1 = [
-  protected   : bstr .cbor Protected_Header,
-  unprotected : Unprotected_Header,
-  payload     : bstr / nil,
-  signature   : bstr
-]
-
-Protected_Header = {
-  &(CWT_Claims: 15) => CWT_Claims
-  ? &(alg: 1) => int
-  ? &(content_type: 3) => tstr / uint
-  ? &(kid: 4) => bstr
-  ? &(x5t: 34) => COSE_CertHash
-  * int => any
-}
-
-CWT_Claims = {
-  &(iss: 1) => tstr
-  &(sub: 2) => tstr
-  * int => any
-}
-
-Unprotected_Header = {
-  ? &(x5chain: 33) => COSE_X509
-  ? &(receipts: 394)  => [+ Receipt]
-  * int => any
-}
-
+{::include signed_statement.cddl}
 ~~~
 {: #fig-signed-statement-cddl title="CDDL definition for Signed Statements and Receipts"}
 
@@ -618,11 +587,7 @@ The registration time is defined as the timestamp at which the Transparency Serv
 {{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements.
 
 ~~~ cddl
-Transparent_Statement = #6.18(COSE_Sign1)
-
-Unprotected_Header = {
-  &(receipts: 394)  => [+ Receipt]
-}
+{::include transparent_statement.cddl}
 ~~~
 {: #fig-transparent-statement-cddl title="CDDL definition for a Transparent Statement"}
 
