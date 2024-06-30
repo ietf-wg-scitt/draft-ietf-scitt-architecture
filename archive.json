@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-27T00:38:52.027239+00:00",
+  "timestamp": "2024-06-30T00:42:32.936007+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4898,7 +4898,7 @@
       ],
       "body": "As an implementer, in order to directly use the CDDL definition(s) without having to extract the definitions with custom code or copy-pasting, I would like if the source code and tools in this repository to define the CDDL definitions as discrete files and import them the Kramdown RFC mechanisms, so my code can you the CDDL directly without those steps.\r\n\r\nSee `{::include ...}` directives from other sample drafts, [such as the current CBOR EDN Literals I-D](https://github.com/cbor-wg/edn-literal/blob/a5f3cb1f115f9d5adae812e3f38a0451f233c4a3/draft-ietf-cbor-edn-literals.md).",
       "createdAt": "2024-05-21T13:26:49Z",
-      "updatedAt": "2024-05-21T14:48:57Z",
+      "updatedAt": "2024-06-28T04:51:51Z",
       "closedAt": null,
       "comments": [
         {
@@ -4914,6 +4914,13 @@
           "body": "@aj-stein-nist, there's a comment of concern we're not at this point of complexity, but we're open to viewing a PR to try this change. \r\n",
           "createdAt": "2024-05-21T14:48:38Z",
           "updatedAt": "2024-05-21T14:48:38Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> @aj-stein-nist, there's a comment of concern we're not at this point of complexity, but we're open to viewing a PR to try this change.\r\n\r\nOK, good thing it was not complex. https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/247 is ready for review.",
+          "createdAt": "2024-06-28T04:51:50Z",
+          "updatedAt": "2024-06-28T04:51:50Z"
         }
       ]
     }
@@ -32450,7 +32457,7 @@
       "labels": [],
       "body": "fixes #243 ",
       "createdAt": "2024-06-25T18:49:49Z",
-      "updatedAt": "2024-06-25T19:17:20Z",
+      "updatedAt": "2024-06-28T00:01:09Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "3124f380f72de49d5a69c1f94524d01b4084f6af",
@@ -32475,8 +32482,49 @@
           "createdAt": "2024-06-25T18:53:52Z",
           "updatedAt": "2024-06-25T18:53:52Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss5_9E5m",
+          "commit": {
+            "abbreviatedOid": "ac6c697"
+          },
+          "author": "mprorock",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-06-28T00:01:09Z",
+          "updatedAt": "2024-06-28T00:01:09Z",
+          "comments": []
         }
       ]
+    },
+    {
+      "number": 247,
+      "id": "PR_kwDOIvmHss5z2MrZ",
+      "title": "External CDDL files and include for #244",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/247",
+      "state": "OPEN",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "aj-stein-nist"
+      ],
+      "labels": [],
+      "body": "This change externalizes the two normative definitions for transparent and signed statements, respectively, and adds them to the final draft with the kramdown `includes` directive. This change allows developers to use a git sub-module or programmatically use the git version of the spec to have utilities for code generation and other capabilities use the definitions without more cumbersome extraction routines for the source Markdown or RFC XML representations of the spec.\r\n\r\nBelow is a local eval copy of the HTML representation of the draft with the `include`d files properly integrated.\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/94922603/db28cebc-b351-4271-8f5f-751c6615879c)\r\n",
+      "createdAt": "2024-06-28T04:51:01Z",
+      "updatedAt": "2024-06-28T04:51:02Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "3124f380f72de49d5a69c1f94524d01b4084f6af",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "244-import-cddl-from-files",
+      "headRefOid": "f09f5827e2fc16487db8727f46dd5ebb6a039e6f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
