@@ -199,7 +199,7 @@ Artifact:
 
 Auditor:
 
-: an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.
+: an entity that can review entries of a Transparency Service's Append-only Log to prove the application and enforcment of Registration Policy during each Registration process step.
 
 Client:
 
