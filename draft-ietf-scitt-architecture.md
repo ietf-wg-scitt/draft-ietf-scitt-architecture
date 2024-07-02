@@ -160,14 +160,14 @@ Issuers can register their Signed Statements on any Transparency Service, with t
 This document describes the scalable, flexible, and decentralized SCITT architecture.
 Its goal is to enhance auditability and accountability across supply chains.
 
-In supply chains, downstream artifacts are built upon upstream artifacts.
-The complexity of traceability and quality control for these supply chains increases with the number of artifacts and parties contributing to them.
-There are many parties who publish information about artifacts:
-For example, the original manufacturer may provide information about the state of the artifact when it left the factory.
-The shipping company may add information about the transport environment of the artifact.
-Compliance auditors may provide information about their compliance assessment of the artifact.
-Security companies may publish vulnerability information about an artifact.
-Some of these parties may publish information about their analysis or use of an artifact.
+In supply chains, downstream Artifacts are built upon upstream Artifacts.
+The complexity of traceability and quality control for these supply chains increases with the number of Artifacts and parties contributing to them.
+There are many parties who publish information about Artifacts:
+For example, the original manufacturer may provide information about the state of the Artifact when it left the factory.
+The shipping company may add information about the transport environment of the Artifact.
+Compliance Auditors may provide information about their compliance assessment of the Artifact.
+Security companies may publish vulnerability information about an Artifact.
+Some of these parties may publish information about their analysis or use of an Artifact.
 
 SCITT provides a way for Relying Parties to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
 SCITT achieves this by having producers publish information in a Transparency Service, where Relying Parties can check the information.
@@ -219,12 +219,12 @@ Equivocation:
 Issuer:
 
 : an identifier representing an organization, device, user, or entity securing Statements about supply chain Artifacts.
-An Issuer may be the owner or author of Artifacts, or an independent third party such as an auditor, reviewer or an endorser.
-In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE header parameter `15: CWT_Claims` within the protected header of a COSE envelope.
+An Issuer may be the owner or author of Artifacts, or an independent third party such as an Auditor, reviewer or an endorser.
+In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE header parameter `15: CWT_Claims` within the protected header of a COSE Envelope.
 
 Non-equivocation:
 
-: a state where it is impossible for a Transparency Service to provide different views of its append-only log to Relying Parties about the same Artifact.
+: a state where it is impossible for a Transparency Service to provide different views of its Append-only Log to Relying Parties about the same Artifact.
 Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Relying Parties.
 
 Receipt:
@@ -263,7 +263,7 @@ Subject:
 
 : an identifier, defined by the Issuer, that represents the organization, device, user, entity, or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements can be grouped.
 It is possible that there are multiple Statements about the same Artifact.
-In these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific subject.
+In these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific Subject.
 
 Transparency Service:
 
@@ -274,7 +274,7 @@ The identity of a Transparency Service is captured by a public key that must be 
 Transparent Statement:
 
 : a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
-The receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
+The Receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
 A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.
 
 {: #mybody}
@@ -300,12 +300,12 @@ A Receipt is an offline, universally-verifiable proof that an entry is recorded 
 Receipts do not expire, but it is possible to append new entries (more recent Signed Statements) that subsume older entries (less recent Signed Statements).
 
 Anyone with access to the Transparency Service can independently verify its consistency and review the complete list of Transparent Statements registered by each Issuer.
-However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, from a from the first Transparency Service ) and register it on another Transparency Service, where the second receipt will be over the first Receipt in the unprotected header.
+However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, from a from the first Transparency Service) and register it on another Transparency Service, where the second Receipt will be over the first Receipt in the unprotected header.
 
 Reputable Issuers are thus incentivized to carefully review their Statements before signing them to produce Signed Statements.
 Similarly, reputable Transparency Services are incentivized to secure their Append-only Log, as any inconsistency can easily be pinpointed by any Auditor with read access to the Transparency Service.
 
-The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.
+The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital Artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.
 
 SCITT is a generalization of Certificate Transparency {{-CT}}, which can be interpreted as a transparency architecture for the supply chain of X.509 certificates.
 Considering CT in terms of SCITT:
@@ -375,7 +375,7 @@ This section describes at a high level, the three main roles and associated proc
 Transparency Services MUST feature an Append-only Log.
 The Append-only Log is the verifiable data structure that records Signed Statements and supports the production of Receipts.
 
-All Transparency Services MUST expose APIs for the registration of Signed Statements and issuance of Receipts.
+All Transparency Services MUST expose APIs for the Registration of Signed Statements and issuance of Receipts.
 
 Transparency Services MAY support additional APIs for auditing, for instance, to query the history of Signed Statements.
 
@@ -389,7 +389,7 @@ Registration Policies refer to additional checks over and above the Mandatory Re
 
 Transparency Services MUST maintain Registration Policies.
 
-Transparency Services MUST also maintain a list of trust anchors, which SHOULD be used by Relying Parties to authenticate Issuers, and which MAY be included in a registration policy statement.
+Transparency Services MUST also maintain a list of trust anchors, which SHOULD be used by Relying Parties to authenticate Issuers, and which MAY be included in a Registration Policy statement.
 For instance, a trust anchor could be an X.509 root certificate, the discovery URL of an OpenID Connect identity provider, or any other COSE compatible PKI trust anchor.
 
 Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing the associated Receipts.
@@ -398,14 +398,14 @@ This specification leaves implementation, encoding and documentation of Registra
 
 #### Mandatory Registration Checks
 
-During registration, a Transparency Service MUST, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to {{RFC9052}}.
+During Registration, a Transparency Service MUST, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to {{RFC9052}}.
 The Issuer identity MUST be bound to the Signed Statement by including an identifier in the protected header.
 If the protected header includes multiple identifiers, all those that are registered by the Transparency Service MUST be checked.
 
-In essence, when using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t` located in the protected header of the COSE_Sign1 envelope, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.
+In essence, when using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t` located in the protected header of the COSE_Sign1 Envelope, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.
 An `x5chain` with a leaf certificate that corresponds to the `x5t` value MAY be included in the unprotected header in support of certain supply chain scenarios.
 
-The Transparency Service MUST apply the Registration Policy that was most recently added to the Append-only Log at the time of registration.
+The Transparency Service MUST apply the Registration Policy that was most recently added to the Append-only Log at the time of Registration.
 
 #### Auditability of Registration
 
@@ -415,10 +415,10 @@ Transparency Services MUST ensure that for any Signed Statement they register, e
 
 ### Initialization and bootstrapping {#ts-initialization}
 
-Since the mandatory registration checks rely on having registered Signed Statements for the registration policy and trust anchors, Transparency Services MUST support at least one of the three following bootstrapping mechanisms:
+Since the mandatory Registration checks rely on having registered Signed Statements for the Registration Policy and trust anchors, Transparency Services MUST support at least one of the three following bootstrapping mechanisms:
 
 - A built-in default Registration Policy and default trust anchors;
-- Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks
+- Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing Registration checks
 - An out-of-band authenticated management interface
 
 ### Append-only Log
@@ -428,7 +428,7 @@ This verifiable data structure MUST support the following security requirements:
 
 Append-Only:
 
-: once included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides an offline verifiable proof of registration.
+: once included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides an offline verifiable proof of Registration.
 
 Non-equivocation:
 
@@ -447,7 +447,7 @@ Specific verifiable data structures, such those describes in {{-CT}} and {{-COME
 
 Transparency Services can be deployed along side other database or object storage technologies.
 For example, a Transparency Service that is supporting a software package management system, might be referenced from the APIs exposed for package management.
-Providing an ability to request a fresh receipt for a given software package, or to request a list of Signed Statements associated with the software package.
+Providing an ability to request a fresh Receipt for a given software package, or to request a list of Signed Statements associated with the software package.
 
 ## Signed Statements
 
@@ -457,7 +457,7 @@ This specification is left intentionally open to allow implementations to make t
 
 There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
 An Issuer must first decide on a suitable format (`3`: payload type) to serialize the Statement payload.
-For a software supply chain, payloads describing the software artifacts may include:
+For a software supply chain, payloads describing the software Artifacts may include:
 
 - {{COSWID}}
 - {{CycloneDX}}
@@ -471,8 +471,8 @@ Once all the Envelope headers are set, an Issuer MUST use a standard COSE implem
 The SCITT tag `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement.
 
 Issuers can produce Signed Statements about different Artifacts under the same Identity.
-Issuers and Relying Parties must be able to recognize the Artifact to which the statements pertain by looking at the Signed Statement.
-The `iss` and `sub` Claims, within the CWT_Claims protected header, are used to identify the Artifact the statement pertains to.
+Issuers and Relying Parties must be able to recognize the Artifact to which the Statements pertain by looking at the Signed Statement.
+The `iss` and `sub` Claims, within the CWT_Claims protected header, are used to identify the Artifact the Statement pertains to.
 (See Subject under {{terminology}} Terminology.)
 
 Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
@@ -485,8 +485,8 @@ Relying Parties can choose which Issuers they trust.
 
 Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.
 
-At least one identifier for an identity document MUST be included in the protected header of the COSE envelope, as one of `x5t` or `kid`.
-Additionally, `x5chain` that corresponds to either `x5t` or `kid` identifying the leaf certificate in the included certification path MAY be included in the unprotected header of the COSE envelope.
+At least one identifier for an identity document MUST be included in the protected header of the COSE Envelope, as one of `x5t` or `kid`.
+Additionally, `x5chain` that corresponds to either `x5t` or `kid` identifying the leaf certificate in the included certification path MAY be included in the unprotected header of the COSE Envelope.
 
 - When using x509, Support for `x5t` is mandatory to implement.
 - Support for `kid` in the protected header and `x5chain` in the unprotected heaer is optional.
@@ -508,7 +508,7 @@ A Receipt is a Signed Statement, (cose-sign1), with addition Claims in its prote
 {{fig-signed-statement-cddl}} illustrates a normative CDDL definition (see {{-CDDL}}) for of the protected header and unprotected header of Signed Statements and Receipts.
 
 Everything that is optional in the following CDDL definition can potentially be discovered out of band and Registration Policies are not assured on the presence of these optional fields.
-A Registration Policy that requires an optional field to be present MUST reject any Signed Statements or Receipts that are invalid according to the policy.
+A Registration Policy that requires an optional field to be present MUST reject any Signed Statements or Receipts that are invalid according to the Registration Policy.
 
 ~~~ cddl
 {::include signed_statement.cddl}
@@ -516,7 +516,7 @@ A Registration Policy that requires an optional field to be present MUST reject 
 {: #fig-signed-statement-cddl title="CDDL definition for Signed Statements and Receipts"}
 
 {{fig-signed-statement-edn}} illustrates an instance of a Signed Statement in EDN, with a payload that is detached.
-Detached payloads support large artifacts, and ensure Signed Statements can integrate with existing storage systems.
+Detached payloads support large Statements, and ensure Signed Statements can integrate with existing storage systems.
 
 ~~~ cbor-diag
 18(                                 / COSE Sign 1                   /
@@ -550,18 +550,18 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
 
 To register a Signed Statement, the Transparency Service performs the following steps:
 
-1. **Client authentication:** A Client authenticates with the Transparency Service, to Register Signed Statements on behalf of one or more issuers.
+1. **Client authentication:** A Client authenticates with the Transparency Service, to Register Signed Statements on behalf of one or more Issuers.
 Authentication and authorization is implementation-specific, and out of scope of the SCITT Architecture.
 1. **Issuer Verification:** The Transparency Service MUST syntactically validate the Issuer's identity Claims, which may be different than the Client identity.
 1. **Signature verification:** The Transparency Service MUST verify the signature of the Signed Statement, as described in {{RFC9360}}, using the signature algorithm and verification key of the Issuer.
 1. **Signed Statement validation:** The Transparency Service MUST check that the Signed Statement includes the required protected headers listed above.
 The Transparency Service MAY verify the Statement payload format, content and other optional properties.
-1. **Apply Registration Policy:** The Transparency Service MUST check the attributes required by a policy are present in the protected headers.
+1. **Apply Registration Policy:** The Transparency Service MUST check the attributes required by a Registration Policy are present in the protected headers.
   Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.
-1. **Register the Signed Statement** to the append-only log.
-1. **Return the Receipt**, which MAY be asynchronous from registration.
-The Transparency Service MUST be able to provide a receipt for all registered Statements.
-A receipt for a Signed Statement MAY be provided asynchronously.
+1. **Register the Signed Statement** to the Append-only Log.
+1. **Return the Receipt**, which MAY be asynchronous from Registration.
+The Transparency Service MUST be able to provide a Receipt for all registered Statements.
+A Receipt for a Signed Statement MAY be provided asynchronously.
 Details about generating Receipts are described in {{Receipt}}.
 
 The last two steps may be shared between a batch of Signed Statements recorded in the Append-only Log.
@@ -569,7 +569,7 @@ The last two steps may be shared between a batch of Signed Statements recorded i
 A Transparency Service MUST ensure that a Signed Statement is registered before releasing its Receipt.
 
 The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
-The multiple receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.
+The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.
 
 ## Transparent Statements {#Receipt}
 
@@ -582,7 +582,7 @@ When a Receipt is included in a Signed Statement a Transparent Statement is prod
 
 Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}).
 
-The registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.
+The Registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.
 
 {{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements.
 
@@ -591,8 +591,8 @@ The registration time is defined as the timestamp at which the Transparency Serv
 ~~~
 {: #fig-transparent-statement-cddl title="CDDL definition for a Transparent Statement"}
 
-{{fig-transparent-statement-edn}} illustrates a Transparent Statement with a detached payload, and two receipts in its unprotected header.
-The label 394 `receipts` in unprotected header can contain multiple receipts.
+{{fig-transparent-statement-edn}} illustrates a Transparent Statement with a detached payload, and two Receipts in its unprotected header.
+The label 394 `receipts` in unprotected header can contain multiple Receipts.
 
 ~~~ cbor-diag
 18(                                 / COSE Sign 1                   /
@@ -652,7 +652,7 @@ The verifiable data structure (`-111`) uses `1` from (RFC9162_SHA256).
 {: #fig-receipt-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Protected Header"}
 
 {{fig-receipt-inclusion-proof-edn}} illustrates the decoded inclusion proof from {{fig-receipt-edn}}.
-This inclusion proof indicates that the size of the transparency log was `8` at the time the receipt was issued.
+This inclusion proof indicates that the size of the Append-only Log was `8` at the time the Receipt was issued.
 The structure of this inclusion proof is specific to the verifiable data structure used (RFC9162_SHA256).
 
 ~~~ cbor-diag
@@ -672,7 +672,7 @@ The structure of this inclusion proof is specific to the verifiable data structu
 
 Relying Parties MUST apply the verification process as described in Section 4.4 of RFC9052, when checking the signature of Signed Statements and Receipts.
 
-A Relying Party MUST trust the verification key or certificate and the associated identity of at least one issuer of a Receipt.
+A Relying Party MUST trust the verification key or certificate and the associated identity of at least one Issuer of a Receipt.
 
 A Relying Party MAY decide to verify only a single Receipt that is acceptable to them, and not check the signature on the Signed Statement or Receipts which rely on verifiable data structures which they do not understand.
 
@@ -732,7 +732,7 @@ For example, if a Transparency Service is implemented using a set of redundant r
 Auditors should be aware that the certification path information included in an unprotected `x5chain` header of a to-be-registered Signed Statement can be tampered with by a malicious Transparency Service (e.g., one that does not incorporate remote attestation), which may replace the intermediate certificates and ultimately connect to an unexpected root.
 This modification can allow malicious TS to forge Claims that look genuine except for the wrong trust anchor.
 Auditors MUST perform certification path validation in accordance with PKIX rules specified in {{-PKIX}}.
-In particular, auditors MUST verify that certification paths chain to one or more trust anchors (often represented as root certificates).
+In particular, Auditors MUST verify that certification paths chain to one or more trust anchors (often represented as root certificates).
 
 ## Security Guarantees
 
@@ -811,13 +811,13 @@ All contents exchanged between actors is protected using secure authenticated ch
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
 Some Transparency Services may publish every Signed Statement in their logs, to facilitate their dissemination and auditing.
-Transparency Services MAY return Receipts to client applications synchronously or asynchronously.
+Transparency Services MAY return Receipts to Client applications synchronously or asynchronously.
 
 A collection of Signed Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.
 
 Issuers must carefully review the inclusion of private/confidential materials in their Statements.
-For example, Issuers must remove Personally Identifiable Information (PII) as clear text in the statement.
-Alternatively, Issuers may include opaque cryptographic statements, such as hashes.
+For example, Issuers must remove Personally Identifiable Information (PII) as clear text in the Statement.
+Alternatively, Issuers may include opaque cryptographic Statements, such as hashes.
 
 The confidentiality of queries is implementation-specific, and generally not guaranteed.
 For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.
@@ -831,7 +831,7 @@ This enables the gradual transition to stronger algorithms, including e.g. post-
 ### Transparency Service Client Applications
 
 Authentication of Client applications is out of scope for this document.
-Transparency Services MUST authenticate both client applications and the Issuer of signed statements in order to ensure that implementation specific authentication and authorization policies are enforced.
+Transparency Services MUST authenticate both Client applications and the Issuer of Signed Statements in order to ensure that implementation specific authentication and authorization policies are enforced.
 The specification of authentication and authorization policies is out of scope for this document.
 
 ### Impersonation
@@ -880,24 +880,24 @@ To indicate that the content is an scitt configuration represented as JSON:
 
 This document has been developed in coordination with the COSE, OAUTH and RATS WG and uses terminology common to these working groups.
 
-This document uses the terms "issuer", and "subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and in particular, the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
+This document uses the terms "Issuer", and "Subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and in particular, the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
 
-The terms "verifier" and "relying party" are used interchangeably through the document. While these terms are related to "Verifier" and "Relying Party" as used in {{RFC9334}}, they do not imply the processing of RATS conceptual messages, such as Evidence or Attestation Results that are specific to remote attestation. A SCITT "verifier" and "relying party" and "issuer" of Receipts or Statements might take on the role of a RATS "Attester". Correspondingly, all RATS conceptual messages, such as Evidence and Attestation Results, can be the content of SCITT Statements and a SCITT "verifier" can also take on the role of a RATS "Verifier" to, for example, conduct the procedure of Appraisal of Evidence as a part of a SCITT "verifier"'s verification capabilities.
+The terms "verifier" and "Relying Party" are used interchangeably through the document. While these terms are related to "Verifier" and "Relying Party" as used in {{RFC9334}}, they do not imply the processing of RATS conceptual messages, such as Evidence or Attestation Results that are specific to remote attestation. A SCITT "verifier" and "Relying Party" and "Issuer" of Receipts or Statements might take on the role of a RATS "Attester". Correspondingly, all RATS conceptual messages, such as Evidence and Attestation Results, can be the content of SCITT Statements and a SCITT "verifier" can also take on the role of a RATS "Verifier" to, for example, conduct the procedure of Appraisal of Evidence as a part of a SCITT "verifier"'s verification capabilities.
 
 The terms "Claim" and "Statement" are used throughout this document, where Claim is consistent with the usage in {{-draft-ietf-rats-eat}} and {{RFC7523}}, and Statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the Claims are made.
 
-The term "Subject" provides an identifier of the issuer's choosing to refer to a given artifact, and ensures that all associated statements can be attributed to the identifier chosen by the issuer.
+The term "Subject" provides an identifier of the Issuer's choosing to refer to a given Artifact, and ensures that all associated Statements can be attributed to the identifier chosen by the Issuer.
 
-In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the issuer identifies themselves using the `iss` Claim, and the specific software that was analyzed as the subject using the `sub` Claim.
+In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the Issuer identifies themselves using the `iss` Claim, and the specific software that was analyzed as the Subject using the `sub` Claim.
 
-In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer". This means the AS initially acts as a "verifier", and then later as an "issuer". This mirrors how Signed Statements are verified before Receipts are issued by a Transparency Service.
+In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer". This means the AS initially acts as a "verifier", and then later as an "Issuer". This mirrors how Signed Statements are verified before Receipts are issued by a Transparency Service.
 
 {{FIPS.201}} defines "assertion" as "A verifiable statement from an IdP to an RP that contains information about an end user".
 
 {{NIST.SP.800-63-3}} defines "assertion" as "A statement from a verifier to an RP that contains information about a subscriber.
 Assertions may also contain verified attributes."
 
-This document uses the term Statement to refer to potentially unsecured data and associated Claims, and Signed Statement and Receipt to refer to assertions from an Issuer, or the transparency service.
+This document uses the term Statement to refer to potentially unsecured data and associated Claims, and Signed Statement and Receipt to refer to assertions from an Issuer, or the Transparency Service.
 
 {{NIST.SP.1800-19}} defines "attestation" as "The process of providing a digital signature for a set of measurements securely stored in hardware, and then having the requester validate the signature and the set of measurements."
 
@@ -905,7 +905,7 @@ NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the defini
 
 # Identifiers
 
-This section provides informative examples of identifiers for statements, signed statements, and receipts.
+This section provides informative examples of identifiers for Statements, Signed Statements, and Receipts.
 
 SCITT Identifiers are primarily meant to be understood by humans and secondarily meant to be understood by machines, as such we define text encodings for message identifiers first, and then provide binary translations according to standard transformations for URLs and URNs to binary formats.
 
@@ -923,7 +923,7 @@ resource: content-type = dereference(identifier: identifier-type)
 
 These identifiers MAY be present in a `tstr` field that does not otherwise restrict the string in ways that prevent a URN or URL from being present.
 
-This includes `iss`, and `sub` which are used to express the Issuer and subject of a signed statement or receipt.
+This includes `iss`, and `sub` which are used to express the Issuer and Subject of a Signed Statement or Receipt.
 
 This also includes `kid` which is used to express a hint for which public key should be used to verify a signature.
 
@@ -947,7 +947,7 @@ Let the `base64url-encoded-bytes-digest` for the message be the base64url encode
 
 Let the SCITT name for the message be the URN constructed from the following URI template, according to {{-URITemplate}}:
 
-Let the `message-type`, be "statement" for Statements and Artifacts.
+Let the `message-type`, be "statement" for Statements about Artifacts.
 
 ~~~
 urn:ietf:params:scitt:\
@@ -975,7 +975,7 @@ urn:ietf:params:scitt:\
 
 Note that this means the content of the signature is not included in the identifier, even though signature related Claims, such as activation or expiration information in protected headers are included.
 
-As a result, an attacker may construct a new signed statement that has the same identifier as a previous signed statement, but has a different signature.
+As a result, an attacker may construct a new Signed Statement that has the same identifier as a previous Signed Statement, but has a different signature.
 
 ## Identifiers For Transparent Statements
 
@@ -988,9 +988,9 @@ urn:ietf:params:scitt:\
 {base64url-encoded-bytes-digest}
 ~~~
 
-Note that because this identifier is computed over the unprotected header of the Signed Statement, any changes to the unprotected header, such as changing the order of the unprotected header map key value pairs, adding additional receipts, or adding additional proofs to a receipt, will change the identifier of a transparent statement.
+Note that because this identifier is computed over the unprotected header of the Signed Statement, any changes to the unprotected header, such as changing the order of the unprotected header map key value pairs, adding additional Receipts, or adding additional proofs to a Receipt, will change the identifier of a Transparent Statement.
 
-Note that because this identifier is computed over the signatures of the signed statement and signatures in each receipt, any canonicalization of the signatures after the fact will produce a distinct identifier.
+Note that because this identifier is computed over the signatures of the Signed Statement and signatures in each Receipt, any canonicalization of the signatures after the fact will produce a distinct identifier.
 
 ## Statements
 
@@ -1094,8 +1094,8 @@ data:application/cose;base64,SGVsb...xkIQ==
 
 # Signing Statements Remotely
 
-Statements, such as digital artifacts or structured data regarding artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
-In these cases a statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
+Statements about digital Artifacts, containing digital Artifacts, or structured data regarding any type of Artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
+In these cases a Statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
 A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of RFC9052}}.
 
 ~~~aasvg
