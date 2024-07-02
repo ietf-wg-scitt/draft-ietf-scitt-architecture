@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-30T00:42:32.936007+00:00",
+  "timestamp": "2024-07-02T00:38:55.776863+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4875,10 +4875,12 @@
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "has-pr"
+      ],
       "body": "This needs an editorial run through, when we get to zero open PRs in the next meeting.",
       "createdAt": "2024-05-16T10:14:53Z",
-      "updatedAt": "2024-05-21T14:49:11Z",
+      "updatedAt": "2024-07-01T21:13:33Z",
       "closedAt": null,
       "comments": []
     },
@@ -4894,11 +4896,11 @@
         "aj-stein-nist"
       ],
       "labels": [
-        "ready-for-pr"
+        "has-pr"
       ],
       "body": "As an implementer, in order to directly use the CDDL definition(s) without having to extract the definitions with custom code or copy-pasting, I would like if the source code and tools in this repository to define the CDDL definitions as discrete files and import them the Kramdown RFC mechanisms, so my code can you the CDDL directly without those steps.\r\n\r\nSee `{::include ...}` directives from other sample drafts, [such as the current CBOR EDN Literals I-D](https://github.com/cbor-wg/edn-literal/blob/a5f3cb1f115f9d5adae812e3f38a0451f233c4a3/draft-ietf-cbor-edn-literals.md).",
       "createdAt": "2024-05-21T13:26:49Z",
-      "updatedAt": "2024-06-28T04:51:51Z",
+      "updatedAt": "2024-07-01T21:13:07Z",
       "closedAt": null,
       "comments": [
         {
@@ -32457,7 +32459,7 @@
       "labels": [],
       "body": "fixes #243 ",
       "createdAt": "2024-06-25T18:49:49Z",
-      "updatedAt": "2024-06-28T00:01:09Z",
+      "updatedAt": "2024-07-01T20:59:45Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "3124f380f72de49d5a69c1f94524d01b4084f6af",
@@ -32495,6 +32497,19 @@
           "createdAt": "2024-06-28T00:01:09Z",
           "updatedAt": "2024-06-28T00:01:09Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ASJ6f",
+          "commit": {
+            "abbreviatedOid": "ac6c697"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-07-01T20:59:45Z",
+          "updatedAt": "2024-07-01T20:59:45Z",
+          "comments": []
         }
       ]
     },
@@ -32512,7 +32527,7 @@
       "labels": [],
       "body": "This change externalizes the two normative definitions for transparent and signed statements, respectively, and adds them to the final draft with the kramdown `includes` directive. This change allows developers to use a git sub-module or programmatically use the git version of the spec to have utilities for code generation and other capabilities use the definitions without more cumbersome extraction routines for the source Markdown or RFC XML representations of the spec.\r\n\r\nBelow is a local eval copy of the HTML representation of the draft with the `include`d files properly integrated.\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/94922603/db28cebc-b351-4271-8f5f-751c6615879c)\r\n",
       "createdAt": "2024-06-28T04:51:01Z",
-      "updatedAt": "2024-06-28T04:51:02Z",
+      "updatedAt": "2024-07-01T22:26:10Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "3124f380f72de49d5a69c1f94524d01b4084f6af",
@@ -32523,8 +32538,43 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "It seems you cannot batch suggestions on mobile GitHub app. I'll do it later this evening.",
+          "createdAt": "2024-07-01T22:26:09Z",
+          "updatedAt": "2024-07-01T22:26:09Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6ASM0i",
+          "commit": {
+            "abbreviatedOid": "f09f582"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "I was expecting this to require changes to `make`, but this just worked. Thanks for the update, @aj-stein-nist \r\nLGTM with two line nits",
+          "createdAt": "2024-07-01T21:09:18Z",
+          "updatedAt": "2024-07-01T21:11:46Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-07-01T21:09:18Z",
+              "updatedAt": "2024-07-01T21:11:46Z"
+            },
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n}\r\n\r\n```",
+              "createdAt": "2024-07-01T21:11:05Z",
+              "updatedAt": "2024-07-01T21:11:46Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
