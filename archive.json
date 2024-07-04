@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-02T00:38:55.776863+00:00",
+  "timestamp": "2024-07-04T00:39:05.788091+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -1824,7 +1824,7 @@
         },
         {
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Neal, comparing an industry standard to arbitrary proprietary proposals seems to be a never ending game.  The current implementation of DSSE by SigStore as a starting point seems to be a weak reason to not use COSE.  From a technology point of view hoping the words Simple equals simple is not always true.  The future needs and extensibility of this space begs for mechanisms that pre-exist in COSE.  Having the IETF entertain a different signing serialization format pushes for it to be within the IETF.  Which COSE is.  I want to push back that before entertaining DSSE or something else bringing it to the IETF is the place to start.\r\n\r\nAsking if we should use S/MIME does meet that requirement listed above but picking one is a fair goal.  The COSE format is required for IOT devices and is built with all the knowledge of where S-MIME (and other formats) struggled, leads to it being top contender.  If you want to make a case why it is NOT a great choice, then please take pen to paper and make a case. \r\n\r\nIf the argument is that COSE is frozen and thus cannot be extended, that has been proven false in the current meetings.  The working groups have been very thoughtful and accepting of requirements such as Merkle proof receipts. \r\n\r\nIf the argument is that we should support more than one, we really need to have you explain your reasoning.",
           "createdAt": "2023-03-29T02:53:14Z",
           "updatedAt": "2023-03-29T02:53:14Z"
@@ -4501,15 +4501,15 @@
       "id": "I_kwDOIvmHss6EJnDp",
       "title": "DNS Name Compatible Receipt Identifiers",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/224",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Consider:\r\n\r\n```\r\nurn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o\r\n```\r\n\r\nWhile this provides string name that works ok for HTTP APIs, this name is not acceptable in many other APIs, due to its use of multiple cases and the colon character.\r\n\r\nConsider a CSR which wishes to obtain a certificate with a SAN, where the SAN can encode a fully qualified receipt.\r\n\r\nPossible syntax:\r\n\r\n```\r\nreceipt-{lowercase(base64url(sha256(signed-statement)))}.transparency.service.example\r\nreceipt-{lowercase(hex(sha256(signed-statement)))}.transparency.service.example\r\n```\r\n\r\n`receipt` could be shortened.\r\n\r\nNames can't start with numbers, cant include special characters, etc...\r\n\r\nIn the same way that URN authority moves left to right, DNS name authority moves right to left... right?\r\n\r\nThere would be issues with case collisions, perhaps base16 lowercase is a better choice.\r\n\r\nThere are restrictions on the max length of SANs, we would want to check those.\r\n \r\nIs this an abuse of SAN? \r\n\r\nBeing \"name\" lookup compatible with DNS seems worth considering.\r\n",
       "createdAt": "2024-03-31T18:00:02Z",
-      "updatedAt": "2024-04-05T15:44:06Z",
-      "closedAt": null,
+      "updatedAt": "2024-07-02T14:17:21Z",
+      "closedAt": "2024-07-02T14:17:21Z",
       "comments": [
         {
           "author": "JAG-UK",
@@ -4538,6 +4538,13 @@
           "body": "> See https://wiki.mozilla.org/Security/Binary_Transparency for an example of this\r\n\r\nThanks for finding this, I was searching email and Slack and could not find what software/group used this is when you posted but I swore I had seen it. There it is!",
           "createdAt": "2024-04-05T15:44:05Z",
           "updatedAt": "2024-04-05T15:44:05Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "As discussed on the call, deferring at this point.",
+          "createdAt": "2024-07-02T14:17:21Z",
+          "updatedAt": "2024-07-02T14:17:21Z"
         }
       ]
     },
@@ -4549,11 +4556,13 @@
       "state": "OPEN",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "OR13"
+      ],
       "labels": [],
       "body": "Assuming https://github.com/cose-wg/draft-ietf-cose-merkle-tree-proofs/pull/18 is merged, that document will register everything that is needed for SCITT Receipts (a profile of COSE Receipts).\r\n\r\nThere is clean up work to do in the architecture.\r\n\r\n- Remove the editorial notes regarding 394.\r\n- Review IANA considerations (AFAIK, 394 was never requested for registration in the document, despite the editor notes).",
       "createdAt": "2024-04-07T15:32:43Z",
-      "updatedAt": "2024-05-07T18:12:55Z",
+      "updatedAt": "2024-07-02T14:15:50Z",
       "closedAt": null,
       "comments": [
         {
@@ -4871,7 +4880,7 @@
       "id": "I_kwDOIvmHss6JFsCT",
       "title": "After introduction of a term in the Terminology Section corresponding terms are not capitalized consequently",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/243",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
@@ -4880,8 +4889,8 @@
       ],
       "body": "This needs an editorial run through, when we get to zero open PRs in the next meeting.",
       "createdAt": "2024-05-16T10:14:53Z",
-      "updatedAt": "2024-07-01T21:13:33Z",
-      "closedAt": null,
+      "updatedAt": "2024-07-02T14:12:47Z",
+      "closedAt": "2024-07-02T14:12:47Z",
       "comments": []
     },
     {
@@ -4889,7 +4898,7 @@
       "id": "I_kwDOIvmHss6JlhE9",
       "title": "Make CDDL definitions separate files and import to draft",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/244",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "aj-stein-nist",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4900,8 +4909,8 @@
       ],
       "body": "As an implementer, in order to directly use the CDDL definition(s) without having to extract the definitions with custom code or copy-pasting, I would like if the source code and tools in this repository to define the CDDL definitions as discrete files and import them the Kramdown RFC mechanisms, so my code can you the CDDL directly without those steps.\r\n\r\nSee `{::include ...}` directives from other sample drafts, [such as the current CBOR EDN Literals I-D](https://github.com/cbor-wg/edn-literal/blob/a5f3cb1f115f9d5adae812e3f38a0451f233c4a3/draft-ietf-cbor-edn-literals.md).",
       "createdAt": "2024-05-21T13:26:49Z",
-      "updatedAt": "2024-07-01T21:13:07Z",
-      "closedAt": null,
+      "updatedAt": "2024-07-02T01:46:52Z",
+      "closedAt": "2024-07-02T01:46:51Z",
       "comments": [
         {
           "author": "aj-stein-nist",
@@ -4923,6 +4932,30 @@
           "body": "> @aj-stein-nist, there's a comment of concern we're not at this point of complexity, but we're open to viewing a PR to try this change.\r\n\r\nOK, good thing it was not complex. https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/247 is ready for review.",
           "createdAt": "2024-06-28T04:51:50Z",
           "updatedAt": "2024-06-28T04:51:50Z"
+        }
+      ]
+    },
+    {
+      "number": 252,
+      "id": "I_kwDOIvmHss6OYyo8",
+      "title": "Please consider defining a \"Gatekeeper\" Role with a Transparency Service operation",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/252",
+      "state": "OPEN",
+      "author": "rjb4standards",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "A Gatekeeper role is needed to ensure that only verified materials, based on registration policy criteria, are placed into a Transparency Service Registry and Log.",
+      "createdAt": "2024-07-03T15:01:06Z",
+      "updatedAt": "2024-07-03T15:01:44Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "Issue posted.",
+          "createdAt": "2024-07-03T15:01:42Z",
+          "updatedAt": "2024-07-03T15:01:42Z"
         }
       ]
     }
@@ -8063,7 +8096,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/64",
       "state": "CLOSED",
       "author": "roywill",
-      "authorAssociation": "NONE",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Suggested way to address Issue 45",
@@ -8895,7 +8928,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/71",
       "state": "CLOSED",
       "author": "roywill",
-      "authorAssociation": "NONE",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Updated with suggestions",
@@ -8942,7 +8975,7 @@
         },
         {
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "I will be on it tomorrow.\r\n\r\nRoy Williams\r\n________________________________\r\nFrom: Steve Lasker ***@***.***>\r\nSent: Friday, July 21, 2023 8:33:08 PM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Roy Williams (E+P) ***@***.***>; Mention ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Roywill main (PR #71)\r\n\r\n\r\nClosed #71<https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/71>.\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub<https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/71#event-9890343787>, or unsubscribe<https://github.com/notifications/unsubscribe-auth/AJP7OQEIHHEQTXE3FWLNPPLXRNCXJANCNFSM6AAAAAAZFEQPCI>.\r\nYou are receiving this because you were mentioned.Message ID: ***@***.***>\r\n",
           "createdAt": "2023-07-22T03:40:37Z",
           "updatedAt": "2023-07-22T03:40:37Z"
@@ -10554,7 +10587,7 @@
             "abbreviatedOid": "cfa28e3"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-07-07T21:52:46Z",
@@ -10574,7 +10607,7 @@
             "abbreviatedOid": "e35ea17"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "APPROVED",
           "body": "Asked Kristina to also look at this.",
           "createdAt": "2023-07-07T21:57:09Z",
@@ -13361,7 +13394,7 @@
             "abbreviatedOid": "7e11273"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-10-20T18:20:06Z",
@@ -13381,7 +13414,7 @@
             "abbreviatedOid": "7e11273"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-10-20T18:24:03Z",
@@ -13401,7 +13434,7 @@
             "abbreviatedOid": "7e11273"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-10-20T18:28:31Z",
@@ -13421,7 +13454,7 @@
             "abbreviatedOid": "7e11273"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-10-20T18:32:04Z",
@@ -13441,7 +13474,7 @@
             "abbreviatedOid": "7e11273"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-10-20T18:32:45Z",
@@ -13481,7 +13514,7 @@
             "abbreviatedOid": "7e11273"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-10-20T18:35:12Z",
@@ -13501,7 +13534,7 @@
             "abbreviatedOid": "7e11273"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-10-20T18:39:32Z",
@@ -19697,7 +19730,7 @@
             "abbreviatedOid": "6ff550d"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-02-06T15:08:33Z",
@@ -23605,7 +23638,7 @@
             "abbreviatedOid": "146e8c9"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-02-13T15:25:32Z",
@@ -23925,7 +23958,7 @@
             "abbreviatedOid": "4eab6e7"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-02-13T15:28:32Z",
@@ -23965,7 +23998,7 @@
             "abbreviatedOid": "4eab6e7"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-02-13T15:30:05Z",
@@ -30647,7 +30680,7 @@
             "abbreviatedOid": "9ee87f9"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-04-16T14:40:50Z",
@@ -30889,7 +30922,7 @@
             "abbreviatedOid": "198573f"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "APPROVED",
           "body": "May be we have to tighten up the you can retrieve the signed statement to something in the future that may only get the hash",
           "createdAt": "2024-04-16T14:54:31Z",
@@ -31069,7 +31102,7 @@
             "abbreviatedOid": "389c0cd"
           },
           "author": "roywill",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "Thanks for doing this.  If in the future we get to a higher level abstract in the charter this can come back.",
           "createdAt": "2024-04-19T14:12:10Z",
@@ -32452,24 +32485,26 @@
       "id": "PR_kwDOIvmHss5ziTkb",
       "title": "Capitalized Terms",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/246",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "fixes #243 ",
       "createdAt": "2024-06-25T18:49:49Z",
-      "updatedAt": "2024-07-01T20:59:45Z",
+      "updatedAt": "2024-07-02T14:12:46Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "3124f380f72de49d5a69c1f94524d01b4084f6af",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "term-caps",
       "headRefOid": "ac6c6978134ca6edc8eab4c34b2e4c57ce9a0af5",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-07-02T14:12:46Z",
+      "mergedAt": "2024-07-02T14:12:46Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "55a11cdea971942e45101f125439294d30c88a5a"
+      },
       "comments": [],
       "reviews": [
         {
@@ -32510,6 +32545,19 @@
           "createdAt": "2024-07-01T20:59:45Z",
           "updatedAt": "2024-07-01T20:59:45Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6AYvDN",
+          "commit": {
+            "abbreviatedOid": "ac6c697"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-02T14:10:04Z",
+          "updatedAt": "2024-07-02T14:10:04Z",
+          "comments": []
         }
       ]
     },
@@ -32518,7 +32566,7 @@
       "id": "PR_kwDOIvmHss5z2MrZ",
       "title": "External CDDL files and include for #244",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/247",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aj-stein-nist",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -32527,17 +32575,19 @@
       "labels": [],
       "body": "This change externalizes the two normative definitions for transparent and signed statements, respectively, and adds them to the final draft with the kramdown `includes` directive. This change allows developers to use a git sub-module or programmatically use the git version of the spec to have utilities for code generation and other capabilities use the definitions without more cumbersome extraction routines for the source Markdown or RFC XML representations of the spec.\r\n\r\nBelow is a local eval copy of the HTML representation of the draft with the `include`d files properly integrated.\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/94922603/db28cebc-b351-4271-8f5f-751c6615879c)\r\n",
       "createdAt": "2024-06-28T04:51:01Z",
-      "updatedAt": "2024-07-01T22:26:10Z",
+      "updatedAt": "2024-07-02T01:46:51Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "3124f380f72de49d5a69c1f94524d01b4084f6af",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "244-import-cddl-from-files",
-      "headRefOid": "f09f5827e2fc16487db8727f46dd5ebb6a039e6f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "c6e3b387ef1b9c7470beaa5454cd86cc5e8d5224",
+      "closedAt": "2024-07-02T01:46:50Z",
+      "mergedAt": "2024-07-02T01:46:50Z",
+      "mergedBy": "aj-stein-nist",
+      "mergeCommit": {
+        "oid": "06c5b29a0446895fc2a319b60a6eba227b2a5e0b"
+      },
       "comments": [
         {
           "author": "aj-stein-nist",
@@ -32571,6 +32621,392 @@
               "body": "```suggestion\r\n}\r\n\r\n```",
               "createdAt": "2024-07-01T21:11:05Z",
               "updatedAt": "2024-07-01T21:11:46Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 248,
+      "id": "PR_kwDOIvmHss50PBfB",
+      "title": "Update draft-ietf-scitt-architecture.md",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/248",
+      "state": "MERGED",
+      "author": "roywill",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Updated the auditor's definition",
+      "createdAt": "2024-07-02T18:43:04Z",
+      "updatedAt": "2024-07-02T18:45:51Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "issue-236",
+      "baseRefOid": "3124f380f72de49d5a69c1f94524d01b4084f6af",
+      "headRepository": "roywill/draft-ietf-scitt-architecture-Issue-45",
+      "headRefName": "patch-3",
+      "headRefOid": "b5dde619a9fcf33c790764c3448826467272ea2a",
+      "closedAt": "2024-07-02T18:45:51Z",
+      "mergedAt": "2024-07-02T18:45:51Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "9f0eb29d2190c1b5a04031f2934d9ccde9c72426"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6AbLNT",
+          "commit": {
+            "abbreviatedOid": "b5dde61"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-02T18:44:43Z",
+          "updatedAt": "2024-07-02T18:44:43Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 249,
+      "id": "PR_kwDOIvmHss50PDBS",
+      "title": "Adjusting Definiion of `Auditor` to address #236",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/249",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #236 ",
+      "createdAt": "2024-07-02T18:46:56Z",
+      "updatedAt": "2024-07-03T15:57:09Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "55a11cdea971942e45101f125439294d30c88a5a",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "issue-236",
+      "headRefOid": "9f0eb29d2190c1b5a04031f2934d9ccde9c72426",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "Do we have a term/role for the party that verifies signed statements and controls what goes into the registry/log.\r\n\r\nI think of this role as the Gatekeeper working on behalf of a Transparency Service provider.",
+          "createdAt": "2024-07-02T18:50:52Z",
+          "updatedAt": "2024-07-02T18:50:52Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Do we have a term/role for the party that verifies signed statements and controls what goes into the registry/log.\r\n> \r\n> I think of this role as the Gatekeeper working on behalf of a Transparency Service provider.\r\n\r\nIf there is no structured way to publish a registration policy (even if it is a requirement), it is unclear how the specification could define such a role and document the requirements. To answer the question, there is no explicit term or role.",
+          "createdAt": "2024-07-03T13:48:50Z",
+          "updatedAt": "2024-07-03T13:48:50Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "In our case, the Transparency Service Operator performs a Gatekeeper function that enforces the Registration Policies. If everything provided in the evidence data (payload) needed to register a \u201ctrust declaration\u201d passes the Registration Policy criteria then the item is registered in the \u201cTrust Registry\u201d and placed on the Transparency Service Log.\r\n\r\n \r\n\r\nI think we need to define a \u201cGatekeeper\u201d role in SCITT that is responsible for ensuring that registration policies are being applied and implemented properly before registering a Signed Statement as trustworthy, according to registration policy. \r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n   \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\nhttps://businesscyberguardian.com/ \r\n\r\nEmail: ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: A.J. Stein ***@***.***> \r\nSent: Wednesday, July 3, 2024 9:44 AM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Comment ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Adjusting Definiion of `Auditor` to address #236 (PR #249)\r\n\r\n \r\n\r\n@aj-stein-nist commented on this pull request.\r\n\r\n  _____  \r\n\r\nIn draft-ietf-scitt-architecture.md <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/249#discussion_r1664219377> :\r\n\r\n> @@ -199,7 +199,7 @@ Artifact:\r\n \r\n Auditor:\r\n \r\n-: an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.\r\n+: an entity that can review entries of a Transparency Service's Append-only Log to prove the application and enforcment of Registration Policy during each Registration process step.\r\n\r\nIn the current state of the draft around the capabilities of a TS to publish the registration policy and no structured mechanism for an Auditor to understand it, it is unclear how this ability recommended in this change is possible.\r\n\r\nHow would an Auditor perform registration policy enforcement in actuality?\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/249#discussion_r1664219377> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NFNHOAJHUHHW6DFYGDZKP5ZZAVCNFSM6AAAAABKIDP4P2VHI2DSMVQWIX3LMV43YUDVNRWFEZLROVSXG5CSMV3GSZLXHMZDCNJWGQ4TMNZRG4> .\r\nYou are receiving this because you commented.Message ID: ***@***.***>\r\n\r\n",
+          "createdAt": "2024-07-03T13:51:35Z",
+          "updatedAt": "2024-07-03T13:51:35Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I think we need to define a \u201cGatekeeper\u201d role in SCITT that is responsible for ensuring that registration policies are being applied and implemented properly before registering a Signed Statement as trustworthy, according to registration policy.\r\n\r\nIt would be helpful if that was discussed on the mailing list or opened in GitHub issues separate of this PR review.",
+          "createdAt": "2024-07-03T14:56:57Z",
+          "updatedAt": "2024-07-03T14:56:57Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "Issue posted.\r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n   \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\nhttps://businesscyberguardian.com/ \r\n\r\nEmail: ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: A.J. Stein ***@***.***> \r\nSent: Wednesday, July 3, 2024 10:57 AM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Comment ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Adjusting Definiion of `Auditor` to address #236 (PR #249)\r\n\r\n \r\n\r\nI think we need to define a \u201cGatekeeper\u201d role in SCITT that is responsible for ensuring that registration policies are being applied and implemented properly before registering a Signed Statement as trustworthy, according to registration policy.\r\n\r\nIt would be helpful if that was discussed on the mailing list or opened in GitHub issues separate of this PR review.\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/249#issuecomment-2206420899> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NFOT3DLH3DZL5AGTWDZKQGM5AVCNFSM6AAAAABKIDP4P2VHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMZDEMBWGQZDAOBZHE> .\r\nYou are receiving this because you commented.Message ID: ***@***.***>\r\n\r\n",
+          "createdAt": "2024-07-03T15:03:19Z",
+          "updatedAt": "2024-07-03T15:03:19Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6Abh2W",
+          "commit": {
+            "abbreviatedOid": "9f0eb29"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-02T19:35:48Z",
+          "updatedAt": "2024-07-02T19:35:48Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "To date, it was my understanding we were referring to an Auditor as someone that verifies the correctness of the log, that no entries were added, modified or removed. \r\nThis sounds like an auditor would also be required to assure that any referenced registration policy was adhered to.\r\n",
+              "createdAt": "2024-07-02T19:35:48Z",
+              "updatedAt": "2024-07-02T19:35:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6AiYdN",
+          "commit": {
+            "abbreviatedOid": "9f0eb29"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-03T13:43:34Z",
+          "updatedAt": "2024-07-03T13:43:35Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "In the current state of the draft around the capabilities of a TS to publish the registration policy and no structured mechanism for an Auditor to understand it, it is unclear how this ability recommended in this change is possible.\r\n\r\nHow would an Auditor perform registration policy enforcement in actuality?",
+              "createdAt": "2024-07-03T13:43:35Z",
+              "updatedAt": "2024-07-03T13:43:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Aiah6",
+          "commit": {
+            "abbreviatedOid": "9f0eb29"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "1. The previous definition is more clear.\r\n2. I disagree with the decision cited in the editor's meeting summarized in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/236#issuecomment-2176325125, but if that is the intent of this PR, it does not clearly define there are two separate classes of Auditor, and the document talks about one throughout despite this definition change. This adds further nuance to terminology to side-step the obvious: a registration policy is not actionable even if you say so in a definition.",
+          "createdAt": "2024-07-03T13:46:55Z",
+          "updatedAt": "2024-07-03T13:46:55Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6AjsXI",
+          "commit": {
+            "abbreviatedOid": "9f0eb29"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-03T15:57:09Z",
+          "updatedAt": "2024-07-03T15:57:09Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Actually, the information on the ledger is what the Auditor reviews.  The confusion of auditors checking the consistency of the \"Merkle tree\" is left as obvious functionality or in the RFC on Merkle or Blockchains.  The selection of which is left to the implementors.  I am fine with Steve's suggestion.\r\n\r\nAJ The structure of the data on the ledger is explicitly not covered as it varies based on identity technology used.  In a CA issued x.509 it will be different than in a DID-WebXYZ one.  \r\n\r\nThe mechanism to configure \"trusted roots\" (registration policy) is also not standardize and can be left out.  If there is no configured identity providers, then there should be no receipts handed out.  The interesting problem for the future is detecting in a possible federated world when that policy changes.  This is where we were hung up for months and decided to simply scale back.",
+              "createdAt": "2024-07-03T15:57:09Z",
+              "updatedAt": "2024-07-03T15:57:09Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 250,
+      "id": "PR_kwDOIvmHss50PIYt",
+      "title": "Update draft-ietf-scitt-architecture.md",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/250",
+      "state": "MERGED",
+      "author": "roywill",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Clarify the terminology around expiry and refreshing receipts.",
+      "createdAt": "2024-07-02T19:03:19Z",
+      "updatedAt": "2024-07-02T19:04:19Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "issue-232",
+      "baseRefOid": "3124f380f72de49d5a69c1f94524d01b4084f6af",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "patch-1",
+      "headRefOid": "49917a351256abdb0e34a903163062ce8a8e1b56",
+      "closedAt": "2024-07-02T19:04:19Z",
+      "mergedAt": "2024-07-02T19:04:19Z",
+      "mergedBy": "roywill",
+      "mergeCommit": {
+        "oid": "4eb962d2525f68aa3f740d4ed1e39713764e0aef"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 251,
+      "id": "PR_kwDOIvmHss50PJKd",
+      "title": "Add section for refreshing receipts Issue #232",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/251",
+      "state": "OPEN",
+      "author": "roywill",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #232 ",
+      "createdAt": "2024-07-02T19:05:30Z",
+      "updatedAt": "2024-07-04T00:29:18Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "55a11cdea971942e45101f125439294d30c88a5a",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "issue-232",
+      "headRefOid": "4eb962d2525f68aa3f740d4ed1e39713764e0aef",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6AbT9u",
+          "commit": {
+            "abbreviatedOid": "4eb962d"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-02T19:06:02Z",
+          "updatedAt": "2024-07-02T19:06:02Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6AbfBn",
+          "commit": {
+            "abbreviatedOid": "4eb962d"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-02T19:30:58Z",
+          "updatedAt": "2024-07-02T19:30:58Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Since the above  (line 300) refers to expired key material, should this line reflect an updated key material expiration?\r\n\r\n```suggestion\r\nReceipts do not have an expiration time, but the corresponding key material could.\r\nRequesting a refreshed receipt can result in a new receipt over the same signed statement, with an updated signature, signing algorithm and new key material expiration.\r\n```",
+              "createdAt": "2024-07-02T19:30:58Z",
+              "updatedAt": "2024-07-02T19:30:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6AiQtk",
+          "commit": {
+            "abbreviatedOid": "4eb962d"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-07-03T13:31:34Z",
+          "updatedAt": "2024-07-03T13:32:08Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "This addition contradicts [draft-ietf-cose-merkle-tree-proofs](https://datatracker.ietf.org/doc/html/draft-ietf-cose-merkle-tree-proofs-05#name-validity-period), aka COSE Receipts, although that is an informative reference, it seems pretty important.\r\n\r\n```suggestion\r\n```",
+              "createdAt": "2024-07-03T13:31:34Z",
+              "updatedAt": "2024-07-03T13:32:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6AiWKX",
+          "commit": {
+            "abbreviatedOid": "4eb962d"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-03T13:40:11Z",
+          "updatedAt": "2024-07-03T13:40:11Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "How does a Client request a refreshed Receipt? Can it perform this operation without re-registering the same Signed Statement as before?",
+              "createdAt": "2024-07-03T13:40:11Z",
+              "updatedAt": "2024-07-03T13:40:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6AjmYk",
+          "commit": {
+            "abbreviatedOid": "4eb962d"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-03T15:46:54Z",
+          "updatedAt": "2024-07-03T15:46:54Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "The details of how to request a receipt is and should be covered in SCRAPI.\r\n\r\nTo Steve's comment, I don't think this is what we want to say.  The content we are re-issuing is based on the entries in the Ledger and using the receipt to find that.  There is no presentation or look up of signed statement so this leads people to a wrong point of view.  Yes the signed statement is then indirectly covered by the re-issuance.  The important point that we lose with this proposal is the epoch we face with PQC.  We can generate new receipts with PQC algorithms without having to re-sign the original document.  Which goes to the signature is preserved and valid at the time we generated a receipt, the fact that there are stronger signing algorithms does not mean that old signatures are suspect.",
+              "createdAt": "2024-07-03T15:46:54Z",
+              "updatedAt": "2024-07-03T15:46:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Ajnku",
+          "commit": {
+            "abbreviatedOid": "4eb962d"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-03T15:49:16Z",
+          "updatedAt": "2024-07-03T15:49:16Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "The content of the Merkle tree proof is immutable and does not expire.  The ability to ask CA's and such later the same questions becomes problematic and why that information should be part of the information on the Ledger.  This is immutable and like your kindergarten signature it is still you.  This is what the above reference is about.  The operation of signing the proof with a new signature does not diminish that statement. ",
+              "createdAt": "2024-07-03T15:49:16Z",
+              "updatedAt": "2024-07-03T15:49:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6AjrWu",
+          "commit": {
+            "abbreviatedOid": "4eb962d"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-03T15:55:32Z",
+          "updatedAt": "2024-07-03T15:55:32Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "> The content of the Merkle tree proof is immutable and does not expire.\r\n\r\nThat is not what the referenced I-D says, so I will copy-paste the section I cited here for clarity.\r\n\r\n> In some cases, receipts MAY include strict validity periods, for example, activation not too far in the future, or expiration, not too far in the past. See the iat, nbf, and exp claims in [[RFC8392](https://www.rfc-editor.org/rfc/rfc8392)], for one way to accomplish this. The details of expressing validity periods are out of scope for this document.\r\n\r\nThe claims MAY include strict validity periods. That is not about the digital signature itself, but the claim properties signed. It not a MUST however.\r\n\r\nIf SCITT were to say that receipts MUST NOT have an expiration time (i.e. use those fields) and clarify how it takes the general capabilities of a COSE-wrapped CWT and strictly forbids the use of those, I would say that explanation is much clearer to implementers about what needs to be done and meet the requirement you want to add.\r\n\r\nI can propose wording to that effect, does that make sense?\r\n",
+              "createdAt": "2024-07-03T15:55:32Z",
+              "updatedAt": "2024-07-03T15:55:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6AjwTQ",
+          "commit": {
+            "abbreviatedOid": "4eb962d"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-03T16:05:01Z",
+          "updatedAt": "2024-07-03T16:05:01Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "> The details of how to request a receipt is and should be covered in SCRAPI.\r\n\r\nI can agree to that, but the absent description of the mechanics of this are part of the problem with reviewing this addition. I would support rewording this sentence if it said specifically what a Client must do to refresh a Receipt or what it must do to look up the Signed Statement with a terse phrase. Otherwise, I would think it is best to leave this out. Is the ability to refresh a receipt a mandatory, essential feature of every TS that must conform to this architecture? It is hard for me to know, because what must be done.\r\n\r\n> The important point that we lose with this proposal is the epoch we face with PQC. We can generate new receipts with PQC algorithms without having to re-sign the original document. \r\n\r\nRe my previous point, that is why it is hard for me to understand the PQC implications and why it is essential all spec-conformant TS implementations need the ability to reissue receipts without the original document. This approach seems interesting but goes beyond the minimally viable architecture requirement _for everyone_, no?",
+              "createdAt": "2024-07-03T16:05:01Z",
+              "updatedAt": "2024-07-03T16:05:59Z"
             }
           ]
         }
