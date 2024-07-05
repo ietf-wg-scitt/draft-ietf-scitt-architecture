@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 3 January 2025                                       C. Fournet
+Expires: 6 January 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                             2 July 2024
+                                                             5 July 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 January 2025.
+   This Internet-Draft will expire on 6 January 2025.
 
 Copyright Notice
 
@@ -339,10 +339,9 @@ Table of Contents
    only Log using a combination of trusted hardware, replication and
    consensus protocols, and cryptographic evidence.  A Receipt is an
    offline, universally-verifiable proof that an entry is recorded in
-   the Append-only Log. Receipts do not have an expiration time, but the
-   corresponding key material could.  Requesting a refreshed receipt can
-   result in the same receipt with a different signature or signature
-   with a different signing algorithm.
+   the Append-only Log. Requesting a refreshed receipt can result in the
+   same receipt with a different signature or signature with a different
+   signing algorithm.
 
    Anyone with access to the Transparency Service can independently
    verify its consistency and review the complete list of Transparent
