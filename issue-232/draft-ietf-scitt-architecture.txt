@@ -339,9 +339,9 @@ Table of Contents
    only Log using a combination of trusted hardware, replication and
    consensus protocols, and cryptographic evidence.  A Receipt is an
    offline, universally-verifiable proof that an entry is recorded in
-   the Append-only Log. Requesting a refreshed receipt can result in the
-   same receipt with a different signature or signature with a different
-   signing algorithm.
+   the Append-only Log. Requesting a refreshed receipt can result in a
+   new receipt over the same signed statement, with an updated
+   signature, signing algorithm, and new key material expiration.
 
    Anyone with access to the Transparency Service can independently
    verify its consistency and review the complete list of Transparent
