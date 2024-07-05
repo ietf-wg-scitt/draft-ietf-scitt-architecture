@@ -297,7 +297,6 @@ Transparency is implemented by providing a consistent, append-only, cryptographi
 A SCITT instance is referred to as a Transparency Service.
 Implementations of Transparency Services may protect their Append-only Log using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence.
 A Receipt is an offline, universally-verifiable proof that an entry is recorded in the Append-only Log.
-Receipts do not have an expiration time, but the corresponding key material could.
 Requesting a refreshed receipt can result in the same receipt with a different signature or signature with a different signing algorithm.
 
 Anyone with access to the Transparency Service can independently verify its consistency and review the complete list of Transparent Statements registered by each Issuer.
