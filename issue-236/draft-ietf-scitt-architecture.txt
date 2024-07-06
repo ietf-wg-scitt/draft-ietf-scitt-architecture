@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 3 January 2025                                       C. Fournet
+Expires: 7 January 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                             2 July 2024
+                                                             6 July 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 January 2025.
+   This Internet-Draft will expire on 7 January 2025.
 
 Copyright Notice
 
@@ -199,9 +199,9 @@ Table of Contents
    Artifact:  a physical or non-physical item that is moving along a
       supply chain.
 
-   Auditor:  an entity that can review entries of a Transparency
-      Service's Append-only Log to prove the application and enforcment
-      of Registration Policy during each Registration process step.
+   Auditor:  an entity that confirms the correctness and consistency of
+      the Transparency Service's Append-only Log, or that the
+      Transparency Service policies have been applied consistently.
 
    Client:  an application making protected Transparency Service
       resource requests on behalf of the resource owner and with its
