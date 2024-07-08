@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 3 January 2025                                       C. Fournet
+Expires: 9 January 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                             2 July 2024
+                                                             8 July 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 January 2025.
+   This Internet-Draft will expire on 9 January 2025.
 
 Copyright Notice
 
@@ -180,9 +180,6 @@ Table of Contents
    throughout this document.  When used in text, the corresponding terms
    are capitalized.  To ensure readability, only a core set of terms is
    included in this section.
-
-   *Editor's Note:*: _The label "394" is expected to be reserved by this
-   document, in the COSE Header Parameters Registry._
 
    The terms "header", "payload", and "to-be-signed bytes" are defined
    in [RFC9052].
@@ -813,7 +810,8 @@ Table of Contents
    Statement a Transparent Statement is produced.
 
    Receipts are based on Signed Inclusion Proofs as described in COSE
-   Signed Merkle Tree Proofs ([I-D.draft-ietf-cose-merkle-tree-proofs]).
+   Signed Merkle Tree Proofs ([I-D.draft-ietf-cose-merkle-tree-proofs])
+   that also provides the COSE header parameter semantics for label 394.
 
    The Registration time is defined as the timestamp at which the
    Transparency Service has added this Signed Statement to its Append-
@@ -831,8 +829,10 @@ Table of Contents
            Figure 4: CDDL definition for a Transparent Statement
 
    Figure 5 illustrates a Transparent Statement with a detached payload,
-   and two Receipts in its unprotected header.  The label 394 receipts
-   in unprotected header can contain multiple Receipts.
+   and two Receipts in its unprotected header.  The type of label 394
+   receipts in the unprotected header is a CBOR array that can contain
+   one or more Receipts (each entry encoded as a .cbor encoded
+   Receipts).
 
    18(                                 / COSE Sign 1                   /
        [
@@ -1240,59 +1240,9 @@ Table of Contents
 
 7.  IANA Considerations
 
-   TBD; Section 3.
-
 7.1.  Media Type Registration
 
-   This section requests registration of the following media types
-   [RFC2046] in the "Media Types" registry [IANA.media-types] in the
-   manner described in [RFC6838].
-
-   To indicate that the content is an scitt configuration represented as
-   JSON:
-
-   *  Type name: application
-
-   *  Subtype name: scitt-configuration+json
-
-   *  Required parameters: n/a
-
-   *  Optional parameters: n/a
-
-   *  Encoding considerations: binary; application/scitt-
-      configuration+json values are represented as a JSON Object; UTF-8
-      encoding SHOULD be employed for the JSON object.
-
-   *  Security considerations: See the Security Considerations section
-      of TBD.
-
-   *  Interoperability considerations: n/a
-
-   *  Published specification: TBD
-
-   *  Applications that use this media type: TBD
-
-   *  Fragment identifier considerations: n/a
-
-   *  Additional information:
-
-      -  Magic number(s): n/a
-
-      -  File extension(s): n/a
-
-      -  Macintosh file type code(s): n/a
-
-   *  Person & email address to contact for further information: TBD
-
-   *  Intended usage: COMMON
-
-   *  Restrictions on usage: none
-
-   *  Author: TBD
-
-   *  Change Controller: IETF
-
-   *  Provisional registration?  No
+   Pending WG discussion.
 
 8.  References
 
@@ -1309,6 +1259,13 @@ Table of Contents
               ietf-cose-cwt-claims-in-headers-10, 29 November 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-cose-
               cwt-claims-in-headers-10>.
+
+   [I-D.draft-ietf-cose-merkle-tree-proofs]
+              Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
+              Fournet, "COSE Receipts", Work in Progress, Internet-
+              Draft, draft-ietf-cose-merkle-tree-proofs-05, 18 June
+              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              cose-merkle-tree-proofs-05>.
 
    [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <http://www.iana.org/assignments/cwt>.
@@ -1406,19 +1363,12 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-core-
               href-15>.
 
-   [I-D.draft-ietf-cose-merkle-tree-proofs]
-              Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
-              Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-05, 18 June
-              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-05>.
-
    [I-D.draft-ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
               Wallace, "The Entity Attestation Token (EAT)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-eat-28, 25 June
+              Progress, Internet-Draft, draft-ietf-rats-eat-29, 8 July
               2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              rats-eat-28>.
+              rats-eat-29>.
 
    [in-toto]  "in-toto", n.d., <https://in-toto.io/>.
 
