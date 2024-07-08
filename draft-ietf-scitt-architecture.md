@@ -77,6 +77,7 @@ normative:
   RFC9360:
   RFC8392:
   COSWID: RFC9393
+  I-D.draft-ietf-cose-merkle-tree-proofs: COMETRE
 
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
   IANA.cwt:
@@ -87,7 +88,6 @@ normative:
 
 informative:
 
-  I-D.draft-ietf-cose-merkle-tree-proofs: COMETRE
   I-D.draft-ietf-rats-eat: draft-ietf-rats-eat
   NIST.SP.1800-19:
   NIST.SP.800-63-3:
@@ -181,8 +181,6 @@ SCITT achieves this by having producers publish information in a Transparency Se
 The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust, which are used throughout this document.
 When used in text, the corresponding terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.
-
-**Editor's Note:**: *The label "394" is expected to be reserved by this document, in the COSE Header Parameters Registry.*
 
 The terms "header", "payload", and "to-be-signed bytes" are defined in {{-COSE}}.
 
@@ -580,7 +578,7 @@ Client applications MAY request Receipts regardless of the identity of the Issue
 When a Signed Statement is registered by a Transparency Service a Receipt becomes available.
 When a Receipt is included in a Signed Statement a Transparent Statement is produced.
 
-Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}).
+Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}) that also provides the COSE header parameter semantics for label 394.
 
 The Registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.
 
@@ -592,7 +590,7 @@ The Registration time is defined as the timestamp at which the Transparency Serv
 {: #fig-transparent-statement-cddl title="CDDL definition for a Transparent Statement"}
 
 {{fig-transparent-statement-edn}} illustrates a Transparent Statement with a detached payload, and two Receipts in its unprotected header.
-The label 394 `receipts` in unprotected header can contain multiple Receipts.
+The type of label 394 `receipts` in the unprotected header is a CBOR array that can contain one or more Receipts (each entry encoded as a .cbor encoded Receipts).
 
 ~~~ cbor-diag
 18(                                 / COSE Sign 1                   /
@@ -844,36 +842,10 @@ It is up to the Issuer to notify Transparency Services of credential revocation 
 
 # IANA Considerations
 
-TBD; {{mybody}}.
-
 ## Media Type Registration
 
-This section requests registration of the following media types {{RFC2046}} in
-the "Media Types" registry {{IANA.media-types}} in the manner described
-in {{RFC6838}}.
+Pending WG discussion.
 
-To indicate that the content is an scitt configuration represented as JSON:
-
-- Type name: application
-- Subtype name: scitt-configuration+json
-- Required parameters: n/a
-- Optional parameters: n/a
-- Encoding considerations: binary; application/scitt-configuration+json values are represented as a JSON Object; UTF-8 encoding SHOULD be employed for the JSON object.
-- Security considerations: See the Security Considerations section of TBD.
-- Interoperability considerations: n/a
-- Published specification: TBD
-- Applications that use this media type: TBD
-- Fragment identifier considerations: n/a
-- Additional information:
-  - Magic number(s): n/a
-  - File extension(s): n/a
-  - Macintosh file type code(s): n/a
-- Person & email address to contact for further information: TBD
-- Intended usage: COMMON
-- Restrictions on usage: none
-- Author: TBD
-- Change Controller: IETF
-- Provisional registration?  No
 --- back
 
 # Common Terminology Disambiguation
