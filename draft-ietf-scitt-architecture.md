@@ -199,7 +199,7 @@ Artifact:
 
 Auditor:
 
-: an entity that confirms the correctness and consistency of the Transparency Service's Append-only Log, or that the Transparency Service policies have been applied consistently.
+: an entity that confirms the correctness and consistency of the Transparency Service's Append-only Log, and that the Transparency Service policies have been applied consistently.
 
 Client:
 
