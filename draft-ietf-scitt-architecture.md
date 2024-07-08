@@ -69,7 +69,6 @@ contributor:
       Orie contributed to improving the generalization of COSE building blocks and document consistency.
 
 normative:
-  RFC2046:
   RFC5280: PKIX
   RFC6838:
   RFC8610: CDDL
@@ -81,7 +80,6 @@ normative:
 
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
   IANA.cwt:
-  IANA.media-types:
   IANA.named-information:
   RFC6570: URITemplate
   RFC4648: Base64Url
