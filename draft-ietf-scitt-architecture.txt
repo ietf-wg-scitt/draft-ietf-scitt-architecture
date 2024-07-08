@@ -336,9 +336,11 @@ Table of Contents
    only Log using a combination of trusted hardware, replication and
    consensus protocols, and cryptographic evidence.  A Receipt is an
    offline, universally-verifiable proof that an entry is recorded in
-   the Append-only Log. Receipts do not expire, but it is possible to
-   append new entries (more recent Signed Statements) that subsume older
-   entries (less recent Signed Statements).
+   the Append-only Log. Requesting a receipt can result in the
+   production of a new receipt for the same signed statement.  A
+   Receipt's verification key, signing algorithm, validity period,
+   header parameters or other claims MAY change each time a Receipt is
+   produced.
 
    Anyone with access to the Transparency Service can independently
    verify its consistency and review the complete list of Transparent
