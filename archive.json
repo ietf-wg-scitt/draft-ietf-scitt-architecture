@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-09T00:39:20.681821+00:00",
+  "timestamp": "2024-07-11T00:40:10.961395+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4971,7 +4971,7 @@
       ],
       "body": "A Gatekeeper role is needed to ensure that only verified materials, based on registration policy criteria, are placed into a Transparency Service Registry and Log.",
       "createdAt": "2024-07-03T15:01:06Z",
-      "updatedAt": "2024-07-09T00:01:47Z",
+      "updatedAt": "2024-07-09T15:05:58Z",
       "closedAt": null,
       "comments": [
         {
@@ -5015,6 +5015,20 @@
           "body": "@rjb4standards,\r\nThe issue as titled, does reflect the registration portion of the spec. I'd like to close this Issue, as titled, and ask you open a new issue, or start a new discussion about capturing the denied registration. It might almost be obvious we need ledger entries to capture declines. There's a line of DOS type flooding attacks, but seems there's something we should take as an output. ",
           "createdAt": "2024-07-09T00:01:35Z",
           "updatedAt": "2024-07-09T00:01:35Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "It's not just rejections that need to be captured in order to have a \"closed loop\" process. Ideally, each request to register a signed statement needs to be tracked and the status recorded in order to conduct a proper audit against the \"registered\" signed statements in the log to verify that the log and the \"tracker process\" match. Rejected requests would appear in the tracker as rejected. Accepted requests would appear as approved.\r\n\r\nThis would produce a high integrity, closed loop process, needed for a trustworthy, auditable registration service. Integrity of the registry is key to its success.\r\n\r\nClose this issue if you are compelled to do so and I can open a new issue later to address this matter.",
+          "createdAt": "2024-07-09T10:22:34Z",
+          "updatedAt": "2024-07-09T10:23:46Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "- **Accepted Registrations**: The accepted are captured as they are registered. I believe we've covered that from an Architecture, and a product can implement that.\r\n- **Rejected Registrations**: These are not currently covered in the architecture and could be covered by a product, but I do see the value in specifying rejections should be captured. I think that's the most actionable thing from this discussion that I'd personally encourage and support a PR for. That said, I don't think this issue as titled and initially discussed fit that, which is why I'm suggesting creating an Issue/PR specific to rejected registrations. I also encourage others to comment.\r\n",
+          "createdAt": "2024-07-09T15:05:57Z",
+          "updatedAt": "2024-07-09T15:05:57Z"
         }
       ]
     }
