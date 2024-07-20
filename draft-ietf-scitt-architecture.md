@@ -327,23 +327,22 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
        v                 |  Identity   |
   .----+----.            |  Documents  |
  | Statement |            '---+--+----'
-  '----+----'       cose sign |  | cose verify
+  '----+----'                 |  |
        |    .----------------'|  |
        |   |                  |  |
        v   v                  |  |'----------.
   .----+---+---.              |  |            |
  |    Signed    |             |  |            |
  |   Statement  |             |  |            |
- | (COSE_Sign1) |             |  |            |
   '------+-----'              v  v            |
          |                +---+--+--------+   |
      .--' '-------------->+ Transparency  |   |
     |   .--------.        |               |   |
-    |  | Receipt  +<------+  Service      +-+ |
+    |  | Receipt  +<------+   Service     +-+ |
     |  |          +.      +--+------------+ | |
     |   '-+------'  |        | Transparency | |
     |     | Receipt +<-------+              | |
-    |      '------+'         | Service      | |
+    |      '------+'         |   Service    | |
      '-------. .-'           +------------+-+ |
               |                           |   |
               v                           |   |
@@ -364,8 +363,10 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
     / Collect Receipts /      /   Replay Log   /
    '------------------'      '----------------'
 ~~~
+{: #fig-concept-relationship title="Relationship of Concepts in SCITT"}
 
-This section describes at a high level, the three main roles and associated processes in SCITT: Issuers and Signed Statements, Transparency Service and the Signed Statement Registration process, as well as Relying Parties of the Transparent Statements and the Receipt validation process.
+This section describes at a high level, the three main roles and associated processes in SCITT: 
+- Issuers and Signed Statements, Transparency Service and the registration process, as well as Relying Parties of the Transparent Statements and the Receipt validation process.
 
 ## Transparency Service
 
