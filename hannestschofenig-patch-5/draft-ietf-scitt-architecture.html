@@ -1858,7 +1858,7 @@ For example, an Issuer can make amended Statements about the same Artifact as th
 <p id="section-4.2-8">Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
 Relying Parties can choose which Issuers they trust.<a href="#section-4.2-8" class="pilcrow">¶</a></p>
 <p id="section-4.2-9">Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.<a href="#section-4.2-9" class="pilcrow">¶</a></p>
-<p id="section-4.2-10">At least one identifier <span class="bcp14">MUST</span> be included in the protected header of the COSE Envelope, as one of <code>x5t</code> or <code>kid</code>.
+<p id="section-4.2-10">At least one identifier to a credential <span class="bcp14">MUST</span> be included in the protected header of the COSE Envelope, as one of <code>x5t</code> or <code>kid</code>.
 Additionally, <code>x5chain</code> that corresponds to either <code>x5t</code> or <code>kid</code> identifying the leaf certificate in the included certification path <span class="bcp14">MAY</span> be included in the unprotected header of the COSE Envelope.<a href="#section-4.2-10" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.2-11.1">
