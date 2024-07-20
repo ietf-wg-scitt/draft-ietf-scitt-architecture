@@ -273,6 +273,11 @@ Transparent Statement:
 The Receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
 A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.
 
+Verifiable Data Structure:
+
+: a data structure which supports one or proof types, such as "inclusion proofs" or "consistency proofs".
+
+
 {: #mybody}
 
 # Definition of Transparency
