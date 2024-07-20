@@ -387,7 +387,7 @@ Registration Policies refer to additional checks over and above the Mandatory Re
 Transparency Services MUST maintain Registration Policies.
 
 Transparency Services MUST also maintain a list of trust anchors, which SHOULD be used by Relying Parties to authenticate Issuers, and which MAY be included in a Registration Policy statement.
-For instance, a trust anchor could be an X.509 root certificate, the discovery URL of an OpenID Connect identity provider, or any other COSE compatible PKI trust anchor.
+For instance, a trust anchor could be an X.509 root certificate, the URL pointing to an OpenID Connect identity provider combined with the use of the Web PKI, or a JSON Web Key Set containing the public keys of Issuers.
 
 Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing the associated Receipts.
 
