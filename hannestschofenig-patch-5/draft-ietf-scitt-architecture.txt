@@ -399,10 +399,10 @@ Table of Contents
 
     .----------.
    |  Artifact  |
-    '-----+----'             .-----------.
-          v                 |  Identity   |
-     .----+----.            |  Documents  |
-    | Statement |            '---+--+----'
+    '-----+----'            .--------------.
+          v                |  Credentials  |
+     .----+----.           | Trust Anchors |
+    | Statement |           '----+--+------'
      '----+----'       cose sign |  | cose verify
           |    .----------------'|  |
           |   |                  |  |
