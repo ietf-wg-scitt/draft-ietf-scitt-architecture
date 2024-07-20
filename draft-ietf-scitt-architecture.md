@@ -747,7 +747,7 @@ The third guarantee is achieved by implementing the Append-only Log using a veri
 
 This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are corrupt or compromised.
 
-This threat model may need to be refined to account for specific supply chains use cases.
+This threat model may need to be refined to account for specific supply chain use cases.
 
 SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency).
 These guarantees are meant to hold for extensive periods of time, possibly decades.
