@@ -803,7 +803,6 @@ Actors may want to independently keep their own record of the Signed Statements 
 
 ### Confidentiality and Privacy
 
-According to Zero Trust Principles any location in a network is never trusted.
 All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network traffic analysis.
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
