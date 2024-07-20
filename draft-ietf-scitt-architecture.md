@@ -512,7 +512,7 @@ A Registration Policy that requires an optional field to be present MUST reject 
 ~~~
 {: #fig-signed-statement-cddl title="CDDL definition for Signed Statements and Receipts"}
 
-{{fig-signed-statement-edn}} illustrates an instance of a Signed Statement in EDN, with a payload that is detached.
+{{fig-signed-statement-edn}} illustrates an instance of a Signed Statement in Extended Diagnostic Notation (EDN), with a payload that is detached.
 Detached payloads support large Statements, and ensure Signed Statements can integrate with existing storage systems.
 
 ~~~ cbor-diag
