@@ -155,7 +155,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
 
 # Introduction
 
-This document describes the generic, interoperable and scalable SCITT architecture.
+This document describes the generic, interoperable, and scalable SCITT architecture.
 Its goal is to enhance auditability and accountability across supply chains.
 
 In supply chains, downstream Artifacts are built upon upstream Artifacts.
