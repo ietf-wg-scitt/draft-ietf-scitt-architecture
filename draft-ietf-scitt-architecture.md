@@ -482,15 +482,13 @@ Relying Parties can choose which Issuers they trust.
 
 Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.
 
-At least one identifier for an identity document MUST be included in the protected header of the COSE Envelope, as one of `x5t` or `kid`.
+At least one identifier MUST be included in the protected header of the COSE Envelope, as one of `x5t` or `kid`.
 Additionally, `x5chain` that corresponds to either `x5t` or `kid` identifying the leaf certificate in the included certification path MAY be included in the unprotected header of the COSE Envelope.
 
 - When using x509, Support for `x5t` is mandatory to implement.
 - Support for `kid` in the protected header and `x5chain` in the unprotected heaer is optional.
 
 When `x5t` is present, `iss` MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
-
-The mechanisms for how Transparency Services obtain identity documents is out-of-scope of this document.
 
 The `kid` header parameter MUST be present when `x5t` is not present.
 Key discovery protocols are out-of-scope of this document.
