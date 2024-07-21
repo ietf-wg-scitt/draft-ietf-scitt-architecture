@@ -634,8 +634,8 @@ Table of Contents
    Multiple Issuers can make the same Statement about a single Artifact,
    affirming multiple Issuers agree.
 
-   At least one identifier to a credential MUST be included in the
-   protected header of the COSE Envelope, as one of x5t or kid.
+   At least one identifier representing one credential MUST be included
+   in the protected header of the COSE Envelope, as one of x5t or kid.
    Additionally, x5chain that corresponds to either x5t or kid
    identifying the leaf certificate in the included certification path
    MAY be included in the unprotected header of the COSE Envelope.
