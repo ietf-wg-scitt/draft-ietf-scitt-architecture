@@ -416,11 +416,11 @@ The operator of a Transparency Service MAY update the Registration Policy or the
 
 Transparency Services MUST ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to reproduce the Registration checks that were defined by the Registration Policies at the time of Registration.
 
-### Initialization and bootstrapping {#ts-initialization}
+### Initialization and Bootstrapping {#ts-initialization}
 
 Since the mandatory Registration checks rely on having registered Signed Statements for the Registration Policy and trust anchors, Transparency Services MUST support at least one of the three following bootstrapping mechanisms:
 
-- A built-in default Registration Policy and default trust anchors;
+- Pre-configured Registration Policy and trust anchors;
 - Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing Registration checks
 - An out-of-band authenticated management interface
 
