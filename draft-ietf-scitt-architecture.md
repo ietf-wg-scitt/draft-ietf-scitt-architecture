@@ -731,7 +731,7 @@ An example of Signed Statement's payloads that can improve authenticity assuranc
 For example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs. The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts. The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a Relying Party and complies with well-known Reference Values and Endorsements.
 
 Auditors should be aware that the certification path information included in an unprotected `x5chain` header of a to-be-registered Signed Statement can be tampered with by a malicious Transparency Service (e.g., one that does not incorporate remote attestation), which may replace the intermediate certificates and ultimately connect to an unexpected root.
-This modification can allow malicious TS to forge Claims that look genuine except for the wrong trust anchor.
+This modification helps protect against person-in-the-middle attacks, but not denial-of-service.
 Auditors MUST perform certification path validation in accordance with PKIX rules specified in {{-PKIX}}.
 In particular, Auditors MUST verify that certification paths chain to one or more trust anchors (often represented as root certificates).
 
