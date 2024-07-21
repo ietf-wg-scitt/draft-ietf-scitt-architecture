@@ -686,7 +686,6 @@ Such policies may use as input all information in the Envelope, the Receipt, and
 Transparency Services may be publicly accessible and Issuers should in those cases treat Signed Statements (rendering them as Transparent Statements) as publicly accessible.
 In this case, a Signed Statement Envelope and Statement payload should not carry any confidential information in the clear.
 Once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.
-Note, however, the Transparency Services only stores the hash values, which only leads to minimal information leakage.
 For a practial deployment a Relaying Party, such as an Auditor, will have to get access also to the Signed Statements, which are made available through an adjacent system.
 
 Transparency Services may enforce access control to the Append-only Log.
