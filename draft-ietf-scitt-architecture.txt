@@ -1042,12 +1042,12 @@ Table of Contents
    Signed Statement can be tampered with by a malicious Transparency
    Service (e.g., one that does not incorporate remote attestation),
    which may replace the intermediate certificates and ultimately
-   connect to an unexpected root.  This modification can allow malicious
-   TS to forge Claims that look genuine except for the wrong trust
-   anchor.  Auditors MUST perform certification path validation in
-   accordance with PKIX rules specified in [RFC5280].  In particular,
-   Auditors MUST verify that certification paths chain to one or more
-   trust anchors (often represented as root certificates).
+   connect to an unexpected root.  This modification helps protect
+   against person-in-the-middle attacks, but not denial-of-service.
+   Auditors MUST perform certification path validation in accordance
+   with PKIX rules specified in [RFC5280].  In particular, Auditors MUST
+   verify that certification paths chain to one or more trust anchors
+   (often represented as root certificates).
 
 6.1.  Security Guarantees
 
