@@ -149,13 +149,13 @@ The rise in popularity of verifiable data structures as a mechanism to make acto
 
 This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
-Issuers can register their Signed Statements on any Transparency Service, with the guarantee that all Auditors and Verifiers will be able to verify them.
+Issuers can register their Signed Statements on any Transparency Service, with the guarantee that any Relying Parties will be able to verify them.
 
 --- middle
 
 # Introduction
 
-This document describes the scalable, flexible, and decentralized SCITT architecture.
+This document describes the generic, interoperable, and scalable SCITT architecture.
 Its goal is to enhance auditability and accountability across supply chains.
 
 In supply chains, downstream Artifacts are built upon upstream Artifacts.
@@ -196,6 +196,7 @@ Artifact:
 Auditor:
 
 : an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.
+An Auditor is an example of a specialized Relying Party.
 
 Client:
 
@@ -259,7 +260,7 @@ Subject:
 
 : an identifier, defined by the Issuer, that represents the organization, device, user, entity, or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements can be grouped.
 It is possible that there are multiple Statements about the same Artifact.
-In these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Verifiers can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific Subject.
+In these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Relying Parties can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific Subject.
 
 Transparency Service:
 
@@ -273,6 +274,10 @@ Transparent Statement:
 The Receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
 A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.
 
+Verifiable Data Structure:
+
+: a data structure which supports one or more proof types, such as "inclusion proofs" or "consistency proofs" (as defined in {{-COMETRE}}).
+
 {: #mybody}
 
 # Definition of Transparency
@@ -284,7 +289,7 @@ A Signed Statement is an identifiable and non-repudiable Statement made by an Is
 The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata.
 Signed Statements can be made transparent by attaching a proof of Registration by a Transparency Service, in the form of a Receipt.
 Receipts demonstrate inclusion of Signed Statements in the Append-only Log of a Transparency Service.
-By extension, the document may say an Artifact (a firmware binary) is transparent if it comes with one or more Transparent Statements from its author or owner, though the context should make it clear what type of Signed Statements is expected for a given Artifact.
+By extension, the Signed Statement may say an Artifact (for example, a firmware binary) is transparent if it comes with one or more Transparent Statements from its author or owner, though the context should make it clear what type of Signed Statements is expected for a given Artifact.
 
 Transparency does not prevent dishonest or compromised Issuers, but it holds them accountable.
 Any Artifact that may be verified, is subject to scrutiny and auditing by other parties.
@@ -324,10 +329,10 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
 ~~~aasvg
  .----------.
 |  Artifact  |
- '-----+----'             .-----------.
-       v                 |  Identity   |
-  .----+----.            |  Documents  |
- | Statement |            '---+--+----'
+ '-----+----'            .-------------.
+       v                |  Credentials  |
+  .----+----.           |               |
+ | Statement |           '----+--+-----'
   '----+----'       cose sign |  | cose verify
        |    .----------------'|  |
        |   |                  |  |
@@ -483,15 +488,13 @@ Relying Parties can choose which Issuers they trust.
 
 Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.
 
-At least one identifier for an identity document MUST be included in the protected header of the COSE Envelope, as one of `x5t` or `kid`.
+At least one identifier representing one credential MUST be included in the protected header of the COSE Envelope, as one of `x5t` or `kid`.
 Additionally, `x5chain` that corresponds to either `x5t` or `kid` identifying the leaf certificate in the included certification path MAY be included in the unprotected header of the COSE Envelope.
 
 - When using x509, Support for `x5t` is mandatory to implement.
 - Support for `kid` in the protected header and `x5chain` in the unprotected heaer is optional.
 
 When `x5t` is present, `iss` MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
-
-The mechanisms for how Transparency Services obtain identity documents is out-of-scope of this document.
 
 The `kid` header parameter MUST be present when `x5t` is not present.
 Key discovery protocols are out-of-scope of this document.
@@ -571,7 +574,7 @@ The multiple Receipts may be attached to the unprotected header of the Signed St
 
 ## Transparent Statements {#Receipt}
 
-The Client (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the Unprotected Header of the Signed Statement.
+The Client (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the unprotected header of the Signed Statement.
 Client applications MAY register Signed Statements on behalf of one or more Issuers.
 Client applications MAY request Receipts regardless of the identity of the Issuer of the associated Signed Statement.
 
@@ -580,7 +583,7 @@ When a Receipt is included in a Signed Statement a Transparent Statement is prod
 
 Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}) that also provides the COSE header parameter semantics for label 394.
 
-The Registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.
+The Registration time is recorded as the timestamp when the Transparency Service added this Signed Statement to its Append-only Log.
 
 {{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements.
 
@@ -698,9 +701,9 @@ However, once a Signed Statement is inserted into the Append-only Log maintained
 
 On its own, verifying a Transparent Statement does not guarantee that its Envelope or contents are trustworthy.
 Just that they have been signed by the apparent Issuer and counter-signed by the Transparency Service.
-If the Verifier trusts the Issuer, after validation of the Issuer identity, it can infer that an Issuer's Signed Statement was issued with this Envelope and contents, which may be interpreted as the Issuer saying the Artifact is fit for its intended purpose.
-If the Verifier trusts the Transparency Service, it can independently infer that the Signed Statement passed the Transparency Service Registration Policy and that has been persisted in the Append-only Log.
-Unless advertised in the Transparency Service Registration Policy, the Verifier cannot assume that the ordering of Signed Statements in the Append-only Log matches the ordering of their issuance.
+If the Relying Party trusts the Issuer, after validation of the Issuer identity, it can infer that an Issuer's Signed Statement was issued with this Envelope and contents, which may be interpreted as the Issuer saying the Artifact is fit for its intended purpose.
+If the Relying Party trusts the Transparency Service, it can independently infer that the Signed Statement passed the Transparency Service Registration Policy and that has been persisted in the Append-only Log.
+Unless advertised in the Transparency Service Registration Policy, the Relying Party cannot assume that the ordering of Signed Statements in the Append-only Log matches the ordering of their issuance.
 
 Similarly, the fact that an Issuer can be held accountable for its Transparent Statements does not on its own provide any mitigation or remediation mechanism in case one of these Transparent Statements turned out to be misleading or malicious.
 Just that signed evidence will be available to support them.
@@ -725,7 +728,7 @@ A Transparency Service MAY provide additional authenticity assurances about its 
 If present, these additional authenticity assurances MUST be registered in the Append-only Log and MUST always be exposed by the Transparency Services' APIs.
 An example of Signed Statement's payloads that can improve authenticity assurances are trustworthiness assessments that are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see {{-rats-arch}}).
 
-For example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs. The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts. The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a trusted Verifier and complies with well-known Reference Values and Endorsements.
+For example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs. The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts. The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a Relying Party and complies with well-known Reference Values and Endorsements.
 
 Auditors should be aware that the certification path information included in an unprotected `x5chain` header of a to-be-registered Signed Statement can be tampered with by a malicious Transparency Service (e.g., one that does not incorporate remote attestation), which may replace the intermediate certificates and ultimately connect to an unexpected root.
 This modification can allow malicious TS to forge Claims that look genuine except for the wrong trust anchor.
@@ -746,9 +749,9 @@ The third guarantee is achieved by implementing the Append-only Log using a veri
 
 ## Threat Model
 
-The document provides a generic threat model for SCITT, describing its residual security properties when some of its actors (identity providers, Issuers, Transparency Services, and Auditors) are corrupt or compromised.
+This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are corrupt or compromised.
 
-This model may need to be refined to account for specific supply chains and use cases.
+This threat model may need to be refined to account for specific supply chain use cases.
 
 SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency).
 These guarantees are meant to hold for extensive periods of time, possibly decades.
@@ -756,9 +759,9 @@ These guarantees are meant to hold for extensive periods of time, possibly decad
 It can never be assumed that some Issuers and some Transparency Services will not be corrupt.
 
 SCITT entities explicitly trust one another on the basis of their long-term identity, which maps to shorter-lived cryptographic credentials.
-A Verifier SHOULD validate a Transparent Statement originating from a given Issuer, registered at a given Transparency Service (both identified in the Verifier's local authorization policy) and would not depend on any other Issuer or Transparency Services.
+A Relying Party SHOULD validate a Transparent Statement originating from a given Issuer, registered at a given Transparency Service (both identified in the Relying Party's local authorization policy) and would not depend on any other Issuer or Transparency Services.
 
-Authorized supply chain actors (Issuers) cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a trustworthy Transparency Service.
+Issuers cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a Transparency Service.
 
 Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal.
 Preventing a Transparency Service from registering Signed Statements that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their Append-only Log is not possible.
@@ -766,9 +769,9 @@ In contrast Transparency Services can be held accountable and they can be called
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service.
 Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
 
-In both cases, the SCITT Architecture provides generic, universally-verifiable cryptographic proof to individually blame Issuers or the Transparency Service.
+In both cases, the SCITT architecture provides generic, universally-verifiable cryptographic proofs to individually blame Issuers or the Transparency Service.
 On one hand, this enables valid actors to detect and disambiguate malicious actors who employ Equivocation with Signed Statements to different entities.
-On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT Architecture.
+On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT architecture.
 
 Relying Parties and Auditors need not be trusted by other actors.
 In particular, so long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.
@@ -785,7 +788,7 @@ Conversely, a corrupt Transparency Service may:
 1. refuse access to its Transparency Service (e.g., to Auditors, possibly after storage loss)
 
 An Auditor granted (partial) access to a Transparency Service and to a collection of disputed Receipts will be able to replay it, detect any invalid Registration (2) or incorrect Receipt in this collection (3), and blame the Transparency Service for them.
-This ensures any Verifier that trusts at least one such Auditor that (2, 3) will be blamed to the Transparency Service.
+This ensures any Relying Party that trusts at least one such Auditor that (2, 3) will be blamed to the Transparency Service.
 
 Due to the operational challenge of maintaining a globally consistent Append-only Log, some Transparency Services may provide limited support for historical queries on the Signed Statements they have registered, and accept the risk of being blamed for inconsistent Registration or Issuer Equivocation.
 
@@ -804,7 +807,6 @@ Actors may want to independently keep their own record of the Signed Statements 
 
 ### Confidentiality and Privacy
 
-According to Zero Trust Principles any location in a network is never trusted.
 All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network traffic analysis.
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
@@ -862,7 +864,10 @@ The term "Subject" provides an identifier of the Issuer's choosing to refer to a
 
 In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the Issuer identifies themselves using the `iss` Claim, and the specific software that was analyzed as the Subject using the `sub` Claim.
 
-In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer". This means the AS initially acts as a "verifier", and then later as an "Issuer". This mirrors how Signed Statements are verified before Receipts are issued by a Transparency Service.
+In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer".
+This means the AS initially acts as a "verifier" of the authentication credentials in form of a JWT, and then later as an "Issuer" of access and refresh tokens.
+This mirrors how Signed Statements are verified before Receipts are issued by a Transparency Service.
+Note that the use of {{RFC7523}} is only one possible approach for client authentication in OAuth.
 
 {{FIPS.201}} defines "assertion" as "A verifiable statement from an IdP to an RP that contains information about an end user".
 
