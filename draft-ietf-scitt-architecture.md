@@ -275,7 +275,7 @@ A Transparent Statement remains a valid Signed Statement, and may be registered 
 
 Verifiable Data Structure:
 
-: a data structure which supports one or proof types, such as "inclusion proofs" or "consistency proofs" (as defined in {{-COMETRE}}).
+: a data structure which supports one or more proof types, such as "inclusion proofs" or "consistency proofs" (as defined in {{-COMETRE}}).
 
 {: #mybody}
 
