@@ -687,15 +687,12 @@ Such policies may use as input all information in the Envelope, the Receipt, and
 
 # Privacy Considerations
 
-Transparency Services are often publicly accessible.
-Issuers should treat Signed Statements (rendering them as Transparent Statements) as publicly accessible.
-In particular, a Signed Statement Envelope and Statement payload should not carry any private information in plaintext.
+Transparency Services MAY support anonymous access, Issuers MUST ensure Signed Statements submitted to public access services are acceptable for public disclosure.
+In this case, Signed Statements MUST NOT carry confidential information.
+Once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.
+In some deployments, a Relaying Party, such as an Auditor, might require access to Signed Statements and Statements, which can be made available through adjacent services.
 
-Transparency Services can have an authorization policy controlling who can access the Append-only Log.
-While this can be used to limit who can read the Log, it may also limit the usefulness of the system.
-
-Some jurisdictions have a Right to be Forgotten.
-However, once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.
+Transparency Services MUST enforce access control to the Append-only Log.
 
 # Security Considerations
 
