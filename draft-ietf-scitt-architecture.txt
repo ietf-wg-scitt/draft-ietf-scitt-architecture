@@ -33,8 +33,8 @@ Abstract
    interoperability across different implementations of Transparency
    Services with various auditing and compliance requirements.  Issuers
    can register their Signed Statements on any Transparency Service,
-   with the guarantee that all Auditors and Verifiers will be able to
-   verify them.
+   with the guarantee that any Relying Parties will be able to verify
+   them.
 
 About This Document
 
@@ -284,9 +284,9 @@ Table of Contents
       there are multiple Statements about the same Artifact.  In these
       cases, distinct Issuers (iss) might agree to use the sub CWT Claim
       to create a coherent sequence of Signed Statements about the same
-      Artifact and Verifiers can leverage sub to ensure completeness and
-      Non-equivocation across Statements by identifying all Transparent
-      Statements associated to a specific Subject.
+      Artifact and Relying Parties can leverage sub to ensure
+      completeness and Non-equivocation across Statements by identifying
+      all Transparent Statements associated to a specific Subject.
 
    Transparency Service:  an entity that maintains and extends the
       Append-only Log, and endorses its state.  A Transparency Service
@@ -964,17 +964,17 @@ Table of Contents
    On its own, verifying a Transparent Statement does not guarantee that
    its Envelope or contents are trustworthy.  Just that they have been
    signed by the apparent Issuer and counter-signed by the Transparency
-   Service.  If the Verifier trusts the Issuer, after validation of the
-   Issuer identity, it can infer that an Issuer's Signed Statement was
-   issued with this Envelope and contents, which may be interpreted as
-   the Issuer saying the Artifact is fit for its intended purpose.  If
-   the Verifier trusts the Transparency Service, it can independently
-   infer that the Signed Statement passed the Transparency Service
-   Registration Policy and that has been persisted in the Append-only
-   Log. Unless advertised in the Transparency Service Registration
-   Policy, the Verifier cannot assume that the ordering of Signed
-   Statements in the Append-only Log matches the ordering of their
-   issuance.
+   Service.  If the Relying Party trusts the Issuer, after validation of
+   the Issuer identity, it can infer that an Issuer's Signed Statement
+   was issued with this Envelope and contents, which may be interpreted
+   as the Issuer saying the Artifact is fit for its intended purpose.
+   If the Relying Party trusts the Transparency Service, it can
+   independently infer that the Signed Statement passed the Transparency
+   Service Registration Policy and that has been persisted in the
+   Append-only Log. Unless advertised in the Transparency Service
+   Registration Policy, the Relying Party cannot assume that the
+   ordering of Signed Statements in the Append-only Log matches the
+   ordering of their issuance.
 
    Similarly, the fact that an Issuer can be held accountable for its
    Transparent Statements does not on its own provide any mitigation or
@@ -1034,8 +1034,8 @@ Table of Contents
    the long-term public key of the service, or the key used by the
    replica for signing Receipts.  The respective Attestation Result, for
    example, can show that the remote attestation Evidence was appraised
-   by a trusted Verifier and complies with well-known Reference Values
-   and Endorsements.
+   by a Relying Party and complies with well-known Reference Values and
+   Endorsements.
 
    Auditors should be aware that the certification path information
    included in an unprotected x5chain header of a to-be-registered
@@ -1089,9 +1089,9 @@ Table of Contents
 
    SCITT entities explicitly trust one another on the basis of their
    long-term identity, which maps to shorter-lived cryptographic
-   credentials.  A Verifier SHOULD validate a Transparent Statement
+   credentials.  A Relying Party SHOULD validate a Transparent Statement
    originating from a given Issuer, registered at a given Transparency
-   Service (both identified in the Verifier's local authorization
+   Service (both identified in the Relying Party's local authorization
    policy) and would not depend on any other Issuer or Transparency
    Services.
 
@@ -1153,8 +1153,8 @@ Table of Contents
    a collection of disputed Receipts will be able to replay it, detect
    any invalid Registration (2) or incorrect Receipt in this collection
    (3), and blame the Transparency Service for them.  This ensures any
-   Verifier that trusts at least one such Auditor that (2, 3) will be
-   blamed to the Transparency Service.
+   Relying Party that trusts at least one such Auditor that (2, 3) will
+   be blamed to the Transparency Service.
 
    Due to the operational challenge of maintaining a globally consistent
    Append-only Log, some Transparency Services may provide limited
