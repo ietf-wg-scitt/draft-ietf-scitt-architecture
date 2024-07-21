@@ -2159,7 +2159,11 @@ Such policies may use as input all information in the Envelope, the Receipt, and
       <h2 id="name-privacy-considerations">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>
       </h2>
-<p id="section-5-1">Transparency Services may be publicly accessible and Issuers should in those cases treat Signed Statements (rendering them as Transparent Statements) as publicly accessible. In this case, a Signed Statement Envelope and Statement payload should not carry any confidential information in the clear. Once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log. Note, however, the Transparency Services only stores the hash values, which only leads to a minimal information leakage. For a practial deployment a Relaying Party, such as an Auditor, will have to get access also to the Signed Statements, which are made available through an adjacent system.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">Transparency Services may be publicly accessible and Issuers should in those cases treat Signed Statements (rendering them as Transparent Statements) as publicly accessible.
+In this case, a Signed Statement Envelope and Statement payload should not carry any confidential information in the clear.
+Once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.
+Note, however, the Transparency Services only stores the hash values, which only leads to minimal information leakage.
+For a practial deployment a Relaying Party, such as an Auditor, will have to get access also to the Signed Statements, which are made available through an adjacent system.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <p id="section-5-2">Transparency Services may enforce access control to the Append-only Log. While this can be used to limit who can read the Log, it may also reduce the usefulness of the system.<a href="#section-5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
