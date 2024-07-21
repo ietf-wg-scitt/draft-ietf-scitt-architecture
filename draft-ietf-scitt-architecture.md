@@ -196,7 +196,7 @@ Artifact:
 Auditor:
 
 : an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.
-An Auditor is an example of a Relying Party.
+An Auditor is an example of a specialized Relying Party.
 
 Client:
 
