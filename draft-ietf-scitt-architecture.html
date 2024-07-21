@@ -1574,14 +1574,14 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
             <path d="M 152,320 L 152,336" fill="none" stroke="black"></path>
             <path d="M 168,352 L 168,368" fill="none" stroke="black"></path>
             <path d="M 176,464 L 176,480" fill="none" stroke="black"></path>
-            <path d="M 208,80 L 208,96" fill="none" stroke="black"></path>
+            <path d="M 200,80 L 200,96" fill="none" stroke="black"></path>
             <path d="M 216,272 L 216,336" fill="none" stroke="black"></path>
             <path d="M 232,544 L 232,568" fill="none" stroke="black"></path>
             <path d="M 240,336 L 240,400" fill="none" stroke="black"></path>
             <path d="M 248,112 L 248,264" fill="none" stroke="black"></path>
             <path d="M 248,544 L 248,568" fill="none" stroke="black"></path>
             <path d="M 272,112 L 272,264" fill="none" stroke="black"></path>
-            <path d="M 320,80 L 320,96" fill="none" stroke="black"></path>
+            <path d="M 328,80 L 328,96" fill="none" stroke="black"></path>
             <path d="M 344,272 L 344,336" fill="none" stroke="black"></path>
             <path d="M 344,400 L 344,520" fill="none" stroke="black"></path>
             <path d="M 344,536 L 344,648" fill="none" stroke="black"></path>
@@ -1589,9 +1589,9 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
             <path d="M 376,192 L 376,512" fill="none" stroke="black"></path>
             <path d="M 24,32 L 96,32" fill="none" stroke="black"></path>
             <path d="M 24,64 L 96,64" fill="none" stroke="black"></path>
-            <path d="M 224,64 L 304,64" fill="none" stroke="black"></path>
+            <path d="M 216,64 L 312,64" fill="none" stroke="black"></path>
             <path d="M 32,96 L 96,96" fill="none" stroke="black"></path>
-            <path d="M 224,112 L 304,112" fill="none" stroke="black"></path>
+            <path d="M 216,112 L 312,112" fill="none" stroke="black"></path>
             <path d="M 32,128 L 96,128" fill="none" stroke="black"></path>
             <path d="M 112,144 L 232,144" fill="none" stroke="black"></path>
             <path d="M 288,176 L 360,176" fill="none" stroke="black"></path>
@@ -1629,12 +1629,12 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
             <path d="M 96,32 C 104.83064,32 112,39.16936 112,48" fill="none" stroke="black"></path>
             <path d="M 24,64 C 15.16936,64 8,56.83064 8,48" fill="none" stroke="black"></path>
             <path d="M 96,64 C 104.83064,64 112,56.83064 112,48" fill="none" stroke="black"></path>
-            <path d="M 224,64 C 215.16936,64 208,71.16936 208,80" fill="none" stroke="black"></path>
-            <path d="M 304,64 C 312.83064,64 320,71.16936 320,80" fill="none" stroke="black"></path>
+            <path d="M 216,64 C 207.16936,64 200,71.16936 200,80" fill="none" stroke="black"></path>
+            <path d="M 312,64 C 320.83064,64 328,71.16936 328,80" fill="none" stroke="black"></path>
             <path d="M 32,96 C 23.16936,96 16,103.16936 16,112" fill="none" stroke="black"></path>
             <path d="M 96,96 C 104.83064,96 112,103.16936 112,112" fill="none" stroke="black"></path>
-            <path d="M 224,112 C 215.16936,112 208,104.83064 208,96" fill="none" stroke="black"></path>
-            <path d="M 304,112 C 312.83064,112 320,104.83064 320,96" fill="none" stroke="black"></path>
+            <path d="M 216,112 C 207.16936,112 200,104.83064 200,96" fill="none" stroke="black"></path>
+            <path d="M 312,112 C 320.83064,112 328,104.83064 328,96" fill="none" stroke="black"></path>
             <path d="M 32,128 C 23.16936,128 16,120.83064 16,112" fill="none" stroke="black"></path>
             <path d="M 96,128 C 104.83064,128 112,120.83064 112,112" fill="none" stroke="black"></path>
             <path d="M 112,144 C 103.16936,144 96,151.16936 96,160" fill="none" stroke="black"></path>
@@ -1683,8 +1683,7 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
             <polygon class="arrowhead" points="72,88 60,82.4 60,93.6" fill="black" transform="rotate(90,64,88)"></polygon>
             <g class="text">
               <text x="60" y="52">Artifact</text>
-              <text x="260" y="84">Identity</text>
-              <text x="264" y="100">Documents</text>
+              <text x="264" y="84">Credentials</text>
               <text x="64" y="116">Statement</text>
               <text x="180" y="132">cose</text>
               <text x="220" y="132">sign</text>
@@ -1865,7 +1864,7 @@ For example, an Issuer can make amended Statements about the same Artifact as th
 <p id="section-4.2-8">Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
 Relying Parties can choose which Issuers they trust.<a href="#section-4.2-8" class="pilcrow">¶</a></p>
 <p id="section-4.2-9">Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.<a href="#section-4.2-9" class="pilcrow">¶</a></p>
-<p id="section-4.2-10">At least one identifier for an identity document <span class="bcp14">MUST</span> be included in the protected header of the COSE Envelope, as one of <code>x5t</code> or <code>kid</code>.
+<p id="section-4.2-10">At least one identifier representing one credential <span class="bcp14">MUST</span> be included in the protected header of the COSE Envelope, as one of <code>x5t</code> or <code>kid</code>.
 Additionally, <code>x5chain</code> that corresponds to either <code>x5t</code> or <code>kid</code> identifying the leaf certificate in the included certification path <span class="bcp14">MAY</span> be included in the unprotected header of the COSE Envelope.<a href="#section-4.2-10" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.2-11.1">
@@ -1876,12 +1875,11 @@ Additionally, <code>x5chain</code> that corresponds to either <code>x5t</code> o
 </li>
         </ul>
 <p id="section-4.2-12">When <code>x5t</code> is present, <code>iss</code> <span class="bcp14">MUST</span> be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.<a href="#section-4.2-12" class="pilcrow">¶</a></p>
-<p id="section-4.2-13">The mechanisms for how Transparency Services obtain identity documents is out-of-scope of this document.<a href="#section-4.2-13" class="pilcrow">¶</a></p>
-<p id="section-4.2-14">The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when <code>x5t</code> is not present.
-Key discovery protocols are out-of-scope of this document.<a href="#section-4.2-14" class="pilcrow">¶</a></p>
-<p id="section-4.2-15">The protected header of a Signed Statement and a Receipt <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10#section-2" class="relref">Section 2</a> of [<a href="#CWT_CLAIMS_COSE" class="cite xref">CWT_CLAIMS_COSE</a>]</span>.
-The <code>CWT Claims</code> value <span class="bcp14">MUST</span> include the <code>Issuer Claim</code> (Claim label 1) and the <code>Subject Claim</code> (Claim label 2) <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span>.<a href="#section-4.2-15" class="pilcrow">¶</a></p>
-<p id="section-4.2-16">A Receipt is a Signed Statement, (cose-sign1), with addition Claims in its protected header related to verifying the inclusion proof in its unprotected header. See <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>.<a href="#section-4.2-16" class="pilcrow">¶</a></p>
+<p id="section-4.2-13">The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when <code>x5t</code> is not present.
+Key discovery protocols are out-of-scope of this document.<a href="#section-4.2-13" class="pilcrow">¶</a></p>
+<p id="section-4.2-14">The protected header of a Signed Statement and a Receipt <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10#section-2" class="relref">Section 2</a> of [<a href="#CWT_CLAIMS_COSE" class="cite xref">CWT_CLAIMS_COSE</a>]</span>.
+The <code>CWT Claims</code> value <span class="bcp14">MUST</span> include the <code>Issuer Claim</code> (Claim label 1) and the <code>Subject Claim</code> (Claim label 2) <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span>.<a href="#section-4.2-14" class="pilcrow">¶</a></p>
+<p id="section-4.2-15">A Receipt is a Signed Statement, (cose-sign1), with addition Claims in its protected header related to verifying the inclusion proof in its unprotected header. See <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>.<a href="#section-4.2-15" class="pilcrow">¶</a></p>
 <div id="sec-signed-statement-examples">
 <section id="section-4.2.1">
           <h4 id="name-signed-statement-examples">
