@@ -368,13 +368,13 @@ Table of Contents
    Artifacts, from the build and supply of software and IoT devices to
    advanced manufacturing and food supply.
 
-   SCITT is a generalization of Certificate Transparency [RFC9162],
+   SCITT is a generalization of Certificate Transparency (CT) [RFC9162],
    which can be interpreted as a transparency architecture for the
    supply chain of X.509 certificates.  Considering CT in terms of
    SCITT:
 
-   *  CAs (Issuers) sign X.509 TBSCertificates (Artifacts) to produce
-      X.509 certificates (Signed Statements)
+   *  CAs (Issuers) sign the ASN.1 DER encoded tbsCertificate structure
+      to produce an X.509 certificate (Signed Statements)
 
    *  CAs submit the certificates to one or more CT logs (Transparency
       Services)
