@@ -861,7 +861,10 @@ The term "Subject" provides an identifier of the Issuer's choosing to refer to a
 
 In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the Issuer identifies themselves using the `iss` Claim, and the specific software that was analyzed as the Subject using the `sub` Claim.
 
-In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer". This means the AS initially acts as a "verifier", and then later as an "Issuer". This mirrors how Signed Statements are verified before Receipts are issued by a Transparency Service.
+In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer".
+This means the AS initially acts as a "verifier" of the authentication credentials in form of a JWT, and then later as an "Issuer" of access and refresh tokens.
+This mirrors how Signed Statements are verified before Receipts are issued by a Transparency Service.
+Note that the use of {{RFC7523}} is only one possible approach for client authentication in OAuth.
 
 {{FIPS.201}} defines "assertion" as "A verifiable statement from an IdP to an RP that contains information about an end user".
 
