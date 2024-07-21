@@ -1528,11 +1528,11 @@ However, the Registrations on a separate Transparency Service is generally disjo
 <p id="section-3-6">Reputable Issuers are thus incentivized to carefully review their Statements before signing them to produce Signed Statements.
 Similarly, reputable Transparency Services are incentivized to secure their Append-only Log, as any inconsistency can easily be pinpointed by any Auditor with read access to the Transparency Service.<a href="#section-3-6" class="pilcrow">¶</a></p>
 <p id="section-3-7">The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital Artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.<a href="#section-3-7" class="pilcrow">¶</a></p>
-<p id="section-3-8">SCITT is a generalization of Certificate Transparency <span>[<a href="#RFC9162" class="cite xref">RFC9162</a>]</span>, which can be interpreted as a transparency architecture for the supply chain of X.509 certificates.
+<p id="section-3-8">SCITT is a generalization of Certificate Transparency (CT) <span>[<a href="#RFC9162" class="cite xref">RFC9162</a>]</span>, which can be interpreted as a transparency architecture for the supply chain of X.509 certificates.
 Considering CT in terms of SCITT:<a href="#section-3-8" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3-9.1">
-          <p id="section-3-9.1.1">CAs (Issuers) sign X.509 TBSCertificates (Artifacts) to produce X.509 certificates (Signed Statements)<a href="#section-3-9.1.1" class="pilcrow">¶</a></p>
+          <p id="section-3-9.1.1">CAs (Issuers) sign the ASN.1 DER encoded tbsCertificate structure to produce an X.509 certificate (Signed Statements)<a href="#section-3-9.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-9.2">
           <p id="section-3-9.2.1">CAs submit the certificates to one or more CT logs (Transparency Services)<a href="#section-3-9.2.1" class="pilcrow">¶</a></p>
