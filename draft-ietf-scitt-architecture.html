@@ -2224,22 +2224,22 @@ The third guarantee is achieved by implementing the Append-only Log using a veri
         <h3 id="name-threat-model">
 <a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-threat-model" class="section-name selfRef">Threat Model</a>
         </h3>
-<p id="section-6.2-1">The document provides a generic threat model for SCITT, describing its residual security properties when some of its actors (identity providers, Issuers, Transparency Services, and Auditors) are corrupt or compromised.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.2-2">This model may need to be refined to account for specific supply chains and use cases.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
+<p id="section-6.2-1">This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are corrupt or compromised.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2-2">This threat model may need to be refined to account for specific supply chain use cases.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
 <p id="section-6.2-3">SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency).
 These guarantees are meant to hold for extensive periods of time, possibly decades.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
 <p id="section-6.2-4">It can never be assumed that some Issuers and some Transparency Services will not be corrupt.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
 <p id="section-6.2-5">SCITT entities explicitly trust one another on the basis of their long-term identity, which maps to shorter-lived cryptographic credentials.
 A Verifier <span class="bcp14">SHOULD</span> validate a Transparent Statement originating from a given Issuer, registered at a given Transparency Service (both identified in the Verifier's local authorization policy) and would not depend on any other Issuer or Transparency Services.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
-<p id="section-6.2-6">Authorized supply chain actors (Issuers) cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a trustworthy Transparency Service.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
+<p id="section-6.2-6">Issuers cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a Transparency Service.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
 <p id="section-6.2-7">Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal.
 Preventing a Transparency Service from registering Signed Statements that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their Append-only Log is not possible.
 In contrast Transparency Services can be held accountable and they can be called out by any Auditor that replays their Append-only Log against any contested Receipt.
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service.
 Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.<a href="#section-6.2-7" class="pilcrow">¶</a></p>
-<p id="section-6.2-8">In both cases, the SCITT Architecture provides generic, universally-verifiable cryptographic proof to individually blame Issuers or the Transparency Service.
+<p id="section-6.2-8">In both cases, the SCITT architecture provides generic, universally-verifiable cryptographic proofs to individually blame Issuers or the Transparency Service.
 On one hand, this enables valid actors to detect and disambiguate malicious actors who employ Equivocation with Signed Statements to different entities.
-On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT Architecture.<a href="#section-6.2-8" class="pilcrow">¶</a></p>
+On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT architecture.<a href="#section-6.2-8" class="pilcrow">¶</a></p>
 <p id="section-6.2-9">Relying Parties and Auditors need not be trusted by other actors.
 In particular, so long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.<a href="#section-6.2-9" class="pilcrow">¶</a></p>
 <div id="sec-append-only-log-1">
