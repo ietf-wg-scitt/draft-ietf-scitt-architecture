@@ -401,7 +401,7 @@ Table of Contents
    |  Artifact  |
     '-----+----'            .-------------.
           v                |  Credentials  |
-     .----+----.           | Trust Anchors |
+     .----+----.           |               |
     | Statement |           '----+--+-----'
      '----+----'       cose sign |  | cose verify
           |    .----------------'|  |
