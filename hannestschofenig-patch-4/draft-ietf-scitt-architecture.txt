@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 21 January 2025                                      C. Fournet
+Expires: 22 January 2025                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                            20 July 2024
+                                                            21 July 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 January 2025.
+   This Internet-Draft will expire on 22 January 2025.
 
 Copyright Notice
 
@@ -303,7 +303,8 @@ Table of Contents
       Transparency Service.
 
    Verifiable Data Structure:  a data structure which supports one or
-      proof types, such as "inclusion proofs" or "consistency proofs".
+      proof types, such as "inclusion proofs" or "consistency proofs"
+      (as defined in [I-D.draft-ietf-cose-merkle-tree-proofs]).
 
 3.  Definition of Transparency
 
