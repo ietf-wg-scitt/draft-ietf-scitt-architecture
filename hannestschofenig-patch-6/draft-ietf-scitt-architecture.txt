@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 21 January 2025                                      C. Fournet
+Expires: 22 January 2025                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                            20 July 2024
+                                                            21 July 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 January 2025.
+   This Internet-Draft will expire on 22 January 2025.
 
 Copyright Notice
 
@@ -317,11 +317,11 @@ Table of Contents
    proof of Registration by a Transparency Service, in the form of a
    Receipt that countersigns the Signed Statement and witnesses its
    inclusion in the Append-only Log of a Transparency Service.  By
-   extension, the document may say an Artifact (for example, a firmware
-   binary) is transparent if it comes with one or more Transparent
-   Statements from its author or owner, though the context should make
-   it clear what type of Signed Statements is expected for a given
-   Artifact.
+   extension, the Signed Statement may say an Artifact (for example, a
+   firmware binary) is transparent if it comes with one or more
+   Transparent Statements from its author or owner, though the context
+   should make it clear what type of Signed Statements is expected for a
+   given Artifact.
 
    Transparency does not prevent dishonest or compromised Issuers, but
    it holds them accountable.  Any Artifact that may be verified, is
