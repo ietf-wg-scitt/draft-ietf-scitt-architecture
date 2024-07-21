@@ -485,7 +485,7 @@ Multiple Issuers can make the same Statement about a single Artifact, affirming 
 At least one identifier for an identity document MUST be included in the protected header of the COSE Envelope, as one of `x5t` or `kid`.
 Additionally, `x5chain` that corresponds to either `x5t` or `kid` identifying the leaf certificate in the included certification path MAY be included in the unprotected header of the COSE Envelope.
 
-- When using x.509 certificates, support for `x5t` is mandatory to implement.
+- When using x.509 certificates, support for `x5t` is REQUIRED to implement.
 - Support for `kid` in the protected header and `x5chain` in the unprotected header is optional to implement.
 
 When `x5t` is present, `iss` MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
