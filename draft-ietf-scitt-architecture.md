@@ -745,9 +745,9 @@ The third guarantee is achieved by implementing the Append-only Log using a veri
 
 ## Threat Model
 
-The document provides a generic threat model for SCITT, describing its residual security properties when some of its actors (identity providers, Issuers, Transparency Services, and Auditors) are corrupt or compromised.
+This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are corrupt or compromised.
 
-This model may need to be refined to account for specific supply chains and use cases.
+This threat model may need to be refined to account for specific supply chain use cases.
 
 SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency).
 These guarantees are meant to hold for extensive periods of time, possibly decades.
@@ -757,7 +757,7 @@ It can never be assumed that some Issuers and some Transparency Services will no
 SCITT entities explicitly trust one another on the basis of their long-term identity, which maps to shorter-lived cryptographic credentials.
 A Verifier SHOULD validate a Transparent Statement originating from a given Issuer, registered at a given Transparency Service (both identified in the Verifier's local authorization policy) and would not depend on any other Issuer or Transparency Services.
 
-Authorized supply chain actors (Issuers) cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a trustworthy Transparency Service.
+Issuers cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a Transparency Service.
 
 Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal.
 Preventing a Transparency Service from registering Signed Statements that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their Append-only Log is not possible.
@@ -765,9 +765,9 @@ In contrast Transparency Services can be held accountable and they can be called
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service.
 Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
 
-In both cases, the SCITT Architecture provides generic, universally-verifiable cryptographic proof to individually blame Issuers or the Transparency Service.
+In both cases, the SCITT architecture provides generic, universally-verifiable cryptographic proofs to individually blame Issuers or the Transparency Service.
 On one hand, this enables valid actors to detect and disambiguate malicious actors who employ Equivocation with Signed Statements to different entities.
-On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT Architecture.
+On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT architecture.
 
 Relying Parties and Auditors need not be trusted by other actors.
 In particular, so long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.
