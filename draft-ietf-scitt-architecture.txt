@@ -1071,13 +1071,12 @@ Table of Contents
 
 6.2.  Threat Model
 
-   The document provides a generic threat model for SCITT, describing
-   its residual security properties when some of its actors (identity
-   providers, Issuers, Transparency Services, and Auditors) are corrupt
-   or compromised.
+   This section provides a generic threat model for SCITT, describing
+   its residual security properties when some of its actors (Issuers,
+   Transparency Services, and Auditors) are corrupt or compromised.
 
-   This model may need to be refined to account for specific supply
-   chains and use cases.
+   This threat model may need to be refined to account for specific
+   supply chain use cases.
 
    SCITT primarily supports checking of Signed Statement authenticity,
    both from the Issuer (authentication) and from the Transparency
@@ -1095,11 +1094,11 @@ Table of Contents
    policy) and would not depend on any other Issuer or Transparency
    Services.
 
-   Authorized supply chain actors (Issuers) cannot be stopped from
-   producing Signed Statements including false assertions in their
-   Statement payload (either by mistake or by corruption), but these
-   Issuers can made accountable by ensuring their Signed Statements are
-   systematically registered at a trustworthy Transparency Service.
+   Issuers cannot be stopped from producing Signed Statements including
+   false assertions in their Statement payload (either by mistake or by
+   corruption), but these Issuers can made accountable by ensuring their
+   Signed Statements are systematically registered at a Transparency
+   Service.
 
    Similarly, providing strong residual guarantees against faulty/
    corrupt Transparency Services is a SCITT design goal.  Preventing a
@@ -1114,13 +1113,13 @@ Table of Contents
    registering a subset of Signed Statements subject to their own
    policy.
 
-   In both cases, the SCITT Architecture provides generic, universally-
-   verifiable cryptographic proof to individually blame Issuers or the
+   In both cases, the SCITT architecture provides generic, universally-
+   verifiable cryptographic proofs to individually blame Issuers or the
    Transparency Service.  On one hand, this enables valid actors to
    detect and disambiguate malicious actors who employ Equivocation with
    Signed Statements to different entities.  On the other hand, their
    liability and the resulting damage to their reputation are
-   application specific, and out of scope of the SCITT Architecture.
+   application specific, and out of scope of the SCITT architecture.
 
    Relying Parties and Auditors need not be trusted by other actors.  In
    particular, so long as actors maintain proper control of their
