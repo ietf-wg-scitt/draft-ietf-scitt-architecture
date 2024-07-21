@@ -307,7 +307,7 @@ The building blocks defined in SCITT are intended to support applications in any
 SCITT is a generalization of Certificate Transparency (CT) {{-CT}}, which can be interpreted as a transparency architecture for the supply chain of X.509 certificates.
 Considering CT in terms of SCITT:
 
-- CAs (Issuers) sign the ASN.1 DER encoded tbsCertificate stucture (Artifact) to produce an X.509 certificate (Signed Statements)
+- CAs (Issuers) sign the ASN.1 DER encoded tbsCertificate structure (Artifact) to produce an X.509 certificate (Signed Statements)
 - CAs submit the certificates to one or more CT logs (Transparency Services)
 - CT logs produce Signed Certificate Timestamps (Transparent Statements)
 - Signed Certificate Timestamps are checked by Relying Parties
