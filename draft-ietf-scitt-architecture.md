@@ -570,7 +570,7 @@ The multiple Receipts may be attached to the unprotected header of the Signed St
 
 ## Transparent Statements {#Receipt}
 
-The Client (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the Unprotected Header of the Signed Statement.
+The Client (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the unprotected header of the Signed Statement.
 Client applications MAY register Signed Statements on behalf of one or more Issuers.
 Client applications MAY request Receipts regardless of the identity of the Issuer of the associated Signed Statement.
 
@@ -579,7 +579,7 @@ When a Receipt is included in a Signed Statement a Transparent Statement is prod
 
 Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}) that also provides the COSE header parameter semantics for label 394.
 
-The Registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.
+The Registration time is recorded as the timestamp when the Transparency Service added this Signed Statement to its Append-only Log.
 
 {{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements.
 
