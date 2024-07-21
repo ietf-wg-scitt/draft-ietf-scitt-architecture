@@ -689,7 +689,8 @@ Once a Signed Statement is inserted into the Append-only Log maintained by a Tra
 Note, however, the Transparency Services only stores the hash values, which only leads to minimal information leakage.
 For a practial deployment a Relaying Party, such as an Auditor, will have to get access also to the Signed Statements, which are made available through an adjacent system.
 
-Transparency Services may enforce access control to the Append-only Log. While this can be used to limit who can read the Log, it may also reduce the usefulness of the system.
+Transparency Services may enforce access control to the Append-only Log.
+While this can be used to limit who can read the Log, it may also reduce the usefulness of the system.
 
 # Security Considerations
 
