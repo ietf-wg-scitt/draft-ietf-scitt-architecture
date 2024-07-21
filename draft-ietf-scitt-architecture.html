@@ -2015,13 +2015,13 @@ The multiple Receipts may be attached to the unprotected header of the Signed St
         <h3 id="name-transparent-statements">
 <a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-transparent-statements" class="section-name selfRef">Transparent Statements</a>
         </h3>
-<p id="section-4.4-1">The Client (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the Unprotected Header of the Signed Statement.
+<p id="section-4.4-1">The Client (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the unprotected header of the Signed Statement.
 Client applications <span class="bcp14">MAY</span> register Signed Statements on behalf of one or more Issuers.
 Client applications <span class="bcp14">MAY</span> request Receipts regardless of the identity of the Issuer of the associated Signed Statement.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
 <p id="section-4.4-2">When a Signed Statement is registered by a Transparency Service a Receipt becomes available.
 When a Receipt is included in a Signed Statement a Transparent Statement is produced.<a href="#section-4.4-2" class="pilcrow">¶</a></p>
 <p id="section-4.4-3">Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs (<span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>) that also provides the COSE header parameter semantics for label 394.<a href="#section-4.4-3" class="pilcrow">¶</a></p>
-<p id="section-4.4-4">The Registration time is defined as the timestamp at which the Transparency Service has added this Signed Statement to its Append-only Log.<a href="#section-4.4-4" class="pilcrow">¶</a></p>
+<p id="section-4.4-4">The Registration time is recorded as the timestamp when the Transparency Service added this Signed Statement to its Append-only Log.<a href="#section-4.4-4" class="pilcrow">¶</a></p>
 <p id="section-4.4-5"><a href="#fig-transparent-statement-cddl" class="auto internal xref">Figure 4</a> illustrates a normative CDDL definition of Transparent Statements.<a href="#section-4.4-5" class="pilcrow">¶</a></p>
 <span id="name-cddl-definition-for-a-trans"></span><div id="fig-transparent-statement-cddl">
 <figure id="figure-4">
