@@ -687,7 +687,6 @@ Such policies may use as input all information in the Envelope, the Receipt, and
 
 # Privacy Considerations
 
-Transparency Services are often publicly accessible.
 Issuers should treat Signed Statements (rendering them as Transparent Statements) as publicly accessible.
 In particular, a Signed Statement Envelope and Statement payload should not carry any private information in plaintext.
 
