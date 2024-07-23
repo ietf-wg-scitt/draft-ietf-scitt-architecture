@@ -298,7 +298,7 @@ The Transparency Service provides a history of Statements, which may be made by 
 Transparency is implemented by providing a consistent, append-only, cryptographically verifiable, publicly available record of entries.
 A SCITT instance is referred to as a Transparency Service.
 Implementations of Transparency Services may protect their Append-only Log using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence.
-A Receipt is an offline, universally-verifiable proof that an entry is recorded in the Append-only Log.
+A Receipt is an offline, universally-verifiable proof that an entry is registered in the Append-only Log.
 Requesting a receipt can result in the production of a new receipt for the same signed statement.
 A Receipt's verification key, signing algorithm, validity period, header parameters or other claims MAY change each time a Receipt is produced.
 
@@ -376,7 +376,7 @@ The subsequent sections describe the main concepts, namely Transparency Service,
 ## Transparency Service
 
 Transparency Services MUST feature an Append-only Log.
-The Append-only Log is the verifiable data structure that records Signed Statements and supports the production of Receipts.
+The Append-only Log is the verifiable data structure that records registered Signed Statements and supports the production of Receipts.
 
 All Transparency Services MUST expose APIs for the Registration of Signed Statements and issuance of Receipts.
 
@@ -565,7 +565,7 @@ The Transparency Service MUST be able to provide a Receipt for all registered St
 A Receipt for a Signed Statement MAY be provided asynchronously.
 Details about generating Receipts are described in {{Receipt}}.
 
-The last two steps may be shared between a batch of Signed Statements recorded in the Append-only Log.
+The last two steps may be shared between a batch of Signed Statements registered in the Append-only Log.
 
 A Transparency Service MUST ensure that a Signed Statement is registered before releasing its Receipt.
 
@@ -778,7 +778,7 @@ In particular, so long as actors maintain proper control of their signing keys a
 
 ### Append-only Log
 
-If a Transparency Service is honest, then a Transparent Statement including a correct Receipt ensures that the associated Signed Statement passed its Registration Policy and was recorded appropriately.
+If a Transparency Service is honest, then a Transparent Statement including a correct Receipt ensures that the associated Signed Statement passed its Registration Policy and was registered appropriately.
 
 Conversely, a corrupt Transparency Service may:
 
