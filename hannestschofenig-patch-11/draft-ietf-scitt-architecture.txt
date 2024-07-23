@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 21 January 2025                                      C. Fournet
+Expires: 24 January 2025                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                            20 July 2024
+                                                            23 July 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 January 2025.
+   This Internet-Draft will expire on 24 January 2025.
 
 Copyright Notice
 
@@ -477,10 +477,9 @@ Table of Contents
    Transparency Services MUST also maintain a list of trust anchors,
    which SHOULD be used by Relying Parties to authenticate Issuers, and
    which MAY be included in a Registration Policy statement.  For
-   instance, a trust anchor could be an X.509 root certificate, the URL
-   pointing to an OpenID Connect identity provider combined with the use
-   of the Web PKI, or a JSON Web Key Set containing the public keys of
-   Issuers.
+   instance, a trust anchor could be an X.509 root certificate, pointing
+   to an OpenID Connect identity provider, or any other COSE-compatible
+   trust anchor.
 
    Registration Policies and trust anchors MUST be made transparent and
    available to all Relying Parties of the Transparency Service by
