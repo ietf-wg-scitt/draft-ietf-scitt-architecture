@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-23T00:40:20.923564+00:00",
+  "timestamp": "2024-07-25T00:40:08.033174+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5320,10 +5320,12 @@
       "author": "rjb4standards",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "has-pr"
+      ],
       "body": "We are inconsistent with our use of \"registered\" and \"recorded\" when referring to the addition of signed statements to the append-only log.\r\n\r\nI recommend using the term \"registered\" consistently to refer to this act. This implies that some \"process\" was applied before registration can occur on the append-only log. ",
       "createdAt": "2024-07-22T17:33:29Z",
-      "updatedAt": "2024-07-22T23:43:02Z",
+      "updatedAt": "2024-07-23T00:44:50Z",
       "closedAt": null,
       "comments": [
         {
@@ -5339,6 +5341,13 @@
           "body": "No objections here Jon. Thanks for resolving this issue so quickly. Please close this issue after applying appropriate changes.",
           "createdAt": "2024-07-22T23:40:01Z",
           "updatedAt": "2024-07-22T23:43:02Z"
+        },
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/296",
+          "createdAt": "2024-07-23T00:44:49Z",
+          "updatedAt": "2024-07-23T00:44:49Z"
         }
       ]
     }
@@ -35360,13 +35369,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T17:56:32Z",
-      "updatedAt": "2024-07-22T22:53:09Z",
+      "updatedAt": "2024-07-23T04:16:34Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "hannestschofenig-patch-11",
-      "headRefOid": "dadf1e8f47ebb6b948f253a0b606084705420022",
+      "headRefOid": "6d59491503dbbde08c8accec68e31f035bc946d6",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -35996,7 +36005,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:17:39Z",
-      "updatedAt": "2024-07-22T22:54:35Z",
+      "updatedAt": "2024-07-23T04:12:39Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -36014,6 +36023,13 @@
           "body": "> Authentication and authorization is implementation-specific, and out of scope of the SCITT Architecture.\r\n\r\nThis is not correct if we also consider SCRAPI",
           "createdAt": "2024-07-22T22:54:34Z",
           "updatedAt": "2024-07-22T22:54:34Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> > Authentication and authorization is implementation-specific, and out of scope of the SCITT Architecture.\r\n> \r\n> This is not correct if we also consider SCRAPI\r\n\r\nSCRAPI says Auth is, may or isn\u2019t required on specific endpoints, but doesn\u2019t specify how it\u2019s implemented. Is that inconsistent?",
+          "createdAt": "2024-07-23T04:12:37Z",
+          "updatedAt": "2024-07-23T04:12:37Z"
         }
       ],
       "reviews": [
@@ -36508,7 +36524,7 @@
       "labels": [],
       "body": "I generalized the description. You need to rotate all keys.",
       "createdAt": "2024-07-20T18:28:15Z",
-      "updatedAt": "2024-07-22T22:59:22Z",
+      "updatedAt": "2024-07-23T04:09:54Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -36533,6 +36549,13 @@
           "body": "Was wondering whether the cases where keys are never rotated are actually valid. The implication is the following: if an end-entity certificate has an indefinite lifetime then the certificates of the subordinate and CA certificates also need to have an indefinite lifetime.\r\n\r\nIs this a realistic deployment? If so, can you describe this deployment?",
           "createdAt": "2024-07-22T22:59:21Z",
           "updatedAt": "2024-07-22T22:59:21Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Sitting in the SUITS meeting, the same question of MUST came up. \r\nSomeone made the comment that the MIST could be required in the doc, but the doesn\u2019t mean a service that doesn\u2019t follow the MIST guidance, can\u2019t physically operate or even interop with other services. It would mean it\u2019s not conformant to informative guidance, and a security review could seem it not as secure. Which might be fine for a locked down, IoT scenario. \r\nAfter the SUITS discussion, I\u2019m fine with a MUST for operational info, that enables a service to function as they deem fit",
+          "createdAt": "2024-07-23T04:09:24Z",
+          "updatedAt": "2024-07-23T04:09:24Z"
         }
       ],
       "reviews": [
@@ -36813,6 +36836,19 @@
               "updatedAt": "2024-07-22T16:46:25Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6CtYJu",
+          "commit": {
+            "abbreviatedOid": "3443470"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Approving the MUST text. \r\n",
+          "createdAt": "2024-07-23T04:09:54Z",
+          "updatedAt": "2024-07-23T04:09:54Z",
+          "comments": []
         }
       ]
     },
@@ -37661,7 +37697,7 @@
       "labels": [],
       "body": "I would not assume certain deployment situations. It is likely that there are many Transparency Services that are not necessarily publically accessible to everyone and the entire architecture would still be totally valid",
       "createdAt": "2024-07-22T23:16:10Z",
-      "updatedAt": "2024-07-23T00:34:20Z",
+      "updatedAt": "2024-07-23T04:01:35Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "173dee5b2a24f2b219dcd97b2d6b65eb1ce24a2e",
@@ -37694,6 +37730,19 @@
           "createdAt": "2024-07-23T00:34:20Z",
           "updatedAt": "2024-07-23T00:34:20Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6CtVD2",
+          "commit": {
+            "abbreviatedOid": "6cf0698"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "We\u2019ve refined the architecture to specify the ledger doesn\u2019t contain the contents of the signed statement or payload. Which makes this section largely moot. \r\nThe premise of a ledger is to record important moments, which likely contain important information which is often PII. Or, may need to be redacted, or \u201cdeleted\u201d at a future date. \r\nAs the append only log contains hashes, not the actual data, a service can choose to delete the signed statements of payloads, if they recorded them in the first place. \r\n\r\nTo say someone should be so concerned, suggests this important service can\u2019t be used for important data. \r\n\r\nI could see an informative section in the architecture which speaks to this guidance, however I\u2019m not supportive wording that effectively says, don\u2019t use this for important, or sensitive info. ",
+          "createdAt": "2024-07-23T04:01:35Z",
+          "updatedAt": "2024-07-23T04:01:35Z",
+          "comments": []
         }
       ]
     },
@@ -37709,7 +37758,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-23T00:40:11Z",
-      "updatedAt": "2024-07-23T00:40:12Z",
+      "updatedAt": "2024-07-23T02:33:58Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "173dee5b2a24f2b219dcd97b2d6b65eb1ce24a2e",
@@ -37721,7 +37770,34 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6Csw7B",
+          "commit": {
+            "abbreviatedOid": "f338b56"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-23T00:47:26Z",
+          "updatedAt": "2024-07-23T00:47:26Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6CtEwf",
+          "commit": {
+            "abbreviatedOid": "f338b56"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-07-23T02:33:58Z",
+          "updatedAt": "2024-07-23T02:33:58Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
