@@ -548,7 +548,7 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
 To register a Signed Statement, the Transparency Service performs the following steps:
 
 1. **Client authentication:** A Client authenticates with the Transparency Service before registering Signed Statements on behalf of one or more Issuers.
-Authentication and authorization is implementation-specific, and out of scope of the SCITT architecture.
+Authentication and authorization are implementation-specific and out of scope of the SCITT architecture.
 1. **Issuer Verification:** The Transparency Service MUST validate the Issuer's identity Claims, which may be different than the Client identity.
 1. **Signature verification:** The Transparency Service MUST verify the signature of the Signed Statement, as described in {{RFC9360}}, using the signature algorithm and verification key of the Issuer.
 1. **Signed Statement validation:** The Transparency Service MUST check that the Signed Statement includes the required protected headers.
