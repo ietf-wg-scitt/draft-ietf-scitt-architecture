@@ -552,7 +552,7 @@ Authentication and authorization are implementation-specific and out of scope of
 1. **Issuer Verification:** The Transparency Service MUST validate the Issuer's identity Claims, which may be different than the Client identity.
 1. **Signature verification:** The Transparency Service MUST verify the signature of the Signed Statement, as described in {{RFC9360}}, using the signature algorithm and verification key of the Issuer.
 1. **Signed Statement validation:** The Transparency Service MUST check that the Signed Statement includes the required protected headers.
-The Transparency Service MAY validate the Signed Statement payload, in order to enforce domain specific registration policies that apply to specific content types.
+The Transparency Service MAY validate the Signed Statement payload in order to enforce domain specific registration policies that apply to specific content types.
 1. **Apply Registration Policy:** The Transparency Service MUST check the attributes required by a Registration Policy are present in the protected headers.
   Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.
 1. **Register the Signed Statement** to the Append-only Log.
