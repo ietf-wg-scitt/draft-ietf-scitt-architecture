@@ -1988,7 +1988,7 @@ Authentication and authorization are implementation-specific and out of scope of
 </li>
           <li id="section-4.3-2.4">
             <p id="section-4.3-2.4.1"><strong>Signed Statement validation:</strong> The Transparency Service <span class="bcp14">MUST</span> check that the Signed Statement includes the required protected headers.
-The Transparency Service <span class="bcp14">MAY</span> verify the Signed Statement payload.<a href="#section-4.3-2.4.1" class="pilcrow">¶</a></p>
+The Transparency Service <span class="bcp14">MAY</span> validate the Signed Statement payload, in order to enforce domain specific registration policies that apply to specific content types.<a href="#section-4.3-2.4.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-4.3-2.5">
             <p id="section-4.3-2.5.1"><strong>Apply Registration Policy:</strong> The Transparency Service <span class="bcp14">MUST</span> check the attributes required by a Registration Policy are present in the protected headers.
