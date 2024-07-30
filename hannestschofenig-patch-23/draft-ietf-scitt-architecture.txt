@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 23 January 2025                                      C. Fournet
+Expires: 31 January 2025                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                            22 July 2024
+                                                            30 July 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 January 2025.
+   This Internet-Draft will expire on 31 January 2025.
 
 Copyright Notice
 
@@ -955,9 +955,9 @@ Table of Contents
    who can access the Append-only Log. While this can be used to limit
    who can read the Log, it may also limit the usefulness of the system.
 
-   Once a Signed Statement is inserted into the Append-only Log
-   maintained by a Transparency Service, it cannot be removed from the
-   Log.
+   Once a Signed Statement is registered on an Append-only Log
+   maintained by a Transparency Service, the fact that a Signed
+   Statement was registered cannot be removed from the Append-only Log.
 
 6.  Security Considerations
 
@@ -1268,11 +1268,11 @@ Table of Contents
               2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
               cose-merkle-tree-proofs-05>.
 
-   [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims", 22 March 2018,
+   [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <https://www.iana.org/assignments/cwt>.
 
    [IANA.named-information]
-              IANA, "Named Information", 14 August 2012,
+              IANA, "Named Information",
               <https://www.iana.org/assignments/named-information>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -1351,9 +1351,9 @@ Table of Contents
    [I-D.draft-ietf-core-href]
               Bormann, C. and H. Birkholz, "Constrained Resource
               Identifiers", Work in Progress, Internet-Draft, draft-
-              ietf-core-href-15, 21 April 2024,
+              ietf-core-href-16, 24 July 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-core-
-              href-15>.
+              href-16>.
 
    [I-D.draft-ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
