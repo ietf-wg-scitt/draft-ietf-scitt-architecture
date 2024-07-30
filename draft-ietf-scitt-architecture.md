@@ -694,7 +694,7 @@ In particular, a Signed Statement Envelope and Statement payload should not carr
 Transparency Services can have an authorization policy controlling who can access the Append-only Log.
 While this can be used to limit who can read the Log, it may also limit the usefulness of the system.
 
-Once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.
+Once a Signed Statement is registered on an Append-only Log maintained by a Transparency Service, the fact that a Signed Statement was registered cannot be removed from the Append-only Log.
 
 # Security Considerations
 
