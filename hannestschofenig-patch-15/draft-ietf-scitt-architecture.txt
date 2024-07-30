@@ -768,8 +768,9 @@ Table of Contents
 
    4.  *Signed Statement validation:* The Transparency Service MUST
        check that the Signed Statement includes the required protected
-       headers.  The Transparency Service MAY verify the Signed
-       Statement payload.
+       headers.  The Transparency Service MAY validate the Signed
+       Statement payload, in order to enforce domain specific
+       registration policies that apply to specific content types.
 
    5.  *Apply Registration Policy:* The Transparency Service MUST check
        the attributes required by a Registration Policy are present in
