@@ -721,7 +721,7 @@ For instance, the code for the Registration Policy evaluation and endorsement ma
 The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance {{PBFT}} and may be used to protect against malicious or vulnerable replicas.
 Threshold signatures may be use to protect the service key, etc.
 
-Issuers and Transparency Services MUST rotate verification keys for signature checking in well-defined cryptoperiods (see {{KEY-MANAGEMENT}}).
+Issuers and Transparency Services MUST rotate their keys in well-defined cryptoperiods, see {{KEY-MANAGEMENT}}.
 
 A Transparency Service MAY provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
 If present, these additional authenticity assurances MUST be registered in the Append-only Log and MUST always be exposed by the Transparency Services' APIs.
