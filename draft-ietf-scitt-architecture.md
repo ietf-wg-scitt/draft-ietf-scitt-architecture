@@ -329,9 +329,9 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
 ~~~aasvg
  .----------.
 |  Artifact  |
- '-----+----'            .-------------.
-       v                |  Credentials  |
-  .----+----.           |               |
+ '-----+----'
+       v                 .-------------.
+  .----+----.           |  Credentials  |
  | Statement |           '----+--+-----'
   '----+----'       cose sign |  | cose verify
        |    .----------------'|  |
@@ -345,11 +345,11 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
          |                +---+--+--------+   |
      .--' '-------------->+ Transparency  |   |
     |   .--------.        |               |   |
-    |  | Receipt  +<------+  Service      +-+ |
+    |  | Receipt  +<------+   Service     +-+ |
     |  |          +.      +--+------------+ | |
     |   '-+------'  |        | Transparency | |
     |     | Receipt +<-------+              | |
-    |      '------+'         | Service      | |
+    |      '------+'         |   Service    | |
      '-------. .-'           +------------+-+ |
               |                           |   |
               v                           |   |
@@ -370,6 +370,13 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
     / Collect Receipts /      /   Replay Log   /
    '------------------'      '----------------'
 ~~~
+{: #fig-concept-relationship title="Relationship of Concepts in SCITT"}
+
+This section describes at a high level, the three main roles and associated processes in SCITT:
+
+* Issuers and Signed Statements
+* Transparency Service and the registration process
+* Relying Parties of the Transparent Statements and the Receipt validation process
 
 The subsequent sections describe the main concepts, namely Transparency Service, Signed Statements, Registration, and Transparent Statements in more detail.
 
