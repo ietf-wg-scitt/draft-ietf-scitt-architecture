@@ -404,9 +404,9 @@ Table of Contents
 
     .----------.
    |  Artifact  |
-    '-----+----'            .-------------.
-          v                |  Credentials  |
-     .----+----.           |               |
+    '-----+----'
+          v                 .-------------.
+     .----+----.           |  Credentials  |
     | Statement |           '----+--+-----'
      '----+----'       cose sign |  | cose verify
           |    .----------------'|  |
