@@ -329,9 +329,9 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
 ~~~aasvg
  .----------.
 |  Artifact  |
- '-----+----'            .-------------.
-       v                |  Credentials  |
-  .----+----.           |               |
+ '-----+----'
+       v                 .-------------.
+  .----+----.           |  Credentials  |
  | Statement |           '----+--+-----'
   '----+----'       cose sign |  | cose verify
        |    .----------------'|  |
