@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 31 January 2025                                      C. Fournet
+Expires: 1 February 2025                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                            30 July 2024
+                                                            31 July 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 January 2025.
+   This Internet-Draft will expire on 1 February 2025.
 
 Copyright Notice
 
@@ -404,9 +404,9 @@ Table of Contents
 
     .----------.
    |  Artifact  |
-    '-----+----'            .-------------.
-          v                |  Credentials  |
-     .----+----.           |               |
+    '-----+----'
+          v                 .-------------.
+     .----+----.           |  Credentials  |
     | Statement |           '----+--+-----'
      '----+----'       cose sign |  | cose verify
           |    .----------------'|  |
@@ -420,11 +420,11 @@ Table of Contents
             |                +---+--+--------+   |
         .--' '-------------->+ Transparency  |   |
        |   .--------.        |               |   |
-       |  | Receipt  +<------+  Service      +-+ |
+       |  | Receipt  +<------+   Service     +-+ |
        |  |          +.      +--+------------+ | |
        |   '-+------'  |        | Transparency | |
        |     | Receipt +<-------+              | |
-       |      '------+'         | Service      | |
+       |      '------+'         |   Service    | |
         '-------. .-'           +------------+-+ |
                  |                           |   |
                  v                           |   |
@@ -444,6 +444,18 @@ Table of Contents
         .--------+---------.      .----------+-----.
        / Collect Receipts /      /   Replay Log   /
       '------------------'      '----------------'
+
+                Figure 1: Relationship of Concepts in SCITT
+
+   This section describes at a high level, the three main roles and
+   associated processes in SCITT:
+
+   *  Issuers and Signed Statements
+
+   *  Transparency Service and the registration process
+
+   *  Relying Parties of the Transparent Statements and the Receipt
+      validation process
 
    The subsequent sections describe the main concepts, namely
    Transparency Service, Signed Statements, Registration, and
@@ -669,7 +681,7 @@ Table of Contents
 
 4.2.1.  Signed Statement Examples
 
-   Figure 1 illustrates a normative CDDL definition (see [RFC8610]) for
+   Figure 2 illustrates a normative CDDL definition (see [RFC8610]) for
    of the protected header and unprotected header of Signed Statements
    and Receipts.
 
@@ -711,9 +723,9 @@ Table of Contents
      * int => any
    }
 
-        Figure 1: CDDL definition for Signed Statements and Receipts
+        Figure 2: CDDL definition for Signed Statements and Receipts
 
-   Figure 2 illustrates an instance of a Signed Statement in Extended
+   Figure 3 illustrates an instance of a Signed Statement in Extended
    Diagnostic Notation (EDN), with a payload that is detached.  Detached
    payloads support large Statements, and ensure Signed Statements can
    integrate with existing storage systems.
@@ -727,11 +739,11 @@ Table of Contents
        ]
    )
 
-      Figure 2: CBOR Extended Diagnostic Notation example of a Signed
+      Figure 3: CBOR Extended Diagnostic Notation example of a Signed
                                  Statement
 
-   Figure 3 illustrates the decoded protected header of the Signed
-   Statement in Figure 2.  It indicates the Signed Statement is securing
+   Figure 4 illustrates the decoded protected header of the Signed
+   Statement in Figure 3.  It indicates the Signed Statement is securing
    a JSON content type, and identifying the content with the sub Claim
    "vendor.product.example".
 
@@ -745,7 +757,7 @@ Table of Contents
      }
    }
 
-      Figure 3: CBOR Extended Diagnostic Notation example of a Signed
+      Figure 4: CBOR Extended Diagnostic Notation example of a Signed
                         Statement's Protected Header
 
 4.3.  Registration
@@ -820,7 +832,7 @@ Table of Contents
    Transparency Service added this Signed Statement to its Append-only
    Log.
 
-   Figure 4 illustrates a normative CDDL definition of Transparent
+   Figure 5 illustrates a normative CDDL definition of Transparent
    Statements.
 
    Transparent_Statement = #6.18(COSE_Sign1)
@@ -829,9 +841,9 @@ Table of Contents
      &(receipts: 394)  => [+ Receipt]
    }
 
-           Figure 4: CDDL definition for a Transparent Statement
+           Figure 5: CDDL definition for a Transparent Statement
 
-   Figure 5 illustrates a Transparent Statement with a detached payload,
+   Figure 6 illustrates a Transparent Statement with a detached payload,
    and two Receipts in its unprotected header.  The type of label 394
    receipts in the unprotected header is a CBOR array that can contain
    one or more Receipts (each entry encoded as a .cbor encoded
@@ -851,10 +863,10 @@ Table of Contents
        ]
    )
 
-          Figure 5: CBOR Extended Diagnostic Notation example of a
+          Figure 6: CBOR Extended Diagnostic Notation example of a
                            Transparent Statement
 
-   Figure 6 one of the decoded Receipt from Figure 5.  The Receipt
+   Figure 7 one of the decoded Receipt from Figure 6.  The Receipt
    contains inclusion proofs for verifiable data structures.  The
    unprotected header contains verifiable data structure proofs.  See
    the protected header for details regarding the specific verifiable
@@ -877,10 +889,10 @@ Table of Contents
        ]
    )
 
-      Figure 6: CBOR Extended Diagnostic Notation example of a Receipt
+      Figure 7: CBOR Extended Diagnostic Notation example of a Receipt
 
-   Figure 7 illustrates the decoded protected header of the Transparent
-   Statement in Figure 5.  The verifiable data structure (-111) uses 1
+   Figure 8 illustrates the decoded protected header of the Transparent
+   Statement in Figure 6.  The verifiable data structure (-111) uses 1
    from (RFC9162_SHA256).
 
    {                                   / Protected                     /
@@ -893,10 +905,10 @@ Table of Contents
      }
    }
 
-          Figure 7: CBOR Extended Diagnostic Notation example of a
+          Figure 8: CBOR Extended Diagnostic Notation example of a
                          Receipt's Protected Header
 
-   Figure 8 illustrates the decoded inclusion proof from Figure 6.  This
+   Figure 9 illustrates the decoded inclusion proof from Figure 7.  This
    inclusion proof indicates that the size of the Append-only Log was 8
    at the time the Receipt was issued.  The structure of this inclusion
    proof is specific to the verifiable data structure used
@@ -912,7 +924,7 @@ Table of Contents
      ]
    ]
 
-          Figure 8: CBOR Extended Diagnostic Notation example of a
+          Figure 9: CBOR Extended Diagnostic Notation example of a
                          Receipt's Inclusion Proof
 
 4.4.1.  Validation
@@ -1662,20 +1674,20 @@ B.4.1.  Statement URN
 
    urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                      Figure 9: Example Statement URN
+                      Figure 10: Example Statement URN
 
 B.4.2.  Statement URL
 
   https://transparency.example/api/identifiers\
   /urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                     Figure 10: Example Statement URL
+                     Figure 11: Example Statement URL
 
 B.4.3.  Statement Data URL
 
    data:application/json;base64,SGVsb...xkIQ==
 
-                   Figure 11: Example Statement Data URL
+                   Figure 12: Example Statement Data URL
 
 B.5.  Signed Statements
 
@@ -1684,7 +1696,7 @@ B.5.1.  Signed Statement URN
    urn:ietf:params:scitt:\
    signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                  Figure 12: Example Signed Statement URN
+                  Figure 13: Example Signed Statement URN
 
 B.5.2.  Signed Statement URL
 
@@ -1692,13 +1704,13 @@ B.5.2.  Signed Statement URL
    /urn:ietf:params:scitt:\
    signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                  Figure 13: Example Signed Statement URL
+                  Figure 14: Example Signed Statement URL
 
 B.5.3.  Signed Statement Data URL
 
    data:application/cose;base64,SGVsb...xkIQ==
 
-                Figure 14: Example Signed Statement Data URL
+                Figure 15: Example Signed Statement Data URL
 
 B.6.  Receipts
 
@@ -1706,20 +1718,20 @@ B.6.1.  Receipt URN
 
    urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                       Figure 15: Example Receipt URN
+                       Figure 16: Example Receipt URN
 
 B.6.2.  Receipt URL
 
    https://transparency.example/api/identifiers\
    /urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                       Figure 16: Example Receipt URL
+                       Figure 17: Example Receipt URL
 
 B.6.3.  Receipt Data URL
 
    data:application/cose;base64,SGVsb...xkIQ==
 
-                    Figure 17: Example Receipt Data URL
+                    Figure 18: Example Receipt Data URL
 
 B.7.  Transparent Statements
 
@@ -1728,7 +1740,7 @@ B.7.1.  Transparent Statement URN
    urn:ietf:params:scitt:\
    transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                Figure 18: Example Transparent Statement URN
+                Figure 19: Example Transparent Statement URN
 
 B.7.2.  Transparent Statement URL
 
@@ -1736,13 +1748,13 @@ B.7.2.  Transparent Statement URL
    /urn:ietf:params:scitt:\
    transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
-                Figure 19: Example Transparent Statement URL
+                Figure 20: Example Transparent Statement URL
 
 B.7.3.  Transparent Statement Data URL
 
    data:application/cose;base64,SGVsb...xkIQ==
 
-             Figure 20: Example Transparent Statement Data URL
+             Figure 21: Example Transparent Statement Data URL
 
 Appendix C.  Signing Statements Remotely
 
