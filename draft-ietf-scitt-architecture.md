@@ -687,7 +687,7 @@ Transparency Services MAY support anonymous access.
 Issuers MUST ensure Signed Statements submitted to public access services are acceptable for public disclosure.
 In this case, Signed Statements MUST NOT carry confidential information.
 Once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.
-In some deployments, a Relaying Party, such as an Auditor, might require access to Signed Statements and Statements, which can be made available through adjacent services.
+In some deployments, a special role, such as an Auditor, might require access to Signed Statements.
 
 Transparency Services MUST enforce access control to the Append-only Log.
 
