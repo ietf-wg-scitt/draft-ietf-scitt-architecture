@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-30T00:40:21.613256+00:00",
+  "timestamp": "2024-08-01T00:44:25.388881+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -1838,7 +1838,7 @@
         },
         {
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Closing the issue since there are not further actions.",
           "createdAt": "2023-09-04T15:20:15Z",
           "updatedAt": "2023-09-04T15:20:15Z"
@@ -1852,7 +1852,7 @@
         },
         {
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "I closed this issue because I do not see a need to add text comparing a proprietary technology with standardized technology. If there is a decision in SCITT then it is about whehter to use JSON or CBOR (with the corresponding security wrappers). \r\n\r\nAs far as I know there is no ongoing work in the IETF to standardize DSSE. ",
           "createdAt": "2023-09-06T09:14:44Z",
           "updatedAt": "2023-09-06T09:14:44Z"
@@ -2283,7 +2283,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/83",
       "state": "CLOSED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [
         "yogeshbdeshpande"
       ],
@@ -2302,7 +2302,7 @@
         },
         {
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "ping",
           "createdAt": "2023-10-23T15:20:44Z",
           "updatedAt": "2023-10-23T15:20:44Z"
@@ -2453,7 +2453,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/89",
       "state": "CLOSED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [
         "fournet"
       ],
@@ -2488,7 +2488,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/90",
       "state": "CLOSED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
         "terminology"
@@ -2514,7 +2514,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/91",
       "state": "CLOSED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [
         "ad-l"
       ],
@@ -2542,7 +2542,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/92",
       "state": "CLOSED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [
         "OR13"
       ],
@@ -2568,7 +2568,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/93",
       "state": "CLOSED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
         "terminology"
@@ -2580,7 +2580,7 @@
       "comments": [
         {
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Fixed this in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/94",
           "createdAt": "2023-09-04T15:01:43Z",
           "updatedAt": "2023-09-04T15:01:43Z"
@@ -5037,16 +5037,24 @@
       "id": "I_kwDOIvmHss6QTVHk",
       "title": "SCITT: very loose federation",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/262",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "\r\n> The SCITT architecture consists of a very loose federation of Transparency Services...\r\n\r\nIn what sense is SCITT a \"very loose\" federation or even a federation? ",
       "createdAt": "2024-07-20T17:27:56Z",
-      "updatedAt": "2024-07-20T17:27:56Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-07-30T14:57:43Z",
+      "closedAt": "2024-07-30T14:57:42Z",
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Can you make this a PR?",
+          "createdAt": "2024-07-30T14:57:42Z",
+          "updatedAt": "2024-07-30T14:57:42Z"
+        }
+      ]
     },
     {
       "number": 263,
@@ -5055,7 +5063,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/263",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "> Signed Certificate Timestamps are checked by Relying Parties\r\n\r\nI would argue that in CT Auditors are checking more than Signed Certificate Timestamps",
@@ -5069,16 +5077,24 @@
       "id": "I_kwDOIvmHss6QTVaY",
       "title": "\"Agility\" Parameter",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/264",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "\r\n>   In order to accommodate as many Transparency Service implementations\r\n   as possible, this document only specifies the format of Signed\r\n   Statements (which must be used by all Issuers) and a very thin\r\n   wrapper format for Receipts, which specifies the Transparency Service\r\n   identity and the **agility parameters** for the Signed Inclusion Proofs.\r\n\r\nWhat is an agility parameter?",
       "createdAt": "2024-07-20T17:30:44Z",
-      "updatedAt": "2024-07-20T17:30:44Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-07-30T14:58:08Z",
+      "closedAt": "2024-07-30T14:58:08Z",
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "If this reflects the latest text, please make a PR.",
+          "createdAt": "2024-07-30T14:58:08Z",
+          "updatedAt": "2024-07-30T14:58:08Z"
+        }
+      ]
     },
     {
       "number": 268,
@@ -5087,7 +5103,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/268",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Figure 1 needs to be explained and referenced in the text.\r\nThe arrows in the figure need to be explained\r\nThe figure shows two different boxes and the semantic needs to be explained",
@@ -5103,7 +5119,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/269",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": ">  An x5chain with a leaf certificate that corresponds to the\r\n   x5t value MAY be included in the unprotected header in support of\r\n   certain supply chain scenarios.\r\n",
@@ -5119,7 +5135,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/270",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": ">    Transparency Services MUST also maintain a list of trust anchors,\r\n   which SHOULD be used by Relying Parties to authenticate Issuers, and\r\n   which MAY be included in a Registration Policy statement.\r\n\r\nI don't understand the SHOULD.\r\n\r\nYou have to be in possession of trust anchors to verify a digital signature. It is not an optional feature.",
@@ -5150,7 +5166,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/273",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": ">    When x5t is present, iss MUST be a string with a value between 1 and\r\n   8192 characters in length that fits the regular expression of a\r\n   distinguished name.\r\n\r\n\r\nWhat is the \"regular expression of a  distinguished name\"?\r\n\r\n",
@@ -5166,7 +5182,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/275",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": ">  Issuers MAY use different signing keys (identified by kid in the\r\n   resolved key manifest) for different Artifacts, or sign all Signed\r\n   Statements under the same key.\r\n\r\n\r\nWhat does \"resolved key manifest\" mean?",
@@ -5182,7 +5198,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/276",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "When the draft talks about receipts does it refers only to inclusion proofs. Can we still talk about receipts, if other proof types are supported by an implementation that those are still called Receipts?\r\n",
@@ -5206,7 +5222,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/277",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": ">    Everything that is optional in the following CDDL definition can\r\n   potentially be discovered out of band and Registration Policies are\r\n   not assured on the presence of these optional fields.\r\n\r\n\r\nI do not understand what you want to say with the second part of the sentence.\r\n\r\nEven the first part of the sentence do not convey any real meaning.\r\n\r\n\r\n",
@@ -5222,7 +5238,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/279",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "The three steps from Section 4.3 on Registration are essentially the same. To verify the signature you have to retrieve the issuer credentials and you have to do item 4.\r\n\r\n\r\n   2.  *Issuer Verification:* The Transparency Service MUST\r\n       syntactically validate the Issuer's identity Claims, which may be\r\n       different than the Client identity.\r\n\r\n   3.  *Signature verification:* The Transparency Service MUST verify\r\n       the signature of the Signed Statement, as described in [RFC9360],\r\n       using the signature algorithm and verification key of the Issuer.\r\n\r\n   4.  *Signed Statement validation:* The Transparency Service MUST\r\n       check that the Signed Statement includes the required protected\r\n       headers listed above.  The Transparency Service MAY verify the\r\n       Statement payload format, content and other optional properties.\r\n\r\n\r\n",
@@ -5238,7 +5254,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/282",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "> Referencing the COSE Verifiable Data Structure\r\n   Registry, RFC9162_SHA256 is value 1, which supports -1 (inclusion\r\n   proofs) and -2 (consistency proofs).\r\n\r\n\r\nI believe this registry is defined in another document. The sentence needs to be changed to make the meaning clear.",
@@ -5254,7 +5270,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/285",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": ">   Each of these functions MUST be carefully protected against both\r\n   external attacks and internal misbehavior by some or all of the\r\n   operators of the Transparency Service.\r\n\r\nWhat does the term \"each of these functions\" refer to?",
@@ -5270,7 +5286,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/287",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "The security consideration section gives me the impression that different authors worked on the content and put the text in there without re-reading the product. As a consequence, there is a lot of repetition.",
@@ -5286,7 +5302,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/289",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "> For example, Issuers must remove\r\n   Personally Identifiable Information (PII) as clear text in the\r\n   Statement.  Alternatively, Issuers may include opaque cryptographic\r\n   Statements, such as hashes.\r\n\r\n\r\nThe identity of the issuer is included in the signed statement. As such, the example is not great. ",
@@ -5302,7 +5318,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/291",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "> All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network traffic analysis.\r\n\r\nThis sentence in the security consideration section gives the reader the impression that communication security is assumed to be used. This is, however, not even discussed in the body of the document.",
@@ -5316,7 +5332,7 @@
       "id": "I_kwDOIvmHss6Qch9T",
       "title": "Ensure consistent use of \"registered\" to replace \"recorded\" when referring to signed statements being appended to the log. ",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/293",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "rjb4standards",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -5325,8 +5341,8 @@
       ],
       "body": "We are inconsistent with our use of \"registered\" and \"recorded\" when referring to the addition of signed statements to the append-only log.\r\n\r\nI recommend using the term \"registered\" consistently to refer to this act. This implies that some \"process\" was applied before registration can occur on the append-only log. ",
       "createdAt": "2024-07-22T17:33:29Z",
-      "updatedAt": "2024-07-23T00:44:50Z",
-      "closedAt": null,
+      "updatedAt": "2024-07-31T15:46:11Z",
+      "closedAt": "2024-07-31T15:46:10Z",
       "comments": [
         {
           "author": "JAG-UK",
@@ -5348,6 +5364,13 @@
           "body": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/296",
           "createdAt": "2024-07-23T00:44:49Z",
           "updatedAt": "2024-07-23T00:44:49Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as resolved by #296 ",
+          "createdAt": "2024-07-31T15:46:11Z",
+          "updatedAt": "2024-07-31T15:46:11Z"
         }
       ]
     }
@@ -9482,7 +9505,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/72",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Use the issuer tracker instead. This helps to improve readability",
@@ -9610,7 +9633,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/73",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "There is a separate use case document providing the details for these use cases. \r\n\r\nAdding a reference to the use case document would be useful!",
@@ -9813,7 +9836,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/74",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -9881,7 +9904,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/75",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -9960,7 +9983,7 @@
             "abbreviatedOid": "e65bd07"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-07-05T12:28:16Z",
@@ -10029,7 +10052,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/76",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This PR is incomplete because the standardized registration policy is scattered all over the document.",
@@ -10095,7 +10118,7 @@
             "abbreviatedOid": "dcd54e1"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-07-05T12:25:50Z",
@@ -10175,7 +10198,7 @@
             "abbreviatedOid": "dcd54e1"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-07-05T14:51:03Z",
@@ -10195,7 +10218,7 @@
             "abbreviatedOid": "dcd54e1"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-07-05T14:51:39Z",
@@ -10850,7 +10873,7 @@
             "abbreviatedOid": "3a24240"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2023-07-10T15:36:09Z",
@@ -11729,7 +11752,7 @@
             "abbreviatedOid": "a060417"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-07-10T13:17:45Z",
@@ -12052,7 +12075,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/94",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Attempt to clean up Section 6",
@@ -12073,7 +12096,7 @@
       "comments": [
         {
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Orie, you realize that you are commenting on text that I didn't suggest. This text has already been there in the submitted draft",
           "createdAt": "2023-09-19T16:14:41Z",
           "updatedAt": "2023-09-19T16:14:41Z"
@@ -12173,7 +12196,7 @@
             "abbreviatedOid": "c3168a0"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-08-16T08:30:46Z",
@@ -12193,7 +12216,7 @@
             "abbreviatedOid": "c3168a0"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-08-16T08:38:03Z",
@@ -12742,7 +12765,7 @@
             "abbreviatedOid": "80dd7e4"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-01T15:39:41Z",
@@ -12762,7 +12785,7 @@
             "abbreviatedOid": "a0a7589"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-01T15:41:53Z",
@@ -12782,7 +12805,7 @@
             "abbreviatedOid": "a0a7589"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-01T15:43:27Z",
@@ -12802,7 +12825,7 @@
             "abbreviatedOid": "a0a7589"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-01T15:44:10Z",
@@ -12822,7 +12845,7 @@
             "abbreviatedOid": "a0a7589"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-01T15:47:15Z",
@@ -12842,7 +12865,7 @@
             "abbreviatedOid": "a0a7589"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-01T15:47:49Z",
@@ -12862,7 +12885,7 @@
             "abbreviatedOid": "a0a7589"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-09-01T15:48:32Z",
@@ -14341,7 +14364,7 @@
       "comments": [
         {
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "I looked through the changes and they are fine.\r\nThanks for fixing the over-long lines in the examples.",
           "createdAt": "2023-10-16T14:41:23Z",
           "updatedAt": "2023-10-16T14:41:23Z"
@@ -15287,7 +15310,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/119",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -15450,7 +15473,7 @@
             "abbreviatedOid": "c154c5b"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "APPROVED",
           "body": "Thanks for adding the references.\r\n\r\nI am not sure whether you can indeed add them in this style but you can try. I would just use this style:\r\n\r\nSLSA {{SLSA}}",
           "createdAt": "2023-10-23T18:26:34Z",
@@ -34007,7 +34030,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/255",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -34169,7 +34192,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/256",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -34283,7 +34306,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/257",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -34355,7 +34378,7 @@
             "abbreviatedOid": "70baeea"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-21T18:04:29Z",
@@ -34430,7 +34453,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/258",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -34451,7 +34474,7 @@
       "comments": [
         {
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Added reference to {{I-D.ietf-cose-merkle-tree-proofs}}.",
           "createdAt": "2024-07-21T18:07:41Z",
           "updatedAt": "2024-07-21T18:07:41Z"
@@ -34552,7 +34575,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/259",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Reason: Term was used only twice, not defined, and does not seem to play an important role.\r\n\r\n![image](https://github.com/user-attachments/assets/cf3816c1-a967-4b84-8fbd-e352d833abff)\r\n",
@@ -34686,7 +34709,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/260",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -34833,7 +34856,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/261",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -34962,7 +34985,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/265",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -35121,31 +35144,82 @@
       "id": "PR_kwDOIvmHss51_hfP",
       "title": "Updated the first figure",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/266",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "![image](https://github.com/user-attachments/assets/bdb550e0-2d22-4256-9c02-cb308deaa11a)\r\n",
       "createdAt": "2024-07-20T17:39:52Z",
-      "updatedAt": "2024-07-22T17:24:59Z",
+      "updatedAt": "2024-07-31T17:27:14Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
-      "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
+      "baseRefOid": "a96862f46333a2837529409fae04addb545d52eb",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "hannestschofenig-patch-9",
-      "headRefOid": "c746229db17ef1e05fe18334bbd4a3cc05f73fe2",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "be1962374523437eb6ebf0ceaf6317a87a88760c",
+      "closedAt": "2024-07-31T17:27:14Z",
+      "mergedAt": "2024-07-31T17:27:14Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "af19eea348ef078370313072f739c47807d25f43"
+      },
       "comments": [
         {
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "My biggest problem with the diagram is that it is not explained. It just falls out of the sky",
           "createdAt": "2024-07-22T17:24:58Z",
           "updatedAt": "2024-07-22T17:24:58Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I took on the task of fixing the markdown, testing it locally, posting an image, ...\r\nI was able to revert several of the changes through the \"resolve-conflicts\" UX, but I would like to check the \"services\" changes that it renders properly\r\nI didn't get to it today, but will on Wednesday. \r\n...please stand by... :) ",
+          "createdAt": "2024-07-31T00:33:18Z",
+          "updatedAt": "2024-07-31T00:39:44Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> My biggest problem with the diagram is that it is not explained. It just falls out of the sky\r\n\r\nThanks, Hannes, that's a valid point. We may have lost some of the descriptive text along with the edits.\r\nLet's keep the diagram as-is, and work on additional text if needed. ",
+          "createdAt": "2024-07-31T00:37:51Z",
+          "updatedAt": "2024-07-31T00:37:51Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Latest changes, incorporating the feedback to date, which includes some formatting changes to the diagram, and text updates.\r\n![image](https://github.com/user-attachments/assets/1b4baef2-c29c-4297-a201-25bc5c6eac99)\r\n",
+          "createdAt": "2024-07-31T15:00:45Z",
+          "updatedAt": "2024-07-31T15:00:45Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think the diagram on the master/main is fine just needs some sentences of explanation text, around it.\r\n\r\nAlready the diagram is having quite a bit of components and flows. I would strictly request everyone to\r\n\r\n1. STOP editing the diagram\r\n2. Add text around it trying to explain the philosophy presented via a simple SCITT Architecture.",
+          "createdAt": "2024-07-31T15:24:22Z",
+          "updatedAt": "2024-07-31T15:24:22Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks, @yogeshbdeshpande, the diagram content has been reverted, only incorporating a few formatting changes. \r\nHannes, and subsequent merged suggestions, added some additional text. Can you comment, suggest, and/or approve the current state of this PR. It does add more context.",
+          "createdAt": "2024-07-31T15:50:12Z",
+          "updatedAt": "2024-07-31T15:50:12Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks Steve, looking now!",
+          "createdAt": "2024-07-31T15:55:02Z",
+          "updatedAt": "2024-07-31T15:55:02Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Done and Thanks again!",
+          "createdAt": "2024-07-31T15:57:25Z",
+          "updatedAt": "2024-07-31T15:57:25Z"
         }
       ],
       "reviews": [
@@ -35155,7 +35229,7 @@
             "abbreviatedOid": "fb9ac61"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-20T17:42:45Z",
@@ -35215,10 +35289,10 @@
           },
           "author": "henkbirkholz",
           "authorAssociation": "MEMBER",
-          "state": "CHANGES_REQUESTED",
+          "state": "DISMISSED",
           "body": "",
           "createdAt": "2024-07-21T22:00:04Z",
-          "updatedAt": "2024-07-21T22:00:11Z",
+          "updatedAt": "2024-07-31T15:04:07Z",
           "comments": [
             {
               "originalPosition": 12,
@@ -35248,10 +35322,10 @@
           },
           "author": "roywill",
           "authorAssociation": "COLLABORATOR",
-          "state": "CHANGES_REQUESTED",
+          "state": "DISMISSED",
           "body": "",
           "createdAt": "2024-07-22T16:35:36Z",
-          "updatedAt": "2024-07-22T16:36:06Z",
+          "updatedAt": "2024-07-31T15:03:57Z",
           "comments": [
             {
               "originalPosition": 12,
@@ -35260,6 +35334,138 @@
               "updatedAt": "2024-07-22T16:36:06Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmmNj",
+          "commit": {
+            "abbreviatedOid": "c746229"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:52:02Z",
+          "updatedAt": "2024-07-30T14:52:02Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n'----+----' cose sign | | cose verify\r\n```",
+              "createdAt": "2024-07-30T14:52:02Z",
+              "updatedAt": "2024-07-30T14:52:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmmlM",
+          "commit": {
+            "abbreviatedOid": "9c8653c"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:52:35Z",
+          "updatedAt": "2024-07-30T14:52:35Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n '----+----' cose sign | | cose verify\r\n```",
+              "createdAt": "2024-07-30T14:52:35Z",
+              "updatedAt": "2024-07-30T14:52:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmmmZ",
+          "commit": {
+            "abbreviatedOid": "c746229"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:52:36Z",
+          "updatedAt": "2024-07-30T14:52:36Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "```suggestion\r\n* Issuers and Signed Statements\r\n* Transparency Service and the registration process\r\n* Relying Parties of the Transparent Statements and the Receipt validation process\r\n```",
+              "createdAt": "2024-07-30T14:52:36Z",
+              "updatedAt": "2024-07-30T14:55:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DnwDL",
+          "commit": {
+            "abbreviatedOid": "c746229"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T17:04:24Z",
+          "updatedAt": "2024-07-30T17:04:24Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "I agree with @SteveLasker : I would not overcomplicate the already cumbersome figure any more.\r\n\r\nLets drop this PR. We do not need it!",
+              "createdAt": "2024-07-30T17:04:24Z",
+              "updatedAt": "2024-07-30T17:04:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DnwuL",
+          "commit": {
+            "abbreviatedOid": "68493d6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "DISMISSED",
+          "body": "I think, the addition of `cose sign` and `cose verify` is superficial and not needed.\r\n\r\nPlease remove them!",
+          "createdAt": "2024-07-30T17:05:44Z",
+          "updatedAt": "2024-07-31T15:03:41Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Dn6WB",
+          "commit": {
+            "abbreviatedOid": "68493d6"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "DISMISSED",
+          "body": "Like @yogeshbdeshpande, I am willing to quickly approve if the labels are changed to simply `sign` and `verify`.",
+          "createdAt": "2024-07-30T17:25:23Z",
+          "updatedAt": "2024-07-31T15:03:30Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DwKW6",
+          "commit": {
+            "abbreviatedOid": "be19623"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM to https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/266/commits/be1962374523437eb6ebf0ceaf6317a87a88760c",
+          "createdAt": "2024-07-31T15:02:37Z",
+          "updatedAt": "2024-07-31T15:02:37Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DwqYw",
+          "commit": {
+            "abbreviatedOid": "be19623"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2024-07-31T15:57:11Z",
+          "updatedAt": "2024-07-31T15:57:11Z",
+          "comments": []
         }
       ]
     },
@@ -35270,7 +35476,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/267",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -35362,24 +35568,26 @@
       "id": "PR_kwDOIvmHss51_ipi",
       "title": "Clarification of Trust Anchor Examples",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/271",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T17:56:32Z",
-      "updatedAt": "2024-07-23T04:16:34Z",
+      "updatedAt": "2024-07-30T14:53:59Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "hannestschofenig-patch-11",
-      "headRefOid": "6d59491503dbbde08c8accec68e31f035bc946d6",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "25739cf764a92b9c735fc178a291ea89b8dd7831",
+      "closedAt": "2024-07-30T14:53:59Z",
+      "mergedAt": "2024-07-30T14:53:59Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "a96862f46333a2837529409fae04addb545d52eb"
+      },
       "comments": [
         {
           "author": "rjb4standards",
@@ -35390,7 +35598,7 @@
         },
         {
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "@rjb4standards : What is an example of a \"any other COSE compatible PKI trust anchor.\" besides the JSON Web Key Set?",
           "createdAt": "2024-07-21T22:17:12Z",
           "updatedAt": "2024-07-21T22:17:12Z"
@@ -35425,7 +35633,7 @@
         },
         {
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "> I think the point here is to keep it open and not limit to what exists today.\r\n\r\nThese are just examples anyway and as such the list is unbounded. But if you give examples, as you do today, then it better might be good to give examples that are understandable by readers. That is what I have been trying to do. I listed the only COSE example I am aware of.",
           "createdAt": "2024-07-22T22:53:08Z",
           "updatedAt": "2024-07-22T22:53:08Z"
@@ -35497,7 +35705,7 @@
             "abbreviatedOid": "dadf1e8"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-21T22:16:10Z",
@@ -35616,7 +35824,7 @@
             "abbreviatedOid": "dadf1e8"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-22T17:27:47Z",
@@ -35629,6 +35837,52 @@
               "updatedAt": "2024-07-22T17:27:47Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmjS_",
+          "commit": {
+            "abbreviatedOid": "6d59491"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:47:53Z",
+          "updatedAt": "2024-07-30T14:47:53Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nFor instance, a trust anchor could be an X.509 root certificate, a pointer to an OpenID Connect identity provider, or any other COSE-compatible trust anchor.\r\n```",
+              "createdAt": "2024-07-30T14:47:53Z",
+              "updatedAt": "2024-07-30T14:47:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmjyE",
+          "commit": {
+            "abbreviatedOid": "25739cf"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-30T14:48:38Z",
+          "updatedAt": "2024-07-30T14:48:38Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmkMT",
+          "commit": {
+            "abbreviatedOid": "25739cf"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM to [latest](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/271/commits/25739cf764a92b9c735fc178a291ea89b8dd7831) changes",
+          "createdAt": "2024-07-30T14:49:15Z",
+          "updatedAt": "2024-07-30T14:49:15Z",
+          "comments": []
         }
       ]
     },
@@ -35639,7 +35893,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/272",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -35733,7 +35987,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/274",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -35880,7 +36134,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/278",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -36000,18 +36254,18 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/280",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:17:39Z",
-      "updatedAt": "2024-07-23T04:12:39Z",
+      "updatedAt": "2024-07-30T14:46:17Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "hannestschofenig-patch-15",
-      "headRefOid": "a3c1aef1a63b68118f66f920a9929400a873a193",
+      "headRefOid": "cad6028a1712ef1222cdc4406f959ce53235678f",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -36019,7 +36273,7 @@
       "comments": [
         {
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "> Authentication and authorization is implementation-specific, and out of scope of the SCITT Architecture.\r\n\r\nThis is not correct if we also consider SCRAPI",
           "createdAt": "2024-07-22T22:54:34Z",
           "updatedAt": "2024-07-22T22:54:34Z"
@@ -36059,7 +36313,7 @@
             "abbreviatedOid": "a3c1aef"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-21T13:55:26Z",
@@ -36119,7 +36373,7 @@
             "abbreviatedOid": "a3c1aef"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-21T19:57:50Z",
@@ -36139,7 +36393,7 @@
             "abbreviatedOid": "a3c1aef"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-21T20:02:23Z",
@@ -36199,7 +36453,7 @@
             "abbreviatedOid": "a3c1aef"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-21T22:13:31Z",
@@ -36219,7 +36473,7 @@
             "abbreviatedOid": "a3c1aef"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-21T22:14:24Z",
@@ -36252,6 +36506,172 @@
               "updatedAt": "2024-07-22T15:00:02Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmVXN",
+          "commit": {
+            "abbreviatedOid": "a3c1aef"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:26:52Z",
+          "updatedAt": "2024-07-30T14:26:53Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\nThe Transparency Service MAY validate the Signed Statement payload, in order to enforce domain specific registration policies that apply to specific content types.\r\n```",
+              "createdAt": "2024-07-30T14:26:52Z",
+              "updatedAt": "2024-07-30T14:26:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmWOQ",
+          "commit": {
+            "abbreviatedOid": "a3c1aef"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:28:11Z",
+          "updatedAt": "2024-07-30T14:28:11Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "I think what is important is trusting the issuer's keys... the claims used to discover them are hints.",
+              "createdAt": "2024-07-30T14:28:11Z",
+              "updatedAt": "2024-07-30T14:28:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Dmc_L",
+          "commit": {
+            "abbreviatedOid": "a3c1aef"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:38:07Z",
+          "updatedAt": "2024-07-30T14:38:08Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\n1. **Client authentication:** A Client authenticates with the Transparency Service before registering Signed Statements on behalf of one or more Issuers.\r\n```",
+              "createdAt": "2024-07-30T14:38:08Z",
+              "updatedAt": "2024-07-30T14:38:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmeHd",
+          "commit": {
+            "abbreviatedOid": "0059466"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:39:50Z",
+          "updatedAt": "2024-07-30T14:39:50Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nAuthentication and authorization are implementation-specific and out of scope of the SCITT architecture.\r\n```",
+              "createdAt": "2024-07-30T14:39:50Z",
+              "updatedAt": "2024-07-30T14:39:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Dmete",
+          "commit": {
+            "abbreviatedOid": "0d4e26b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:40:43Z",
+          "updatedAt": "2024-07-30T14:40:43Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "LGTM to latest changes",
+              "createdAt": "2024-07-30T14:40:43Z",
+              "updatedAt": "2024-07-30T14:40:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Dmgdp",
+          "commit": {
+            "abbreviatedOid": "3af9a5f"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:43:25Z",
+          "updatedAt": "2024-07-30T14:43:26Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\nThe Transparency Service MAY validate the Signed Statement payload in order to enforce domain specific registration policies that apply to specific content types.\r\n```",
+              "createdAt": "2024-07-30T14:43:26Z",
+              "updatedAt": "2024-07-30T14:43:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Dmgrd",
+          "commit": {
+            "abbreviatedOid": "3af9a5f"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:43:47Z",
+          "updatedAt": "2024-07-30T14:43:47Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "This line is redundant with 559:\r\n> 1. **Return the Receipt**, which MAY be asynchronous from Registration.",
+              "createdAt": "2024-07-30T14:43:47Z",
+              "updatedAt": "2024-07-30T14:43:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmhGx",
+          "commit": {
+            "abbreviatedOid": "cad6028"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM to latest changes",
+          "createdAt": "2024-07-30T14:44:27Z",
+          "updatedAt": "2024-07-30T14:44:27Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmiTN",
+          "commit": {
+            "abbreviatedOid": "cad6028"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-30T14:46:17Z",
+          "updatedAt": "2024-07-30T14:46:17Z",
+          "comments": []
         }
       ]
     },
@@ -36262,7 +36682,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/281",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -36376,7 +36796,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/283",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -36397,7 +36817,7 @@
       "comments": [
         {
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Here is the status:\r\n\r\nI do not believe there is a security problem. Roy says that Antoine thinks there is a problem. Antoine is, however, not at the meeting.",
           "createdAt": "2024-07-21T22:12:37Z",
           "updatedAt": "2024-07-21T22:12:37Z"
@@ -36517,35 +36937,37 @@
       "id": "PR_kwDOIvmHss51_k5J",
       "title": "Key Rotation",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/284",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "I generalized the description. You need to rotate all keys.",
       "createdAt": "2024-07-20T18:28:15Z",
-      "updatedAt": "2024-07-23T04:09:54Z",
+      "updatedAt": "2024-07-30T14:36:06Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "hannestschofenig-patch-18",
       "headRefOid": "3443470aa12a1b0411c02d761159cc28649892bf",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-07-30T14:36:06Z",
+      "mergedAt": "2024-07-30T14:36:06Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "93edd281dd40c46588d60e154dff74c6fe80e4e2"
+      },
       "comments": [
         {
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "I don't have strong opinions about the MUST vs. SHOULD requirement here. The group will have to sort this out",
           "createdAt": "2024-07-22T17:24:11Z",
           "updatedAt": "2024-07-22T17:24:11Z"
         },
         {
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Was wondering whether the cases where keys are never rotated are actually valid. The implication is the following: if an end-entity certificate has an indefinite lifetime then the certificates of the subordinate and CA certificates also need to have an indefinite lifetime.\r\n\r\nIs this a realistic deployment? If so, can you describe this deployment?",
           "createdAt": "2024-07-22T22:59:21Z",
           "updatedAt": "2024-07-22T22:59:21Z"
@@ -36556,6 +36978,13 @@
           "body": "Sitting in the SUITS meeting, the same question of MUST came up. \r\nSomeone made the comment that the MIST could be required in the doc, but the doesn\u2019t mean a service that doesn\u2019t follow the MIST guidance, can\u2019t physically operate or even interop with other services. It would mean it\u2019s not conformant to informative guidance, and a security review could seem it not as secure. Which might be fine for a locked down, IoT scenario. \r\nAfter the SUITS discussion, I\u2019m fine with a MUST for operational info, that enables a service to function as they deem fit",
           "createdAt": "2024-07-23T04:09:24Z",
           "updatedAt": "2024-07-23T04:09:24Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Keeping with MUST as it doesn't change the compatibility, and a service that doesn't rotate would still be interoperable, and be operationally not compliant. ",
+          "createdAt": "2024-07-30T14:35:43Z",
+          "updatedAt": "2024-07-30T14:35:43Z"
         }
       ],
       "reviews": [
@@ -36631,7 +37060,7 @@
             "abbreviatedOid": "599dd34"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-21T19:15:18Z",
@@ -36651,7 +37080,7 @@
             "abbreviatedOid": "a36122f"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-21T19:25:51Z",
@@ -36849,6 +37278,26 @@
           "createdAt": "2024-07-23T04:09:54Z",
           "updatedAt": "2024-07-23T04:09:54Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmTiN",
+          "commit": {
+            "abbreviatedOid": "3443470"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:24:29Z",
+          "updatedAt": "2024-07-30T14:24:30Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "An example of a key that cannot be rotated is a burned in key that attests to things. @henkbirkholz \r\n\r\nWhen SHOULD is used, there needs to be an explanation of when the advice can be ignored, and when it is MUST.\r\n\r\nWhen possible, keys MUST be rotated, unless it is not possible to attribute new keys to the same issuer identity, etc...",
+              "createdAt": "2024-07-30T14:24:29Z",
+              "updatedAt": "2024-07-30T14:24:30Z"
+            }
+          ]
         }
       ]
     },
@@ -36859,18 +37308,18 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/286",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:32:50Z",
-      "updatedAt": "2024-07-22T16:51:21Z",
+      "updatedAt": "2024-07-30T17:00:37Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "hannestschofenig-patch-19",
-      "headRefOid": "09cd9f323ae3493c410217ade9fe9f47aff47cc1",
+      "headRefOid": "aaa8a84bf2a95485d8cc8f26641e9a0e24525f8e",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -36903,7 +37352,7 @@
             "abbreviatedOid": "cc548d2"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-21T13:57:05Z",
@@ -36923,7 +37372,7 @@
             "abbreviatedOid": "cc548d2"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-21T14:00:50Z",
@@ -37082,7 +37531,7 @@
             "abbreviatedOid": "2e5b2b2"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-21T21:49:03Z",
@@ -37208,6 +37657,132 @@
           "createdAt": "2024-07-22T16:51:21Z",
           "updatedAt": "2024-07-22T16:51:21Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmV53",
+          "commit": {
+            "abbreviatedOid": "09cd9f3"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:27:41Z",
+          "updatedAt": "2024-07-30T14:27:41Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\nTransparency Services MAY support anonymous access. Issuers MUST ensure Signed Statements submitted to public access services are acceptable for public disclosure.\r\n```",
+              "createdAt": "2024-07-30T14:27:41Z",
+              "updatedAt": "2024-07-30T14:27:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmW_X",
+          "commit": {
+            "abbreviatedOid": "d6225e3"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:29:18Z",
+          "updatedAt": "2024-07-30T14:29:18Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\nTransparency Services MAY support anonymous access.\r\nIssuers MUST ensure Signed Statements submitted to public access services are acceptable for public disclosure.\r\n```",
+              "createdAt": "2024-07-30T14:29:18Z",
+              "updatedAt": "2024-07-30T14:29:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmYg-",
+          "commit": {
+            "abbreviatedOid": "aaa8a84"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Lets merge https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/294 first, and then address conflicts and see if anything remains",
+          "createdAt": "2024-07-30T14:31:15Z",
+          "updatedAt": "2024-07-30T14:31:15Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Dmqhj",
+          "commit": {
+            "abbreviatedOid": "aaa8a84"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:58:36Z",
+          "updatedAt": "2024-07-30T14:58:36Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "Access control does not mean you cannot have anonymous read or write, just that you have means to control it. I have worked on many systems that a have notion of anonymous read or read for unauthenticated access scenarios. Does that mean those systems, writ large, don't have access control?\r\n\r\nThere also appears to be informative and useful context in the edits about the last requirement on line 692. Is your criticism about this requirement specifically or all the edits as a whole?",
+              "createdAt": "2024-07-30T14:58:36Z",
+              "updatedAt": "2024-07-30T14:58:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Dmq9e",
+          "commit": {
+            "abbreviatedOid": "aaa8a84"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "I see this change as constructive, I asked Steve for clarification on his comments too.",
+          "createdAt": "2024-07-30T14:59:15Z",
+          "updatedAt": "2024-07-30T14:59:15Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Dnt_q",
+          "commit": {
+            "abbreviatedOid": "aaa8a84"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T16:59:54Z",
+          "updatedAt": "2024-07-30T16:59:54Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\nIn some deployments, a special role, such as an Auditor, might require access to Signed Statements.\r\n```",
+              "createdAt": "2024-07-30T16:59:54Z",
+              "updatedAt": "2024-07-30T16:59:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DnuU_",
+          "commit": {
+            "abbreviatedOid": "aaa8a84"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T17:00:36Z",
+          "updatedAt": "2024-07-30T17:00:37Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "The statement about adjacent services is `ambigous` and I suggest we remove it!",
+              "createdAt": "2024-07-30T17:00:36Z",
+              "updatedAt": "2024-07-30T17:00:37Z"
+            }
+          ]
         }
       ]
     },
@@ -37218,7 +37793,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/288",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -37378,7 +37953,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/290",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Zero trust is a meaningless marketing term",
@@ -37485,7 +38060,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/292",
       "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -37610,7 +38185,7 @@
             "abbreviatedOid": "db37a19"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-21T21:55:55Z",
@@ -37630,7 +38205,7 @@
             "abbreviatedOid": "db37a19"
           },
           "author": "hannestschofenig",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-21T21:57:46Z",
@@ -37666,48 +38241,191 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/294",
       "state": "OPEN",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "You have to explain what this means and include reference. Since you are likely not going to do this, I suggest to delete this sentence.",
       "createdAt": "2024-07-22T23:13:41Z",
-      "updatedAt": "2024-07-22T23:13:42Z",
+      "updatedAt": "2024-07-31T16:11:17Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "173dee5b2a24f2b219dcd97b2d6b65eb1ce24a2e",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "hannestschofenig-patch-23",
-      "headRefOid": "bc9bd71b17dc93c2e06892b857ac85277382ec89",
+      "headRefOid": "321be3a680a46bcc23c0dc3f7deb239ae9a09e01",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think we should take @henkbirkholz 's change, and that the current text is problematic.",
+          "createdAt": "2024-07-30T14:20:36Z",
+          "updatedAt": "2024-07-30T14:20:36Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6DmJ19",
+          "commit": {
+            "abbreviatedOid": "bc9bd71"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Signed Statements, with their content, are not recorded on the log. Hashes and proof are included. A Transparency Service may store the Transparent Statement content in ancillary services, and they may be deleted/redacted or handled as needed. \r\n\r\nThe latest text is better, but still needs a bit more tweaking",
+          "createdAt": "2024-07-30T14:12:26Z",
+          "updatedAt": "2024-07-30T14:25:07Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmKA1",
+          "commit": {
+            "abbreviatedOid": "bc9bd71"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-30T14:12:42Z",
+          "updatedAt": "2024-07-30T14:12:42Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmLQG",
+          "commit": {
+            "abbreviatedOid": "bc9bd71"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-30T14:14:35Z",
+          "updatedAt": "2024-07-30T14:14:35Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nOnce a Signed Statement is registered on an Append-only Log maintained by a Transparency Service, the fact that a Signed Statement was registered cannot be removed from the Append-only Log.\r\n```",
+              "createdAt": "2024-07-30T14:14:35Z",
+              "updatedAt": "2024-07-30T14:22:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmUQZ",
+          "commit": {
+            "abbreviatedOid": "321be3a"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-30T14:25:31Z",
+          "updatedAt": "2024-07-30T14:25:31Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmoWq",
+          "commit": {
+            "abbreviatedOid": "321be3a"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-30T14:55:22Z",
+          "updatedAt": "2024-07-30T14:55:22Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DwiXn",
+          "commit": {
+            "abbreviatedOid": "321be3a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-31T15:42:59Z",
+          "updatedAt": "2024-07-31T15:42:59Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nOnce a cryptographic digest of the Signed Statement is registered on the Append-only Log, the registration cannot be removed from the Append-only Log.\r\n```",
+              "createdAt": "2024-07-31T15:42:59Z",
+              "updatedAt": "2024-07-31T15:42:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Dwj0u",
+          "commit": {
+            "abbreviatedOid": "321be3a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-31T15:45:38Z",
+          "updatedAt": "2024-07-31T15:45:38Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "The narrowed text in this section is better than what's currently in the draft. However, this section is problematic as it makes it appear the actual content of the signed statement is included in the log, which could detract users from registering important content. We need better text for this section as the original draft suggested the content of the Signed Statement was recorded, making this more problematic and concerning for PII. ",
+              "createdAt": "2024-07-31T15:45:38Z",
+              "updatedAt": "2024-07-31T15:45:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Dwxlj",
+          "commit": {
+            "abbreviatedOid": "321be3a"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-07-31T16:11:17Z",
+          "updatedAt": "2024-07-31T16:11:17Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "> The narrowed text in this section is better than what's currently in the draft. However, this section is problematic as it makes it appear the actual content of the signed statement is included in the log, which could detract users from registering important content.\r\n\r\nWhere in the architecture document does it mandate (MUST) that the payload of the Signed Statement is a hash and locator, not the content itself? I understand your perspective on this, and agree it is a better use of the TS for efficiency, but I thought the architecture _allows_ for either, and I think there are use cases where that is acceptable or preferred (instead of external looks up to external systems, even if in a properly secured network; our own uses cases document has examples with air-gapped networks).",
+              "createdAt": "2024-07-31T16:11:17Z",
+              "updatedAt": "2024-07-31T16:11:18Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 295,
       "id": "PR_kwDOIvmHss52JeoH",
       "title": "Transparency Services are Public",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/295",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "hannestschofenig",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "I would not assume certain deployment situations. It is likely that there are many Transparency Services that are not necessarily publically accessible to everyone and the entire architecture would still be totally valid",
       "createdAt": "2024-07-22T23:16:10Z",
-      "updatedAt": "2024-07-23T04:01:35Z",
+      "updatedAt": "2024-07-30T14:10:16Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "173dee5b2a24f2b219dcd97b2d6b65eb1ce24a2e",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "hannestschofenig-patch-24",
       "headRefOid": "6cf0698bf9299b58528033c9abac4ca71aa3b628",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-07-30T14:10:16Z",
+      "mergedAt": "2024-07-30T14:10:16Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "4abc68737d9dc84fbcc7daadb8122acbd71024f5"
+      },
       "comments": [
         {
           "author": "rjb4standards",
@@ -37743,6 +38461,45 @@
           "createdAt": "2024-07-23T04:01:35Z",
           "updatedAt": "2024-07-23T04:01:35Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmHxc",
+          "commit": {
+            "abbreviatedOid": "6cf0698"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-30T14:09:28Z",
+          "updatedAt": "2024-07-30T14:09:28Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmH6k",
+          "commit": {
+            "abbreviatedOid": "6cf0698"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-30T14:09:41Z",
+          "updatedAt": "2024-07-30T14:09:41Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmICZ",
+          "commit": {
+            "abbreviatedOid": "6cf0698"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks for the updates\r\nLGTM",
+          "createdAt": "2024-07-30T14:09:53Z",
+          "updatedAt": "2024-07-30T14:09:53Z",
+          "comments": []
         }
       ]
     },
@@ -37751,24 +38508,26 @@
       "id": "PR_kwDOIvmHss52JzrK",
       "title": "Proposed resultion to Issue #293, consistent use of 'registered'",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/296",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "JAG-UK",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-07-23T00:40:11Z",
-      "updatedAt": "2024-07-23T02:33:58Z",
+      "updatedAt": "2024-07-30T14:09:03Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "173dee5b2a24f2b219dcd97b2d6b65eb1ce24a2e",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "jag-uk/issue-293",
       "headRefOid": "f338b56bbde8df6d5ee111d67f0efd368d2a1589",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-07-30T14:09:03Z",
+      "mergedAt": "2024-07-30T14:09:03Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "b0b16ae310e02823ea5f5915c25cf898c752cc22"
+      },
       "comments": [],
       "reviews": [
         {
@@ -37795,6 +38554,32 @@
           "body": "LGTM",
           "createdAt": "2024-07-23T02:33:58Z",
           "updatedAt": "2024-07-23T02:33:58Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmG2G",
+          "commit": {
+            "abbreviatedOid": "f338b56"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-30T14:08:21Z",
+          "updatedAt": "2024-07-30T14:08:21Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6DmHbw",
+          "commit": {
+            "abbreviatedOid": "f338b56"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-30T14:08:58Z",
+          "updatedAt": "2024-07-30T14:08:58Z",
           "comments": []
         }
       ]
