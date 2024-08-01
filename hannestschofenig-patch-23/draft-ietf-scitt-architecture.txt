@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 31 January 2025                                      C. Fournet
+Expires: 2 February 2025                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                            30 July 2024
+                                                           1 August 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 January 2025.
+   This Internet-Draft will expire on 2 February 2025.
 
 Copyright Notice
 
@@ -955,9 +955,9 @@ Table of Contents
    who can access the Append-only Log. While this can be used to limit
    who can read the Log, it may also limit the usefulness of the system.
 
-   Once a Signed Statement is registered on an Append-only Log
-   maintained by a Transparency Service, the fact that a Signed
-   Statement was registered cannot be removed from the Append-only Log.
+   Once a cryptographic digest of the Signed Statement is registered on
+   the Append-only Log, the registration cannot be removed from the
+   Append-only Log.
 
 6.  Security Considerations
 
