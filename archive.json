@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-01T00:44:25.388881+00:00",
+  "timestamp": "2024-08-04T00:43:57.611502+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -4962,7 +4962,7 @@
       "id": "I_kwDOIvmHss6OYyo8",
       "title": "Please consider defining a \"Gatekeeper\" Role with a Transparency Service operation",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/252",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "rjb4standards",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -4971,8 +4971,8 @@
       ],
       "body": "A Gatekeeper role is needed to ensure that only verified materials, based on registration policy criteria, are placed into a Transparency Service Registry and Log.",
       "createdAt": "2024-07-03T15:01:06Z",
-      "updatedAt": "2024-07-09T15:05:58Z",
-      "closedAt": null,
+      "updatedAt": "2024-08-01T16:50:17Z",
+      "closedAt": "2024-08-01T16:50:17Z",
       "comments": [
         {
           "author": "rjb4standards",
@@ -5029,6 +5029,13 @@
           "body": "- **Accepted Registrations**: The accepted are captured as they are registered. I believe we've covered that from an Architecture, and a product can implement that.\r\n- **Rejected Registrations**: These are not currently covered in the architecture and could be covered by a product, but I do see the value in specifying rejections should be captured. I think that's the most actionable thing from this discussion that I'd personally encourage and support a PR for. That said, I don't think this issue as titled and initially discussed fit that, which is why I'm suggesting creating an Issue/PR specific to rejected registrations. I also encourage others to comment.\r\n",
           "createdAt": "2024-07-09T15:05:57Z",
           "updatedAt": "2024-07-09T15:05:57Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing per the discussion above. ",
+          "createdAt": "2024-08-01T16:50:16Z",
+          "updatedAt": "2024-08-01T16:50:16Z"
         }
       ]
     },
@@ -5065,10 +5072,12 @@
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "ready-for-pr"
+      ],
       "body": "> Signed Certificate Timestamps are checked by Relying Parties\r\n\r\nI would argue that in CT Auditors are checking more than Signed Certificate Timestamps",
       "createdAt": "2024-07-20T17:29:27Z",
-      "updatedAt": "2024-07-20T17:29:27Z",
+      "updatedAt": "2024-08-01T17:34:45Z",
       "closedAt": null,
       "comments": []
     },
@@ -5105,10 +5114,12 @@
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "ready-for-pr"
+      ],
       "body": "Figure 1 needs to be explained and referenced in the text.\r\nThe arrows in the figure need to be explained\r\nThe figure shows two different boxes and the semantic needs to be explained",
       "createdAt": "2024-07-20T17:46:37Z",
-      "updatedAt": "2024-07-20T17:46:37Z",
+      "updatedAt": "2024-08-01T17:35:01Z",
       "closedAt": null,
       "comments": []
     },
@@ -5121,10 +5132,12 @@
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "ready-for-pr"
+      ],
       "body": ">  An x5chain with a leaf certificate that corresponds to the\r\n   x5t value MAY be included in the unprotected header in support of\r\n   certain supply chain scenarios.\r\n",
       "createdAt": "2024-07-20T17:47:11Z",
-      "updatedAt": "2024-07-20T17:47:11Z",
+      "updatedAt": "2024-08-01T17:35:22Z",
       "closedAt": null,
       "comments": []
     },
@@ -5168,10 +5181,12 @@
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "ready-for-pr"
+      ],
       "body": ">    When x5t is present, iss MUST be a string with a value between 1 and\r\n   8192 characters in length that fits the regular expression of a\r\n   distinguished name.\r\n\r\n\r\nWhat is the \"regular expression of a  distinguished name\"?\r\n\r\n",
       "createdAt": "2024-07-20T18:01:12Z",
-      "updatedAt": "2024-07-20T18:01:12Z",
+      "updatedAt": "2024-08-01T17:35:51Z",
       "closedAt": null,
       "comments": []
     },
@@ -5184,10 +5199,12 @@
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "ready-for-pr"
+      ],
       "body": ">  Issuers MAY use different signing keys (identified by kid in the\r\n   resolved key manifest) for different Artifacts, or sign all Signed\r\n   Statements under the same key.\r\n\r\n\r\nWhat does \"resolved key manifest\" mean?",
       "createdAt": "2024-07-20T18:03:29Z",
-      "updatedAt": "2024-07-20T18:03:30Z",
+      "updatedAt": "2024-08-01T17:36:06Z",
       "closedAt": null,
       "comments": []
     },
@@ -5224,10 +5241,12 @@
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "ready-for-pr"
+      ],
       "body": ">    Everything that is optional in the following CDDL definition can\r\n   potentially be discovered out of band and Registration Policies are\r\n   not assured on the presence of these optional fields.\r\n\r\n\r\nI do not understand what you want to say with the second part of the sentence.\r\n\r\nEven the first part of the sentence do not convey any real meaning.\r\n\r\n\r\n",
       "createdAt": "2024-07-20T18:09:22Z",
-      "updatedAt": "2024-07-20T18:09:22Z",
+      "updatedAt": "2024-08-01T17:36:46Z",
       "closedAt": null,
       "comments": []
     },
@@ -5240,10 +5259,12 @@
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "ready-for-pr"
+      ],
       "body": "The three steps from Section 4.3 on Registration are essentially the same. To verify the signature you have to retrieve the issuer credentials and you have to do item 4.\r\n\r\n\r\n   2.  *Issuer Verification:* The Transparency Service MUST\r\n       syntactically validate the Issuer's identity Claims, which may be\r\n       different than the Client identity.\r\n\r\n   3.  *Signature verification:* The Transparency Service MUST verify\r\n       the signature of the Signed Statement, as described in [RFC9360],\r\n       using the signature algorithm and verification key of the Issuer.\r\n\r\n   4.  *Signed Statement validation:* The Transparency Service MUST\r\n       check that the Signed Statement includes the required protected\r\n       headers listed above.  The Transparency Service MAY verify the\r\n       Statement payload format, content and other optional properties.\r\n\r\n\r\n",
       "createdAt": "2024-07-20T18:12:47Z",
-      "updatedAt": "2024-07-20T18:12:47Z",
+      "updatedAt": "2024-08-01T17:36:57Z",
       "closedAt": null,
       "comments": []
     },
@@ -5256,10 +5277,12 @@
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "ready-for-pr"
+      ],
       "body": "> Referencing the COSE Verifiable Data Structure\r\n   Registry, RFC9162_SHA256 is value 1, which supports -1 (inclusion\r\n   proofs) and -2 (consistency proofs).\r\n\r\n\r\nI believe this registry is defined in another document. The sentence needs to be changed to make the meaning clear.",
       "createdAt": "2024-07-20T18:21:55Z",
-      "updatedAt": "2024-07-20T18:21:55Z",
+      "updatedAt": "2024-08-01T17:37:11Z",
       "closedAt": null,
       "comments": []
     },
@@ -5272,10 +5295,12 @@
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "ready-for-pr"
+      ],
       "body": ">   Each of these functions MUST be carefully protected against both\r\n   external attacks and internal misbehavior by some or all of the\r\n   operators of the Transparency Service.\r\n\r\nWhat does the term \"each of these functions\" refer to?",
       "createdAt": "2024-07-20T18:29:30Z",
-      "updatedAt": "2024-07-20T18:29:31Z",
+      "updatedAt": "2024-08-01T17:37:24Z",
       "closedAt": null,
       "comments": []
     },
@@ -5288,10 +5313,13 @@
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "help wanted",
+        "ready-for-pr"
+      ],
       "body": "The security consideration section gives me the impression that different authors worked on the content and put the text in there without re-reading the product. As a consequence, there is a lot of repetition.",
       "createdAt": "2024-07-20T18:34:16Z",
-      "updatedAt": "2024-07-20T18:34:16Z",
+      "updatedAt": "2024-08-01T17:37:53Z",
       "closedAt": null,
       "comments": []
     },
@@ -5304,10 +5332,12 @@
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "ready-for-pr"
+      ],
       "body": "> For example, Issuers must remove\r\n   Personally Identifiable Information (PII) as clear text in the\r\n   Statement.  Alternatively, Issuers may include opaque cryptographic\r\n   Statements, such as hashes.\r\n\r\n\r\nThe identity of the issuer is included in the signed statement. As such, the example is not great. ",
       "createdAt": "2024-07-20T18:38:59Z",
-      "updatedAt": "2024-07-20T18:38:59Z",
+      "updatedAt": "2024-08-01T17:38:25Z",
       "closedAt": null,
       "comments": []
     },
@@ -5320,10 +5350,12 @@
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "ready-for-pr"
+      ],
       "body": "> All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network traffic analysis.\r\n\r\nThis sentence in the security consideration section gives the reader the impression that communication security is assumed to be used. This is, however, not even discussed in the body of the document.",
       "createdAt": "2024-07-20T19:35:46Z",
-      "updatedAt": "2024-07-20T19:35:46Z",
+      "updatedAt": "2024-08-01T17:38:32Z",
       "closedAt": null,
       "comments": []
     },
@@ -36259,7 +36291,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:17:39Z",
-      "updatedAt": "2024-07-30T14:46:17Z",
+      "updatedAt": "2024-08-02T17:04:44Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -36381,9 +36413,9 @@
           "comments": [
             {
               "originalPosition": 9,
-              "body": "@robinbryce Using only information from the COSE headers is fine. Like you, I would call this \"syntactic\"",
+              "body": "@robinbryce Using only information from the COSE headers is fine. Like you, I would not call this \"syntactic\"",
               "createdAt": "2024-07-21T19:57:50Z",
-              "updatedAt": "2024-07-21T19:57:50Z"
+              "updatedAt": "2024-08-01T06:44:59Z"
             }
           ]
         },
@@ -36672,6 +36704,26 @@
           "createdAt": "2024-07-30T14:46:17Z",
           "updatedAt": "2024-07-30T14:46:17Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6EFhor",
+          "commit": {
+            "abbreviatedOid": "cad6028"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "requesting clarification on if we have a \"minum bar\" identity claim validation over and above what is intended on the ts specified registration policies",
+          "createdAt": "2024-08-02T17:03:50Z",
+          "updatedAt": "2024-08-02T17:04:44Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\n1. **Issuer Verification:** The Transparency Service MUST syntactically verify the Issuer's identity Claims, which may be different than the Client identity. Only information local to the signed statement need be considered.\r\n```\r\n\r\n\"validate the Issuer's identity Claims\" remains ambiguous to me. I prefer that registration policies are the vehicle for ts's to express different, use case based, constraints on what is accepted on a ledger. If we must have a 'minimum' bar, verification of claims based exclusively on the local contents of the signed statement is what I support.",
+              "createdAt": "2024-08-02T17:03:50Z",
+              "updatedAt": "2024-08-02T17:04:44Z"
+            }
+          ]
         }
       ]
     },
@@ -37313,13 +37365,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:32:50Z",
-      "updatedAt": "2024-07-30T17:00:37Z",
+      "updatedAt": "2024-08-01T16:40:10Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "hannestschofenig-patch-19",
-      "headRefOid": "aaa8a84bf2a95485d8cc8f26641e9a0e24525f8e",
+      "headRefOid": "fba7ce6747245c068cca180212cd17fed1f30889",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -37783,6 +37835,106 @@
               "updatedAt": "2024-07-30T17:00:37Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6D1Qch",
+          "commit": {
+            "abbreviatedOid": "fba7ce6"
+          },
+          "author": "hannestschofenig",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-01T06:42:16Z",
+          "updatedAt": "2024-08-01T06:42:16Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "```suggestion\r\nTransparency Services will typically enforce access control to the Append-only Log.\r\n```",
+              "createdAt": "2024-08-01T06:42:16Z",
+              "updatedAt": "2024-08-01T06:42:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6D1QrJ",
+          "commit": {
+            "abbreviatedOid": "fba7ce6"
+          },
+          "author": "hannestschofenig",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-01T06:42:51Z",
+          "updatedAt": "2024-08-01T06:42:51Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "Agree with what AJ said regarding access control. Still updated the text to make it less controversial.",
+              "createdAt": "2024-08-01T06:42:51Z",
+              "updatedAt": "2024-08-01T06:42:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6D7Not",
+          "commit": {
+            "abbreviatedOid": "fba7ce6"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-01T16:39:20Z",
+          "updatedAt": "2024-08-01T16:39:20Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "If others +1, I'll commit the suggestion, or @hannestschofenig since this is your PR, feel free to commit yourself. ",
+              "createdAt": "2024-08-01T16:39:20Z",
+              "updatedAt": "2024-08-01T16:39:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6D7Nr2",
+          "commit": {
+            "abbreviatedOid": "fba7ce6"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-01T16:39:27Z",
+          "updatedAt": "2024-08-01T16:39:27Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "@aj-stein-nist, I agree access control does not mean it can't also support anonymity. However, as written with \"MUST\", it does imply this, which is what I'm basic my objection to this line, as written. However, you are also correct that I had concerns with the generality of the additions as we've worked hard to reduce the ledger to recording cryptographic hashes of the content (signed statements, statements/aka payload/aka content) directly on the ledger. ",
+              "createdAt": "2024-08-01T16:39:27Z",
+              "updatedAt": "2024-08-01T16:39:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6D7OBy",
+          "commit": {
+            "abbreviatedOid": "fba7ce6"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-01T16:40:10Z",
+          "updatedAt": "2024-08-01T16:40:10Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "I would LGTM with this change, and the removal of the text below",
+              "createdAt": "2024-08-01T16:40:10Z",
+              "updatedAt": "2024-08-01T16:40:10Z"
+            }
+          ]
         }
       ]
     },
@@ -38239,24 +38391,26 @@
       "id": "PR_kwDOIvmHss52JeFW",
       "title": "Right to be Forgotten",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/294",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "You have to explain what this means and include reference. Since you are likely not going to do this, I suggest to delete this sentence.",
       "createdAt": "2024-07-22T23:13:41Z",
-      "updatedAt": "2024-07-31T16:11:17Z",
+      "updatedAt": "2024-08-01T16:41:43Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "173dee5b2a24f2b219dcd97b2d6b65eb1ce24a2e",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "hannestschofenig-patch-23",
-      "headRefOid": "321be3a680a46bcc23c0dc3f7deb239ae9a09e01",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "cb98d98aa6392a0bf38c206309047baf63af7d96",
+      "closedAt": "2024-08-01T16:41:43Z",
+      "mergedAt": "2024-08-01T16:41:43Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "c4b24da338673d3d41a83a93c77f49c150735120"
+      },
       "comments": [
         {
           "author": "OR13",
@@ -38398,6 +38552,19 @@
               "updatedAt": "2024-07-31T16:11:18Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6D7OiZ",
+          "commit": {
+            "abbreviatedOid": "cb98d98"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-08-01T16:41:15Z",
+          "updatedAt": "2024-08-01T16:41:15Z",
+          "comments": []
         }
       ]
     },
