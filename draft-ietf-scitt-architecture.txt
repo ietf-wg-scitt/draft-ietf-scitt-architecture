@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 2 February 2025                                      C. Fournet
+Expires: 7 February 2025                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                           1 August 2024
+                                                           6 August 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 February 2025.
+   This Internet-Draft will expire on 7 February 2025.
 
 Copyright Notice
 
@@ -521,8 +521,7 @@ Table of Contents
    header of the COSE_Sign1 Envelope, to one of the root certificates
    most recently registered as a trust anchor of the Transparency
    Service.  An x5chain with a leaf certificate that corresponds to the
-   x5t value MAY be included in the unprotected header in support of
-   certain supply chain scenarios.
+   x5t value MAY be included in the unprotected header.
 
    The Transparency Service MUST apply the Registration Policy that was
    most recently added to the Append-only Log at the time of
@@ -1368,9 +1367,9 @@ Table of Contents
    [I-D.draft-ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
               Wallace, "The Entity Attestation Token (EAT)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-eat-29, 8 July
+              Progress, Internet-Draft, draft-ietf-rats-eat-30, 2 August
               2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              rats-eat-29>.
+              rats-eat-30>.
 
    [in-toto]  "in-toto", n.d., <https://in-toto.io/>.
 
@@ -1386,8 +1385,8 @@ Table of Contents
               <https://doi.org/10.6028/nist.sp.800-57pt2r1>.
 
    [MERKLE]   Merkle, R., "A Digital Signature Based on a Conventional
-              Encryption Function", Springer Berlin Heidelberg, Advances
-              in Cryptology — CRYPTO ’87 pp. 369-378,
+              Encryption Function", Springer Berlin Heidelberg, Lecture
+              Notes in Computer Science pp. 369-378,
               DOI 10.1007/3-540-48184-2_32, ISBN ["9783540187967",
               "9783540481843"], 1988,
               <https://doi.org/10.1007/3-540-48184-2_32>.
