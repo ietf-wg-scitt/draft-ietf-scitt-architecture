@@ -501,7 +501,8 @@ Additionally, `x5chain` that corresponds to either `x5t` or `kid` identifying th
 - When using x.509 certificates, support for `x5t` is REQUIRED to implement.
 - Support for `kid` in the protected header and `x5chain` in the unprotected header is OPTIONAL to implement.
 
-When `x5t` is present, `iss` MUST be a string with a value between 1 and 8192 characters in length that fits the regular expression of a distinguished name.
+When `x5t` is present, `iss` MUST be a string that meets URI requirements defined in {{RFC8392}}.
+The `iss` value's length MUST be between 1 and 8192 characters in length.
 
 The `kid` header parameter MUST be present when `x5t` is not present.
 Key discovery protocols are out-of-scope of this document.
