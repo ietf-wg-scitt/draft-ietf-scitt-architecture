@@ -661,9 +661,9 @@ Table of Contents
    *  Support for kid in the protected header and x5chain in the
       unprotected header is OPTIONAL to implement.
 
-   When x5t is present, iss MUST be a string that be a URI as defined in
-   [RFC8392].  Additionally, the iss value's length MUST be between 1
-   and 8192 characters in length.
+   When x5t is present, iss MUST be a string that meets URI requirements
+   defined in [RFC8392].  The iss value's length MUST be between 1 and
+   8192 characters in length.
 
    The kid header parameter MUST be present when x5t is not present.
    Key discovery protocols are out-of-scope of this document.
