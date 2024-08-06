@@ -623,7 +623,7 @@ The type of label 394 `receipts` in the unprotected header is a CBOR array that 
 The Receipt contains inclusion proofs for verifiable data structures.
 The unprotected header contains verifiable data structure proofs.
 See the protected header for details regarding the specific verifiable data structure used.
-Referencing the COSE Verifiable Data Structure Registry, RFC9162_SHA256 is value `1`, which supports `-1` (inclusion proofs) and `-2` (consistency proofs).
+Per the COSE Verifiable Data Structure Registry documented in {{-COMETRE}}, the COSE key type RFC9162_SHA256 is value `1`. Labels identify inclusion proofs (`-1`) and consistency proofs (`-2`).
 
 ~~~ cbor-diag
 18(                                 / COSE Sign 1                   /
