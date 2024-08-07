@@ -316,7 +316,7 @@ Considering CT in terms of SCITT:
 - CAs (Issuers) sign the ASN.1 DER encoded tbsCertificate structure to produce an X.509 certificate (Signed Statements)
 - CAs submit the certificates to one or more CT logs (Transparency Services)
 - CT logs produce Signed Certificate Timestamps (Transparent Statements)
-- Signed Certificate Timestamps are checked by Relying Parties
+- Signed Certificate Timestamps, Signed Tree Heads, and their respective consistency proofs are checked by Relying Parties
 - The Append-only Log can be checked by Auditors
 
 # Architecture Overview
