@@ -326,6 +326,12 @@ The SCITT architecture consists of a very loose federation of Transparency Servi
 In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
 
+This section describes at a high level, the three main roles and associated processes in SCITT:
+
+* Issuers and Signed Statements
+* Transparency Service and the registration process
+* Relying Parties of the Transparent Statements and the Receipt validation process
+
 ~~~aasvg
  .----------.
 |  Artifact  |
@@ -371,12 +377,6 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
    '------------------'      '----------------'
 ~~~
 {: #fig-concept-relationship title="Relationship of Concepts in SCITT"}
-
-This section describes at a high level, the three main roles and associated processes in SCITT:
-
-* Issuers and Signed Statements
-* Transparency Service and the registration process
-* Relying Parties of the Transparent Statements and the Receipt validation process
 
 The subsequent sections describe the main concepts, namely Transparency Service, Signed Statements, Registration, and Transparent Statements in more detail.
 
