@@ -485,7 +485,7 @@ Issuers and Relying Parties must be able to recognize the Artifact to which the 
 The `iss` and `sub` Claims, within the CWT_Claims protected header, are used to identify the Artifact the Statement pertains to.
 (See Subject under {{terminology}} Terminology.)
 
-Issuers MAY use different signing keys (identified by `kid` in the resolved key manifest) for different Artifacts, or sign all Signed Statements under the same key.
+Issuers MAY use different signing keys (identified by `kid` in the protected header) for different Artifacts, or sign all Signed Statements under the same key.
 
 An Issuer can make multiple Statements about the same Artifact.
 For example, an Issuer can make amended Statements about the same Artifact as their view changes over time.
