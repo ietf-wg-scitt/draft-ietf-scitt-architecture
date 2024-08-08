@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-06T00:40:22.095960+00:00",
+  "timestamp": "2024-08-08T00:40:48.979021+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5071,15 +5071,25 @@
       "state": "OPEN",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "aj-stein-nist"
+      ],
       "labels": [
         "ready-for-pr"
       ],
       "body": "> Signed Certificate Timestamps are checked by Relying Parties\r\n\r\nI would argue that in CT Auditors are checking more than Signed Certificate Timestamps",
       "createdAt": "2024-07-20T17:29:27Z",
-      "updatedAt": "2024-08-01T17:34:45Z",
+      "updatedAt": "2024-08-07T04:43:08Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@hannestschofenig there is a lot of detail there and I am not sure how far you/others want to go, but I decided to keep it simple and I propose adding slightly more detail in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/301. I am sure you and others will let me know if that is too little (I doubt/hope it is not too much.)",
+          "createdAt": "2024-08-07T04:43:07Z",
+          "updatedAt": "2024-08-07T04:43:07Z"
+        }
+      ]
     },
     {
       "number": 264,
@@ -5113,13 +5123,15 @@
       "state": "OPEN",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "aj-stein-nist"
+      ],
       "labels": [
         "ready-for-pr"
       ],
       "body": "Figure 1 needs to be explained and referenced in the text.\r\nThe arrows in the figure need to be explained\r\nThe figure shows two different boxes and the semantic needs to be explained",
       "createdAt": "2024-07-20T17:46:37Z",
-      "updatedAt": "2024-08-01T17:35:01Z",
+      "updatedAt": "2024-08-06T15:06:40Z",
       "closedAt": null,
       "comments": []
     },
@@ -5128,17 +5140,19 @@
       "id": "I_kwDOIvmHss6QTWza",
       "title": "Clarification of \"certain supply chain scenarios\"",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/269",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "aj-stein-nist"
+      ],
       "labels": [
         "ready-for-pr"
       ],
       "body": ">  An x5chain with a leaf certificate that corresponds to the\r\n   x5t value MAY be included in the unprotected header in support of\r\n   certain supply chain scenarios.\r\n",
       "createdAt": "2024-07-20T17:47:11Z",
-      "updatedAt": "2024-08-01T17:35:22Z",
-      "closedAt": null,
+      "updatedAt": "2024-08-06T14:38:36Z",
+      "closedAt": "2024-08-06T14:38:36Z",
       "comments": []
     },
     {
@@ -5180,15 +5194,25 @@
       "state": "OPEN",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "aj-stein-nist"
+      ],
       "labels": [
         "ready-for-pr"
       ],
       "body": ">    When x5t is present, iss MUST be a string with a value between 1 and\r\n   8192 characters in length that fits the regular expression of a\r\n   distinguished name.\r\n\r\n\r\nWhat is the \"regular expression of a  distinguished name\"?\r\n\r\n",
       "createdAt": "2024-07-20T18:01:12Z",
-      "updatedAt": "2024-08-01T17:35:51Z",
+      "updatedAt": "2024-08-06T19:52:39Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I do understand the intent, but it would seem that distinguished name is not clearly going to have a specific reference we can use. That reference sets aside the regex requirement. I understand the need but there is some assorted LDAP RFCs and other attempts, but none seem to be the right kind of reference, even if about distinguished names in X.509.\r\n\r\nI am going to propose we go back to what we know and then put forward my understanding and interpretation of the requirement, that we want a StringOrURI like the underlying CWT requires, perhaps with added length requirements?",
+          "createdAt": "2024-08-06T19:52:38Z",
+          "updatedAt": "2024-08-06T19:52:38Z"
+        }
+      ]
     },
     {
       "number": 275,
@@ -5198,13 +5222,15 @@
       "state": "OPEN",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "aj-stein-nist"
+      ],
       "labels": [
         "ready-for-pr"
       ],
       "body": ">  Issuers MAY use different signing keys (identified by kid in the\r\n   resolved key manifest) for different Artifacts, or sign all Signed\r\n   Statements under the same key.\r\n\r\n\r\nWhat does \"resolved key manifest\" mean?",
       "createdAt": "2024-07-20T18:03:29Z",
-      "updatedAt": "2024-08-01T17:36:06Z",
+      "updatedAt": "2024-08-07T13:21:41Z",
       "closedAt": null,
       "comments": []
     },
@@ -5240,13 +5266,15 @@
       "state": "OPEN",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "aj-stein-nist"
+      ],
       "labels": [
         "ready-for-pr"
       ],
       "body": ">    Everything that is optional in the following CDDL definition can\r\n   potentially be discovered out of band and Registration Policies are\r\n   not assured on the presence of these optional fields.\r\n\r\n\r\nI do not understand what you want to say with the second part of the sentence.\r\n\r\nEven the first part of the sentence do not convey any real meaning.\r\n\r\n\r\n",
       "createdAt": "2024-07-20T18:09:22Z",
-      "updatedAt": "2024-08-01T17:36:46Z",
+      "updatedAt": "2024-08-06T15:06:50Z",
       "closedAt": null,
       "comments": []
     },
@@ -5258,13 +5286,15 @@
       "state": "OPEN",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "aj-stein-nist"
+      ],
       "labels": [
         "ready-for-pr"
       ],
       "body": "The three steps from Section 4.3 on Registration are essentially the same. To verify the signature you have to retrieve the issuer credentials and you have to do item 4.\r\n\r\n\r\n   2.  *Issuer Verification:* The Transparency Service MUST\r\n       syntactically validate the Issuer's identity Claims, which may be\r\n       different than the Client identity.\r\n\r\n   3.  *Signature verification:* The Transparency Service MUST verify\r\n       the signature of the Signed Statement, as described in [RFC9360],\r\n       using the signature algorithm and verification key of the Issuer.\r\n\r\n   4.  *Signed Statement validation:* The Transparency Service MUST\r\n       check that the Signed Statement includes the required protected\r\n       headers listed above.  The Transparency Service MAY verify the\r\n       Statement payload format, content and other optional properties.\r\n\r\n\r\n",
       "createdAt": "2024-07-20T18:12:47Z",
-      "updatedAt": "2024-08-01T17:36:57Z",
+      "updatedAt": "2024-08-07T18:00:54Z",
       "closedAt": null,
       "comments": []
     },
@@ -5273,17 +5303,19 @@
       "id": "I_kwDOIvmHss6QTZur",
       "title": "COSE Verifiable Data Structure Registry",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/282",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "aj-stein-nist"
+      ],
       "labels": [
         "ready-for-pr"
       ],
       "body": "> Referencing the COSE Verifiable Data Structure\r\n   Registry, RFC9162_SHA256 is value 1, which supports -1 (inclusion\r\n   proofs) and -2 (consistency proofs).\r\n\r\n\r\nI believe this registry is defined in another document. The sentence needs to be changed to make the meaning clear.",
       "createdAt": "2024-07-20T18:21:55Z",
-      "updatedAt": "2024-08-01T17:37:11Z",
-      "closedAt": null,
+      "updatedAt": "2024-08-06T14:43:19Z",
+      "closedAt": "2024-08-06T14:43:18Z",
       "comments": []
     },
     {
@@ -5331,13 +5363,15 @@
       "state": "OPEN",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "roywill"
+      ],
       "labels": [
         "ready-for-pr"
       ],
       "body": "> For example, Issuers must remove\r\n   Personally Identifiable Information (PII) as clear text in the\r\n   Statement.  Alternatively, Issuers may include opaque cryptographic\r\n   Statements, such as hashes.\r\n\r\n\r\nThe identity of the issuer is included in the signed statement. As such, the example is not great. ",
       "createdAt": "2024-07-20T18:38:59Z",
-      "updatedAt": "2024-08-01T17:38:25Z",
+      "updatedAt": "2024-08-06T14:54:38Z",
       "closedAt": null,
       "comments": []
     },
@@ -5349,15 +5383,53 @@
       "state": "OPEN",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "roywill"
+      ],
       "labels": [
         "ready-for-pr"
       ],
       "body": "> All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network traffic analysis.\r\n\r\nThis sentence in the security consideration section gives the reader the impression that communication security is assumed to be used. This is, however, not even discussed in the body of the document.",
       "createdAt": "2024-07-20T19:35:46Z",
-      "updatedAt": "2024-08-01T17:38:32Z",
+      "updatedAt": "2024-08-07T04:24:26Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Does the TLS requirement belong in the architecture or SCRAPI? I could see a case for either, but the architecture does not mandate only HTTP and or another application layer protocol that explicates TLS, but I know others have not presented an alternative application/transport layer that would prevent the TLS requirement, so I guess I get feedback with a PR.",
+          "createdAt": "2024-08-06T13:26:44Z",
+          "updatedAt": "2024-08-06T13:26:44Z"
+        },
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> Does the TLS requirement belong in the architecture or SCRAPI?\r\n\r\nThe architecture document needs a Security Considerations section. What is in that section is of course up to the authors.",
+          "createdAt": "2024-08-06T14:05:51Z",
+          "updatedAt": "2024-08-06T14:05:51Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> > Does the TLS requirement belong in the architecture or SCRAPI?\r\n> \r\n> The architecture document needs a Security Considerations section. What is in that section is of course up to the authors.\r\n\r\nOK, it is unclear if a potential change should explicate TLS or just clarify a \"secure authenticated channel\" is required and can be referenced in those security considerations.\r\n\r\nI guess it is time for me to just PR a change and get supportive or constructive feedback than. \ud83d\ude05 ",
+          "createdAt": "2024-08-06T14:14:45Z",
+          "updatedAt": "2024-08-06T14:14:45Z"
+        },
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I think a deeper issue is that it's not clear that an authenticated channel _is_ actually required in most cases. The Signed Statement is inherently integrity protected and carries strong Issuer identity so then we come down to questions that are definitely SCRAPI-specific (and SCRAPI has a Security Considerations already) and/or make recommendations focused more on confidentiality only",
+          "createdAt": "2024-08-06T14:31:12Z",
+          "updatedAt": "2024-08-06T14:31:12Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I think a deeper issue is that it's not clear that an authenticated channel _is_ actually required in most cases.\r\n\r\nI was going to counter with some whataboutism and say \"what about RFC9162!?\" but it seems you are right. In the Security Considerations and elsewhere they never really explicate that, so your point stands.\r\n\r\nI guess I would be interested in how this \"frees up\" TS instances conformant to the architecture that do not strictly use HTTPS and TLS a la SCRAPI, but that is outside the scope of this document and SCRAPI too, so I will leave my comment there for now. \ud83d\ude04 ",
+          "createdAt": "2024-08-07T04:24:25Z",
+          "updatedAt": "2024-08-07T04:24:25Z"
+        }
+      ]
     },
     {
       "number": 293,
@@ -38748,6 +38820,404 @@
           "createdAt": "2024-07-30T14:08:58Z",
           "updatedAt": "2024-07-30T14:08:58Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 297,
+      "id": "PR_kwDOIvmHss53kqI_",
+      "title": "Remove ambiguous explanation of x5t usage",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/297",
+      "state": "MERGED",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "aj-stein-nist"
+      ],
+      "labels": [],
+      "body": "Remove ambiguous details reported in  (fixes #269).",
+      "createdAt": "2024-08-06T13:30:59Z",
+      "updatedAt": "2024-08-06T14:38:35Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "c4b24da338673d3d41a83a93c77f49c150735120",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "269-x5t-supply-chain-scenarios",
+      "headRefOid": "601c910f4a6a26a3db295e151c710c9bc5a7581d",
+      "closedAt": "2024-08-06T14:38:34Z",
+      "mergedAt": "2024-08-06T14:38:34Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "2d7d7c89e826549fb417ade7033db8b1f294a5da"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6EaXL7",
+          "commit": {
+            "abbreviatedOid": "601c910"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-08-06T14:36:25Z",
+          "updatedAt": "2024-08-06T14:36:25Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6EaXxO",
+          "commit": {
+            "abbreviatedOid": "601c910"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-08-06T14:37:16Z",
+          "updatedAt": "2024-08-06T14:37:16Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6EaYij",
+          "commit": {
+            "abbreviatedOid": "601c910"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-08-06T14:38:27Z",
+          "updatedAt": "2024-08-06T14:38:27Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 298,
+      "id": "PR_kwDOIvmHss53k_pT",
+      "title": "Clarify COSE VDS registry explanation",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/298",
+      "state": "MERGED",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "aj-stein-nist"
+      ],
+      "labels": [],
+      "body": "Address feedback from Hannes in #282.",
+      "createdAt": "2024-08-06T14:13:00Z",
+      "updatedAt": "2024-08-06T14:43:18Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "c4b24da338673d3d41a83a93c77f49c150735120",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "282-cose-vds-registry",
+      "headRefOid": "c37166a06605364d7eb490dbc717bfcdc4987219",
+      "closedAt": "2024-08-06T14:43:18Z",
+      "mergedAt": "2024-08-06T14:43:18Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "87e995196dedf30a8c58508e51b93a9ea9e989fa"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6EaZml",
+          "commit": {
+            "abbreviatedOid": "c37166a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-08-06T14:40:02Z",
+          "updatedAt": "2024-08-06T14:40:02Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6EabAh",
+          "commit": {
+            "abbreviatedOid": "c37166a"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Breaks circular relationship until one is completed.",
+          "createdAt": "2024-08-06T14:41:53Z",
+          "updatedAt": "2024-08-06T14:41:53Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Eab7Z",
+          "commit": {
+            "abbreviatedOid": "c37166a"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-08-06T14:43:10Z",
+          "updatedAt": "2024-08-06T14:43:10Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 299,
+      "id": "PR_kwDOIvmHss53nCrQ",
+      "title": "Adjust DN regex requirement to be URI requirement",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/299",
+      "state": "OPEN",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "aj-stein-nist"
+      ],
+      "labels": [],
+      "body": "Fixes #273 with unclear definition and regex requirements with DN currently in draft.",
+      "createdAt": "2024-08-06T20:00:55Z",
+      "updatedAt": "2024-08-06T21:46:27Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "273-dn-regex",
+      "headRefOid": "c48adfd8101011fc6d02776ba8260b4aa8cd966c",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Calling @CBonnell for some \ud83d\udc40 ",
+          "createdAt": "2024-08-06T20:08:27Z",
+          "updatedAt": "2024-08-06T20:08:27Z"
+        },
+        {
+          "author": "CBonnell",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Perhaps I missed it, but what is the motivation of changing to a URI?\r\n\r\n",
+          "createdAt": "2024-08-06T20:22:50Z",
+          "updatedAt": "2024-08-06T20:22:50Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Perhaps I missed it, but what is the motivation of changing to a URI?\r\n\r\nWe are specifically customizing the usage of `iss` in CWT as defined in [RFC](https://www.rfc-editor.org/rfc/rfc8392). In that document, it is a `stringOrURI` type and it seems like we shifting away from the base usage of URI to something else and with a regex spec I couldn't find in a relevant I-D, RFC, or standards doc that we can normatively cite as a reference.\r\n\r\nIs there something I am missing, and is there a valid reference we could use? ",
+          "createdAt": "2024-08-06T20:54:43Z",
+          "updatedAt": "2024-08-06T20:55:17Z"
+        },
+        {
+          "author": "CBonnell",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I agree the current text is not clear, as it doesn't define or reference any regex. However, stating that the `iss` must be a URI with no further specification is equally unsatisfying.\r\n\r\nHow about we drop any mandate to use a particular format of `iss` if the `x5t` protected header is present? The identity of the issuer will be sourced from the X.509 certificate, so the `iss` value is largely redundant.",
+          "createdAt": "2024-08-06T21:14:29Z",
+          "updatedAt": "2024-08-06T21:14:29Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I agree the current text is not clear, as it doesn't define or reference any regex. However, stating that the `iss` must be a URI with no further specification is equally unsatisfying.\n\nThere is a little more detail in the CWT RFC and points to the JWT RFC which in turn points to the string representation of URIs RFC. Are those definitions equally unclear?\n\n> How about we drop any mandate to use a particular format of `iss` if the `x5t` protected header is present? The identity of the issuer will be sourced from the X.509 certificate, so the `iss` value is largely redundant.\n\nI don't mind that if others have that feedback I'll close this out and start over. That will obsolete the feedback from Hannes that triggered this PR at the same time.\n\nI can bring that on list and reference this discussion.\n",
+          "createdAt": "2024-08-06T21:29:33Z",
+          "updatedAt": "2024-08-06T21:29:49Z"
+        },
+        {
+          "author": "CBonnell",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Ah, yes, I forgot to mention: if we want to retain the use of the string representation of the subject DN of the X.509 certificate for the `iss` value, we can reference RFC 4514.",
+          "createdAt": "2024-08-06T21:29:51Z",
+          "updatedAt": "2024-08-06T21:29:51Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Ah, yes, I forgot to mention: if we want to retain the use of the string representation of the subject DN of the X.509 certificate for the `iss` value, we can reference RFC 4514.\r\n\r\nI can also bring that up as an option on list and adjust accordingly if that is ok. ",
+          "createdAt": "2024-08-06T21:45:58Z",
+          "updatedAt": "2024-08-06T21:45:58Z"
+        },
+        {
+          "author": "CBonnell",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> There is a little more detail in the CWT RFC and points to the JWT RFC which in turn points to the string representation of URIs RFC. Are those definitions equally unclear?\r\n\r\nI think it\u2019s unclear, as there is no guidance on the content of the iss, only that it is URI-shaped.",
+          "createdAt": "2024-08-06T21:46:27Z",
+          "updatedAt": "2024-08-06T21:46:27Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 300,
+      "id": "PR_kwDOIvmHss53pTBs",
+      "title": "Improve description for Figure 1",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/300",
+      "state": "OPEN",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "aj-stein-nist"
+      ],
+      "labels": [],
+      "body": "Closes #268.",
+      "createdAt": "2024-08-07T03:45:51Z",
+      "updatedAt": "2024-08-07T04:13:42Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "268-figure-1-description",
+      "headRefOid": "5a1d98835e3a61e1cc098eac52887e0d9d14c21d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 301,
+      "id": "PR_kwDOIvmHss53pwEv",
+      "title": "Further explain SCITT analogy to RFC9162 CT entities and processes",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/301",
+      "state": "OPEN",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "aj-stein-nist"
+      ],
+      "labels": [],
+      "body": "Closes #263.",
+      "createdAt": "2024-08-07T04:42:07Z",
+      "updatedAt": "2024-08-07T04:42:08Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "263-auditing-not-just-sct",
+      "headRefOid": "a2d3934d4d3ea5cc8e6633deec9556495b19ffcb",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 302,
+      "id": "PR_kwDOIvmHss53toO6",
+      "title": "Use header instead of resolved key manifest for #275",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/302",
+      "state": "OPEN",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "aj-stein-nist"
+      ],
+      "labels": [],
+      "body": "There is no explanation in draft, GitHub, or mailing lists about resolved key manifest. This change proposes replacement with protected header like other portions of the document. Fixes #275.",
+      "createdAt": "2024-08-07T13:26:05Z",
+      "updatedAt": "2024-08-07T13:26:07Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "275-resolved-key-manifest",
+      "headRefOid": "17804359e3b0e6e56636b1ef6b580cf10b1d7c94",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 303,
+      "id": "PR_kwDOIvmHss53vh0d",
+      "title": "Improve explanation of CDDL and registration policy customization",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/303",
+      "state": "OPEN",
+      "author": "aj-stein-nist",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "aj-stein-nist"
+      ],
+      "labels": [],
+      "body": "These proposed changes, if accepted, fix #277.",
+      "createdAt": "2024-08-07T18:00:17Z",
+      "updatedAt": "2024-08-08T00:05:41Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "277-cddl-explanations",
+      "headRefOid": "a73b5b3944d97b49dd416b24a03364372416aa15",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6Espn7",
+          "commit": {
+            "abbreviatedOid": "b72f240"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-07T22:26:11Z",
+          "updatedAt": "2024-08-07T22:26:11Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nThis definition specifies the minimally required keys and values as mandatory.\r\nMost keys and their respective values for the unprotected header, protected header, and the claims embedded therein are optional for Signed Statements and Receipts.\r\n```",
+              "createdAt": "2024-08-07T22:26:11Z",
+              "updatedAt": "2024-08-07T22:26:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Esp7D",
+          "commit": {
+            "abbreviatedOid": "a6a5862"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-07T22:27:17Z",
+          "updatedAt": "2024-08-07T22:27:18Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nFor customizing requirements in Signed Statements and Receipts, a Registration Policy MAY define keys and/or values that are mandatory for that Transparency Service instance.\r\nSuch a Transparency Service instance MUST reject any Signed Statements or Receipts that are invalid according to its current Registration Policy.\r\n```",
+              "createdAt": "2024-08-07T22:27:18Z",
+              "updatedAt": "2024-08-07T22:27:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6EtEMj",
+          "commit": {
+            "abbreviatedOid": "a73b5b3"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-08T00:05:17Z",
+          "updatedAt": "2024-08-08T00:05:17Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "I struggle with this section as it defines examples, yet there's only one minimal example for x.509.\r\nAnother arbitrary example where label `foo` must be defined, with a value of `bar1` and `bar2` would be a combative example. \r\n\r\nTo build on A.J.'s suggestion of inlining the minimal registration policy requirements, I'd suggest\r\n```suggestion\r\nThis definition specifies the minimal mandatory labels.\r\nImplementation-specific Registration Policies may define additional mandatory labels.\r\nA Transparency Service implementation MUST reject registering Signed Statements that do not meet their current Registration Policy requirements.\r\nEach implementation SHOULD provide details for their registration policies through documentation or discovery APIs.\r\n```\r\n",
+              "createdAt": "2024-08-08T00:05:17Z",
+              "updatedAt": "2024-08-08T00:08:02Z"
+            }
+          ]
         }
       ]
     }
