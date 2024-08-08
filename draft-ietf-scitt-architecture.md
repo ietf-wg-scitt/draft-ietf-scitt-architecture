@@ -515,11 +515,10 @@ A Receipt is a Signed Statement, (cose-sign1), with addition Claims in its prote
 
 {{fig-signed-statement-cddl}} illustrates a normative CDDL definition (see {{-CDDL}}) for of the protected header and unprotected header of Signed Statements and Receipts.
 
-This definition specifies the minimally required keys and values as mandatory.
-Most keys and their respective values for the unprotected header, protected header, and the claims embedded therein are optional for Signed Statements and Receipts.
-This design maximizes interoperability with these default requirements for all use cases, while permitting implementers to customize requirements for a specific use case through Registration Policy.
-For customizing requirements in Signed Statements and Receipts, a Registration Policy MAY define keys and/or values that are mandatory for that Transparency Service instance.
-Such a Transparency Service instance MUST reject any Signed Statements or Receipts that are invalid according to its current Registration Policy.
+This definition specifies the minimal mandatory labels.
+Implementation-specific Registration Policies may define additional mandatory labels.
+A Transparency Service implementation MUST reject registering Signed Statements that do not meet their current Registration Policy requirements.
+Each implementation SHOULD provide details for their registration policies through documentation or discovery APIs.
 
 ~~~ cddl
 {::include signed_statement.cddl}
