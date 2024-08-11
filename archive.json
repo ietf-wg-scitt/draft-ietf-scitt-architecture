@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-08T00:40:48.979021+00:00",
+  "timestamp": "2024-08-11T00:44:43.300345+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -39146,13 +39146,13 @@
       "labels": [],
       "body": "These proposed changes, if accepted, fix #277.",
       "createdAt": "2024-08-07T18:00:17Z",
-      "updatedAt": "2024-08-08T00:05:41Z",
+      "updatedAt": "2024-08-08T03:31:17Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "277-cddl-explanations",
-      "headRefOid": "a73b5b3944d97b49dd416b24a03364372416aa15",
+      "headRefOid": "123c8fca8a1f244bde8603a68d16b8dd4c51d465",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -39216,6 +39216,46 @@
               "body": "I struggle with this section as it defines examples, yet there's only one minimal example for x.509.\r\nAnother arbitrary example where label `foo` must be defined, with a value of `bar1` and `bar2` would be a combative example. \r\n\r\nTo build on A.J.'s suggestion of inlining the minimal registration policy requirements, I'd suggest\r\n```suggestion\r\nThis definition specifies the minimal mandatory labels.\r\nImplementation-specific Registration Policies may define additional mandatory labels.\r\nA Transparency Service implementation MUST reject registering Signed Statements that do not meet their current Registration Policy requirements.\r\nEach implementation SHOULD provide details for their registration policies through documentation or discovery APIs.\r\n```\r\n",
               "createdAt": "2024-08-08T00:05:17Z",
               "updatedAt": "2024-08-08T00:08:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6EuiTj",
+          "commit": {
+            "abbreviatedOid": "a73b5b3"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-08T03:24:12Z",
+          "updatedAt": "2024-08-08T03:24:13Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "This proposal is terser and more to the point, I prefer this over my original edit, I take this suggestion.",
+              "createdAt": "2024-08-08T03:24:12Z",
+              "updatedAt": "2024-08-08T03:24:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Eujdd",
+          "commit": {
+            "abbreviatedOid": "a73b5b3"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-08T03:31:17Z",
+          "updatedAt": "2024-08-08T03:31:17Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "> I struggle with this section as it defines examples, yet there's only one minimal example for x.509. Another arbitrary example where label `foo` must be defined, with a value of `bar1` and `bar2` would be a combative example.\r\n\r\nAlso I was fine with the edit you proposed, but I am not sure how this part of this specification, with or without my edit, would have a contradiction in terms for `foo` versus `bar1` and `bar2`. If we follow the base architecture requirement, none are required.\r\n\r\nI do like your simpler version, but I feel minimizing the use of precision using architecture and CDDL terminology is what makes this property less obvious, not more. Am I missing something?\r\n",
+              "createdAt": "2024-08-08T03:31:17Z",
+              "updatedAt": "2024-08-08T03:31:17Z"
             }
           ]
         }
