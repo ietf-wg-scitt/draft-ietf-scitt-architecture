@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-11T00:44:43.300345+00:00",
+  "timestamp": "2024-08-13T00:41:56.538540+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -38977,7 +38977,7 @@
       "labels": [],
       "body": "Fixes #273 with unclear definition and regex requirements with DN currently in draft.",
       "createdAt": "2024-08-06T20:00:55Z",
-      "updatedAt": "2024-08-06T21:46:27Z",
+      "updatedAt": "2024-08-12T04:01:33Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
@@ -39044,6 +39044,20 @@
           "body": "> There is a little more detail in the CWT RFC and points to the JWT RFC which in turn points to the string representation of URIs RFC. Are those definitions equally unclear?\r\n\r\nI think it\u2019s unclear, as there is no guidance on the content of the iss, only that it is URI-shaped.",
           "createdAt": "2024-08-06T21:46:27Z",
           "updatedAt": "2024-08-06T21:46:27Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> > There is a little more detail in the CWT RFC and points to the JWT RFC which in turn points to the string representation of URIs RFC. Are those definitions equally unclear?\r\n> \r\n> I think it\u2019s unclear, as there is no guidance on the content of the iss, only that it is URI-shaped.\r\n\r\nIt is similarly unclear to me in the architecture requirements what one should or must do with the DN. It is implied, but left to the implementer to decide for desired X.509 use cases. It is not clear what one should do with it to correctly validate the cert use per the claim, regardless of DN or URI is chosen. Can we both agree that is part of the problem?\r\n",
+          "createdAt": "2024-08-12T04:00:38Z",
+          "updatedAt": "2024-08-12T04:00:38Z"
+        },
+        {
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "body": "In any event, I apologize for the delay, I have created the following thread on list to discuss before moving forward with the PR in any significant way. I may stand corrected and others will prefer your approach (which I dubbed Approach #2).\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/M7G7SrcqXb6P9jU-mLg5VdwvT_g/",
+          "createdAt": "2024-08-12T04:01:32Z",
+          "updatedAt": "2024-08-12T04:01:32Z"
         }
       ],
       "reviews": []
