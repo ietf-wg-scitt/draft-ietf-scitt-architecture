@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 31 January 2025                                      C. Fournet
+Expires: 14 February 2025                                     C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                            30 July 2024
+                                                          13 August 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 January 2025.
+   This Internet-Draft will expire on 14 February 2025.
 
 Copyright Notice
 
@@ -758,9 +758,10 @@ Table of Contents
        are implementation-specific and out of scope of the SCITT
        architecture.
 
-   2.  *Issuer Verification:* The Transparency Service MUST validate the
-       Issuer's identity Claims, which may be different than the Client
-       identity.
+   2.  *Issuer Verification:* The Transparency Service MUST perform
+       signature verification, as defined in RFC 9052 4.4
+       (https://datatracker.ietf.org/doc/html/rfc9052#section-4.4), and
+       MAY perform additional checks as part of its Registration Policy.
 
    3.  *Signature verification:* The Transparency Service MUST verify
        the signature of the Signed Statement, as described in [RFC9360],
@@ -1359,9 +1360,9 @@ Table of Contents
    [I-D.draft-ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
               Wallace, "The Entity Attestation Token (EAT)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-eat-29, 8 July
+              Progress, Internet-Draft, draft-ietf-rats-eat-30, 2 August
               2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              rats-eat-29>.
+              rats-eat-30>.
 
    [in-toto]  "in-toto", n.d., <https://in-toto.io/>.
 
@@ -1377,8 +1378,8 @@ Table of Contents
               <https://doi.org/10.6028/nist.sp.800-57pt2r1>.
 
    [MERKLE]   Merkle, R., "A Digital Signature Based on a Conventional
-              Encryption Function", Springer Berlin Heidelberg, Advances
-              in Cryptology — CRYPTO ’87 pp. 369-378,
+              Encryption Function", Springer Berlin Heidelberg, Lecture
+              Notes in Computer Science pp. 369-378,
               DOI 10.1007/3-540-48184-2_32, ISBN ["9783540187967",
               "9783540481843"], 1988,
               <https://doi.org/10.1007/3-540-48184-2_32>.

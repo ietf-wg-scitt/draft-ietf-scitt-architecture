@@ -1032,11 +1032,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SCITT Architecture</td>
-<td class="right">July 2024</td>
+<td class="right">August 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 31 January 2025</td>
+<td class="center">Expires 14 February 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1049,12 +1049,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-07-30" class="published">30 July 2024</time>
+<time datetime="2024-08-13" class="published">13 August 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-01-31">31 January 2025</time></dd>
+<dd class="expires"><time datetime="2025-02-14">14 February 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1123,7 +1123,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 31 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 14 February 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1981,7 +1981,7 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
 Authentication and authorization are implementation-specific and out of scope of the SCITT architecture.<a href="#section-4.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-4.3-2.2">
-            <p id="section-4.3-2.2.1"><strong>Issuer Verification:</strong> The Transparency Service <span class="bcp14">MUST</span> validate the Issuer's identity Claims, which may be different than the Client identity.<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-2.2.1"><strong>Issuer Verification:</strong> The Transparency Service <span class="bcp14">MUST</span> perform signature verification, as defined in <a href="https://datatracker.ietf.org/doc/html/rfc9052#section-4.4">RFC 9052 4.4</a>, and <span class="bcp14">MAY</span> perform additional checks as part of its Registration Policy.<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-4.3-2.3">
             <p id="section-4.3-2.3.1"><strong>Signature verification:</strong> The Transparency Service <span class="bcp14">MUST</span> verify the signature of the Signed Statement, as described in <span>[<a href="#RFC9360" class="cite xref">RFC9360</a>]</span>, using the signature algorithm and verification key of the Issuer.<a href="#section-4.3-2.3.1" class="pilcrow">¶</a></p>
@@ -2450,7 +2450,7 @@ It is up to the Issuer to notify Transparency Services of credential revocation 
 <dd class="break"></dd>
 <dt id="I-D.draft-ietf-rats-eat">[I-D.draft-ietf-rats-eat]</dt>
         <dd>
-<span class="refAuthor">Lundblade, L.</span>, <span class="refAuthor">Mandyam, G.</span>, <span class="refAuthor">O'Donoghue, J.</span>, and <span class="refAuthor">C. Wallace</span>, <span class="refTitle">"The Entity Attestation Token (EAT)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-rats-eat-29</span>, <time datetime="2024-07-08" class="refDate">8 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-rats-eat-29">https://datatracker.ietf.org/doc/html/draft-ietf-rats-eat-29</a>&gt;</span>. </dd>
+<span class="refAuthor">Lundblade, L.</span>, <span class="refAuthor">Mandyam, G.</span>, <span class="refAuthor">O'Donoghue, J.</span>, and <span class="refAuthor">C. Wallace</span>, <span class="refTitle">"The Entity Attestation Token (EAT)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-rats-eat-30</span>, <time datetime="2024-08-02" class="refDate">2 August 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-rats-eat-30">https://datatracker.ietf.org/doc/html/draft-ietf-rats-eat-30</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="in-toto">[in-toto]</dt>
         <dd>
@@ -2466,7 +2466,7 @@ It is up to the Issuer to notify Transparency Services of credential revocation 
 <dd class="break"></dd>
 <dt id="MERKLE">[MERKLE]</dt>
         <dd>
-<span class="refAuthor">Merkle, R.</span>, <span class="refTitle">"A Digital Signature Based on a Conventional Encryption Function"</span>, <span class="refContent">Springer Berlin Heidelberg</span>, <span class="seriesInfo">Advances in Cryptology — CRYPTO ’87 pp. 369-378</span>, <span class="seriesInfo">DOI 10.1007/3-540-48184-2_32</span>, <span class="seriesInfo">ISBN ["9783540187967", "9783540481843"]</span>, <time datetime="1988" class="refDate">1988</time>, <span>&lt;<a href="https://doi.org/10.1007/3-540-48184-2_32">https://doi.org/10.1007/3-540-48184-2_32</a>&gt;</span>. </dd>
+<span class="refAuthor">Merkle, R.</span>, <span class="refTitle">"A Digital Signature Based on a Conventional Encryption Function"</span>, <span class="refContent">Springer Berlin Heidelberg</span>, <span class="seriesInfo">Lecture Notes in Computer Science pp. 369-378</span>, <span class="seriesInfo">DOI 10.1007/3-540-48184-2_32</span>, <span class="seriesInfo">ISBN ["9783540187967", "9783540481843"]</span>, <time datetime="1988" class="refDate">1988</time>, <span>&lt;<a href="https://doi.org/10.1007/3-540-48184-2_32">https://doi.org/10.1007/3-540-48184-2_32</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="NIST.SP.1800-19">[NIST.SP.1800-19]</dt>
         <dd>
