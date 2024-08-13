@@ -759,9 +759,9 @@ Table of Contents
        architecture.
 
    2.  *Issuer Verification:* The Transparency Service MUST perform
-       signature verification, as defined in RFC 9052 4.4
-       (https://datatracker.ietf.org/doc/html/rfc9052#section-4.4), and
-       MAY perform additional checks as part of its Registration Policy.
+       signature verification, as defined in Section 4.4 of [RFC9052],
+       and MAY perform additional checks as part of its Registration
+       Policy.
 
    3.  *Signature verification:* The Transparency Service MUST verify
        the signature of the Signed Statement, as described in [RFC9360],
