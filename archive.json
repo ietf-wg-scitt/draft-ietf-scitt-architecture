@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-13T00:41:56.538540+00:00",
+  "timestamp": "2024-08-15T00:39:24.599634+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -36363,13 +36363,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:17:39Z",
-      "updatedAt": "2024-08-02T17:04:44Z",
+      "updatedAt": "2024-08-13T19:39:07Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "hannestschofenig-patch-15",
-      "headRefOid": "cad6028a1712ef1222cdc4406f959ce53235678f",
+      "headRefOid": "b37dbb11977e8c5842ebfab613690a04b2815873",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -36794,6 +36794,185 @@
               "body": "```suggestion\r\n1. **Issuer Verification:** The Transparency Service MUST syntactically verify the Issuer's identity Claims, which may be different than the Client identity. Only information local to the signed statement need be considered.\r\n```\r\n\r\n\"validate the Issuer's identity Claims\" remains ambiguous to me. I prefer that registration policies are the vehicle for ts's to express different, use case based, constraints on what is accepted on a ledger. If we must have a 'minimum' bar, verification of claims based exclusively on the local contents of the signed statement is what I support.",
               "createdAt": "2024-08-02T17:03:50Z",
               "updatedAt": "2024-08-02T17:04:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FQlHZ",
+          "commit": {
+            "abbreviatedOid": "cad6028"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T14:23:14Z",
+          "updatedAt": "2024-08-13T14:23:14Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\n1. **Issuer Verification:** The Transparency Service MUST perform signature verification, as defined in [RFC 9052 4.4](https://datatracker.ietf.org/doc/html/rfc9052#section-4.4), and MAY perform additional checks as part of its Registration Policy.\r\n```",
+              "createdAt": "2024-08-13T14:23:14Z",
+              "updatedAt": "2024-08-13T14:23:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FQl1T",
+          "commit": {
+            "abbreviatedOid": "a3c1aef"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T14:23:57Z",
+          "updatedAt": "2024-08-13T14:23:57Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "That is much better. THanks",
+              "createdAt": "2024-08-13T14:23:57Z",
+              "updatedAt": "2024-08-13T14:23:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FQq_5",
+          "commit": {
+            "abbreviatedOid": "cad6028"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "ok with changes to 4.3 step 2",
+          "createdAt": "2024-08-13T14:31:11Z",
+          "updatedAt": "2024-08-13T14:31:11Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FQs3H",
+          "commit": {
+            "abbreviatedOid": "0cb8fbd"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-08-13T14:34:01Z",
+          "updatedAt": "2024-08-13T14:34:01Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FQtDL",
+          "commit": {
+            "abbreviatedOid": "0cb8fbd"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T14:34:18Z",
+          "updatedAt": "2024-08-13T14:34:24Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "DNS domain? Domain as in expertise?",
+              "createdAt": "2024-08-13T14:34:18Z",
+              "updatedAt": "2024-08-13T14:34:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FQtYD",
+          "commit": {
+            "abbreviatedOid": "0cb8fbd"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T14:34:49Z",
+          "updatedAt": "2024-08-13T14:34:49Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\n1. **Issuer Verification:** The Transparency Service MUST perform signature verification, as defined in {{Section 4.4 of RFC9052}}, and MAY perform additional checks as part of its Registration Policy.\r\n```",
+              "createdAt": "2024-08-13T14:34:49Z",
+              "updatedAt": "2024-08-13T14:34:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FQvbY",
+          "commit": {
+            "abbreviatedOid": "0cb8fbd"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T14:37:44Z",
+          "updatedAt": "2024-08-13T14:37:44Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "BCG supports the proposed changes at 555",
+              "createdAt": "2024-08-13T14:37:44Z",
+              "updatedAt": "2024-08-13T14:37:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FSJ4S",
+          "commit": {
+            "abbreviatedOid": "b37dbb1"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T17:11:57Z",
+          "updatedAt": "2024-08-13T17:11:57Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "Apologies, some how my comment (earlier got lost)\r\n\r\nStrictly speaking Line 555 is not necessary.\r\n\r\nif at all one wishes to introduce this, I suggest it on the following lines.\r\n\r\n`A Transparency Services MAY choose to validate the Signed Statement payload for certain content types, based on its custom policy. However such validation is out of scope of this Architecture.`",
+              "createdAt": "2024-08-13T17:11:57Z",
+              "updatedAt": "2024-08-13T17:12:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FSKbX",
+          "commit": {
+            "abbreviatedOid": "b37dbb1"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "please check my suggested change",
+          "createdAt": "2024-08-13T17:13:14Z",
+          "updatedAt": "2024-08-13T17:13:14Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FTQdA",
+          "commit": {
+            "abbreviatedOid": "b37dbb1"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T19:39:07Z",
+          "updatedAt": "2024-08-13T19:39:07Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "Proposing removing line 555 as a SCITT Instance MAY do anything that's not explicitly called out as MUST NOT in the draft. \r\n@rjb4standards, this means your comment is still valid, without this sentence, and we can create more brevity.\r\n```suggestion\r\n1. **Signed Statement validation:** The Transparency Service MUST check that the Signed Statement includes the required protected headers.\r\n```",
+              "createdAt": "2024-08-13T19:39:07Z",
+              "updatedAt": "2024-08-13T19:39:07Z"
             }
           ]
         }
@@ -37437,18 +37616,26 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:32:50Z",
-      "updatedAt": "2024-08-01T16:40:10Z",
+      "updatedAt": "2024-08-13T20:22:02Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
-      "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
+      "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "hannestschofenig-patch-19",
-      "headRefOid": "fba7ce6747245c068cca180212cd17fed1f30889",
+      "headRefOid": "cdd13a43598929b76070b7f3aa44770baaee3ade",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@OR13, @henkbirkholz, PTAL at the latest if they resolve your requested changes.  ",
+          "createdAt": "2024-08-13T19:32:26Z",
+          "updatedAt": "2024-08-13T19:32:26Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss6CipMk",
@@ -38007,6 +38194,145 @@
               "updatedAt": "2024-08-01T16:40:10Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FQ79N",
+          "commit": {
+            "abbreviatedOid": "e1ea7b9"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T14:57:12Z",
+          "updatedAt": "2024-08-13T14:57:13Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nIssuers SHOULD ensure Signed Statements submitted to public access services are acceptable for public disclosure.\r\n```",
+              "createdAt": "2024-08-13T14:57:13Z",
+              "updatedAt": "2024-08-13T14:57:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FQ9bk",
+          "commit": {
+            "abbreviatedOid": "e1ea7b9"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T14:59:27Z",
+          "updatedAt": "2024-08-13T14:59:27Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "Option 2, changing should to SHOULD for the original text\r\n```suggestion\r\nIssuers SHOULD treat Signed Statements (rendering them as Transparent Statements) as publicly accessible.\r\n```",
+              "createdAt": "2024-08-13T14:59:27Z",
+              "updatedAt": "2024-08-13T14:59:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FSOQl",
+          "commit": {
+            "abbreviatedOid": "e1ea7b9"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T17:21:38Z",
+          "updatedAt": "2024-08-13T17:21:38Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I liked OPTION 1 from Steve, because only Transparency Service with  public access is allowed public disclosure.\r\n\r\nThere may be a specific deployment where only designated actors may have access, with one the designated actor is an Auditor. There the Privacy considerations may vastly differ from others!",
+              "createdAt": "2024-08-13T17:21:38Z",
+              "updatedAt": "2024-08-13T17:21:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FSOdq",
+          "commit": {
+            "abbreviatedOid": "e1ea7b9"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Suggest we incorporate Option 1 suggestion from Steve!",
+          "createdAt": "2024-08-13T17:22:03Z",
+          "updatedAt": "2024-08-13T17:22:03Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FTOQL",
+          "commit": {
+            "abbreviatedOid": "cdd13a4"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Changes as of https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/286/commits/cdd13a43598929b76070b7f3aa44770baaee3ade improve the previous text.\r\nLGTM",
+          "createdAt": "2024-08-13T19:33:25Z",
+          "updatedAt": "2024-08-13T19:33:25Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FTlOC",
+          "commit": {
+            "abbreviatedOid": "cdd13a4"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T20:20:42Z",
+          "updatedAt": "2024-08-13T20:20:42Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "```suggestion\r\nPublicly accessible Signed Statements MUST NOT carry confidential information.\r\n```",
+              "createdAt": "2024-08-13T20:20:42Z",
+              "updatedAt": "2024-08-13T20:20:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FTlt5",
+          "commit": {
+            "abbreviatedOid": "cdd13a4"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T20:21:58Z",
+          "updatedAt": "2024-08-13T20:21:58Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "This is a strange way to say that Log integrity is tamper protected.",
+              "createdAt": "2024-08-13T20:21:58Z",
+              "updatedAt": "2024-08-13T20:21:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FTlv1",
+          "commit": {
+            "abbreviatedOid": "cdd13a4"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-08-13T20:22:02Z",
+          "updatedAt": "2024-08-13T20:22:02Z",
+          "comments": []
         }
       ]
     },
@@ -38977,7 +39303,7 @@
       "labels": [],
       "body": "Fixes #273 with unclear definition and regex requirements with DN currently in draft.",
       "createdAt": "2024-08-06T20:00:55Z",
-      "updatedAt": "2024-08-12T04:01:33Z",
+      "updatedAt": "2024-08-13T19:42:05Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
@@ -39058,6 +39384,13 @@
           "body": "In any event, I apologize for the delay, I have created the following thread on list to discuss before moving forward with the PR in any significant way. I may stand corrected and others will prefer your approach (which I dubbed Approach #2).\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/M7G7SrcqXb6P9jU-mLg5VdwvT_g/",
           "createdAt": "2024-08-12T04:01:32Z",
           "updatedAt": "2024-08-12T04:01:32Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Deferring 'till the week of 8/19 as some folks are on vacation.",
+          "createdAt": "2024-08-13T19:42:04Z",
+          "updatedAt": "2024-08-13T19:42:04Z"
         }
       ],
       "reviews": []
@@ -39076,19 +39409,100 @@
       "labels": [],
       "body": "Closes #268.",
       "createdAt": "2024-08-07T03:45:51Z",
-      "updatedAt": "2024-08-07T04:13:42Z",
+      "updatedAt": "2024-08-13T20:36:08Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "268-figure-1-description",
-      "headRefOid": "5a1d98835e3a61e1cc098eac52887e0d9d14c21d",
+      "headRefOid": "eb586401a48bd0ea99543acb938654652c052917",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6FTSNu",
+          "commit": {
+            "abbreviatedOid": "5a1d988"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T19:43:24Z",
+          "updatedAt": "2024-08-13T19:43:25Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n{{fig-concept-relationship}} illustrates entities and processes that comprise a Transparency Service independent of any one use case.\r\nThere are three main entities and their associated processes in SCITT:\r\n```",
+              "createdAt": "2024-08-13T19:43:24Z",
+              "updatedAt": "2024-08-13T19:43:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FTTJi",
+          "commit": {
+            "abbreviatedOid": "eb58640"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T19:45:46Z",
+          "updatedAt": "2024-08-13T19:45:47Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\n* Issuers that Register Signed Statements about Artifacts\r\n```",
+              "createdAt": "2024-08-13T19:45:46Z",
+              "updatedAt": "2024-08-13T19:45:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FTUYI",
+          "commit": {
+            "abbreviatedOid": "eb58640"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T19:48:34Z",
+          "updatedAt": "2024-08-13T19:48:35Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "Removed the reference to Transparent Statements as those are assembled on the client\r\n```suggestion\r\n* Transparency Services that evaluate Signed Statements against Registration Policies, producing Receipts upon successful Registration\r\n```",
+              "createdAt": "2024-08-13T19:48:35Z",
+              "updatedAt": "2024-08-13T19:49:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FTrdq",
+          "commit": {
+            "abbreviatedOid": "eb58640"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T20:36:07Z",
+          "updatedAt": "2024-08-13T20:36:08Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "I would prefer my edit. I specifically used those phrases to align with the different sections of the diagram because the request was to explain and reference it in the text, removing some of the words and terms misses the requirement.\r\n\r\nIf not, I would have been less wordy, believe you me. \ud83d\ude04 ",
+              "createdAt": "2024-08-13T20:36:07Z",
+              "updatedAt": "2024-08-13T20:36:08Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 301,
@@ -39132,7 +39546,7 @@
       "labels": [],
       "body": "There is no explanation in draft, GitHub, or mailing lists about resolved key manifest. This change proposes replacement with protected header like other portions of the document. Fixes #275.",
       "createdAt": "2024-08-07T13:26:05Z",
-      "updatedAt": "2024-08-07T13:26:07Z",
+      "updatedAt": "2024-08-13T19:50:58Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
@@ -39144,7 +39558,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6FTWHP",
+          "commit": {
+            "abbreviatedOid": "1780435"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-08-13T19:50:58Z",
+          "updatedAt": "2024-08-13T19:50:58Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 303,
@@ -39160,7 +39588,7 @@
       "labels": [],
       "body": "These proposed changes, if accepted, fix #277.",
       "createdAt": "2024-08-07T18:00:17Z",
-      "updatedAt": "2024-08-08T03:31:17Z",
+      "updatedAt": "2024-08-13T20:34:12Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
@@ -39270,6 +39698,59 @@
               "body": "> I struggle with this section as it defines examples, yet there's only one minimal example for x.509. Another arbitrary example where label `foo` must be defined, with a value of `bar1` and `bar2` would be a combative example.\r\n\r\nAlso I was fine with the edit you proposed, but I am not sure how this part of this specification, with or without my edit, would have a contradiction in terms for `foo` versus `bar1` and `bar2`. If we follow the base architecture requirement, none are required.\r\n\r\nI do like your simpler version, but I feel minimizing the use of precision using architecture and CDDL terminology is what makes this property less obvious, not more. Am I missing something?\r\n",
               "createdAt": "2024-08-08T03:31:17Z",
               "updatedAt": "2024-08-08T03:31:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FTdus",
+          "commit": {
+            "abbreviatedOid": "a73b5b3"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T20:02:32Z",
+          "updatedAt": "2024-08-13T20:02:32Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "The foo/bar proposal was the beginning of a proposal to add different examples. The heading says Signed Statement Example**s**, yet we only have one, with X.509. \r\nSince we don't seem ready to \"endorse\" a different identity type, I was thinking we might show some additional headers that MAY be required by another TS.\r\n\r\nAll that said, I'm fine with https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/303/commits/123c8fca8a1f244bde8603a68d16b8dd4c51d465, and have LGTMd it.",
+              "createdAt": "2024-08-13T20:02:32Z",
+              "updatedAt": "2024-08-13T20:02:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FTd1M",
+          "commit": {
+            "abbreviatedOid": "123c8fc"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM of https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/303/commits/123c8fca8a1f244bde8603a68d16b8dd4c51d465",
+          "createdAt": "2024-08-13T20:02:46Z",
+          "updatedAt": "2024-08-13T20:02:46Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6FTqse",
+          "commit": {
+            "abbreviatedOid": "a73b5b3"
+          },
+          "author": "aj-stein-nist",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-08-13T20:34:12Z",
+          "updatedAt": "2024-08-13T20:34:12Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "I can consider adding other examples tracked by a new issue, but do we have other workable examples as an alternative to X.509?",
+              "createdAt": "2024-08-13T20:34:12Z",
+              "updatedAt": "2024-08-13T20:34:12Z"
             }
           ]
         }
