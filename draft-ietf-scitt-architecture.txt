@@ -634,7 +634,7 @@ Table of Contents
    pertains to.  (See Subject under Section 2 Terminology.)
 
    Issuers MAY use different signing keys (identified by kid in the
-   resolved key manifest) for different Artifacts, or sign all Signed
+   protected header) for different Artifacts, or sign all Signed
    Statements under the same key.
 
    An Issuer can make multiple Statements about the same Artifact.  For
