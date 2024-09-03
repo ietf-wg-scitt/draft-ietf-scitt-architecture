@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 14 February 2025                                     C. Fournet
+Expires: 7 March 2025                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                          13 August 2024
+                                                        3 September 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 February 2025.
+   This Internet-Draft will expire on 7 March 2025.
 
 Copyright Notice
 
@@ -959,12 +959,12 @@ Table of Contents
 
    Transparency Services MAY support anonymous access.  Issuers SHOULD
    ensure Signed Statements submitted to public access services are
-   acceptable for public disclosure.  In this case, Signed Statements
-   MUST NOT carry confidential information.  Once a Signed Statement is
-   inserted into the Append-only Log maintained by a Transparency
-   Service, it cannot be removed from the Log. In some deployments, a
-   special role, such as an Auditor, might require access to Signed
-   Statements.
+   acceptable for public disclosure.  Publicly accessible Signed
+   Statements MUST NOT carry confidential information.  Once a Signed
+   Statement is inserted into the Append-only Log maintained by a
+   Transparency Service, it cannot be removed from the Log. In some
+   deployments, a special role, such as an Auditor, might require access
+   to Signed Statements.
 
 6.  Security Considerations
 
