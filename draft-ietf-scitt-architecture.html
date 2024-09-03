@@ -1998,18 +1998,18 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
 <p id="section-4.3-1">To register a Signed Statement, the Transparency Service performs the following steps:<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-4.3-2">
 <li id="section-4.3-2.1">
-            <p id="section-4.3-2.1.1"><strong>Client authentication:</strong> A Client authenticates with the Transparency Service, to Register Signed Statements on behalf of one or more Issuers.
-Authentication and authorization is implementation-specific, and out of scope of the SCITT Architecture.<a href="#section-4.3-2.1.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-2.1.1"><strong>Client authentication:</strong> A Client authenticates with the Transparency Service before registering Signed Statements on behalf of one or more Issuers.
+Authentication and authorization are implementation-specific and out of scope of the SCITT architecture.<a href="#section-4.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-4.3-2.2">
-            <p id="section-4.3-2.2.1"><strong>Issuer Verification:</strong> The Transparency Service <span class="bcp14">MUST</span> syntactically validate the Issuer's identity Claims, which may be different than the Client identity.<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-2.2.1"><strong>Issuer Verification:</strong> The Transparency Service <span class="bcp14">MUST</span> perform signature verification, as defined in <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.4" class="relref">Section 4.4</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>, and <span class="bcp14">MAY</span> perform additional checks as part of its Registration Policy.<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-4.3-2.3">
             <p id="section-4.3-2.3.1"><strong>Signature verification:</strong> The Transparency Service <span class="bcp14">MUST</span> verify the signature of the Signed Statement, as described in <span>[<a href="#RFC9360" class="cite xref">RFC9360</a>]</span>, using the signature algorithm and verification key of the Issuer.<a href="#section-4.3-2.3.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-4.3-2.4">
-            <p id="section-4.3-2.4.1"><strong>Signed Statement validation:</strong> The Transparency Service <span class="bcp14">MUST</span> check that the Signed Statement includes the required protected headers listed above.
-The Transparency Service <span class="bcp14">MAY</span> verify the Statement payload format, content and other optional properties.<a href="#section-4.3-2.4.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-2.4.1"><strong>Signed Statement validation:</strong> The Transparency Service <span class="bcp14">MUST</span> check that the Signed Statement includes the required protected headers.
+The Transparency Service <span class="bcp14">MAY</span> validate the Signed Statement payload in order to enforce domain specific registration policies that apply to specific content types.<a href="#section-4.3-2.4.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-4.3-2.5">
             <p id="section-4.3-2.5.1"><strong>Apply Registration Policy:</strong> The Transparency Service <span class="bcp14">MUST</span> check the attributes required by a Registration Policy are present in the protected headers.
@@ -2020,8 +2020,7 @@ The Transparency Service <span class="bcp14">MAY</span> verify the Statement pay
 </li>
           <li id="section-4.3-2.7">
             <p id="section-4.3-2.7.1"><strong>Return the Receipt</strong>, which <span class="bcp14">MAY</span> be asynchronous from Registration.
-The Transparency Service <span class="bcp14">MUST</span> be able to provide a Receipt for all registered Statements.
-A Receipt for a Signed Statement <span class="bcp14">MAY</span> be provided asynchronously.
+The Transparency Service <span class="bcp14">MUST</span> be able to provide a Receipt for all registered Signed Statements.
 Details about generating Receipts are described in <a href="#Receipt" class="auto internal xref">Section 4.4</a>.<a href="#section-4.3-2.7.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
