@@ -558,18 +558,17 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
 
 To register a Signed Statement, the Transparency Service performs the following steps:
 
-1. **Client authentication:** A Client authenticates with the Transparency Service, to Register Signed Statements on behalf of one or more Issuers.
-Authentication and authorization is implementation-specific, and out of scope of the SCITT Architecture.
-1. **Issuer Verification:** The Transparency Service MUST syntactically validate the Issuer's identity Claims, which may be different than the Client identity.
+1. **Client authentication:** A Client authenticates with the Transparency Service before registering Signed Statements on behalf of one or more Issuers.
+Authentication and authorization are implementation-specific and out of scope of the SCITT architecture.
+1. **Issuer Verification:** The Transparency Service MUST perform signature verification, as defined in {{Section 4.4 of RFC9052}}, and MAY perform additional checks as part of its Registration Policy.
 1. **Signature verification:** The Transparency Service MUST verify the signature of the Signed Statement, as described in {{RFC9360}}, using the signature algorithm and verification key of the Issuer.
-1. **Signed Statement validation:** The Transparency Service MUST check that the Signed Statement includes the required protected headers listed above.
-The Transparency Service MAY verify the Statement payload format, content and other optional properties.
+1. **Signed Statement validation:** The Transparency Service MUST check that the Signed Statement includes the required protected headers.
+The Transparency Service MAY validate the Signed Statement payload in order to enforce domain specific registration policies that apply to specific content types.
 1. **Apply Registration Policy:** The Transparency Service MUST check the attributes required by a Registration Policy are present in the protected headers.
   Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.
 1. **Register the Signed Statement** to the Append-only Log.
 1. **Return the Receipt**, which MAY be asynchronous from Registration.
-The Transparency Service MUST be able to provide a Receipt for all registered Statements.
-A Receipt for a Signed Statement MAY be provided asynchronously.
+The Transparency Service MUST be able to provide a Receipt for all registered Signed Statements.
 Details about generating Receipts are described in {{Receipt}}.
 
 The last two steps may be shared between a batch of Signed Statements registered in the Append-only Log.
