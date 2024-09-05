@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-03T00:42:18.091375+00:00",
+  "timestamp": "2024-09-05T00:42:59.313309+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5219,7 +5219,7 @@
       "id": "I_kwDOIvmHss6QTYIM",
       "title": "resolved key manifest",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/275",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -5230,8 +5230,8 @@
       ],
       "body": ">  Issuers MAY use different signing keys (identified by kid in the\r\n   resolved key manifest) for different Artifacts, or sign all Signed\r\n   Statements under the same key.\r\n\r\n\r\nWhat does \"resolved key manifest\" mean?",
       "createdAt": "2024-07-20T18:03:29Z",
-      "updatedAt": "2024-08-07T13:21:41Z",
-      "closedAt": null,
+      "updatedAt": "2024-09-03T23:36:51Z",
+      "closedAt": "2024-09-03T23:36:51Z",
       "comments": []
     },
     {
@@ -5263,7 +5263,7 @@
       "id": "I_kwDOIvmHss6QTYrX",
       "title": "CDDL Definition of Signed Statements and Receipts",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/277",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -5274,8 +5274,8 @@
       ],
       "body": ">    Everything that is optional in the following CDDL definition can\r\n   potentially be discovered out of band and Registration Policies are\r\n   not assured on the presence of these optional fields.\r\n\r\n\r\nI do not understand what you want to say with the second part of the sentence.\r\n\r\nEven the first part of the sentence do not convey any real meaning.\r\n\r\n\r\n",
       "createdAt": "2024-07-20T18:09:22Z",
-      "updatedAt": "2024-08-06T15:06:50Z",
-      "closedAt": null,
+      "updatedAt": "2024-09-03T23:35:55Z",
+      "closedAt": "2024-09-03T23:35:55Z",
       "comments": []
     },
     {
@@ -36356,24 +36356,26 @@
       "id": "PR_kwDOIvmHss51_kIZ",
       "title": "Wording Improvement in Section 4.3 Registration",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/280",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:17:39Z",
-      "updatedAt": "2024-08-13T19:39:07Z",
+      "updatedAt": "2024-09-03T23:26:03Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "hannestschofenig-patch-15",
       "headRefOid": "b37dbb11977e8c5842ebfab613690a04b2815873",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-09-03T23:26:02Z",
+      "mergedAt": "2024-09-03T23:26:02Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "f50f227137b66e8f49a6a83aeb0bb9a05f7cc0d0"
+      },
       "comments": [
         {
           "author": "hannestschofenig",
@@ -36975,6 +36977,92 @@
               "updatedAt": "2024-08-13T19:39:07Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6HwoTX",
+          "commit": {
+            "abbreviatedOid": "0cb8fbd"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-03T14:43:01Z",
+          "updatedAt": "2024-09-03T14:43:01Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "@yogeshbdeshpande, the PR refers to content, meaning the content of a content-type, for instance, the contenttype could be applicaiton/json, which isn't enough. The current PR leaves this more flexible, and is shorter.\r\n\r\n",
+              "createdAt": "2024-09-03T14:43:01Z",
+              "updatedAt": "2024-09-03T14:43:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6HwpZd",
+          "commit": {
+            "abbreviatedOid": "b37dbb1"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-03T14:44:43Z",
+          "updatedAt": "2024-09-03T14:44:43Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "@yogeshbdeshpande, on the editors call, we decided to move this PR forward. Please open a PR with some additional suggestions if needed. ",
+              "createdAt": "2024-09-03T14:44:43Z",
+              "updatedAt": "2024-09-03T14:44:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Hwqkn",
+          "commit": {
+            "abbreviatedOid": "b37dbb1"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-09-03T14:46:30Z",
+          "updatedAt": "2024-09-03T14:46:30Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Hwst4",
+          "commit": {
+            "abbreviatedOid": "0cb8fbd"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-03T14:49:49Z",
+          "updatedAt": "2024-09-03T14:49:49Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "Would rather keep the current proposal as less is more in this case.",
+              "createdAt": "2024-09-03T14:49:49Z",
+              "updatedAt": "2024-09-03T14:49:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6HwsxG",
+          "commit": {
+            "abbreviatedOid": "b37dbb1"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-09-03T14:49:54Z",
+          "updatedAt": "2024-09-03T14:49:54Z",
+          "comments": []
         }
       ]
     },
@@ -37609,24 +37697,26 @@
       "id": "PR_kwDOIvmHss51_lQZ",
       "title": "Privacy Considerations: Editorial Improvements",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/286",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:32:50Z",
-      "updatedAt": "2024-08-13T20:22:02Z",
+      "updatedAt": "2024-09-03T14:46:30Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "hannestschofenig-patch-19",
-      "headRefOid": "cdd13a43598929b76070b7f3aa44770baaee3ade",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "8430e7bcc3eeb6693ef3b3a256f0ba573957ed5e",
+      "closedAt": "2024-09-03T14:46:30Z",
+      "mergedAt": "2024-09-03T14:46:30Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "c7982b6f86a51f8ae24637895a49bf976b391a5b"
+      },
       "comments": [
         {
           "author": "SteveLasker",
@@ -38333,6 +38423,39 @@
           "createdAt": "2024-08-13T20:22:02Z",
           "updatedAt": "2024-08-13T20:22:02Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Hwjps",
+          "commit": {
+            "abbreviatedOid": "8430e7b"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-09-03T14:36:50Z",
+          "updatedAt": "2024-09-03T14:36:50Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Hwkwz",
+          "commit": {
+            "abbreviatedOid": "8430e7b"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-03T14:38:08Z",
+          "updatedAt": "2024-09-03T14:38:09Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\nOnce a Signed Statement is registered it cannot be removed from the Log.\r\n```\r\nOptional brevity",
+              "createdAt": "2024-09-03T14:38:09Z",
+              "updatedAt": "2024-09-03T14:38:53Z"
+            }
+          ]
         }
       ]
     },
@@ -39303,7 +39426,7 @@
       "labels": [],
       "body": "Fixes #273 with unclear definition and regex requirements with DN currently in draft.",
       "createdAt": "2024-08-06T20:00:55Z",
-      "updatedAt": "2024-08-13T19:42:05Z",
+      "updatedAt": "2024-09-03T23:27:21Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
@@ -39393,7 +39516,21 @@
           "updatedAt": "2024-08-13T19:42:04Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6H0dtq",
+          "commit": {
+            "abbreviatedOid": "c48adfd"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-09-03T23:27:21Z",
+          "updatedAt": "2024-09-03T23:27:21Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 300,
@@ -39409,7 +39546,7 @@
       "labels": [],
       "body": "Closes #268.",
       "createdAt": "2024-08-07T03:45:51Z",
-      "updatedAt": "2024-08-13T20:36:08Z",
+      "updatedAt": "2024-09-03T23:25:12Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
@@ -39420,7 +39557,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Editors call notes:\r\n- Moving above the diagram is good clarity\r\n- Changing from defining the roles to the overall diagram caused some confusion. \r\n\r\nIf the PR can maintain the roles, and add diagram clarity, that would be preferred.",
+          "createdAt": "2024-09-03T15:17:07Z",
+          "updatedAt": "2024-09-03T15:17:07Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss6FTSNu",
@@ -39456,9 +39601,9 @@
           "comments": [
             {
               "originalPosition": 7,
-              "body": "```suggestion\r\n* Issuers that Register Signed Statements about Artifacts\r\n```",
+              "body": "```suggestion\r\n* Issuers that use their credentials to create and register Signed Statements about Artifacts\r\n```",
               "createdAt": "2024-08-13T19:45:46Z",
-              "updatedAt": "2024-08-13T19:45:47Z"
+              "updatedAt": "2024-09-03T22:23:23Z"
             }
           ]
         },
@@ -39501,6 +39646,71 @@
               "updatedAt": "2024-08-13T20:36:08Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Hwxpf",
+          "commit": {
+            "abbreviatedOid": "eb58640"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-09-03T14:57:22Z",
+          "updatedAt": "2024-09-03T14:57:59Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I disagree with this loss of capabilities.  A ledger should be able to take a transparent statement from another ledger and handle it as well.",
+              "createdAt": "2024-09-03T14:57:22Z",
+              "updatedAt": "2024-09-03T14:57:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6H0PtJ",
+          "commit": {
+            "abbreviatedOid": "eb58640"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Address the editors meeting feedback with some proposals to \r\n- Move the roles definition above the diagram\r\n- Reflect the current diagram capabilities",
+          "createdAt": "2024-09-03T22:20:29Z",
+          "updatedAt": "2024-09-03T23:21:39Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nThis section describes the three main roles and associated processes in SCITT:\r\n```",
+              "createdAt": "2024-09-03T22:20:30Z",
+              "updatedAt": "2024-09-03T23:21:39Z"
+            },
+            {
+              "originalPosition": 7,
+              "body": "I see you're trying to encompass Issers make a Statement about an Artifact, use their credentials to create a \"Signed Statement\", then register them. It just reads longer than needed. The sentence prior was trying to define the three roles. In the call, there was resistance to redefining roles as entities.\r\n\r\nI've updated the suggestion a bit, which acknowledges a statement becomes a signed statement, with minimal text. ",
+              "createdAt": "2024-09-03T22:26:51Z",
+              "updatedAt": "2024-09-03T23:21:39Z"
+            },
+            {
+              "originalPosition": 8,
+              "body": "While accurate, a Signed Statement can be a previously Signed Statement with an attached receipt (Transparent Statement), it's not what [the diagram currently shows](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#section-4).\r\n\r\nThe diagram shows a single signed statement being placed on one, two, or more Transparency Services. Each TS produces a receipt, which can be stapled into a single Signed Statement with two receipts. \r\n\r\nThe [current text](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#section-4), nor the diagram cover the scenario of a Transparent Statement being re-registered. That could be a separate PR if we want to load the diagram with more lines.\r\n\r\nThe other suggested change describes the Signed Statement must be first evaluated against a registration policy before it's successfully registered.",
+              "createdAt": "2024-09-03T23:20:40Z",
+              "updatedAt": "2024-09-03T23:21:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6H0dTv",
+          "commit": {
+            "abbreviatedOid": "eb58640"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Requesting changes to lines\r\n- https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/300#discussion_r1715837334\r\n- https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/300#discussion_r1715840508\r\n- https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/300#discussion_r1742769615",
+          "createdAt": "2024-09-03T23:25:12Z",
+          "updatedAt": "2024-09-03T23:25:12Z",
+          "comments": []
         }
       ]
     },
@@ -39518,7 +39728,7 @@
       "labels": [],
       "body": "Closes #263.",
       "createdAt": "2024-08-07T04:42:07Z",
-      "updatedAt": "2024-08-07T04:42:08Z",
+      "updatedAt": "2024-09-03T23:44:14Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
@@ -39530,14 +39740,75 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6H0ext",
+          "commit": {
+            "abbreviatedOid": "a2d3934"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Approve with minor nit on 319",
+          "createdAt": "2024-09-03T23:31:31Z",
+          "updatedAt": "2024-09-03T23:32:11Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "The arch doc doesn't discuss Signed Tree Heads. Proposing:\r\n```suggestion\r\n- Signed Certificate Timestamps and their respective consistency proofs are checked by Relying Parties\r\n```",
+              "createdAt": "2024-09-03T23:31:31Z",
+              "updatedAt": "2024-09-03T23:32:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6H0fub",
+          "commit": {
+            "abbreviatedOid": "a2d3934"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-03T23:36:37Z",
+          "updatedAt": "2024-09-03T23:36:37Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Steve, Does this mean a Transparency Service provider MUST check Signed Certificate Timestamps and their respective consistency proofs?",
+              "createdAt": "2024-09-03T23:36:37Z",
+              "updatedAt": "2024-09-03T23:36:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6H0hDH",
+          "commit": {
+            "abbreviatedOid": "a2d3934"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-03T23:44:14Z",
+          "updatedAt": "2024-09-03T23:44:14Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Good catch, @rjb4standards:\r\n\r\n> consistency proofs are checked by Relying Parties\r\n\r\nquestions if \"are\" is a MUST, SHOULD, COULD, or just a passive reference.\r\n\r\nAs this is the [\"Definition of Transparency\"](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#section-3) section, I would read this as an example and IMO, I'm ok with it not being more restrictive. For that matter, x.509 is not required, so I wouldn't take this further. ",
+              "createdAt": "2024-09-03T23:44:14Z",
+              "updatedAt": "2024-09-03T23:44:14Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 302,
       "id": "PR_kwDOIvmHss53toO6",
       "title": "Use header instead of resolved key manifest for #275",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/302",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aj-stein-nist",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -39546,17 +39817,19 @@
       "labels": [],
       "body": "There is no explanation in draft, GitHub, or mailing lists about resolved key manifest. This change proposes replacement with protected header like other portions of the document. Fixes #275.",
       "createdAt": "2024-08-07T13:26:05Z",
-      "updatedAt": "2024-08-13T19:50:58Z",
+      "updatedAt": "2024-09-03T23:36:50Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "275-resolved-key-manifest",
       "headRefOid": "17804359e3b0e6e56636b1ef6b580cf10b1d7c94",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-09-03T23:36:50Z",
+      "mergedAt": "2024-09-03T23:36:50Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "068a3344412304335c49a56eb008fd80eacccc49"
+      },
       "comments": [],
       "reviews": [
         {
@@ -39579,7 +39852,7 @@
       "id": "PR_kwDOIvmHss53vh0d",
       "title": "Improve explanation of CDDL and registration policy customization",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/303",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aj-stein-nist",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -39588,17 +39861,19 @@
       "labels": [],
       "body": "These proposed changes, if accepted, fix #277.",
       "createdAt": "2024-08-07T18:00:17Z",
-      "updatedAt": "2024-08-13T20:34:12Z",
+      "updatedAt": "2024-09-03T23:35:54Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "277-cddl-explanations",
       "headRefOid": "123c8fca8a1f244bde8603a68d16b8dd4c51d465",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-09-03T23:35:54Z",
+      "mergedAt": "2024-09-03T23:35:54Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "cdd71e76a84e074fe496c2401cdcd2a1f6170205"
+      },
       "comments": [],
       "reviews": [
         {
