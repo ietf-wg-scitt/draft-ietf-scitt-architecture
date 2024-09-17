@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 7 March 2025                                         C. Fournet
+Expires: 21 March 2025                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        3 September 2024
+                                                       17 September 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 March 2025.
+   This Internet-Draft will expire on 21 March 2025.
 
 Copyright Notice
 
@@ -660,9 +660,9 @@ Table of Contents
    *  Support for kid in the protected header and x5chain in the
       unprotected header is OPTIONAL to implement.
 
-   When x5t is present, iss MUST be a string with a value between 1 and
-   8192 characters in length that fits the regular expression of a
-   distinguished name.
+   When x5t is present, iss MUST be a string that meets URI requirements
+   defined in [RFC8392].  The iss value's length MUST be between 1 and
+   8192 characters in length.
 
    The kid header parameter MUST be present when x5t is not present.
    Key discovery protocols are out-of-scope of this document.
@@ -1350,11 +1350,10 @@ Table of Contents
               189-204, DOI 10.1145/1323293.1294280, October 2007,
               <https://doi.org/10.1145/1323293.1294280>.
 
-   [FIPS.201] Romine, C., "Personal identity verification (PIV) of
-              federal employees and contractors", National Institute of
-              Standards and Technology (U.S.),
-              DOI 10.6028/nist.fips.201-3, January 2022,
-              <https://doi.org/10.6028/nist.fips.201-3>.
+   [FIPS.201] "Personal identity verification (PIV) of federal employees
+              and contractors", National Institute of Standards and
+              Technology (U.S.), DOI 10.6028/nist.fips.201-3, January
+              2022, <https://doi.org/10.6028/nist.fips.201-3>.
 
    [I-D.draft-ietf-core-href]
               Bormann, C. and H. Birkholz, "Constrained Resource
@@ -1366,9 +1365,9 @@ Table of Contents
    [I-D.draft-ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
               Wallace, "The Entity Attestation Token (EAT)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-eat-30, 2 August
-              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              rats-eat-30>.
+              Progress, Internet-Draft, draft-ietf-rats-eat-31, 6
+              September 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-rats-eat-31>.
 
    [in-toto]  "in-toto", n.d., <https://in-toto.io/>.
 
