@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-17T00:36:38.053959+00:00",
+  "timestamp": "2024-09-19T00:44:15.746208+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5191,7 +5191,7 @@
       "id": "I_kwDOIvmHss6QTX8Q",
       "title": "Regular Expression distinguished name",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/273",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -5202,8 +5202,8 @@
       ],
       "body": ">    When x5t is present, iss MUST be a string with a value between 1 and\r\n   8192 characters in length that fits the regular expression of a\r\n   distinguished name.\r\n\r\n\r\nWhat is the \"regular expression of a  distinguished name\"?\r\n\r\n",
       "createdAt": "2024-07-20T18:01:12Z",
-      "updatedAt": "2024-08-06T19:52:39Z",
-      "closedAt": null,
+      "updatedAt": "2024-09-17T14:49:49Z",
+      "closedAt": "2024-09-17T14:49:49Z",
       "comments": [
         {
           "author": "aj-stein-nist",
@@ -39417,7 +39417,7 @@
       "id": "PR_kwDOIvmHss53nCrQ",
       "title": "Adjust DN regex requirement to be URI requirement",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/299",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aj-stein-nist",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -39426,17 +39426,19 @@
       "labels": [],
       "body": "Fixes #273 with unclear definition and regex requirements with DN currently in draft.",
       "createdAt": "2024-08-06T20:00:55Z",
-      "updatedAt": "2024-09-03T23:27:21Z",
+      "updatedAt": "2024-09-17T14:49:48Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "273-dn-regex",
       "headRefOid": "c48adfd8101011fc6d02776ba8260b4aa8cd966c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-09-17T14:49:47Z",
+      "mergedAt": "2024-09-17T14:49:47Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "7615e71467cb9cf8cd7ffbb19048e3eda6f1f3c2"
+      },
       "comments": [
         {
           "author": "SteveLasker",
@@ -39514,6 +39516,13 @@
           "body": "Deferring 'till the week of 8/19 as some folks are on vacation.",
           "createdAt": "2024-08-13T19:42:04Z",
           "updatedAt": "2024-08-13T19:42:04Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I support this change on behalf of the https://github.com/microsoft/CCF project.",
+          "createdAt": "2024-09-17T14:43:41Z",
+          "updatedAt": "2024-09-17T14:43:41Z"
         }
       ],
       "reviews": [
@@ -39528,6 +39537,45 @@
           "body": "LGTM",
           "createdAt": "2024-09-03T23:27:21Z",
           "updatedAt": "2024-09-03T23:27:21Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Jr4DT",
+          "commit": {
+            "abbreviatedOid": "c48adfd"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-09-17T14:42:36Z",
+          "updatedAt": "2024-09-17T14:42:36Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Jr5v2",
+          "commit": {
+            "abbreviatedOid": "c48adfd"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-09-17T14:45:02Z",
+          "updatedAt": "2024-09-17T14:45:02Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Jr7dU",
+          "commit": {
+            "abbreviatedOid": "c48adfd"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-09-17T14:47:26Z",
+          "updatedAt": "2024-09-17T14:47:26Z",
           "comments": []
         }
       ]
