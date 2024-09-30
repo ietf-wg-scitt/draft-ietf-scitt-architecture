@@ -327,6 +327,7 @@ In order to accommodate as many Transparency Service implementations as possible
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
 
 {{fig-concept-relationship}} illustrates entities and processes that comprise a Transparency Service independent of any one use case.
+
 There are three main entities and their associated processes in SCITT:
 
 * Issuers that use Statements about Artifacts and their credentials to create Signed Statements
