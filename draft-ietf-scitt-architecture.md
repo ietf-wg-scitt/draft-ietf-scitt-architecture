@@ -332,7 +332,7 @@ There are three main entities and their associated processes in SCITT:
 
 * Issuers that use Statements about Artifacts and their credentials to create Signed Statements
 * Transparency Services that register Signed Statements and Transparent Statements and in doing produce Receipts
-* Relying Parties that
+* Relying Parties that:
   * collect Receipts of Signed Statements for subsequent registration of Transparent Statements;
   * retrieve Transparent Statements for analysis of Statements about Artifacts themselves (e.g. verification);
   * or replay all the Transparent Statements to check for the consistency of the Transparency Service's Append-only Log (e.g. auditing)
