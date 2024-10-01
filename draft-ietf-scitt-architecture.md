@@ -326,6 +326,18 @@ The SCITT architecture consists of a very loose federation of Transparency Servi
 In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
 
+{{fig-concept-relationship}} illustrates entities and processes that comprise a Transparency Service independent of any one use case.
+
+This section describes the three main roles and associated processes in SCITT:
+
+* Issuers that use their credentials to create Signed Statements about Artifacts
+* Transparency Services that evaluate Signed Statements against Registration Policies, producing Receipts upon successful Registration.
+The returned Receipt may be combined with the Signed Statement to create a Transparent Statement.
+* Relying Parties that:
+  * collect Receipts of Signed Statements for subsequent registration of Transparent Statements;
+  * retrieve Transparent Statements for analysis of Statements about Artifacts themselves (e.g. verification);
+  * or replay all the Transparent Statements to check for the consistency of the Transparency Service's Append-only Log (e.g. auditing)
+
 ~~~aasvg
  .----------.
 |  Artifact  |
@@ -371,12 +383,6 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
    '------------------'      '----------------'
 ~~~
 {: #fig-concept-relationship title="Relationship of Concepts in SCITT"}
-
-This section describes at a high level, the three main roles and associated processes in SCITT:
-
-* Issuers and Signed Statements
-* Transparency Service and the registration process
-* Relying Parties of the Transparent Statements and the Receipt validation process
 
 The subsequent sections describe the main concepts, namely Transparency Service, Signed Statements, Registration, and Transparent Statements in more detail.
 
