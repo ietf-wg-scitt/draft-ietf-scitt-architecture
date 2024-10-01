@@ -326,16 +326,14 @@ The SCITT architecture consists of a very loose federation of Transparency Servi
 In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
 
-Statements about digital Artifacts, containing digital Artifacts, or structured data regarding any type of Artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
-In these cases a Statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
-A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of RFC9052}}.
+{{fig-concept-relationship}} illustrates two Transparency Services and two Receipts as a single Signed Statement MAY be registered on more than one Transparency Service.
+Each Transparency Service produces a Receipt.
+A Transparent Statement MAY contain multiple Receipts, for each Transparency Service it was successfully Registered.
 
 The arrows indicate the flow of information.
 For example, Credentials are used to Sign Statements and Verify Signed Statements within the Transparency Service.
-
-{{#fig-concept-relationship}} illustrates two Transparency Services and two Receipts as a single Signed Statement MAY be registered on more than one Transparency Services.
-Each Transparency Service produces a Receipt.
-A Transparent Statement MAY contain multiple Receipts, for each Transparency Service it was successfully Registered.
+The Transparency Service produces a Receipt, which MAY be combined with a Signed Statement to create a Transparent Statement.
+To Verify a Transparent Statement, credentials are required to authenticate the protected content of the Transparent Statement.
 
 ~~~aasvg
  .----------.
