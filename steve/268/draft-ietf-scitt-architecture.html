@@ -2922,8 +2922,11 @@ data:application/cose;base64,SGVsb...xkIQ==
       <h2 id="name-signing-statements-remotely">
 <a href="#appendix-C" class="section-number selfRef">Appendix C. </a><a href="#name-signing-statements-remotely" class="section-name selfRef">Signing Statements Remotely</a>
       </h2>
-<div id="appendix-C-1">
-        <div class="alignLeft art-svg artwork" id="appendix-C-1.1">
+<p id="appendix-C-1">Statements about digital Artifacts, containing digital Artifacts, or structured data regarding any type of Artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
+In these cases a Statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
+A Signed Statement (cose-sign1) <span class="bcp14">MUST</span> be produced from the to-be-signed bytes according to <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.4" class="relref">Section 4.4</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<div id="appendix-C-2">
+        <div class="alignLeft art-svg artwork" id="appendix-C-2.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="736" width="376" viewBox="0 0 376 736" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
             <path d="M 8,112 L 8,144" fill="none" stroke="black"></path>
             <path d="M 8,416 L 8,432" fill="none" stroke="black"></path>
@@ -3053,7 +3056,7 @@ data:application/cose;base64,SGVsb...xkIQ==
               <text x="76" y="708">Sign</text>
               <text x="104" y="708">1</text>
             </g>
-          </svg><a href="#appendix-C-1.1" class="pilcrow">¶</a>
+          </svg><a href="#appendix-C-2.1" class="pilcrow">¶</a>
 </div>
 </div>
 </section>
