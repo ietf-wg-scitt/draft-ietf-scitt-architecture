@@ -332,7 +332,8 @@ A Transparent Statement MAY contain multiple Receipts, for each Transparency Ser
 
 The arrows indicate the flow of information.
 For example, Credentials are used to produce Signed Statements and the Transparency Service verifies the Signed Statements.
-The Transparency Service produces a Receipt, which MAY be combined with a Signed Statement to create a Transparent Statement.
+The Transparency Service produces a Receipt.
+A Receipt combined with a Signed Statement creates a Transparent Statement.
 To Verify a Transparent Statement, credentials are required to authenticate the protected content of the Transparent Statement.
 
 ~~~aasvg
