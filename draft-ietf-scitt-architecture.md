@@ -334,7 +334,7 @@ The arrows indicate the flow of information.
 For example, Credentials are used to produce Signed Statements and the Transparency Service verifies the Signed Statements.
 The Transparency Service produces a Receipt.
 A Receipt combined with a Signed Statement creates a Transparent Statement.
-To verify a Transparent Statement, credentials are required to authenticate the protected content of the Transparent Statement.
+To verify a Transparent Statement, credentials are required to authenticate the Signed Statement and the Receipts of the Transparent Statement.
 
 ~~~aasvg
  .----------.
