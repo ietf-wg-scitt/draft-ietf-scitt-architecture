@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 21 March 2025                                        C. Fournet
+Expires: 4 April 2025                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                       17 September 2024
+                                                          1 October 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 March 2025.
+   This Internet-Draft will expire on 4 April 2025.
 
 Copyright Notice
 
@@ -402,6 +402,32 @@ Table of Contents
    COSE Signed Merkle Tree Proof document
    [I-D.draft-ietf-cose-merkle-tree-proofs].
 
+   Figure 1 illustrates entities and processes that comprise a
+   Transparency Service independent of any one use case.
+
+   This section describes the three main roles and associated processes
+   in SCITT:
+
+   *  Issuers that use their credentials to create Signed Statements
+      about Artifacts
+
+   *  Transparency Services that evaluate Signed Statements against
+      Registration Policies, producing Receipts upon successful
+      Registration.  The returned Receipt may be combined with the
+      Signed Statement to create a Transparent Statement.
+
+   *  Relying Parties that:
+
+      -  collect Receipts of Signed Statements for subsequent
+         registration of Transparent Statements;
+
+      -  retrieve Transparent Statements for analysis of Statements
+         about Artifacts themselves (e.g. verification);
+
+      -  or replay all the Transparent Statements to check for the
+         consistency of the Transparency Service's Append-only Log (e.g.
+         auditing)
+
     .----------.
    |  Artifact  |
     '-----+----'
@@ -446,16 +472,6 @@ Table of Contents
       '------------------'      '----------------'
 
                 Figure 1: Relationship of Concepts in SCITT
-
-   This section describes at a high level, the three main roles and
-   associated processes in SCITT:
-
-   *  Issuers and Signed Statements
-
-   *  Transparency Service and the registration process
-
-   *  Relying Parties of the Transparent Statements and the Receipt
-      validation process
 
    The subsequent sections describe the main concepts, namely
    Transparency Service, Signed Statements, Registration, and
