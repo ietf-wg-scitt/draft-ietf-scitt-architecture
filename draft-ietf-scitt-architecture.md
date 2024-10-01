@@ -1085,6 +1085,10 @@ data:application/cose;base64,SGVsb...xkIQ==
 
 # Signing Statements Remotely
 
+Statements about digital Artifacts, containing digital Artifacts, or structured data regarding any type of Artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
+In these cases a Statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
+A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of RFC9052}}.
+
 ~~~aasvg
    .----+-----.
   |  Artifact  |
