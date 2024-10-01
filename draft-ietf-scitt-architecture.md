@@ -330,7 +330,7 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
 
 This section describes the three main roles and associated processes in SCITT:
 
-* Issuers that use Statements about Artifacts and their credentials to create Signed Statements
+* Issuers that use their credentials to create Signed Statements about Artifacts
 * Transparency Services that register Signed Statements and Transparent Statements and in doing produce Receipts
 * Relying Parties that:
   * collect Receipts of Signed Statements for subsequent registration of Transparent Statements;
