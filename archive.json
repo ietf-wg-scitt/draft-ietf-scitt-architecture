@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-01T00:51:55.074343+00:00",
+  "timestamp": "2024-10-03T00:45:43.511864+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5068,7 +5068,7 @@
       "id": "I_kwDOIvmHss6QTVTd",
       "title": "CT: Signed Certificate Timestamps are checked by Relying Parties",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/263",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -5079,8 +5079,8 @@
       ],
       "body": "> [Signed Certificate Timestamps are checked by Relying Parties](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/268-figure-1-description/draft-ietf-scitt-architecture.md?plain=1#L319)\r\n\r\nI would argue that in CT Auditors are checking more than Signed Certificate Timestamps\r\n",
       "createdAt": "2024-07-20T17:29:27Z",
-      "updatedAt": "2024-09-30T23:40:34Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-01T16:29:11Z",
+      "closedAt": "2024-10-01T16:29:11Z",
       "comments": [
         {
           "author": "aj-stein-nist",
@@ -5127,19 +5127,19 @@
       "id": "I_kwDOIvmHss6QTWxC",
       "title": "Figure 1 needs a description",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/268",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
         "aj-stein-nist"
       ],
       "labels": [
-        "ready-for-pr"
+        "has-pr"
       ],
       "body": "Figure 1 needs to be explained and referenced in the text.\r\nThe arrows in the figure need to be explained\r\nThe figure shows two different boxes and the semantic needs to be explained",
       "createdAt": "2024-07-20T17:46:37Z",
-      "updatedAt": "2024-08-06T15:06:40Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-01T14:46:58Z",
+      "closedAt": "2024-10-01T14:46:58Z",
       "comments": []
     },
     {
@@ -5259,10 +5259,13 @@
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "pending-close",
+        "ready-for-pr"
+      ],
       "body": "When the draft talks about receipts does it refers only to inclusion proofs. Can we still talk about receipts, if other proof types are supported by an implementation that those are still called Receipts?\r\n",
       "createdAt": "2024-07-20T18:06:06Z",
-      "updatedAt": "2024-07-21T17:24:31Z",
+      "updatedAt": "2024-10-01T00:54:41Z",
       "closedAt": null,
       "comments": [
         {
@@ -5271,6 +5274,13 @@
           "body": "I think it is meant to refer to this: https://datatracker.ietf.org/doc/draft-ietf-cose-merkle-tree-proofs/ at least as an example. And this defines receipts of inclusion and receipts of consistency",
           "createdAt": "2024-07-21T17:24:31Z",
           "updatedAt": "2024-07-21T17:24:31Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Can we get a suggestion or PR for next steps?",
+          "createdAt": "2024-10-01T00:54:28Z",
+          "updatedAt": "2024-10-01T00:54:28Z"
         }
       ]
     },
@@ -5408,7 +5418,7 @@
       ],
       "body": "> All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network traffic analysis.\r\n\r\nThis sentence in the security consideration section gives the reader the impression that communication security is assumed to be used. This is, however, not even discussed in the body of the document.",
       "createdAt": "2024-07-20T19:35:46Z",
-      "updatedAt": "2024-09-30T23:31:04Z",
+      "updatedAt": "2024-10-01T01:30:06Z",
       "closedAt": null,
       "comments": [
         {
@@ -5452,6 +5462,13 @@
           "body": "Proposing we close, and leave TLS to be API specific (aka SCRAPI)\r\n\r\nIf no objections, or more specifically no PRs are submitted by Oct 8, 2024, I propose we close this issue.",
           "createdAt": "2024-09-30T23:30:57Z",
           "updatedAt": "2024-09-30T23:30:57Z"
+        },
+        {
+          "author": "aj-stein",
+          "authorAssociation": "NONE",
+          "body": "> Proposing we close, and leave TLS to be API specific (aka SCRAPI)\r\n> \r\n> If no objections, or more specifically no PRs are submitted by Oct 8, 2024, I propose we close this issue.\r\n\r\nI support closing it out, and I can support waiting until October 8th as well. :smile: ",
+          "createdAt": "2024-10-01T01:30:05Z",
+          "updatedAt": "2024-10-01T01:30:05Z"
         }
       ]
     },
@@ -39609,7 +39626,7 @@
       "id": "PR_kwDOIvmHss53pTBs",
       "title": "Improve description for Figure 1",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/300",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aj-stein-nist",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -39618,17 +39635,19 @@
       "labels": [],
       "body": "Closes #268.",
       "createdAt": "2024-08-07T03:45:51Z",
-      "updatedAt": "2024-09-30T23:16:00Z",
+      "updatedAt": "2024-10-01T14:46:57Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "268-figure-1-description",
-      "headRefOid": "dad88f9fbc4801d9e7746fdba99d3633a36bccb0",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "71a1ed2e8746e9a169486800116519fdbbbd4ac2",
+      "closedAt": "2024-10-01T14:46:56Z",
+      "mergedAt": "2024-10-01T14:46:56Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "af8a14c0ecf1daf6599371a2e43f0599f77fa250"
+      },
       "comments": [
         {
           "author": "SteveLasker",
@@ -39673,9 +39692,9 @@
           "comments": [
             {
               "originalPosition": 7,
-              "body": "```suggestion\r\n* Issuers that use their credentials to create and register Signed Statements about Artifacts\r\n```",
+              "body": "```suggestion\r\n* Issuers that use their credentials to create Signed Statements about Artifacts\r\n```",
               "createdAt": "2024-08-13T19:45:46Z",
-              "updatedAt": "2024-09-03T22:23:23Z"
+              "updatedAt": "2024-10-01T14:18:03Z"
             }
           ]
         },
@@ -39863,6 +39882,65 @@
               "updatedAt": "2024-09-30T23:15:56Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6LaaU_",
+          "commit": {
+            "abbreviatedOid": "eb58640"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-01T01:26:58Z",
+          "updatedAt": "2024-10-01T01:26:58Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I am not sure what I missed with the original request to add figure text and the diagram description, but I intended to resolve that. So I am willing to take in the suggestion.\r\n\r\nThat said, I have switched GitHub accounts as I terminated my account NIST, so I may need to reopen this PR and touch up accordingly. Should I proceed wit that?",
+              "createdAt": "2024-10-01T01:26:58Z",
+              "updatedAt": "2024-10-01T01:26:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6LgfYy",
+          "commit": {
+            "abbreviatedOid": "ef07db7"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-01T14:31:00Z",
+          "updatedAt": "2024-10-01T14:31:00Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6LggKD",
+          "commit": {
+            "abbreviatedOid": "71a1ed2"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-10-01T14:32:07Z",
+          "updatedAt": "2024-10-01T14:32:07Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Lggqp",
+          "commit": {
+            "abbreviatedOid": "71a1ed2"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-01T14:32:54Z",
+          "updatedAt": "2024-10-01T14:32:54Z",
+          "comments": []
         }
       ]
     },
@@ -39871,7 +39949,7 @@
       "id": "PR_kwDOIvmHss53pwEv",
       "title": "Further explain SCITT analogy to RFC9162 CT entities and processes",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/301",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aj-stein-nist",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -39880,17 +39958,19 @@
       "labels": [],
       "body": "Closes #263.",
       "createdAt": "2024-08-07T04:42:07Z",
-      "updatedAt": "2024-09-03T23:44:14Z",
+      "updatedAt": "2024-10-01T16:29:10Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "263-auditing-not-just-sct",
       "headRefOid": "a2d3934d4d3ea5cc8e6633deec9556495b19ffcb",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-10-01T16:29:10Z",
+      "mergedAt": "2024-10-01T16:29:10Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "6a81fa82b5c6eef5a6b66bc3a36fc4615ac2dc56"
+      },
       "comments": [],
       "reviews": [
         {
@@ -39952,6 +40032,65 @@
               "updatedAt": "2024-09-03T23:44:14Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6LgyxC",
+          "commit": {
+            "abbreviatedOid": "a2d3934"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-01T14:59:35Z",
+          "updatedAt": "2024-10-01T14:59:35Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Leaving Signed Tree Heads\r\nWe may want to add more information related to CT in the Definition of Transparency section. ...in another PR",
+              "createdAt": "2024-10-01T14:59:35Z",
+              "updatedAt": "2024-10-01T14:59:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Lgy-W",
+          "commit": {
+            "abbreviatedOid": "a2d3934"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-10-01T14:59:52Z",
+          "updatedAt": "2024-10-01T14:59:52Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6LgzTI",
+          "commit": {
+            "abbreviatedOid": "a2d3934"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-01T15:00:22Z",
+          "updatedAt": "2024-10-01T15:00:22Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Lhr5I",
+          "commit": {
+            "abbreviatedOid": "a2d3934"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-01T16:24:02Z",
+          "updatedAt": "2024-10-01T16:24:02Z",
+          "comments": []
         }
       ]
     },
@@ -40221,19 +40360,180 @@
       "labels": [],
       "body": "Note: This PR assumes #300 is merged, and may need to be updated to fit within the context of #300's final text. \r\n\r\nFixes #268 \r\n\r\n",
       "createdAt": "2024-10-01T00:50:24Z",
-      "updatedAt": "2024-10-01T00:50:24Z",
+      "updatedAt": "2024-10-01T15:20:47Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
-      "baseRefOid": "7615e71467cb9cf8cd7ffbb19048e3eda6f1f3c2",
+      "baseRefOid": "af8a14c0ecf1daf6599371a2e43f0599f77fa250",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/268",
-      "headRefOid": "ebeb62bc229514b1f103472e8c874d39d00a0039",
+      "headRefOid": "bbd7102972c98fb5d889c10dcd41dce3c8d4e5bf",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6LaUWW",
+          "commit": {
+            "abbreviatedOid": "ebeb62b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-01T00:52:16Z",
+          "updatedAt": "2024-10-01T00:52:16Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Based on the result of #300, this text may be at the bottom of that merged text.\r\nOr, if the text solves #268, this may make sense to move to the bottom of the diagram.",
+              "createdAt": "2024-10-01T00:52:16Z",
+              "updatedAt": "2024-10-01T00:52:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6LgiNJ",
+          "commit": {
+            "abbreviatedOid": "ebeb62b"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-01T14:35:04Z",
+          "updatedAt": "2024-10-01T14:35:04Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\nTo verify a Transparent Statement, credentials are required to authenticate the protected content of the Transparent Statement.\r\n```",
+              "createdAt": "2024-10-01T14:35:04Z",
+              "updatedAt": "2024-10-01T14:35:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6LgjGL",
+          "commit": {
+            "abbreviatedOid": "ebeb62b"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-01T14:36:23Z",
+          "updatedAt": "2024-10-01T14:36:24Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\nThe Transparency Service produces a Receipt.\r\nA Receipt combined with a Signed Statement creates a Transparent Statement.\r\n```",
+              "createdAt": "2024-10-01T14:36:23Z",
+              "updatedAt": "2024-10-01T14:36:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Lgj5l",
+          "commit": {
+            "abbreviatedOid": "ebeb62b"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-01T14:37:37Z",
+          "updatedAt": "2024-10-01T14:37:37Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "Which implies that you actually checking the signature of the Signed Statement?\r\n\r\nWould \"verifying\" a Transparent Statement not mean to check Signed Statement signature and Receipt signature?",
+              "createdAt": "2024-10-01T14:37:37Z",
+              "updatedAt": "2024-10-01T14:37:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Lgk0i",
+          "commit": {
+            "abbreviatedOid": "ebeb62b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-01T14:39:04Z",
+          "updatedAt": "2024-10-01T14:39:04Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nFor example, Credentials are used to produce Signed Statements and the Transparency Service verifies the Signed Statements.\r\n```",
+              "createdAt": "2024-10-01T14:39:04Z",
+              "updatedAt": "2024-10-01T14:39:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6LgnKp",
+          "commit": {
+            "abbreviatedOid": "482703d"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-01T14:42:32Z",
+          "updatedAt": "2024-10-01T14:42:32Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "Wouldn't that mean that you are actually only checking the signature of the Signed Statement, as the \"unprotected content\" is not checked?",
+              "createdAt": "2024-10-01T14:42:32Z",
+              "updatedAt": "2024-10-01T14:42:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6LgpM_",
+          "commit": {
+            "abbreviatedOid": "482703d"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-01T14:45:34Z",
+          "updatedAt": "2024-10-01T14:45:34Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\nTo verify a Transparent Statement, credentials are required to authenticate the Signed Statement and the Receipts of the Transparent Statement.\r\n```",
+              "createdAt": "2024-10-01T14:45:34Z",
+              "updatedAt": "2024-10-01T14:45:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6LhDTS",
+          "commit": {
+            "abbreviatedOid": "482703d"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-01T15:20:35Z",
+          "updatedAt": "2024-10-01T15:20:35Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "Resolved with committed suggestion",
+              "createdAt": "2024-10-01T15:20:35Z",
+              "updatedAt": "2024-10-01T15:20:35Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
