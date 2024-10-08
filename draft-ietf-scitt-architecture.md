@@ -335,7 +335,7 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
      - collect Receipts, combining them with the Signed Statements to create a Transparent Statement;
      - retrieve Transparent Statements for analysis of Statements about Artifacts;
      - uses credentials to authenticate the Signed Statement and the Receipts of the Transparent Statement (e.g. verification);
-     - replay segments of Transparent Statements checking for the consistency of the Transparency Service's Append-only Log (e.g. auditing)
+     - replay a series of Transparent Statements checking for the consistency of the Transparency Service's Append-only Log (e.g. auditing)
 
 In addition, {{fig-concept-relationship}} illustrates multiple Transparency Services and multiple Receipts as a single Signed Statement MAY be registered with one or more Transparency Service.
 Each Transparency Service produces a Receipt, which may be aggregated in a single Transparent Statement, demonstrating the Signed Statement was registered by multiple Transparency Services.
