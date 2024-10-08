@@ -726,8 +726,6 @@ Issuers MUST ensure that the Statement payloads in their Signed Statements are c
 Issuers and Transparency Services MUST carefully protect their private signing keys and avoid these keys being used for any purpose not described in this architecture document.
 In cases where key re-use is unavoidable, keys MUST NOT sign any other message that may be verified as an Envelope as part of a Signed Statement.
 
-Each of these functions MUST be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the Transparency Service.
-
 For instance, the code for the Registration Policy evaluation and endorsement may be protected by running in a Trusted Execution Environment (TEE).
 
 The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance {{PBFT}} and may be used to protect against malicious or vulnerable replicas.
