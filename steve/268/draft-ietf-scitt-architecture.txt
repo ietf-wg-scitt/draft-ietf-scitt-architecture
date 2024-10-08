@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 4 April 2025                                         C. Fournet
+Expires: 11 April 2025                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                          1 October 2024
+                                                          8 October 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 April 2025.
+   This Internet-Draft will expire on 11 April 2025.
 
 Copyright Notice
 
@@ -429,10 +429,10 @@ Table of Contents
          auditing)
 
    In addition, Figure 1 illustrates two Transparency Services and two
-   Receipts as a single Signed Statement MAY be registered on more than
-   one Transparency Service.  Each Transparency Service produces a
+   Receipts as a single Signed Statement MAY be registered with more
+   than one Transparency Service.  Each Transparency Service produces a
    Receipt.  A Transparent Statement MAY contain multiple Receipts, for
-   each Transparency Service it was successfully Registered.
+   each Transparency Service it was successfully registered with.
 
    The arrows indicate the flow of information.  For example,
    Credentials are used to produce Signed Statements and the
