@@ -402,45 +402,42 @@ Table of Contents
    COSE Signed Merkle Tree Proof document
    [I-D.draft-ietf-cose-merkle-tree-proofs].
 
-   Figure 1 illustrates entities and processes that comprise a
-   Transparency Service independent of any one use case.
+   Figure 1 illustrates the three main roles and associated processes
+   that comprise a Transparency Service, independent of any one use
+   case.
 
-   This section describes the three main roles and associated processes
-   in SCITT:
+   1.  Issuers that use their credentials to create Signed Statements
+       about Artifacts.  Issuer Credentials are also used to verify the
+       Signed Statements within the Transparency Service registration
+       process, and Transparent Statements.
 
-   *  Issuers that use their credentials to create Signed Statements
-      about Artifacts
+   2.  Transparency Services that evaluate Signed Statements against
+       Registration Policies, using credentials to sign Receipts upon
+       successful Registration.
 
-   *  Transparency Services that evaluate Signed Statements against
-      Registration Policies, producing Receipts upon successful
-      Registration.  The returned Receipt may be combined with the
-      Signed Statement to create a Transparent Statement.
+   3.  Relying Parties that:
 
-   *  Relying Parties that:
+       *  collect Receipts, combining them with the Signed Statements to
+          create a Transparent Statement;
 
-      -  collect Receipts of Signed Statements for subsequent
-         registration of Transparent Statements;
+       *  retrieve Transparent Statements for analysis of Statements
+          about Artifacts;
 
-      -  retrieve Transparent Statements for analysis of Statements
-         about Artifacts themselves (e.g. verification);
+       *  uses credentials to authenticate the Signed Statement and the
+          Receipts of the Transparent Statement (e.g. verification);
 
-      -  or replay all the Transparent Statements to check for the
-         consistency of the Transparency Service's Append-only Log (e.g.
-         auditing)
+       *  replay segments of Transparent Statements checking for the
+          consistency of the Transparency Service's Append-only Log
+          (e.g. auditing)
 
-   In addition, Figure 1 illustrates two Transparency Services and two
-   Receipts as a single Signed Statement MAY be registered with more
-   than one Transparency Service.  Each Transparency Service produces a
-   Receipt.  A Transparent Statement MAY contain multiple Receipts, for
-   each Transparency Service it was successfully registered with.
+   In addition, Figure 1 illustrates multiple Transparency Services and
+   multiple Receipts as a single Signed Statement MAY be registered with
+   one or more Transparency Service.  Each Transparency Service produces
+   a Receipt, which may be aggregated in a single Transparent Statement,
+   demonstrating the Signed Statement was registered by multiple
+   Transparency Services.
 
-   The arrows indicate the flow of information.  For example,
-   Credentials are used to produce Signed Statements and the
-   Transparency Service verifies the Signed Statements.  The
-   Transparency Service produces a Receipt.  A Receipt combined with a
-   Signed Statement creates a Transparent Statement.  To verify a
-   Transparent Statement, credentials are required to authenticate the
-   Signed Statement and the Receipts of the Transparent Statement.
+   The arrows indicate the flow of information.
 
     .----------.
    |  Artifact  |
