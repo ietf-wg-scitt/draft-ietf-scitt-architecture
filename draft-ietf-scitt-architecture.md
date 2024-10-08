@@ -326,27 +326,21 @@ The SCITT architecture consists of a very loose federation of Transparency Servi
 In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
 
-{{fig-concept-relationship}} illustrates entities and processes that comprise a Transparency Service independent of any one use case.
+{{fig-concept-relationship}} illustrates the three main roles and associated processes that comprise a Transparency Service, independent of any one use case.
 
-This section describes the three main roles and associated processes in SCITT:
+1. Issuers that use their credentials to create Signed Statements about Artifacts.
+   Issuer Credentials are also used to verify the Signed Statements within the Transparency Service registration process, and Transparent Statements.
+1. Transparency Services that evaluate Signed Statements against Registration Policies, using credentials to sign Receipts upon successful Registration.
+1. Relying Parties that:
+     - collect Receipts, combining them with the Signed Statements to create a Transparent Statement;
+     - retrieve Transparent Statements for analysis of Statements about Artifacts;
+     - uses credentials to authenticate the Signed Statement and the Receipts of the Transparent Statement (e.g. verification);
+     - replay segments of Transparent Statements checking for the consistency of the Transparency Service's Append-only Log (e.g. auditing)
 
-* Issuers that use their credentials to create Signed Statements about Artifacts
-* Transparency Services that evaluate Signed Statements against Registration Policies, producing Receipts upon successful Registration.
-The returned Receipt may be combined with the Signed Statement to create a Transparent Statement.
-* Relying Parties that:
-  * collect Receipts of Signed Statements for subsequent registration of Transparent Statements;
-  * retrieve Transparent Statements for analysis of Statements about Artifacts themselves (e.g. verification);
-  * or replay all the Transparent Statements to check for the consistency of the Transparency Service's Append-only Log (e.g. auditing)
-
-In addition, {{fig-concept-relationship}} illustrates two Transparency Services and two Receipts as a single Signed Statement MAY be registered with more than one Transparency Service.
-Each Transparency Service produces a Receipt.
-A Transparent Statement MAY contain multiple Receipts, for each Transparency Service it was successfully registered with.
+In addition, {{fig-concept-relationship}} illustrates multiple Transparency Services and multiple Receipts as a single Signed Statement MAY be registered with one or more Transparency Service.
+Each Transparency Service produces a Receipt, which may be aggregated in a single Transparent Statement, demonstrating the Signed Statement was registered by multiple Transparency Services.
 
 The arrows indicate the flow of information.
-For example, Credentials are used to produce Signed Statements and the Transparency Service verifies the Signed Statements.
-The Transparency Service produces a Receipt.
-A Receipt combined with a Signed Statement creates a Transparent Statement.
-To verify a Transparent Statement, credentials are required to authenticate the Signed Statement and the Receipts of the Transparent Statement.
 
 ~~~aasvg
  .----------.
