@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 4 April 2025                                         C. Fournet
+Expires: 11 April 2025                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                          1 October 2024
+                                                          8 October 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 April 2025.
+   This Internet-Draft will expire on 11 April 2025.
 
 Copyright Notice
 
@@ -1022,10 +1022,6 @@ Table of Contents
    not described in this architecture document.  In cases where key re-
    use is unavoidable, keys MUST NOT sign any other message that may be
    verified as an Envelope as part of a Signed Statement.
-
-   Each of these functions MUST be carefully protected against both
-   external attacks and internal misbehavior by some or all of the
-   operators of the Transparency Service.
 
    For instance, the code for the Registration Policy evaluation and
    endorsement may be protected by running in a Trusted Execution
