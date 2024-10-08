@@ -338,9 +338,9 @@ The returned Receipt may be combined with the Signed Statement to create a Trans
   * retrieve Transparent Statements for analysis of Statements about Artifacts themselves (e.g. verification);
   * or replay all the Transparent Statements to check for the consistency of the Transparency Service's Append-only Log (e.g. auditing)
 
-In addition, {{fig-concept-relationship}} illustrates two Transparency Services and two Receipts as a single Signed Statement MAY be registered on more than one Transparency Service.
+In addition, {{fig-concept-relationship}} illustrates two Transparency Services and two Receipts as a single Signed Statement MAY be registered with more than one Transparency Service.
 Each Transparency Service produces a Receipt.
-A Transparent Statement MAY contain multiple Receipts, for each Transparency Service it was successfully Registered.
+A Transparent Statement MAY contain multiple Receipts, for each Transparency Service it was successfully registered with.
 
 The arrows indicate the flow of information.
 For example, Credentials are used to produce Signed Statements and the Transparency Service verifies the Signed Statements.
