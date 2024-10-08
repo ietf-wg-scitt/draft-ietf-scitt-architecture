@@ -17,11 +17,11 @@ The rise in popularity of verifiable data structures as a mechanism to make acto
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
 Issuers can register their Signed Statements on any Transparency Service, with the guarantee that any Relying Parties will be able to verify them. 
     " name="description">
-<meta content="xml2rfc 3.23.1" name="generator">
+<meta content="xml2rfc 3.23.2" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-scitt-architecture-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.23.1
+  xml2rfc 3.23.2
     Python 3.12.6
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
@@ -1036,7 +1036,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 4 April 2025</td>
+<td class="center">Expires 11 April 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1049,12 +1049,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-10-01" class="published">1 October 2024</time>
+<time datetime="2024-10-08" class="published">8 October 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-04-04">4 April 2025</time></dd>
+<dd class="expires"><time datetime="2025-04-11">11 April 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1123,7 +1123,7 @@ Issuers can register their Signed Statements on any Transparency Service, with t
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 4 April 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 11 April 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1746,7 +1746,9 @@ The Append-only Log is the verifiable data structure that records registered Sig
 <a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-registration-policies" class="section-name selfRef">Registration Policies</a>
           </h4>
 <p id="section-4.1.1-1">Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is accepted to be registered to the Append-only Log.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.1-2">Transparency Services <span class="bcp14">MUST</span> maintain Registration Policies and a list of trust anchors to authenticate Issuers upon Registration.
+<p id="section-4.1.1-2">Transparency Services <span class="bcp14">MUST</span> maintain Registration Policies.
+Transparency Services <span class="bcp14">MUST</span> maintain a list of trust anchors as described in <em>TBD</em>.
+Transparency Services <span class="bcp14">MUST</span> authenticate signed statements as part of a Registration Policy.
 For instance, a trust anchor could be an X.509 root certificate, a pointer to an OpenID Connect identity provider, or any other COSE-compatible trust anchor.<a href="#section-4.1.1-2" class="pilcrow">¶</a></p>
 <p id="section-4.1.1-3">Registration Policies and trust anchors <span class="bcp14">MUST</span> be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing the associated Receipts.<a href="#section-4.1.1-3" class="pilcrow">¶</a></p>
 <p id="section-4.1.1-4">This specification leaves implementation, encoding and documentation of Registration Policies and trust anchors to the operator of the Transparency Service.<a href="#section-4.1.1-4" class="pilcrow">¶</a></p>
