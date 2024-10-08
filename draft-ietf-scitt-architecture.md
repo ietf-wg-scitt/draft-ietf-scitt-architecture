@@ -94,6 +94,7 @@ informative:
     target: https://www.iso.org/standard/73029.html
     title: ISO/IEC 17000:2020
 
+  RFC4949: Glossary
   RFC7523:
   RFC8725:
   RFC2397: DataURLs
@@ -398,7 +399,7 @@ Multi-tenant support can be enabled through the use of identifiers in the `iss` 
 Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is accepted to be registered to the Append-only Log.
 
 Transparency Services MUST maintain Registration Policies.
-Transparency Services MUST maintain a list of trust anchors as described in _TBD_.
+Transparency Services MUST maintain a list of trust anchors (see definition of trust anchor in {{Glossary}}).
 Transparency Services MUST authenticate signed statements as part of a Registration Policy.
 For instance, a trust anchor could be an X.509 root certificate, a pointer to an OpenID Connect identity provider, or any other COSE-compatible trust anchor.
 
