@@ -488,11 +488,12 @@ Table of Contents
    Statement is accepted to be registered to the Append-only Log.
 
    Transparency Services MUST maintain Registration Policies.
-   Transparency Services MUST maintain a list of trust anchors as
-   described in _TBD_. Transparency Services MUST authenticate signed
-   statements as part of a Registration Policy.  For instance, a trust
-   anchor could be an X.509 root certificate, a pointer to an OpenID
-   Connect identity provider, or any other COSE-compatible trust anchor.
+   Transparency Services MUST maintain a list of trust anchors (see
+   definition of trust anchor in [RFC4949]).  Transparency Services MUST
+   authenticate signed statements as part of a Registration Policy.  For
+   instance, a trust anchor could be an X.509 root certificate, a
+   pointer to an OpenID Connect identity provider, or any other COSE-
+   compatible trust anchor.
 
    Registration Policies and trust anchors MUST be made transparent and
    available to all Relying Parties of the Transparency Service by
@@ -1419,6 +1420,10 @@ Table of Contents
    [RFC2397]  Masinter, L., "The "data" URL scheme", RFC 2397,
               DOI 10.17487/RFC2397, August 1998,
               <https://www.rfc-editor.org/rfc/rfc2397>.
+
+   [RFC4949]  Shirey, R., "Internet Security Glossary, Version 2",
+              FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007,
+              <https://www.rfc-editor.org/rfc/rfc4949>.
 
    [RFC7523]  Jones, M., Campbell, B., and C. Mortimore, "JSON Web Token
               (JWT) Profile for OAuth 2.0 Client Authentication and
