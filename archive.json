@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-08T00:45:39.873452+00:00",
+  "timestamp": "2024-10-10T00:45:30.805061+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5136,9 +5136,9 @@
       "labels": [
         "has-pr"
       ],
-      "body": "Figure 1 needs to be explained and referenced in the text.\r\nThe arrows in the figure need to be explained\r\nThe figure shows two different boxes and the semantic needs to be explained",
+      "body": "Figure 1 needs to be explained and referenced in the text.\r\nThe arrows in the figure need to be explained\r\nThe figure shows two different boxes and the semantic needs to be explained\r\n",
       "createdAt": "2024-07-20T17:46:37Z",
-      "updatedAt": "2024-10-01T14:46:58Z",
+      "updatedAt": "2024-10-08T14:25:59Z",
       "closedAt": "2024-10-01T14:46:58Z",
       "comments": []
     },
@@ -5167,7 +5167,7 @@
       "id": "I_kwDOIvmHss6QTW4e",
       "title": "Role of Trust Anchors",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/270",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -5176,8 +5176,8 @@
       ],
       "body": "_Editors note: updated with a link to the referenced text:_ \r\n\r\n>    [Transparency Services MUST also maintain a list of trust anchors, which SHOULD be used by Relying Parties to authenticate Issuers, and which MAY be included in a Registration Policy statement.](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/268-figure-1-description/draft-ietf-scitt-architecture.md?plain=1#L407)\r\n\r\nI don't understand the SHOULD.\r\n\r\nYou have to be in possession of trust anchors to verify a digital signature. It is not an optional feature.",
       "createdAt": "2024-07-20T17:48:13Z",
-      "updatedAt": "2024-10-01T00:09:29Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-08T15:03:30Z",
+      "closedAt": "2024-10-08T15:03:30Z",
       "comments": [
         {
           "author": "aj-stein-nist",
@@ -5258,14 +5258,16 @@
       "state": "OPEN",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "robinbryce"
+      ],
       "labels": [
         "pending-close",
         "ready-for-pr"
       ],
       "body": "When the draft talks about receipts does it refers only to inclusion proofs. Can we still talk about receipts, if other proof types are supported by an implementation that those are still called Receipts?\r\n",
       "createdAt": "2024-07-20T18:06:06Z",
-      "updatedAt": "2024-10-01T00:54:41Z",
+      "updatedAt": "2024-10-08T19:32:04Z",
       "closedAt": null,
       "comments": [
         {
@@ -5281,6 +5283,27 @@
           "body": "Can we get a suggestion or PR for next steps?",
           "createdAt": "2024-10-01T00:54:28Z",
           "updatedAt": "2024-10-01T00:54:28Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I'm inclined to *reduce* the entry in Definitions to just the head line from \"Definition of transparency\" which says just - \"Receipts demonstrate inclusion of Signed Statements in the Append-only Log of a Transparency Service\". The particulars of how \"inclusion is demonstrated\" is very log specific. I'll put together a small diff and see how that looks",
+          "createdAt": "2024-10-08T15:29:10Z",
+          "updatedAt": "2024-10-08T15:29:10Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "ah also, quite far down, where the draft describes \"append only\", it does introduce\r\n\r\n\"In addition to Receipts, some verifiable data structures might support additional proof types, such as proofs of consistency, or proofs of non inclusion\"\r\n\r\nI think a small amount of fore shadowing or re-arangement will do the trick",
+          "createdAt": "2024-10-08T15:34:19Z",
+          "updatedAt": "2024-10-08T15:34:19Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks, @robinbryce\r\nA PR would be great to review to formalize the discussion  ",
+          "createdAt": "2024-10-08T19:20:01Z",
+          "updatedAt": "2024-10-08T19:20:01Z"
         }
       ]
     },
@@ -5320,7 +5343,7 @@
       ],
       "body": "The three steps from Section 4.3 on Registration are essentially the same. To verify the signature you have to retrieve the issuer credentials and you have to do item 4.\r\n\r\n\r\n   2.  *Issuer Verification:* The Transparency Service MUST\r\n       syntactically validate the Issuer's identity Claims, which may be\r\n       different than the Client identity.\r\n\r\n   3.  *Signature verification:* The Transparency Service MUST verify\r\n       the signature of the Signed Statement, as described in [RFC9360],\r\n       using the signature algorithm and verification key of the Issuer.\r\n\r\n   4.  *Signed Statement validation:* The Transparency Service MUST\r\n       check that the Signed Statement includes the required protected\r\n       headers listed above.  The Transparency Service MAY verify the\r\n       Statement payload format, content and other optional properties.\r\n\r\n\r\n",
       "createdAt": "2024-07-20T18:12:47Z",
-      "updatedAt": "2024-08-07T18:00:54Z",
+      "updatedAt": "2024-10-08T19:32:41Z",
       "closedAt": null,
       "comments": []
     },
@@ -5349,17 +5372,19 @@
       "id": "I_kwDOIvmHss6QTaYE",
       "title": "Clarification in Security Consideration Section",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/285",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "OR13"
+      ],
       "labels": [
         "ready-for-pr"
       ],
-      "body": ">   Each of these functions MUST be carefully protected against both\r\n   external attacks and internal misbehavior by some or all of the\r\n   operators of the Transparency Service.\r\n\r\nWhat does the term \"each of these functions\" refer to?",
+      "body": ">   [Each of these functions MUST be carefully protected against both](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L729)\r\n   external attacks and internal misbehavior by some or all of the\r\n   operators of the Transparency Service.\r\n\r\nWhat does the term \"each of these functions\" refer to?",
       "createdAt": "2024-07-20T18:29:30Z",
-      "updatedAt": "2024-08-01T17:37:24Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-08T14:44:18Z",
+      "closedAt": "2024-10-08T14:44:18Z",
       "comments": []
     },
     {
@@ -5377,7 +5402,7 @@
       ],
       "body": "The security consideration section gives me the impression that different authors worked on the content and put the text in there without re-reading the product. As a consequence, there is a lot of repetition.",
       "createdAt": "2024-07-20T18:34:16Z",
-      "updatedAt": "2024-08-01T17:37:53Z",
+      "updatedAt": "2024-10-08T19:32:58Z",
       "closedAt": null,
       "comments": []
     },
@@ -5390,6 +5415,7 @@
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
+        "SteveLasker",
         "roywill"
       ],
       "labels": [
@@ -5397,16 +5423,24 @@
       ],
       "body": "> For example, Issuers must remove\r\n   Personally Identifiable Information (PII) as clear text in the\r\n   Statement.  Alternatively, Issuers may include opaque cryptographic\r\n   Statements, such as hashes.\r\n\r\n\r\nThe identity of the issuer is included in the signed statement. As such, the example is not great. ",
       "createdAt": "2024-07-20T18:38:59Z",
-      "updatedAt": "2024-08-06T14:54:38Z",
+      "updatedAt": "2024-10-08T19:33:13Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The doc has transistioned over time to now reflect the definition of the TS is to only store hashes of the signed statements, and the storage of the signed statements, receipts in other ancillary services is outside the drafts scope.\r\nThe doc needs a scrub to reflect the separation so sentences like this can have the proper context. \r\n\r\nUpdate PII text to reflect the separation of persistence, and ability to use the cose-hash-envelope \r\n",
+          "createdAt": "2024-10-08T14:53:20Z",
+          "updatedAt": "2024-10-08T14:53:20Z"
+        }
+      ]
     },
     {
       "number": 291,
       "id": "I_kwDOIvmHss6QTfqB",
       "title": "TLS not mandated by the architecture",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/291",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -5418,8 +5452,8 @@
       ],
       "body": "> All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network traffic analysis.\r\n\r\nThis sentence in the security consideration section gives the reader the impression that communication security is assumed to be used. This is, however, not even discussed in the body of the document.",
       "createdAt": "2024-07-20T19:35:46Z",
-      "updatedAt": "2024-10-01T01:30:06Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-08T15:11:03Z",
+      "closedAt": "2024-10-08T15:11:02Z",
       "comments": [
         {
           "author": "aj-stein-nist",
@@ -5518,6 +5552,24 @@
           "updatedAt": "2024-07-31T15:46:11Z"
         }
       ]
+    },
+    {
+      "number": 307,
+      "id": "I_kwDOIvmHss6ZYxGq",
+      "title": "Consider allowing x5chain as a protected header parameter",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/307",
+      "state": "OPEN",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "achamayou"
+      ],
+      "labels": [],
+      "body": "The current text mandates the presence of `x5t` in the protected header when using x509: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/6a81fa82b5c6eef5a6b66bc3a36fc4615ac2dc56/draft-ietf-scitt-architecture.md?plain=1#L507, and allows an unprotected x5chain: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/6a81fa82b5c6eef5a6b66bc3a36fc4615ac2dc56/draft-ietf-scitt-architecture.md?plain=1#L422\r\n\r\nI propose that the specification allows `x5chain` in the protected header, ideally as a substitute for `x5t`, but in addition otherwise. The motivation for this change is to add a degree of integrity protection over `x5chain`, and blame for malicious payload otherwise.\r\nThe current set up does not authenticate or integrity protect the contents of x5chain, only the leaf, which opens up some opportunities for attacks targeting x509 parsers. I can see why this minimal binding can be desirable in some cases (caching large cert chains), but servers that wish to be stricter to reduce their attack surface should be able to.",
+      "createdAt": "2024-10-08T14:37:34Z",
+      "updatedAt": "2024-10-08T19:33:29Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -40327,26 +40379,110 @@
       "id": "PR_kwDOIvmHss59L0hu",
       "title": "Trust anchor clarity in registration policies",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/304",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "OR13"
+      ],
       "labels": [],
       "body": "Fixes #270 ",
       "createdAt": "2024-10-01T00:08:38Z",
-      "updatedAt": "2024-10-01T00:08:39Z",
+      "updatedAt": "2024-10-08T15:03:30Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "7615e71467cb9cf8cd7ffbb19048e3eda6f1f3c2",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/resolves-270",
-      "headRefOid": "6bb7789cd4cdd0df5e369fbb8759d0e6c009d88e",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "a60ce61edbd276dbbd39c24ca85f1b39f318e7cf",
+      "closedAt": "2024-10-08T15:03:29Z",
+      "mergedAt": "2024-10-08T15:03:29Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "59c44dc1537e42aadf56cc1e20e9514f8af03497"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6MWSZ_",
+          "commit": {
+            "abbreviatedOid": "6bb7789"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-08T14:16:42Z",
+          "updatedAt": "2024-10-08T14:16:42Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\nTransparency Services MUST maintain Registration Policies.\r\nTransparency Services MUST maintain a list of trust anchors as described in _TBD_.\r\nTransparency Services MUST authenticate signed statements as part of a Registration Policy.\r\n```",
+              "createdAt": "2024-10-08T14:16:42Z",
+              "updatedAt": "2024-10-08T14:31:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6MWS0q",
+          "commit": {
+            "abbreviatedOid": "6bb7789"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "DISMISSED",
+          "body": "This MUST need to be split up.",
+          "createdAt": "2024-10-08T14:17:18Z",
+          "updatedAt": "2024-10-08T15:03:24Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6MWjYZ",
+          "commit": {
+            "abbreviatedOid": "f38f8bb"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-08T14:40:11Z",
+          "updatedAt": "2024-10-08T14:40:11Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Add reference to https://datatracker.ietf.org/doc/html/rfc4949\r\n> $ trust anchor",
+              "createdAt": "2024-10-08T14:40:11Z",
+              "updatedAt": "2024-10-08T14:40:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6MWyas",
+          "commit": {
+            "abbreviatedOid": "a60ce61"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-08T15:01:53Z",
+          "updatedAt": "2024-10-08T15:01:53Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6MWynp",
+          "commit": {
+            "abbreviatedOid": "a60ce61"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-08T15:02:11Z",
+          "updatedAt": "2024-10-08T15:02:11Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 305,
@@ -40356,17 +40492,19 @@
       "state": "OPEN",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "SteveLasker"
+      ],
       "labels": [],
       "body": "Note: This PR assumes #300 is merged, and may need to be updated to fit within the context of #300's final text. \r\n\r\nFixes #268 \r\n\r\n",
       "createdAt": "2024-10-01T00:50:24Z",
-      "updatedAt": "2024-10-01T15:20:47Z",
+      "updatedAt": "2024-10-08T19:32:19Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "af8a14c0ecf1daf6599371a2e43f0599f77fa250",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/268",
-      "headRefOid": "bbd7102972c98fb5d889c10dcd41dce3c8d4e5bf",
+      "headRefOid": "5a83fded6f032d4480ff3bf908a8d5be2fe78018",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -40532,6 +40670,94 @@
               "updatedAt": "2024-10-01T15:20:35Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6MWS2W",
+          "commit": {
+            "abbreviatedOid": "bbd7102"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-08T14:17:20Z",
+          "updatedAt": "2024-10-08T14:17:21Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nIn addition, {{fig-concept-relationship}} illustrates two Transparency Services and two Receipts as a single Signed Statement MAY be registered with more than one Transparency Service.\r\nEach Transparency Service produces a Receipt.\r\nA Transparent Statement MAY contain multiple Receipts, for each Transparency Service it was successfully registered with.\r\n```",
+              "createdAt": "2024-10-08T14:17:20Z",
+              "updatedAt": "2024-10-08T14:17:21Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 306,
+      "id": "PR_kwDOIvmHss599eL8",
+      "title": "Remove sentence",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/306",
+      "state": "MERGED",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/285",
+      "createdAt": "2024-10-08T14:32:35Z",
+      "updatedAt": "2024-10-08T14:44:17Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "6a81fa82b5c6eef5a6b66bc3a36fc4615ac2dc56",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "remove-unclear-text",
+      "headRefOid": "a8653bde397f2b6a04f730957716c9c8fbb8c977",
+      "closedAt": "2024-10-08T14:44:17Z",
+      "mergedAt": "2024-10-08T14:44:17Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "b0348978a0bf52651a2dac7bf7922f44ee730650"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6MWkF2",
+          "commit": {
+            "abbreviatedOid": "a8653bd"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM to Danny ",
+          "createdAt": "2024-10-08T14:41:12Z",
+          "updatedAt": "2024-10-08T14:41:12Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6MWkwu",
+          "commit": {
+            "abbreviatedOid": "a8653bd"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-08T14:42:09Z",
+          "updatedAt": "2024-10-08T14:42:09Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6MWl_k",
+          "commit": {
+            "abbreviatedOid": "a8653bd"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-08T14:43:56Z",
+          "updatedAt": "2024-10-08T14:43:56Z",
+          "comments": []
         }
       ]
     }
