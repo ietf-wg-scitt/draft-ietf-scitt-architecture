@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 11 April 2025                                        C. Fournet
+Expires: 18 April 2025                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                          8 October 2024
+                                                         15 October 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 April 2025.
+   This Internet-Draft will expire on 18 April 2025.
 
 Copyright Notice
 
@@ -532,12 +532,15 @@ Table of Contents
    by the Transparency Service MUST be checked.
 
    In essence, when using X.509 Signed Statements, the Transparency
-   Service MUST build and validate a complete certificate chain from the
-   Issuer's certificate identified by x5t located in the protected
-   header of the COSE_Sign1 Envelope, to one of the root certificates
-   most recently registered as a trust anchor of the Transparency
-   Service.  An x5chain with a leaf certificate that corresponds to the
-   x5t value MAY be included in the unprotected header.
+   Service MUST build and validate a complete certification path from an
+   Issuer's certificate to one of the root certificates most recently
+   registered as a trust anchor by the Transparency Service.
+
+   The protected header of the COSE_Sign1 Envelope MUST include either
+   the Issuer's certificate as x5t or the chain including the Issuer's
+   certificate as x5chain.  If x5t is included in the protected header,
+   an x5chain with a leaf certificate corresponding to the x5t value MAY
+   be included in the unprotected header.
 
    The Transparency Service MUST apply the Registration Policy that was
    most recently added to the Append-only Log at the time of
@@ -665,23 +668,24 @@ Table of Contents
    affirming multiple Issuers agree.
 
    At least one identifier representing one credential MUST be included
-   in the protected header of the COSE Envelope, as one of x5t or kid.
-   Additionally, x5chain that corresponds to either x5t or kid
+   in the protected header of the COSE Envelope, as one of x5t, x5chain
+   or kid.  Additionally, x5chain that corresponds to either x5t or kid
    identifying the leaf certificate in the included certification path
    MAY be included in the unprotected header of the COSE Envelope.
 
-   *  When using x.509 certificates, support for x5t is REQUIRED to
-      implement.
+   *  When using x.509 certificates, support for either x5t or x5chain
+      in the protected header is REQUIRED to implement.
 
    *  Support for kid in the protected header and x5chain in the
       unprotected header is OPTIONAL to implement.
 
-   When x5t is present, iss MUST be a string that meets URI requirements
-   defined in [RFC8392].  The iss value's length MUST be between 1 and
-   8192 characters in length.
+   When x5t or x5chain is present in the protected header, iss MUST be a
+   string that meets URI requirements defined in [RFC8392].  The iss
+   value's length MUST be between 1 and 8192 characters in length.
 
-   The kid header parameter MUST be present when x5t is not present.
-   Key discovery protocols are out-of-scope of this document.
+   The kid header parameter MUST be present when neither x5t nor x5chain
+   is present in the protected header.  Key discovery protocols are out-
+   of-scope of this document.
 
    The protected header of a Signed Statement and a Receipt MUST include
    the CWT Claims header parameter as specified in Section 2 of
@@ -1284,9 +1288,9 @@ Table of Contents
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-05, 18 June
+              Draft, draft-ietf-cose-merkle-tree-proofs-06, 9 October
               2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-05>.
+              cose-merkle-tree-proofs-06>.
 
    [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <https://www.iana.org/assignments/cwt>.
