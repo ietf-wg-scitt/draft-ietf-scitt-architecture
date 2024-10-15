@@ -229,7 +229,7 @@ Receipt:
 
 : a cryptographic proof that a Signed Statement is included in the Append-only Log.
 Receipts are signed proofs of verifiable data-structure properties.
-The types of Receipts MUST support inclusion proofs and MAY support Receipts for other proof types, such as consistency proofs.
+The types of Receipts MUST support inclusion proofs and MAY support other proof types, such as consistency proofs.
 
 Registration:
 
