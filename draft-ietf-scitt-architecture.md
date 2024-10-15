@@ -228,8 +228,8 @@ Over time, an Issuer may register new Signed Statements about an Artifact in a T
 Receipt:
 
 : a cryptographic proof that a Signed Statement is included in the Append-only Log.
-Receipts demonstrate the inclusion of Signed Statements in the Append-only Log of a Transparency Service and have a specific abstract role in Transparency as defined in this document.
-It is natural that Transparency Services support signed proofs for purposes other than demonstrating inclusion in an Append-only log; however, those are not Receipts.
+Receipts are signed proofs of verifiable data-structure properties.
+The types of Receipts MUST support inclusion proofs and MAY support Receipts for other proof types, such as consistency proofs.
 
 Registration:
 
