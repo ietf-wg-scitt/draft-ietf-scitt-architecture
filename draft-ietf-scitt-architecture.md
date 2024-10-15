@@ -421,7 +421,8 @@ If the protected header includes multiple identifiers, all those that are regist
 
 In essence, when using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.
 
-The protected header of the COSE_Sign1 Envelope MUST include one of: the Issuer's certificate as `x5t`, or the chain including the Issuer's certificate as `x5chain`. If `x5t` is included in the protected header, an `x5chain` with a leaf certificate that corresponds to the `x5t` value MAY be included in the unprotected header.
+The protected header of the COSE_Sign1 Envelope MUST include either the Issuer's certificate as `x5t` or the chain including the Issuer's certificate as `x5chain`.
+If `x5t` is included in the protected header, an `x5chain` with a leaf certificate corresponding to the `x5t` value MAY be included in the unprotected header.
 
 The Transparency Service MUST apply the Registration Policy that was most recently added to the Append-only Log at the time of Registration.
 
