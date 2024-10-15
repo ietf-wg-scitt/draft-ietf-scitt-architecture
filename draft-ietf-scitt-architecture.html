@@ -1556,7 +1556,7 @@ Considering CT in terms of SCITT:<a href="#section-3-8" class="pilcrow">¶</a></
 <p id="section-4-1">The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements, and auditing Transparent Statements.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 Most of the details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>.<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3"><a href="#fig-concept-relationship" class="auto internal xref">Figure 1</a> illustrates entities and processes that comprise a Transparency Service independent of any one use case.<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-3"><a href="#fig-concept-relationship" class="auto internal xref">Figure 1</a> illustrates the roles and processes that comprise a Transparency Service independent of any one use case.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <p id="section-4-4">This section describes the three main roles and associated processes in SCITT:<a href="#section-4-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4-5.1">
@@ -1581,10 +1581,13 @@ The returned Receipt may be combined with the Signed Statement to create a Trans
           </ul>
 </li>
       </ul>
+<p id="section-4-6">In addition, <a href="#fig-concept-relationship" class="auto internal xref">Figure 1</a> illustrates multiple Transparency Services and multiple Receipts as a single Signed Statement <span class="bcp14">MAY</span> be registered with one or more Transparency Service.
+Each Transparency Service produces a Receipt, which may be aggregated in a single Transparent Statement, demonstrating the Signed Statement was registered by multiple Transparency Services.<a href="#section-4-6" class="pilcrow">¶</a></p>
+<p id="section-4-7">The arrows indicate the flow of information.<a href="#section-4-7" class="pilcrow">¶</a></p>
 <span id="name-relationship-of-concepts-in"></span><div id="fig-concept-relationship">
 <figure id="figure-1">
-        <div id="section-4-6.1">
-          <div class="alignLeft art-svg artwork" id="section-4-6.1.1">
+        <div id="section-4-8.1">
+          <div class="alignLeft art-svg artwork" id="section-4-8.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="704" width="400" viewBox="0 0 400 704" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
               <path d="M 16,208 L 16,240" fill="none" stroke="black"></path>
               <path d="M 40,304 L 40,384" fill="none" stroke="black"></path>
@@ -1733,14 +1736,14 @@ The returned Receipt may be combined with the Signed Statement to create a Trans
                 <text x="300" y="676">Replay</text>
                 <text x="344" y="676">Log</text>
               </g>
-            </svg><a href="#section-4-6.1.1" class="pilcrow">¶</a>
+            </svg><a href="#section-4-8.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-relationship-of-concepts-in" class="selfRef">Relationship of Concepts in SCITT</a>
         </figcaption></figure>
 </div>
-<p id="section-4-7">The subsequent sections describe the main concepts, namely Transparency Service, Signed Statements, Registration, and Transparent Statements in more detail.<a href="#section-4-7" class="pilcrow">¶</a></p>
+<p id="section-4-9">The subsequent sections describe the main concepts, namely Transparency Service, Signed Statements, Registration, and Transparent Statements in more detail.<a href="#section-4-9" class="pilcrow">¶</a></p>
 <div id="sec-transparency-service">
 <section id="section-4.1">
         <h3 id="name-transparency-service">

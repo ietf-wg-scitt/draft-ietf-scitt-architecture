@@ -398,7 +398,7 @@ Table of Contents
    COSE Signed Merkle Tree Proof document
    [I-D.draft-ietf-cose-merkle-tree-proofs].
 
-   Figure 1 illustrates entities and processes that comprise a
+   Figure 1 illustrates the roles and processes that comprise a
    Transparency Service independent of any one use case.
 
    This section describes the three main roles and associated processes
@@ -423,6 +423,15 @@ Table of Contents
       -  or replay all the Transparent Statements to check for the
          consistency of the Transparency Service's Append-only Log (e.g.
          auditing)
+
+   In addition, Figure 1 illustrates multiple Transparency Services and
+   multiple Receipts as a single Signed Statement MAY be registered with
+   one or more Transparency Service.  Each Transparency Service produces
+   a Receipt, which may be aggregated in a single Transparent Statement,
+   demonstrating the Signed Statement was registered by multiple
+   Transparency Services.
+
+   The arrows indicate the flow of information.
 
     .----------.
    |  Artifact  |
