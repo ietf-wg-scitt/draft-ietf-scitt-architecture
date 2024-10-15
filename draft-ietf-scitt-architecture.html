@@ -2019,26 +2019,21 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
 Authentication and authorization are implementation-specific and out of scope of the SCITT architecture.<a href="#section-4.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-4.3-2.2">
-            <p id="section-4.3-2.2.1"><strong>Issuer Verification:</strong> The Transparency Service <span class="bcp14">MUST</span> perform signature verification, as defined in <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.4" class="relref">Section 4.4</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>, and <span class="bcp14">MAY</span> perform additional checks as part of its Registration Policy.<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-2.2.1"><strong>TS Signed Statement Verification and Validation:</strong> The Transparency Service <span class="bcp14">MUST</span> perform signature verification per <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.4" class="relref">Section 4.4</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span> and <span class="bcp14">MUST</span> verify the signature of the Signed Statement with the signature algorithm and verification key of the Issuer per <span>[<a href="#RFC9360" class="cite xref">RFC9360</a>]</span>.
+The Transparency Service <span class="bcp14">MUST</span> also check the Signed Statement includes the required protected headers.
+The Transparency Service <span class="bcp14">MAY</span> validate the Signed Statement payload in order to enforce domain specific registration policies that apply to specific content types.<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-4.3-2.3">
-            <p id="section-4.3-2.3.1"><strong>Signature verification:</strong> The Transparency Service <span class="bcp14">MUST</span> verify the signature of the Signed Statement, as described in <span>[<a href="#RFC9360" class="cite xref">RFC9360</a>]</span>, using the signature algorithm and verification key of the Issuer.<a href="#section-4.3-2.3.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-2.3.1"><strong>Apply Registration Policy:</strong> The Transparency Service <span class="bcp14">MUST</span> check the attributes required by a Registration Policy are present in the protected headers.
+  Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.<a href="#section-4.3-2.3.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-4.3-2.4">
-            <p id="section-4.3-2.4.1"><strong>Signed Statement validation:</strong> The Transparency Service <span class="bcp14">MUST</span> check that the Signed Statement includes the required protected headers.
-The Transparency Service <span class="bcp14">MAY</span> validate the Signed Statement payload in order to enforce domain specific registration policies that apply to specific content types.<a href="#section-4.3-2.4.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-2.4.1"><strong>Register the Signed Statement</strong> to the Append-only Log.<a href="#section-4.3-2.4.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-4.3-2.5">
-            <p id="section-4.3-2.5.1"><strong>Apply Registration Policy:</strong> The Transparency Service <span class="bcp14">MUST</span> check the attributes required by a Registration Policy are present in the protected headers.
-  Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.<a href="#section-4.3-2.5.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-4.3-2.6">
-            <p id="section-4.3-2.6.1"><strong>Register the Signed Statement</strong> to the Append-only Log.<a href="#section-4.3-2.6.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-4.3-2.7">
-            <p id="section-4.3-2.7.1"><strong>Return the Receipt</strong>, which <span class="bcp14">MAY</span> be asynchronous from Registration.
+            <p id="section-4.3-2.5.1"><strong>Return the Receipt</strong>, which <span class="bcp14">MAY</span> be asynchronous from Registration.
 The Transparency Service <span class="bcp14">MUST</span> be able to provide a Receipt for all registered Signed Statements.
-Details about generating Receipts are described in <a href="#Receipt" class="auto internal xref">Section 4.4</a>.<a href="#section-4.3-2.7.1" class="pilcrow">¶</a></p>
+Details about generating Receipts are described in <a href="#Receipt" class="auto internal xref">Section 4.4</a>.<a href="#section-4.3-2.5.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
 <p id="section-4.3-3">The last two steps may be shared between a batch of Signed Statements registered in the Append-only Log.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
