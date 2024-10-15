@@ -328,14 +328,15 @@ Most of the details of the Receipt's contents are specified in the COSE Signed M
 
 {{fig-concept-relationship}} illustrates the three main roles and associated processes that comprise a Transparency Service, independent of any one use case.
 
-1. Issuers that use their credentials to create Signed Statements about Artifacts.
-   Issuer Credentials are also used to verify the Signed Statements within the Transparency Service registration process, and Transparent Statements.
-1. Transparency Services that evaluate Signed Statements against Registration Policies, using credentials to sign Receipts upon successful Registration.
-1. Relying Parties that:
-     - collect Receipts, combining them with the Signed Statements to create a Transparent Statement;
-     - retrieve Transparent Statements for analysis of Statements about Artifacts;
-     - uses credentials to authenticate the Signed Statement and the Receipts of the Transparent Statement (e.g. verification);
-     - replay a series of Transparent Statements checking for the consistency of the Transparency Service's Append-only Log (e.g. auditing)
+This section describes the three main roles and associated processes in SCITT:
+
+- Issuers that use their credentials to create Signed Statements about Artifacts
+- Transparency Services that evaluate Signed Statements against Registration Policies, producing Receipts upon successful Registration.
+The returned Receipt may be combined with the Signed Statement to create a Transparent Statement.
+- Relying Parties that:
+  - collect Receipts of Signed Statements for subsequent registration of Transparent Statements;
+  - retrieve Transparent Statements for analysis of Statements about Artifacts themselves (e.g. verification);
+  - or replay all the Transparent Statements to check for the consistency of the Transparency Service's Append-only Log (e.g. auditing)
 
 In addition, {{fig-concept-relationship}} illustrates multiple Transparency Services and multiple Receipts as a single Signed Statement MAY be registered with one or more Transparency Service.
 Each Transparency Service produces a Receipt, which may be aggregated in a single Transparent Statement, demonstrating the Signed Statement was registered by multiple Transparency Services.
