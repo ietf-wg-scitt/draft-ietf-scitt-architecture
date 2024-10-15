@@ -228,9 +228,11 @@ Over time, an Issuer may register new Signed Statements about an Artifact in a T
 Receipt:
 
 : a cryptographic proof that a Signed Statement is included in the Append-only Log.
-Receipts are based on Signed Inclusion Proofs, such as those as described in COSE Signed Merkle Tree Proofs {{-COMETRE}};
-they can be built on different verifiable data structures, not just binary merkle trees.
-A Receipt consists of a Transparency Service-specific inclusion proof for the Signed Statement, a signature by the Transparency Service of the state of the Append-only Log after the inclusion, and additional metadata (contained in the signature's protected headers) to assist in auditing.
+Receipts demonstrate the inclusion of Signed Statements in the Append-only Log of a Transparency Service and have a specific abstract role in Transparency as defined in this document.
+A Receipt combines a signature by the Transparency Service of the state of the Append-only Log after the inclusion with additional metadata (contained in the signature's protected headers) to assist in auditing.
+Receipts can be based on Signed Inclusion Proofs, such as those described in COSE Signed Merkle Tree Proofs {{-COMETRE}}; they can be built on different verifiable data structures, not just binary Merkle trees.
+The cryptographic proof of inclusion for a Receipt is a Transparency Service-specific detail.
+It is natural that Transparency Services support signed proofs for purposes other than demonstrating inclusion in an Append-only log; however, those are not Receipts.
 
 Registration:
 
