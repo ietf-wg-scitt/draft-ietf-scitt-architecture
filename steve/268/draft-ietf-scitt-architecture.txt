@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 11 April 2025                                        C. Fournet
+Expires: 18 April 2025                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                          8 October 2024
+                                                         15 October 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 April 2025.
+   This Internet-Draft will expire on 18 April 2025.
 
 Copyright Notice
 
@@ -406,29 +406,28 @@ Table of Contents
    that comprise a Transparency Service, independent of any one use
    case.
 
-   1.  Issuers that use their credentials to create Signed Statements
-       about Artifacts.  Issuer Credentials are also used to verify the
-       Signed Statements within the Transparency Service registration
-       process, and Transparent Statements.
+   This section describes the three main roles and associated processes
+   in SCITT:
 
-   2.  Transparency Services that evaluate Signed Statements against
-       Registration Policies, using credentials to sign Receipts upon
-       successful Registration.
+   *  Issuers that use their credentials to create Signed Statements
+      about Artifacts
 
-   3.  Relying Parties that:
+   *  Transparency Services that evaluate Signed Statements against
+      Registration Policies, producing Receipts upon successful
+      Registration.  The returned Receipt may be combined with the
+      Signed Statement to create a Transparent Statement.
 
-       *  collect Receipts, combining them with the Signed Statements to
-          create a Transparent Statement;
+   *  Relying Parties that:
 
-       *  retrieve Transparent Statements for analysis of Statements
-          about Artifacts;
+      -  collect Receipts of Signed Statements for subsequent
+         registration of Transparent Statements;
 
-       *  uses credentials to authenticate the Signed Statement and the
-          Receipts of the Transparent Statement (e.g. verification);
+      -  retrieve Transparent Statements for analysis of Statements
+         about Artifacts themselves (e.g. verification);
 
-       *  replay a series of Transparent Statements checking for the
-          consistency of the Transparency Service's Append-only Log
-          (e.g. auditing)
+      -  or replay all the Transparent Statements to check for the
+         consistency of the Transparency Service's Append-only Log (e.g.
+         auditing)
 
    In addition, Figure 1 illustrates multiple Transparency Services and
    multiple Receipts as a single Signed Statement MAY be registered with
@@ -1299,9 +1298,9 @@ Table of Contents
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-05, 18 June
+              Draft, draft-ietf-cose-merkle-tree-proofs-06, 9 October
               2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-05>.
+              cose-merkle-tree-proofs-06>.
 
    [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <https://www.iana.org/assignments/cwt>.
