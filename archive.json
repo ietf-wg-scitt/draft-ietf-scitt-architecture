@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-15T00:46:37.572336+00:00",
+  "timestamp": "2024-10-17T00:46:02.074237+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5255,7 +5255,7 @@
       "id": "I_kwDOIvmHss6QTYVt",
       "title": "Receipts",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/276",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -5267,8 +5267,8 @@
       ],
       "body": "When the draft talks about receipts does it refers only to inclusion proofs. Can we still talk about receipts, if other proof types are supported by an implementation that those are still called Receipts?\r\n",
       "createdAt": "2024-07-20T18:06:06Z",
-      "updatedAt": "2024-10-08T19:32:04Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-15T15:01:27Z",
+      "closedAt": "2024-10-15T15:01:27Z",
       "comments": [
         {
           "author": "robinbryce",
@@ -5304,6 +5304,13 @@
           "body": "Thanks, @robinbryce\r\nA PR would be great to review to formalize the discussion  ",
           "createdAt": "2024-10-08T19:20:01Z",
           "updatedAt": "2024-10-08T19:20:01Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "PR added, but I think it warants some discussion regarding possible tension with the hard requirement for COSE-Receipts",
+          "createdAt": "2024-10-15T10:14:05Z",
+          "updatedAt": "2024-10-15T10:14:05Z"
         }
       ]
     },
@@ -5332,7 +5339,7 @@
       "id": "I_kwDOIvmHss6QTY-j",
       "title": "Registration",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/279",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -5343,8 +5350,8 @@
       ],
       "body": "The three steps from Section 4.3 on Registration are essentially the same. To verify the signature you have to retrieve the issuer credentials and you have to do item 4.\r\n\r\n\r\n   2.  *Issuer Verification:* The Transparency Service MUST\r\n       syntactically validate the Issuer's identity Claims, which may be\r\n       different than the Client identity.\r\n\r\n   3.  *Signature verification:* The Transparency Service MUST verify\r\n       the signature of the Signed Statement, as described in [RFC9360],\r\n       using the signature algorithm and verification key of the Issuer.\r\n\r\n   4.  *Signed Statement validation:* The Transparency Service MUST\r\n       check that the Signed Statement includes the required protected\r\n       headers listed above.  The Transparency Service MAY verify the\r\n       Statement payload format, content and other optional properties.\r\n\r\n\r\n",
       "createdAt": "2024-07-20T18:12:47Z",
-      "updatedAt": "2024-10-08T19:32:41Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-15T15:10:43Z",
+      "closedAt": "2024-10-15T15:10:42Z",
       "comments": []
     },
     {
@@ -5499,7 +5506,7 @@
         },
         {
           "author": "aj-stein",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "> Proposing we close, and leave TLS to be API specific (aka SCRAPI)\r\n> \r\n> If no objections, or more specifically no PRs are submitted by Oct 8, 2024, I propose we close this issue.\r\n\r\nI support closing it out, and I can support waiting until October 8th as well. :smile: ",
           "createdAt": "2024-10-01T01:30:05Z",
           "updatedAt": "2024-10-01T01:30:05Z"
@@ -5558,7 +5565,7 @@
       "id": "I_kwDOIvmHss6ZYxGq",
       "title": "Consider allowing x5chain as a protected header parameter",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/307",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -5567,8 +5574,8 @@
       "labels": [],
       "body": "The current text mandates the presence of `x5t` in the protected header when using x509: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/6a81fa82b5c6eef5a6b66bc3a36fc4615ac2dc56/draft-ietf-scitt-architecture.md?plain=1#L507, and allows an unprotected x5chain: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/6a81fa82b5c6eef5a6b66bc3a36fc4615ac2dc56/draft-ietf-scitt-architecture.md?plain=1#L422\r\n\r\nI propose that the specification allows `x5chain` in the protected header, ideally as a substitute for `x5t`, but in addition otherwise. The motivation for this change is to add a degree of integrity protection over `x5chain`, and blame for malicious payload otherwise.\r\nThe current set up does not authenticate or integrity protect the contents of x5chain, only the leaf, which opens up some opportunities for attacks targeting x509 parsers. I can see why this minimal binding can be desirable in some cases (caching large cert chains), but servers that wish to be stricter to reduce their attack surface should be able to.",
       "createdAt": "2024-10-08T14:37:34Z",
-      "updatedAt": "2024-10-08T19:33:29Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-15T14:58:59Z",
+      "closedAt": "2024-10-15T14:58:59Z",
       "comments": []
     }
   ],
@@ -32788,7 +32795,7 @@
       "labels": [],
       "body": "Resolving the duplicity of a Signed Statement, which is a COSE Envelope.\r\n\r\nNOTE: Updating the image to reflect the PR's current state\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/7647382/b0de8d83-dbc1-4d48-8042-a2c5ca93a3cc)\r\n",
       "createdAt": "2024-05-23T21:19:52Z",
-      "updatedAt": "2024-06-18T16:16:47Z",
+      "updatedAt": "2024-10-15T16:04:44Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "c908b73f459d8c817bbb7be7f0e4369e703bb0e1",
@@ -33104,7 +33111,7 @@
       "labels": [],
       "body": "fixes #243 ",
       "createdAt": "2024-06-25T18:49:49Z",
-      "updatedAt": "2024-07-02T14:12:46Z",
+      "updatedAt": "2024-10-15T16:05:35Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "3124f380f72de49d5a69c1f94524d01b4084f6af",
@@ -33187,7 +33194,7 @@
       "labels": [],
       "body": "This change externalizes the two normative definitions for transparent and signed statements, respectively, and adds them to the final draft with the kramdown `includes` directive. This change allows developers to use a git sub-module or programmatically use the git version of the spec to have utilities for code generation and other capabilities use the definitions without more cumbersome extraction routines for the source Markdown or RFC XML representations of the spec.\r\n\r\nBelow is a local eval copy of the HTML representation of the draft with the `include`d files properly integrated.\r\n\r\n![image](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/assets/94922603/db28cebc-b351-4271-8f5f-751c6615879c)\r\n",
       "createdAt": "2024-06-28T04:51:01Z",
-      "updatedAt": "2024-07-02T01:46:51Z",
+      "updatedAt": "2024-10-15T16:05:35Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "3124f380f72de49d5a69c1f94524d01b4084f6af",
@@ -33671,7 +33678,7 @@
       "labels": [],
       "body": "Clarify the terminology around expiry and refreshing receipts.",
       "createdAt": "2024-07-02T19:03:19Z",
-      "updatedAt": "2024-07-02T19:04:19Z",
+      "updatedAt": "2024-10-15T16:05:34Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "issue-232",
       "baseRefOid": "3124f380f72de49d5a69c1f94524d01b4084f6af",
@@ -33699,7 +33706,7 @@
       "labels": [],
       "body": "Fixes #232 ",
       "createdAt": "2024-07-02T19:05:30Z",
-      "updatedAt": "2024-07-08T16:32:07Z",
+      "updatedAt": "2024-10-15T16:04:43Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "55a11cdea971942e45101f125439294d30c88a5a",
@@ -34149,7 +34156,7 @@
       "labels": [],
       "body": "fixes #226 ",
       "createdAt": "2024-07-05T18:16:21Z",
-      "updatedAt": "2024-07-08T14:34:37Z",
+      "updatedAt": "2024-10-15T16:05:32Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "55a11cdea971942e45101f125439294d30c88a5a",
@@ -34204,7 +34211,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-08T16:38:30Z",
-      "updatedAt": "2024-07-08T16:41:55Z",
+      "updatedAt": "2024-10-15T16:04:38Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "c37a0a9386dd21f6f160df059da4a1134d278aee",
@@ -34232,7 +34239,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T16:33:54Z",
-      "updatedAt": "2024-07-21T23:06:07Z",
+      "updatedAt": "2024-10-15T16:04:33Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -34394,7 +34401,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T16:35:18Z",
-      "updatedAt": "2024-07-21T23:08:45Z",
+      "updatedAt": "2024-10-15T16:04:36Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -34508,7 +34515,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T17:07:05Z",
-      "updatedAt": "2024-07-21T23:09:07Z",
+      "updatedAt": "2024-10-15T16:05:17Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -34655,7 +34662,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T17:11:38Z",
-      "updatedAt": "2024-07-21T23:09:53Z",
+      "updatedAt": "2024-10-15T16:05:16Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -34777,7 +34784,7 @@
       "labels": [],
       "body": "Reason: Term was used only twice, not defined, and does not seem to play an important role.\r\n\r\n![image](https://github.com/user-attachments/assets/cf3816c1-a967-4b84-8fbd-e352d833abff)\r\n",
       "createdAt": "2024-07-20T17:15:09Z",
-      "updatedAt": "2024-07-21T23:11:13Z",
+      "updatedAt": "2024-10-15T16:04:35Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -34911,7 +34918,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T17:16:05Z",
-      "updatedAt": "2024-07-21T23:11:32Z",
+      "updatedAt": "2024-10-15T16:05:14Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -35058,7 +35065,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T17:20:01Z",
-      "updatedAt": "2024-07-21T23:17:07Z",
+      "updatedAt": "2024-10-15T16:05:09Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "7668e69e8e814e0a156cf905797ef25e167312f2",
@@ -35187,7 +35194,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T17:34:27Z",
-      "updatedAt": "2024-07-21T23:17:42Z",
+      "updatedAt": "2024-10-15T16:05:10Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -35348,7 +35355,7 @@
       "labels": [],
       "body": "![image](https://github.com/user-attachments/assets/bdb550e0-2d22-4256-9c02-cb308deaa11a)\r\n",
       "createdAt": "2024-07-20T17:39:52Z",
-      "updatedAt": "2024-07-31T17:27:14Z",
+      "updatedAt": "2024-10-15T16:04:32Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "a96862f46333a2837529409fae04addb545d52eb",
@@ -35678,7 +35685,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T17:42:13Z",
-      "updatedAt": "2024-07-21T23:19:58Z",
+      "updatedAt": "2024-10-15T16:05:28Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -35772,7 +35779,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T17:56:32Z",
-      "updatedAt": "2024-07-30T14:53:59Z",
+      "updatedAt": "2024-10-15T16:04:33Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -36095,7 +36102,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T17:58:02Z",
-      "updatedAt": "2024-07-21T23:20:56Z",
+      "updatedAt": "2024-10-15T16:05:28Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -36189,7 +36196,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:02:52Z",
-      "updatedAt": "2024-07-21T23:22:12Z",
+      "updatedAt": "2024-10-15T16:05:15Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -36336,7 +36343,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:11:02Z",
-      "updatedAt": "2024-07-21T23:22:38Z",
+      "updatedAt": "2024-10-15T16:05:27Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -36456,7 +36463,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:17:39Z",
-      "updatedAt": "2024-09-03T23:26:03Z",
+      "updatedAt": "2024-10-15T16:04:24Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -37171,7 +37178,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:20:18Z",
-      "updatedAt": "2024-07-21T23:05:12Z",
+      "updatedAt": "2024-10-15T16:05:16Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -37285,7 +37292,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:26:10Z",
-      "updatedAt": "2024-07-21T23:24:08Z",
+      "updatedAt": "2024-10-15T16:04:34Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -37428,7 +37435,7 @@
       "labels": [],
       "body": "I generalized the description. You need to rotate all keys.",
       "createdAt": "2024-07-20T18:28:15Z",
-      "updatedAt": "2024-07-30T14:36:06Z",
+      "updatedAt": "2024-10-15T16:05:17Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -37797,7 +37804,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:32:50Z",
-      "updatedAt": "2024-09-03T14:46:30Z",
+      "updatedAt": "2024-10-15T16:04:23Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
@@ -38564,7 +38571,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-20T18:37:19Z",
-      "updatedAt": "2024-07-21T23:03:04Z",
+      "updatedAt": "2024-10-15T16:04:37Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -38724,7 +38731,7 @@
       "labels": [],
       "body": "Zero trust is a meaningless marketing term",
       "createdAt": "2024-07-20T19:34:39Z",
-      "updatedAt": "2024-07-21T23:00:51Z",
+      "updatedAt": "2024-10-15T16:05:18Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -38831,7 +38838,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-21T13:53:12Z",
-      "updatedAt": "2024-07-21T23:08:06Z",
+      "updatedAt": "2024-10-15T16:04:35Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "cace85a85d6f898f81b2dde7af8f7a934ed694b4",
@@ -39012,7 +39019,7 @@
       "labels": [],
       "body": "You have to explain what this means and include reference. Since you are likely not going to do this, I suggest to delete this sentence.",
       "createdAt": "2024-07-22T23:13:41Z",
-      "updatedAt": "2024-08-01T16:41:43Z",
+      "updatedAt": "2024-10-15T16:05:07Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "173dee5b2a24f2b219dcd97b2d6b65eb1ce24a2e",
@@ -39194,7 +39201,7 @@
       "labels": [],
       "body": "I would not assume certain deployment situations. It is likely that there are many Transparency Services that are not necessarily publically accessible to everyone and the entire architecture would still be totally valid",
       "createdAt": "2024-07-22T23:16:10Z",
-      "updatedAt": "2024-07-30T14:10:16Z",
+      "updatedAt": "2024-10-15T16:05:08Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "173dee5b2a24f2b219dcd97b2d6b65eb1ce24a2e",
@@ -39296,7 +39303,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-23T00:40:11Z",
-      "updatedAt": "2024-07-30T14:09:03Z",
+      "updatedAt": "2024-10-15T16:05:07Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "173dee5b2a24f2b219dcd97b2d6b65eb1ce24a2e",
@@ -39379,7 +39386,7 @@
       "labels": [],
       "body": "Remove ambiguous details reported in  (fixes #269).",
       "createdAt": "2024-08-06T13:30:59Z",
-      "updatedAt": "2024-08-06T14:38:35Z",
+      "updatedAt": "2024-10-15T16:05:06Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "c4b24da338673d3d41a83a93c77f49c150735120",
@@ -39449,7 +39456,7 @@
       "labels": [],
       "body": "Address feedback from Hannes in #282.",
       "createdAt": "2024-08-06T14:13:00Z",
-      "updatedAt": "2024-08-06T14:43:18Z",
+      "updatedAt": "2024-10-15T16:05:05Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "c4b24da338673d3d41a83a93c77f49c150735120",
@@ -39519,7 +39526,7 @@
       "labels": [],
       "body": "Fixes #273 with unclear definition and regex requirements with DN currently in draft.",
       "createdAt": "2024-08-06T20:00:55Z",
-      "updatedAt": "2024-09-17T14:49:48Z",
+      "updatedAt": "2024-10-15T16:05:03Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
@@ -39687,7 +39694,7 @@
       "labels": [],
       "body": "Closes #268.",
       "createdAt": "2024-08-07T03:45:51Z",
-      "updatedAt": "2024-10-01T14:46:57Z",
+      "updatedAt": "2024-10-15T16:04:21Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
@@ -39941,7 +39948,7 @@
             "abbreviatedOid": "eb58640"
           },
           "author": "aj-stein",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-10-01T01:26:58Z",
@@ -40010,7 +40017,7 @@
       "labels": [],
       "body": "Closes #263.",
       "createdAt": "2024-08-07T04:42:07Z",
-      "updatedAt": "2024-10-01T16:29:10Z",
+      "updatedAt": "2024-10-15T16:05:02Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
@@ -40160,7 +40167,7 @@
       "labels": [],
       "body": "There is no explanation in draft, GitHub, or mailing lists about resolved key manifest. This change proposes replacement with protected header like other portions of the document. Fixes #275.",
       "createdAt": "2024-08-07T13:26:05Z",
-      "updatedAt": "2024-09-03T23:36:50Z",
+      "updatedAt": "2024-10-15T16:05:01Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
@@ -40204,7 +40211,7 @@
       "labels": [],
       "body": "These proposed changes, if accepted, fix #277.",
       "createdAt": "2024-08-07T18:00:17Z",
-      "updatedAt": "2024-09-03T23:35:54Z",
+      "updatedAt": "2024-10-15T16:04:25Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "87e995196dedf30a8c58508e51b93a9ea9e989fa",
@@ -40388,7 +40395,7 @@
       "labels": [],
       "body": "Fixes #270 ",
       "createdAt": "2024-10-01T00:08:38Z",
-      "updatedAt": "2024-10-08T15:03:30Z",
+      "updatedAt": "2024-10-15T16:04:18Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "7615e71467cb9cf8cd7ffbb19048e3eda6f1f3c2",
@@ -40489,7 +40496,7 @@
       "id": "PR_kwDOIvmHss59L9GC",
       "title": "Add clarity for lines and duplicate boxes",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/305",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -40498,17 +40505,19 @@
       "labels": [],
       "body": "Note: This PR assumes #300 is merged, and may need to be updated to fit within the context of #300's final text. \r\n\r\nFixes #268 \r\n\r\n",
       "createdAt": "2024-10-01T00:50:24Z",
-      "updatedAt": "2024-10-08T19:32:19Z",
+      "updatedAt": "2024-10-15T16:03:49Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "af8a14c0ecf1daf6599371a2e43f0599f77fa250",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/268",
-      "headRefOid": "5a83fded6f032d4480ff3bf908a8d5be2fe78018",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "fc71453b3ad61692baa7f468194f68265fa2b32b",
+      "closedAt": "2024-10-15T15:58:34Z",
+      "mergedAt": "2024-10-15T15:58:34Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "e963de6c5a5c24f37543a6d014f836d9ae8b3ec1"
+      },
       "comments": [],
       "reviews": [
         {
@@ -40690,6 +40699,45 @@
               "updatedAt": "2024-10-08T14:17:21Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPlIh",
+          "commit": {
+            "abbreviatedOid": "5a83fde"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-15T15:04:42Z",
+          "updatedAt": "2024-10-15T15:04:42Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPqyc",
+          "commit": {
+            "abbreviatedOid": "dba1ae0"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-15T15:10:03Z",
+          "updatedAt": "2024-10-15T15:10:03Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPrJM",
+          "commit": {
+            "abbreviatedOid": "5a83fde"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-15T15:10:27Z",
+          "updatedAt": "2024-10-15T15:10:27Z",
+          "comments": []
         }
       ]
     },
@@ -40705,7 +40753,7 @@
       "labels": [],
       "body": "Closes https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/285",
       "createdAt": "2024-10-08T14:32:35Z",
-      "updatedAt": "2024-10-08T14:44:17Z",
+      "updatedAt": "2024-10-15T16:04:59Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "6a81fa82b5c6eef5a6b66bc3a36fc4615ac2dc56",
@@ -40757,6 +40805,627 @@
           "body": "",
           "createdAt": "2024-10-08T14:43:56Z",
           "updatedAt": "2024-10-08T14:43:56Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 308,
+      "id": "PR_kwDOIvmHss5-prcB",
+      "title": "Update the definition of Receipts",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/308",
+      "state": "MERGED",
+      "author": "robinbryce",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "* Emphasise the role of Receipts in the abstract definition of Transparency\r\n* Specifically acknowlege that signed proofs for other purposes are not excluded.\r\n* Emphasise that the specific cryptographic proof is a transparency service implementation detail.\r\n\r\nThe effort to both reduce the definition and also foreshadow the role of receipts and non-exclusivity of the proof types, seems to be about a net 0 line count change.\r\n\r\nThis interpretation seems at odds with blocking on COSE-Receipts, but to me consistent with the definition of transparency in the document.",
+      "createdAt": "2024-10-15T10:05:15Z",
+      "updatedAt": "2024-10-15T15:01:26Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "59c44dc1537e42aadf56cc1e20e9514f8af03497",
+      "headRepository": "robinbryce/draft-ietf-scitt-architecture",
+      "headRefName": "robin/issue-276-receipts",
+      "headRefOid": "ae24c9b660886fb11cac7f99c14a319de12e42d8",
+      "closedAt": "2024-10-15T15:01:26Z",
+      "mergedAt": "2024-10-15T15:01:26Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "b468e21f25cf4d00281473167a8f18ceb41346ae"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6NMZS_",
+          "commit": {
+            "abbreviatedOid": "5988859"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T10:16:01Z",
+          "updatedAt": "2024-10-15T10:16:02Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "A Receipt consists of a Transparency Service-specific inclusion proof for the Signed Statement, a signature by the Transparency Service of the state of the Append-only Log after the inclusion, and additional metadata (contained in the signature's protected headers) to assist in auditing.",
+              "createdAt": "2024-10-15T10:16:01Z",
+              "updatedAt": "2024-10-15T10:16:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NMZn5",
+          "commit": {
+            "abbreviatedOid": "5988859"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T10:16:39Z",
+          "updatedAt": "2024-10-15T10:16:39Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I think, we should stick with the Original text here, which was much crisp and clear!\r\n\r\nCan i please ask, why the need for this re-alignment? What is the ask ?",
+              "createdAt": "2024-10-15T10:16:39Z",
+              "updatedAt": "2024-10-15T10:16:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NMaHr",
+          "commit": {
+            "abbreviatedOid": "5988859"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T10:17:37Z",
+          "updatedAt": "2024-10-15T10:17:37Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I mean Line 232 can be replaced with the original text from left!\r\n\r\nRest all re-alignment can be taken from your PR",
+              "createdAt": "2024-10-15T10:17:37Z",
+              "updatedAt": "2024-10-15T10:17:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NMaQw",
+          "commit": {
+            "abbreviatedOid": "5988859"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "See my comments please!",
+          "createdAt": "2024-10-15T10:17:52Z",
+          "updatedAt": "2024-10-15T10:17:52Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NNAqN",
+          "commit": {
+            "abbreviatedOid": "5988859"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T11:12:21Z",
+          "updatedAt": "2024-10-15T11:12:21Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "Yep, the ask was this issue: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/276 it was specifically asking if a Receipt was just an inclusion proof or something else.\r\n\r\nOn that issue we discussed fore shadowing the definition of transprency, which defines receipts as, essentially, signed inclusion proofs.",
+              "createdAt": "2024-10-15T11:12:21Z",
+              "updatedAt": "2024-10-15T11:12:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NNBKj",
+          "commit": {
+            "abbreviatedOid": "5988859"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T11:13:23Z",
+          "updatedAt": "2024-10-15T11:13:23Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I understand the concerne was that the lack of clarity on that made it unclear whether or how other proof types, specific to the implementation, should be described. In this pr I'm just saying 'not receipts'",
+              "createdAt": "2024-10-15T11:13:23Z",
+              "updatedAt": "2024-10-15T11:13:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NNDnX",
+          "commit": {
+            "abbreviatedOid": "5988859"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T11:17:58Z",
+          "updatedAt": "2024-10-15T11:17:58Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I think reducing the entire defintion to just\r\n\r\n\"Receipts demonstrate the inclusion of Signed Statements in the Append-only Log of a Transparency Service and have a specific abstract role in Transparency as defined in this document.\"\r\n\r\nAnd nothing else, would address the original issue. Receipts can't both be an abstract notion and also a specific prescription imo",
+              "createdAt": "2024-10-15T11:17:58Z",
+              "updatedAt": "2024-10-15T11:17:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NOFes",
+          "commit": {
+            "abbreviatedOid": "5988859"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T13:03:29Z",
+          "updatedAt": "2024-10-15T13:03:29Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "@yogeshbdeshpande a \"less is more\" update based on your review I think",
+              "createdAt": "2024-10-15T13:03:29Z",
+              "updatedAt": "2024-10-15T13:03:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NOOR2",
+          "commit": {
+            "abbreviatedOid": "ad998d2"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "ok, LGTM!",
+          "createdAt": "2024-10-15T13:16:13Z",
+          "updatedAt": "2024-10-15T13:16:13Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NN_cS",
+          "commit": {
+            "abbreviatedOid": "ad998d2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "My comment is nonblocking",
+          "createdAt": "2024-10-15T12:54:34Z",
+          "updatedAt": "2024-10-15T14:29:43Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "The draft referenced above says they are.\n\nIt defines receipt as a signed \"proof\" of some type for some verifiable data structure.\n\nIt provides specific examples for inclusion and consistency.\n\nIt doesn't prevent other verifiable data structures or other proof types (such as proofs of non inclusion) from being used or called receipts.\n\nI think it is fine for a SCITT Receipt to be only a signed inclusion proof, or only an inclusion proof in a specific verifiable data structure... Assuming that's what the SCITT WG wants SCITT Receipts to be.\n\nThis text closes the door to using the term SCITT Receipt to describe a signed consistency proof. Why is this the right thing to do for SCITT?",
+              "createdAt": "2024-10-15T12:54:34Z",
+              "updatedAt": "2024-10-15T14:29:43Z"
+            },
+            {
+              "originalPosition": 10,
+              "body": "The COSE proof types are verifiable data structure specific, I think you mean that the \"verifiable data structure\" is a transparency service specific detail, and that correspondingly there is no interoperability unless the same data structures are chosen.",
+              "createdAt": "2024-10-15T12:57:16Z",
+              "updatedAt": "2024-10-15T14:29:43Z"
+            },
+            {
+              "originalPosition": 8,
+              "body": "I agree with this comment.\nA SCITT Receipt is a specific data structure, defined in CDDL, that profiles a COSE Receipt.... But SCITT Receipts have never supported proof types other than inclusion.\n\nIf the goal is to make sure they never do, we can use MUST language, we don't need to redefine receipt.",
+              "createdAt": "2024-10-15T13:00:27Z",
+              "updatedAt": "2024-10-15T14:29:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPOk2",
+          "commit": {
+            "abbreviatedOid": "ad998d2"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T14:36:59Z",
+          "updatedAt": "2024-10-15T14:37:00Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nReceipts are signed proofs of verifiable data-structure properties.\r\nThe types of Receipts MUST support inclusion proofs and MAY support Receipts for other proof types, such as consistency proofs.\r\n```\r\n",
+              "createdAt": "2024-10-15T14:37:00Z",
+              "updatedAt": "2024-10-15T14:51:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPTiW",
+          "commit": {
+            "abbreviatedOid": "ad998d2"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T14:42:44Z",
+          "updatedAt": "2024-10-15T14:42:44Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "IMO, Receipts are only returned as the result of a request to register a Signed Statement, as proof the registration is complete, or not. Inquiries submitted to Transparency Services will return \"proof\" of a registered Signed Statement, or a negative response - no statement found. These secondary transactions return proofs, not receipts. ",
+              "createdAt": "2024-10-15T14:42:44Z",
+              "updatedAt": "2024-10-15T14:42:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPcK5",
+          "commit": {
+            "abbreviatedOid": "b9382f3"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T14:53:08Z",
+          "updatedAt": "2024-10-15T14:53:08Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nThe types of Receipts MUST support inclusion proofs and MAY support other proof types, such as consistency proofs.\r\n```",
+              "createdAt": "2024-10-15T14:53:08Z",
+              "updatedAt": "2024-10-15T14:53:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPcow",
+          "commit": {
+            "abbreviatedOid": "ae24c9b"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-15T14:53:48Z",
+          "updatedAt": "2024-10-15T14:53:48Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPc2T",
+          "commit": {
+            "abbreviatedOid": "ae24c9b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "From discussion during editors meeting:\r\nLGTM\r\n",
+          "createdAt": "2024-10-15T14:54:06Z",
+          "updatedAt": "2024-10-15T14:54:06Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPaKt",
+          "commit": {
+            "abbreviatedOid": "b9382f3"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T14:50:37Z",
+          "updatedAt": "2024-10-15T14:54:07Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "This feedback seems important. Is there a reason we want to close that door?",
+              "createdAt": "2024-10-15T14:50:37Z",
+              "updatedAt": "2024-10-15T14:54:07Z"
+            },
+            {
+              "originalPosition": 7,
+              "body": "By removing the reference to [the draft-ietf-cose-merkle-tree definition of receipti](https://www.ietf.org/archive/id/draft-ietf-cose-merkle-tree-proofs-06.html#name-terminology), are we separating the definition in SCITT as unique? If so, for what purpose?",
+              "createdAt": "2024-10-15T14:54:01Z",
+              "updatedAt": "2024-10-15T14:54:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPdzQ",
+          "commit": {
+            "abbreviatedOid": "ae24c9b"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-15T14:55:29Z",
+          "updatedAt": "2024-10-15T14:55:29Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 309,
+      "id": "PR_kwDOIvmHss5-qCXO",
+      "title": "Allow protected x5chain",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/309",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Resolves #307, by allowing the use of a single, protected `x5chain` header parameter instead of a protected `x5t` and unprotected `x5chain` pair, for reasons described in the issue.\r\n\r\nThis allows implementations to avoid the risk highlighted at the end of [Security Considerations](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md#security-considerations), at the expense of a slightly larger protected header.\r\n\r\nThis is not a purely theoretical concern, the most widely used signing service inside Microsoft has implemented this choice, and the separate [Open Source signing tool](https://github.com/microsoft/CoseSignTool) from Microsoft has too.",
+      "createdAt": "2024-10-15T10:52:15Z",
+      "updatedAt": "2024-10-15T14:58:58Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "59c44dc1537e42aadf56cc1e20e9514f8af03497",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "allow_protected_x5chain",
+      "headRefOid": "72c324c51e43df66d2230f2f9b5bb7beee3d2385",
+      "closedAt": "2024-10-15T14:58:58Z",
+      "mergedAt": "2024-10-15T14:58:58Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "523583c75cf979a3d3c7e6bb0bbd3c4927dd41e7"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6NN137",
+          "commit": {
+            "abbreviatedOid": "04826a6"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM thanks.\r\n\r\nFor completeness of the record, I was previously against _mandatory_ x5chain and _mandatory_ deep, possibly online checks of the links in the chain. This PR looks eminently sensible for people who _want to_ rely on x5chain",
+          "createdAt": "2024-10-15T12:40:55Z",
+          "updatedAt": "2024-10-15T12:40:55Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NORR1",
+          "commit": {
+            "abbreviatedOid": "04826a6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks for the fix. Seems quite valuable to the overall operation!\r\n\r\nLGTM!",
+          "createdAt": "2024-10-15T13:20:37Z",
+          "updatedAt": "2024-10-15T13:20:37Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NOwP7",
+          "commit": {
+            "abbreviatedOid": "04826a6"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T13:59:32Z",
+          "updatedAt": "2024-10-15T13:59:33Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nThe protected header of the COSE_Sign1 Envelope MUST include either the Issuer's certificate as `x5t` or the chain including the Issuer's certificate as `x5chain`.\r\nIf `x5t` is included in the protected header, an `x5chain` with a leaf certificate corresponding to the `x5t` value MAY be included in the unprotected header.\r\n```",
+              "createdAt": "2024-10-15T13:59:32Z",
+              "updatedAt": "2024-10-15T13:59:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPGjc",
+          "commit": {
+            "abbreviatedOid": "c30a16d"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T14:26:25Z",
+          "updatedAt": "2024-10-15T14:26:26Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "why would we encourage people to put the pull chain in a header?\r\nThey can still verify the full chain when its in an unprotected header.",
+              "createdAt": "2024-10-15T14:26:26Z",
+              "updatedAt": "2024-10-15T14:26:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPJzn",
+          "commit": {
+            "abbreviatedOid": "c30a16d"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T14:30:37Z",
+          "updatedAt": "2024-10-15T14:30:37Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "@OR13 this is covered in #307, they can indeed verify the full chain when it is an unprotected header, but the chain is not authenticated or integrity protected. Assuming perfect verifier implementations, this makes no difference.\r\n\r\nIn a world where x509 parsers sometimes contain (exploitable) bugs however, there is a tradeoff between the size increase and the exposure to those bugs. I am proposing that the spec allows implementations to decide that tradeoff for themselves, rather than mandate one particular choice.",
+              "createdAt": "2024-10-15T14:30:37Z",
+              "updatedAt": "2024-10-15T14:30:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPd6N",
+          "commit": {
+            "abbreviatedOid": "c30a16d"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T14:55:39Z",
+          "updatedAt": "2024-10-15T14:55:40Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nIn essence, when using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certification path from an Issuer's certificate to one of the root certificates most recently registered as a trust anchor by the Transparency Service.\r\n```",
+              "createdAt": "2024-10-15T14:55:40Z",
+              "updatedAt": "2024-10-15T14:55:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPfSF",
+          "commit": {
+            "abbreviatedOid": "72c324c"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-15T14:56:57Z",
+          "updatedAt": "2024-10-15T14:56:57Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPfkb",
+          "commit": {
+            "abbreviatedOid": "72c324c"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Discussion at the editors meeting to approve.\r\nLGTM",
+          "createdAt": "2024-10-15T14:57:17Z",
+          "updatedAt": "2024-10-15T14:57:17Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 310,
+      "id": "PR_kwDOIvmHss5-rngO",
+      "title": "Condense items 2-4 in S4.3 registration section for #279",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/310",
+      "state": "MERGED",
+      "author": "aj-stein",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This editorial change attempts to close #279 per feedback from @hannestschofenig.",
+      "createdAt": "2024-10-15T14:00:23Z",
+      "updatedAt": "2024-10-15T15:10:41Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "59c44dc1537e42aadf56cc1e20e9514f8af03497",
+      "headRepository": "aj-stein/draft-ietf-scitt-architecture",
+      "headRefName": "279-condense-reg-section",
+      "headRefOid": "1a6a9052ad56093ab0afa1d7cfed6c0459cc463c",
+      "closedAt": "2024-10-15T15:10:41Z",
+      "mergedAt": "2024-10-15T15:10:41Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "0d86887aa3a0bbe964161d0e6bc17929076f8257"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6NOzBy",
+          "commit": {
+            "abbreviatedOid": "693c24a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T14:03:02Z",
+          "updatedAt": "2024-10-15T14:03:03Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\n1. **TS Signed Statement Verification and Validation:** The Transparency Service MUST perform signature verification per {{Section 4.4 of RFC9052}} and MUST verify the signature of the Signed Statement with the signature algorithm and verification key of the Issuer per {{RFC9360}}.\r\nIt MUST also check the Signed Statement includes the required protected headers.\r\n```",
+              "createdAt": "2024-10-15T14:03:02Z",
+              "updatedAt": "2024-10-15T14:03:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPhzD",
+          "commit": {
+            "abbreviatedOid": "9b4f891"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-15T14:59:56Z",
+          "updatedAt": "2024-10-15T14:59:56Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nThe Transparency Service MUST also check the Signed Statement includes the required protected headers.\r\n```",
+              "createdAt": "2024-10-15T14:59:56Z",
+              "updatedAt": "2024-10-15T14:59:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPiaJ",
+          "commit": {
+            "abbreviatedOid": "1a6a905"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM for reduction and lack of duplicity",
+          "createdAt": "2024-10-15T15:00:47Z",
+          "updatedAt": "2024-10-15T15:00:47Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPibO",
+          "commit": {
+            "abbreviatedOid": "1a6a905"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-15T15:00:48Z",
+          "updatedAt": "2024-10-15T15:00:48Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6NPi4I",
+          "commit": {
+            "abbreviatedOid": "1a6a905"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-15T15:01:28Z",
+          "updatedAt": "2024-10-15T15:01:28Z",
           "comments": []
         }
       ]
