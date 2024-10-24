@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-22T00:46:56.907517+00:00",
+  "timestamp": "2024-10-24T00:46:00.634733+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -1381,8 +1381,8 @@
           "updatedAt": "2023-03-09T23:28:45Z"
         },
         {
-          "author": "pdxjohnny",
-          "authorAssociation": "CONTRIBUTOR",
+          "author": "johnandersen777",
+          "authorAssociation": "NONE",
           "body": "Potentially related, hashing claims for use as entry IDs: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/79#issuecomment-1767445443",
           "createdAt": "2023-10-18T03:21:33Z",
           "updatedAt": "2023-10-18T03:21:59Z"
@@ -1922,8 +1922,8 @@
       "closedAt": "2023-12-05T15:38:52Z",
       "comments": [
         {
-          "author": "pdxjohnny",
-          "authorAssociation": "CONTRIBUTOR",
+          "author": "johnandersen777",
+          "authorAssociation": "NONE",
           "body": "Running into this issue in https://github.com/scitt-community/scitt-api-emulator/pull/27 as well.  Would be great to return an object in addition to or instead of a string. Or allow for other properties which would be fully content-typeable to a custom response object within the error response on claim insert failure.\r\n\r\nLack of this prevents an automated conversation to resolve issues with claim insertion. Human readable strings are great, but ideally a human doesn't even get involved and machines can auto remediate issues due to detailed failure reasoning. This way the a human readable string might only be needed after a failed machine driven insert conversation (more than one call response).\r\n\r\nFor example  if the identity is an OIDC token with an invalid subject, the policy error could say what the subject and or other fields should contain or be set to.\r\n\r\n- References\r\n  - https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#example-requiring-a-reusable-workflow\r\n  - https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/using-openid-connect-with-reusable-workflows\r\n  - https://github.com/sigstore/fulcio/issues/305) mentions wanting `job_workflow_ref,repository_id,repository_owner_id` to effectively pin auth to a known workflow. Ideally this expands to attestable stacks, where stack is logged in SCITT, i.e. secure boot (example: [ChromeOS: Attesting Device Mode](https://www.chromium.org/developers/design-documents/tpm-usage/#attesting-device-mode)) and TEEs. A policy engine could require that a notary signed from an attested setup.\r\n    - `gh oidc-sub set --repo org/repo --subs \"job_workflow_ref,repository_id,repository_owner_id\"`\r\n  - `job_workflow_sha` may also be helpful for pinning to a release",
           "createdAt": "2023-04-27T21:17:15Z",
           "updatedAt": "2023-09-14T20:59:06Z"
@@ -2200,8 +2200,8 @@
       "closedAt": "2024-02-16T00:03:20Z",
       "comments": [
         {
-          "author": "pdxjohnny",
-          "authorAssociation": "CONTRIBUTOR",
+          "author": "johnandersen777",
+          "authorAssociation": "NONE",
           "body": "What are folks thoughts on making entry IDs hashes of claims? This would make it easy to manage state because claims and receipts are content addressable. The side effect is one can no longer register the same claim twice under a different entry ID. I wasn't able to find if the SCITT arch doc explicitly defined expected behavior there.\r\n\r\nExample of what this might look like within the SCITT API Emulator: https://github.com/scitt-community/scitt-api-emulator/commit/9c54f9c542f042954e4d02b291ea4856327223be\r\n\r\n```\r\n127.0.0.1 - - [17/Oct/2023 18:08:08] \"POST /entries HTTP/1.1\" 201 -\r\n127.0.0.1 - - [17/Oct/2023 18:08:08] \"GET /entries/sha384:76303a87c3ff728578d1e941ec4422193367e31fd37ab178257536cba79724d6411c457cd3c47654975dc924ff023666/receipt HTTP/1.1\" 200 -\r\n```",
           "createdAt": "2023-10-18T01:16:27Z",
           "updatedAt": "2023-10-18T01:17:12Z"
@@ -2214,15 +2214,15 @@
           "updatedAt": "2023-10-18T01:47:01Z"
         },
         {
-          "author": "pdxjohnny",
-          "authorAssociation": "CONTRIBUTOR",
+          "author": "johnandersen777",
+          "authorAssociation": "NONE",
           "body": "At least as I was playing with it in that emulator pull request it the hash algorithm used you be part of the entry ID (similar to container image format reference by sha256 format). It the entry hash algorithm could also be part of the service parameters. If log A and log B had different entry id hash algorithms federation would involve an index or mapping so that federation mechanics don't end up re-inserting a claim which already exists Example: Log A federates Claim A1 to Log B. Log B inserts claim A1 as B1, federates event to Log A which inserts claims as A2. If entries were content addressable it would be fast to determine and A2 is in fact A1 and does not need to be re-inserted. If they aren't the same then a mapping transmitted with the federation event would include the known entry IDs within each log or something.",
           "createdAt": "2023-10-18T03:31:24Z",
           "updatedAt": "2023-10-18T03:31:24Z"
         },
         {
-          "author": "pdxjohnny",
-          "authorAssociation": "CONTRIBUTOR",
+          "author": "johnandersen777",
+          "authorAssociation": "NONE",
           "body": "Related SCRAPI section: https://github.com/ietf-scitt/draft-birkholz-scitt-scrapi/blob/b0ee171a26d634a8f54eb46779dcd023ccdf2a63/draft-birkholz-scitt-scrapi.md#discovering-federation\r\n\r\nSome options for Federation:\r\n\r\n- https://www.w3.org/TR/activitypub/\r\n  - Pros\r\n    - Existing Adoption\r\n  - Cons\r\n    - Not sure if built with confidentiality as first thing in mind, not sure if this matters if the point is transparency\r\n- [WireFederation_0_0_4.pdf](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/files/13273496/WireFederation_0_0_4.pdf)\r\n  - Pros\r\n    - IETF Adjacent?\r\n  - Cons\r\n    - Pre-v1\r\n- https://github.com/decentralized-identity/decentralized-web-node\r\n  - Pros\r\n    - \"Web5\" ecosystem\r\n  - Cons\r\n    - They decided to go with a non-browser native approach, requires an extension\r\n    - Heavily influenced by $$$\r\n- https://openfl.readthedocs.io/en/latest/source/openfl/communication.html - https://github.com/securefederatedai/openfl/blob/develop/docs/overview.what_is_intel_federated_learning.rst\r\n  - Pros\r\n    - Feeds right into ML\r\n  - Cons\r\n    - TODO\r\n\r\nIt could be interesting for SCITT services to declare federation protocols they support via exported service parameters. Different instances my have different threat models and require different levels of assurance around CIA properties of federation protocols.\r\n\r\n- https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/96#issuecomment-1817770016\r\n\r\n```yaml\r\nfederation:\r\n- protocol: activitypub\r\n  # Actor to follow to receive events for any statement (subject `*`)\r\n  everything: allsubjects\r\n```\r\n\r\n- How do transparency services discover each other?\r\n  - Enable multiple options for discovery\r\n  - For services an instance federates with they can choose if they want to be exported as options\r\n    - See notes later on privacy and subsequent federations policy\r\n\r\n- How do they know if their policies are compatible?\r\n  - At the IETF 118 hackathon we discussed labeled property graphs\r\n\r\n- How do they know if they support the same issuers?\r\n  - Policy graph traversal / policy analysis\r\n\r\n- How do they know if they support the same artifact types?\r\n  - Policy graph traversal / policy analysis\r\n\r\n- How is issuer privacy impacted by federation?\r\n  - Depends on selected federation protocol\r\n    - Additional policy in place around federation\r\n      - Levels of assurance in execution of subsequent federations policy\r\n        - TEE, etc.\r\n  - Depends on deployment context",
           "createdAt": "2023-11-06T23:19:17Z",
           "updatedAt": "2023-11-20T16:06:35Z"
@@ -2431,8 +2431,8 @@
       "closedAt": "2023-12-05T16:07:36Z",
       "comments": [
         {
-          "author": "pdxjohnny",
-          "authorAssociation": "CONTRIBUTOR",
+          "author": "johnandersen777",
+          "authorAssociation": "NONE",
           "body": "How do we see OIDC working with SCITT other than for auth? I'm having trouble understanding how we could use a token as the issuer of a claim. It seems like that would immediately leak the token upon insertion to the log.\r\n\r\nEdit:\r\n\r\n```console\r\n$ scitt-emulator client create-claim --issuer did:web:token.actions.githubusercontent.com --content-type application/json --payload '{\"sun\": \"yellow\"}' --out claim.cose\r\n```",
           "createdAt": "2023-09-12T16:23:21Z",
           "updatedAt": "2023-11-04T09:57:52Z"
@@ -2593,8 +2593,8 @@
       "title": "Discovery of service parameters",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/96",
       "state": "CLOSED",
-      "author": "pdxjohnny",
-      "authorAssociation": "CONTRIBUTOR",
+      "author": "johnandersen777",
+      "authorAssociation": "NONE",
       "assignees": [
         "SteveLasker"
       ],
@@ -2605,29 +2605,29 @@
       "closedAt": "2024-02-12T17:40:24Z",
       "comments": [
         {
-          "author": "pdxjohnny",
-          "authorAssociation": "CONTRIBUTOR",
+          "author": "johnandersen777",
+          "authorAssociation": "NONE",
           "body": "Nevermind the client code just need to get the tree alg from the receipt.",
           "createdAt": "2023-09-12T15:27:38Z",
           "updatedAt": "2023-09-12T15:27:38Z"
         },
         {
-          "author": "pdxjohnny",
-          "authorAssociation": "CONTRIBUTOR",
+          "author": "johnandersen777",
+          "authorAssociation": "NONE",
           "body": "Related: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/79#issuecomment-1767570492",
           "createdAt": "2023-10-18T03:31:38Z",
           "updatedAt": "2023-10-18T03:31:38Z"
         },
         {
-          "author": "pdxjohnny",
-          "authorAssociation": "CONTRIBUTOR",
+          "author": "johnandersen777",
+          "authorAssociation": "NONE",
           "body": "After discussion this weekend with Steven and Cedric we talked about needing an endpoint for service parameter discovery. This also appears necessary for federation.",
           "createdAt": "2023-11-06T09:06:22Z",
           "updatedAt": "2023-11-06T09:07:13Z"
         },
         {
-          "author": "pdxjohnny",
-          "authorAssociation": "CONTRIBUTOR",
+          "author": "johnandersen777",
+          "authorAssociation": "NONE",
           "body": "The document currently states:\r\n\r\n> The Transparency Service provides an endpoint that returns the Transparent Statement that describes its current configuration.\"\r\n>\r\n> The Transparency Service records its configuration in the Append-Only Log using Transparent Statements with distinguished media type `application/scitt-configuration`.\r\n>\r\n> From: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/930a0cd38a92dd6079bda2ed3c675019ee9b0aa3/draft-ietf-scitt-architecture.md#configuration\r\n\r\nPining based on #126 discussion comments: @fournet, @SteveLasker: I read this to mean the endpoint is a subject/feed, what is that subject/feed? Is it the issuer `did:web:` combined with the mentioned media type? How should we register these so that they are discoverable in a consistent way?",
           "createdAt": "2023-11-19T07:10:55Z",
           "updatedAt": "2023-11-19T07:10:55Z"
@@ -16919,8 +16919,8 @@
           "commit": {
             "abbreviatedOid": "435689f"
           },
-          "author": "pdxjohnny",
-          "authorAssociation": "CONTRIBUTOR",
+          "author": "johnandersen777",
+          "authorAssociation": "NONE",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2023-11-21T20:17:06Z",
@@ -17385,8 +17385,8 @@
       "title": "Update CWT_Claims COSE label to 15",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/133",
       "state": "MERGED",
-      "author": "pdxjohnny",
-      "authorAssociation": "CONTRIBUTOR",
+      "author": "johnandersen777",
+      "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "Per https://www.ietf.org/archive/id/draft-ietf-cose-cwt-claims-in-headers-09.html",
@@ -17395,7 +17395,7 @@
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "f70576e324b93b9b7c1d8c605d8f33c0bdfa1063",
-      "headRepository": "pdxjohnny/draft-ietf-scitt-architecture",
+      "headRepository": "johnandersen777/draft-ietf-scitt-architecture",
       "headRefName": "patch-1",
       "headRefOid": "bd08572c8e71037c399965d242f38a17939338ea",
       "closedAt": "2023-12-01T21:18:46Z",
@@ -24361,8 +24361,8 @@
           "updatedAt": "2024-02-16T00:03:06Z"
         },
         {
-          "author": "pdxjohnny",
-          "authorAssociation": "CONTRIBUTOR",
+          "author": "johnandersen777",
+          "authorAssociation": "NONE",
           "body": "Where are we doing the consensus discussion on federation? I feel like I haven\u2019t seen discussion on the list recently",
           "createdAt": "2024-02-16T01:15:19Z",
           "updatedAt": "2024-02-16T01:15:30Z"
