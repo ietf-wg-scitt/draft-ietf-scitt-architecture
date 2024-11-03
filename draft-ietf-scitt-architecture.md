@@ -347,9 +347,9 @@ The arrows indicate the flow of information.
  .----------.
 |  Artifact  |
  '-----+----'
-       v                 .-------------.
-  .----+----.           |  Credentials  |
- | Statement |           '----+--+-----'
+       v                   .--------.
+  .----+----.             |  Issuer  |
+ | Statement |             '--+--+--'
   '----+----'       cose sign |  | cose verify
        |    .----------------'|  |
        |   |                  |  |
