@@ -344,12 +344,13 @@ Each Transparency Service produces a Receipt, which may be aggregated in a singl
 The arrows indicate the flow of information.
 
 ~~~aasvg
- .----------.
-|  Artifact  |
- '-----+----'
-       v                   .--------.
+                         .-------------.
+ .----------.           |  Credentials  |
+|  Artifact  |           '-----+-------'
+ '-----+----'                  v
+       v                  +----+-----+
   .----+----.             |  Issuer  |
- | Statement |             '--+--+--'
+ | Statement |            +---+--+---+
   '----+----'       cose sign |  | cose verify
        |    .----------------'|  |
        |   |                  |  |
@@ -374,18 +375,24 @@ The arrows indicate the flow of information.
        | Transparent |                    |   |
        |  Statement  |                    |   |
         '-----+-----'                     |   |
-              |                           |   |
-              |'-----------.   .----------)--'
-              |             | |           |
-              |             v v           |
-              |    .--------+-+---------. |
-              |   / Verify Transparent /  |
-              |  /      Statement     /   |
-              | '--------------------'    |
-              v                           v
-     .--------+---------.      .----------+-----.
-    / Collect Receipts /      /   Replay Log   /
-   '------------------'      '----------------'
+              V                           |   |
+    +-----------------+                   |   |
+  .-+  Relying Party  +-+                 |   |
+ |  +-+---------------+ |                 |   |
+ |    |  Relying Party  |                 |   |
+ |    +-----------------+                 |   |
+ |            |                           |   |
+  '----.      |'-----------.   .----------)--'
+        |                   | |           |
+        |                   v v           |
+        |          .--------+-+---------. |
+        |         / Verify Transparent /  |
+        |        /      Statement     /   |
+        v       '--------------------'    |
+   .-----+------.                         v
+  / Collecting /               .----------+-----.
+ /   Receipt  /               /   Replay Log   /
+'------------'               '----------------'
 ~~~
 {: #fig-concept-relationship title="Relationship of Concepts in SCITT"}
 
