@@ -381,9 +381,9 @@ The arrows indicate the flow of information.
               |    .--------+-+---------. |
               |   / Verify Transparent /  |
               |  /      Statement     /   |
-              | '-----------+--------'|   |
-              |             | Auditor |   |
-              |             +---------+   |
+              | '----------+---------+    |
+              |            | Auditor |    |
+              |            +---------+    |
               v                           v
   .-----------+----------.       .----------+-----.
  /  Collecting Receipt  /       /   Replay Log   /
