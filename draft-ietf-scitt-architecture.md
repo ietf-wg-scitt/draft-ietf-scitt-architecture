@@ -385,11 +385,11 @@ The arrows indicate the flow of information.
               |            | Auditor |    |
               |            +---------+    |
               v                           v
-  .-----------+----------.       .----------+-----.
- /  Collecting Receipt  /       /   Replay Log   /
-'-------+--------------'|      '-+--------------'|
-        | Relying Party |        | Relying Party |
-        +---------------+        +---------------+
+  .-----------+----------.    .-----------+------.
+ /  Collecting Receipt  /    /    Replay Log    /
+'------+---------------+    '--+---------------+
+       | Relying Party |       | Relying Party |
+       +---------------+       +---------------+
 ~~~
 {: #fig-concept-relationship title="Relationship of Concepts in SCITT"}
 
