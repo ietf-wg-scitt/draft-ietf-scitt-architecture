@@ -344,13 +344,12 @@ Each Transparency Service produces a Receipt, which may be aggregated in a singl
 The arrows indicate the flow of information.
 
 ~~~aasvg
-                         .-------------.
- .----------.           |  Credentials  |
-|  Artifact  |           '-----+-------'
- '-----+----'                  v
-       v                  +----+-----+
-  .----+----.             |  Issuer  |
- | Statement |            +---+--+---+
+ .----------.
+|  Artifact  |
+ '-----+----'
+       v            +----------------------+
+  .----+----.       |  Issuer Credentials  |
+ | Statement |      +---------+--+---------+
   '----+----'       cose sign |  | cose verify
        |    .----------------'|  |
        |   |                  |  |
@@ -375,24 +374,22 @@ The arrows indicate the flow of information.
        | Transparent |                    |   |
        |  Statement  |                    |   |
         '-----+-----'                     |   |
-              V                           |   |
-           +-----------------+            |   |
-           +  Relying Party  +-+          |   |
-           +-+-+-------------+ |          |   |
-             | |   Auditor     |          |   |
-             | +-------+-------+          |   |
-             |         |                  |   |
-             |          '--.   .----------)--'
-             |              | |           |
-             |              v v           |
-             |     .--------+-+---------. |
-             |    / Verify Transparent /  |
-             |   /      Statement     /   |
-             v  '--------------------'    |
-       .-----+------.                     v
-      / Collecting /           .----------+-----.
-     /   Receipt  /           /   Replay Log   /
-    '------------'           '----------------'
+              |                           |   |
+              |'-----------.   .----------)--'
+              |             | |           |
+              |             v v           |
+              |    .--------+-+---------. |
+              |   / Verify Transparent /  |
+              |  /      Statement     /   |
+              | '-----------+--------'|   |
+              |             | Auditor |   |
+              |             +---------+   |
+              v                           v
+  .-----------+----------.       .----------+-----.
+ /  Collecting Receipt  /       /   Replay Log   /
+'-------+--------------'|      '-+--------------'|
+        | Relying Party |        | Relying Party |
+        +---------------+        +---------------+
 ~~~
 {: #fig-concept-relationship title="Relationship of Concepts in SCITT"}
 
