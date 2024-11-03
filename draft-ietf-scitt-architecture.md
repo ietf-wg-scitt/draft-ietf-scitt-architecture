@@ -376,23 +376,23 @@ The arrows indicate the flow of information.
        |  Statement  |                    |   |
         '-----+-----'                     |   |
               V                           |   |
-    +-----------------+                   |   |
-  .-+  Relying Party  +-+                 |   |
- |  +-+---------------+ |                 |   |
- |    |     Auditor     |                 |   |
- |    +-------+---------+                 |   |
- |            |                           |   |
-  '----.       '-----------.   .----------)--'
-        |                   | |           |
-        |                   v v           |
-        |          .--------+-+---------. |
-        |         / Verify Transparent /  |
-        |        /      Statement     /   |
-        v       '--------------------'    |
-   .-----+------.                         v
-  / Collecting /               .----------+-----.
- /   Receipt  /               /   Replay Log   /
-'------------'               '----------------'
+           +-----------------+            |   |
+           +  Relying Party  +-+          |   |
+           +-+-+-------------+ |          |   |
+             | |  Auditor      |          |   |
+             | +-------+-------+          |   |
+             |         |                  |   |
+             |          '--.   .----------)--'
+             |              | |           |
+             |              v v           |
+             |     .--------+-+---------. |
+             |    / Verify Transparent /  |
+             |   /      Statement     /   |
+             v  '--------------------'    |
+       .-----+------.                     v
+      / Collecting /           .----------+-----.
+     /   Receipt  /           /   Replay Log   /
+    '------------'           '----------------'
 ~~~
 {: #fig-concept-relationship title="Relationship of Concepts in SCITT"}
 
