@@ -379,7 +379,7 @@ The arrows indicate the flow of information.
            +-----------------+            |   |
            +  Relying Party  +-+          |   |
            +-+-+-------------+ |          |   |
-             | |  Auditor      |          |   |
+             | |   Auditor     |          |   |
              | +-------+-------+          |   |
              |         |                  |   |
              |          '--.   .----------)--'
