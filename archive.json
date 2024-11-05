@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-03T00:51:24.561178+00:00",
+  "timestamp": "2024-11-05T00:45:23.616800+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -41426,6 +41426,207 @@
           "body": "",
           "createdAt": "2024-10-15T15:01:28Z",
           "updatedAt": "2024-10-15T15:01:28Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 311,
+      "id": "PR_kwDOIvmHss6AuPP0",
+      "title": "Update arch diagram to match terminology",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/311",
+      "state": "OPEN",
+      "author": "thibmeu",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Update Figure 1 to include components from the Terminology.\r\n\r\n* Credentials is owned by an Issuer\r\n* Collection of receipt is done by a Relying Party\r\n* Make of Transparency Statement is done by an Auditor, which is a special Relying Party\r\n\r\nThe newly generated diagram looks as follow\r\n![architecture difference](https://github.com/user-attachments/assets/aa521d21-eb29-420f-982b-63059b2cf686)\r\n\r\n\r\n",
+      "createdAt": "2024-11-03T11:34:15Z",
+      "updatedAt": "2024-11-04T13:06:24Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "e963de6c5a5c24f37543a6d014f836d9ae8b3ec1",
+      "headRepository": "thibmeu/draft-ietf-scitt-architecture",
+      "headRefName": "update-arch-digram-to-match-terminology",
+      "headRefOid": "fd4c581950656a6ca1abbefbffb6774cb571abaf",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@thibmeu I have a slight concern with the diagram. Normally Replay log is explicitly done by Auditor so Under Replay Log, if the role is Auditor that is a more correct representation than a Generic Relying Party what you have currently!\r\n\r\nAlso, Log Replay is a resource consuming operation and should be careful in promoting that to a generic relying parties.\r\n\r\nI suggest renaming that aspect to Auditor",
+          "createdAt": "2024-11-04T09:29:44Z",
+          "updatedAt": "2024-11-04T09:31:59Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Also I have a concern, Verify Transparent Statements is a job of any Relying Party, not specifically for the Auditor?\r\n\r\nDid you intend to attach, the Auditor role to Verify Transparent Statements?",
+          "createdAt": "2024-11-04T09:33:53Z",
+          "updatedAt": "2024-11-04T09:33:53Z"
+        },
+        {
+          "author": "thibmeu",
+          "authorAssociation": "NONE",
+          "body": "> Also I have a concern, Verify Transparent Statements is a job of any Relying Party, not specifically for the Auditor?\r\n\r\nFrom the terminology\r\n```\r\nAuditor: checks the correctness and consistency of all Transparent Statements issued by a Transparency Service\r\nRelying Party: consumes Transparent Statements, verifying their proofs and inspecting the Statement payload\r\n```\r\n\r\nI read this as the Auditor builds verified transparent statement, while the replay log is a specialised relying Party but not necessarily an auditor\r\n\r\nRemoving Auditor is also a possibility to not put too many entities, since it's relying parties anyway. What do you think? ",
+          "createdAt": "2024-11-04T09:42:33Z",
+          "updatedAt": "2024-11-04T09:42:33Z"
+        },
+        {
+          "author": "thibmeu",
+          "authorAssociation": "NONE",
+          "body": "@yogeshbdeshpande I've addressed your comments following a discusion we had in person\r\nhere is the updated diagram\r\n\r\n![Screenshot from 2024-11-04 11-41-47](https://github.com/user-attachments/assets/ca0837ae-7b15-48da-9e56-9aea72e07078)\r\n",
+          "createdAt": "2024-11-04T11:42:23Z",
+          "updatedAt": "2024-11-04T11:42:23Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6Pwf57",
+          "commit": {
+            "abbreviatedOid": "acb54ed"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-03T13:25:59Z",
+          "updatedAt": "2024-11-03T13:25:59Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "Fixes the gap in the line\r\n```suggestion\r\n              |                           |   |\r\n              V                           |   |\r\n```",
+              "createdAt": "2024-11-03T13:25:59Z",
+              "updatedAt": "2024-11-03T13:26:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6PwmL0",
+          "commit": {
+            "abbreviatedOid": "1aef2c1"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-03T15:38:55Z",
+          "updatedAt": "2024-11-03T15:38:56Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\n       v             +--------------------+\r\n  .----+----.        | Issuer Credentials |\r\n | Statement |       +--------+--+--------+\r\n```",
+              "createdAt": "2024-11-03T15:38:56Z",
+              "updatedAt": "2024-11-03T15:38:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6PwmPW",
+          "commit": {
+            "abbreviatedOid": "a82f63f"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-03T15:40:02Z",
+          "updatedAt": "2024-11-03T15:40:03Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\n              | '----------+---------+    |\r\n              |            | Auditor |    |\r\n              |            +---------+    |\r\n```",
+              "createdAt": "2024-11-03T15:40:03Z",
+              "updatedAt": "2024-11-03T15:40:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6PwmTD",
+          "commit": {
+            "abbreviatedOid": "7e1b2ff"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-03T15:40:56Z",
+          "updatedAt": "2024-11-03T15:40:56Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "```suggestion\r\n  .-----------+----------.    .-----------+------.\r\n /  Collecting Receipt  /    /    Replay Log    /\r\n'------+---------------+    '--+---------------+\r\n       | Relying Party |       | Relying Party |\r\n       +---------------+       +---------------+\r\n```",
+              "createdAt": "2024-11-03T15:40:56Z",
+              "updatedAt": "2024-11-03T15:40:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6PwmZQ",
+          "commit": {
+            "abbreviatedOid": "73a4ce9"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks, @thibmeu \r\nLGTM\r\n\r\nMinor tweaks to fix the aasvg corners:\r\n![image](https://github.com/user-attachments/assets/3252563d-78e3-4d32-bb94-90c39699db23)\r\n",
+          "createdAt": "2024-11-03T15:42:59Z",
+          "updatedAt": "2024-11-03T15:44:33Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6PwnR3",
+          "commit": {
+            "abbreviatedOid": "73a4ce9"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-11-03T16:04:16Z",
+          "updatedAt": "2024-11-03T16:04:16Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Py5lp",
+          "commit": {
+            "abbreviatedOid": "73a4ce9"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Lgtm",
+          "createdAt": "2024-11-04T08:49:46Z",
+          "updatedAt": "2024-11-04T08:49:46Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6PzQc2",
+          "commit": {
+            "abbreviatedOid": "73a4ce9"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Kindly answer these questions please before I can approve, happy to discuss face to face!",
+          "createdAt": "2024-11-04T09:35:26Z",
+          "updatedAt": "2024-11-04T09:35:26Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6P07X6",
+          "commit": {
+            "abbreviatedOid": "fd4c581"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thank you for making this important change!\r\nLooks Good to Me",
+          "createdAt": "2024-11-04T13:06:24Z",
+          "updatedAt": "2024-11-04T13:06:24Z",
           "comments": []
         }
       ]
