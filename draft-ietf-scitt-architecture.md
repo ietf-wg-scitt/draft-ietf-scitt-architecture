@@ -347,9 +347,9 @@ The arrows indicate the flow of information.
  .----------.
 |  Artifact  |
  '-----+----'
-       v                 .-------------.
-  .----+----.           |  Credentials  |
- | Statement |           '----+--+-----'
+       v             +--------------------+
+  .----+----.        | Issuer Credentials |
+ | Statement |       +--------+--+--------+
   '----+----'       cose sign |  | cose verify
        |    .----------------'|  |
        |   |                  |  |
@@ -381,11 +381,15 @@ The arrows indicate the flow of information.
               |    .--------+-+---------. |
               |   / Verify Transparent /  |
               |  /      Statement     /   |
-              | '--------------------'    |
+              | '----+-----+---------+    |
+              |      | Relying Party |    |
+              |      +---------------+    |
               v                           v
-     .--------+---------.      .----------+-----.
-    / Collect Receipts /      /   Replay Log   /
-   '------------------'      '----------------'
+  .-----------+----------.    .-----------+------.
+ /  Collecting Receipt  /    /    Replay Log    /
+'------+---------------+    '--+---------------+
+       | Relying Party |       | Relying Party |
+       +---------------+       +---------------+
 ~~~
 {: #fig-concept-relationship title="Relationship of Concepts in SCITT"}
 
