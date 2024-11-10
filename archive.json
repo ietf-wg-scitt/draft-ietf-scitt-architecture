@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-07T00:45:38.630988+00:00",
+  "timestamp": "2024-11-10T00:49:52.026106+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -41435,24 +41435,26 @@
       "id": "PR_kwDOIvmHss6AuPP0",
       "title": "Update arch diagram to match terminology",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/311",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "thibmeu",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Update Figure 1 to include components from the Terminology.\r\n\r\n* Credentials is owned by an Issuer\r\n* Collection of receipt is done by a Relying Party\r\n* Make of Transparency Statement is done by an Auditor, which is a special Relying Party\r\n\r\nThe newly generated diagram looks as follow\r\n![architecture difference](https://github.com/user-attachments/assets/aa521d21-eb29-420f-982b-63059b2cf686)\r\n\r\n\r\n",
       "createdAt": "2024-11-03T11:34:15Z",
-      "updatedAt": "2024-11-04T13:06:24Z",
+      "updatedAt": "2024-11-07T10:34:48Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "e963de6c5a5c24f37543a6d014f836d9ae8b3ec1",
       "headRepository": "thibmeu/draft-ietf-scitt-architecture",
       "headRefName": "update-arch-digram-to-match-terminology",
       "headRefOid": "fd4c581950656a6ca1abbefbffb6774cb571abaf",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-11-07T10:34:48Z",
+      "mergedAt": "2024-11-07T10:34:48Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "c6a19caa3ddd27b406e76960b5ba8cd05fa262d8"
+      },
       "comments": [
         {
           "author": "yogeshbdeshpande",
@@ -41470,14 +41472,14 @@
         },
         {
           "author": "thibmeu",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "> Also I have a concern, Verify Transparent Statements is a job of any Relying Party, not specifically for the Auditor?\r\n\r\nFrom the terminology\r\n```\r\nAuditor: checks the correctness and consistency of all Transparent Statements issued by a Transparency Service\r\nRelying Party: consumes Transparent Statements, verifying their proofs and inspecting the Statement payload\r\n```\r\n\r\nI read this as the Auditor builds verified transparent statement, while the replay log is a specialised relying Party but not necessarily an auditor\r\n\r\nRemoving Auditor is also a possibility to not put too many entities, since it's relying parties anyway. What do you think? ",
           "createdAt": "2024-11-04T09:42:33Z",
           "updatedAt": "2024-11-04T09:42:33Z"
         },
         {
           "author": "thibmeu",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "@yogeshbdeshpande I've addressed your comments following a discusion we had in person\r\nhere is the updated diagram\r\n\r\n![Screenshot from 2024-11-04 11-41-47](https://github.com/user-attachments/assets/ca0837ae-7b15-48da-9e56-9aea72e07078)\r\n",
           "createdAt": "2024-11-04T11:42:23Z",
           "updatedAt": "2024-11-04T11:42:23Z"
