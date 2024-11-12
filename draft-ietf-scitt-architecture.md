@@ -344,52 +344,52 @@ Each Transparency Service produces a Receipt, which may be aggregated in a singl
 The arrows indicate the flow of information.
 
 ~~~aasvg
- .----------.
-|  Artifact  |
- '-----+----'
-       v             +--------------------+
-  .----+----.        | Issuer Credentials |
- | Statement |       +--------+--+--------+
-  '----+----'       cose sign |  | cose verify
-       |    .----------------'|  |
-       |   |                  |  |
-       v   v                  |  |'----------.
-  .----+---+---.              |  |            |
- |    Signed    |             |  |            |
- |   Statement  |             |  |            |
- | (COSE_Sign1) |             |  |            |
-  '------+-----'              v  v            |
-         |                +---+--+--------+   |
-     .--' '-------------->+ Transparency  |   |
-    |   .--------.        |               |   |
-    |  | Receipt  +<------+   Service     +-+ |
-    |  |          +.      +--+------------+ | |
-    |   '-+------'  |        | Transparency | |
-    |     | Receipt +<-------+              | |
-    |      '------+'         |   Service    | |
-     '-------. .-'           +------------+-+ |
-              |                           |   |
-              v                           |   |
-        .-----+-----.                     |   |
-       | Transparent |                    |   |
-       |  Statement  |                    |   |
-        '-----+-----'                     |   |
-              |                           |   |
-              |'-----------.   .----------)--'
-              |             | |           |
-              |             v v           |
-              |    .--------+-+---------. |
-              |   / Verify Transparent /  |
-              |  /      Statement     /   |
-              | '----+-----+---------+    |
-              |      | Relying Party |    |
-              |      +---------------+    |
-              v                           v
-  .-----------+----------.    .-----------+------.
- /  Collecting Receipt  /    /    Replay Log    /
-'------+---------------+    '--+---------------+
-       | Relying Party |       | Relying Party |
-       +---------------+       +---------------+
+                        +------------+
+ .----------.           |   Issuer   |
+|  Artifact  |          +-+--------+-+
+ '----+-----'             v        v
+      v          .--------+-.    .-+--------.
+ .----+----.    /   sign   /    /  verify  /
+| Statement |  '-----+----+    '------+---+
+ '----+----'         |                |
+      |    .--------' '--.            |
+      |   |               |           |
+      v   v               |        .-' '-.
+ .----+---+---.           |       |       |
+|    Signed    |          |       |       |
+|   Statement  |          |       |       |
+ '------+-----'           v       v       |
+        |             +---+-------+---+   |
+    .--' '----------->+ Transparency  |   |
+   |   .--------.     |               |   |
+   |  | Receipt  +<---+   Service     +-+ |
+   |  |          +.   +--+------------+ | |
+   |   '-+------'  |     | Transparency | |
+   |     | Receipt +<----+              | |
+   |      '------+'      |   Service    | |
+    '-------. .-'        +------------+-+ |
+             |                        |   |
+             v                        |   |
+       .-----+-----.                  |   |
+      | Transparent |                 |   |
+      |  Statement  |                 |   |
+       '--+--------'                  |   |
+          |                           |   |
+          |'-----------.   .----------)--'
+          |             | |           |
+          |             v v           |
+          |    .--------+-+---------. |
+          |   / Verify Transparent /  |
+          |  /      Statement     /   |
+          | '----+---------------+    |
+          |      | Relying Party |    |
+          |      +---------------+    |
+          v                           v
+  .-------+-------------.  .----------+------.
+ / Collecting Receipts /  /   Replay Log    /
+'-----+---------------+  '-+---------------+
+      | Relying Party |    | Relying Party |
+      +---------------+    +---------------+
 ~~~
 {: #fig-concept-relationship title="Relationship of Concepts in SCITT"}
 
