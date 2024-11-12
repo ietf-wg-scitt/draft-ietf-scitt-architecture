@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 11 May 2025                                          C. Fournet
+Expires: 16 May 2025                                          C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         7 November 2024
+                                                        12 November 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 May 2025.
+   This Internet-Draft will expire on 16 May 2025.
 
 Copyright Notice
 
@@ -758,12 +758,12 @@ Table of Contents
    payloads support large Statements, and ensure Signed Statements can
    integrate with existing storage systems.
 
-   18(                                 / COSE Sign 1                   /
+   18(                                 / COSE Sign 1      /
        [
-         h'a4012603...6d706c65',       / Protected                     /
-         {},                           / Unprotected                   /
-         nil,                          / Detached payload              /
-         h'79ada558...3a28bae4'        / Signature                     /
+         h'a4012603...6d706c65',       / Protected        /
+         {},                           / Unprotected      /
+         nil,                          / Detached payload /
+         h'79ada558...3a28bae4'        / Signature        /
        ]
    )
 
@@ -775,13 +775,13 @@ Table of Contents
    a JSON content type, and identifying the content with the sub Claim
    "vendor.product.example".
 
-   {                                   / Protected                     /
-     1: -7,                            / Algorithm                     /
-     3: application/example+json,      / Content type                  /
-     4: h'50685f55...50523255',        / Key identifier                /
-     15: {                             / CWT Claims                    /
-       1: software.vendor.example,     / Issuer                        /
-       2: vendor.product.example,      / Subject                       /
+   {                                   / Protected        /
+     1: -7,                            / Algorithm        /
+     3: application/example+json,      / Content type     /
+     4: h'50685f55...50523255',        / Key identifier   /
+     15: {                             / CWT Claims       /
+       1: software.vendor.example,     / Issuer           /
+       2: vendor.product.example,      / Subject          /
      }
    }
 
@@ -873,17 +873,17 @@ Table of Contents
    one or more Receipts (each entry encoded as a .cbor encoded
    Receipts).
 
-   18(                                 / COSE Sign 1                   /
+   18(                                 / COSE Sign 1               /
        [
-         h'a4012603...6d706c65',       / Protected                     /
-         {                             / Unprotected                   /
-           394: [                      / Receipts (2)                  /
-             h'd284586c...4191f9d2'    / Receipt 1                     /
-             h'c624586c...8f4af97e'    / Receipt 2                     /
+         h'a4012603...6d706c65',       / Protected                 /
+         {                             / Unprotected               /
+           394: [                      / Receipts (2)              /
+             h'd284586c...4191f9d2'    / Receipt 1                 /
+             h'c624586c...8f4af97e'    / Receipt 2                 /
            ]
          },
-         nil,                          / Detached payload              /
-         h'79ada558...3a28bae4'        / Signature                     /
+         nil,                          / Detached payload          /
+         h'79ada558...3a28bae4'        / Signature                 /
        ]
    )
 
@@ -899,18 +899,18 @@ Table of Contents
    type RFC9162_SHA256 is value 1.  Labels identify inclusion proofs
    (-1) and consistency proofs (-2).
 
-   18(                                 / COSE Sign 1                   /
+   18(                                 / COSE Sign 1               /
        [
-         h'a4012604...6d706c65',       / Protected                     /
-         {                             / Unprotected                   /
-           -222: {                     / Proofs                        /
-             -1: [                     / Inclusion proofs (1)          /
-               h'83080783...32568964', / Inclusion proof 1             /
+         h'a4012604...6d706c65',       / Protected                 /
+         {                             / Unprotected               /
+           -222: {                     / Proofs                    /
+             -1: [                     / Inclusion proofs (1)      /
+               h'83080783...32568964', / Inclusion proof 1         /
              ]
            },
          },
-         nil,                          / Detached payload              /
-         h'10f6b12a...4191f9d2'        / Signature                     /
+         nil,                          / Detached payload          /
+         h'10f6b12a...4191f9d2'        / Signature                 /
        ]
    )
 
@@ -920,13 +920,13 @@ Table of Contents
    Statement in Figure 6.  The verifiable data structure (-111) uses 1
    from (RFC9162_SHA256).
 
-   {                                   / Protected                     /
-     1: -7,                            / Algorithm                     /
-     4: h'50685f55...50523255',        / Key identifier                /
-     -111: 1,                          / Verifiable Data Structure     /
-     15: {                             / CWT Claims                    /
-       1: transparency.vendor.example, / Issuer                        /
-       2: vendor.product.example,      / Subject                       /
+   {                                   / Protected                 /
+     1: -7,                            / Algorithm                 /
+     4: h'50685f55...50523255',        / Key identifier            /
+     -111: 1,                          / Verifiable Data Structure /
+     15: {                             / CWT Claims                /
+       1: transparency.vendor.example, / Issuer                    /
+       2: vendor.product.example,      / Subject                   /
      }
    }
 
@@ -939,13 +939,13 @@ Table of Contents
    proof is specific to the verifiable data structure used
    (RFC9162_SHA256).
 
-   [                                   / Inclusion proof 1             /
-     8,                                / Tree size                     /
-     7,                                / Leaf index                    /
-     [                                 / Inclusion hashes (3)          /
-        h'c561d333...f9850597'         / Intermediate hash 1           /
-        h'75f177fd...2e73a8ab'         / Intermediate hash 2           /
-        h'0bdaaed3...32568964'         / Intermediate hash 3           /
+   [                                   / Inclusion proof 1         /
+     8,                                / Tree size                 /
+     7,                                / Leaf index                /
+     [                                 / Inclusion hashes (3)      /
+        h'c561d333...f9850597'         / Intermediate hash 1       /
+        h'75f177fd...2e73a8ab'         / Intermediate hash 2       /
+        h'0bdaaed3...32568964'         / Intermediate hash 3       /
      ]
    ]
 
@@ -1692,16 +1692,16 @@ B.4.  Statements
 
 B.4.1.  Statement URN
 
-   urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeR...qnGmr1o
 
                       Figure 10: Example Statement URN
 
 B.4.2.  Statement URL
 
-  https://transparency.example/api/identifiers\
-  /urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   https://transparency.example/api/identifiers\
+   /urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeR...qnGmr1o
 
-                     Figure 11: Example Statement URL
+                      Figure 11: Example Statement URL
 
 B.4.3.  Statement Data URL
 
@@ -1714,7 +1714,7 @@ B.5.  Signed Statements
 B.5.1.  Signed Statement URN
 
    urn:ietf:params:scitt:\
-   signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   signed-statement:sha-256:base64url:5i6UeR...qnGmr1o
 
                   Figure 13: Example Signed Statement URN
 
@@ -1722,7 +1722,7 @@ B.5.2.  Signed Statement URL
 
    https://transparency.example/api/identifiers\
    /urn:ietf:params:scitt:\
-   signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   signed-statement:sha-256:base64url:5i6...r1o
 
                   Figure 14: Example Signed Statement URL
 
@@ -1736,14 +1736,14 @@ B.6.  Receipts
 
 B.6.1.  Receipt URN
 
-   urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeR...qnGmr1o
 
                        Figure 16: Example Receipt URN
 
 B.6.2.  Receipt URL
 
    https://transparency.example/api/identifiers\
-   /urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   /urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeR...qnGmr1o
 
                        Figure 17: Example Receipt URL
 
@@ -1758,7 +1758,7 @@ B.7.  Transparent Statements
 B.7.1.  Transparent Statement URN
 
    urn:ietf:params:scitt:\
-   transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   transparent-statement:sha-256:base64url:5i6UeR...qnGmr1o
 
                 Figure 19: Example Transparent Statement URN
 
@@ -1766,7 +1766,7 @@ B.7.2.  Transparent Statement URL
 
    https://transparency.example/api/identifiers\
    /urn:ietf:params:scitt:\
-   transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   transparent-statement:sha-256:base64url:5i6UeR...qnGmr1o
 
                 Figure 20: Example Transparent Statement URL
 
