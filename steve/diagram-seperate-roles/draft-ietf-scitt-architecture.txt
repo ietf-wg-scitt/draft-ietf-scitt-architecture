@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 11 April 2025                                        C. Fournet
+Expires: 16 May 2025                                          C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                          8 October 2024
+                                                        12 November 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 April 2025.
+   This Internet-Draft will expire on 16 May 2025.
 
 Copyright Notice
 
@@ -235,15 +235,10 @@ Table of Contents
       by all Relying Parties.
 
    Receipt:  a cryptographic proof that a Signed Statement is included
-      in the Append-only Log. Receipts are based on Signed Inclusion
-      Proofs, such as those as described in COSE Signed Merkle Tree
-      Proofs [I-D.draft-ietf-cose-merkle-tree-proofs]; they can be built
-      on different verifiable data structures, not just binary merkle
-      trees.  A Receipt consists of a Transparency Service-specific
-      inclusion proof for the Signed Statement, a signature by the
-      Transparency Service of the state of the Append-only Log after the
-      inclusion, and additional metadata (contained in the signature's
-      protected headers) to assist in auditing.
+      in the Append-only Log. Receipts are signed proofs of verifiable
+      data-structure properties.  The types of Receipts MUST support
+      inclusion proofs and MAY support other proof types, such as
+      consistency proofs.
 
    Registration:  the process of submitting a Signed Statement to a
       Transparency Service, applying the Transparency Service's
@@ -403,7 +398,7 @@ Table of Contents
    COSE Signed Merkle Tree Proof document
    [I-D.draft-ietf-cose-merkle-tree-proofs].
 
-   Figure 1 illustrates entities and processes that comprise a
+   Figure 1 illustrates the roles and processes that comprise a
    Transparency Service independent of any one use case.
 
    This section describes the three main roles and associated processes
@@ -429,48 +424,61 @@ Table of Contents
          consistency of the Transparency Service's Append-only Log (e.g.
          auditing)
 
-    .----------.
-   |  Artifact  |
-    '-----+----'
-          v                 .-------------.
-     .----+----.           |  Credentials  |
-    | Statement |           '----+--+-----'
-     '----+----'       cose sign |  | cose verify
-          |    .----------------'|  |
-          |   |                  |  |
-          v   v                  |  |'----------.
-     .----+---+---.              |  |            |
-    |    Signed    |             |  |            |
-    |   Statement  |             |  |            |
-    | (COSE_Sign1) |             |  |            |
-     '------+-----'              v  v            |
-            |                +---+--+--------+   |
-        .--' '-------------->+ Transparency  |   |
-       |   .--------.        |               |   |
-       |  | Receipt  +<------+   Service     +-+ |
-       |  |          +.      +--+------------+ | |
-       |   '-+------'  |        | Transparency | |
-       |     | Receipt +<-------+              | |
-       |      '------+'         |   Service    | |
-        '-------. .-'           +------------+-+ |
-                 |                           |   |
-                 v                           |   |
-           .-----+-----.                     |   |
-          | Transparent |                    |   |
-          |  Statement  |                    |   |
-           '-----+-----'                     |   |
-                 |                           |   |
-                 |'-----------.   .----------)--'
-                 |             | |           |
-                 |             v v           |
-                 |    .--------+-+---------. |
-                 |   / Verify Transparent /  |
-                 |  /      Statement     /   |
-                 | '--------------------'    |
-                 v                           v
-        .--------+---------.      .----------+-----.
-       / Collect Receipts /      /   Replay Log   /
-      '------------------'      '----------------'
+   In addition, Figure 1 illustrates multiple Transparency Services and
+   multiple Receipts as a single Signed Statement MAY be registered with
+   one or more Transparency Service.  Each Transparency Service produces
+   a Receipt, which may be aggregated in a single Transparent Statement,
+   demonstrating the Signed Statement was registered by multiple
+   Transparency Services.
+
+   The arrows indicate the flow of information.
+
+                           +------------+
+    .----------.           |   Issuer   |
+   |  Artifact  |          +-+--------+-+
+    '----+-----'             v        v
+         v          .--------+-.    .-+--------.
+    .----+----.    /   sign   /    /  verify  /
+   | Statement |  '-----+----+    '------+---+
+    '----+----'         |                |
+         |    .--------' '--.            |
+         |   |               |           |
+         v   v               |        .-' '-.
+    .----+---+---.           |       |       |
+   |    Signed    |          |       |       |
+   |   Statement  |          |       |       |
+    '------+-----'           v       v       |
+           |             +---+-------+---+   |
+       .--' '----------->+ Transparency  |   |
+      |   .--------.     |               |   |
+      |  | Receipt  +<---+   Service     +-+ |
+      |  |          +.   +--+------------+ | |
+      |   '-+------'  |     | Transparency | |
+      |     | Receipt +<----+              | |
+      |      '------+'      |   Service    | |
+       '-------. .-'        +------------+-+ |
+                |                        |   |
+                v                        |   |
+          .-----+-----.                  |   |
+         | Transparent |                 |   |
+         |  Statement  |                 |   |
+          '--+--------'                  |   |
+             |                           |   |
+             |'-----------.   .----------)--'
+             |             | |           |
+             |             v v           |
+             |    .--------+-+---------. |
+             |   / Verify Transparent /  |
+             |  /      Statement     /   |
+             | '----+---------------+    |
+             |      | Relying Party |    |
+             |      +---------------+    |
+             v                           v
+     .-------+-------------.  .----------+------.
+    / Collecting Receipts /  /   Replay Log    /
+   '-----+---------------+  '-+---------------+
+         | Relying Party |    | Relying Party |
+         +---------------+    +---------------+
 
                 Figure 1: Relationship of Concepts in SCITT
 
@@ -505,10 +513,9 @@ Table of Contents
    Statement is accepted to be registered to the Append-only Log.
 
    Transparency Services MUST maintain Registration Policies.
-
-   Transparency Services MUST also maintain a list of trust anchors,
-   which SHOULD be used by Relying Parties to authenticate Issuers, and
-   which MAY be included in a Registration Policy statement.  For
+   Transparency Services MUST maintain a list of trust anchors (see
+   definition of trust anchor in [RFC4949]).  Transparency Services MUST
+   authenticate signed statements as part of a Registration Policy.  For
    instance, a trust anchor could be an X.509 root certificate, a
    pointer to an OpenID Connect identity provider, or any other COSE-
    compatible trust anchor.
@@ -533,12 +540,15 @@ Table of Contents
    by the Transparency Service MUST be checked.
 
    In essence, when using X.509 Signed Statements, the Transparency
-   Service MUST build and validate a complete certificate chain from the
-   Issuer's certificate identified by x5t located in the protected
-   header of the COSE_Sign1 Envelope, to one of the root certificates
-   most recently registered as a trust anchor of the Transparency
-   Service.  An x5chain with a leaf certificate that corresponds to the
-   x5t value MAY be included in the unprotected header.
+   Service MUST build and validate a complete certification path from an
+   Issuer's certificate to one of the root certificates most recently
+   registered as a trust anchor by the Transparency Service.
+
+   The protected header of the COSE_Sign1 Envelope MUST include either
+   the Issuer's certificate as x5t or the chain including the Issuer's
+   certificate as x5chain.  If x5t is included in the protected header,
+   an x5chain with a leaf certificate corresponding to the x5t value MAY
+   be included in the unprotected header.
 
    The Transparency Service MUST apply the Registration Policy that was
    most recently added to the Append-only Log at the time of
@@ -666,23 +676,24 @@ Table of Contents
    affirming multiple Issuers agree.
 
    At least one identifier representing one credential MUST be included
-   in the protected header of the COSE Envelope, as one of x5t or kid.
-   Additionally, x5chain that corresponds to either x5t or kid
+   in the protected header of the COSE Envelope, as one of x5t, x5chain
+   or kid.  Additionally, x5chain that corresponds to either x5t or kid
    identifying the leaf certificate in the included certification path
    MAY be included in the unprotected header of the COSE Envelope.
 
-   *  When using x.509 certificates, support for x5t is REQUIRED to
-      implement.
+   *  When using x.509 certificates, support for either x5t or x5chain
+      in the protected header is REQUIRED to implement.
 
    *  Support for kid in the protected header and x5chain in the
       unprotected header is OPTIONAL to implement.
 
-   When x5t is present, iss MUST be a string that meets URI requirements
-   defined in [RFC8392].  The iss value's length MUST be between 1 and
-   8192 characters in length.
+   When x5t or x5chain is present in the protected header, iss MUST be a
+   string that meets URI requirements defined in [RFC8392].  The iss
+   value's length MUST be between 1 and 8192 characters in length.
 
-   The kid header parameter MUST be present when x5t is not present.
-   Key discovery protocols are out-of-scope of this document.
+   The kid header parameter MUST be present when neither x5t nor x5chain
+   is present in the protected header.  Key discovery protocols are out-
+   of-scope of this document.
 
    The protected header of a Signed Statement and a Receipt MUST include
    the CWT Claims header parameter as specified in Section 2 of
@@ -788,31 +799,26 @@ Table of Contents
        are implementation-specific and out of scope of the SCITT
        architecture.
 
-   2.  *Issuer Verification:* The Transparency Service MUST perform
-       signature verification, as defined in Section 4.4 of [RFC9052],
-       and MAY perform additional checks as part of its Registration
-       Policy.
-
-   3.  *Signature verification:* The Transparency Service MUST verify
-       the signature of the Signed Statement, as described in [RFC9360],
-       using the signature algorithm and verification key of the Issuer.
-
-   4.  *Signed Statement validation:* The Transparency Service MUST
-       check that the Signed Statement includes the required protected
+   2.  *TS Signed Statement Verification and Validation:* The
+       Transparency Service MUST perform signature verification per
+       Section 4.4 of [RFC9052] and MUST verify the signature of the
+       Signed Statement with the signature algorithm and verification
+       key of the Issuer per [RFC9360].  The Transparency Service MUST
+       also check the Signed Statement includes the required protected
        headers.  The Transparency Service MAY validate the Signed
        Statement payload in order to enforce domain specific
        registration policies that apply to specific content types.
 
-   5.  *Apply Registration Policy:* The Transparency Service MUST check
+   3.  *Apply Registration Policy:* The Transparency Service MUST check
        the attributes required by a Registration Policy are present in
        the protected headers.  Custom Signed Statements are evaluated
        given the current Transparency Service state and the entire
        Envelope, and may use information contained in the attributes of
        named policies.
 
-   6.  *Register the Signed Statement* to the Append-only Log.
+   4.  *Register the Signed Statement* to the Append-only Log.
 
-   7.  *Return the Receipt*, which MAY be asynchronous from
+   5.  *Return the Receipt*, which MAY be asynchronous from
        Registration.  The Transparency Service MUST be able to provide a
        Receipt for all registered Signed Statements.  Details about
        generating Receipts are described in Section 4.4.
@@ -1285,9 +1291,9 @@ Table of Contents
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-05, 18 June
+              Draft, draft-ietf-cose-merkle-tree-proofs-07, 17 October
               2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-05>.
+              cose-merkle-tree-proofs-07>.
 
    [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <https://www.iana.org/assignments/cwt>.
@@ -1434,6 +1440,10 @@ Table of Contents
    [RFC2397]  Masinter, L., "The "data" URL scheme", RFC 2397,
               DOI 10.17487/RFC2397, August 1998,
               <https://www.rfc-editor.org/rfc/rfc2397>.
+
+   [RFC4949]  Shirey, R., "Internet Security Glossary, Version 2",
+              FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007,
+              <https://www.rfc-editor.org/rfc/rfc4949>.
 
    [RFC7523]  Jones, M., Campbell, B., and C. Mortimore, "JSON Web Token
               (JWT) Profile for OAuth 2.0 Client Authentication and
