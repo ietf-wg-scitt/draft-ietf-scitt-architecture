@@ -223,7 +223,8 @@ In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE he
 Non-equivocation:
 
 : a state where it is impossible for a Transparency Service to provide different views of its Append-only Log to Relying Parties about the same Artifact.
-Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information. However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Relying Parties.
+Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information.
+However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Relying Parties.
 
 Receipt:
 
@@ -527,7 +528,8 @@ Key discovery protocols are out-of-scope of this document.
 The protected header of a Signed Statement and a Receipt MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}.
 The `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `Subject Claim` (Claim label 2) {{IANA.cwt}}.
 
-A Receipt is a Signed Statement, (cose-sign1), with addition Claims in its protected header related to verifying the inclusion proof in its unprotected header. See {{-COMETRE}}.
+A Receipt is a Signed Statement, (cose-sign1), with addition Claims in its protected header related to verifying the inclusion proof in its unprotected header.
+See {{-COMETRE}}.
 
 ### Signed Statement Examples
 
@@ -547,12 +549,12 @@ Each implementation SHOULD provide details for their registration policies throu
 Detached payloads support large Statements, and ensure Signed Statements can integrate with existing storage systems.
 
 ~~~ cbor-diag
-18(                                 / COSE Sign 1                   /
+18(                                 / COSE Sign 1      /
     [
-      h'a4012603...6d706c65',       / Protected                     /
-      {},                           / Unprotected                   /
-      nil,                          / Detached payload              /
-      h'79ada558...3a28bae4'        / Signature                     /
+      h'a4012603...6d706c65',       / Protected        /
+      {},                           / Unprotected      /
+      nil,                          / Detached payload /
+      h'79ada558...3a28bae4'        / Signature        /
     ]
 )
 ~~~
@@ -562,13 +564,13 @@ Detached payloads support large Statements, and ensure Signed Statements can int
 It indicates the Signed Statement is securing a JSON content type, and identifying the content with the `sub` Claim "vendor.product.example".
 
 ~~~ cbor-diag
-{                                   / Protected                     /
-  1: -7,                            / Algorithm                     /
-  3: application/example+json,      / Content type                  /
-  4: h'50685f55...50523255',        / Key identifier                /
-  15: {                             / CWT Claims                    /
-    1: software.vendor.example,     / Issuer                        /
-    2: vendor.product.example,      / Subject                       /
+{                                   / Protected        /
+  1: -7,                            / Algorithm        /
+  3: application/example+json,      / Content type     /
+  4: h'50685f55...50523255',        / Key identifier   /
+  15: {                             / CWT Claims       /
+    1: software.vendor.example,     / Issuer           /
+    2: vendor.product.example,      / Subject          /
   }
 }
 ~~~
@@ -621,17 +623,17 @@ The Registration time is recorded as the timestamp when the Transparency Service
 The type of label 394 `receipts` in the unprotected header is a CBOR array that can contain one or more Receipts (each entry encoded as a .cbor encoded Receipts).
 
 ~~~ cbor-diag
-18(                                 / COSE Sign 1                   /
+18(                                 / COSE Sign 1               /
     [
-      h'a4012603...6d706c65',       / Protected                     /
-      {                             / Unprotected                   /
-        394: [                      / Receipts (2)                  /
-          h'd284586c...4191f9d2'    / Receipt 1                     /
-          h'c624586c...8f4af97e'    / Receipt 2                     /
+      h'a4012603...6d706c65',       / Protected                 /
+      {                             / Unprotected               /
+        394: [                      / Receipts (2)              /
+          h'd284586c...4191f9d2'    / Receipt 1                 /
+          h'c624586c...8f4af97e'    / Receipt 2                 /
         ]
       },
-      nil,                          / Detached payload              /
-      h'79ada558...3a28bae4'        / Signature                     /
+      nil,                          / Detached payload          /
+      h'79ada558...3a28bae4'        / Signature                 /
     ]
 )
 ~~~
@@ -641,21 +643,22 @@ The type of label 394 `receipts` in the unprotected header is a CBOR array that 
 The Receipt contains inclusion proofs for verifiable data structures.
 The unprotected header contains verifiable data structure proofs.
 See the protected header for details regarding the specific verifiable data structure used.
-Per the COSE Verifiable Data Structure Registry documented in {{-COMETRE}}, the COSE key type RFC9162_SHA256 is value `1`. Labels identify inclusion proofs (`-1`) and consistency proofs (`-2`).
+Per the COSE Verifiable Data Structure Registry documented in {{-COMETRE}}, the COSE key type RFC9162_SHA256 is value `1`.
+Labels identify inclusion proofs (`-1`) and consistency proofs (`-2`).
 
 ~~~ cbor-diag
-18(                                 / COSE Sign 1                   /
+18(                                 / COSE Sign 1               /
     [
-      h'a4012604...6d706c65',       / Protected                     /
-      {                             / Unprotected                   /
-        -222: {                     / Proofs                        /
-          -1: [                     / Inclusion proofs (1)          /
-            h'83080783...32568964', / Inclusion proof 1             /
+      h'a4012604...6d706c65',       / Protected                 /
+      {                             / Unprotected               /
+        -222: {                     / Proofs                    /
+          -1: [                     / Inclusion proofs (1)      /
+            h'83080783...32568964', / Inclusion proof 1         /
           ]
         },
       },
-      nil,                          / Detached payload              /
-      h'10f6b12a...4191f9d2'        / Signature                     /
+      nil,                          / Detached payload          /
+      h'10f6b12a...4191f9d2'        / Signature                 /
     ]
 )
 ~~~
@@ -665,13 +668,13 @@ Per the COSE Verifiable Data Structure Registry documented in {{-COMETRE}}, the 
 The verifiable data structure (`-111`) uses `1` from (RFC9162_SHA256).
 
 ~~~ cbor-diag
-{                                   / Protected                     /
-  1: -7,                            / Algorithm                     /
-  4: h'50685f55...50523255',        / Key identifier                /
-  -111: 1,                          / Verifiable Data Structure     /
-  15: {                             / CWT Claims                    /
-    1: transparency.vendor.example, / Issuer                        /
-    2: vendor.product.example,      / Subject                       /
+{                                   / Protected                 /
+  1: -7,                            / Algorithm                 /
+  4: h'50685f55...50523255',        / Key identifier            /
+  -111: 1,                          / Verifiable Data Structure /
+  15: {                             / CWT Claims                /
+    1: transparency.vendor.example, / Issuer                    /
+    2: vendor.product.example,      / Subject                   /
   }
 }
 ~~~
@@ -682,13 +685,13 @@ This inclusion proof indicates that the size of the Append-only Log was `8` at t
 The structure of this inclusion proof is specific to the verifiable data structure used (RFC9162_SHA256).
 
 ~~~ cbor-diag
-[                                   / Inclusion proof 1             /
-  8,                                / Tree size                     /
-  7,                                / Leaf index                    /
-  [                                 / Inclusion hashes (3)          /
-     h'c561d333...f9850597'         / Intermediate hash 1           /
-     h'75f177fd...2e73a8ab'         / Intermediate hash 2           /
-     h'0bdaaed3...32568964'         / Intermediate hash 3           /
+[                                   / Inclusion proof 1         /
+  8,                                / Tree size                 /
+  7,                                / Leaf index                /
+  [                                 / Inclusion hashes (3)      /
+     h'c561d333...f9850597'         / Intermediate hash 1       /
+     h'75f177fd...2e73a8ab'         / Intermediate hash 2       /
+     h'0bdaaed3...32568964'         / Intermediate hash 3       /
   ]
 ]
 ~~~
@@ -747,7 +750,9 @@ A Transparency Service MAY provide additional authenticity assurances about its 
 If present, these additional authenticity assurances MUST be registered in the Append-only Log and MUST always be exposed by the Transparency Services' APIs.
 An example of Signed Statement's payloads that can improve authenticity assurances are trustworthiness assessments that are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see {{-rats-arch}}).
 
-For example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs. The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts. The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a Relying Party and complies with well-known Reference Values and Endorsements.
+For example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs.
+The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts.
+The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a Relying Party and complies with well-known Reference Values and Endorsements.
 
 Auditors should be aware that the certification path information included in an unprotected `x5chain` header of a to-be-registered Signed Statement can be tampered with by a malicious Transparency Service (e.g., one that does not incorporate remote attestation), which may replace the intermediate certificates and ultimately connect to an unexpected root.
 This modification helps protect against person-in-the-middle attacks, but not denial-of-service.
@@ -875,7 +880,10 @@ This document has been developed in coordination with the COSE, OAUTH and RATS W
 
 This document uses the terms "Issuer", and "Subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and in particular, the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
 
-The terms "verifier" and "Relying Party" are used interchangeably through the document. While these terms are related to "Verifier" and "Relying Party" as used in {{RFC9334}}, they do not imply the processing of RATS conceptual messages, such as Evidence or Attestation Results that are specific to remote attestation. A SCITT "verifier" and "Relying Party" and "Issuer" of Receipts or Statements might take on the role of a RATS "Attester". Correspondingly, all RATS conceptual messages, such as Evidence and Attestation Results, can be the content of SCITT Statements and a SCITT "verifier" can also take on the role of a RATS "Verifier" to, for example, conduct the procedure of Appraisal of Evidence as a part of a SCITT "verifier"'s verification capabilities.
+The terms "verifier" and "Relying Party" are used interchangeably through the document.
+While these terms are related to "Verifier" and "Relying Party" as used in {{RFC9334}}, they do not imply the processing of RATS conceptual messages, such as Evidence or Attestation Results that are specific to remote attestation.
+A SCITT "verifier" and "Relying Party" and "Issuer" of Receipts or Statements might take on the role of a RATS "Attester".
+Correspondingly, all RATS conceptual messages, such as Evidence and Attestation Results, can be the content of SCITT Statements and a SCITT "verifier" can also take on the role of a RATS "Verifier" to, for example, conduct the procedure of Appraisal of Evidence as a part of a SCITT "verifier"'s verification capabilities.
 
 The terms "Claim" and "Statement" are used throughout this document, where Claim is consistent with the usage in {{-draft-ietf-rats-eat}} and {{RFC7523}}, and Statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the Claims are made.
 
@@ -897,7 +905,11 @@ This document uses the term Statement to refer to potentially unsecured data and
 
 {{NIST.SP.1800-19}} defines "attestation" as "The process of providing a digital signature for a set of measurements securely stored in hardware, and then having the requester validate the signature and the set of measurements."
 
-NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the definition from {{ISO.17000.2020}}, which states that an "attestation" is "The issue of a statement, based on a decision, that fulfillment of specified requirements has been demonstrated.". In the RATS context, a "NIST attestation" is similar to a RATS "Endorsement". Occasionally, RATS Evidence and RATS Attestation Results or the procedures of creating these conceptual messages are referred to as "attestation" or (in cases of the use as a verb) "to attest". The stand-alone use of "attestation" and "to attest" is discouraged outside a well-defined context, such as specification text that highlights the application of terminology, explicitly. Correspondingly, it is often useful for the intended audience to qualify the term "attestation" to avoid confusion and ambiguity.
+NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the definition from {{ISO.17000.2020}}, which states that an "attestation" is "The issue of a statement, based on a decision, that fulfillment of specified requirements has been demonstrated.".
+In the RATS context, a "NIST attestation" is similar to a RATS "Endorsement".
+Occasionally, RATS Evidence and RATS Attestation Results or the procedures of creating these conceptual messages are referred to as "attestation" or (in cases of the use as a verb) "to attest".
+The stand-alone use of "attestation" and "to attest" is discouraged outside a well-defined context, such as specification text that highlights the application of terminology, explicitly.
+Correspondingly, it is often useful for the intended audience to qualify the term "attestation" to avoid confusion and ambiguity.
 
 # Identifiers
 
@@ -993,7 +1005,7 @@ Note that because this identifier is computed over the signatures of the Signed 
 ### Statement URN
 
 ~~~
-urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeR...qnGmr1o
 ~~~
 {: #example-statement-urn align="left" title="Example Statement URN"}
 
@@ -1001,7 +1013,7 @@ urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
 ~~~
 https://transparency.example/api/identifiers\
-/urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+/urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeR...qnGmr1o
 ~~~
 {: #example-statement-url align="left" title="Example Statement URL"}
 
@@ -1018,7 +1030,7 @@ data:application/json;base64,SGVsb...xkIQ==
 
 ~~~
 urn:ietf:params:scitt:\
-signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+signed-statement:sha-256:base64url:5i6UeR...qnGmr1o
 ~~~
 {: #example-signed-statement-urn align="left" title="Example Signed Statement URN"}
 
@@ -1027,7 +1039,7 @@ signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 ~~~
 https://transparency.example/api/identifiers\
 /urn:ietf:params:scitt:\
-signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+signed-statement:sha-256:base64url:5i6...r1o
 ~~~
 {: #example-signed-statement-url align="left" title="Example Signed Statement URL"}
 
@@ -1043,7 +1055,7 @@ data:application/cose;base64,SGVsb...xkIQ==
 ### Receipt URN
 
 ~~~
-urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
+urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeR...qnGmr1o
 ~~~
 {: #example-receipt-urn align="left" title="Example Receipt URN"}
 
@@ -1051,7 +1063,7 @@ urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
 
 ~~~
 https://transparency.example/api/identifiers\
-/urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
+/urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeR...qnGmr1o
 ~~~
 {: #example-receipt-url align="left" title="Example Receipt URL"}
 
@@ -1068,7 +1080,7 @@ data:application/cose;base64,SGVsb...xkIQ==
 
 ~~~
 urn:ietf:params:scitt:\
-transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+transparent-statement:sha-256:base64url:5i6UeR...qnGmr1o
 ~~~
 {: #example-transparent-statement-urn align="left" title="Example Transparent Statement URN"}
 
@@ -1077,7 +1089,7 @@ transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
 ~~~
 https://transparency.example/api/identifiers\
 /urn:ietf:params:scitt:\
-transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+transparent-statement:sha-256:base64url:5i6UeR...qnGmr1o
 ~~~
 {: #example-transparent-statement-url align="left" title="Example Transparent Statement URL"}
 
