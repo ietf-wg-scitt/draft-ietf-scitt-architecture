@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 16 May 2025                                          C. Fournet
+Expires: 17 May 2025                                          C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        12 November 2024
+                                                        13 November 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 May 2025.
+   This Internet-Draft will expire on 17 May 2025.
 
 Copyright Notice
 
@@ -433,52 +433,52 @@ Table of Contents
 
    The arrows indicate the flow of information.
 
-    .----------.
-   |  Artifact  |
-    '-----+----'
-          v             +--------------------+
-     .----+----.        | Issuer Credentials |
-    | Statement |       +--------+--+--------+
-     '----+----'       cose sign |  | cose verify
-          |    .----------------'|  |
-          |   |                  |  |
-          v   v                  |  |'----------.
-     .----+---+---.              |  |            |
-    |    Signed    |             |  |            |
-    |   Statement  |             |  |            |
-    | (COSE_Sign1) |             |  |            |
-     '------+-----'              v  v            |
-            |                +---+--+--------+   |
-        .--' '-------------->+ Transparency  |   |
-       |   .--------.        |               |   |
-       |  | Receipt  +<------+   Service     +-+ |
-       |  |          +.      +--+------------+ | |
-       |   '-+------'  |        | Transparency | |
-       |     | Receipt +<-------+              | |
-       |      '------+'         |   Service    | |
-        '-------. .-'           +------------+-+ |
-                 |                           |   |
-                 v                           |   |
-           .-----+-----.                     |   |
-          | Transparent |                    |   |
-          |  Statement  |                    |   |
-           '-----+-----'                     |   |
-                 |                           |   |
-                 |'-----------.   .----------)--'
-                 |             | |           |
-                 |             v v           |
-                 |    .--------+-+---------. |
-                 |   / Verify Transparent /  |
-                 |  /      Statement     /   |
-                 | '----+-----+---------+    |
-                 |      | Relying Party |    |
-                 |      +---------------+    |
-                 v                           v
-     .-----------+----------.    .-----------+------.
-    /  Collecting Receipt  /    /    Replay Log    /
-   '------+---------------+    '--+---------------+
-          | Relying Party |       | Relying Party |
-          +---------------+       +---------------+
+                           +------------+
+    .----------.           |   Issuer   |
+   |  Artifact  |          +-+--------+-+
+    '----+-----'             v        v
+         v          .--------+-.    .-+--------.
+    .----+----.    /   sign   /    /  verify  /
+   | Statement |  '-----+----+    '------+---+
+    '----+----'         |                |
+         |    .--------' '--.            |
+         |   |               |           |
+         v   v               |        .-' '-.
+    .----+---+---.           |       |       |
+   |    Signed    |          |       |       |
+   |   Statement  |          |       |       |
+    '------+-----'           v       v       |
+           |             +---+-------+---+   |
+       .--' '----------->+ Transparency  |   |
+      |   .--------.     |               |   |
+      |  | Receipt  +<---+   Service     +-+ |
+      |  |          +.   +--+------------+ | |
+      |   '-+------'  |     | Transparency | |
+      |     | Receipt +<----+              | |
+      |      '------+'      |   Service    | |
+       '-------. .-'        +------------+-+ |
+                |                        |   |
+                v                        |   |
+          .-----+-----.                  |   |
+         | Transparent |                 |   |
+         |  Statement  |                 |   |
+          '--+--------'                  |   |
+             |                           |   |
+             |'-----------.   .----------)--'
+             |             | |           |
+             |             v v           |
+             |    .--------+-+---------. |
+             |   / Verify Transparent /  |
+             |  /      Statement     /   |
+             | '----+---------------+    |
+             |      | Relying Party |    |
+             |      +---------------+    |
+             v                           v
+     .-------+-------------.  .----------+------.
+    / Collecting Receipts /  /   Replay Log    /
+   '-----+---------------+  '-+---------------+
+         | Relying Party |    | Relying Party |
+         +---------------+    +---------------+
 
                 Figure 1: Relationship of Concepts in SCITT
 
