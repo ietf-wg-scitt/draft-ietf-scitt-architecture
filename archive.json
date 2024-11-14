@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-12T00:44:53.826407+00:00",
+  "timestamp": "2024-11-14T00:46:04.682535+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -41632,6 +41632,138 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 312,
+      "id": "PR_kwDOIvmHss6BqwKK",
+      "title": "Separate roles from actions",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/312",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From the editors call on 11/12/24\r\n- With the addition of the relying party roles, make the top consistent\r\n- Change the hanging text for sign/verify to actions\r\n- Move Issuer as the entity that performs the actions\r\n- Cleanup overly detailed row for COSE_SIGN1\r\n- Narrow the diagram to avoid make warnings\r\n\r\n![image](https://github.com/user-attachments/assets/32dcc791-3e42-40bb-bf8f-429e77d5372c)\r\n",
+      "createdAt": "2024-11-12T18:04:08Z",
+      "updatedAt": "2024-11-13T17:52:58Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "c6a19caa3ddd27b406e76960b5ba8cd05fa262d8",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/diagram-seperate-roles",
+      "headRefOid": "5f2a6beb93a794ed3a9f93f975207dff73254cb5",
+      "closedAt": "2024-11-13T17:52:58Z",
+      "mergedAt": "2024-11-13T17:52:58Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "3ca40678aabd8040a812d92884f72922d7794c38"
+      },
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> in general the concept LGTM! For future: Just a word of caution: We should make every effort to make the Architecture, look simple. Too many boxes, complicate the diagram.\r\n\r\nAlso, any reason why you removed `cose_sign1` It was super helpful to understand that the Signed Statement was `cose_sign1`",
+          "createdAt": "2024-11-12T18:12:03Z",
+          "updatedAt": "2024-11-12T18:12:03Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@yogeshbdeshpande the reason was to keep the diagram high level, and leave details to spec text",
+          "createdAt": "2024-11-12T18:14:52Z",
+          "updatedAt": "2024-11-12T18:14:52Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "> Also, any reason why you removed `cose_sign1` It was super helpful to understand that the Signed Statement was `cose_sign1`\r\n\r\nAs expected, but I would like to amplify Yogesh's question.",
+          "createdAt": "2024-11-13T17:31:40Z",
+          "updatedAt": "2024-11-13T17:31:40Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> As expected, but I would like to amplify Yogesh's question.\r\n\r\nWe did discuss this on the call, and [@OR13 's comment](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/312#issuecomment-2471246968) sums up our conversation:\r\n\r\n@henkbirkholz, are you blocking, or are you ok if we merge the current simplified version?\r\n",
+          "createdAt": "2024-11-13T17:38:47Z",
+          "updatedAt": "2024-11-13T17:38:47Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "I am okay with the new version. We might apply of different meaning to the term \"simplified\" \u263a\ufe0f",
+          "createdAt": "2024-11-13T17:52:14Z",
+          "updatedAt": "2024-11-13T17:52:14Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6Q3En_",
+          "commit": {
+            "abbreviatedOid": "5f2a6be"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "in general the concept LGTM! For future: Just a word of caution: We should make every effort to make the Architecture, look simple. Too many boxes, complicate the diagram. \r\n",
+          "createdAt": "2024-11-12T18:10:18Z",
+          "updatedAt": "2024-11-12T18:10:18Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Q3GdY",
+          "commit": {
+            "abbreviatedOid": "5f2a6be"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-11-12T18:14:15Z",
+          "updatedAt": "2024-11-12T18:14:15Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6RFHnS",
+          "commit": {
+            "abbreviatedOid": "5f2a6be"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-11-13T17:52:25Z",
+          "updatedAt": "2024-11-13T17:52:25Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 313,
+      "id": "PR_kwDOIvmHss6BrpeK",
+      "title": "Nit formats and kramdown fixes",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/313",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "no content changes, just formatting",
+      "createdAt": "2024-11-12T20:36:18Z",
+      "updatedAt": "2024-11-12T20:40:35Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "c6a19caa3ddd27b406e76960b5ba8cd05fa262d8",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/nits",
+      "headRefOid": "741f28c26677839745ead0305d0fb94ce0ce1d7b",
+      "closedAt": "2024-11-12T20:40:35Z",
+      "mergedAt": "2024-11-12T20:40:35Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "1313f33525c6772f0296ce51ea432b891c39ee63"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
