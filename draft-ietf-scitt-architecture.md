@@ -282,6 +282,7 @@ Without SCITT there would be no standardized way to:
 * express the provenance and historicity of statements
 * relate and link various heterogeneous statements in a simple fashion
 * check that the statement comes from a source with authority to issue that statement
+* confirm that sources provide a complete history of statements related to a given component
 
 ### Promotion of a Software Component by Multiple Entities
 
