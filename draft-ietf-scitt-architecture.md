@@ -309,7 +309,7 @@ Without SCITT there would be no standardized way to:
 * check the trustworthiness of a provider
 * check the integrity of modifications or transformations applied by a provider
 
-### Software Integrator Assembling a Software Product for a Smart Car
+### Software Integrator Assembling a Software Product for an Autonomous Vehicle
 
 Software Integration is a complex activity.
 This typically involves getting various software components from multiple suppliers, producing an integrated package deployed as part of device assembly.
