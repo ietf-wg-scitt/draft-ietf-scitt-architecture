@@ -178,6 +178,165 @@ SCITT achieves this by having producers publish information in a Transparency Se
 
 {::boilerplate bcp14-tagged}
 
+# Exemplary Software Supply Chain (SSC) Use Cases
+
+To illustrate the applicability of the SCITT architecture and its messages this section details the exemplary context of software supply chain (SSC) use cases.
+The building blocks provided by the SCITT architecture and related documents (e.g., the SCITT Reference API) are not restricted to software supply chain use cases.
+Software supply chains serve as a useful application guidance and first usage scenario.
+
+## Generic SSC Problem Statement
+
+Supply chain security is a prerequisite to protecting consumers and minimizing economic, public health, and safety threats.
+Supply chain security has historically focused on risk management practices to safeguard logistics, meet compliance regulations, forecast demand, and optimize inventory.
+While these elements are foundational to a healthy supply chain, an integrated cyber security-based perspective of the software supply chains remains broadly undefined.
+Recently, the global community has experienced numerous supply chain attacks targeting weaknesses in software supply chains.
+As illustrated in {{lifecycle-threats}}, a software supply chain attack may leverage one or more life-cycle stages and directly or indirectly target the component.
+
+~~~ aasvg
+      Dependencies        Malicious 3rd-party package or version
+           |
+           |
+     +-----+-----+
+     |           |
+     |   Code    |        Compromise source control
+     |           |
+     +-----+-----+
+           |
+     +-----+-----+
+     |           |        Malicious plug-ins;
+     |  Commit   |        Malicious commit
+     |           |
+     +-----+-----+
+           |
+     +-----+-----+
+     |           |        Modify build tasks or build environment;
+     |   Build   |        Poison build agent/compiler;
+     |           |        Tamper with build cache
+     +-----+-----+
+           |
+     +-----+-----+
+     |           |        Compromise test tools;
+     |    Test   |        Falsification of test results
+     |           |
+     +-----+-----+
+           |
+     +-----+-----+
+     |           |        Use bad packages;
+     |  Package  |        Compromise package repository
+     |           |
+     +-----+-----+
+           |
+     +-----+-----+
+     |           |        Modify release tasks;
+     |  Release  |        Modify build drop prior to release
+     |           |
+     +-----+-----+
+           |
+     +-----+-----+
+     |           |
+     |  Deploy   |        Tamper with versioning and update process
+     |           |
+     +-----------+
+~~~
+{: #lifecycle-threats title="Example SSC Life-Cycle Threats"}
+
+DevSecOps often depends on third-party and open-source software.
+These dependencies can be quite complex throughout the supply chain and render the checking of lifecycle compliance difficult.
+There is a need for manageable auditability and accountability of digital products.
+Typically, the range of types of statements about digital products (and their dependencies) is vast, heterogeneous, and can differ between community policy requirements.
+Taking the type and structure of all statements about digital and products into account might not be possible.
+Examples of statements may include commit signatures, build environment and parameters, software bill of materials, static and dynamic application security testing results, fuzz testing results, release approvals, deployment records, vulnerability scan results, and patch logs.
+In consequence, instead of trying to understand and describe the detailed syntax and semantics of every type of statement about digital products, the SCITT architecture focuses on ensuring statement authenticity, visibility/transparency, and intends to provide scalable accessibility.
+Threats and practical issues can also arise from unintended side-effects of using security techniques outside their proper bounds.
+For instance digital signatures may fail to verify past their expiry date even though the signed item itself remains completely valid.
+Or a signature may verify even though the information it is securing is now found unreliable but fine-grained revocation is too hard.
+
+Lastly, where data exchange underpins serious business decision-making it is important to hold the producers of those data to a higher standard of accountability.
+SCITT architecture provides mechanisms and structures for ensuring that the makers of authoritative statements can be held accountable and not hide or shred the evidence when it becomes inconvenient later.
+
+The following use cases illustrate the scope of SCITT and elaborate on the generic problem statement above.
+
+## Eclectic SSC Use Cases
+
+The three following use cases are a specialization derived from the generic problem statement above.
+
+### Security Analysis of a Software Product
+
+A released software product is often accompanied by a set of complementary statements about its security compliance.
+This gives enough confidence to both producers and consumers that the released software meets expected security standards and is suitable to use.
+
+Subsequently, multiple security researchers often run sophisticated security analysis tools on the same product.
+The intention is to identify any security weaknesses or vulnerabilities in the package.
+
+Initially, a particular analysis can identify a simple weakness in a software component.
+Over a period of time, a statement from a third-party illustrates that the weakness is exposed in a way that represents an exploitable vulnerability.
+The producer of the software product provides a statement that confirms the linking of a software component vulnerability with the software product and also issues an advisory statement on how to mitigate the vulnerability.
+At first, the producer provides an updated software product that still uses the vulnerable software component but shields the issue in a fashion that inhibits exploitation.
+Later, a second update of the software product includes a security patch to the affected software component from the software producer.
+Finally, a third update includes a new release (updated version) of the formerly insecure software component.
+For this release, both the software product and the affected software component are deemed secure by the producer and consumers.
+
+A consumer of a released software wants to:
+
+* know where to get these security statements from producers and third-parties related to the software product in a timely and unambiguous fashion
+* attribute them to an authoritative issuer
+* associate the statements in a meaningful manner via a set of well-known semantic relationships
+* consistently, efficiently, and homogeneously check their authenticity
+
+SCITT provides a standardized way to:
+
+* know the various sources of statements
+* express the provenance and historicity of statements
+* relate and link various heterogeneous statements in a simple fashion
+* check that the statement comes from a source with authority to issue that statement
+* confirm that sources provide a complete history of statements related to a given component
+
+### Promotion of a Software Component by Multiple Entities
+
+A software component (e.g., a library) released by a certain original producer is becoming popular.
+The released software component is accompanied by a statement of authenticity (e.g., a detached signature).
+Over time, due to its enhanced applicability to various products, there has been an increasing amount of multiple providers of the same software component version on the internet.
+
+Some providers include this particular software component as part of their release package bundle and provide the package with proof of authenticity using their own issuer authority.
+Some packages include the original statement of authenticity, and some do not.
+Over time, some providers no longer offer the exact same software component source code but pre-compiled software component binaries.
+Some sources do not provide the exact same software component, but include patches and fixes produced by third-parties, as these emerge faster than solutions from the original producer.
+Due to complex distribution and promotion life-cycle scenarios, the original software component takes myriad forms.
+
+A consumer of a released software wants to:
+
+* understand if a particular provider is actually the original provider or a promoter
+* know if and how the source, or resulting binary, of a promoted software component differs from the original software component
+* check the provenance and history of a software component's source back to its origin
+* assess whether to trust a promoter or not
+
+SCITT provides a standardized way to:
+
+* reliably discern if a provider is the original producer or is a trustworthy promoter or is an illegitimate provider
+* track the provenance path from an original producer to a particular provider
+* check the trustworthiness of a provider
+* check the integrity of modifications or transformations applied by a provider
+
+### Software Integrator Assembling a Software Product for an Autonomous Vehicle
+
+Software Integration is a complex activity.
+This typically involves getting various software components from multiple suppliers, producing an integrated package deployed as part of device assembly.
+For example, car manufacturers source integrated software for their autonomous vehicles from third parties that integrates software components from various sources.
+Integration complexity creates a higher risk of security vulnerabilities to the delivered software.
+
+Consumers of integrated software want:
+
+* all components presents in a software product listed
+* the ability to identify and retrieve all components from a secure and tamper-proof location
+* to receive an alert when a vulnerability scan detects a known security issue on a running software component
+* verifiable proofs on build process and build environment with all supplier tiers to ensure end to end build quality and security
+
+SCITT provides a standardized way to:
+
+* provide a tiered and transparent framework that allows for verification of integrity and authenticity of the integrated software at both component and product level before installation
+* notify software integrators of vulnerabilities identified during security scans of running software
+* provide valid annotations on build integrity to ensure conformance
+
 # Terminology {#terminology}
 
 The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust, which are used throughout this document.
