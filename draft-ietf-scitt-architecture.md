@@ -276,7 +276,7 @@ A consumer of a released software wants to:
 * associate the statements in a meaningful manner via a set of well-known semantic relationships
 * consistently, efficiently, and homogeneously check their authenticity
 
-Without SCITT there would be no standardized way to:
+SCITT provides a standardized way to:
 
 * know the various sources of statements
 * express the provenance and historicity of statements
