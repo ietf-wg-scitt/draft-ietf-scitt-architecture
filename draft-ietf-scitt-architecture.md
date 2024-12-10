@@ -263,7 +263,7 @@ The intention is to identify any security weaknesses or vulnerabilities in the p
 
 Initially, a particular analysis can identify a simple weakness in a software component.
 Over a period of time, a statement from a third-party illustrates that the weakness is exposed in a way that represents an exploitable vulnerability.
-The producer of the software product provides a statement that confirms the linking of software component vulnerability with the software product and also issues an advisory statement on how to mitigate the vulnerability.
+The producer of the software product provides a statement that confirms the linking of a software component vulnerability with the software product and also issues an advisory statement on how to mitigate the vulnerability.
 At first, the producer provides an updated software product that still uses the vulnerable software component but shields the issue in a fashion that inhibits exploitation.
 Later, a second update of the software product includes a security patch to the affected software component from the software producer.
 Finally, a third update includes a new release (updated version) of the formerly insecure software component.
