@@ -528,7 +528,7 @@ Key discovery protocols are out-of-scope of this document.
 The protected header of a Signed Statement and a Receipt MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}.
 The `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `Subject Claim` (Claim label 2) {{IANA.cwt}}.
 
-A Receipt is a Signed Statement, (cose-sign1), with addition Claims in its protected header related to verifying the inclusion proof in its unprotected header.
+A Receipt is a Signed Statement, (COSE_Sign1), with addition Claims in its protected header related to verifying the inclusion proof in its unprotected header.
 See {{-COMETRE}}.
 
 ## Signed Statement Examples
@@ -1104,7 +1104,7 @@ data:application/cose;base64,SGVsb...xkIQ==
 
 Statements about digital Artifacts, containing digital Artifacts, or structured data regarding any type of Artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
 In these cases a Statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
-A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of RFC9052}}.
+A Signed Statement (COSE_Sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of -COSE}}.
 
 ~~~aasvg
    .----+-----.
