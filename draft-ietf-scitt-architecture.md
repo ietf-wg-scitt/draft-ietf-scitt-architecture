@@ -90,10 +90,13 @@ informative:
   NIST.SP.1800-19:
   NIST.SP.800-63-3:
   FIPS.201: DOI.10.6028/NIST.FIPS.201-3
-  ISO.17000.2020:
+  ISO17000:
+    display: ISO/IEC 17000:2020
     target: https://www.iso.org/standard/73029.html
-    title: ISO/IEC 17000:2020
-
+    title: Conformity assessment — Vocabulary and general principles
+    seriesinfo:
+      ISO/IEC: 17000:2020, Edition 2
+    date: 2020-05
   RFC4949: Glossary
   RFC7523:
   RFC8725:
@@ -477,7 +480,7 @@ Transparency Services can be deployed along side other database or object storag
 For example, a Transparency Service that is supporting a software package management system, might be referenced from the APIs exposed for package management.
 Providing an ability to request a fresh Receipt for a given software package, or to request a list of Signed Statements associated with the software package.
 
-## Signed Statements
+# Signed Statements
 
 This specification prioritizes conformance to {{RFC9052}} and its required and optional properties.
 Profiles and implementation specific choices should be used to determine admissability of conforming messages.
@@ -528,10 +531,10 @@ Key discovery protocols are out-of-scope of this document.
 The protected header of a Signed Statement and a Receipt MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}.
 The `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `Subject Claim` (Claim label 2) {{IANA.cwt}}.
 
-A Receipt is a Signed Statement, (cose-sign1), with addition Claims in its protected header related to verifying the inclusion proof in its unprotected header.
+A Receipt is a Signed Statement, (COSE_Sign1), with additional Claims in its protected header related to verifying the inclusion proof in its unprotected header.
 See {{-COMETRE}}.
 
-### Signed Statement Examples
+## Signed Statement Examples
 
 {{fig-signed-statement-cddl}} illustrates a normative CDDL definition (see {{-CDDL}}) for of the protected header and unprotected header of Signed Statements and Receipts.
 
@@ -576,7 +579,7 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
 ~~~
 {: #fig-signed-statement-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement's Protected Header"}
 
-## Registration
+## Registration of Signed Statements
 
 To register a Signed Statement, the Transparency Service performs the following steps:
 
@@ -599,7 +602,7 @@ A Transparency Service MUST ensure that a Signed Statement is registered before 
 The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
 The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.
 
-## Transparent Statements {#Receipt}
+# Transparent Statements {#Receipt}
 
 The Client (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the unprotected header of the Signed Statement.
 Client applications MAY register Signed Statements on behalf of one or more Issuers.
@@ -613,6 +616,7 @@ Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle
 The Registration time is recorded as the timestamp when the Transparency Service added this Signed Statement to its Append-only Log.
 
 {{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements.
+See {{fig-signed-statement-cddl}} for the CDDL rule that defines 'COSE_Sign1' as specified in {{Section 4.2 of -COSE}}
 
 ~~~ cddl
 {::include transparent_statement.cddl}
@@ -697,7 +701,7 @@ The structure of this inclusion proof is specific to the verifiable data structu
 ~~~
 {: #fig-receipt-inclusion-proof-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Inclusion Proof"}
 
-### Validation {#validation}
+## Validation {#validation}
 
 Relying Parties MUST apply the verification process as described in Section 4.4 of RFC9052, when checking the signature of Signed Statements and Receipts.
 
@@ -905,7 +909,7 @@ This document uses the term Statement to refer to potentially unsecured data and
 
 {{NIST.SP.1800-19}} defines "attestation" as "The process of providing a digital signature for a set of measurements securely stored in hardware, and then having the requester validate the signature and the set of measurements."
 
-NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the definition from {{ISO.17000.2020}}, which states that an "attestation" is "The issue of a statement, based on a decision, that fulfillment of specified requirements has been demonstrated.".
+NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the definition from {{ISO17000}}, which states that an "attestation" is "The issue of a statement, based on a decision, that fulfillment of specified requirements has been demonstrated.".
 In the RATS context, a "NIST attestation" is similar to a RATS "Endorsement".
 Occasionally, RATS Evidence and RATS Attestation Results or the procedures of creating these conceptual messages are referred to as "attestation" or (in cases of the use as a verb) "to attest".
 The stand-alone use of "attestation" and "to attest" is discouraged outside a well-defined context, such as specification text that highlights the application of terminology, explicitly.
@@ -1104,7 +1108,7 @@ data:application/cose;base64,SGVsb...xkIQ==
 
 Statements about digital Artifacts, containing digital Artifacts, or structured data regarding any type of Artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
 In these cases a Statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
-A Signed Statement (cose-sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of RFC9052}}.
+A Signed Statement (COSE_Sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of -COSE}}.
 
 ~~~aasvg
    .----+-----.
