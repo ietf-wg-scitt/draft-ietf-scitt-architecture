@@ -642,7 +642,7 @@ Providing an ability to request a fresh Receipt for a given software package, or
 # Signed Statements
 
 This specification prioritizes conformance to {{RFC9052}} and its required and optional properties.
-Profiles and implementation specific choices should be used to determine admissability of conforming messages.
+Profiles and implementation specific choices should be used to determine admissibility of conforming messages.
 This specification is left intentionally open to allow implementations to make the restrictions that make the most sense for their operational use cases.
 
 There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
