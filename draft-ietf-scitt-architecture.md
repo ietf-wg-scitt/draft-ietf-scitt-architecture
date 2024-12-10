@@ -477,7 +477,7 @@ Transparency Services can be deployed along side other database or object storag
 For example, a Transparency Service that is supporting a software package management system, might be referenced from the APIs exposed for package management.
 Providing an ability to request a fresh Receipt for a given software package, or to request a list of Signed Statements associated with the software package.
 
-## Signed Statements
+# Signed Statements
 
 This specification prioritizes conformance to {{RFC9052}} and its required and optional properties.
 Profiles and implementation specific choices should be used to determine admissability of conforming messages.
@@ -531,7 +531,7 @@ The `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `
 A Receipt is a Signed Statement, (cose-sign1), with addition Claims in its protected header related to verifying the inclusion proof in its unprotected header.
 See {{-COMETRE}}.
 
-### Signed Statement Examples
+## Signed Statement Examples
 
 {{fig-signed-statement-cddl}} illustrates a normative CDDL definition (see {{-CDDL}}) for of the protected header and unprotected header of Signed Statements and Receipts.
 
@@ -576,7 +576,7 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
 ~~~
 {: #fig-signed-statement-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement's Protected Header"}
 
-## Registration
+## Registration of Signed Statements
 
 To register a Signed Statement, the Transparency Service performs the following steps:
 
@@ -599,7 +599,7 @@ A Transparency Service MUST ensure that a Signed Statement is registered before 
 The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
 The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.
 
-## Transparent Statements {#Receipt}
+# Transparent Statements {#Receipt}
 
 The Client (which is not necessarily the Issuer) that registers a Signed Statement and receives a Receipt can produce a Transparent Statement by adding the Receipt to the unprotected header of the Signed Statement.
 Client applications MAY register Signed Statements on behalf of one or more Issuers.
@@ -612,7 +612,7 @@ Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle
 
 The Registration time is recorded as the timestamp when the Transparency Service added this Signed Statement to its Append-only Log.
 
-{{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements.
+{{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements. See {{fig-signed-statement-cddl}} for the CDDL rule that defines 'COSE_Sign1' as specified in {{Section 4.2 of -COSE}}
 
 ~~~ cddl
 {::include transparent_statement.cddl}
