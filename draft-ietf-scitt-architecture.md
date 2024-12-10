@@ -255,7 +255,7 @@ These three use case and more were incubated and selected from this Internet-Dra
 
 ### Security Analysis of a Software Product
 
-A released software product is often accompanied by a set of complementary statements about it's security compliance.
+A released software product is often accompanied by a set of complementary statements about its security compliance.
 This gives enough confidence to both producers and consumers that the released software has a good security standard and is suitable to use.
 
 Subsequently, multiple security researchers often run sophisticated security analysis tools on the same product.
