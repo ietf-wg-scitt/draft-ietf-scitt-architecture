@@ -249,7 +249,6 @@ The following use cases illustrate the scope of SCITT and elaborate on the gener
 ## Eclectic SSC Use Cases
 
 The three following use cases are a specialization derived from the generic problem statement above.
-These three use case and more were incubated and selected from this Internet-Draft: {{-all-scitt-use-cases}}.
 
 ### Security Analysis of a Software Product
 
