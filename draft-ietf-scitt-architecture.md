@@ -615,7 +615,8 @@ Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle
 
 The Registration time is recorded as the timestamp when the Transparency Service added this Signed Statement to its Append-only Log.
 
-{{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements. See {{fig-signed-statement-cddl}} for the CDDL rule that defines 'COSE_Sign1' as specified in {{Section 4.2 of -COSE}}
+{{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements.
+See {{fig-signed-statement-cddl}} for the CDDL rule that defines 'COSE_Sign1' as specified in {{Section 4.2 of -COSE}}
 
 ~~~ cddl
 {::include transparent_statement.cddl}
