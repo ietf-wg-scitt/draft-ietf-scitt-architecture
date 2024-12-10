@@ -143,7 +143,6 @@ informative:
 
   KEY-MANAGEMENT: DOI.10.6028/NIST.SP.800-57pt2r1
 
-
 --- abstract
 
 Traceability of physical and digital Artifacts in supply chains is a long-standing, but increasingly serious security concern.
