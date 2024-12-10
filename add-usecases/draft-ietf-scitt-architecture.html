@@ -1431,10 +1431,11 @@ Software supply chains serve as a useful application guidance and first usage sc
         <h3 id="name-generic-ssc-problem-stateme">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-generic-ssc-problem-stateme" class="section-name selfRef">Generic SSC Problem Statement</a>
         </h3>
-<p id="section-2.1-1">Supply chain security is a paramount prerequisite to successfully protect consumers and minimize economic, public health, and safety impacts.
-Supply chain security has historically focused on risk management practices to safeguard logistics, meet compliance regulations, demand forecasts, and optimize inventory.
+<p id="section-2.1-1">Supply chain security is a prerequisite to protecting consumers and minimizing economic, public health, and safety threats.
+Supply chain security has historically focused on risk management practices to safeguard logistics, meet compliance regulations, forecast demand, and optimize inventory.
 While these elements are foundational to a healthy supply chain, an integrated cyber security-based perspective of the software supply chains remains broadly undefined.
-Recently, the global community has experienced numerous supply chain attacks targeting weaknesses in software supply chains. As illustrated in <a href="#lifecycle-threats" class="auto internal xref">Figure 1</a>, a software supply chain attack may leverage one or more life-cycle stages and directly or indirectly target the component.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+Recently, the global community has experienced numerous supply chain attacks targeting weaknesses in software supply chains.
+As illustrated in <a href="#lifecycle-threats" class="auto internal xref">Figure 1</a>, a software supply chain attack may leverage one or more life-cycle stages and directly or indirectly target the component.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 <span id="name-example-ssc-life-cycle-thre"></span><div id="lifecycle-threats">
 <figure id="figure-1">
           <div id="section-2.1-2.1">
@@ -1547,8 +1548,8 @@ Recently, the global community has experienced numerous supply chain attacks tar
 <a href="#name-example-ssc-life-cycle-thre" class="selfRef">Example SSC Life-Cycle Threats</a>
           </figcaption></figure>
 </div>
-<p id="section-2.1-3">DevSecOps often depends on third-party and open-source solutions.
-These dependencies can be quite complex throughout the supply chain and render the checking of life-cycle compliance difficult.
+<p id="section-2.1-3">DevSecOps often depends on third-party and open-source software.
+These dependencies can be quite complex throughout the supply chain and render the checking of lifecycle compliance difficult.
 There is a need for manageable auditability and accountability of digital products.
 Typically, the range of types of statements about digital products (and their dependencies) is vast, heterogeneous, and can differ between community policy requirements.
 Taking the type and structure of all statements about digital and products into account might not be possible.
@@ -1563,7 +1564,7 @@ The following use cases illustrate the scope of SCITT and elaborate on the gener
 <a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-eclectic-ssc-use-cases" class="section-name selfRef">Eclectic SSC Use Cases</a>
         </h3>
 <p id="section-2.2-1">The three following use cases are a specialization derived from the generic problem statement above.
-These three use case and more were incubated and selected from this Internet-Draft: <span>[<a href="#I-D.birkholz-scitt-software-supply-chain-use-cases" class="cite xref">I-D.birkholz-scitt-software-supply-chain-use-cases</a>]</span>.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+These three use case and more were incubated and selected from this Internet-Draft: <span>[<a href="#I-D.ietf-scitt-software-use-cases" class="cite xref">I-D.ietf-scitt-software-use-cases</a>]</span>.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
 <div id="sec-security-analysis-of-a-software-product">
 <section id="section-2.2.1">
           <h4 id="name-security-analysis-of-a-soft">
@@ -1573,41 +1574,41 @@ These three use case and more were incubated and selected from this Internet-Dra
 This gives enough confidence to both producers and consumers that the released software has a good security standard and is suitable to use.<a href="#section-2.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.2.1-2">Subsequently, multiple security researchers often run sophisticated security analysis tools on the same product.
 The intention is to identify any security weaknesses or vulnerabilities in the package.<a href="#section-2.2.1-2" class="pilcrow">¶</a></p>
-<p id="section-2.2.1-3">Initially a particular analysis can identify itself as a simple weakness in a software component.
-Over a period of time, a statement from another third-party illustrates that the weakness is exposed in the same software component in a way that it is an exploitable vulnerability.
-The producer of the software product now provides a statement that confirms the linking of software component vulnerability with the software product and also issues an advisory statement on how to mitigate the vulnerability.
+<p id="section-2.2.1-3">Initially, a particular analysis can identify a simple weakness in a software component.
+Over a period of time, a statement from a third-party illustrates that the weakness is exposed in a way that represents an exploitable vulnerability.
+The producer of the software product provides a statement that confirms the linking of software component vulnerability with the software product and also issues an advisory statement on how to mitigate the vulnerability.
 At first, the producer provides an updated software product that still uses the vulnerable software component but shields the issue in a fashion that inhibits exploitation.
-Later, A second update of the software product includes a security patch to the affected software component from the software producer.
-Finally, A third update includes a new release (updated version) of the formerly insecure software component.
+Later, a second update of the software product includes a security patch to the affected software component from the software producer.
+Finally, a third update includes a new release (updated version) of the formerly insecure software component.
 For this release, both the software product and the affected software component are deemed secure by the producer and consumers.<a href="#section-2.2.1-3" class="pilcrow">¶</a></p>
-<p id="section-2.2.1-4">A consumer of a released software wants:<a href="#section-2.2.1-4" class="pilcrow">¶</a></p>
+<p id="section-2.2.1-4">A consumer of a released software wants to:<a href="#section-2.2.1-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.2.1-5.1">
-              <p id="section-2.2.1-5.1.1">to know where to get these security statements from producers and third-parties related to the software product in a timely and unambiguous fashion,<a href="#section-2.2.1-5.1.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.1-5.1.1">know where to get these security statements from producers and third-parties related to the software product in a timely and unambiguous fashion<a href="#section-2.2.1-5.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.1-5.2">
-              <p id="section-2.2.1-5.2.1">how to attribute them to an authoritative issuer,<a href="#section-2.2.1-5.2.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.1-5.2.1">attribute them to an authoritative issuer<a href="#section-2.2.1-5.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.1-5.3">
-              <p id="section-2.2.1-5.3.1">how to associate the statements in a meaningful manner via a set of well-known semantic relationships, and<a href="#section-2.2.1-5.3.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.1-5.3.1">associate the statements in a meaningful manner via a set of well-known semantic relationships<a href="#section-2.2.1-5.3.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.1-5.4">
-              <p id="section-2.2.1-5.4.1">how to consistently, efficiently, and homogeneously check their authenticity.<a href="#section-2.2.1-5.4.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.1-5.4.1">consistently, efficiently, and homogeneously check their authenticity<a href="#section-2.2.1-5.4.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 <p id="section-2.2.1-6">Without SCITT there would be no standardized way to:<a href="#section-2.2.1-6" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.2.1-7.1">
-              <p id="section-2.2.1-7.1.1">know the various sources of statements,<a href="#section-2.2.1-7.1.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.1-7.1.1">know the various sources of statements<a href="#section-2.2.1-7.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.1-7.2">
-              <p id="section-2.2.1-7.2.1">how to express the provenance and historicity of statements,<a href="#section-2.2.1-7.2.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.1-7.2.1">express the provenance and historicity of statements<a href="#section-2.2.1-7.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.1-7.3">
-              <p id="section-2.2.1-7.3.1">how to related/link various heterogeneous statements in a simple fashion, and<a href="#section-2.2.1-7.3.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.1-7.3.1">relate and link various heterogeneous statements in a simple fashion<a href="#section-2.2.1-7.3.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.1-7.4">
-              <p id="section-2.2.1-7.4.1">check that the statement comes from a source with authority to issue that statement.<a href="#section-2.2.1-7.4.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.1-7.4.1">check that the statement comes from a source with authority to issue that statement<a href="#section-2.2.1-7.4.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </section>
@@ -1617,42 +1618,42 @@ For this release, both the software product and the affected software component 
           <h4 id="name-promotion-of-a-software-com">
 <a href="#section-2.2.2" class="section-number selfRef">2.2.2. </a><a href="#name-promotion-of-a-software-com" class="section-name selfRef">Promotion of a Software Component by Multiple Entities</a>
           </h4>
-<p id="section-2.2.2-1">A software component source (e.g., a library) released by a certain original producer is becoming popular.
-The released software component source is accompanied by a statement of authenticity (e.g., a detached signature).
+<p id="section-2.2.2-1">A software component (e.g., a library) released by a certain original producer is becoming popular.
+The released software component is accompanied by a statement of authenticity (e.g., a detached signature).
 Over time, due to its enhanced applicability to various products, there has been an increasing amount of multiple providers of the same software component version on the internet.<a href="#section-2.2.2-1" class="pilcrow">¶</a></p>
 <p id="section-2.2.2-2">Some providers include this particular software component as part of their release package bundle and provide the package with proof of authenticity using their own issuer authority.
 Some packages include the original statement of authenticity, and some do not.
-Over time, some providers no longer offer the exact same software component source but pre-compiled software component binaries.
-Some sources do not provide the exact same software component but include patches and fixes produced by third-parties, as these emerge faster than solutions from the original producer.
+Over time, some providers no longer offer the exact same software component source code but pre-compiled software component binaries.
+Some sources do not provide the exact same software component, but include patches and fixes produced by third-parties, as these emerge faster than solutions from the original producer.
 Due to complex distribution and promotion life-cycle scenarios, the original software component takes myriad forms.<a href="#section-2.2.2-2" class="pilcrow">¶</a></p>
-<p id="section-2.2.2-3">A consumer of a released software wants:<a href="#section-2.2.2-3" class="pilcrow">¶</a></p>
+<p id="section-2.2.2-3">A consumer of a released software wants to:<a href="#section-2.2.2-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.2.2-4.1">
-              <p id="section-2.2.2-4.1.1">to understand if a particular provider is actually the original provider or a promoter,<a href="#section-2.2.2-4.1.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.2-4.1.1">understand if a particular provider is actually the original provider or a promoter<a href="#section-2.2.2-4.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.2-4.2">
-              <p id="section-2.2.2-4.2.1">to know if and how the source, or resulting binary, of a promoted software component differs from the original software component,<a href="#section-2.2.2-4.2.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.2-4.2.1">know if and how the source, or resulting binary, of a promoted software component differs from the original software component<a href="#section-2.2.2-4.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.2-4.3">
-              <p id="section-2.2.2-4.3.1">to check the provenance and history of a software component's source back to its origin, and<a href="#section-2.2.2-4.3.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.2-4.3.1">check the provenance and history of a software component's source back to its origin<a href="#section-2.2.2-4.3.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.2-4.4">
-              <p id="section-2.2.2-4.4.1">to assess whether to trust a promoter or not.<a href="#section-2.2.2-4.4.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.2-4.4.1">assess whether to trust a promoter or not<a href="#section-2.2.2-4.4.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 <p id="section-2.2.2-5">Without SCITT there would be no standardized way to:<a href="#section-2.2.2-5" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.2.2-6.1">
-              <p id="section-2.2.2-6.1.1">to reliably discern a provider that is the original producer from a provider that is a trustworthy promoter or from an illegitimate provider,<a href="#section-2.2.2-6.1.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.2-6.1.1">reliably discern if a provider is the original producer or is a trustworthy promoter or is an illegitimate provider<a href="#section-2.2.2-6.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.2-6.2">
               <p id="section-2.2.2-6.2.1">track the provenance path from an original producer to a particular provider<a href="#section-2.2.2-6.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.2-6.3">
-              <p id="section-2.2.2-6.3.1">to check for the trustworthiness of a provider<a href="#section-2.2.2-6.3.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.2-6.3.1">check the trustworthiness of a provider<a href="#section-2.2.2-6.3.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.2-6.4">
-              <p id="section-2.2.2-6.4.1">to check the integrity of modifications or transformations done by a provider<a href="#section-2.2.2-6.4.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.2-6.4.1">check the integrity of modifications or transformations applied by a provider<a href="#section-2.2.2-6.4.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </section>
@@ -1663,22 +1664,25 @@ Due to complex distribution and promotion life-cycle scenarios, the original sof
 <a href="#section-2.2.3" class="section-number selfRef">2.2.3. </a><a href="#name-software-integrator-assembl" class="section-name selfRef">Software Integrator Assembling a Software Product for a Smart Car</a>
           </h4>
 <p id="section-2.2.3-1">Software Integration is a complex activity.
-This typically involves getting various software components from multiple suppliers and producing an integrated package deployed as part of device assembly.
+This typically involves getting various software components from multiple suppliers, producing an integrated package deployed as part of device assembly.
 For example, car manufacturers source integrated software for their autonomous vehicles from third parties that integrates software components from various sources.
 Integration complexity creates a higher risk of security vulnerabilities to the delivered software.<a href="#section-2.2.3-1" class="pilcrow">¶</a></p>
-<p id="section-2.2.3-2">Consumer of an integrated software wants:<a href="#section-2.2.3-2" class="pilcrow">¶</a></p>
+<p id="section-2.2.3-2">Consumers of integrated software want:<a href="#section-2.2.3-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.2.3-3.1">
-              <p id="section-2.2.3-3.1.1">all components presents in a software product listed, and the ability to identify and retrieve them from a secure and tamper-proof location<a href="#section-2.2.3-3.1.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.3-3.1.1">all components presents in a software product listed<a href="#section-2.2.3-3.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.3-3.2">
-              <p id="section-2.2.3-3.2.1">to receive an alert when a vulnerability scan detects a known security issue on a running software component<a href="#section-2.2.3-3.2.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.3-3.2.1">the ability to identify and retrieve all components from a secure and tamper-proof location<a href="#section-2.2.3-3.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.3-3.3">
-              <p id="section-2.2.3-3.3.1">verifiable proofs on build process and build environment with all supplier tiers to ensure end to end build quality and security<a href="#section-2.2.3-3.3.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.3-3.3.1">to receive an alert when a vulnerability scan detects a known security issue on a running software component<a href="#section-2.2.3-3.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2.2.3-3.4">
+              <p id="section-2.2.3-3.4.1">verifiable proofs on build process and build environment with all supplier tiers to ensure end to end build quality and security<a href="#section-2.2.3-3.4.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
-<p id="section-2.2.3-4">Without SCITT there would be no standardized way to:<a href="#section-2.2.3-4" class="pilcrow">¶</a></p>
+<p id="section-2.2.3-4">There is no standardized way to:<a href="#section-2.2.3-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.2.3-5.1">
               <p id="section-2.2.3-5.1.1">provide a tiered and transparent framework that allows for verification of integrity and authenticity of the integrated software at both component and product level before installation<a href="#section-2.2.3-5.1.1" class="pilcrow">¶</a></p>
@@ -2829,10 +2833,6 @@ It is up to the Issuer to notify Transparency Services of credential revocation 
         <dd>
 <span class="refTitle">"Personal identity verification (PIV) of federal employees and contractors"</span>, <span class="refContent">National Institute of Standards and Technology (U.S.)</span>, <span class="seriesInfo">DOI 10.6028/nist.fips.201-3</span>, <time datetime="2022-01" class="refDate">January 2022</time>, <span>&lt;<a href="https://doi.org/10.6028/nist.fips.201-3">https://doi.org/10.6028/nist.fips.201-3</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.birkholz-scitt-software-supply-chain-use-cases">[I-D.birkholz-scitt-software-supply-chain-use-cases]</dt>
-        <dd>
-<span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.draft-ietf-core-href">[I-D.draft-ietf-core-href]</dt>
         <dd>
 <span class="refAuthor">Bormann, C.</span> and <span class="refAuthor">H. Birkholz</span>, <span class="refTitle">"Constrained Resource Identifiers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-core-href-16</span>, <time datetime="2024-07-24" class="refDate">24 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-href-16">https://datatracker.ietf.org/doc/html/draft-ietf-core-href-16</a>&gt;</span>. </dd>
@@ -2840,6 +2840,10 @@ It is up to the Issuer to notify Transparency Services of credential revocation 
 <dt id="I-D.draft-ietf-rats-eat">[I-D.draft-ietf-rats-eat]</dt>
         <dd>
 <span class="refAuthor">Lundblade, L.</span>, <span class="refAuthor">Mandyam, G.</span>, <span class="refAuthor">O'Donoghue, J.</span>, and <span class="refAuthor">C. Wallace</span>, <span class="refTitle">"The Entity Attestation Token (EAT)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-rats-eat-31</span>, <time datetime="2024-09-06" class="refDate">6 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-rats-eat-31">https://datatracker.ietf.org/doc/html/draft-ietf-rats-eat-31</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-scitt-software-use-cases">[I-D.ietf-scitt-software-use-cases]</dt>
+        <dd>
+<span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Deshpande, Y.</span>, <span class="refAuthor">Brooks, D.</span>, <span class="refAuthor">Martin, B.</span>, and <span class="refAuthor">B. Knight</span>, <span class="refTitle">"Detailed Software Supply Chain Uses Cases for SCITT"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-scitt-software-use-cases-03</span>, <time datetime="2024-04-18" class="refDate">18 April 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-scitt-software-use-cases-03">https://datatracker.ietf.org/doc/html/draft-ietf-scitt-software-use-cases-03</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="in-toto">[in-toto]</dt>
         <dd>
