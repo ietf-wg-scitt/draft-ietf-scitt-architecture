@@ -328,7 +328,7 @@ Consumers of integrated software want:
 * to receive an alert when a vulnerability scan detects a known security issue on a running software component
 * verifiable proofs on build process and build environment with all supplier tiers to ensure end to end build quality and security
 
-There is no standardized way to:
+SCITT provides a standardized way to:
 
 * provide a tiered and transparent framework that allows for verification of integrity and authenticity of the integrated software at both component and product level before installation
 * notify software integrators of vulnerabilities identified during security scans of running software
