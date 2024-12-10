@@ -203,7 +203,7 @@ As illustrated in {{lifecycle-threats}}, a software supply chain attack may leve
            |
      +-----+-----+
      |           |        Malicious plug-ins;
-     |  Commit   |        Malcious commit
+     |  Commit   |        Malicious commit
      |           |
      +-----+-----+
            |
