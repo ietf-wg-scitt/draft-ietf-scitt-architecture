@@ -143,7 +143,6 @@ informative:
 
   KEY-MANAGEMENT: DOI.10.6028/NIST.SP.800-57pt2r1
 
-  I-D.ietf-scitt-software-use-cases: all-scitt-use-cases
 
 --- abstract
 
