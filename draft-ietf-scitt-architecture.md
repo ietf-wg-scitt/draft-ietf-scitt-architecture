@@ -303,7 +303,7 @@ A consumer of a released software wants to:
 * check the provenance and history of a software component's source back to its origin
 * assess whether to trust a promoter or not
 
-Without SCITT there would be no standardized way to:
+SCITT provides a standardized way to:
 
 * reliably discern if a provider is the original producer or is a trustworthy promoter or is an illegitimate provider
 * track the provenance path from an original producer to a particular provider
