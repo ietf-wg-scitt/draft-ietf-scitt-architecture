@@ -220,7 +220,7 @@ As illustrated in {{lifecycle-threats}}, a software supply chain attack may leve
      +-----+-----+
            |
      +-----+-----+
-     |           |        Use bad package;
+     |           |        Use bad packages;
      |  Package  |        Compromise package repository
      |           |
      +-----+-----+
