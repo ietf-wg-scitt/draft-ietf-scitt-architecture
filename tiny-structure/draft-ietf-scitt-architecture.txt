@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 18 April 2025                                        C. Fournet
+Expires: 13 June 2025                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         15 October 2024
+                                                        10 December 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 April 2025.
+   This Internet-Draft will expire on 13 June 2025.
 
 Copyright Notice
 
@@ -94,26 +94,26 @@ Table of Contents
        4.1.2.  Initialization and Bootstrapping
        4.1.3.  Append-only Log
        4.1.4.  Adjacent Services
-     4.2.  Signed Statements
-       4.2.1.  Signed Statement Examples
-     4.3.  Registration
-     4.4.  Transparent Statements
-       4.4.1.  Validation
-   5.  Privacy Considerations
-   6.  Security Considerations
-     6.1.  Security Guarantees
-     6.2.  Threat Model
-       6.2.1.  Append-only Log
-       6.2.2.  Availability of Receipts
-       6.2.3.  Confidentiality and Privacy
-       6.2.4.  Cryptographic Agility
-       6.2.5.  Transparency Service Client Applications
-       6.2.6.  Impersonation
-   7.  IANA Considerations
-     7.1.  Media Type Registration
-   8.  References
-     8.1.  Normative References
-     8.2.  Informative References
+   5.  Signed Statements
+     5.1.  Signed Statement Examples
+     5.2.  Registration of Signed Statements
+   6.  Transparent Statements
+     6.1.  Validation
+   7.  Privacy Considerations
+   8.  Security Considerations
+     8.1.  Security Guarantees
+     8.2.  Threat Model
+       8.2.1.  Append-only Log
+       8.2.2.  Availability of Receipts
+       8.2.3.  Confidentiality and Privacy
+       8.2.4.  Cryptographic Agility
+       8.2.5.  Transparency Service Client Applications
+       8.2.6.  Impersonation
+   9.  IANA Considerations
+     9.1.  Media Type Registration
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
    Appendix A.  Common Terminology Disambiguation
    Appendix B.  Identifiers
      B.1.  Identifiers For Binary Content
@@ -433,48 +433,52 @@ Table of Contents
 
    The arrows indicate the flow of information.
 
-    .----------.
-   |  Artifact  |
-    '-----+----'
-          v                 .-------------.
-     .----+----.           |  Credentials  |
-    | Statement |           '----+--+-----'
-     '----+----'       cose sign |  | cose verify
-          |    .----------------'|  |
-          |   |                  |  |
-          v   v                  |  |'----------.
-     .----+---+---.              |  |            |
-    |    Signed    |             |  |            |
-    |   Statement  |             |  |            |
-    | (COSE_Sign1) |             |  |            |
-     '------+-----'              v  v            |
-            |                +---+--+--------+   |
-        .--' '-------------->+ Transparency  |   |
-       |   .--------.        |               |   |
-       |  | Receipt  +<------+   Service     +-+ |
-       |  |          +.      +--+------------+ | |
-       |   '-+------'  |        | Transparency | |
-       |     | Receipt +<-------+              | |
-       |      '------+'         |   Service    | |
-        '-------. .-'           +------------+-+ |
-                 |                           |   |
-                 v                           |   |
-           .-----+-----.                     |   |
-          | Transparent |                    |   |
-          |  Statement  |                    |   |
-           '-----+-----'                     |   |
-                 |                           |   |
-                 |'-----------.   .----------)--'
-                 |             | |           |
-                 |             v v           |
-                 |    .--------+-+---------. |
-                 |   / Verify Transparent /  |
-                 |  /      Statement     /   |
-                 | '--------------------'    |
-                 v                           v
-        .--------+---------.      .----------+-----.
-       / Collect Receipts /      /   Replay Log   /
-      '------------------'      '----------------'
+                           +------------+
+    .----------.           |   Issuer   |
+   |  Artifact  |          +-+--------+-+
+    '----+-----'             v        v
+         v          .--------+-.    .-+--------.
+    .----+----.    /   sign   /    /  verify  /
+   | Statement |  '-----+----+    '------+---+
+    '----+----'         |                |
+         |    .--------' '--.            |
+         |   |               |           |
+         v   v               |        .-' '-.
+    .----+---+---.           |       |       |
+   |    Signed    |          |       |       |
+   |   Statement  |          |       |       |
+    '------+-----'           v       v       |
+           |             +---+-------+---+   |
+       .--' '----------->+ Transparency  |   |
+      |   .--------.     |               |   |
+      |  | Receipt  +<---+   Service     +-+ |
+      |  |          +.   +--+------------+ | |
+      |   '-+------'  |     | Transparency | |
+      |     | Receipt +<----+              | |
+      |      '------+'      |   Service    | |
+       '-------. .-'        +------------+-+ |
+                |                        |   |
+                v                        |   |
+          .-----+-----.                  |   |
+         | Transparent |                 |   |
+         |  Statement  |                 |   |
+          '--+--------'                  |   |
+             |                           |   |
+             |'-----------.   .----------)--'
+             |             | |           |
+             |             v v           |
+             |    .--------+-+---------. |
+             |   / Verify Transparent /  |
+             |  /      Statement     /   |
+             | '----+---------------+    |
+             |      | Relying Party |    |
+             |      +---------------+    |
+             v                           v
+     .-------+-------------.  .----------+------.
+    / Collecting Receipts /  /   Replay Log    /
+   '-----+---------------+  '-+---------------+
+         | Relying Party |    | Relying Party |
+         +---------------+    +---------------+
 
                 Figure 1: Relationship of Concepts in SCITT
 
@@ -614,7 +618,7 @@ Table of Contents
    or to request a list of Signed Statements associated with the
    software package.
 
-4.2.  Signed Statements
+5.  Signed Statements
 
    This specification prioritizes conformance to [RFC9052] and its
    required and optional properties.  Profiles and implementation
@@ -702,7 +706,7 @@ Table of Contents
    its unprotected header.  See
    [I-D.draft-ietf-cose-merkle-tree-proofs].
 
-4.2.1.  Signed Statement Examples
+5.1.  Signed Statement Examples
 
    Figure 2 illustrates a normative CDDL definition (see [RFC8610]) for
    of the protected header and unprotected header of Signed Statements
@@ -754,12 +758,12 @@ Table of Contents
    payloads support large Statements, and ensure Signed Statements can
    integrate with existing storage systems.
 
-   18(                                 / COSE Sign 1                   /
+   18(                                 / COSE Sign 1      /
        [
-         h'a4012603...6d706c65',       / Protected                     /
-         {},                           / Unprotected                   /
-         nil,                          / Detached payload              /
-         h'79ada558...3a28bae4'        / Signature                     /
+         h'a4012603...6d706c65',       / Protected        /
+         {},                           / Unprotected      /
+         nil,                          / Detached payload /
+         h'79ada558...3a28bae4'        / Signature        /
        ]
    )
 
@@ -771,20 +775,20 @@ Table of Contents
    a JSON content type, and identifying the content with the sub Claim
    "vendor.product.example".
 
-   {                                   / Protected                     /
-     1: -7,                            / Algorithm                     /
-     3: application/example+json,      / Content type                  /
-     4: h'50685f55...50523255',        / Key identifier                /
-     15: {                             / CWT Claims                    /
-       1: software.vendor.example,     / Issuer                        /
-       2: vendor.product.example,      / Subject                       /
+   {                                   / Protected        /
+     1: -7,                            / Algorithm        /
+     3: application/example+json,      / Content type     /
+     4: h'50685f55...50523255',        / Key identifier   /
+     15: {                             / CWT Claims       /
+       1: software.vendor.example,     / Issuer           /
+       2: vendor.product.example,      / Subject          /
      }
    }
 
       Figure 4: CBOR Extended Diagnostic Notation example of a Signed
                         Statement's Protected Header
 
-4.3.  Registration
+5.2.  Registration of Signed Statements
 
    To register a Signed Statement, the Transparency Service performs the
    following steps:
@@ -817,7 +821,7 @@ Table of Contents
    5.  *Return the Receipt*, which MAY be asynchronous from
        Registration.  The Transparency Service MUST be able to provide a
        Receipt for all registered Signed Statements.  Details about
-       generating Receipts are described in Section 4.4.
+       generating Receipts are described in Section 6.
 
    The last two steps may be shared between a batch of Signed Statements
    registered in the Append-only Log.
@@ -830,7 +834,7 @@ Table of Contents
    multiple Receipts may be attached to the unprotected header of the
    Signed Statement, creating a Transparent Statement.
 
-4.4.  Transparent Statements
+6.  Transparent Statements
 
    The Client (which is not necessarily the Issuer) that registers a
    Signed Statement and receives a Receipt can produce a Transparent
@@ -853,7 +857,8 @@ Table of Contents
    Log.
 
    Figure 5 illustrates a normative CDDL definition of Transparent
-   Statements.
+   Statements.  See Figure 2 for the CDDL rule that defines 'COSE_Sign1'
+   as specified in Section 4.2 of [RFC9052]
 
    Transparent_Statement = #6.18(COSE_Sign1)
 
@@ -869,17 +874,17 @@ Table of Contents
    one or more Receipts (each entry encoded as a .cbor encoded
    Receipts).
 
-   18(                                 / COSE Sign 1                   /
+   18(                                 / COSE Sign 1               /
        [
-         h'a4012603...6d706c65',       / Protected                     /
-         {                             / Unprotected                   /
-           394: [                      / Receipts (2)                  /
-             h'd284586c...4191f9d2'    / Receipt 1                     /
-             h'c624586c...8f4af97e'    / Receipt 2                     /
+         h'a4012603...6d706c65',       / Protected                 /
+         {                             / Unprotected               /
+           394: [                      / Receipts (2)              /
+             h'd284586c...4191f9d2'    / Receipt 1                 /
+             h'c624586c...8f4af97e'    / Receipt 2                 /
            ]
          },
-         nil,                          / Detached payload              /
-         h'79ada558...3a28bae4'        / Signature                     /
+         nil,                          / Detached payload          /
+         h'79ada558...3a28bae4'        / Signature                 /
        ]
    )
 
@@ -895,18 +900,18 @@ Table of Contents
    type RFC9162_SHA256 is value 1.  Labels identify inclusion proofs
    (-1) and consistency proofs (-2).
 
-   18(                                 / COSE Sign 1                   /
+   18(                                 / COSE Sign 1               /
        [
-         h'a4012604...6d706c65',       / Protected                     /
-         {                             / Unprotected                   /
-           -222: {                     / Proofs                        /
-             -1: [                     / Inclusion proofs (1)          /
-               h'83080783...32568964', / Inclusion proof 1             /
+         h'a4012604...6d706c65',       / Protected                 /
+         {                             / Unprotected               /
+           -222: {                     / Proofs                    /
+             -1: [                     / Inclusion proofs (1)      /
+               h'83080783...32568964', / Inclusion proof 1         /
              ]
            },
          },
-         nil,                          / Detached payload              /
-         h'10f6b12a...4191f9d2'        / Signature                     /
+         nil,                          / Detached payload          /
+         h'10f6b12a...4191f9d2'        / Signature                 /
        ]
    )
 
@@ -916,13 +921,13 @@ Table of Contents
    Statement in Figure 6.  The verifiable data structure (-111) uses 1
    from (RFC9162_SHA256).
 
-   {                                   / Protected                     /
-     1: -7,                            / Algorithm                     /
-     4: h'50685f55...50523255',        / Key identifier                /
-     -111: 1,                          / Verifiable Data Structure     /
-     15: {                             / CWT Claims                    /
-       1: transparency.vendor.example, / Issuer                        /
-       2: vendor.product.example,      / Subject                       /
+   {                                   / Protected                 /
+     1: -7,                            / Algorithm                 /
+     4: h'50685f55...50523255',        / Key identifier            /
+     -111: 1,                          / Verifiable Data Structure /
+     15: {                             / CWT Claims                /
+       1: transparency.vendor.example, / Issuer                    /
+       2: vendor.product.example,      / Subject                   /
      }
    }
 
@@ -935,20 +940,20 @@ Table of Contents
    proof is specific to the verifiable data structure used
    (RFC9162_SHA256).
 
-   [                                   / Inclusion proof 1             /
-     8,                                / Tree size                     /
-     7,                                / Leaf index                    /
-     [                                 / Inclusion hashes (3)          /
-        h'c561d333...f9850597'         / Intermediate hash 1           /
-        h'75f177fd...2e73a8ab'         / Intermediate hash 2           /
-        h'0bdaaed3...32568964'         / Intermediate hash 3           /
+   [                                   / Inclusion proof 1         /
+     8,                                / Tree size                 /
+     7,                                / Leaf index                /
+     [                                 / Inclusion hashes (3)      /
+        h'c561d333...f9850597'         / Intermediate hash 1       /
+        h'75f177fd...2e73a8ab'         / Intermediate hash 2       /
+        h'0bdaaed3...32568964'         / Intermediate hash 3       /
      ]
    ]
 
           Figure 9: CBOR Extended Diagnostic Notation example of a
                          Receipt's Inclusion Proof
 
-4.4.1.  Validation
+6.1.  Validation
 
    Relying Parties MUST apply the verification process as described in
    Section 4.4 of RFC9052, when checking the signature of Signed
@@ -976,7 +981,7 @@ Table of Contents
    Such policies may use as input all information in the Envelope, the
    Receipt, and the Statement payload, as well as any local state.
 
-5.  Privacy Considerations
+7.  Privacy Considerations
 
    Transparency Services MAY support anonymous access.  Issuers SHOULD
    ensure Signed Statements submitted to public access services are
@@ -987,7 +992,7 @@ Table of Contents
    deployments, a special role, such as an Auditor, might require access
    to Signed Statements.
 
-6.  Security Considerations
+8.  Security Considerations
 
    On its own, verifying a Transparent Statement does not guarantee that
    its Envelope or contents are trustworthy.  Just that they have been
@@ -1072,7 +1077,7 @@ Table of Contents
    verify that certification paths chain to one or more trust anchors
    (often represented as root certificates).
 
-6.1.  Security Guarantees
+8.1.  Security Guarantees
 
    SCITT provides the following security guarantees:
 
@@ -1093,7 +1098,7 @@ Table of Contents
    achieved by implementing the Append-only Log using a verifiable data
    structure (such as a Merkle Tree [MERKLE]).
 
-6.2.  Threat Model
+8.2.  Threat Model
 
    This section provides a generic threat model for SCITT, describing
    its residual security properties when some of its actors (Issuers,
@@ -1151,7 +1156,7 @@ Table of Contents
    Issuer or a Transparency Service for Signed Statements they did not
    issue or register.
 
-6.2.1.  Append-only Log
+8.2.1.  Append-only Log
 
    If a Transparency Service is honest, then a Transparent Statement
    including a correct Receipt ensures that the associated Signed
@@ -1188,7 +1193,7 @@ Table of Contents
    Relying Parties and Auditors may also witness (1, 4) but may not be
    able to collect verifiable evidence for it.
 
-6.2.2.  Availability of Receipts
+8.2.2.  Availability of Receipts
 
    Networking and Storage are trusted only for availability.
 
@@ -1202,7 +1207,7 @@ Table of Contents
    Actors may want to independently keep their own record of the Signed
    Statements they issue, endorse, verify, or audit.
 
-6.2.3.  Confidentiality and Privacy
+8.2.3.  Confidentiality and Privacy
 
    All contents exchanged between actors is protected using secure
    authenticated channels (e.g., TLS) but may not exclude network
@@ -1231,14 +1236,14 @@ Table of Contents
    may monitor which of its Transparent Statements are being verified
    from lookups to ensure their freshness.
 
-6.2.4.  Cryptographic Agility
+8.2.4.  Cryptographic Agility
 
    The SCITT Architecture supports cryptographic agility.  The actors
    depend only on the subset of signing and Receipt schemes they trust.
    This enables the gradual transition to stronger algorithms, including
    e.g. post-quantum signature algorithms.
 
-6.2.5.  Transparency Service Client Applications
+8.2.5.  Transparency Service Client Applications
 
    Authentication of Client applications is out of scope for this
    document.  Transparency Services MUST authenticate both Client
@@ -1247,7 +1252,7 @@ Table of Contents
    policies are enforced.  The specification of authentication and
    authorization policies is out of scope for this document.
 
-6.2.6.  Impersonation
+8.2.6.  Impersonation
 
    The identity resolution mechanism is trusted to associate long-term
    identifiers with their public signature-verification keys.
@@ -1262,15 +1267,15 @@ Table of Contents
    Relying Parties from accepting Signed Statements signed with
    compromised credentials.
 
-7.  IANA Considerations
+9.  IANA Considerations
 
-7.1.  Media Type Registration
+9.1.  Media Type Registration
 
    Pending WG discussion.
 
-8.  References
+10.  References
 
-8.1.  Normative References
+10.1.  Normative References
 
    [COSWID]   Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D.
               Waltermire, "Concise Software Identification Tags",
@@ -1287,9 +1292,9 @@ Table of Contents
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-06, 9 October
+              Draft, draft-ietf-cose-merkle-tree-proofs-07, 17 October
               2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-06>.
+              cose-merkle-tree-proofs-07>.
 
    [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <https://www.iana.org/assignments/cwt>.
@@ -1347,7 +1352,7 @@ Table of Contents
               Certificates", RFC 9360, DOI 10.17487/RFC9360, February
               2023, <https://www.rfc-editor.org/rfc/rfc9360>.
 
-8.2.  Informative References
+10.2.  Informative References
 
    [CWT_CLAIMS]
               "CBOR Web Token (CWT) Claims", n.d.,
@@ -1688,16 +1693,16 @@ B.4.  Statements
 
 B.4.1.  Statement URN
 
-   urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeR...qnGmr1o
 
                       Figure 10: Example Statement URN
 
 B.4.2.  Statement URL
 
-  https://transparency.example/api/identifiers\
-  /urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   https://transparency.example/api/identifiers\
+   /urn:ietf:params:scitt:statement:sha-256:base64url:5i6UeR...qnGmr1o
 
-                     Figure 11: Example Statement URL
+                      Figure 11: Example Statement URL
 
 B.4.3.  Statement Data URL
 
@@ -1710,7 +1715,7 @@ B.5.  Signed Statements
 B.5.1.  Signed Statement URN
 
    urn:ietf:params:scitt:\
-   signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   signed-statement:sha-256:base64url:5i6UeR...qnGmr1o
 
                   Figure 13: Example Signed Statement URN
 
@@ -1718,7 +1723,7 @@ B.5.2.  Signed Statement URL
 
    https://transparency.example/api/identifiers\
    /urn:ietf:params:scitt:\
-   signed-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   signed-statement:sha-256:base64url:5i6...r1o
 
                   Figure 14: Example Signed Statement URL
 
@@ -1732,14 +1737,14 @@ B.6.  Receipts
 
 B.6.1.  Receipt URN
 
-   urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeR...qnGmr1o
 
                        Figure 16: Example Receipt URN
 
 B.6.2.  Receipt URL
 
    https://transparency.example/api/identifiers\
-   /urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   /urn:ietf:params:scitt:receipt:sha-256:base64url:5i6UeR...qnGmr1o
 
                        Figure 17: Example Receipt URL
 
@@ -1754,7 +1759,7 @@ B.7.  Transparent Statements
 B.7.1.  Transparent Statement URN
 
    urn:ietf:params:scitt:\
-   transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   transparent-statement:sha-256:base64url:5i6UeR...qnGmr1o
 
                 Figure 19: Example Transparent Statement URN
 
@@ -1762,7 +1767,7 @@ B.7.2.  Transparent Statement URL
 
    https://transparency.example/api/identifiers\
    /urn:ietf:params:scitt:\
-   transparent-statement:sha-256:base64url:5i6UeRzg1...qnGmr1o
+   transparent-statement:sha-256:base64url:5i6UeR...qnGmr1o
 
                 Figure 20: Example Transparent Statement URL
 
