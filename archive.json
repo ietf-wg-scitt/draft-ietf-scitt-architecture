@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-10T00:53:02.369225+00:00",
+  "timestamp": "2024-12-12T00:51:52.079381+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -2119,7 +2119,7 @@
         },
         {
           "author": "cabo",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "> * https://datatracker.ietf.org/doc/draft-multiformats-multibase/\r\n\r\n???  What is the point of this specification?\r\nMinimizing interoperability while maximizing complexity?",
           "createdAt": "2023-05-26T14:49:04Z",
           "updatedAt": "2023-05-26T14:49:04Z"
@@ -5423,6 +5423,7 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [
         "SteveLasker",
+        "henkbirkholz",
         "roywill"
       ],
       "labels": [
@@ -5576,6 +5577,24 @@
       "createdAt": "2024-10-08T14:37:34Z",
       "updatedAt": "2024-10-15T14:58:59Z",
       "closedAt": "2024-10-15T14:58:59Z",
+      "comments": []
+    },
+    {
+      "number": 318,
+      "id": "I_kwDOIvmHss6iwUjj",
+      "title": "Change the ISO reference to a NIST reference",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/318",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "henkbirkholz"
+      ],
+      "labels": [],
+      "body": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/d9460bbd223afaef053bb6269400114961854419/draft-ietf-scitt-architecture.md?plain=1#L93",
+      "createdAt": "2024-12-10T16:19:15Z",
+      "updatedAt": "2024-12-10T16:19:15Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -19969,7 +19988,7 @@
         },
         {
           "author": "cabo",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "I don't understand the word \"Verify\" here, but that may be RATS terminology I'm not familiar with.\r\n",
           "createdAt": "2024-01-11T12:46:11Z",
           "updatedAt": "2024-01-11T12:46:11Z"
@@ -41645,7 +41664,7 @@
       "labels": [],
       "body": "From the editors call on 11/12/24\r\n- With the addition of the relying party roles, make the top consistent\r\n- Change the hanging text for sign/verify to actions\r\n- Move Issuer as the entity that performs the actions\r\n- Cleanup overly detailed row for COSE_SIGN1\r\n- Narrow the diagram to avoid make warnings\r\n\r\n![image](https://github.com/user-attachments/assets/32dcc791-3e42-40bb-bf8f-429e77d5372c)\r\n",
       "createdAt": "2024-11-12T18:04:08Z",
-      "updatedAt": "2024-11-13T17:52:58Z",
+      "updatedAt": "2024-12-10T16:23:06Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "c6a19caa3ddd27b406e76960b5ba8cd05fa262d8",
@@ -41749,7 +41768,7 @@
       "labels": [],
       "body": "no content changes, just formatting",
       "createdAt": "2024-11-12T20:36:18Z",
-      "updatedAt": "2024-11-12T20:40:35Z",
+      "updatedAt": "2024-12-10T16:23:02Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "c6a19caa3ddd27b406e76960b5ba8cd05fa262d8",
@@ -41761,6 +41780,688 @@
       "mergedBy": "SteveLasker",
       "mergeCommit": {
         "oid": "1313f33525c6772f0296ce51ea432b891c39ee63"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 314,
+      "id": "PR_kwDOIvmHss6EsNzI",
+      "title": "markdown minutiae",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/314",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-12-10T11:24:42Z",
+      "updatedAt": "2024-12-10T11:34:42Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "tiny-structure",
+      "baseRefOid": "f15ff9fc003b06ce4d9f11bdd57f38a14e93bfb8",
+      "headRepository": "cabo/draft-ietf-scitt-architecture",
+      "headRefName": "minutiae",
+      "headRefOid": "15f4cecbe9b67ee7e858183db733cb3a5908be86",
+      "closedAt": "2024-12-10T11:34:42Z",
+      "mergedAt": "2024-12-10T11:34:42Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "34c2a67eda0945ed3f84fcdda0f849885c8620ed"
+      },
+      "comments": [
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "non-invasive useful\r\n\r\nthx!",
+          "createdAt": "2024-12-10T11:34:35Z",
+          "updatedAt": "2024-12-10T11:34:35Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6UiQuJ",
+          "commit": {
+            "abbreviatedOid": "15f4cec"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-12-10T11:29:15Z",
+          "updatedAt": "2024-12-10T11:29:15Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 315,
+      "id": "PR_kwDOIvmHss6EsXSA",
+      "title": "a minuscule structure mod proposal",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/315",
+      "state": "MERGED",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "* moving `Signed Statement` and `Transparent Statement` to top tier (and cabo fixed some header nesting)\r\n* fixed some references (and cabo fixed some more)\r\n* adapted heading",
+      "createdAt": "2024-12-10T11:43:26Z",
+      "updatedAt": "2024-12-10T16:23:00Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "3ca40678aabd8040a812d92884f72922d7794c38",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "tiny-structure",
+      "headRefOid": "d1796ac3807bc4dccb42be04ff83ea2ba6d2dee2",
+      "closedAt": "2024-12-10T16:03:24Z",
+      "mergedAt": "2024-12-10T16:03:24Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "a1ddffee13d3892de352eb6f99f1a9646f66ca10"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6Ukjz3",
+          "commit": {
+            "abbreviatedOid": "34c2a67"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T14:58:55Z",
+          "updatedAt": "2024-12-10T14:58:56Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "```suggestion\r\n{{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements.\r\nSee {{fig-signed-statement-cddl}} for the CDDL rule that defines 'COSE_Sign1' as specified in {{Section 4.2 of -COSE}}\r\n```",
+              "createdAt": "2024-12-10T14:58:56Z",
+              "updatedAt": "2024-12-10T14:58:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Ukqb2",
+          "commit": {
+            "abbreviatedOid": "6291600"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-12-10T15:05:59Z",
+          "updatedAt": "2024-12-10T15:05:59Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UkzR3",
+          "commit": {
+            "abbreviatedOid": "6291600"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-12-10T15:18:20Z",
+          "updatedAt": "2024-12-10T15:18:20Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Uk2XF",
+          "commit": {
+            "abbreviatedOid": "6291600"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:22:22Z",
+          "updatedAt": "2024-12-10T15:22:22Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\nA Receipt is a Signed Statement, (COSE_Sign1), with additional Claims in its protected header related to verifying the inclusion proof in its unprotected header.\r\n```",
+              "createdAt": "2024-12-10T15:22:22Z",
+              "updatedAt": "2024-12-10T15:22:22Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 316,
+      "id": "PR_kwDOIvmHss6Es-hY",
+      "title": "an attempt to add three eclectic use cases",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/316",
+      "state": "MERGED",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "After staring at them for a while, this first draft is now simply copying over the generic problem statement and three of the use cases found in https://datatracker.ietf.org/doc/html/draft-ietf-scitt-software-use-cases.\r\n\r\nPlease bash mercilessly.",
+      "createdAt": "2024-12-10T12:59:34Z",
+      "updatedAt": "2024-12-10T16:26:40Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "3ca40678aabd8040a812d92884f72922d7794c38",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "add-usecases",
+      "headRefOid": "d7a382530cc272356b5e398903cee2f845e9b887",
+      "closedAt": "2024-12-10T16:04:05Z",
+      "mergedAt": "2024-12-10T16:04:05Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "7fa60b3922509061be2524a8a795bfd9c3790159"
+      },
+      "comments": [
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I'm in general a little concerned how this large addition affects our target of WGLC, but this can be discussed by the authors.\r\n\r\nInteresting that one of the biggest results of putting something on a ledger - accountability - isn't in here at all.",
+          "createdAt": "2024-12-10T14:15:52Z",
+          "updatedAt": "2024-12-10T14:15:52Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "@JAG-UK I believe the use cases should be free of implementation information, such as use of a ledger object. The specifics of \"how to implement\" a Registry are assumed to come from the architecture and SCRAPI specs, IMO. Others may see it differently. USe cases are purposely abstract and free of implementation expectations.",
+          "createdAt": "2024-12-10T14:48:33Z",
+          "updatedAt": "2024-12-10T14:48:33Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "Question: Please clarify; Will these changes deprecate the existing Use Case document OR will these changes propagate to the Use Case document? ",
+          "createdAt": "2024-12-10T16:13:32Z",
+          "updatedAt": "2024-12-10T16:13:32Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "These changes bring forward text from the [expired use cases document](https://datatracker.ietf.org/doc/draft-ietf-scitt-software-use-cases/).",
+          "createdAt": "2024-12-10T16:26:39Z",
+          "updatedAt": "2024-12-10T16:26:39Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6Uj6lC",
+          "commit": {
+            "abbreviatedOid": "1e7be33"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-12-10T14:09:11Z",
+          "updatedAt": "2024-12-10T14:14:27Z",
+          "comments": [
+            {
+              "originalPosition": 91,
+              "body": "```suggestion\r\nA released software product is often accompanied by a set of complementary statements about its security compliance.\r\n```",
+              "createdAt": "2024-12-10T14:09:11Z",
+              "updatedAt": "2024-12-10T14:14:27Z"
+            },
+            {
+              "originalPosition": 112,
+              "body": "\"would be\" -> \"is\" ?",
+              "createdAt": "2024-12-10T14:10:50Z",
+              "updatedAt": "2024-12-10T14:14:27Z"
+            },
+            {
+              "originalPosition": 145,
+              "body": "```suggestion\r\n### Software Integrator Assembling a Software Product for an Autonomous Vehicle\r\n```\r\n\r\nSmart Car is a brnad name. Better avoided.",
+              "createdAt": "2024-12-10T14:13:39Z",
+              "updatedAt": "2024-12-10T15:14:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Ukrfb",
+          "commit": {
+            "abbreviatedOid": "1e7be33"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:07:29Z",
+          "updatedAt": "2024-12-10T15:07:29Z",
+          "comments": [
+            {
+              "originalPosition": 56,
+              "body": "```suggestion\r\n     |           |        Use bad packages;\r\n```",
+              "createdAt": "2024-12-10T15:07:29Z",
+              "updatedAt": "2024-12-10T15:07:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UksH4",
+          "commit": {
+            "abbreviatedOid": "1e7be33"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:08:24Z",
+          "updatedAt": "2024-12-10T15:08:24Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "```suggestion\r\n     |  Commit   |        Malicious commit\r\n```",
+              "createdAt": "2024-12-10T15:08:24Z",
+              "updatedAt": "2024-12-10T15:08:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Ukt0d",
+          "commit": {
+            "abbreviatedOid": "1e7be33"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:10:51Z",
+          "updatedAt": "2024-12-10T15:10:52Z",
+          "comments": [
+            {
+              "originalPosition": 92,
+              "body": "```suggestion\r\nThis gives enough confidence to both producers and consumers that the released software meets expected security standards and is suitable to use.\r\n```\r\n\r\nProbably best to think in terms of expectations, rather than good/bad.",
+              "createdAt": "2024-12-10T15:10:52Z",
+              "updatedAt": "2024-12-10T15:10:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UkuXZ",
+          "commit": {
+            "abbreviatedOid": "1e7be33"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:11:39Z",
+          "updatedAt": "2024-12-10T15:11:40Z",
+          "comments": [
+            {
+              "originalPosition": 99,
+              "body": "```suggestion\r\nThe producer of the software product provides a statement that confirms the linking of a software component vulnerability with the software product and also issues an advisory statement on how to mitigate the vulnerability.\r\n```",
+              "createdAt": "2024-12-10T15:11:39Z",
+              "updatedAt": "2024-12-10T15:11:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Ukvt6",
+          "commit": {
+            "abbreviatedOid": "40af1a2"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:13:40Z",
+          "updatedAt": "2024-12-10T15:13:40Z",
+          "comments": [
+            {
+              "originalPosition": 112,
+              "body": "Good catch. I hid this change in plain sight to see if anyone is stumbling over it.\r\nI was uncertain, so I used the \"unconventional\" phrasing first.",
+              "createdAt": "2024-12-10T15:13:40Z",
+              "updatedAt": "2024-12-10T15:13:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UkwIU",
+          "commit": {
+            "abbreviatedOid": "40af1a2"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:14:16Z",
+          "updatedAt": "2024-12-10T15:14:16Z",
+          "comments": [
+            {
+              "originalPosition": 145,
+              "body": "okay, I'll edit your change to capitalize \"autonomous vehicle\"",
+              "createdAt": "2024-12-10T15:14:16Z",
+              "updatedAt": "2024-12-10T15:14:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UkwnH",
+          "commit": {
+            "abbreviatedOid": "1e7be33"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:14:58Z",
+          "updatedAt": "2024-12-10T15:14:59Z",
+          "comments": [
+            {
+              "originalPosition": 117,
+              "body": "```suggestion\r\n* check that the statement comes from a source with authority to issue that statement\r\n* confirm that sources provide a complete history of statements related to a given component\r\n```\r\nSuggest adding something about completeness",
+              "createdAt": "2024-12-10T15:14:58Z",
+              "updatedAt": "2024-12-10T15:14:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Ukx5m",
+          "commit": {
+            "abbreviatedOid": "1e7be33"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:16:40Z",
+          "updatedAt": "2024-12-10T15:16:40Z",
+          "comments": [
+            {
+              "originalPosition": 145,
+              "body": "perhaps just \"connected\", but the example works either way",
+              "createdAt": "2024-12-10T15:16:40Z",
+              "updatedAt": "2024-12-10T15:16:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Uk5pw",
+          "commit": {
+            "abbreviatedOid": "40af1a2"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:26:52Z",
+          "updatedAt": "2024-12-10T15:26:52Z",
+          "comments": [
+            {
+              "originalPosition": 138,
+              "body": "```suggestion\r\nSCITT provides a standardized way to:\r\n```",
+              "createdAt": "2024-12-10T15:26:52Z",
+              "updatedAt": "2024-12-10T15:26:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Uk9iO",
+          "commit": {
+            "abbreviatedOid": "7563ccf"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:32:07Z",
+          "updatedAt": "2024-12-10T15:32:08Z",
+          "comments": [
+            {
+              "originalPosition": 112,
+              "body": "```suggestion\r\nSCITT provides a standardized way to:\r\n```",
+              "createdAt": "2024-12-10T15:32:07Z",
+              "updatedAt": "2024-12-10T15:32:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UlBAA",
+          "commit": {
+            "abbreviatedOid": "b2ffb42"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:37:08Z",
+          "updatedAt": "2024-12-10T15:37:08Z",
+          "comments": [
+            {
+              "originalPosition": 87,
+              "body": "modify the reference to the specifc versioned draft",
+              "createdAt": "2024-12-10T15:37:08Z",
+              "updatedAt": "2024-12-10T15:37:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UlD_2",
+          "commit": {
+            "abbreviatedOid": "b2ffb42"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:41:05Z",
+          "updatedAt": "2024-12-10T15:41:06Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n  I-D.ietf-scitt-software-use-cases: all-scitt-use-cases-03\r\n```",
+              "createdAt": "2024-12-10T15:41:05Z",
+              "updatedAt": "2024-12-10T15:41:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UlEFM",
+          "commit": {
+            "abbreviatedOid": "40af1a2"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "My comments addressed, thanks",
+          "createdAt": "2024-12-10T15:41:12Z",
+          "updatedAt": "2024-12-10T15:41:12Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UlF5X",
+          "commit": {
+            "abbreviatedOid": "5c45605"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:43:45Z",
+          "updatedAt": "2024-12-10T15:43:46Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n  I-D.ietf-scitt-software-use-cases: all-scitt-use-cases\r\n```",
+              "createdAt": "2024-12-10T15:43:45Z",
+              "updatedAt": "2024-12-10T15:43:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UlGvO",
+          "commit": {
+            "abbreviatedOid": "61d950c"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:45:01Z",
+          "updatedAt": "2024-12-10T15:45:02Z",
+          "comments": [
+            {
+              "originalPosition": 82,
+              "body": "```suggestion\r\nThreats and practical issues can also arise from unintended side-effects of using security techniques outside their proper bounds.\r\nFor instance digital signatures may fail to verify past their expiry date even though the signed item itself remains completely valid.\r\nOr a signature may verify even though the information it is securing is now found unreliable but fine-grained revocation is too hard.\r\n\r\nLastly, where data exchange underpins serious business decision-making it is important to hold the producers of those data to a higher standard of accountability.\r\nSCITT architecture provides mechanisms and structures for ensuring that the makers of authoritative statements can be held accountable and not hide or shred the evidence when it becomes inconvenient later.\r\n\r\nThe following use cases illustrate the scope of SCITT and elaborate on the generic problem statement above.\r\n```",
+              "createdAt": "2024-12-10T15:45:01Z",
+              "updatedAt": "2024-12-10T15:53:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UlNOE",
+          "commit": {
+            "abbreviatedOid": "61d950c"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:54:10Z",
+          "updatedAt": "2024-12-10T15:54:10Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-12-10T15:54:10Z",
+              "updatedAt": "2024-12-10T15:54:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UlNYO",
+          "commit": {
+            "abbreviatedOid": "0d75e7c"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:54:25Z",
+          "updatedAt": "2024-12-10T15:54:26Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-12-10T15:54:25Z",
+              "updatedAt": "2024-12-10T15:54:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UlNdv",
+          "commit": {
+            "abbreviatedOid": "0d75e7c"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:54:33Z",
+          "updatedAt": "2024-12-10T15:54:33Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-12-10T15:54:33Z",
+              "updatedAt": "2024-12-10T15:54:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UlOBZ",
+          "commit": {
+            "abbreviatedOid": "e7193e3"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:55:00Z",
+          "updatedAt": "2024-12-10T15:55:01Z",
+          "comments": [
+            {
+              "originalPosition": 78,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2024-12-10T15:55:00Z",
+              "updatedAt": "2024-12-10T15:55:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UlPpo",
+          "commit": {
+            "abbreviatedOid": "5a224be"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-10T15:57:08Z",
+          "updatedAt": "2024-12-10T15:57:08Z",
+          "comments": [
+            {
+              "originalPosition": 157,
+              "body": "```suggestion\r\nSCITT provides a standardized way to:\r\n```",
+              "createdAt": "2024-12-10T15:57:08Z",
+              "updatedAt": "2024-12-10T15:57:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UlQXh",
+          "commit": {
+            "abbreviatedOid": "d7a3825"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-12-10T15:58:10Z",
+          "updatedAt": "2024-12-10T15:58:10Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6UlQbZ",
+          "commit": {
+            "abbreviatedOid": "5a224be"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-12-10T15:58:16Z",
+          "updatedAt": "2024-12-10T15:58:16Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 317,
+      "id": "PR_kwDOIvmHss6Euu1b",
+      "title": "Spelling fix",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/317",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-12-10T16:17:09Z",
+      "updatedAt": "2024-12-10T16:22:48Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "7fa60b3922509061be2524a8a795bfd9c3790159",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/spelling",
+      "headRefOid": "b97ffb0208badcd0c21b17c0c2f9fc0e62ecfce6",
+      "closedAt": "2024-12-10T16:17:26Z",
+      "mergedAt": "2024-12-10T16:17:26Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "d9460bbd223afaef053bb6269400114961854419"
       },
       "comments": [],
       "reviews": []
