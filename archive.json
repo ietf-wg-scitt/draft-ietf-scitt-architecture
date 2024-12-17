@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-15T00:56:11.465981+00:00",
+  "timestamp": "2024-12-17T00:52:05.852100+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5594,6 +5594,86 @@
       "body": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/d9460bbd223afaef053bb6269400114961854419/draft-ietf-scitt-architecture.md?plain=1#L93",
       "createdAt": "2024-12-10T16:19:15Z",
       "updatedAt": "2024-12-10T16:19:15Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 319,
+      "id": "I_kwDOIvmHss6jhQMo",
+      "title": "Simplify Initialization and Bootstrapping",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/319",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Feedback from @mcr:\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> I think [4.1.2](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-10.html#name-initialization-and-bootstra) does not need to be stated.\r\n> Just explain what a well formed, (empty) registry looks like.\r\n",
+      "createdAt": "2024-12-16T21:08:52Z",
+      "updatedAt": "2024-12-16T22:51:19Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 320,
+      "id": "I_kwDOIvmHss6jha5l",
+      "title": "Clarify: SCITT tag COSE_Sign1_Tagged is outside the scope of COSE ",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/320",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From @mcr\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> The SCITT tag COSE_Sign1_Tagged is outside the scope of COSE, and used \r\n> to indicate that a signed object is a Signed Statement.\r\n\r\n> I don't understand this.\r\n> \"used\" is that past-tense, or \"is used to\"?\r\n> If this is not a COSE thing, then where does it come from?\r\n\r\n\r\nhttps://www.ietf.org/archive/id/draft-ietf-scitt-architecture-10.html#:~:text=SCITT%20tag%20COSE_Sign1_Tagged%20is%20outside%20the%20scope%20of%20COSE\r\n",
+      "createdAt": "2024-12-16T21:36:54Z",
+      "updatedAt": "2024-12-16T22:51:09Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 321,
+      "id": "I_kwDOIvmHss6jhwbb",
+      "title": "Clarify what is notarized on the ledger",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/321",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From @mcr,\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> it seems that the receipt received from service A can easily be added to the statement submitted to service B.  It's unclear to me that the signed statement submitted to service A can then be updated.  Does the Append-Only Log record just the protected and payload of the Sign1, or does it also witness the unprotected header?\r\n\r\nWe don't seem to clarify what content is used to append to the ledger. Is it just the to-be-signed-bytes, or the entirety of the signed statement, including the unprotected header?\r\n",
+      "createdAt": "2024-12-16T22:37:29Z",
+      "updatedAt": "2024-12-16T22:37:29Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 322,
+      "id": "I_kwDOIvmHss6jh1QM",
+      "title": "Update PII warning",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/322",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From @mcr\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> section 5:\r\n>        Transparency Services MAY support anonymous access. Issuers SHOULD\r\n>        ensure Signed Statements submitted to public access services are\r\n>        acceptable for public disclosure. Publicly accessible Signed\r\n>        Statements MUST NOT carry confidential information.\r\n>I suggest writing:\r\n>  Transparency Services supporting anonymous access need to ensure that\r\n>  issuers are aware of this, snd SHOULD review the submitted statements for\r\n>  attributes known to contain PII.\r\n\r\n> I don't think it's useful for the MUST NOT to be present. It's neither enforceable nor knowable by any party.\r\n",
+      "createdAt": "2024-12-16T22:52:11Z",
+      "updatedAt": "2024-12-16T22:52:11Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 323,
+      "id": "I_kwDOIvmHss6jh2Hs",
+      "title": "Update Security Considerations to not use BCP14 keywords",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/323",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From @mcr\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> Please do not use BCP14 keywords in the Security Considerations.\r\n> SC should instead always reference some section in the Protocol specification where that was said, while explaining what threat was being mitigated.\r\n> \r\n> Like the bit about TEEs, and the other bit about consensus algorithms, and finally the self-statements (Attestation results I guess?) about the TCB.\r\n> \"Redundant Replicas\" ought to be an entire section on it's own.\r\n> \r\n> \"remote attestation Evidence was appraised by a Relying Party \"\r\n> HENK! Evidence iis appraised by a Verifier :-)\r\n> \r\n> person-in-the-middle is not a term that I proposed in\r\n>     https://na01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdatatracker.ietf.org%2Fdoc%2Fdraft-richardson-saag-onpath-attacker%2F&data=05%7C02%7C%7Ce9ee8d279969424877f708dd1ba04c88%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C638697097466980054%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=UgSf4s3sv%2BirzoyYbc%2BRTq0Mx92uor3HwvCDzbQq8UM%3D&reserved=0\r\n> \r\n> some of have proposed MITM be expanded now to:\r\n>      *Meddler\" in the Middle\r\n> \r\n> (if cookies are the thing being stolen, then \"Monster in the Middle\".\r\n> This, btw, is a nom-nom-nom attack.  Coming to an I-D repo near you)",
+      "createdAt": "2024-12-16T22:55:03Z",
+      "updatedAt": "2024-12-17T00:07:56Z",
       "closedAt": null,
       "comments": []
     }
@@ -41941,7 +42021,7 @@
       "labels": [],
       "body": "After staring at them for a while, this first draft is now simply copying over the generic problem statement and three of the use cases found in https://datatracker.ietf.org/doc/html/draft-ietf-scitt-software-use-cases.\r\n\r\nPlease bash mercilessly.",
       "createdAt": "2024-12-10T12:59:34Z",
-      "updatedAt": "2024-12-10T16:26:40Z",
+      "updatedAt": "2024-12-16T02:56:53Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "3ca40678aabd8040a812d92884f72922d7794c38",
@@ -41982,6 +42062,20 @@
           "body": "These changes bring forward text from the [expired use cases document](https://datatracker.ietf.org/doc/draft-ietf-scitt-software-use-cases/).",
           "createdAt": "2024-12-10T16:26:39Z",
           "updatedAt": "2024-12-10T16:26:39Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "NONE",
+          "body": "Thanks @SteveLasker \r\n\r\nWill this merger of use cases into the architecture document result in updates to the architecture document when more use cases are added, that don't affect or impact the actual architecture materials? \r\n\r\nI'm not seeing the benefits of merging the use cases into the architecture document when a functional use case document is already available. Why not just update the use cases document with the new use cases? ",
+          "createdAt": "2024-12-15T12:29:12Z",
+          "updatedAt": "2024-12-15T12:29:12Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi, Dick,\r\nWhile Use cases help frame the beginning of a working group, the latest guidance from the IETF is not to submit use cases as drafts. For this reason, we let the Use Case document expire. We did feel there was enough value to incorporate a subset into the Architecture document. \r\nThat said, reviewing the feedback from Michael is the next step to consider the overall state of the architecture. \r\n",
+          "createdAt": "2024-12-16T02:56:52Z",
+          "updatedAt": "2024-12-16T02:56:52Z"
         }
       ],
       "reviews": [
