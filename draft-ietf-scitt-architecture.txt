@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 13 June 2025                                         C. Fournet
+Expires: 20 June 2025                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        10 December 2024
+                                                        17 December 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 June 2025.
+   This Internet-Draft will expire on 20 June 2025.
 
 Copyright Notice
 
@@ -1648,11 +1648,6 @@ Table of Contents
 
    [in-toto]  "in-toto", n.d., <https://in-toto.io/>.
 
-   [ISO/IEC 17000:2020]
-              "Conformity assessment — Vocabulary and general
-              principles", ISO/IEC 17000:2020, Edition 2, May 2020,
-              <https://www.iso.org/standard/73029.html>.
-
    [KEY-MANAGEMENT]
               Barker, E. and W. Barker, "Recommendation for key
               management:: part 2 -- best practices for key management
@@ -1688,6 +1683,13 @@ Table of Contents
               DOI 10.6028/NIST.SP.800-63-3, 22 June 2017,
               <https://nvlpubs.nist.gov/nistpubs/SpecialPublications/
               NIST.SP.800-63-3.pdf>.
+
+   [NIST_EO14028]
+              "Software Supply Chain Security Guidance Under Executive
+              Order (EO) 14028 Section 4e", 4 February 2022,
+              <https://www.nist.gov/system/files/documents/2022/02/04/
+              software-supply-chain-security-guidance-under-EO-14028-
+              section-4e.pdf>.
 
    [PBFT]     Castro, M. and B. Liskov, "Practical byzantine fault
               tolerance and proactive recovery", Association for
@@ -1813,7 +1815,7 @@ Appendix A.  Common Terminology Disambiguation
    the set of measurements."
 
    NIST guidance "Software Supply Chain Security Guidance EO 14028" uses
-   the definition from [ISO/IEC 17000:2020], which states that an
+   the definition from [NIST_EO14028], which states that an
    "attestation" is "The issue of a statement, based on a decision, that
    fulfillment of specified requirements has been demonstrated.".  In
    the RATS context, a "NIST attestation" is similar to a RATS
