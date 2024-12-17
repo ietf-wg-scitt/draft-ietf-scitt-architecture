@@ -90,13 +90,10 @@ informative:
   NIST.SP.1800-19:
   NIST.SP.800-63-3:
   FIPS.201: DOI.10.6028/NIST.FIPS.201-3
-  ISO17000:
-    display: ISO/IEC 17000:2020
+  NIST_EO14028:
     target: https://www.iso.org/standard/73029.html
-    title: Conformity assessment — Vocabulary and general principles
-    seriesinfo:
-      ISO/IEC: 17000:2020, Edition 2
-    date: 2020-05
+    title: Software Supply Chain Security Guidance Under Executive Order (EO) 14028 Section 4e
+    date: 2022-02-04
   RFC4949: Glossary
   RFC7523:
   RFC8725:
@@ -1068,7 +1065,7 @@ This document uses the term Statement to refer to potentially unsecured data and
 
 {{NIST.SP.1800-19}} defines "attestation" as "The process of providing a digital signature for a set of measurements securely stored in hardware, and then having the requester validate the signature and the set of measurements."
 
-NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the definition from {{ISO17000}}, which states that an "attestation" is "The issue of a statement, based on a decision, that fulfillment of specified requirements has been demonstrated.".
+NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the definition from {{NIST_EO14028}}, which states that an "attestation" is "The issue of a statement, based on a decision, that fulfillment of specified requirements has been demonstrated.".
 In the RATS context, a "NIST attestation" is similar to a RATS "Endorsement".
 Occasionally, RATS Evidence and RATS Attestation Results or the procedures of creating these conceptual messages are referred to as "attestation" or (in cases of the use as a verb) "to attest".
 The stand-alone use of "attestation" and "to attest" is discouraged outside a well-defined context, such as specification text that highlights the application of terminology, explicitly.
