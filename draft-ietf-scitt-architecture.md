@@ -91,7 +91,7 @@ informative:
   NIST.SP.800-63-3:
   FIPS.201: DOI.10.6028/NIST.FIPS.201-3
   NIST_EO14028:
-    target: https://www.nist.gov/system/files/documents/2022/02/04/software-supply-chain-security-guidance-under-EO-14028-section-4e.pdf 
+    target: https://www.nist.gov/system/files/documents/2022/02/04/software-supply-chain-security-guidance-under-EO-14028-section-4e.pdf
     title: Software Supply Chain Security Guidance Under Executive Order (EO) 14028 Section 4e
     date: 2022-02-04
   RFC4949: Glossary
