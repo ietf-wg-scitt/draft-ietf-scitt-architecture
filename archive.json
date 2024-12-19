@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-17T00:52:05.852100+00:00",
+  "timestamp": "2024-12-19T00:50:27.715887+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -200,7 +200,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "IMO a \"Transparency Service\" operates a SCITT Registry that contains authenticated statements expressing trust in an artifact. A SCITT Registry may employ multiple technologies to provide its services, i.e. blockchain ledger, relational database, evidence locker, REST API to query the Registry for statements, API's to submit new statements and evidence, etc. The operator of a Transparency Service serves as the Registry Gatekeeper to ensure the integrity of the Registry.",
           "createdAt": "2023-02-27T21:41:20Z",
           "updatedAt": "2023-02-27T21:43:16Z"
@@ -254,7 +254,7 @@
       "comments": [
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "IMO, A \"Transparency Service\" has an operator (entity) that serves as a Gatekeeper to ensure integrity of the Registry and maintain a high availability service to ensure access to the Registry data via defined API's. ",
           "createdAt": "2023-02-27T21:46:07Z",
           "updatedAt": "2023-02-27T21:46:07Z"
@@ -282,7 +282,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Entries in REA's SAG-CTR are called a \"Declaration\";\r\n \r\n> a formal or explicit statement or announcement.\r\n> \"they issued a declaration at the close of the talks\"\r\n> \r\nThere are different types of declarations, in SAG-CTR i.e. \"Trusted Software\", \"Trusted Artifact\", \"SAGScore\" (TM) etc.",
           "createdAt": "2023-02-28T16:38:56Z",
           "updatedAt": "2023-02-28T16:43:11Z"
@@ -662,7 +662,7 @@
       "comments": [
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Here is my opinion:\r\nRegistry refers to the facilities used to store and retrieve \"Authenticated Statement Data\" that has been submitted to a \"Transparency Service\" \"operator\". A Registry contains specific \"Statements\" which the Transparency service supports, as documented in their registration policies document. A Registry may employ different technologies needed to carry out its function to store and retrieve \"Statements\" that are permitted in the Registry, per the registration policies defined by the Transparency Service operator. The operator of a Transparency Service serves the role of Gatekeeper to ensure the integrity of the Registry data and services provided to access the Registry data. A Statement is contained in a message \"Payload\" exchanged between a Transparency Service API function and other parties, i.e. consumer inquiries and Notary submissions.",
           "createdAt": "2023-02-27T21:58:30Z",
           "updatedAt": "2023-02-27T22:01:54Z"
@@ -2323,7 +2323,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/84",
       "state": "CLOSED",
       "author": "rjb4standards",
-      "authorAssociation": "NONE",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "As I mentioned during today's call. SCITT is entering into a large, established software supply chain corpus that uses common practices for digital signature verification, including PGP keys and X.509 digital certificates containing public keys. \r\nSCITT adoption of these existing practices will enable seamless adoption of SCITT. Failure to support existing software supply chain practices for digital signatures could prove to be a barrier to SCITT adoption.\r\n\r\nRecommendation: Include support for current software supply chain digital signature practices within the SCITT Architecture.",
@@ -2347,7 +2347,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "That looks reasonable Orie. \r\n\r\n \r\n\r\nDo you also have an example for X.509 cert support?\r\n\r\n \r\n\r\n \r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n  \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\n <http://www.reliableenergyanalytics.com/> http://www.reliableenergyanalytics.com\r\n\r\nEmail:  ***@***.***> ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: Orie Steele ***@***.***> \r\nSent: Monday, July 10, 2023 12:57 PM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Mention ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Requesting that existing software supply chain practice used in digital signatures be supported by SCITT (Issue #84)\r\n\r\n \r\n\r\n@rjb4standards <https://github.com/rjb4standards>  here is how you would apply the same text we have for DIDs with COSE to DIDs with PGP:\r\n\r\nsomewhere in your PGP signature meta data, you would put:\r\n\r\ndid:example:123#key-42 ... and it would need to dereference to :\r\n\r\n-----BEGIN PGP PUBLIC KEY BLOCK-----\r\nVersion: OpenPGP.js v4.10.9\r\nComment: https://openpgpjs.org\r\nnxjMEYASIXxYJKwYBBAHaRw8BAQdAiEDH3eDo954hWbnf5srnHwL6WfTKXEwu\r\n....\r\n-----END PGP PUBLIC KEY BLOCK-----\r\n\r\nThen anyone holding your PGP Signed Message would resolve the DID to get the key that verifiers the signature.\r\n\r\nInstead of emailing someone your PGP key, you could email them the DID URL that they can use to dereference it.\r\n\r\nThis is similar to how you could send me your PGP key, or you could send me:\r\n\r\nhttps://github.com/rjb4standards.gpg\r\n\r\nA DID URL is just an identifier for a key, that people know how to resolve to the key.\r\n\r\nAnother example: https://github.com/or13.gpg\r\n\r\nHowever, even if you have a PGP key, you will struggle to use it to verify anything other than PGP signatures.\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/84#issuecomment-1629357095> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NEUZESIYBZTORTTM3DXPQX4VANCNFSM6AAAAAA2EZVHRU> .\r\nYou are receiving this because you were mentioned.Message ID: ***@***.***>\r\n\r\n",
           "createdAt": "2023-07-10T17:05:21Z",
           "updatedAt": "2023-07-10T17:05:21Z"
@@ -2368,7 +2368,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "I\u2019ve provided an X.509 example to consider:\r\n\r\n \r\n\r\n \r\n\r\n\r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n  \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\n <http://www.reliableenergyanalytics.com/> http://www.reliableenergyanalytics.com\r\n\r\nEmail:  ***@***.***> ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: Orie Steele ***@***.***> \r\nSent: Monday, July 10, 2023 1:09 PM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Mention ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Requesting that existing software supply chain practice used in digital signatures be supported by SCITT (Issue #84)\r\n\r\n \r\n\r\n@rjb4standards <https://github.com/rjb4standards>  I'm not really an expert on JOSE or COSE x509,\r\n\r\nSee: https://datatracker.ietf.org/doc/html/rfc9360#name-x509-cose-header-parameters\r\n\r\nBut I think something like this would solve it:\r\n\r\n\r\nSigned Statement Protected Header\r\n\r\n{\r\n  alg: ES384\r\n  x5chain: ....\r\n  x5t: ....\r\n  x5u: ...\r\n  content_type: application/spdx+json\r\n}\r\n\r\nSigned Statement Protected Payload\r\n\r\n.... \r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/84#issuecomment-1629376319> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NDOVHKG7LN7IDJ5SVLXPQZLPANCNFSM6AAAAAA2EZVHRU> .\r\nYou are receiving this because you were mentioned.Message ID: ***@***.***>\r\n\r\n",
           "createdAt": "2023-07-10T17:15:16Z",
           "updatedAt": "2023-07-10T17:15:16Z"
@@ -4740,7 +4740,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "IMO, the Transparency Service registration policy MUST state the type of payloads that are acceptable along with specific requirements and/or constraints. Here is an example of a policy where anything goes:\r\n\r\n\"This Transparency Service Registry will accept any type of payload with no specific requirements or constraints.\"\r\n\r\nPolicy Requirements/Constraints SHOULD specify maximum payload size, acceptable payload content types (mime type), acceptable payload content materials i.e. SBOMs, ",
           "createdAt": "2024-05-19T11:28:47Z",
           "updatedAt": "2024-05-19T11:35:55Z"
@@ -4754,7 +4754,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Email MIME payloads are a good example of anything goes.",
           "createdAt": "2024-05-21T16:42:35Z",
           "updatedAt": "2024-05-21T16:42:35Z"
@@ -4768,7 +4768,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "AJ, consider a scenario where an entity is providing \"evidence locker\" services, which can be presented in court. The party operating the evidence locker service doesn't need to know what the evidence payload contains, or what format is is provided in, but they must be able to produce and present the original evidence data, whatever it may be. \r\nREA does this today in order to satisfy US SEC regulations to prove that cybersecurity controls are in place and functioning regularly within a company, just in case the data needs to be presented in court.. This is all part of our \"Trust Registry\" offering called SAG-CTR. ",
           "createdAt": "2024-05-21T18:19:55Z",
           "updatedAt": "2024-05-21T18:21:12Z"
@@ -4782,7 +4782,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Fair question AJ.\r\n\r\nThe SAG-CTR Trust Registry provides client with two main services:\r\n1. Evidence locker (anything goes), but it currently only works with SAG-PM evidence data today, but can support any type of evidence artifacts\r\n2. Registry of Trust Scores where software consumers can check the trust score for a specific product; this requires a well known payload. Trusted parties upload SAG-PM evidence data containing a SAGScore and other information, which the Gatekeep examines before registering a product in the \"Trust Registry\", kind of like a Registry of Deeds. [I demonstrated this risk sharing info service to NASA and the DOE ](https://github.com/rjb4standards/Presentations/raw/master/NASA-Presentation-ICT_SCRM%20(003)-GEORGE-V3.pptx) as a means to share risk assessment scores related to the CISA Secure Attestation Form collection and risk assessment processing that begins in June. ",
           "createdAt": "2024-05-21T18:43:00Z",
           "updatedAt": "2024-05-21T18:43:00Z"
@@ -4796,7 +4796,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "AJ, IMO, the SCITT architecture can easily support both use cases presented. \r\n\r\nWe demonstrated how SCITT can be used for discovery of key artifacts during the 117 Hackathon using an FDA use case, including Trust Scores stored in a SCITT Trust Registry. A VRF was uploaded into the Trust Registry, which contains links to all required artifacts to perform a risk assessment. A software vendor simply provides a link to the VRF in the Trust Registry, just how [Jon and I demonstrated this use case during the Hackathon](https://energycentral.com/c/iu/international-trust-registry-demonstration-success) .\r\n\r\nREA will identify the SAG-CTR Trust Registry with two SCITT registration policies - one for evidence data preservation and the other to post trust scores. IMO, SCITT supports both of these use case scenarios.",
           "createdAt": "2024-05-21T19:07:07Z",
           "updatedAt": "2024-05-21T19:07:07Z"
@@ -4810,7 +4810,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "REA supports the current Registration Policy language contained in section 4.1.1 and encourages others to support this description of the Registration Policy, which empowers the TS operator to decide what type of payloads they will register.\r\n\r\nREA's SCITT Trust Registry implementation, SAG-CTR, will be fully compliant with the SCITT protocol, when the SCITT specifications are compete and approved using the IETF consensus process. REA is a fully committed supporter of SCITT, from the beginning, and will remain so as radical transparency practices continue to be adopted and a trust anchor capability evolves. \r\nIn the mean time, REA will continue to operate and improve its SAG-CTR Trust Registry conceptual implementation of SCITT to provide the radical transparency consumers need in the software supply chain.\r\nHoping to see everyone at the CISA ICT_SCRM Task Force conference on June 12 where C-SCRM implementation topics will be discussed: \r\nhttps://www.cisa.gov/news-events/events/innovations-ict-supply-chain-risk-management-conference\r\n",
           "createdAt": "2024-05-22T14:57:52Z",
           "updatedAt": "2024-05-22T15:06:04Z"
@@ -4824,7 +4824,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "See you on June 12.\r\n\r\nI will reiterate my position on this matter:\r\n\"REA supports the current Registration Policy language contained in section 4.1.1 and encourages others to support this description of the Registration Policy, which empowers the TS operator to decide what type of payloads they will register.\"",
           "createdAt": "2024-05-22T15:22:52Z",
           "updatedAt": "2024-05-22T15:23:47Z"
@@ -4859,7 +4859,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "I agree with AJ, \r\nI think we need to provide greater clarity regarding roles performed:\r\nVerification on inbound submission to confirm adherence to registration policies is performed by the  __________ role.\r\nVerification that registered content in the log is performed by the ____________ role.\r\n\r\nIMO, they both can't be called Auditor. I believe Auditor is appropriate for Verification that registered content in the log is consistent with SCITT standards and Registration Policies. \r\n\r\n",
           "createdAt": "2024-07-06T16:36:37Z",
           "updatedAt": "2024-07-06T16:36:37Z"
@@ -4964,7 +4964,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/252",
       "state": "CLOSED",
       "author": "rjb4standards",
-      "authorAssociation": "NONE",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
         "pending-close"
@@ -4976,7 +4976,7 @@
       "comments": [
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Issue posted.",
           "createdAt": "2024-07-03T15:01:42Z",
           "updatedAt": "2024-07-03T15:01:42Z"
@@ -4990,14 +4990,14 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Steve, a registration policy is the basis upon which trust is established. The registration policy must make clear that a high integrity and thorough vetting process is enforced before any material is allowed into the registry and any rejections are recorded, outside of the transparency service log along with justification. That's how BCG views and implements the SAG-CTR registration policy. Proper registrations are recorded in the registry and improper requests are rejected and documented. This provides a complete view of the Transparency Service process for accepting/rejecting signed receipts, based on registration policy criteria.",
           "createdAt": "2024-07-07T16:35:25Z",
           "updatedAt": "2024-07-07T16:35:25Z"
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "It's important to distinguish the functions performed by each \"Auditor Role\".\r\nDuring signed statement processing the role is required to enforce registration policies, ensuring that only proper materials are being recorded in the Registry and improper filings are being properly rejected. This Auditor Role has the authority to approve changes/additions to the Registry Log.  ( I refer to this as the Gatekeeper role)\r\n\r\nAfter statements are validated against registration policies and data is placed in the Registry, on the Log, the Auditor Role is to verify that registration policies are being properly applied and notify proper authorities when there are violations. This Auditor Role has no authority to make changes/additions to the Registry Log. \r\n",
           "createdAt": "2024-07-08T14:49:27Z",
           "updatedAt": "2024-07-08T14:55:07Z"
@@ -5018,7 +5018,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "It's not just rejections that need to be captured in order to have a \"closed loop\" process. Ideally, each request to register a signed statement needs to be tracked and the status recorded in order to conduct a proper audit against the \"registered\" signed statements in the log to verify that the log and the \"tracker process\" match. Rejected requests would appear in the tracker as rejected. Accepted requests would appear as approved.\r\n\r\nThis would produce a high integrity, closed loop process, needed for a trustworthy, auditable registration service. Integrity of the registry is key to its success.\r\n\r\nClose this issue if you are compelled to do so and I can open a new issue later to address this matter.",
           "createdAt": "2024-07-09T10:22:34Z",
           "updatedAt": "2024-07-09T10:23:46Z"
@@ -5521,7 +5521,7 @@
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/293",
       "state": "CLOSED",
       "author": "rjb4standards",
-      "authorAssociation": "NONE",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
         "has-pr"
@@ -5540,7 +5540,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "No objections here Jon. Thanks for resolving this issue so quickly. Please close this issue after applying appropriate changes.",
           "createdAt": "2024-07-22T23:40:01Z",
           "updatedAt": "2024-07-22T23:43:02Z"
@@ -5584,7 +5584,7 @@
       "id": "I_kwDOIvmHss6iwUjj",
       "title": "Change the ISO reference to a NIST reference",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/318",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -5593,8 +5593,8 @@
       "labels": [],
       "body": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/d9460bbd223afaef053bb6269400114961854419/draft-ietf-scitt-architecture.md?plain=1#L93",
       "createdAt": "2024-12-10T16:19:15Z",
-      "updatedAt": "2024-12-10T16:19:15Z",
-      "closedAt": null,
+      "updatedAt": "2024-12-17T16:05:38Z",
+      "closedAt": "2024-12-17T16:05:38Z",
       "comments": []
     },
     {
@@ -5637,13 +5637,135 @@
       "state": "OPEN",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "henkbirkholz"
+      ],
       "labels": [],
       "body": "From @mcr,\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> it seems that the receipt received from service A can easily be added to the statement submitted to service B.  It's unclear to me that the signed statement submitted to service A can then be updated.  Does the Append-Only Log record just the protected and payload of the Sign1, or does it also witness the unprotected header?\r\n\r\nWe don't seem to clarify what content is used to append to the ledger. Is it just the to-be-signed-bytes, or the entirety of the signed statement, including the unprotected header?\r\n",
       "createdAt": "2024-12-16T22:37:29Z",
-      "updatedAt": "2024-12-16T22:37:29Z",
+      "updatedAt": "2024-12-18T20:34:44Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> We don't seem to clarify what content is used to append to the ledger. Is it just the to-be-signed-bytes, or the entirety of the signed statement, including the unprotected header?\r\n\r\nI think we should mandate that it's at least (*) the signed statement with an empty unprotected header, because:\r\n\r\n1. It's a form of the statement from the issuer that does not contain un-authenticated content.\r\n2. It's convenient for clients/verifiers/tooling to deal with in a way that the TBS is not.\r\n\r\n(*) Implementations could decide that they want to allow some unprotected headers in, perhaps as supporting evidence (such as x5chain where it's sent unprotected), and should be encouraged to validate it as much as possible before they do so. Exposing what unprotected headers are counter-signed, if any, could be done in the transparency config, for the benefit of the verifiers.\r\n\r\nAllowing unprotected headers wholesale amounts to blindly counter-signing something that hasn't been signed in the first place, and should at the very least be heavily discouraged if not forbidden.",
+          "createdAt": "2024-12-17T13:56:43Z",
+          "updatedAt": "2024-12-17T13:56:43Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Notes from editors meeting:\r\nWe should create a PR, for text to be added to the registration section:   [6.2. Registration of Signed Statements](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#section-6.2)[Registration of Signed Statements](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-registration-of-signed-stat)\r\n\r\n- Set the value of the unprotected header to an empty map\r\n\r\nThis would include the protected-header, payload and signature.\r\nWe're specifically calling out emptying the unprotected header.\r\n",
+          "createdAt": "2024-12-17T16:01:30Z",
+          "updatedAt": "2024-12-17T16:01:30Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Per the conversation here https://youtu.be/DK40XJ651Cw I don't object to the requirement that un protected headers be stripped. I can see the could be left to being \"client choice\", but I do understand the chalenges that could create for scanning the log for the entry. While the client *knows* what was registered, I can see auditors may not.\r\n\r\nOne concerne I'd like to be clear on in any resulting changes: Did the conversation settle on *permiting* the ledger to include additional content in the actual ledger entry on disc ?\r\n\r\nConcrete example from the datatrails ledger we define the merkle leaf of our ledger like this\r\n\r\n`H(DOMAIN-SEPARATOR || EXTRABYTES || IDTIMESTAMP || SERIALIZEDBYTES)`\r\n\r\nOur *hope* is that SERIALIZEDBYTES is the *result* of the normalization process discussed on the call (regardless of what is decided with respect to the inclusion of unprotected headers), and that its for the TS registration policies to defined additional content. Is this what is intended ?\r\n\r\nAdditional context:\r\n\r\nIn our case the log is actually a mog, in that it includes a trie friendly leaf index as well as the more regular merkle tree data. So all material needed to verify the receipt can be obtained (efficiently) from the combination of the original statement, the receipt, and the index entry in the log. This means there is a VDS/ receipts format specific step to assemble the leaf value. \r\n\r\nWe do this so that while we may have duplicate SERIALIZEDBYTES, all entries in the ledger leaves have a unique and time sortable component to their pre-image. And one which is established by the process which commits the VDS to persistent storage.",
+          "createdAt": "2024-12-18T17:27:23Z",
+          "updatedAt": "2024-12-18T17:27:23Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Robin,\r\n\r\n \r\n\r\nI\u2019m not familiar with the term \u201cmog\u201d can you please provide information to help me understand this?\r\n\r\n \r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n   \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\nRisk always exists, but trust must be earned and awarded.\u2122 \r\n\r\nhttps://businesscyberguardian.com/ \r\n\r\nEmail: ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: robinbryce ***@***.***> \r\nSent: Wednesday, December 18, 2024 12:28 PM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Subscribed ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Clarify what is notarized on the ledger (Issue #321)\r\n\r\n \r\n\r\nPer the conversation here https://youtu.be/DK40XJ651Cw I don't object to the requirement that un protected headers be stripped. I can see the could be left to being \"client choice\", but I do understand the chalenges that could create for scanning the log for the entry. While the client knows what was registered, I can see auditors may not.\r\n\r\nOne concerne I'd like to be clear on in any resulting changes: Did the conversation settle on permiting the ledger to include additional content in the actual ledger entry on disc ?\r\n\r\nConcrete example from the datatrails ledger we define the merkle leaf of our ledger like this\r\n\r\nH(DOMAIN-SEPARATOR || EXTRABYTES || IDTIMESTAMP || SERIALIZEDBYTES)\r\n\r\nOur hope is that SERIALIZEDBYTES is the result of the normalization process discussed on the call (regardless of what is decided with respect to the inclusion of unprotected headers), and that its for the TS registration policies to defined additional content. Is this what is intended ?\r\n\r\nAdditional context:\r\n\r\nIn our case the log is actually a mog, in that it includes a trie friendly leaf index as well as the more regular merkle tree data. So all material needed to verify the receipt can be obtained (efficiently) from the combination of the original statement, the receipt, and the index entry in the log. This means there is a VDS/ receipts format specific step to assemble the leaf value.\r\n\r\nWe do this so that while we may have duplicate SERIALIZEDBYTES, all entries in the ledger leaves have a unique and time sortable component to their pre-image. And one which is established by the process which commits the VDS to persistent storage.\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/321#issuecomment-2551894320> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NAVDT4UZT4SDUQQYB32GGWBDAVCNFSM6AAAAABTXELJR2VHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMZDKNJRHA4TIMZSGA> .\r\nYou are receiving this because you are subscribed to this thread.Message ID: ***@***.***>\r\n\r\n",
+          "createdAt": "2024-12-18T17:57:45Z",
+          "updatedAt": "2024-12-18T17:57:45Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@robinbryce I believe additional content was always allowed, we certainly do it in our implementation, as reflected in the [CCF tree profile](https://github.com/ietf-scitt/draft-birkholz-cose-cometre-ccf-profile/blob/main/draft-birkholz-cose-receipts-ccf-profile.md#transaction-components).\r\n\r\nThis is (again, as I understand it) orthogonal to _how_ the Signed Statement is normalised prior to inclusion, and whether the unprotected/unsigned bits are included or not.",
+          "createdAt": "2024-12-18T17:58:01Z",
+          "updatedAt": "2024-12-18T17:58:01Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@rjb4standards appologies, that was a lazy reference. mog is a short hand for a \"map backed log\", in otherwords a combination of an append only log with some kind of index. its definitely not a formal term. some treatment of this can be found here https://transparency.dev/verifiable-data-structures/ though it doesn't specificaly use \"mog\".",
+          "createdAt": "2024-12-18T19:05:48Z",
+          "updatedAt": "2024-12-18T19:05:48Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> @robinbryce I believe additional content was always allowed, we certainly do it in our implementation, as reflected in the [CCF tree profile](https://github.com/ietf-scitt/draft-birkholz-cose-cometre-ccf-profile/blob/main/draft-birkholz-cose-receipts-ccf-profile.md#transaction-components).\r\n> \r\n> This is (again, as I understand it) orthogonal to _how_ the Signed Statement is normalised prior to inclusion, and whether the unprotected/unsigned bits are included or not.\r\n\r\nGreat, that is completely aligned with how I understood things. Thanks!",
+          "createdAt": "2024-12-18T19:06:17Z",
+          "updatedAt": "2024-12-18T19:06:17Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Ok, on the specific issue of normalization: my instinct here has always been \"don't mess with the bytes\" in the strictest sense. A client registering a statement gets to chose and clients may have good reasons for wanting the un protected headers included in the normalised bytes.\r\n\r\nThe most compeling counter point is that, given a transparent statement with 4 receipts on it that you find under a rock, how would you know which of those receipts contributed pre-image bytes for the others ?\r\n\r\nOn a transparent statement, receipts are contained in an array\r\n\r\nhttps://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#fig-transparent-statement-edn\r\n\r\nI can't see any way that can be re-conciled without knowing something about the specific receipt being verified.",
+          "createdAt": "2024-12-18T19:34:31Z",
+          "updatedAt": "2024-12-18T19:55:08Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "accidental close!",
+          "createdAt": "2024-12-18T19:37:48Z",
+          "updatedAt": "2024-12-18T19:37:48Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Last thought: If I wanted to register a statement which represented \"this statement was issued and successfully registered, because its got a receipt attached\", given the current arch, I would make it the payload and be done I think\r\n\r\nMaybe \"any receipts in the unprotected headers MUST be stripped\" would thread the needle but if we are going to mess with the bytes at all, this lacks the compeling simplicity of \"remove them all\"",
+          "createdAt": "2024-12-18T20:02:51Z",
+          "updatedAt": "2024-12-18T20:05:56Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> A client registering a statement gets to chose and clients may have good reasons for wanting the un protected headers included in the normalised bytes.\r\n\r\nI agree, but the problem with them being unprotected is that there's no telling who set them. It may be the issuer, the client, or someone else. It could be the server implementation.\r\n\r\n> The most compeling counter point is that, given a transparent statement with 4 receipts on it that you find under a rock, how would you know which of those receipts contributed pre-image bytes for the others ?\r\n\r\nI think the point of stripping the unprotected headers is that you don't need to know, because the receipts don't contribute to the pre-image. All the receipts are for the same pre-image, which allows parallel registration and verification.",
+          "createdAt": "2024-12-18T20:05:58Z",
+          "updatedAt": "2024-12-18T20:05:58Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Yeah, I am now leaning quite a lot to remove all. But wondering if there is any support for \"remove just receipts\" from the headers",
+          "createdAt": "2024-12-18T20:07:37Z",
+          "updatedAt": "2024-12-18T20:07:37Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I guess the possibilities are:\r\n\r\n1. Remove only some things (receipts, ...?)\r\n2. Remove everything\r\n3. Remove everything except some things (x5chain, ...?)\r\n\r\nI am not keen on 1. because it amounts to what I perceive as very open-ended acceptance of completely unauthenticated content. A single issuer getting MITM'ed can lead to content unwanted by both the issuer and the ledger making it in. A dispute between the ledger and an issuer about this content also cannot be satisfactorily resolved.\r\n\r\n2. seems fine to me, it's what I do! It's also what @OR13 does, if I understand correctly.\r\n3. seems plausible, so long as the content is subject to some kind of constrained validation. Because I can't think of a use case, I'm a bit skeptical though.",
+          "createdAt": "2024-12-18T20:14:26Z",
+          "updatedAt": "2024-12-18T20:14:26Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I agree, but the problem with them being unprotected is that there's no telling who set them. It may be the issuer, the client, or someone else. It could be the server implementation.\r\n\r\nAnd also\r\n>  A single issuer getting MITM'ed can lead to content unwanted by both the issuer and the ledger making it in\r\n\r\nYes totally, but this is why this choice is so impactful it goes to the heart of the trust assumptions:\r\n\r\nThe *issuer* has signed only the protected headers and the payload. This is not in question here.\r\n\r\nThe *transparency service* has either:\r\n A: counter signed (by way of a receipt) only the protected headers and payload\r\n B: counter signed protected, payload & unprotected(or some redacted subset)\r\n \r\nFor B: whether all or some are signed, the trust model is different for the unprotected headers. The registering entity is the last party in the chain. they are explicitly not necessarily the issuer in the arch.\r\n\r\nB: has utility, but the mental model of sig + counter sig is now incomplete\r\n \r\n In otherwords, it has quite an impact on the trust model as the unprotected headers are only attested in a meaningful way by the TS. (Granting that the arch does not place trust in the authentication required to call registration endpoints)",
+          "createdAt": "2024-12-18T20:19:36Z",
+          "updatedAt": "2024-12-18T20:19:36Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "If we do anything other that 2, then the TS is attesting that \"this random stuff was included in the statement at time of registration\". It would then be a matter for TS registration policies to declare what that means I think ? ",
+          "createdAt": "2024-12-18T20:26:07Z",
+          "updatedAt": "2024-12-18T20:26:07Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> For B: whether all or some are signed, the trust model is different for the unprotected headers. The registering entity is the last party in the chain. they are explicitly not necessarily the issuer in the arch.\r\n\r\nYes, completely agree. I tried to say this in the recording, but the term \"counter-signed\" proved controversial :)\r\n\r\nIt seems to me that the unprotected header (minus the receipt) cannot be said to be counter-signed, because it isn't signed to begin with. If the service decides to sign it, then a more obvious and explicit location to do that is in the _protected_ header of the receipt itself. That is very unambiguously \"the service says\" (as opposed to \"the issuer says\", which is the signed statement).\r\n\r\nI struggle to explain simply what the service signing the unprotected header means, it's something like \"the service says that it heard this from a submitter, and the issuer may or may not have meant that\".",
+          "createdAt": "2024-12-18T20:32:40Z",
+          "updatedAt": "2024-12-18T20:32:40Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> If we do anything other that 2, then the TS is attesting that \"this random stuff was included in the statement at time of registration\". It would then be a matter for TS registration policies to declare what that means I think ?\r\n\r\nIt's possible to let the registration policy decide, but that makes validating a transparent statement a lot more complicated all of a sudden, because you need to work out what the registration policy has decided to leave in or not.",
+          "createdAt": "2024-12-18T20:34:27Z",
+          "updatedAt": "2024-12-18T20:34:44Z"
+        }
+      ]
     },
     {
       "number": 322,
@@ -5674,6 +5796,22 @@
       "body": "From @mcr\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> Please do not use BCP14 keywords in the Security Considerations.\r\n> SC should instead always reference some section in the Protocol specification where that was said, while explaining what threat was being mitigated.\r\n> \r\n> Like the bit about TEEs, and the other bit about consensus algorithms, and finally the self-statements (Attestation results I guess?) about the TCB.\r\n> \"Redundant Replicas\" ought to be an entire section on it's own.\r\n> \r\n> \"remote attestation Evidence was appraised by a Relying Party \"\r\n> HENK! Evidence iis appraised by a Verifier :-)\r\n> \r\n> person-in-the-middle is not a term that I proposed in\r\n>     https://na01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdatatracker.ietf.org%2Fdoc%2Fdraft-richardson-saag-onpath-attacker%2F&data=05%7C02%7C%7Ce9ee8d279969424877f708dd1ba04c88%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C638697097466980054%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=UgSf4s3sv%2BirzoyYbc%2BRTq0Mx92uor3HwvCDzbQq8UM%3D&reserved=0\r\n> \r\n> some of have proposed MITM be expanded now to:\r\n>      *Meddler\" in the Middle\r\n> \r\n> (if cookies are the thing being stolen, then \"Monster in the Middle\".\r\n> This, btw, is a nom-nom-nom attack.  Coming to an I-D repo near you)",
       "createdAt": "2024-12-16T22:55:03Z",
       "updatedAt": "2024-12-17T00:07:56Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 325,
+      "id": "I_kwDOIvmHss6j1MVX",
+      "title": "Placeholder to recover prior use cases and place in the consolidated architecture document",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/325",
+      "state": "OPEN",
+      "author": "rjb4standards",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The use cases document has expired and the architecture document is being consolidated to include use cases. This issue is in place to assist with the recovery of older use cases into the consolidated architecture document",
+      "createdAt": "2024-12-18T19:48:12Z",
+      "updatedAt": "2024-12-18T19:48:54Z",
       "closedAt": null,
       "comments": []
     }
@@ -13858,7 +13996,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Could someone please describe what a \"registered claim name\" is? For example, using a \"Registry of Deeds\"  analogy, would Book and Page number,be considered the \"registered claim name\"?",
           "createdAt": "2023-10-07T18:26:20Z",
           "updatedAt": "2023-10-07T18:26:20Z"
@@ -14019,7 +14157,7 @@
             "abbreviatedOid": "1b88058"
           },
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2023-10-18T18:56:20Z",
@@ -28326,7 +28464,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Steve,\r\n\r\n \r\n\r\nIs it too late to add another service API to SCRAPI:\r\n\r\n \r\n\r\n3.2.5.  Retrieve Registration Policy \r\n\r\n \r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n  \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\n <http://www.reliableenergyanalytics.com/> http://www.reliableenergyanalytics.com\r\n\r\nEmail:  ***@***.***> ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: Steve Lasker ***@***.***> \r\nSent: Saturday, March 2, 2024 11:57 AM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Comment ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Registration auditability requirements (#200) (PR #213)\r\n\r\n \r\n\r\n@SteveLasker commented on this pull request.\r\n\r\n  _____  \r\n\r\nIn draft-ietf-scitt-architecture.md <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#discussion_r1510005167> :\r\n\r\n>  \r\n-- A built-in default Registration Policy\r\n-- Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing registration checks\r\n-- An out-of-band authenticated management interface\r\n+- A built-in default Registration Policy and initial list of trust anchors;\r\n\r\nlooking for feedback with a +1 or -1 to merge or discard\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#discussion_r1510005167> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NBA3KIBZBUTMUQSES3YWIAHJAVCNFSM6AAAAABEAR4LZOVHI2DSMVQWIX3LMV43YUDVNRWFEZLROVSXG5CSMV3GSZLXHMYTSMJSGY4TEMRRGU> .\r\nYou are receiving this because you commented.Message ID: ***@***.***>\r\n\r\n",
           "createdAt": "2024-03-02T17:44:05Z",
           "updatedAt": "2024-03-02T17:44:05Z"
@@ -28347,7 +28485,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Thanks @SteveLasker \r\n\r\n@OR13 I'm still not sure how the architecture handles a revoked certificate used to sign the registry log. Would a new log be started with a different signing key and the old log would remain available for reference - with a warning that the signing key has been revoked or is expired? Still trying to figure out implementation details so that REA can support the initiative. I assume the results of a SCRAPI query would contain a warning that the returned results are from a log that has a revoked signing key.",
           "createdAt": "2024-03-04T11:39:23Z",
           "updatedAt": "2024-03-04T11:39:23Z"
@@ -28361,7 +28499,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "It can be as simple as a warning in response to a query i.e. \u201cWarning: The signing certificate has been revoked or has expired\u201d  \r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n  \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\n <http://www.reliableenergyanalytics.com/> http://www.reliableenergyanalytics.com\r\n\r\nEmail:  ***@***.***> ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: Orie Steele ***@***.***> \r\nSent: Monday, March 4, 2024 7:43 AM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Mention ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Registration auditability requirements (#200) (PR #213)\r\n\r\n \r\n\r\nSCITT does not have any messages currently related to revoked certificates.\r\n\r\nWhat messages do you propose?\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#issuecomment-1976500815> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NEZ5CZX4YAJ6SU5D4DYWRT5ZAVCNFSM6AAAAABEAR4LZOVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMYTSNZWGUYDAOBRGU> .\r\nYou are receiving this because you were mentioned.Message ID: ***@***.***>\r\n\r\n",
           "createdAt": "2024-03-04T12:50:15Z",
           "updatedAt": "2024-03-04T12:50:15Z"
@@ -28375,7 +28513,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Thanks, Antoine.\r\n\r\n \r\n\r\nIs this also the case when the certificate used to maintain log integrity has been revoked or has expired. I\u2019m presuming the registry log integrity is also maintained using a digital certificate \u2013 correct?\r\n\r\n \r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n  \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\n <http://www.reliableenergyanalytics.com/> http://www.reliableenergyanalytics.com\r\n\r\nEmail:  ***@***.***> ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: Antoine Delignat-Lavaud ***@***.***> \r\nSent: Monday, March 4, 2024 7:55 AM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Mention ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Registration auditability requirements (#200) (PR #213)\r\n\r\n \r\n\r\nDealing with expired or revoked TS certificates should be straightforward, as you can always obtain a fresh receipt for a previously registered transparent statement. For issuer certificate this is a non-issue as SCITT only guarantees the issuer certificate was valid at registration.\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#issuecomment-1976522162> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NC574JIMV62PP4CRRLYWRVLFAVCNFSM6AAAAABEAR4LZOVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMYTSNZWGUZDEMJWGI> .\r\nYou are receiving this because you were mentioned.Message ID: ***@***.***>\r\n\r\n",
           "createdAt": "2024-03-04T12:58:58Z",
           "updatedAt": "2024-03-04T12:58:58Z"
@@ -28389,7 +28527,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Antoine,\r\n\r\n \r\n\r\nWhat is the set of criteria that the TS should use during the registration policy evaluation?\r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n  \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\n <http://www.reliableenergyanalytics.com/> http://www.reliableenergyanalytics.com\r\n\r\nEmail:  ***@***.***> ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: Antoine Delignat-Lavaud ***@***.***> \r\nSent: Monday, March 4, 2024 8:50 AM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Mention ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Registration auditability requirements (#200) (PR #213)\r\n\r\n \r\n\r\n@ad-l commented on this pull request.\r\n\r\n  _____  \r\n\r\nIn draft-ietf-scitt-architecture.md <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#discussion_r1511191215> :\r\n\r\n>  \r\n #### Mandatory Registration Checks\r\n \r\n-Transparency Services MUST, at a minimum, perform the following checks before registering a Signed Statement:\r\n+During registration, a Transparency Services MUST, at a minimum, authenticate the Issuer of the Signed Statement by validating the COSE signature and checking the identity of the issuer against one of its configured trust anchors, using the `x5t` (34), `x5chain`(33) and `kid`(4) protected headers of the Signed Statement as hints.\r\n+For instance, in order to authenticate X.509 Signed Statements, the Transparency Service MUST build and validate a complete certificate chain from the Issuer's certificate identified by `x5t`, to one of the root certificates most recently registered as a trust anchor of the Transparency Service.\r\n+\r\n+The Transparency Service MUST evaluate the registration policy that was most recently added to the Append-only Log.\r\n\r\nSee the updated comment thread on line 403 (now 405) about possible weakening of this requirement\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/213#discussion_r1511191215> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NDGWUDQ6V6SQ2ZFPXTYWR32HAVCNFSM6AAAAABEAR4LZOVHI2DSMVQWIX3LMV43YUDVNRWFEZLROVSXG5CSMV3GSZLXHMYTSMJUGM2TSOJSG4> .\r\nYou are receiving this because you were mentioned.Message ID: ***@***.***>\r\n\r\n",
           "createdAt": "2024-03-04T13:56:20Z",
           "updatedAt": "2024-03-04T13:56:20Z"
@@ -29094,7 +29232,7 @@
             "abbreviatedOid": "6fd5e3f"
           },
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-03-01T20:02:02Z",
@@ -29238,7 +29376,7 @@
             "abbreviatedOid": "189bd1f"
           },
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-03-01T20:56:57Z",
@@ -29278,7 +29416,7 @@
             "abbreviatedOid": "189bd1f"
           },
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-03-01T21:41:35Z",
@@ -32910,7 +33048,7 @@
       "comments": [
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "LGTM2",
           "createdAt": "2024-06-18T14:22:01Z",
           "updatedAt": "2024-06-18T14:22:01Z"
@@ -33036,7 +33174,7 @@
             "abbreviatedOid": "bb98652"
           },
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-06-14T13:31:44Z",
@@ -33076,7 +33214,7 @@
             "abbreviatedOid": "bb98652"
           },
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-06-14T14:02:03Z",
@@ -33116,7 +33254,7 @@
             "abbreviatedOid": "bb98652"
           },
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-06-14T14:15:30Z",
@@ -33156,7 +33294,7 @@
             "abbreviatedOid": "bb98652"
           },
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-06-14T14:46:18Z",
@@ -33412,7 +33550,7 @@
       "comments": [
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Do we have a term/role for the party that verifies signed statements and controls what goes into the registry/log.\r\n\r\nI think of this role as the Gatekeeper working on behalf of a Transparency Service provider.",
           "createdAt": "2024-07-02T18:50:52Z",
           "updatedAt": "2024-07-02T18:50:52Z"
@@ -33426,7 +33564,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "In our case, the Transparency Service Operator performs a Gatekeeper function that enforces the Registration Policies. If everything provided in the evidence data (payload) needed to register a \u201ctrust declaration\u201d passes the Registration Policy criteria then the item is registered in the \u201cTrust Registry\u201d and placed on the Transparency Service Log.\r\n\r\n \r\n\r\nI think we need to define a \u201cGatekeeper\u201d role in SCITT that is responsible for ensuring that registration policies are being applied and implemented properly before registering a Signed Statement as trustworthy, according to registration policy. \r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n   \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\nhttps://businesscyberguardian.com/ \r\n\r\nEmail: ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: A.J. Stein ***@***.***> \r\nSent: Wednesday, July 3, 2024 9:44 AM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Comment ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Adjusting Definiion of `Auditor` to address #236 (PR #249)\r\n\r\n \r\n\r\n@aj-stein-nist commented on this pull request.\r\n\r\n  _____  \r\n\r\nIn draft-ietf-scitt-architecture.md <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/249#discussion_r1664219377> :\r\n\r\n> @@ -199,7 +199,7 @@ Artifact:\r\n \r\n Auditor:\r\n \r\n-: an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.\r\n+: an entity that can review entries of a Transparency Service's Append-only Log to prove the application and enforcment of Registration Policy during each Registration process step.\r\n\r\nIn the current state of the draft around the capabilities of a TS to publish the registration policy and no structured mechanism for an Auditor to understand it, it is unclear how this ability recommended in this change is possible.\r\n\r\nHow would an Auditor perform registration policy enforcement in actuality?\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/249#discussion_r1664219377> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NFNHOAJHUHHW6DFYGDZKP5ZZAVCNFSM6AAAAABKIDP4P2VHI2DSMVQWIX3LMV43YUDVNRWFEZLROVSXG5CSMV3GSZLXHMZDCNJWGQ4TMNZRG4> .\r\nYou are receiving this because you commented.Message ID: ***@***.***>\r\n\r\n",
           "createdAt": "2024-07-03T13:51:35Z",
           "updatedAt": "2024-07-03T13:51:35Z"
@@ -33440,7 +33578,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Issue posted.\r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n   \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\nhttps://businesscyberguardian.com/ \r\n\r\nEmail: ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: A.J. Stein ***@***.***> \r\nSent: Wednesday, July 3, 2024 10:57 AM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Dick Brooks (REA) ***@***.***>; Comment ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Adjusting Definiion of `Auditor` to address #236 (PR #249)\r\n\r\n \r\n\r\nI think we need to define a \u201cGatekeeper\u201d role in SCITT that is responsible for ensuring that registration policies are being applied and implemented properly before registering a Signed Statement as trustworthy, according to registration policy.\r\n\r\nIt would be helpful if that was discussed on the mailing list or opened in GitHub issues separate of this PR review.\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/249#issuecomment-2206420899> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NFOT3DLH3DZL5AGTWDZKQGM5AVCNFSM6AAAAABKIDP4P2VHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMZDEMBWGQZDAOBZHE> .\r\nYou are receiving this because you commented.Message ID: ***@***.***>\r\n\r\n",
           "createdAt": "2024-07-03T15:03:19Z",
           "updatedAt": "2024-07-03T15:03:19Z"
@@ -33475,7 +33613,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "The proposed description of auditor does not consider verification of the process when a signed statement is rejected because the proposed description of auditor is only using data stored in the Transparency Service log for verification of the process. Verification also needs to include proof that the rejection process is also working to prevent materials from being posted that are not compliant with Registration Policies.\r\n\r\nIt is a matter of integrity to ensure that the registration process, which can produce both outcomes regarding a signed statement registration request, accepted and rejected, are working as expected. Using only log data for auditing purposes will not verify the \"rejected\" process because these rejected statements are never stored the registry log.",
           "createdAt": "2024-07-07T13:41:41Z",
           "updatedAt": "2024-07-07T13:41:41Z"
@@ -33503,7 +33641,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Steve, please clarify. Are you saying we have no consensus that there are two distinct roles; one for enforcing registration policy during signed statement processing and another for verification that registration policy is being properly implemented?\r\n\r\nI'm unclear on what we have \"consensus on\" that has led to closure of this issue.",
           "createdAt": "2024-07-08T15:02:07Z",
           "updatedAt": "2024-07-08T15:02:07Z"
@@ -33663,7 +33801,7 @@
             "abbreviatedOid": "9f0eb29"
           },
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-07-05T16:37:54Z",
@@ -34354,7 +34492,7 @@
       "comments": [
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "@SteveLasker I'm concerned that this \"overloading\" of Auditor semantics is going to create ambiguities and confusion.\r\nI continue to believe we need to define two distinctive roles; A Gatekeeper that ensures only verified \"signed statements\" following registration policies are placed into the registry and a \"Relying Party\" that \"trusts\" the information contained in a Registry.\r\nIMO, an auditor is the \"checker\" making sure that policies are being followed, which adds integrity to the Registry processes and procedures and the Registry operator (Transparency Service) is properly following the SCITT protocol and registration policy processes and procedures. ",
           "createdAt": "2024-07-21T16:38:49Z",
           "updatedAt": "2024-07-21T16:38:49Z"
@@ -35180,7 +35318,7 @@
       "comments": [
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Is a Receipt also used to communicate rejections of Signed Statements or is the rejection a different type of communication?\r\n\r\nFor example, can a Receipt indicate \"receipt\" of a request and return the result of processing i.e. registered/rejected.",
           "createdAt": "2024-07-21T21:58:24Z",
           "updatedAt": "2024-07-21T22:02:29Z"
@@ -35894,7 +36032,7 @@
       "comments": [
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "I don't understand the motivation behind replacing \"any other COSE compatible PKI trust anchor.\" with \"a JSON Web Key Set\".\r\n\r\nIs there an issue with COSE compatible PKI trust anchors that is driving this change? ",
           "createdAt": "2024-07-21T21:33:35Z",
           "updatedAt": "2024-07-21T21:33:35Z"
@@ -35908,14 +36046,14 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Good question @hannestschofenig; if JSON Web Key Set is indeed the only possible COSE compatible PKI trust anchor then I see no issues with this change. ",
           "createdAt": "2024-07-21T22:35:25Z",
           "updatedAt": "2024-07-21T22:35:25Z"
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "I support Steve's suggested change. ",
           "createdAt": "2024-07-22T16:51:07Z",
           "updatedAt": "2024-07-22T16:51:07Z"
@@ -35929,7 +36067,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "@hannestschofenig I have not worked on COSE for one minute, but I get the impression that a SCITT Transparency statement could include identities other than X.509, which seems to imply that another form of \"trust anchor\" is plausible, i.e. a PGP chain of Trust or even a SCITT trusted party - am I mistaken. ",
           "createdAt": "2024-07-22T17:39:26Z",
           "updatedAt": "2024-07-22T17:39:26Z"
@@ -37110,7 +37248,7 @@
             "abbreviatedOid": "0cb8fbd"
           },
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-08-13T14:37:44Z",
@@ -39316,7 +39454,7 @@
       "comments": [
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "I agree @hannestschofenig I know of at least one registry (Transparency Service) that will not be publicly accessible.",
           "createdAt": "2024-07-22T23:45:05Z",
           "updatedAt": "2024-07-22T23:45:05Z"
@@ -40157,7 +40295,7 @@
             "abbreviatedOid": "a2d3934"
           },
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-09-03T23:36:37Z",
@@ -41159,7 +41297,7 @@
             "abbreviatedOid": "ad998d2"
           },
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-10-15T14:42:44Z",
@@ -42021,7 +42159,7 @@
       "labels": [],
       "body": "After staring at them for a while, this first draft is now simply copying over the generic problem statement and three of the use cases found in https://datatracker.ietf.org/doc/html/draft-ietf-scitt-software-use-cases.\r\n\r\nPlease bash mercilessly.",
       "createdAt": "2024-12-10T12:59:34Z",
-      "updatedAt": "2024-12-16T02:56:53Z",
+      "updatedAt": "2024-12-17T16:54:55Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "3ca40678aabd8040a812d92884f72922d7794c38",
@@ -42044,14 +42182,14 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "@JAG-UK I believe the use cases should be free of implementation information, such as use of a ledger object. The specifics of \"how to implement\" a Registry are assumed to come from the architecture and SCRAPI specs, IMO. Others may see it differently. USe cases are purposely abstract and free of implementation expectations.",
           "createdAt": "2024-12-10T14:48:33Z",
           "updatedAt": "2024-12-10T14:48:33Z"
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Question: Please clarify; Will these changes deprecate the existing Use Case document OR will these changes propagate to the Use Case document? ",
           "createdAt": "2024-12-10T16:13:32Z",
           "updatedAt": "2024-12-10T16:13:32Z"
@@ -42065,7 +42203,7 @@
         },
         {
           "author": "rjb4standards",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Thanks @SteveLasker \r\n\r\nWill this merger of use cases into the architecture document result in updates to the architecture document when more use cases are added, that don't affect or impact the actual architecture materials? \r\n\r\nI'm not seeing the benefits of merging the use cases into the architecture document when a functional use case document is already available. Why not just update the use cases document with the new use cases? ",
           "createdAt": "2024-12-15T12:29:12Z",
           "updatedAt": "2024-12-15T12:29:12Z"
@@ -42073,9 +42211,30 @@
         {
           "author": "SteveLasker",
           "authorAssociation": "COLLABORATOR",
-          "body": "Hi, Dick,\r\nWhile Use cases help frame the beginning of a working group, the latest guidance from the IETF is not to submit use cases as drafts. For this reason, we let the Use Case document expire. We did feel there was enough value to incorporate a subset into the Architecture document. \r\nThat said, reviewing the feedback from Michael is the next step to consider the overall state of the architecture. \r\n",
+          "body": "Hi, Dick,\r\nWhile Use cases help frame the beginning of a working group, the latest guidance from the IETF is not to submit use cases as drafts. For this reason, we let the Use Case document expire. We did feel there was enough value to incorporate a subset into the Architecture document. \r\nThat said, reviewing the feedback from Michael is the next step to consider the overall state of the architecture. \r\n\r\n**_Edit_**: Adding a link to: [Support Documents in IETF Working Groups](https://datatracker.ietf.org/doc/statement-iesg-support-documents-in-ietf-working-groups-20230824/)\r\n\r\n> While they (use cases) can therefore be important to the operation of a working group, finalizing them to the point where they are suitable for publication as RFCs can consume scarce community resources that might be better spent on solutions documents.\r\n\r\n",
           "createdAt": "2024-12-16T02:56:52Z",
-          "updatedAt": "2024-12-16T02:56:52Z"
+          "updatedAt": "2024-12-17T16:14:52Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks for clarifying, Steve.\r\n\r\nI'm certainly available to assist with the Use Cases materials, if the team needs more help with this. Fell free to reach out if you would like me to take on updates to the independent Use Cases document, external to the Architecture document.\r\nI can help with this, but I'm not going to make any changes to the architecture document, there are already plenty of hands contributing to that doc. \r\n\r\nPlease let me know how to proceed.\r\n",
+          "createdAt": "2024-12-17T16:29:01Z",
+          "updatedAt": "2024-12-17T16:29:01Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I can do a pull request for the Use Cases Document, if the group consensus is to update the independent use cases document.",
+          "createdAt": "2024-12-17T16:31:57Z",
+          "updatedAt": "2024-12-17T16:31:57Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Steve, where can I find the discussion regarding the consensus decision to pull use cases into the architecture document instead of updating the existing Use Cases document? @henkbirkholz  mentions there were pros/cons discussed when reaching this decision. I just want to understand this better.",
+          "createdAt": "2024-12-17T16:54:53Z",
+          "updatedAt": "2024-12-17T16:54:53Z"
         }
       ],
       "reviews": [
@@ -42559,6 +42718,96 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 324,
+      "id": "PR_kwDOIvmHss6FgWKP",
+      "title": "Changing ISO reference to NIST reference",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/324",
+      "state": "MERGED",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #318 ",
+      "createdAt": "2024-12-17T14:56:41Z",
+      "updatedAt": "2024-12-17T16:05:43Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "d9460bbd223afaef053bb6269400114961854419",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "iso-2-nist",
+      "headRefOid": "92753605b9c43225dfa149fde62959c62d9f006e",
+      "closedAt": "2024-12-17T16:05:37Z",
+      "mergedAt": "2024-12-17T16:05:37Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7"
+      },
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Reviewed in the editors call for merging.",
+          "createdAt": "2024-12-17T16:05:32Z",
+          "updatedAt": "2024-12-17T16:05:32Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6VjkfI",
+          "commit": {
+            "abbreviatedOid": "3898bbc"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-17T15:03:18Z",
+          "updatedAt": "2024-12-17T15:03:19Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "It says NIST, but still points to iso?",
+              "createdAt": "2024-12-17T15:03:19Z",
+              "updatedAt": "2024-12-17T15:03:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6VjyWB",
+          "commit": {
+            "abbreviatedOid": "9275360"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2024-12-17T15:21:34Z",
+          "updatedAt": "2024-12-17T15:21:34Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6VjzVI",
+          "commit": {
+            "abbreviatedOid": "3898bbc"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-17T15:22:58Z",
+          "updatedAt": "2024-12-17T15:22:58Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "what? where? :innocent: :wink: ",
+              "createdAt": "2024-12-17T15:22:58Z",
+              "updatedAt": "2024-12-17T15:22:58Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
