@@ -68,6 +68,14 @@ contributor:
     contribution: >
       Orie contributed to improving the generalization of COSE building blocks and document consistency.
 
+  - ins: D. Brooks
+    name: Dick Brooks
+    organization: Business Cyber Guardian (TM)
+    email: dick@businesscyberguardian.com
+    country: United States
+    contribution: >
+      Dick contributed some software supply chain use cases consistent with US DHS CISA Secure by Design principles and practice
+    
 normative:
   RFC5280: PKIX
   RFC6838:
@@ -333,6 +341,22 @@ SCITT provides a standardized way to:
 * provide a tiered and transparent framework that allows for verification of integrity and authenticity of the integrated software at both component and product level before installation
 * notify software integrators of vulnerabilities identified during security scans of running software
 * provide valid annotations on build integrity to ensure conformance
+
+### Verification That Signing Certificate Is Authorized by Supplier
+
+Consumers wish to verify the authenticity and integrity of software they use before installation.
+To do this today, they rely on the digital signature of the software.
+This can be misleading, however, as there is no guarantee that the certificate used to sign the software is authorized by the Supplier for signing.
+For example, a malicious actor may obtain a signing certificate from a reputable organization and use that certificate to sign malicious software.
+The consumer, believing the software originated from the reputable organization, would then install malicious software.
+
+A consumer of software wants to:
+
+- verify the authenticity and integrity of software they use before installation.
+
+There is no standardized way to:
+
+- enable the consumer to verify that software originated from a 'duly authorized signing party' on behalf of the supplier, and is still valid.
 
 # Terminology {#terminology}
 
