@@ -151,7 +151,7 @@ The rise in popularity of verifiable data structures as a mechanism to make acto
 
 This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
-Issuers can register theirSigned Statements on one or more Transparency Services, with the guarantee that any Relying Parties will be able to verify them.
+Issuers can register their Signed Statements on one or more Transparency Services, with the guarantee that any Relying Parties will be able to verify them.
 
 --- middle
 
