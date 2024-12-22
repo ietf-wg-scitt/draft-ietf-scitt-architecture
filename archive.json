@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-19T00:50:27.715887+00:00",
+  "timestamp": "2024-12-22T00:51:58.732977+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5409,7 +5409,7 @@
       ],
       "body": "The security consideration section gives me the impression that different authors worked on the content and put the text in there without re-reading the product. As a consequence, there is a lot of repetition.",
       "createdAt": "2024-07-20T18:34:16Z",
-      "updatedAt": "2024-10-08T19:32:58Z",
+      "updatedAt": "2024-12-20T16:16:21Z",
       "closedAt": null,
       "comments": []
     },
@@ -5431,7 +5431,7 @@
       ],
       "body": "> For example, Issuers must remove\r\n   Personally Identifiable Information (PII) as clear text in the\r\n   Statement.  Alternatively, Issuers may include opaque cryptographic\r\n   Statements, such as hashes.\r\n\r\n\r\nThe identity of the issuer is included in the signed statement. As such, the example is not great. ",
       "createdAt": "2024-07-20T18:38:59Z",
-      "updatedAt": "2024-10-08T19:33:13Z",
+      "updatedAt": "2024-12-20T16:16:31Z",
       "closedAt": null,
       "comments": [
         {
@@ -5609,7 +5609,7 @@
       "labels": [],
       "body": "Feedback from @mcr:\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> I think [4.1.2](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-10.html#name-initialization-and-bootstra) does not need to be stated.\r\n> Just explain what a well formed, (empty) registry looks like.\r\n",
       "createdAt": "2024-12-16T21:08:52Z",
-      "updatedAt": "2024-12-16T22:51:19Z",
+      "updatedAt": "2024-12-20T16:16:45Z",
       "closedAt": null,
       "comments": []
     },
@@ -5625,7 +5625,7 @@
       "labels": [],
       "body": "From @mcr\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> The SCITT tag COSE_Sign1_Tagged is outside the scope of COSE, and used \r\n> to indicate that a signed object is a Signed Statement.\r\n\r\n> I don't understand this.\r\n> \"used\" is that past-tense, or \"is used to\"?\r\n> If this is not a COSE thing, then where does it come from?\r\n\r\n\r\nhttps://www.ietf.org/archive/id/draft-ietf-scitt-architecture-10.html#:~:text=SCITT%20tag%20COSE_Sign1_Tagged%20is%20outside%20the%20scope%20of%20COSE\r\n",
       "createdAt": "2024-12-16T21:36:54Z",
-      "updatedAt": "2024-12-16T22:51:09Z",
+      "updatedAt": "2024-12-20T16:16:52Z",
       "closedAt": null,
       "comments": []
     },
@@ -5643,7 +5643,7 @@
       "labels": [],
       "body": "From @mcr,\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> it seems that the receipt received from service A can easily be added to the statement submitted to service B.  It's unclear to me that the signed statement submitted to service A can then be updated.  Does the Append-Only Log record just the protected and payload of the Sign1, or does it also witness the unprotected header?\r\n\r\nWe don't seem to clarify what content is used to append to the ledger. Is it just the to-be-signed-bytes, or the entirety of the signed statement, including the unprotected header?\r\n",
       "createdAt": "2024-12-16T22:37:29Z",
-      "updatedAt": "2024-12-18T20:34:44Z",
+      "updatedAt": "2024-12-20T16:17:59Z",
       "closedAt": null,
       "comments": [
         {
@@ -5764,6 +5764,55 @@
           "body": "> If we do anything other that 2, then the TS is attesting that \"this random stuff was included in the statement at time of registration\". It would then be a matter for TS registration policies to declare what that means I think ?\r\n\r\nIt's possible to let the registration policy decide, but that makes validating a transparent statement a lot more complicated all of a sudden, because you need to work out what the registration policy has decided to leave in or not.",
           "createdAt": "2024-12-18T20:34:27Z",
           "updatedAt": "2024-12-18T20:34:44Z"
+        },
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I'm not sure which hat I'm wearing for this comment, but here are my thoughts for the consideration of the group.\r\n\r\nTL;DR: The unprotected header (UH) MUST be empty when registering a signed statement. \r\n\r\nWhy?\r\nAs others have argued, the responsibility of the Transparency Service is to faithfully register exactly what the Issuer submits for Registration. Anything else seems strange: the very reason for Issuer signature is to prevent the TS or the channel from tampering or spoofing statements on the Issuer's behalf. \r\n\r\nSo then if the Issuer feels the need to put something in the UH then that should be recorded also. Think about why they might do this: to give hints to the Transparency Service? To add tags or something that for whatever reason they want to be able to change and so don't put in the meta map? Well, if these entries are to have any effect *at all*, then those effects might be security relevant to the application layer, or say something critical about the circumstances of Registration, and so not recording them potentially opens an avenue for a dishonest Issuer to smuggle or hide important information away whilst still getting a valid receipt.\r\n\r\nBUT the other side of the threat graph also applies: because the UH is not covered by the Sign1 it is possible for a dishonest TS or channel to add things in here, and then record them, and the Issuer would have no recourse to say \"that wasn't part of my submission\".\r\n\r\nAnd putting these things together one must also conclude that the supposed potential intention of an Issuer to put instructions or metadata or whatever in the UH is unsafe because of this channel/TS threat. And so the assumption must be that no security relevant info can be put in the UH, nor should an Issuer expect that anything in the UH necessarily be processed or actioned by the TS.\r\n\r\nAt which point it's completely useless and we might as well do away with it.\r\n\r\nBUT, there is a stated use for it which remains, which is that on OUTPUT or READ you might have a bunch of useful info stuffed in there, such as SignedStatement + Receipt-in-UH => TransparentStatement. Using the UH as a convenient attached transport for related info that necessarily accrues *after* signing and *after* registration is still pretty neat, and so far the things stuffed in there have their own independent integrity measures so while they're still vulnerable to being removed altogether, there is some trust that can be built there.",
+          "createdAt": "2024-12-19T11:16:57Z",
+          "updatedAt": "2024-12-19T11:16:57Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> It seems to me that the unprotected header (minus the receipt) cannot be said to be counter-signed, because it isn't signed to begin with\r\n\r\nAbsoloutely\r\n\r\n>  but that makes validating a transparent statement a lot more complicated\r\n\r\nYes\r\n\r\n> (JAG-UK) And so the assumption must be that no security relevant info can be put in the UH\r\n\r\nIndeed\r\n\r\nA clarification I might then make is \"By definition, a transparent statement can not be registered\".\r\n\r\nIf that sort of thing is desired the transparent statement would need to be a payload for a different statement. And as such would be opaque to the protocol\r\n\r\nIt is implied, but the use of un protected headers to convey receipts has contributed to the need for clarification here I think.\r\n\r\nTo be clear, I'm supportive of \"The unprotected header (UH) MUST be empty when registering a signed statement.\"",
+          "createdAt": "2024-12-19T11:22:16Z",
+          "updatedAt": "2024-12-19T11:22:16Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I also think that\r\n\r\n\"The unprotected header (UH) MUST be empty when registering a signed statement.\"\r\n\r\nMeans that https://ietf-wg-scitt.github.io/draft-ietf-scitt-scrapi/draft-ietf-scitt-scrapi.html#name-register-signed-statement\r\n\r\nShould do 400 \"invalid request\" rather than silently stripping. This means that validation can decode *to check* for the absense of headers, but the exact bytes of the original (valid) request are submited to the ledger. I think has practical benefits for various potential implementation issues.",
+          "createdAt": "2024-12-19T12:33:21Z",
+          "updatedAt": "2024-12-19T12:33:21Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> \"The unprotected header (UH) MUST be empty when registering a signed statement.\"\r\n\r\nThat would mean that a client submitting an already transparent statement would need to strip the receipt prior to sending. It's not a major problem (easy enough to ship the CLI tool/utility function), but just to make sure that's what's intended.\r\n\r\nAlthough our implementation strips the UH now, I think I am warming up to the idea of forbidding it altogether, because it's a more definitive solution to canonical serialisation issues, and it ticks the \"don't mess with the bytes\" box at the same time.",
+          "createdAt": "2024-12-19T14:23:50Z",
+          "updatedAt": "2024-12-19T14:23:50Z"
+        },
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> That would mean that a client submitting an already transparent statement would need to strip the receipt prior to sending.\r\n\r\nYes, I can see the practical inconvenience there but I think it's cleaner to just forbid it altogether in the formal spec and make it an SDK problem as you say",
+          "createdAt": "2024-12-19T14:46:57Z",
+          "updatedAt": "2024-12-19T14:46:57Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Fair enough, it definitely is cleaner and clearer to only accept valid inputs.",
+          "createdAt": "2024-12-19T15:00:02Z",
+          "updatedAt": "2024-12-19T15:00:02Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Summarizing the journey:\r\n\r\n- The unprotected header is intended for the TS to return information after registration or for the client to attach information, such as the receipt, for convenience of storage and transport of associated metadata.\r\n- Upon registration, the unprotected header MUST be empty, or a 400 is returned via SCRAPI to provide consistency and avoid potential MIM attacks.\r\n- If we wish to register a Transparent Statement, it would need to be submitted as the payload, with a known content-type, and could use the same subject to associate them. This latter one is something we should consider how we handle this scenario and why it's needed.",
+          "createdAt": "2024-12-19T15:32:26Z",
+          "updatedAt": "2024-12-19T15:32:26Z"
         }
       ]
     },
@@ -5779,7 +5828,7 @@
       "labels": [],
       "body": "From @mcr\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> section 5:\r\n>        Transparency Services MAY support anonymous access. Issuers SHOULD\r\n>        ensure Signed Statements submitted to public access services are\r\n>        acceptable for public disclosure. Publicly accessible Signed\r\n>        Statements MUST NOT carry confidential information.\r\n>I suggest writing:\r\n>  Transparency Services supporting anonymous access need to ensure that\r\n>  issuers are aware of this, snd SHOULD review the submitted statements for\r\n>  attributes known to contain PII.\r\n\r\n> I don't think it's useful for the MUST NOT to be present. It's neither enforceable nor knowable by any party.\r\n",
       "createdAt": "2024-12-16T22:52:11Z",
-      "updatedAt": "2024-12-16T22:52:11Z",
+      "updatedAt": "2024-12-20T16:17:24Z",
       "closedAt": null,
       "comments": []
     },
@@ -5795,7 +5844,7 @@
       "labels": [],
       "body": "From @mcr\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> Please do not use BCP14 keywords in the Security Considerations.\r\n> SC should instead always reference some section in the Protocol specification where that was said, while explaining what threat was being mitigated.\r\n> \r\n> Like the bit about TEEs, and the other bit about consensus algorithms, and finally the self-statements (Attestation results I guess?) about the TCB.\r\n> \"Redundant Replicas\" ought to be an entire section on it's own.\r\n> \r\n> \"remote attestation Evidence was appraised by a Relying Party \"\r\n> HENK! Evidence iis appraised by a Verifier :-)\r\n> \r\n> person-in-the-middle is not a term that I proposed in\r\n>     https://na01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdatatracker.ietf.org%2Fdoc%2Fdraft-richardson-saag-onpath-attacker%2F&data=05%7C02%7C%7Ce9ee8d279969424877f708dd1ba04c88%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C638697097466980054%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=UgSf4s3sv%2BirzoyYbc%2BRTq0Mx92uor3HwvCDzbQq8UM%3D&reserved=0\r\n> \r\n> some of have proposed MITM be expanded now to:\r\n>      *Meddler\" in the Middle\r\n> \r\n> (if cookies are the thing being stolen, then \"Monster in the Middle\".\r\n> This, btw, is a nom-nom-nom attack.  Coming to an I-D repo near you)",
       "createdAt": "2024-12-16T22:55:03Z",
-      "updatedAt": "2024-12-17T00:07:56Z",
+      "updatedAt": "2024-12-20T16:17:33Z",
       "closedAt": null,
       "comments": []
     },
@@ -5807,11 +5856,109 @@
       "state": "OPEN",
       "author": "rjb4standards",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "rjb4standards"
+      ],
       "labels": [],
       "body": "The use cases document has expired and the architecture document is being consolidated to include use cases. This issue is in place to assist with the recovery of older use cases into the consolidated architecture document",
       "createdAt": "2024-12-18T19:48:12Z",
-      "updatedAt": "2024-12-18T19:48:54Z",
+      "updatedAt": "2024-12-20T18:35:17Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@rjb4standards, \r\nPR #316 recovered what the authors felt covered the pre-existing use cases into: [Exemplary Software Supply Chain (SSC) Use Cases](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#name-exemplary-software-supply-c)\r\n\r\nCan you please review and outline what would be edited, or provide a PR?",
+          "createdAt": "2024-12-20T16:22:44Z",
+          "updatedAt": "2024-12-20T16:22:44Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "That a great question Steve. I suppose this is a question that should be posed to the authors of the expired use cases document - which Use cases from the expired document should be added to the Architecture Document.\r\n\r\nI will cast my vote to keep these use cases:\r\n\r\n[2.1](https://ietf-wg-scitt.github.io/draft-ietf-scitt-software-use-cases/draft-ietf-scitt-software-use-cases.html#section-2.1).  [Software Supply Chain Use Cases](https://ietf-wg-scitt.github.io/draft-ietf-scitt-software-use-cases/draft-ietf-scitt-software-use-cases.html#name-software-supply-chain-use-c)\r\n\r\n[2.2](https://ietf-wg-scitt.github.io/draft-ietf-scitt-software-use-cases/draft-ietf-scitt-software-use-cases.html#section-2.2).  [Verification That Signing Certificate Is Authorized by Supplier](https://ietf-wg-scitt.github.io/draft-ietf-scitt-software-use-cases/draft-ietf-scitt-software-use-cases.html#name-verification-that-signing-c)\r\n\r\n[2.3](https://ietf-wg-scitt.github.io/draft-ietf-scitt-software-use-cases/draft-ietf-scitt-software-use-cases.html#section-2.3).  [Multi Stakeholder Evaluation of a Released Software Product](https://ietf-wg-scitt.github.io/draft-ietf-scitt-software-use-cases/draft-ietf-scitt-software-use-cases.html#name-multi-stakeholder-evaluatio)\r\n\r\n[2.4](https://ietf-wg-scitt.github.io/draft-ietf-scitt-software-use-cases/draft-ietf-scitt-software-use-cases.html#section-2.4).  [Security Analysis of a Software Product](https://ietf-wg-scitt.github.io/draft-ietf-scitt-software-use-cases/draft-ietf-scitt-software-use-cases.html#name-security-analysis-of-a-soft)\r\n ",
+          "createdAt": "2024-12-20T16:34:55Z",
+          "updatedAt": "2024-12-20T16:34:55Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "A pull request has been submitted to address Issue 325 adding one missing use case.",
+          "createdAt": "2024-12-20T18:35:16Z",
+          "updatedAt": "2024-12-20T18:35:16Z"
+        }
+      ]
+    },
+    {
+      "number": 326,
+      "id": "I_kwDOIvmHss6kGzVT",
+      "title": "Make reference to Receipt Label 394 a TBD",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/326",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "SteveLasker"
+      ],
+      "labels": [],
+      "body": "From @mcr:\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/xXaVeX1b6idRI8oFbvBF10RkF_Q/\r\n",
+      "createdAt": "2024-12-20T18:20:35Z",
+      "updatedAt": "2024-12-20T18:23:49Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 327,
+      "id": "I_kwDOIvmHss6kG1PG",
+      "title": "Make SCRAPI an Arch Dependency/Normative reference",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/327",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From @mcr\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/xXaVeX1b6idRI8oFbvBF10RkF_Q/\r\n\r\n    >> All Transparency Services MUST expose APIs for the Registration of\r\n    >> Signed Statements and issuance of Receipts.\r\n\r\n    > . o O ( such as draft-ietf-scitt-scrapi ?? )\r\n    > Nod: are you suggesting we should add SCRAPI to the architecture doc?\r\n\r\n> Yes, I think that it needs to interlock back and forth, or it needs to be completely top-down reference, in which case probably none of the CDDL belongs.\r\n\r\nTracks if we make SCRAPI a dependency, keeping the CDDL, remove CDDL, or keep as-is with samples that CAN be implemented with SCRAPI\r\n",
+      "createdAt": "2024-12-20T18:26:05Z",
+      "updatedAt": "2024-12-20T18:57:33Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "A note that #316 [added a reference to SCRAPI](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L181)\r\n> The building blocks provided by the SCITT architecture and related documents (e.g., the SCITT Reference API) are not restricted to software supply chain use cases.\r\n",
+          "createdAt": "2024-12-20T18:57:33Z",
+          "updatedAt": "2024-12-20T18:57:33Z"
+        }
+      ]
+    },
+    {
+      "number": 329,
+      "id": "I_kwDOIvmHss6kIMkE",
+      "title": "Clarify what is stored on the ledger",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/329",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "A reader of the Arch doc may assume the content of the signed statements is stored on the Ledger, as opposed to verifiable proofs of the signed statement.\r\nThis has evolved over time as, at least some of us, assumed the signed statement _was_ stored on the ledger. \r\nThe current belief of the authors is the ledger stores \"hashes\", verifiable proofs of the signed statement, that can live forever without concerns of PII information. However, the current state of the doc doesn't really qualify this distinction.\r\n\r\nStoring the actual signed statement, including the payload, or other elements of the protected header on the ledger also raises PII information concerns, such as #322 \r\n\r\nA complete Transparency Service may provide ancillary services that may store the content of the signed statement, or even the contents of a hashed payload, however that's beyond the scope of the SCITT Draft.\r\n\r\nThis issue tracks:\r\n- [ ] Clarifying the ledger only stores \"proofs\" (or a better agreed upon term)\r\n- [ ] Clarifying a service may store the signed statements, but likely not on the ledger so they can delete and/or redact PII information that may be written (intentionally or accidentally)",
+      "createdAt": "2024-12-20T23:05:33Z",
+      "updatedAt": "2024-12-20T23:05:37Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 330,
+      "id": "I_kwDOIvmHss6kIfZr",
+      "title": "Islolate x509 as one option for Issuer identity",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/330",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The spec has evolved from did:web to being flexible about the types of identity a transparency service may support.\r\nIt uses x.509 as a primary example, but could be confusing whether x.509 must be used, or rather when it's used, these are the properties that MUST or SHOULD be set.\r\n\r\nThis issue tracks extracting x.509 to an identity profile, which could be defined in the same architecture doc. And, making it clear that other identity types CAN be used, eliminating the need to follow the x.509 requirements. ",
+      "createdAt": "2024-12-21T01:29:55Z",
+      "updatedAt": "2024-12-21T01:29:56Z",
       "closedAt": null,
       "comments": []
     }
@@ -42808,6 +42955,58 @@
           ]
         }
       ]
+    },
+    {
+      "number": 328,
+      "id": "PR_kwDOIvmHss6F8RjK",
+      "title": "Add use case from original use case document to address issue 325",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/328",
+      "state": "OPEN",
+      "author": "rjb4standards",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Added one use case from original use case document: Signing certificate authenticity use case",
+      "createdAt": "2024-12-20T18:27:04Z",
+      "updatedAt": "2024-12-20T18:36:30Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
+      "headRepository": "rjb4standards/draft-ietf-scitt-architecture",
+      "headRefName": "main",
+      "headRefOid": "4d020310a3fa2127ebe55a9cc26f4b51b05915f4",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 331,
+      "id": "PR_kwDOIvmHss6F9x9j",
+      "title": "Editorial Review",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/331",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This is a draft that addresses: \r\n- #329 \r\n- #327\r\n- #323\r\n- #322\r\n- #320\r\n\r\nI'll break this up into smaller PRs, but I wanted to make it visible for others that may also be working on editorial changes.",
+      "createdAt": "2024-12-21T01:39:12Z",
+      "updatedAt": "2024-12-21T01:40:31Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/editoral-review",
+      "headRefOid": "b42f5ff997dce8e742d12d9c394f075aa84bf0fc",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
