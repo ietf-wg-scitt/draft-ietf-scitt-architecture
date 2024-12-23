@@ -77,6 +77,7 @@ normative:
   RFC8392:
   COSWID: RFC9393
   I-D.draft-ietf-cose-merkle-tree-proofs: COMETRE
+  I-D.draft-ietf-cose-hash-envelope: COSE-HASH
 
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
   IANA.cwt:
@@ -367,7 +368,8 @@ Envelope:
 : metadata, created by the Issuer to produce a Signed Statement.
 The Envelope contains the identity of the Issuer and information about the Artifact, enabling Transparency Service Registration Policies to validate the Signed Statement.
 A Signed Statement is a COSE Envelope wrapped around a Statement, binding the metadata in the Envelope to the Statement.
-In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).
+In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature) and the Payload.
+The Payload may contain the contents of the Statement, or a hash using {{-COSE-HASH}}.
 
 Equivocation:
 
@@ -406,7 +408,7 @@ Relying Party:
 Signed Statement:
 
 : an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
-In SCITT, Signed Statements are encoded as COSE signed objects; the `payload` of the COSE structure contains the issued Statement.
+In SCITT, Signed Statements are encoded as COSE signed objects; the `payload` of the COSE structure may contain the contents of the Statement, or a hash of the Statement using {{-COSE-HASH}}.
 
 Statement:
 
@@ -654,6 +656,7 @@ For a software supply chain, payloads describing the software Artifacts may incl
 - {{SLSA}}
 - {{SWID}}
 
+The contents of the Statement may be placed in the protected header `payload`, or the Issuer may use {{-COSE-HASH}}, storing a hash of the Statement.
 Once all the Envelope headers are set, an Issuer MUST use a standard COSE implementation to produce an appropriately serialized Signed Statement.
 The SCITT tag `COSE_Sign1_Tagged` is outside the scope of COSE, and used to indicate that a signed object is a Signed Statement.
 
