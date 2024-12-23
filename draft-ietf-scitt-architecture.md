@@ -208,7 +208,7 @@ As illustrated in {{lifecycle-threats}}, a software supply chain attack may leve
            |
      +-----+-----+
      |           |        Modify build tasks or build environment
-     |   Build   |        Poison build agent/compiler
+     |   Build   |        Poison build the agent or the compiler
      |           |        Tamper with build cache
      +-----+-----+
            |
