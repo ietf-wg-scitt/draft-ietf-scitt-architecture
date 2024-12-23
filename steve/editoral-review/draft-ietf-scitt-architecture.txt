@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 24 June 2025                                         C. Fournet
+Expires: 26 June 2025                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        21 December 2024
+                                                        23 December 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 June 2025.
+   This Internet-Draft will expire on 26 June 2025.
 
 Copyright Notice
 
@@ -472,9 +472,7 @@ Table of Contents
       the metadata in the Envelope to the Statement.  In COSE, an
       Envelope consists of a protected header (included in the Issuer's
       signature) and an unprotected header (not included in the Issuer's
-      signature) and the Payload.  The Payload may contain the contents
-      of the Statement, or a hash using
-      [I-D.draft-ietf-cose-hash-envelope].
+      signature).
 
    Equivocation:  a state where it is possible for a Transparency
       Service to provide different views of its Append-only log to
@@ -520,8 +518,7 @@ Table of Contents
    Signed Statement:  an identifiable and non-repudiable Statement about
       an Artifact signed by an Issuer.  In SCITT, Signed Statements are
       encoded as COSE signed objects; the payload of the COSE structure
-      may contain the contents of the Statement, or a hash of the
-      Statement using [I-D.draft-ietf-cose-hash-envelope].
+      contains the issued Statement.
 
    Statement:  any serializable information about an Artifact.  To help
       interpretation of Statements, they must be tagged with a media
@@ -919,11 +916,9 @@ Table of Contents
 
    *  [SWID]
 
-   The contents of the Statement may be placed in the protected header
-   payload, or the Issuer may use [I-D.draft-ietf-cose-hash-envelope],
-   storing a hash of the Statement.  Once all the Envelope headers are
-   set, an Issuer MUST use a standard COSE implementation to produce an
-   appropriately serialized Signed Statement.
+   Once all the Envelope headers are set, an Issuer MUST use a standard
+   COSE implementation to produce an appropriately serialized Signed
+   Statement.
 
    Issuers can produce Signed Statements about different Artifacts under
    the same Identity.  Issuers and Relying Parties must be able to
@@ -1559,13 +1554,6 @@ Table of Contents
               ietf-cose-cwt-claims-in-headers-10, 29 November 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-cose-
               cwt-claims-in-headers-10>.
-
-   [I-D.draft-ietf-cose-hash-envelope]
-              Steele, O., Lasker, S., and H. Birkholz, "COSE Hash
-              Envelope", Work in Progress, Internet-Draft, draft-ietf-
-              cose-hash-envelope-01, 16 October 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-cose-
-              hash-envelope-01>.
 
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
