@@ -557,8 +557,7 @@ The subsequent sections describe the main concepts, namely Transparency Service,
 ## Transparency Service
 
 Transparency Services MUST feature an Append-only Log.
-The Append-only Log is the verifiable data structure that records integrity protection of the registered Signed Statements and supports the production of Receipts.
-Transparency Services may provide ancillary services to store the contents of the Signed Statement, however the Append-only Log does not store the Signed Statement contents avoiding concerns of persisting personally identifiable information.
+The Append-only Log is the verifiable data structure that records registered Signed Statements and supports the production of Receipts.
 
 All Transparency Services MUST expose APIs for the Registration of Signed Statements and issuance of Receipts.
 
@@ -615,7 +614,7 @@ This verifiable data structure MUST support the following security requirements:
 
 Append-Only:
 
-: once the integrity protection of the Signed Statement is included in the verifiable data structure, the Log cannot be modified, deleted, or reordered; hence its Receipt provides an offline verifiable proof of Registration, in relation to other entries on the Log.
+: once included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides an offline verifiable proof of Registration.
 
 Non-equivocation:
 
@@ -632,10 +631,7 @@ Specific verifiable data structures, such those describes in {{-CT}} and {{-COME
 
 ### Adjacent Services
 
-SCITT defines the structure and behavior for interacting with the Append-only Log, which stores cryptographic proofs of the registered Signed Statements.
-The persistence and indexing of the Signed Statement are adjacent services.
-
-In addition, Transparency Services can be deployed along side database, object storage or package manager services, providing integrity protection and verification for their content.
+Transparency Services can be deployed along side other database or object storage technologies.
 For example, a Transparency Service that is supporting a software package management system, might be referenced from the APIs exposed for package management.
 Providing an ability to request a fresh Receipt for a given software package, or to request a list of Signed Statements associated with the software package.
 
