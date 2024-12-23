@@ -767,7 +767,7 @@ Client applications MAY request Receipts regardless of the identity of the Issue
 When a Signed Statement is registered by a Transparency Service a Receipt becomes available.
 When a Receipt is included in a Signed Statement a Transparent Statement is produced.
 
-Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}) that also provides the COSE header parameter semantics for label 394.
+Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}) that also provides the COSE header parameter semantics for label TBD_0.
 
 The Registration time is recorded as the timestamp when the Transparency Service added this Signed Statement to its Append-only Log.
 
@@ -780,14 +780,14 @@ See {{fig-signed-statement-cddl}} for the CDDL rule that defines 'COSE_Sign1' as
 {: #fig-transparent-statement-cddl title="CDDL definition for a Transparent Statement"}
 
 {{fig-transparent-statement-edn}} illustrates a Transparent Statement with a detached payload, and two Receipts in its unprotected header.
-The type of label 394 `receipts` in the unprotected header is a CBOR array that can contain one or more Receipts (each entry encoded as a .cbor encoded Receipts).
+The type of label TBD_0 `receipts` in the unprotected header is a CBOR array that can contain one or more Receipts (each entry encoded as a .cbor encoded Receipts).
 
 ~~~ cbor-diag
 18(                                 / COSE Sign 1               /
     [
       h'a4012603...6d706c65',       / Protected                 /
       {                             / Unprotected               /
-        394: [                      / Receipts (2)              /
+        TBD_0: [                    / Receipts (2)              /
           h'd284586c...4191f9d2'    / Receipt 1                 /
           h'c624586c...8f4af97e'    / Receipt 2                 /
         ]
@@ -1027,6 +1027,20 @@ If one of the credentials of an Issuer gets compromised, the SCITT Architecture 
 It is up to the Issuer to notify Transparency Services of credential revocation to stop Relying Parties from accepting Signed Statements signed with compromised credentials.
 
 # IANA Considerations
+
+Editorial Note (To be removed by RFC Editor).
+
+This section will be removed before the document is completed, its purpose is to track the TBD code points references throughout the draft.
+
+## COSE Receipts Header Parameter
+
+{{-COMETRE}} requests TBD_0 as:
+
+- Name: receipts
+- Label: TBD_0 (requested assignment 394)
+- Value type: array (of bstr)
+- Value registry: https://www.iana.org/assignments/cose/cose.xhtml#header-parameters
+- Description: Priority ordered list of CBOR encoded Receipts.
 
 ## Media Type Registration
 
