@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-22T00:51:58.732977+00:00",
+  "timestamp": "2024-12-24T00:46:45.527686+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5844,9 +5844,17 @@
       "labels": [],
       "body": "From @mcr\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> Please do not use BCP14 keywords in the Security Considerations.\r\n> SC should instead always reference some section in the Protocol specification where that was said, while explaining what threat was being mitigated.\r\n> \r\n> Like the bit about TEEs, and the other bit about consensus algorithms, and finally the self-statements (Attestation results I guess?) about the TCB.\r\n> \"Redundant Replicas\" ought to be an entire section on it's own.\r\n> \r\n> \"remote attestation Evidence was appraised by a Relying Party \"\r\n> HENK! Evidence iis appraised by a Verifier :-)\r\n> \r\n> person-in-the-middle is not a term that I proposed in\r\n>     https://na01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdatatracker.ietf.org%2Fdoc%2Fdraft-richardson-saag-onpath-attacker%2F&data=05%7C02%7C%7Ce9ee8d279969424877f708dd1ba04c88%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C638697097466980054%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=UgSf4s3sv%2BirzoyYbc%2BRTq0Mx92uor3HwvCDzbQq8UM%3D&reserved=0\r\n> \r\n> some of have proposed MITM be expanded now to:\r\n>      *Meddler\" in the Middle\r\n> \r\n> (if cookies are the thing being stolen, then \"Monster in the Middle\".\r\n> This, btw, is a nom-nom-nom attack.  Coming to an I-D repo near you)",
       "createdAt": "2024-12-16T22:55:03Z",
-      "updatedAt": "2024-12-20T16:17:33Z",
+      "updatedAt": "2024-12-23T03:47:47Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "mcr",
+          "authorAssociation": "NONE",
+          "body": "Steve Lasker ***@***.***> wrote:\n    >> some of have proposed MITM be expanded now to:\n    >> *Meddler\" in the Middle\n\nhttps://datatracker.ietf.org/doc/draft-richardson-saag-onpath-attacker/\n\n",
+          "createdAt": "2024-12-23T03:47:46Z",
+          "updatedAt": "2024-12-23T03:47:46Z"
+        }
+      ]
     },
     {
       "number": 325,
@@ -5859,10 +5867,12 @@
       "assignees": [
         "rjb4standards"
       ],
-      "labels": [],
+      "labels": [
+        "has-pr"
+      ],
       "body": "The use cases document has expired and the architecture document is being consolidated to include use cases. This issue is in place to assist with the recovery of older use cases into the consolidated architecture document",
       "createdAt": "2024-12-18T19:48:12Z",
-      "updatedAt": "2024-12-20T18:35:17Z",
+      "updatedAt": "2024-12-24T00:20:06Z",
       "closedAt": null,
       "comments": [
         {
@@ -5882,9 +5892,9 @@
         {
           "author": "rjb4standards",
           "authorAssociation": "COLLABORATOR",
-          "body": "A pull request has been submitted to address Issue 325 adding one missing use case.",
+          "body": "A pull request has been submitted to address Issue 325 adding one missing use case.\r\n\r\nSee PR 328 for details: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/328 ",
           "createdAt": "2024-12-20T18:35:16Z",
-          "updatedAt": "2024-12-20T18:35:16Z"
+          "updatedAt": "2024-12-23T00:37:51Z"
         }
       ]
     },
@@ -5899,10 +5909,12 @@
       "assignees": [
         "SteveLasker"
       ],
-      "labels": [],
+      "labels": [
+        "has-pr"
+      ],
       "body": "From @mcr:\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/xXaVeX1b6idRI8oFbvBF10RkF_Q/\r\n",
       "createdAt": "2024-12-20T18:20:35Z",
-      "updatedAt": "2024-12-20T18:23:49Z",
+      "updatedAt": "2024-12-23T23:19:15Z",
       "closedAt": null,
       "comments": []
     },
@@ -5939,10 +5951,12 @@
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "has-pr"
+      ],
       "body": "A reader of the Arch doc may assume the content of the signed statements is stored on the Ledger, as opposed to verifiable proofs of the signed statement.\r\nThis has evolved over time as, at least some of us, assumed the signed statement _was_ stored on the ledger. \r\nThe current belief of the authors is the ledger stores \"hashes\", verifiable proofs of the signed statement, that can live forever without concerns of PII information. However, the current state of the doc doesn't really qualify this distinction.\r\n\r\nStoring the actual signed statement, including the payload, or other elements of the protected header on the ledger also raises PII information concerns, such as #322 \r\n\r\nA complete Transparency Service may provide ancillary services that may store the content of the signed statement, or even the contents of a hashed payload, however that's beyond the scope of the SCITT Draft.\r\n\r\nThis issue tracks:\r\n- [ ] Clarifying the ledger only stores \"proofs\" (or a better agreed upon term)\r\n- [ ] Clarifying a service may store the signed statements, but likely not on the ledger so they can delete and/or redact PII information that may be written (intentionally or accidentally)",
       "createdAt": "2024-12-20T23:05:33Z",
-      "updatedAt": "2024-12-20T23:05:37Z",
+      "updatedAt": "2024-12-23T23:44:12Z",
       "closedAt": null,
       "comments": []
     },
@@ -5955,10 +5969,32 @@
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "has-pr"
+      ],
       "body": "The spec has evolved from did:web to being flexible about the types of identity a transparency service may support.\r\nIt uses x.509 as a primary example, but could be confusing whether x.509 must be used, or rather when it's used, these are the properties that MUST or SHOULD be set.\r\n\r\nThis issue tracks extracting x.509 to an identity profile, which could be defined in the same architecture doc. And, making it clear that other identity types CAN be used, eliminating the need to follow the x.509 requirements. ",
       "createdAt": "2024-12-21T01:29:55Z",
-      "updatedAt": "2024-12-21T01:29:56Z",
+      "updatedAt": "2024-12-24T00:19:01Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 333,
+      "id": "I_kwDOIvmHss6kUiao",
+      "title": "Include COSE HASH Refernece",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/333",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "SteveLasker"
+      ],
+      "labels": [
+        "has-pr"
+      ],
+      "body": "From @mcr,\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/xXaVeX1b6idRI8oFbvBF10RkF_Q/\r\n\r\n> If Detached payloads are going to be used, then probably this should\r\n>be more clearly stated as a requirement?\r\n\r\n@SteveLasker \r\n> Personally, I believe hashed (not detached) payloads https://datatracker.ietf.org/doc/draft-ietf-cose-hash-envelope/ will be the majority. Should the draft limit to hash envelopes?\r\n\r\n@mcr\r\n> I don't care exactly, but I think more details are needed.\r\n",
+      "createdAt": "2024-12-23T23:26:18Z",
+      "updatedAt": "2024-12-23T23:26:38Z",
       "closedAt": null,
       "comments": []
     }
@@ -42992,15 +43028,127 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "This is a draft that addresses: \r\n- #329 \r\n- #327\r\n- #323\r\n- #322\r\n- #320\r\n\r\nI'll break this up into smaller PRs, but I wanted to make it visible for others that may also be working on editorial changes.",
+      "body": "Removed content now tracked in separate PRs",
       "createdAt": "2024-12-21T01:39:12Z",
-      "updatedAt": "2024-12-21T01:40:31Z",
+      "updatedAt": "2024-12-24T00:18:39Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/editoral-review",
-      "headRefOid": "b42f5ff997dce8e742d12d9c394f075aa84bf0fc",
+      "headRefOid": "2827176c8cf5e8951675cbf3702544cab2fe9310",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I moved the items covered in issues to separate PR\r\nThis PR now focused on general editorial changes.\r\nA larger change will come once we address larger review feedback.",
+          "createdAt": "2024-12-24T00:18:38Z",
+          "updatedAt": "2024-12-24T00:18:38Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 332,
+      "id": "PR_kwDOIvmHss6GH6Es",
+      "title": "Change receipts 394 to a TBD with IANA Considerations",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/332",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #326 ",
+      "createdAt": "2024-12-23T23:17:17Z",
+      "updatedAt": "2024-12-23T23:17:18Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "issue-326",
+      "headRefOid": "5baa3d110ee509eb8a1dc1f9708ffc8185027355",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 334,
+      "id": "PR_kwDOIvmHss6GH8HR",
+      "title": "Include COSE HASH Envelope reference",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/334",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #333 ",
+      "createdAt": "2024-12-23T23:28:19Z",
+      "updatedAt": "2024-12-23T23:28:20Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "issue-333",
+      "headRefOid": "c5f14733a728e0a3105c6754e485c9512233d513",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 335,
+      "id": "PR_kwDOIvmHss6GH9_2",
+      "title": "Address what is stored on the ledger",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/335",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #329 ",
+      "createdAt": "2024-12-23T23:39:40Z",
+      "updatedAt": "2024-12-23T23:39:41Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "issue-329",
+      "headRefOid": "cec91f4c3627985a77ab9c9442f19388b6cc3622",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 336,
+      "id": "PR_kwDOIvmHss6GIERF",
+      "title": "Start refactoring x.509 profile",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/336",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #330 \r\n",
+      "createdAt": "2024-12-24T00:15:22Z",
+      "updatedAt": "2024-12-24T00:15:22Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "issue-330",
+      "headRefOid": "c4ce0b815f04b83c0fad9e5eff1e2fac67d57c55",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
