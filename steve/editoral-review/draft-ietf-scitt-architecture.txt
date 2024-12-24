@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 26 June 2025                                         C. Fournet
+Expires: 27 June 2025                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        23 December 2024
+                                                        24 December 2024
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 June 2025.
+   This Internet-Draft will expire on 27 June 2025.
 
 Copyright Notice
 
@@ -796,15 +796,16 @@ Table of Contents
    header includes multiple identifiers, all those that are registered
    by the Transparency Service MUST be checked.
 
-   When using X.509 Signed Statements, the Transparency Service MUST
-   build and validate a complete certification path from an Issuer's
-   certificate to one of the root certificates most recently registered
-   as a trust anchor by the Transparency Service.  The protected header
-   of the COSE_Sign1 Envelope MUST include either the Issuer's
-   certificate as x5t or the chain including the Issuer's certificate as
-   x5chain.  If x5t is included in the protected header, an x5chain with
-   a leaf certificate corresponding to the x5t value MAY be included in
-   the unprotected header.
+   In essence, when using X.509 Signed Statements, the Transparency
+   Service MUST build and validate a complete certification path from an
+   Issuer's certificate to one of the root certificates most recently
+   registered as a trust anchor by the Transparency Service.
+
+   The protected header of the COSE_Sign1 Envelope MUST include either
+   the Issuer's certificate as x5t or the chain including the Issuer's
+   certificate as x5chain.  If x5t is included in the protected header,
+   an x5chain with a leaf certificate corresponding to the x5t value MAY
+   be included in the unprotected header.
 
    The Transparency Service MUST apply the Registration Policy that was
    most recently added to the Append-only Log at the time of
@@ -931,13 +932,10 @@ Table of Contents
    affirming multiple Issuers agree.
 
    At least one identifier representing one credential MUST be included
-   in the protected header of the COSE Envelope.
-
-   For example, when x.509 is utilized, either x5t, x5chain or kid must
-   be included in the protected header.  Additionally, x5chain that
-   corresponds to either x5t or kid identifying the leaf certificate in
-   the included certification path MAY be included in the unprotected
-   header of the COSE Envelope.
+   in the protected header of the COSE Envelope, as one of x5t, x5chain
+   or kid.  Additionally, x5chain that corresponds to either x5t or kid
+   identifying the leaf certificate in the included certification path
+   MAY be included in the unprotected header of the COSE Envelope.
 
    *  When using x.509 certificates, support for either x5t or x5chain
       in the protected header is REQUIRED to implement.

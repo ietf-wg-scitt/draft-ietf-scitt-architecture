@@ -1056,7 +1056,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 26 June 2025</td>
+<td class="center">Expires 27 June 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1069,12 +1069,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-12-23" class="published">23 December 2024</time>
+<time datetime="2024-12-24" class="published">24 December 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-06-26">26 June 2025</time></dd>
+<dd class="expires"><time datetime="2025-06-27">27 June 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1143,7 +1143,7 @@ Issuers can register their Signed Statements on one or more Transparency Service
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 26 June 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 27 June 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2137,11 +2137,11 @@ For instance, a trust anchor could be an X.509 root certificate, a pointer to an
 <p id="section-5.1.1.1-1">During Registration, a Transparency Service <span class="bcp14">MUST</span>, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.
 The Issuer identity <span class="bcp14">MUST</span> be bound to the Signed Statement by including an identifier in the protected header.
 If the protected header includes multiple identifiers, all those that are registered by the Transparency Service <span class="bcp14">MUST</span> be checked.<a href="#section-5.1.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1.1.1-2">When using X.509 Signed Statements, the Transparency Service <span class="bcp14">MUST</span> build and validate a complete certification path from an Issuer's certificate to one of the root certificates most recently registered as a trust anchor by the Transparency Service.
-The protected header of the COSE_Sign1 Envelope <span class="bcp14">MUST</span> include either the Issuer's certificate as <code>x5t</code> or the chain including the Issuer's certificate as <code>x5chain</code>.
-If <code>x5t</code> is included in the protected header, an <code>x5chain</code> with a leaf certificate corresponding to the <code>x5t</code> value <span class="bcp14">MAY</span> be included in the unprotected header.<a href="#section-5.1.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-5.1.1.1-3">The Transparency Service <span class="bcp14">MUST</span> apply the Registration Policy that was most recently added to the Append-only Log at the time of Registration.
-The Registration Policy used <span class="bcp14">MUST</span> be included in the Receipt.<a href="#section-5.1.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1.1.1-2">In essence, when using X.509 Signed Statements, the Transparency Service <span class="bcp14">MUST</span> build and validate a complete certification path from an Issuer's certificate to one of the root certificates most recently registered as a trust anchor by the Transparency Service.<a href="#section-5.1.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1.1.1-3">The protected header of the COSE_Sign1 Envelope <span class="bcp14">MUST</span> include either the Issuer's certificate as <code>x5t</code> or the chain including the Issuer's certificate as <code>x5chain</code>.
+If <code>x5t</code> is included in the protected header, an <code>x5chain</code> with a leaf certificate corresponding to the <code>x5t</code> value <span class="bcp14">MAY</span> be included in the unprotected header.<a href="#section-5.1.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1.1.1-4">The Transparency Service <span class="bcp14">MUST</span> apply the Registration Policy that was most recently added to the Append-only Log at the time of Registration.
+The Registration Policy used <span class="bcp14">MUST</span> be included in the Receipt.<a href="#section-5.1.1.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-auditability-of-registration">
@@ -2262,25 +2262,24 @@ For example, an Issuer can make amended Statements about the same Artifact as th
 <p id="section-6-8">Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
 Relying Parties can choose which Issuers they trust.<a href="#section-6-8" class="pilcrow">¶</a></p>
 <p id="section-6-9">Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.<a href="#section-6-9" class="pilcrow">¶</a></p>
-<p id="section-6-10">At least one identifier representing one credential <span class="bcp14">MUST</span> be included in the protected header of the COSE Envelope.<a href="#section-6-10" class="pilcrow">¶</a></p>
-<p id="section-6-11">For example, when x.509 is utilized, either <code>x5t</code>, <code>x5chain</code> or <code>kid</code> must be included in the protected header.
-Additionally, <code>x5chain</code> that corresponds to either <code>x5t</code> or <code>kid</code> identifying the leaf certificate in the included certification path <span class="bcp14">MAY</span> be included in the unprotected header of the COSE Envelope.<a href="#section-6-11" class="pilcrow">¶</a></p>
+<p id="section-6-10">At least one identifier representing one credential <span class="bcp14">MUST</span> be included in the protected header of the COSE Envelope, as one of <code>x5t</code>, <code>x5chain</code> or <code>kid</code>.
+Additionally, <code>x5chain</code> that corresponds to either <code>x5t</code> or <code>kid</code> identifying the leaf certificate in the included certification path <span class="bcp14">MAY</span> be included in the unprotected header of the COSE Envelope.<a href="#section-6-10" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6-12.1">
-          <p id="section-6-12.1.1">When using x.509 certificates, support for either <code>x5t</code> or <code>x5chain</code> in the protected header is <span class="bcp14">REQUIRED</span> to implement.<a href="#section-6-12.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6-11.1">
+          <p id="section-6-11.1.1">When using x.509 certificates, support for either <code>x5t</code> or <code>x5chain</code> in the protected header is <span class="bcp14">REQUIRED</span> to implement.<a href="#section-6-11.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-6-12.2">
-          <p id="section-6-12.2.1">Support for <code>kid</code> in the protected header and <code>x5chain</code> in the unprotected header is <span class="bcp14">OPTIONAL</span> to implement.<a href="#section-6-12.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-6-11.2">
+          <p id="section-6-11.2.1">Support for <code>kid</code> in the protected header and <code>x5chain</code> in the unprotected header is <span class="bcp14">OPTIONAL</span> to implement.<a href="#section-6-11.2.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-6-13">When <code>x5t</code> or <code>x5chain</code> is present in the protected header, <code>iss</code> <span class="bcp14">MUST</span> be a string that meets URI requirements defined in <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>.
-The <code>iss</code> value's length <span class="bcp14">MUST</span> be between 1 and 8192 characters in length.<a href="#section-6-13" class="pilcrow">¶</a></p>
-<p id="section-6-14">The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when neither <code>x5t</code> nor <code>x5chain</code> is present in the protected header.
-Key discovery protocols are out-of-scope of this document.<a href="#section-6-14" class="pilcrow">¶</a></p>
-<p id="section-6-15">The protected header of a Signed Statement and a Receipt <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10#section-2" class="relref">Section 2</a> of [<a href="#CWT_CLAIMS_COSE" class="cite xref">CWT_CLAIMS_COSE</a>]</span>.
-The <code>CWT Claims</code> value <span class="bcp14">MUST</span> include the <code>Issuer Claim</code> (Claim label 1) and the <code>Subject Claim</code> (Claim label 2) <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span>.<a href="#section-6-15" class="pilcrow">¶</a></p>
-<p id="section-6-16">A Receipt is a Signed Statement, (COSE_Sign1), with additional Claims in its protected header related to verifying the inclusion proof in its unprotected header.
-See <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>.<a href="#section-6-16" class="pilcrow">¶</a></p>
+<p id="section-6-12">When <code>x5t</code> or <code>x5chain</code> is present in the protected header, <code>iss</code> <span class="bcp14">MUST</span> be a string that meets URI requirements defined in <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>.
+The <code>iss</code> value's length <span class="bcp14">MUST</span> be between 1 and 8192 characters in length.<a href="#section-6-12" class="pilcrow">¶</a></p>
+<p id="section-6-13">The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when neither <code>x5t</code> nor <code>x5chain</code> is present in the protected header.
+Key discovery protocols are out-of-scope of this document.<a href="#section-6-13" class="pilcrow">¶</a></p>
+<p id="section-6-14">The protected header of a Signed Statement and a Receipt <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-cwt-claims-in-headers-10#section-2" class="relref">Section 2</a> of [<a href="#CWT_CLAIMS_COSE" class="cite xref">CWT_CLAIMS_COSE</a>]</span>.
+The <code>CWT Claims</code> value <span class="bcp14">MUST</span> include the <code>Issuer Claim</code> (Claim label 1) and the <code>Subject Claim</code> (Claim label 2) <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span>.<a href="#section-6-14" class="pilcrow">¶</a></p>
+<p id="section-6-15">A Receipt is a Signed Statement, (COSE_Sign1), with additional Claims in its protected header related to verifying the inclusion proof in its unprotected header.
+See <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>.<a href="#section-6-15" class="pilcrow">¶</a></p>
 <div id="sec-signed-statement-examples">
 <section id="section-6.1">
         <h3 id="name-signed-statement-examples">
