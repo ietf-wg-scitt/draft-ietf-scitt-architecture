@@ -2111,7 +2111,7 @@ Each Transparency Service produces a Receipt, which may be aggregated in a singl
         </h3>
 <p id="section-5.1-1">Transparency Services <span class="bcp14">MUST</span> feature an Append-only Log.
 The Append-only Log is the verifiable data structure that records registered Signed Statements and supports the production of Receipts.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2">All Transparency Services <span class="bcp14">MUST</span> expose APIs for the Registration of Signed Statements and issuance of Receipts.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">All Transparency Services <span class="bcp14">MUST</span> expose APIs (<span>[<a href="#I-D.draft-ietf-scitt-scrapi" class="cite xref">I-D.draft-ietf-scitt-scrapi</a>]</span> for the Registration of Signed Statements and issuance of Receipts.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1-3">Transparency Services <span class="bcp14">MAY</span> support additional APIs for auditing, for instance, to query the history of Signed Statements.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1-4">Typically a Transparency Service has a single Issuer identity which is present in the <code>iss</code> Claim of Receipts for that service.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <p id="section-5.1-5">Multi-tenant support can be enabled through the use of identifiers in the <code>iss</code> Claim, for example, <code>ts.example</code> may have a distinct Issuer identity for each sub domain, such as <code>customer1.ts.example</code> and <code>customer2.ts.example</code>.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
