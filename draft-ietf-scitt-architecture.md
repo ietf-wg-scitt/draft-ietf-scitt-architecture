@@ -764,7 +764,7 @@ Client applications MAY request Receipts regardless of the identity of the Issue
 When a Signed Statement is registered by a Transparency Service a Receipt becomes available.
 When a Receipt is included in a Signed Statement a Transparent Statement is produced.
 
-Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs ({{-COMETRE}}) that also provides the COSE header parameter semantics for label 394.
+Receipts are based on Signed Inclusion Proofs as described in COSE Signed Merkle Tree Proofs {{-COMETRE}} that also provides the COSE header parameter semantics for label 394.
 
 The Registration time is recorded as the timestamp when the Transparency Service added this Signed Statement to its Append-only Log.
 
