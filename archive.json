@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-29T00:52:30.571734+00:00",
+  "timestamp": "2024-12-31T00:46:29.525355+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5926,11 +5926,15 @@
       "state": "OPEN",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
-      "labels": [],
+      "assignees": [
+        "SteveLasker"
+      ],
+      "labels": [
+        "has-pr"
+      ],
       "body": "From @mcr\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/xXaVeX1b6idRI8oFbvBF10RkF_Q/\r\n\r\n    >> All Transparency Services MUST expose APIs for the Registration of\r\n    >> Signed Statements and issuance of Receipts.\r\n\r\n    > . o O ( such as draft-ietf-scitt-scrapi ?? )\r\n    > Nod: are you suggesting we should add SCRAPI to the architecture doc?\r\n\r\n> Yes, I think that it needs to interlock back and forth, or it needs to be completely top-down reference, in which case probably none of the CDDL belongs.\r\n\r\nTracks if we make SCRAPI a dependency, keeping the CDDL, remove CDDL, or keep as-is with samples that CAN be implemented with SCRAPI\r\n",
       "createdAt": "2024-12-20T18:26:05Z",
-      "updatedAt": "2024-12-20T18:57:33Z",
+      "updatedAt": "2024-12-30T17:18:26Z",
       "closedAt": null,
       "comments": [
         {
@@ -5939,6 +5943,13 @@
           "body": "A note that #316 [added a reference to SCRAPI](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L181)\r\n> The building blocks provided by the SCITT architecture and related documents (e.g., the SCITT Reference API) are not restricted to software supply chain use cases.\r\n",
           "createdAt": "2024-12-20T18:57:33Z",
           "updatedAt": "2024-12-20T18:57:33Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I've added this PR, but I've also raised the question of whether we should make a bi-directional dependency or only make the dependency from SCRAPI --> Architecture in the scitt mailing thread. \r\nhttps://mailarchive.ietf.org/arch/msg/scitt/CbJEuUXBxnHDm1ZrS5lWYz-gvTY/\r\n",
+          "createdAt": "2024-12-30T17:18:25Z",
+          "updatedAt": "2024-12-30T17:18:25Z"
         }
       ]
     },
@@ -5995,6 +6006,22 @@
       "body": "From @mcr,\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/xXaVeX1b6idRI8oFbvBF10RkF_Q/\r\n\r\n> If Detached payloads are going to be used, then probably this should\r\n>be more clearly stated as a requirement?\r\n\r\n@SteveLasker \r\n> Personally, I believe hashed (not detached) payloads https://datatracker.ietf.org/doc/draft-ietf-cose-hash-envelope/ will be the majority. Should the draft limit to hash envelopes?\r\n\r\n@mcr\r\n> I don't care exactly, but I think more details are needed.\r\n",
       "createdAt": "2024-12-23T23:26:18Z",
       "updatedAt": "2024-12-23T23:26:38Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 337,
+      "id": "I_kwDOIvmHss6ktuEm",
+      "title": "Reconcile how transparent statements are re-recorded on the ledger",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/337",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Line [#466](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L466) states:\r\n\r\n> However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, ~from a~ (see #331)  from the first Transparency Service) and register it on another Transparency Service, **where the second Receipt will be over the first Receipt in the unprotected header**.\r\n\r\nWith the discussion and comments in [#321](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/321#issuecomment-2554645211), the unprotected header will be stripped prior to registration. \r\n\r\nThe change will make _**where the second Receipt will be over the first Receipt in the unprotected header**_ inaccurate. \r\n\r\nThis issue tracks how and if we need to re-register transparent statements, or remove the above reference.",
+      "createdAt": "2024-12-30T16:41:06Z",
+      "updatedAt": "2024-12-30T16:41:06Z",
       "closedAt": null,
       "comments": []
     }
@@ -43004,13 +43031,13 @@
       "labels": [],
       "body": "Added one use case from original use case document: Signing certificate authenticity use case",
       "createdAt": "2024-12-20T18:27:04Z",
-      "updatedAt": "2024-12-20T18:36:30Z",
+      "updatedAt": "2024-12-30T17:48:31Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "rjb4standards/draft-ietf-scitt-architecture",
       "headRefName": "main",
-      "headRefOid": "4d020310a3fa2127ebe55a9cc26f4b51b05915f4",
+      "headRefOid": "1b5e5ec8b0c6b4da1d59f7c83a6a09df98bbdf35",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -43030,13 +43057,13 @@
       "labels": [],
       "body": "Removed content now tracked in separate PRs",
       "createdAt": "2024-12-21T01:39:12Z",
-      "updatedAt": "2024-12-24T00:18:39Z",
+      "updatedAt": "2024-12-30T23:18:18Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/editoral-review",
-      "headRefOid": "2827176c8cf5e8951675cbf3702544cab2fe9310",
+      "headRefOid": "61a26a354014b73865139aedf9b76b8b8b5cbc7b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -43064,7 +43091,7 @@
       "labels": [],
       "body": "Fixes #326 ",
       "createdAt": "2024-12-23T23:17:17Z",
-      "updatedAt": "2024-12-23T23:17:18Z",
+      "updatedAt": "2024-12-30T23:18:33Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
@@ -43149,6 +43176,80 @@
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "issue-330",
       "headRefOid": "c4ce0b815f04b83c0fad9e5eff1e2fac67d57c55",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 338,
+      "id": "PR_kwDOIvmHss6GcoLk",
+      "title": "Add SCRAPI reference",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/338",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #327 \r\n",
+      "createdAt": "2024-12-30T16:49:23Z",
+      "updatedAt": "2024-12-30T23:27:59Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "issue-327",
+      "headRefOid": "3e1307f127a71d91bb694cdb786eb31f73bfff14",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I'm on the fence whether we should merge this PR, or decouple SCRAPI dependency:\r\nhttps://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/327#issuecomment-2565734728\r\n",
+          "createdAt": "2024-12-30T17:19:21Z",
+          "updatedAt": "2024-12-30T17:19:21Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Steve,\r\n\r\n \r\n\r\nIn our own Trust Registry (SAG-CTR) implementation experiences, the API\u2019s used for submittal of a \u201ctrust declaration\u201d (signed statement) and the ability to retrieve trusted artifacts from the registry are integral to make everything work.\r\n\r\n \r\n\r\nJust my .02\r\n\r\n \r\n\r\nThanks,\r\n\r\n \r\n\r\nDick Brooks\r\n\r\n   \r\n\r\nActive Member of the CISA Critical Manufacturing Sector, \r\n\r\nSector Coordinating Council \u2013 A Public-Private Partnership\r\n\r\n \r\n\r\n <https://reliableenergyanalytics.com/products> Never trust software, always verify and report! \u2122\r\n\r\nRisk always exists, but trust must be earned and awarded.\u2122 \r\n\r\nhttps://businesscyberguardian.com/ \r\n\r\nEmail: ***@***.***\r\n\r\nTel: +1 978-696-1788\r\n\r\n \r\n\r\n \r\n\r\nFrom: Steve Lasker ***@***.***> \r\nSent: Monday, December 30, 2024 12:20 PM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Subscribed ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Add SCRAPI reference (PR #338)\r\n\r\n \r\n\r\nI'm on the fence whether we should merge this PR, or decouple SCRAPI dependency:\r\n#327 (comment) <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/327#issuecomment-2565734728> \r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub <https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/338#issuecomment-2565735601> , or unsubscribe <https://github.com/notifications/unsubscribe-auth/ABFI3NF7RF777U3UANBDH6D2IF6C7AVCNFSM6AAAAABUMJTUSWVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMZDKNRVG4ZTKNRQGE> .\r\nYou are receiving this because you are subscribed to this thread.Message ID: ***@***.***>\r\n\r\n",
+          "createdAt": "2024-12-30T17:24:27Z",
+          "updatedAt": "2024-12-30T17:24:27Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Adding @mcr notes from the alias:\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/9aXulLRIcB0H_JqpTHz8040Ne-4/",
+          "createdAt": "2024-12-30T23:27:59Z",
+          "updatedAt": "2024-12-30T23:27:59Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 339,
+      "id": "PR_kwDOIvmHss6Gdv49",
+      "title": "Compress Architecture Diagram",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/339",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From @mcr,\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n> The diagram is very tall and skiny.  The SVG is lovely mind.\r\n> Maybe use more of the horizontal space, then \"Signed-Statement->Transparency\r\n> Statement\" wouldn't have to weave around.\r\n\r\nWhich saves some vertical scrolling and a wee bit of compute and network bytes:\r\n![image](https://github.com/user-attachments/assets/a3ca4114-beba-40cf-88fa-fc4bd26f919b)\r\n\r\nThere's no change in content or flow, just a repositioning of the boxes.",
+      "createdAt": "2024-12-30T23:16:55Z",
+      "updatedAt": "2024-12-30T23:17:51Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/diagram-compression",
+      "headRefOid": "33cab1ccfffcd6003e342dc7f30a50ae23364d5e",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
