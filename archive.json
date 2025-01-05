@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-02T00:46:06.874961+00:00",
+  "timestamp": "2025-01-05T00:52:06.972301+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -43093,7 +43093,7 @@
       "labels": [],
       "body": "Added one use case from original use case document: Signing certificate authenticity use case",
       "createdAt": "2024-12-20T18:27:04Z",
-      "updatedAt": "2024-12-31T13:38:08Z",
+      "updatedAt": "2025-01-03T17:11:51Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
@@ -43166,6 +43166,186 @@
           "createdAt": "2024-12-31T04:31:21Z",
           "updatedAt": "2024-12-31T04:31:21Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Wwhqo",
+          "commit": {
+            "abbreviatedOid": "1b5e5ec"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-03T15:43:33Z",
+          "updatedAt": "2025-01-03T15:43:33Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "SCITT doesn't support embedded signatures, as they don't support the multi-party/post-build processes.\r\nRemoving the suggestion, and leaving it as a comment\r\n``` \r\nThe released software component is accompanied by a statement of authenticity (e.g., a detached signature).\r\n```",
+              "createdAt": "2025-01-03T15:43:33Z",
+              "updatedAt": "2025-01-03T17:03:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Wwh7-",
+          "commit": {
+            "abbreviatedOid": "1b5e5ec"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-03T15:44:19Z",
+          "updatedAt": "2025-01-03T15:44:19Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "```suggestion\r\nSome providers include this particular software component as part of their release product/package bundle and provide the package with proof of authenticity using their issuer authority.\r\n```",
+              "createdAt": "2025-01-03T15:44:19Z",
+              "updatedAt": "2025-01-03T15:44:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Wwjjd",
+          "commit": {
+            "abbreviatedOid": "1b5e5ec"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-03T15:48:56Z",
+          "updatedAt": "2025-01-03T15:48:56Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "@SteveLasker  you suggest removing embedded signatures. Does this mean that embedded signatures on artifacts are not supported in SCITT? ",
+              "createdAt": "2025-01-03T15:48:56Z",
+              "updatedAt": "2025-01-03T15:48:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6WwnLw",
+          "commit": {
+            "abbreviatedOid": "1b5e5ec"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-03T15:58:47Z",
+          "updatedAt": "2025-01-03T15:58:47Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "I struggle with Authorized as well, as it's also not clear who is stating who should be \"authorized\" and to whom?\r\n\r\nA consuming company may authorize EntityA, but not EntityB, while another may require a different Entity to produce the same package, such as RedHat or a specific Industry \"authorized\" endorsement.\r\n\r\nOriginating could also be questioned. \r\nAt the end of the day, the verifier makes a decision which issuers they trust, for a given environment. \r\n```suggestion\r\n* understand if a particular provider is a trusted originating producer or an alternative party\r\n```",
+              "createdAt": "2025-01-03T15:58:47Z",
+              "updatedAt": "2025-01-03T16:15:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6WwqT2",
+          "commit": {
+            "abbreviatedOid": "1b5e5ec"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-03T16:06:31Z",
+          "updatedAt": "2025-01-03T16:06:32Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "@SteveLasker would it help to replace \"authorized\" with \"legitimate\".\r\n\r\nPeople need to be able to determine if an artifact is to be trusted, or not, based on a verifiable method. I'm asserting that the presence of an artifact in a SCITT registry is sufficient to make it trustworthy, but the process used to register an artifact in a SCITT trust registry needs to be able to discern a trustworthy artifact and one that is false, or not trustworthy.\r\n\r\nSomehow, the SCITT \"solution\" needs to be able to discern trusted artifacts from untrusted artifacts and the ability to establish trust in the artifacts supply chain is key to this process. Only trusted artifacts, submitted by trusted parties make their way into a SCITT trust registry, IMO.",
+              "createdAt": "2025-01-03T16:06:32Z",
+              "updatedAt": "2025-01-03T16:06:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Ww-fU",
+          "commit": {
+            "abbreviatedOid": "1b5e5ec"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-03T17:02:44Z",
+          "updatedAt": "2025-01-03T17:02:45Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "I'm suggesting we remove references to embedded signatures as SCITT doesn't know about them.\r\nThe content also conflates a few different concepts of attached/detached payloads, referencing an artifact the statement is about, and attached signatures that are not part of the SCITT Architecture. \r\n\r\nI'm going to suggest the following change.\r\n\r\nSCITT doesn't support embedded signatures, as they don't support the multi-party/post-build processes.\r\n```suggestion\r\nThe released software component is accompanied by a statement of authenticity.\r\n```",
+              "createdAt": "2025-01-03T17:02:45Z",
+              "updatedAt": "2025-01-03T17:02:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Ww_dZ",
+          "commit": {
+            "abbreviatedOid": "1b5e5ec"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-03T17:05:53Z",
+          "updatedAt": "2025-01-03T17:05:53Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "How does an entity determine trust? \r\n\r\n",
+              "createdAt": "2025-01-03T17:05:53Z",
+              "updatedAt": "2025-01-03T17:05:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6WxANE",
+          "commit": {
+            "abbreviatedOid": "1b5e5ec"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-03T17:08:09Z",
+          "updatedAt": "2025-01-03T17:08:09Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "@SteveLasker Many post build artifacts, like MSI installation packages contain embedded digital signatures. This change seems to allow either/or embedded/detached authenticity evidence.",
+              "createdAt": "2025-01-03T17:08:09Z",
+              "updatedAt": "2025-01-03T17:08:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6WxBVG",
+          "commit": {
+            "abbreviatedOid": "1b5e5ec"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-03T17:11:50Z",
+          "updatedAt": "2025-01-03T17:11:51Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "@SteveLasker I'm hoping the SCITT spec will describe how trust is ascertained before an item is placed into the registry. Then parties can simply trust an artifact because it is in the registry, and has been properly vetted as trustworthy. This is how a \"Registry of Deeds\" works, which IMO is a good model for a SCITT Trust Registry. Only trusted artifacts can be placed into the registry.",
+              "createdAt": "2025-01-03T17:11:50Z",
+              "updatedAt": "2025-01-03T17:11:51Z"
+            }
+          ]
         }
       ]
     },
