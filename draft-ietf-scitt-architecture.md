@@ -77,6 +77,7 @@ normative:
   RFC8392:
   COSWID: RFC9393
   I-D.draft-ietf-cose-merkle-tree-proofs: COMETRE
+  I-D.draft-ietf-scitt-scrapi: SCRAPI
 
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
   IANA.cwt:
@@ -178,7 +179,7 @@ SCITT achieves this by having producers publish information in a Transparency Se
 # Exemplary Software Supply Chain (SSC) Use Cases
 
 To illustrate the applicability of the SCITT architecture and its messages this section details the exemplary context of software supply chain (SSC) use cases.
-The building blocks provided by the SCITT architecture and related documents (e.g., the SCITT Reference API) are not restricted to software supply chain use cases.
+The building blocks provided by the SCITT architecture and related documents (e.g., {{-SCRAPI}}) are not restricted to software supply chain use cases.
 Software supply chains serve as a useful application guidance and first usage scenario.
 
 ## Generic SSC Problem Statement
@@ -560,7 +561,7 @@ The subsequent sections describe the main concepts, namely Transparency Service,
 Transparency Services MUST feature an Append-only Log.
 The Append-only Log is the verifiable data structure that records registered Signed Statements and supports the production of Receipts.
 
-All Transparency Services MUST expose APIs for the Registration of Signed Statements and issuance of Receipts.
+All Transparency Services MUST expose APIs ({{-SCRAPI}} for the Registration of Signed Statements and issuance of Receipts.
 
 Transparency Services MAY support additional APIs for auditing, for instance, to query the history of Signed Statements.
 
