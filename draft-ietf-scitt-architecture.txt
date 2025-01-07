@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 20 June 2025                                         C. Fournet
+Expires: 11 July 2025                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        17 December 2024
+                                                          7 January 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,11 +66,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 June 2025.
+   This Internet-Draft will expire on 11 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -185,10 +185,10 @@ Table of Contents
    To illustrate the applicability of the SCITT architecture and its
    messages this section details the exemplary context of software
    supply chain (SSC) use cases.  The building blocks provided by the
-   SCITT architecture and related documents (e.g., the SCITT Reference
-   API) are not restricted to software supply chain use cases.  Software
-   supply chains serve as a useful application guidance and first usage
-   scenario.
+   SCITT architecture and related documents (e.g.,
+   [I-D.draft-ietf-scitt-scrapi]) are not restricted to software supply
+   chain use cases.  Software supply chains serve as a useful
+   application guidance and first usage scenario.
 
 2.1.  Generic SSC Problem Statement
 
@@ -749,8 +749,9 @@ Table of Contents
    only Log is the verifiable data structure that records registered
    Signed Statements and supports the production of Receipts.
 
-   All Transparency Services MUST expose APIs for the Registration of
-   Signed Statements and issuance of Receipts.
+   All Transparency Services MUST expose APIs
+   ([I-D.draft-ietf-scitt-scrapi] for the Registration of Signed
+   Statements and issuance of Receipts.
 
    Transparency Services MAY support additional APIs for auditing, for
    instance, to query the history of Signed Statements.
@@ -1552,6 +1553,13 @@ Table of Contents
               Draft, draft-ietf-cose-merkle-tree-proofs-07, 17 October
               2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
               cose-merkle-tree-proofs-07>.
+
+   [I-D.draft-ietf-scitt-scrapi]
+              Birkholz, H., Steele, O., and J. Geater, "SCITT Reference
+              APIs", Work in Progress, Internet-Draft, draft-ietf-scitt-
+              scrapi-02, 8 July 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-scitt-
+              scrapi-02>.
 
    [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <https://www.iana.org/assignments/cwt>.
