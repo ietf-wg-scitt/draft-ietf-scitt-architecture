@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-07T00:47:25.899008+00:00",
+  "timestamp": "2025-01-09T00:46:58.210006+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5923,7 +5923,7 @@
       "id": "I_kwDOIvmHss6kG1PG",
       "title": "Make SCRAPI an Arch Dependency/Normative reference",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/327",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -5934,8 +5934,8 @@
       ],
       "body": "From @mcr\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/xXaVeX1b6idRI8oFbvBF10RkF_Q/\r\n\r\n    >> All Transparency Services MUST expose APIs for the Registration of\r\n    >> Signed Statements and issuance of Receipts.\r\n\r\n    > . o O ( such as draft-ietf-scitt-scrapi ?? )\r\n    > Nod: are you suggesting we should add SCRAPI to the architecture doc?\r\n\r\n> Yes, I think that it needs to interlock back and forth, or it needs to be completely top-down reference, in which case probably none of the CDDL belongs.\r\n\r\nTracks if we make SCRAPI a dependency, keeping the CDDL, remove CDDL, or keep as-is with samples that CAN be implemented with SCRAPI\r\n",
       "createdAt": "2024-12-20T18:26:05Z",
-      "updatedAt": "2024-12-30T17:18:26Z",
-      "closedAt": null,
+      "updatedAt": "2025-01-07T15:52:01Z",
+      "closedAt": "2025-01-07T15:52:01Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -43093,7 +43093,7 @@
       "labels": [],
       "body": "Added one use case from original use case document: Signing certificate authenticity use case",
       "createdAt": "2024-12-20T18:27:04Z",
-      "updatedAt": "2025-01-03T17:11:51Z",
+      "updatedAt": "2025-01-07T15:26:03Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
@@ -43346,6 +43346,19 @@
               "updatedAt": "2025-01-03T17:11:51Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6XE18A",
+          "commit": {
+            "abbreviatedOid": "1b5e5ec"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-01-07T15:26:03Z",
+          "updatedAt": "2025-01-07T15:26:03Z",
+          "comments": []
         }
       ]
     },
@@ -43361,7 +43374,7 @@
       "labels": [],
       "body": "Removed content now tracked in separate PRs",
       "createdAt": "2024-12-21T01:39:12Z",
-      "updatedAt": "2024-12-31T18:20:14Z",
+      "updatedAt": "2025-01-07T16:01:19Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
@@ -43381,7 +43394,134 @@
           "updatedAt": "2024-12-24T00:18:38Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6XFKuC",
+          "commit": {
+            "abbreviatedOid": "bc21f3c"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-01-07T15:56:30Z",
+          "updatedAt": "2025-01-07T15:56:30Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6XFKwO",
+          "commit": {
+            "abbreviatedOid": "bc21f3c"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-07T15:56:33Z",
+          "updatedAt": "2025-01-07T15:56:33Z",
+          "comments": [
+            {
+              "originalPosition": 166,
+              "body": "```suggestion\r\nReceipts are based on Signed Inclusion Proofs as described in COSE Receipts {{-COMETRE}} that also provides the COSE header parameter semantics for label 394.\r\n```",
+              "createdAt": "2025-01-07T15:56:33Z",
+              "updatedAt": "2025-01-07T15:56:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6XFLHC",
+          "commit": {
+            "abbreviatedOid": "bc21f3c"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-07T15:57:11Z",
+          "updatedAt": "2025-01-07T15:57:12Z",
+          "comments": [
+            {
+              "originalPosition": 116,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-01-07T15:57:12Z",
+              "updatedAt": "2025-01-07T15:57:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6XFLRz",
+          "commit": {
+            "abbreviatedOid": "bc21f3c"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Please remove the registration policy requirement.",
+          "createdAt": "2025-01-07T15:57:27Z",
+          "updatedAt": "2025-01-07T15:57:27Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6XFLNJ",
+          "commit": {
+            "abbreviatedOid": "bc21f3c"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2025-01-07T15:57:20Z",
+          "updatedAt": "2025-01-07T15:57:36Z",
+          "comments": [
+            {
+              "originalPosition": 116,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-01-07T15:57:21Z",
+              "updatedAt": "2025-01-07T15:57:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6XFNpK",
+          "commit": {
+            "abbreviatedOid": "bc21f3c"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-07T16:01:12Z",
+          "updatedAt": "2025-01-07T16:01:12Z",
+          "comments": [
+            {
+              "originalPosition": 116,
+              "body": "This topic has been discussed at length over the years and the group decided to tackle this detail later. Introducing this opens a huge can of worms and additional dependencies with COSE and so on, including the IPR disclosure on CCF receipts.",
+              "createdAt": "2025-01-07T16:01:12Z",
+              "updatedAt": "2025-01-07T16:01:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6XFNs8",
+          "commit": {
+            "abbreviatedOid": "bc21f3c"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-07T16:01:18Z",
+          "updatedAt": "2025-01-07T16:01:19Z",
+          "comments": [
+            {
+              "originalPosition": 116,
+              "body": "+1 for this change, the registration policy is already committed to via the tree + the requirement for transparency, this is a denormalisation tradeoff that makes receipts a little larger but adds to the audit burden.",
+              "createdAt": "2025-01-07T16:01:18Z",
+              "updatedAt": "2025-01-07T16:01:19Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 332,
@@ -43526,24 +43666,26 @@
       "id": "PR_kwDOIvmHss6GcoLk",
       "title": "Add SCRAPI reference",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/338",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #327 \r\n",
       "createdAt": "2024-12-30T16:49:23Z",
-      "updatedAt": "2024-12-31T04:23:35Z",
+      "updatedAt": "2025-01-07T15:52:00Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "issue-327",
       "headRefOid": "3e1307f127a71d91bb694cdb786eb31f73bfff14",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-01-07T15:52:00Z",
+      "mergedAt": "2025-01-07T15:51:59Z",
+      "mergedBy": "JAG-UK",
+      "mergeCommit": {
+        "oid": "ede1d64b72cbb7228edb31b3e3cc1aaf6ffcef0a"
+      },
       "comments": [
         {
           "author": "SteveLasker",
@@ -43580,6 +43722,32 @@
           "createdAt": "2024-12-31T04:23:35Z",
           "updatedAt": "2024-12-31T04:23:35Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6XEpcy",
+          "commit": {
+            "abbreviatedOid": "3e1307f"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-01-07T15:06:01Z",
+          "updatedAt": "2025-01-07T15:06:01Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6XFHmV",
+          "commit": {
+            "abbreviatedOid": "3e1307f"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-01-07T15:51:44Z",
+          "updatedAt": "2025-01-07T15:51:44Z",
+          "comments": []
         }
       ]
     },
@@ -43595,7 +43763,7 @@
       "labels": [],
       "body": "From @mcr,\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n> The diagram is very tall and skiny.  The SVG is lovely mind.\r\n> Maybe use more of the horizontal space, then \"Signed-Statement->Transparency\r\n> Statement\" wouldn't have to weave around.\r\n\r\nWhich saves some vertical scrolling and a wee bit of compute and network bytes:\r\n![image](https://github.com/user-attachments/assets/a3ca4114-beba-40cf-88fa-fc4bd26f919b)\r\n\r\nThere's no change in content or flow, just a repositioning of the boxes.",
       "createdAt": "2024-12-30T23:16:55Z",
-      "updatedAt": "2024-12-31T04:32:11Z",
+      "updatedAt": "2025-01-07T15:56:40Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
@@ -43632,6 +43800,45 @@
           "body": "",
           "createdAt": "2024-12-31T04:32:11Z",
           "updatedAt": "2024-12-31T04:32:11Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6XEok3",
+          "commit": {
+            "abbreviatedOid": "33cab1c"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-01-07T15:04:27Z",
+          "updatedAt": "2025-01-07T15:04:27Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6XFIJY",
+          "commit": {
+            "abbreviatedOid": "33cab1c"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-01-07T15:52:29Z",
+          "updatedAt": "2025-01-07T15:52:29Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6XFK0W",
+          "commit": {
+            "abbreviatedOid": "33cab1c"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-01-07T15:56:40Z",
+          "updatedAt": "2025-01-07T15:56:40Z",
           "comments": []
         }
       ]
