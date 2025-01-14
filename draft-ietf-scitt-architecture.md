@@ -302,7 +302,7 @@ A software component (e.g., a library or software product) released by a certain
 The released software component is accompanied by a statement of authenticity (e.g., an embedded or a detached signature).
 Over time, due to its enhanced applicability to various products, there has been an increasing amount of multiple providers of the same software component version on the internet.
 
-Some providers include this particular software component as part of their release product package bundle and provide the product package with proof of authenticity using their own issuer authority.
+Some providers include this particular software component as part of their release product/package bundle and provide the package with proof of authenticity using their issuer authority.
 Some packages include the original statement of authenticity, and some do not.
 Over time, some providers no longer offer the exact same software component source code but pre-compiled software component binaries.
 Some sources do not provide the exact same software component, but include patches and fixes produced by third-parties, as these emerge faster than solutions from the original producer.
