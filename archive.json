@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-14T00:44:35.285503+00:00",
+  "timestamp": "2025-01-16T00:45:24.169400+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -43093,13 +43093,13 @@
       "labels": [],
       "body": "Added one use case from original use case document: Signing certificate authenticity use case",
       "createdAt": "2024-12-20T18:27:04Z",
-      "updatedAt": "2025-01-07T15:26:03Z",
+      "updatedAt": "2025-01-15T15:14:17Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "rjb4standards/draft-ietf-scitt-architecture",
       "headRefName": "main",
-      "headRefOid": "1b5e5ec8b0c6b4da1d59f7c83a6a09df98bbdf35",
+      "headRefOid": "22cb22703bfee924fef419b12b24face4d85b439",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -43359,6 +43359,199 @@
           "createdAt": "2025-01-07T15:26:03Z",
           "updatedAt": "2025-01-07T15:26:03Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6X8Eqb",
+          "commit": {
+            "abbreviatedOid": "1b5e5ec"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-14T08:45:51Z",
+          "updatedAt": "2025-01-14T08:45:52Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "harmless, editorial",
+              "createdAt": "2025-01-14T08:45:52Z",
+              "updatedAt": "2025-01-14T08:45:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6X8E9Z",
+          "commit": {
+            "abbreviatedOid": "22cb227"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-14T08:46:29Z",
+          "updatedAt": "2025-01-14T08:46:29Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "Let's make this (item 1) in a corresponding consensus-building discussion.",
+              "createdAt": "2025-01-14T08:46:29Z",
+              "updatedAt": "2025-01-14T08:46:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6X8FDd",
+          "commit": {
+            "abbreviatedOid": "22cb227"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-14T08:46:39Z",
+          "updatedAt": "2025-01-14T08:46:40Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "Let's make this (item 2) in a corresponding consensus-building discussion.",
+              "createdAt": "2025-01-14T08:46:39Z",
+              "updatedAt": "2025-01-14T08:46:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6X8FqU",
+          "commit": {
+            "abbreviatedOid": "22cb227"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-14T08:47:12Z",
+          "updatedAt": "2025-01-14T08:47:13Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "part of (item 2)",
+              "createdAt": "2025-01-14T08:47:12Z",
+              "updatedAt": "2025-01-14T08:47:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6X-Hte",
+          "commit": {
+            "abbreviatedOid": "1b5e5ec"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-14T13:03:02Z",
+          "updatedAt": "2025-01-14T13:03:03Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "> Let's make this (item 2) in a corresponding consensus-building discussion.\r\n\r\nWhat's the venue or media for that discussion, the mailing list?",
+              "createdAt": "2025-01-14T13:03:02Z",
+              "updatedAt": "2025-01-14T13:03:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6X-Lj3",
+          "commit": {
+            "abbreviatedOid": "1b5e5ec"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-14T13:10:58Z",
+          "updatedAt": "2025-01-14T13:10:58Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "Good idea, Henk. No objection.\r\nThe SCITT protocol must exhibit a process is indeed designed to ensure trust, as best as possible. We should try to remove as much uncertainty as possible from the protocol so that people will know a SCITT registry is genuinely a source of trustworthy materials",
+              "createdAt": "2025-01-14T13:10:58Z",
+              "updatedAt": "2025-01-14T13:10:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6X-PQQ",
+          "commit": {
+            "abbreviatedOid": "22cb227"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-14T13:17:31Z",
+          "updatedAt": "2025-01-14T13:17:32Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "```suggestion\r\nA software component (e.g., a library or software product) released by a legitimate producer is common practice for both open-source and commercial offerings.\r\n```",
+              "createdAt": "2025-01-14T13:17:31Z",
+              "updatedAt": "2025-01-14T13:17:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6X-Pj5",
+          "commit": {
+            "abbreviatedOid": "22cb227"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Lets discuss more about the change, as suggested by Henk!",
+          "createdAt": "2025-01-14T13:18:08Z",
+          "updatedAt": "2025-01-14T13:18:08Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6YLByQ",
+          "commit": {
+            "abbreviatedOid": "22cb227"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-15T15:03:24Z",
+          "updatedAt": "2025-01-15T15:03:24Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "I'm fine with this change, in the context of this use case.\r\n",
+              "createdAt": "2025-01-15T15:03:24Z",
+              "updatedAt": "2025-01-15T15:03:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6YLKLP",
+          "commit": {
+            "abbreviatedOid": "22cb227"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-15T15:14:16Z",
+          "updatedAt": "2025-01-15T15:14:17Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "I support these enhancements.",
+              "createdAt": "2025-01-15T15:14:17Z",
+              "updatedAt": "2025-01-15T15:14:17Z"
+            }
+          ]
         }
       ]
     },
@@ -43535,7 +43728,7 @@
       "labels": [],
       "body": "Fixes #326 ",
       "createdAt": "2024-12-23T23:17:17Z",
-      "updatedAt": "2024-12-30T23:18:33Z",
+      "updatedAt": "2025-01-14T13:02:01Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
@@ -43547,7 +43740,28 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6X-HL2",
+          "commit": {
+            "abbreviatedOid": "5baa3d1"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2025-01-14T13:01:57Z",
+          "updatedAt": "2025-01-14T13:02:01Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "If the authors of that spec are requesting it for that draft, why are we doubling that request here? Do we not need to specify we want to replace the values later once that is formalized with an explanation between this section and the previous header?",
+              "createdAt": "2025-01-14T13:01:57Z",
+              "updatedAt": "2025-01-14T13:02:02Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 334,
@@ -43588,9 +43802,9 @@
           "comments": [
             {
               "originalPosition": 15,
-              "body": "Should nay not be MAY per BCP14 or was it an intentional choice to cap it lowercase?",
+              "body": "Should may not be MAY per BCP14 or was it an intentional choice to cap it lowercase?",
               "createdAt": "2024-12-31T04:38:38Z",
-              "updatedAt": "2024-12-31T04:38:38Z"
+              "updatedAt": "2025-01-14T12:41:58Z"
             }
           ]
         },
@@ -43621,7 +43835,7 @@
       "labels": [],
       "body": "Fixes #329 ",
       "createdAt": "2024-12-23T23:39:40Z",
-      "updatedAt": "2024-12-23T23:39:41Z",
+      "updatedAt": "2025-01-14T12:53:47Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
@@ -43633,7 +43847,28 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6X-DDk",
+          "commit": {
+            "abbreviatedOid": "cec91f4"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2025-01-14T12:53:36Z",
+          "updatedAt": "2025-01-14T12:53:47Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I hope this is constructive, I apologize, it will be a longer comment and I cannot recommend surgical edits. I would hope that the WG, if we want to address #329, should be able to break down the requirements into the following, for clarity.\r\n\r\n- What MUST a TS store in the ledger?\r\n- What MAY at TS store in the ledger?\r\n- What MUST NOT a TS store in the ledger?\r\n\r\nAs it stands, we are making progress in that direction, but it is written in prose form that is not liek the specification style we would need here in my opinion. Doing so would improve the ability for implementers to act on it.\r\n\r\nAdditionally, regarding \"does not store the Signed Statement contents avoiding concerns of persisting personally identifiable information,\" it does not follow logically to me without further explanation, but that is probably best to avoid. Can it only be in the Signed Statement? Is PII the only concern, and not other forms of confidential information, why? (I recall some of the backstory here, but it is not explained at all in the text and I think that detracts from the value of writing it there in the first place.)\r\n\r\nAnd a final concluding remark: \"storing on ledger\" is a murky concept and this change at the present time does not actually define what is being stored or how beyond the notion of VDS. To go back to my original 3-part question, I would argue we need to address that in this part or I am not sure if this addition will be constructive to implementers. I hope that feedback is helpful.",
+              "createdAt": "2025-01-14T12:53:36Z",
+              "updatedAt": "2025-01-14T12:53:47Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 336,
