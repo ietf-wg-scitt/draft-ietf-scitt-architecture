@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-16T00:45:24.169400+00:00",
+  "timestamp": "2025-01-19T00:50:13.819503+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -43093,13 +43093,13 @@
       "labels": [],
       "body": "Added one use case from original use case document: Signing certificate authenticity use case",
       "createdAt": "2024-12-20T18:27:04Z",
-      "updatedAt": "2025-01-15T15:14:17Z",
+      "updatedAt": "2025-01-16T19:40:30Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "rjb4standards/draft-ietf-scitt-architecture",
       "headRefName": "main",
-      "headRefOid": "22cb22703bfee924fef419b12b24face4d85b439",
+      "headRefOid": "3ccb8ce6e02ea8a232e43a986e391e7e7fe865b0",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -43552,6 +43552,125 @@
               "updatedAt": "2025-01-15T15:14:17Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6YXQIj",
+          "commit": {
+            "abbreviatedOid": "3ccb8ce"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-16T13:57:18Z",
+          "updatedAt": "2025-01-16T13:57:18Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "I like the @SteveLasker suggestion of terminating sentence at authenticity.",
+              "createdAt": "2025-01-16T13:57:18Z",
+              "updatedAt": "2025-01-16T13:57:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6YXQ3n",
+          "commit": {
+            "abbreviatedOid": "3ccb8ce"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-16T13:58:29Z",
+          "updatedAt": "2025-01-16T13:58:29Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "```suggestion\r\n* understand if a particular provider is actually a legitimate producer or an alternative party\r\n```",
+              "createdAt": "2025-01-16T13:58:29Z",
+              "updatedAt": "2025-01-16T13:58:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6YXRTO",
+          "commit": {
+            "abbreviatedOid": "3ccb8ce"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-16T13:59:05Z",
+          "updatedAt": "2025-01-16T13:59:05Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "```suggestion\r\n* reliably discern if a provider is the original, legitimate producer or is a trustworthy alternative provider or is an illegitimate provider\r\n```",
+              "createdAt": "2025-01-16T13:59:05Z",
+              "updatedAt": "2025-01-16T13:59:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6YXRxT",
+          "commit": {
+            "abbreviatedOid": "3ccb8ce"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "@henkbirkholz I made few more suggestions inline with what you just commited, to make the PR more compelete. Please have a look and take the changes, if you agree!",
+          "createdAt": "2025-01-16T13:59:51Z",
+          "updatedAt": "2025-01-16T13:59:51Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6YXVo5",
+          "commit": {
+            "abbreviatedOid": "3ccb8ce"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-16T14:04:30Z",
+          "updatedAt": "2025-01-16T14:04:31Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "I can support this enhancement on line 320.",
+              "createdAt": "2025-01-16T14:04:31Z",
+              "updatedAt": "2025-01-16T14:04:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6YarT4",
+          "commit": {
+            "abbreviatedOid": "3ccb8ce"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-16T19:38:38Z",
+          "updatedAt": "2025-01-16T19:40:30Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "I also like the approach of terminating the sentence early. Cut early, cut often!\r\n\r\nMore seriously, it's an (eg) so...",
+              "createdAt": "2025-01-16T19:38:38Z",
+              "updatedAt": "2025-01-16T19:40:30Z"
+            },
+            {
+              "originalPosition": 44,
+              "body": "It's probably fair to take that to the mailing list since it will read into what non-SCITT WGs might want to do with SCITT. Making sure we have the meaning of an Issuer signature really understood is no bad thing",
+              "createdAt": "2025-01-16T19:40:27Z",
+              "updatedAt": "2025-01-16T19:40:30Z"
+            }
+          ]
         }
       ]
     },
@@ -43775,7 +43894,7 @@
       "labels": [],
       "body": "Fixes #333 ",
       "createdAt": "2024-12-23T23:28:19Z",
-      "updatedAt": "2024-12-31T04:39:59Z",
+      "updatedAt": "2025-01-16T22:56:34Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
@@ -43819,6 +43938,19 @@
           "body": "Some preliminary questions on keywords ",
           "createdAt": "2024-12-31T04:39:59Z",
           "updatedAt": "2024-12-31T04:39:59Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6YcYCC",
+          "commit": {
+            "abbreviatedOid": "c5f1473"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "This is just tangling drafts together for no real benefit.\r\n\r\nA signed statement is a cose sign1, we don't need to say more than that.",
+          "createdAt": "2025-01-16T22:56:34Z",
+          "updatedAt": "2025-01-16T22:56:34Z",
           "comments": []
         }
       ]
