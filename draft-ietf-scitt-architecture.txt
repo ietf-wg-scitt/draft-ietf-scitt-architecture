@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 11 July 2025                                         C. Fournet
+Expires: 24 July 2025                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                          7 January 2025
+                                                         20 January 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 July 2025.
+   This Internet-Draft will expire on 24 July 2025.
 
 Copyright Notice
 
@@ -690,52 +690,36 @@ Table of Contents
 
    The arrows indicate the flow of information.
 
-                           +------------+
-    .----------.           |   Issuer   |
-   |  Artifact  |          +-+--------+-+
-    '----+-----'             v        v
-         v          .--------+-.    .-+--------.
-    .----+----.    /   sign   /    /  verify  /
-   | Statement |  '-----+----+    '------+---+
-    '----+----'         |                |
-         |    .--------' '--.            |
-         |   |               |           |
-         v   v               |        .-' '-.
-    .----+---+---.           |       |       |
-   |    Signed    |          |       |       |
-   |   Statement  |          |       |       |
-    '------+-----'           v       v       |
-           |             +---+-------+---+   |
-       .--' '----------->+ Transparency  |   |
-      |   .--------.     |               |   |
-      |  | Receipt  +<---+   Service     +-+ |
-      |  |          +.   +--+------------+ | |
-      |   '-+------'  |     | Transparency | |
-      |     | Receipt +<----+              | |
-      |      '------+'      |   Service    | |
-       '-------. .-'        +------------+-+ |
-                |                        |   |
-                v                        |   |
-          .-----+-----.                  |   |
-         | Transparent |                 |   |
-         |  Statement  |                 |   |
-          '--+--------'                  |   |
-             |                           |   |
-             |'-----------.   .----------)--'
-             |             | |           |
-             |             v v           |
-             |    .--------+-+---------. |
-             |   / Verify Transparent /  |
-             |  /      Statement     /   |
-             | '----+---------------+    |
-             |      | Relying Party |    |
-             |      +---------------+    |
-             v                           v
-     .-------+-------------.  .----------+------.
-    / Collecting Receipts /  /   Replay Log    /
-   '-----+---------------+  '-+---------------+
-         | Relying Party |    | Relying Party |
-         +---------------+    +---------------+
+    .----------.                      +--------------+
+   |  Artifact  |                     |    Issuer    |
+    '----+-----'                      +-+----------+-+
+         v                              v          v
+    .----+----.                   .-----+----.    .+---------.
+   | Statement |                 /   sign   /    /  verify  /
+    '----+----'                 '-----+----+    '-------+--+
+         |                            |                 |'------.
+         |    .----------------------' '---------.      |        |
+         |   |                                    |     |        |
+         v   v                                    v     v        |
+    .----+---+---.                           +----+----+-----+   |
+   |    Signed    +------------------------->+ Transparency  |   |
+   |   Statement  |                         .+               |   |
+    '------+-----'           .-------.     | |   Service     +-+ |
+           |      .---------+ Receipt +<--'  +--+------------+ | |
+           |     |.-----.   |         +.        | Transparency | |
+           |     |       |   '+------'  |       |              | |
+           v     v        '---+ Receipt +<------+   Service    | |
+        .--+-----+--.          '-------'        +--------+-----+ |
+       | Transparent |                                   |       |
+       |  Statement  +-------.                .----------)------'
+        '-----+-----'         |              |           |
+              v               v              v           v
+     .--------+---------.  .--+--------------+--. .------+----------.
+    / Collect Receipts /  / Verify Transparent / /   Replay Log    /
+   '--+---------------+  /      Statement     / '-+---------------+
+      | Relying Party | '----+---------------+    | Relying Party |
+      +---------------+      | Relying Party |    +---------------+
+                             +---------------+
 
                 Figure 2: Relationship of Concepts in SCITT
 
@@ -1555,11 +1539,11 @@ Table of Contents
               cose-merkle-tree-proofs-07>.
 
    [I-D.draft-ietf-scitt-scrapi]
-              Birkholz, H., Steele, O., and J. Geater, "SCITT Reference
-              APIs", Work in Progress, Internet-Draft, draft-ietf-scitt-
-              scrapi-02, 8 July 2024,
+              Birkholz, H. and J. Geater, "SCITT Reference APIs Draft-
+              ietf-scitt-scrapi-03", Work in Progress, Internet-Draft,
+              draft-ietf-scitt-scrapi-03, 8 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-scitt-
-              scrapi-02>.
+              scrapi-03>.
 
    [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <https://www.iana.org/assignments/cwt>.
