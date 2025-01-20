@@ -505,52 +505,36 @@ Each Transparency Service produces a Receipt, which may be aggregated in a singl
 The arrows indicate the flow of information.
 
 ~~~aasvg
-                        +------------+
- .----------.           |   Issuer   |
-|  Artifact  |          +-+--------+-+
- '----+-----'             v        v
-      v          .--------+-.    .-+--------.
- .----+----.    /   sign   /    /  verify  /
-| Statement |  '-----+----+    '------+---+
- '----+----'         |                |
-      |    .--------' '--.            |
-      |   |               |           |
-      v   v               |        .-' '-.
- .----+---+---.           |       |       |
-|    Signed    |          |       |       |
-|   Statement  |          |       |       |
- '------+-----'           v       v       |
-        |             +---+-------+---+   |
-    .--' '----------->+ Transparency  |   |
-   |   .--------.     |               |   |
-   |  | Receipt  +<---+   Service     +-+ |
-   |  |          +.   +--+------------+ | |
-   |   '-+------'  |     | Transparency | |
-   |     | Receipt +<----+              | |
-   |      '------+'      |   Service    | |
-    '-------. .-'        +------------+-+ |
-             |                        |   |
-             v                        |   |
-       .-----+-----.                  |   |
-      | Transparent |                 |   |
-      |  Statement  |                 |   |
-       '--+--------'                  |   |
-          |                           |   |
-          |'-----------.   .----------)--'
-          |             | |           |
-          |             v v           |
-          |    .--------+-+---------. |
-          |   / Verify Transparent /  |
-          |  /      Statement     /   |
-          | '----+---------------+    |
-          |      | Relying Party |    |
-          |      +---------------+    |
-          v                           v
-  .-------+-------------.  .----------+------.
- / Collecting Receipts /  /   Replay Log    /
-'-----+---------------+  '-+---------------+
-      | Relying Party |    | Relying Party |
-      +---------------+    +---------------+
+ .----------.                      +--------------+
+|  Artifact  |                     |    Issuer    |
+ '----+-----'                      +-+----------+-+
+      v                              v          v
+ .----+----.                   .-----+----.    .+---------.
+| Statement |                 /   sign   /    /  verify  /
+ '----+----'                 '-----+----+    '-------+--+
+      |                            |                 |'------.
+      |    .----------------------' '---------.      |        |
+      |   |                                    |     |        |
+      v   v                                    v     v        |
+ .----+---+---.                           +----+----+-----+   |
+|    Signed    +------------------------->+ Transparency  |   |
+|   Statement  |                         .+               |   |
+ '------+-----'           .-------.     | |   Service     +-+ |
+        |      .---------+ Receipt +<--'  +--+------------+ | |
+        |     |.-----.   |         +.        | Transparency | |
+        |     |       |   '+------'  |       |              | |
+        v     v        '---+ Receipt +<------+   Service    | |
+     .--+-----+--.          '-------'        +--------+-----+ |
+    | Transparent |                                   |       |
+    |  Statement  +-------.                .----------)------'
+     '-----+-----'         |              |           |
+           v               v              v           v
+  .--------+---------.  .--+--------------+--. .------+----------.
+ / Collect Receipts /  / Verify Transparent / /   Replay Log    /
+'--+---------------+  /      Statement     / '-+---------------+
+   | Relying Party | '----+---------------+    | Relying Party |
+   +---------------+      | Relying Party |    +---------------+
+                          +---------------+
 ~~~
 {: #fig-concept-relationship title="Relationship of Concepts in SCITT"}
 
