@@ -592,7 +592,6 @@ The protected header of the COSE_Sign1 Envelope MUST include either the Issuer's
 If `x5t` is included in the protected header, an `x5chain` with a leaf certificate corresponding to the `x5t` value MAY be included in the unprotected header.
 
 The Transparency Service MUST apply the Registration Policy that was most recently added to the Append-only Log at the time of Registration.
-The Registration Policy used MUST be included in the Receipt.
 
 #### Auditability of Registration
 
