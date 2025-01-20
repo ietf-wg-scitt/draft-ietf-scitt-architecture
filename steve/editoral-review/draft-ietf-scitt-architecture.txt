@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 4 July 2025                                          C. Fournet
+Expires: 24 July 2025                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        31 December 2024
+                                                         20 January 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,11 +66,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 July 2025.
+   This Internet-Draft will expire on 24 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1101,8 +1101,8 @@ Table of Contents
    Statement a Transparent Statement is produced.
 
    Receipts are based on Signed Inclusion Proofs as described in COSE
-   Signed Merkle Tree Proofs [I-D.draft-ietf-cose-merkle-tree-proofs]
-   that also provides the COSE header parameter semantics for label 394.
+   Receipts [I-D.draft-ietf-cose-merkle-tree-proofs] that also provides
+   the COSE header parameter semantics for label 394.
 
    The Registration time is recorded as the timestamp when the
    Transparency Service added this Signed Statement to its Append-only
