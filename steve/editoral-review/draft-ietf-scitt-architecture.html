@@ -2138,8 +2138,7 @@ If the protected header includes multiple identifiers, all those that are regist
 <p id="section-5.1.1.1-2">In essence, when using X.509 Signed Statements, the Transparency Service <span class="bcp14">MUST</span> build and validate a complete certification path from an Issuer's certificate to one of the root certificates most recently registered as a trust anchor by the Transparency Service.<a href="#section-5.1.1.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1.1.1-3">The protected header of the COSE_Sign1 Envelope <span class="bcp14">MUST</span> include either the Issuer's certificate as <code>x5t</code> or the chain including the Issuer's certificate as <code>x5chain</code>.
 If <code>x5t</code> is included in the protected header, an <code>x5chain</code> with a leaf certificate corresponding to the <code>x5t</code> value <span class="bcp14">MAY</span> be included in the unprotected header.<a href="#section-5.1.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-5.1.1.1-4">The Transparency Service <span class="bcp14">MUST</span> apply the Registration Policy that was most recently added to the Append-only Log at the time of Registration.
-The Registration Policy used <span class="bcp14">MUST</span> be included in the Receipt.<a href="#section-5.1.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-5.1.1.1-4">The Transparency Service <span class="bcp14">MUST</span> apply the Registration Policy that was most recently added to the Append-only Log at the time of Registration.<a href="#section-5.1.1.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-auditability-of-registration">
