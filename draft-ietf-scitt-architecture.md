@@ -310,7 +310,7 @@ Due to complex distribution and promotion life-cycle scenarios, the original sof
 
 A consumer of a released software wants to:
 
-* understand if a particular provider is actually the original authorized producer or an alternative party
+* understand if a particular provider is a trusted originating producer or an alternative party
 * know if and how the source, or resulting binary, of a promoted software component differs from the original software component
 * check the provenance and history of a software component's source back to its origin
 * assess whether to trust a component or product based on a downloaded package location and source supplier
