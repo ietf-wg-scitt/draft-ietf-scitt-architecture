@@ -67,7 +67,6 @@ contributor:
     country: United States
     contribution: >
       Orie contributed to improving the generalization of COSE building blocks and document consistency.
-
   - ins: D. Brooks
     name: Dick Brooks
     organization: Business Cyber Guardian (TM)
