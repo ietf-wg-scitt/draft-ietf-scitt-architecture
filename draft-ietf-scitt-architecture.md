@@ -74,7 +74,7 @@ contributor:
     email: dick@businesscyberguardian.com
     country: United States
     contribution: >
-      Dick contributed some software supply chain use cases consistent with US DHS CISA Secure by Design principles and practices
+      Dick contributed to the software supply chain use cases.
     
 normative:
   RFC5280: PKIX
