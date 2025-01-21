@@ -75,7 +75,14 @@ contributor:
     country: United States
     contribution: >
       Dick contributed to the software supply chain use cases.
-    
+
+- ins: B. Knight
+    name: Brian Knight
+    organization: Microsoft
+    email: brianknight@microsoft.com
+    country: United States
+    contribution: >
+      Brian contributed to the software supply chain use cases.
 normative:
   RFC5280: PKIX
   RFC6838:
