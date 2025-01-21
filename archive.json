@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-19T00:50:13.819503+00:00",
+  "timestamp": "2025-01-21T00:45:09.754740+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -43093,13 +43093,13 @@
       "labels": [],
       "body": "Added one use case from original use case document: Signing certificate authenticity use case",
       "createdAt": "2024-12-20T18:27:04Z",
-      "updatedAt": "2025-01-16T19:40:30Z",
+      "updatedAt": "2025-01-20T17:26:42Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "rjb4standards/draft-ietf-scitt-architecture",
       "headRefName": "main",
-      "headRefOid": "3ccb8ce6e02ea8a232e43a986e391e7e7fe865b0",
+      "headRefOid": "25ef884ba31e8df14a349cdc1f84771dd52e3c97",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -43671,6 +43671,46 @@
               "updatedAt": "2025-01-16T19:40:30Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Ywrqe",
+          "commit": {
+            "abbreviatedOid": "3ccb8ce"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-20T17:20:55Z",
+          "updatedAt": "2025-01-20T17:20:55Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "Does using \"legitimate\" require the definition of what makes an issuer \"legitimate\"? \r\n\"Trusted\" is the choice of the verifier, or the TS when notarizing the signed statements. This seems more well-understood and less controversial.",
+              "createdAt": "2025-01-20T17:20:55Z",
+              "updatedAt": "2025-01-20T17:20:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6YwtjZ",
+          "commit": {
+            "abbreviatedOid": "3ccb8ce"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-20T17:26:42Z",
+          "updatedAt": "2025-01-20T17:26:42Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "No objection to this enhancement.",
+              "createdAt": "2025-01-20T17:26:42Z",
+              "updatedAt": "2025-01-20T17:26:42Z"
+            }
+          ]
         }
       ]
     },
@@ -43686,13 +43726,13 @@
       "labels": [],
       "body": "Removed content now tracked in separate PRs",
       "createdAt": "2024-12-21T01:39:12Z",
-      "updatedAt": "2025-01-07T16:01:19Z",
+      "updatedAt": "2025-01-20T17:27:47Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/editoral-review",
-      "headRefOid": "bc21f3cb9a5f21ee4f112e5cd3feffd8396fd184",
+      "headRefOid": "d6e6e672d0be1ac858689b25b77d36ec7655a48e",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -43704,6 +43744,13 @@
           "body": "I moved the items covered in issues to separate PR\r\nThis PR now focused on general editorial changes.\r\nA larger change will come once we address larger review feedback.",
           "createdAt": "2024-12-24T00:18:38Z",
           "updatedAt": "2024-12-24T00:18:38Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@OR13, @JAG-UK, I merged the requested change: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/331#discussion_r1905674188\r\n\r\nPlease LGTM to merge.  ",
+          "createdAt": "2025-01-20T17:17:00Z",
+          "updatedAt": "2025-01-20T17:17:00Z"
         }
       ],
       "reviews": [
@@ -43832,6 +43879,32 @@
               "updatedAt": "2025-01-07T16:01:19Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Yws7w",
+          "commit": {
+            "abbreviatedOid": "d6e6e67"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-01-20T17:24:49Z",
+          "updatedAt": "2025-01-20T17:24:50Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Ywt6K",
+          "commit": {
+            "abbreviatedOid": "d6e6e67"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-01-20T17:27:47Z",
+          "updatedAt": "2025-01-20T17:27:47Z",
+          "comments": []
         }
       ]
     },
@@ -43847,7 +43920,7 @@
       "labels": [],
       "body": "Fixes #326 ",
       "createdAt": "2024-12-23T23:17:17Z",
-      "updatedAt": "2025-01-14T13:02:01Z",
+      "updatedAt": "2025-01-20T17:26:05Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
@@ -43879,6 +43952,26 @@
               "updatedAt": "2025-01-14T13:02:02Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6YwtXD",
+          "commit": {
+            "abbreviatedOid": "5baa3d1"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-20T17:26:05Z",
+          "updatedAt": "2025-01-20T17:26:05Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "It's a little repetitive. We must change 394, as it creates confusion for implementors. This section was copy/pasted over for completeness. Either way, when TBD_0 is assigned, this will get cleaned up, so I felt it was helpful to provide a pointer.",
+              "createdAt": "2025-01-20T17:26:05Z",
+              "updatedAt": "2025-01-20T17:26:05Z"
+            }
+          ]
         }
       ]
     },
@@ -43894,7 +43987,7 @@
       "labels": [],
       "body": "Fixes #333 ",
       "createdAt": "2024-12-23T23:28:19Z",
-      "updatedAt": "2025-01-16T22:56:34Z",
+      "updatedAt": "2025-01-20T17:32:47Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
@@ -43905,7 +43998,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Do we want to cover in SCRAPI: https://github.com/ietf-wg-scitt/draft-ietf-scitt-scrapi/issues/43\r\n",
+          "createdAt": "2025-01-20T17:32:40Z",
+          "updatedAt": "2025-01-20T17:32:47Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss6Wkhn_",
@@ -44123,24 +44224,26 @@
       "id": "PR_kwDOIvmHss6Gdv49",
       "title": "Compress Architecture Diagram",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/339",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "From @mcr,\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n> The diagram is very tall and skiny.  The SVG is lovely mind.\r\n> Maybe use more of the horizontal space, then \"Signed-Statement->Transparency\r\n> Statement\" wouldn't have to weave around.\r\n\r\nWhich saves some vertical scrolling and a wee bit of compute and network bytes:\r\n![image](https://github.com/user-attachments/assets/a3ca4114-beba-40cf-88fa-fc4bd26f919b)\r\n\r\nThere's no change in content or flow, just a repositioning of the boxes.",
       "createdAt": "2024-12-30T23:16:55Z",
-      "updatedAt": "2025-01-07T15:56:40Z",
+      "updatedAt": "2025-01-20T17:13:42Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/diagram-compression",
       "headRefOid": "33cab1ccfffcd6003e342dc7f30a50ae23364d5e",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-01-20T17:13:38Z",
+      "mergedAt": "2025-01-20T17:13:38Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "1a80d601de80a00410055e1c96c22493ac08b891"
+      },
       "comments": [],
       "reviews": [
         {
