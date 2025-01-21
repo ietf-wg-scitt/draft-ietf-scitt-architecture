@@ -74,7 +74,6 @@ contributor:
     country: United States
     contribution: >
       Dick contributed to the software supply chain use cases.
-
 - ins: B. Knight
     name: Brian Knight
     organization: Microsoft
