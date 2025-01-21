@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 24 July 2025                                         C. Fournet
+Expires: 25 July 2025                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         20 January 2025
+                                                         21 January 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -32,9 +32,9 @@ Abstract
    minimum adoption barriers.  It provides flexibility, enabling
    interoperability across different implementations of Transparency
    Services with various auditing and compliance requirements.  Issuers
-   can register their Signed Statements on any Transparency Service,
-   with the guarantee that any Relying Parties will be able to verify
-   them.
+   can register their Signed Statements on one or more Transparency
+   Services, with the guarantee that any Relying Parties will be able to
+   verify them.
 
 About This Document
 
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 July 2025.
+   This Internet-Draft will expire on 25 July 2025.
 
 Copyright Notice
 
@@ -162,8 +162,11 @@ Table of Contents
    transport environment of the Artifact.  Compliance Auditors may
    provide information about their compliance assessment of the
    Artifact.  Security companies may publish vulnerability information
-   about an Artifact.  Some of these parties may publish information
-   about their analysis or use of an Artifact.
+   about an Artifact.  The original manufacturer may subsequently
+   provide additional information about the manufacturing process they
+   discovered after the Artifact left the factory.  Some of these
+   parties may publish information about their analysis or use of an
+   Artifact.
 
    SCITT provides a way for Relying Parties to obtain this information
    in a way that is "transparent", that is, parties cannot lie about the
@@ -214,31 +217,31 @@ Table of Contents
         +-----+-----+
               |
         +-----+-----+
-        |           |        Malicious plug-ins;
+        |           |        Malicious plug-ins
         |  Commit   |        Malicious commit
         |           |
         +-----+-----+
               |
         +-----+-----+
-        |           |        Modify build tasks or build environment;
-        |   Build   |        Poison build agent/compiler;
+        |           |        Modify build tasks or the build environment
+        |   Build   |        Poison the build agent/compiler
         |           |        Tamper with build cache
         +-----+-----+
               |
         +-----+-----+
-        |           |        Compromise test tools;
+        |           |        Compromise test tools
         |    Test   |        Falsification of test results
         |           |
         +-----+-----+
               |
         +-----+-----+
-        |           |        Use bad packages;
+        |           |        Use bad packages
         |  Package  |        Compromise package repository
         |           |
         +-----+-----+
               |
         +-----+-----+
-        |           |        Modify release tasks;
+        |           |        Modify release tasks
         |  Release  |        Modify build drop prior to release
         |           |
         +-----+-----+
@@ -278,7 +281,7 @@ Table of Contents
 
    Lastly, where data exchange underpins serious business decision-
    making it is important to hold the producers of those data to a
-   higher standard of accountability.  SCITT architecture provides
+   higher standard of accountability.  The SCITT architecture provides
    mechanisms and structures for ensuring that the makers of
    authoritative statements can be held accountable and not hide or
    shred the evidence when it becomes inconvenient later.
@@ -593,8 +596,8 @@ Table of Contents
    only Log using a combination of trusted hardware, replication and
    consensus protocols, and cryptographic evidence.  A Receipt is an
    offline, universally-verifiable proof that an entry is registered in
-   the Append-only Log. Requesting a receipt can result in the
-   production of a new receipt for the same signed statement.  A
+   the Append-only Log. Requesting a Receipt can result in the
+   production of a new Receipt for the same Signed Statement.  A
    Receipt's verification key, signing algorithm, validity period,
    header parameters or other claims MAY change each time a Receipt is
    produced.
@@ -604,10 +607,10 @@ Table of Contents
    Statements registered by each Issuer.  However, the Registrations on
    a separate Transparency Service is generally disjoint, though it is
    possible to take a Transparent Statement (i.e. a Signed Statement
-   with a Receipt in its unprotected header, from a from the first
-   Transparency Service) and register it on another Transparency
-   Service, where the second Receipt will be over the first Receipt in
-   the unprotected header.
+   with a Receipt in its unprotected header, from the first Transparency
+   Service) and register it on another Transparency Service, where the
+   second Receipt will be over the first Receipt in the unprotected
+   header.
 
    Reputable Issuers are thus incentivized to carefully review their
    Statements before signing them to produce Signed Statements.
@@ -651,15 +654,12 @@ Table of Contents
    Statements (which must be used by all Issuers) and a very thin
    wrapper format for Receipts, which specifies the Transparency Service
    identity and the agility parameters for the Signed Inclusion Proofs.
-   Most of the details of the Receipt's contents are specified in the
+   The remaining details of the Receipt's contents are specified in the
    COSE Signed Merkle Tree Proof document
    [I-D.draft-ietf-cose-merkle-tree-proofs].
 
    Figure 2 illustrates the roles and processes that comprise a
-   Transparency Service independent of any one use case.
-
-   This section describes the three main roles and associated processes
-   in SCITT:
+   Transparency Service independent of any one use case:
 
    *  Issuers that use their credentials to create Signed Statements
       about Artifacts
@@ -738,7 +738,7 @@ Table of Contents
    Statements and issuance of Receipts.
 
    Transparency Services MAY support additional APIs for auditing, for
-   instance, to query the history of Signed Statements.
+   instance querying the history of Signed Statements.
 
    Typically a Transparency Service has a single Issuer identity which
    is present in the iss Claim of Receipts for that service.
@@ -756,11 +756,11 @@ Table of Contents
 
    Transparency Services MUST maintain Registration Policies.
    Transparency Services MUST maintain a list of trust anchors (see
-   definition of trust anchor in [RFC4949]).  Transparency Services MUST
-   authenticate signed statements as part of a Registration Policy.  For
-   instance, a trust anchor could be an X.509 root certificate, a
-   pointer to an OpenID Connect identity provider, or any other COSE-
-   compatible trust anchor.
+   definition of trust anchor in [RFC4949]) to verify Issuers of Signed
+   Statements.  Transparency Services MUST authenticate Signed
+   Statements as part of a Registration Policy.  For instance, a trust
+   anchor could be an X.509 root certificate, a pointer to an OpenID
+   Connect identity provider, or any other COSE-compatible trust anchor.
 
    Registration Policies and trust anchors MUST be made transparent and
    available to all Relying Parties of the Transparency Service by
@@ -833,9 +833,9 @@ Table of Contents
       its Receipt provides an offline verifiable proof of Registration.
 
    Non-equivocation:  there is no fork in the Append-only Log. Everyone
-      with access to its content sees the same collection of Signed
-      Statements and can check that it is consistent with any Receipts
-      they have verified.
+      with access to its content sees the same ordered collection of
+      Signed Statements and can check that it is consistent with any
+      Receipts they have verified.
 
    Replayability:  the Append-only Log includes sufficient information
       to enable authorized actors with access to its content to check
@@ -866,8 +866,8 @@ Table of Contents
    required and optional properties.  Profiles and implementation
    specific choices should be used to determine admissibility of
    conforming messages.  This specification is left intentionally open
-   to allow implementations to make the restrictions that make the most
-   sense for their operational use cases.
+   to allow implementations to make Registration restrictions that make
+   the most sense for their operational use cases.
 
    There are many types of Statements (such as SBOMs, malware scans,
    audit reports, policy definitions) that Issuers may want to turn into
@@ -891,8 +891,6 @@ Table of Contents
 
    Once all the Envelope headers are set, an Issuer MUST use a standard
    COSE implementation to produce an appropriately serialized Signed
-   Statement.  The SCITT tag COSE_Sign1_Tagged is outside the scope of
-   COSE, and used to indicate that a signed object is a Signed
    Statement.
 
    Issuers can produce Signed Statements about different Artifacts under
@@ -950,17 +948,13 @@ Table of Contents
 
 6.1.  Signed Statement Examples
 
-   Figure 3 illustrates a normative CDDL definition (see [RFC8610]) for
-   of the protected header and unprotected header of Signed Statements
-   and Receipts.
+   Figure 3 illustrates a normative CDDL definition [RFC8610] for the
+   protected header and unprotected header of Signed Statements and
+   Receipts.
 
-   This definition specifies the minimal mandatory labels.
+   The SCITT architecture specifies the minimal mandatory labels.
    Implementation-specific Registration Policies may define additional
-   mandatory labels.  A Transparency Service implementation MUST reject
-   registering Signed Statements that do not meet their current
-   Registration Policy requirements.  Each implementation SHOULD provide
-   details for their registration policies through documentation or
-   discovery APIs.
+   mandatory labels.
 
    Signed_Statement = #6.18(COSE_Sign1)
    Receipt = #6.18(COSE_Sign1)
@@ -1091,8 +1085,8 @@ Table of Contents
    Statement a Transparent Statement is produced.
 
    Receipts are based on Signed Inclusion Proofs as described in COSE
-   Signed Merkle Tree Proofs ([I-D.draft-ietf-cose-merkle-tree-proofs])
-   that also provides the COSE header parameter semantics for label 394.
+   Receipts [I-D.draft-ietf-cose-merkle-tree-proofs] that also provides
+   the COSE header parameter semantics for label 394.
 
    The Registration time is recorded as the timestamp when the
    Transparency Service added this Signed Statement to its Append-only
