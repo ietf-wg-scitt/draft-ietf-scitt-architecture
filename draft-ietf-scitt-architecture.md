@@ -298,7 +298,7 @@ SCITT provides a standardized way to:
 
 ### Promotion of a Software Component by Multiple Entities
 
-A software component (e.g., a library or software product) released by a legitimate producer is common practice for both open-source and commercial offerings.
+A software component (e.g., a library or software product) released by a trusted producer is common practice for both open-source and commercial offerings.
 The released software component is accompanied by a statement of authenticity.
 Over time, due to its enhanced applicability to various products, there has been an increasing amount of multiple providers of the same software component version on the internet.
 
