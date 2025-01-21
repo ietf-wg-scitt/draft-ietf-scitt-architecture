@@ -60,27 +60,27 @@ author:
   country: United States
 
 contributor:
-  - ins: O. Steele
-    name: Orie Steele
-    organization: Transmute
-    email: orie@transmute.industries
-    country: United States
-    contribution: >
-      Orie contributed to improving the generalization of COSE building blocks and document consistency.
-  - ins: D. Brooks
-    name: Dick Brooks
-    organization: Business Cyber Guardian (TM)
-    email: dick@businesscyberguardian.com
-    country: United States
-    contribution: >
-      Dick contributed to the software supply chain use cases.
+- ins: O. Steele
+  name: Orie Steele
+  organization: Transmute
+  email: orie@transmute.industries
+  country: United States
+  contribution: >
+    Orie contributed to improving the generalization of COSE building blocks and document consistency.
+- ins: D. Brooks
+  name: Dick Brooks
+  organization: Business Cyber Guardian (TM)
+  email: dick@businesscyberguardian.com
+  country: United States
+  contribution: >
+    Dick contributed to the software supply chain use cases.
 - ins: B. Knight
-    name: Brian Knight
-    organization: Microsoft
-    email: brianknight@microsoft.com
-    country: United States
-    contribution: >
-      Brian contributed to the software supply chain use cases.
+  name: Brian Knight
+  organization: Microsoft
+  email: brianknight@microsoft.com
+  country: United States
+  contribution: >
+    Brian contributed to the software supply chain use cases.
 normative:
   RFC5280: PKIX
   RFC6838:
