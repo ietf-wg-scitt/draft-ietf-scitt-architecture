@@ -81,6 +81,14 @@ contributor:
   country: United States
   contribution: >
     Brian contributed to the software supply chain use cases.
+- ins: R. A. Martin
+  name: Robert Martin
+  organization: MITRE Corporation
+  email: ramartin@mitre.org
+  country: United States
+  contribution: >
+    Robert contributed to the software supply chain use cases.
+
 normative:
   RFC5280: PKIX
   RFC6838:
