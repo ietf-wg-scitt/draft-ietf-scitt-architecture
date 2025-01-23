@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-21T00:45:09.754740+00:00",
+  "timestamp": "2025-01-23T00:45:32.248466+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -43093,13 +43093,13 @@
       "labels": [],
       "body": "Added one use case from original use case document: Signing certificate authenticity use case",
       "createdAt": "2024-12-20T18:27:04Z",
-      "updatedAt": "2025-01-20T17:26:42Z",
+      "updatedAt": "2025-01-22T18:57:26Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "rjb4standards/draft-ietf-scitt-architecture",
       "headRefName": "main",
-      "headRefOid": "25ef884ba31e8df14a349cdc1f84771dd52e3c97",
+      "headRefOid": "b67ff15176d653b3b2a94cb62e64337c823dc213",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -43111,6 +43111,13 @@
           "body": "AJ, I'm open to other terminology that will emphasize the need to confirm a trusted party as producer and signer of digital objects. Perhaps the term legitimate could replace authorized.",
           "createdAt": "2024-12-31T13:38:07Z",
           "updatedAt": "2024-12-31T13:38:07Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "LGTM @SteveLasker \r\nThanks for leading us through this update.",
+          "createdAt": "2025-01-22T18:57:25Z",
+          "updatedAt": "2025-01-22T18:57:25Z"
         }
       ],
       "reviews": [
@@ -43711,6 +43718,258 @@
               "updatedAt": "2025-01-20T17:26:42Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Y47Yc",
+          "commit": {
+            "abbreviatedOid": "25ef884"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-21T15:56:45Z",
+          "updatedAt": "2025-01-21T15:56:46Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "```suggestion\r\nA software component (e.g., a library or software product) released by a trusted producer is common practice for both open-source and commercial offerings.\r\n```",
+              "createdAt": "2025-01-21T15:56:45Z",
+              "updatedAt": "2025-01-21T15:56:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Y49Mu",
+          "commit": {
+            "abbreviatedOid": "3b88a26"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-21T15:59:23Z",
+          "updatedAt": "2025-01-21T15:59:24Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "Based on the call 1/21/25, we've settled on \"trusted\" for line 301 and 320. \r\nPlease reactivate if you feel strongly",
+              "createdAt": "2025-01-21T15:59:23Z",
+              "updatedAt": "2025-01-21T15:59:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Y5ADq",
+          "commit": {
+            "abbreviatedOid": "3ccb8ce"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-21T16:03:48Z",
+          "updatedAt": "2025-01-21T16:03:48Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "No objections to this consensus position. Good compromise. I presume that someone will make this change and I don't have to make this change - correct?",
+              "createdAt": "2025-01-21T16:03:48Z",
+              "updatedAt": "2025-01-21T16:03:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Y6oNh",
+          "commit": {
+            "abbreviatedOid": "3ccb8ce"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-21T19:19:50Z",
+          "updatedAt": "2025-01-21T19:19:50Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "Hi, @rjb4standards, yes the changes were committed to this PR. Please review: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/328/files ",
+              "createdAt": "2025-01-21T19:19:50Z",
+              "updatedAt": "2025-01-21T19:19:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Y6o7M",
+          "commit": {
+            "abbreviatedOid": "3ccb8ce"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-21T19:21:31Z",
+          "updatedAt": "2025-01-21T19:21:31Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "Reducing the text a bit to focus on the IETF doc content.\r\n```suggestion\r\n      Dick contributed to the software supply chain use cases.\r\n```",
+              "createdAt": "2025-01-21T19:21:31Z",
+              "updatedAt": "2025-01-21T19:21:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Y6puj",
+          "commit": {
+            "abbreviatedOid": "3b88a26"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "This is making good progress. I'd like to recognize the other [authors of the use-cases doc](https://datatracker.ietf.org/doc/draft-ietf-scitt-software-use-cases/) before merging this PR, however I need to confirm with them prior to merging. ",
+          "createdAt": "2025-01-21T19:23:19Z",
+          "updatedAt": "2025-01-21T19:23:19Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Y6r9x",
+          "commit": {
+            "abbreviatedOid": "3b88a26"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Perfect, thanks @SteveLasker  and @henkbirkholz  for your help in resolving this matter.",
+          "createdAt": "2025-01-21T19:28:29Z",
+          "updatedAt": "2025-01-21T19:28:29Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Y61Pr",
+          "commit": {
+            "abbreviatedOid": "3ccb8ce"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-21T19:49:38Z",
+          "updatedAt": "2025-01-21T19:49:38Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "No objection Steve.",
+              "createdAt": "2025-01-21T19:49:38Z",
+              "updatedAt": "2025-01-21T19:49:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Y62mY",
+          "commit": {
+            "abbreviatedOid": "3b88a26"
+          },
+          "author": "knight-brian",
+          "authorAssociation": "NONE",
+          "state": "CHANGES_REQUESTED",
+          "body": "@SteveLasker: Thank you for your note on use case recognition.  The data requested are below.\r\n\r\n- ins: B. Knight\r\n  name: Brian Knight\r\n  org: Microsoft\r\n  email: brianknight@microsoft.com\r\n  country: United States",
+          "createdAt": "2025-01-21T19:52:44Z",
+          "updatedAt": "2025-01-21T19:52:44Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Y7Co0",
+          "commit": {
+            "abbreviatedOid": "4e0d0b9"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-21T20:19:24Z",
+          "updatedAt": "2025-01-21T20:19:24Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\n\r\n- ins: B. Knight\r\n    name: Brian Knight\r\n    organization: Microsoft\r\n    email: brianknight@microsoft.com\r\n    country: United States\r\n    contribution: >\r\n      Brian contributed to the software supply chain use cases.\r\n```",
+              "createdAt": "2025-01-21T20:19:24Z",
+              "updatedAt": "2025-01-21T20:21:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Y7DR2",
+          "commit": {
+            "abbreviatedOid": "4e0d0b9"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-21T20:20:59Z",
+          "updatedAt": "2025-01-21T20:20:59Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "No objection",
+              "createdAt": "2025-01-21T20:20:59Z",
+              "updatedAt": "2025-01-21T20:20:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Y7DzX",
+          "commit": {
+            "abbreviatedOid": "afb330d"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-21T20:22:11Z",
+          "updatedAt": "2025-01-21T20:22:12Z",
+          "comments": [
+            {
+              "originalPosition": 3,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-01-21T20:22:11Z",
+              "updatedAt": "2025-01-21T20:22:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Y7D5H",
+          "commit": {
+            "abbreviatedOid": "51109c1"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-21T20:22:24Z",
+          "updatedAt": "2025-01-21T20:22:24Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-01-21T20:22:24Z",
+              "updatedAt": "2025-01-21T20:22:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ZENPf",
+          "commit": {
+            "abbreviatedOid": "b67ff15"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Additional Use Case contributors are now added. LGTM",
+          "createdAt": "2025-01-22T18:47:30Z",
+          "updatedAt": "2025-01-22T18:47:30Z",
+          "comments": []
         }
       ]
     },
@@ -43719,24 +43978,26 @@
       "id": "PR_kwDOIvmHss6F9x9j",
       "title": "Editorial Review",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/331",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Removed content now tracked in separate PRs",
       "createdAt": "2024-12-21T01:39:12Z",
-      "updatedAt": "2025-01-20T17:27:47Z",
+      "updatedAt": "2025-01-21T19:51:01Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "steve/editoral-review",
       "headRefOid": "d6e6e672d0be1ac858689b25b77d36ec7655a48e",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-01-21T19:51:01Z",
+      "mergedAt": "2025-01-21T19:51:01Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "fbd114984744207b04eadfb2f9f23280fae1e63d"
+      },
       "comments": [
         {
           "author": "SteveLasker",
@@ -43751,6 +44012,13 @@
           "body": "@OR13, @JAG-UK, I merged the requested change: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/331#discussion_r1905674188\r\n\r\nPlease LGTM to merge.  ",
           "createdAt": "2025-01-20T17:17:00Z",
           "updatedAt": "2025-01-20T17:17:00Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I've confirmed with @JAG-UK that he's ok with this change. ",
+          "createdAt": "2025-01-21T19:50:55Z",
+          "updatedAt": "2025-01-21T19:50:55Z"
         }
       ],
       "reviews": [
@@ -43920,13 +44188,13 @@
       "labels": [],
       "body": "Fixes #326 ",
       "createdAt": "2024-12-23T23:17:17Z",
-      "updatedAt": "2025-01-20T17:26:05Z",
+      "updatedAt": "2025-01-22T18:51:41Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
-      "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
+      "baseRefOid": "fbd114984744207b04eadfb2f9f23280fae1e63d",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "issue-326",
-      "headRefOid": "5baa3d110ee509eb8a1dc1f9708ffc8185027355",
+      "headRefOid": "fbf7c73e1067806cc56569fa412d4fc16cd379f9",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -43970,6 +44238,26 @@
               "body": "It's a little repetitive. We must change 394, as it creates confusion for implementors. This section was copy/pasted over for completeness. Either way, when TBD_0 is assigned, this will get cleaned up, so I felt it was helpful to provide a pointer.",
               "createdAt": "2025-01-20T17:26:05Z",
               "updatedAt": "2025-01-20T17:26:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ZEPVp",
+          "commit": {
+            "abbreviatedOid": "5baa3d1"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-22T18:51:41Z",
+          "updatedAt": "2025-01-22T18:51:41Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "@aj-stein, do still feel strongly? I'd like to merge to get to #341 ",
+              "createdAt": "2025-01-22T18:51:41Z",
+              "updatedAt": "2025-01-22T18:51:41Z"
             }
           ]
         }
