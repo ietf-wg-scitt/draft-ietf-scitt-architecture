@@ -1056,7 +1056,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 25 July 2025</td>
+<td class="center">Expires 2 August 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1069,12 +1069,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-01-21" class="published">21 January 2025</time>
+<time datetime="2025-01-29" class="published">29 January 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-07-25">25 July 2025</time></dd>
+<dd class="expires"><time datetime="2025-08-02">2 August 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1143,7 +1143,7 @@ Issuers can register their Signed Statements on one or more Transparency Service
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 25 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 2 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1581,7 +1581,7 @@ This gives enough confidence to both producers and consumers that the released s
 The intention is to identify any security weaknesses or vulnerabilities in the package.<a href="#section-2.2.1-2" class="pilcrow">¶</a></p>
 <p id="section-2.2.1-3">Initially, a particular analysis can identify a simple weakness in a software component.
 Over a period of time, a statement from a third-party illustrates that the weakness is exposed in a way that represents an exploitable vulnerability.
-The producer of the software product provides a statement that confirms the linking of a software component vulnerability with the software product and also issues an advisory statement on how to mitigate the vulnerability.
+The producer of the software product provides a statement that confirms the linking of a software component vulnerability with the software product by issuing a product vulnerability disclosure report and also issues an advisory statement on how to mitigate the vulnerability.
 At first, the producer provides an updated software product that still uses the vulnerable software component but shields the issue in a fashion that inhibits exploitation.
 Later, a second update of the software product includes a security patch to the affected software component from the software producer.
 Finally, a third update includes a new release (updated version) of the formerly insecure software component.
@@ -1626,10 +1626,10 @@ For this release, both the software product and the affected software component 
           <h4 id="name-promotion-of-a-software-com">
 <a href="#section-2.2.2" class="section-number selfRef">2.2.2. </a><a href="#name-promotion-of-a-software-com" class="section-name selfRef">Promotion of a Software Component by Multiple Entities</a>
           </h4>
-<p id="section-2.2.2-1">A software component (e.g., a library) released by a certain original producer is becoming popular.
-The released software component is accompanied by a statement of authenticity (e.g., a detached signature).
+<p id="section-2.2.2-1">A software component (e.g., a library or software product) released by a trusted producer is common practice for both open-source and commercial offerings.
+The released software component is accompanied by a statement of authenticity.
 Over time, due to its enhanced applicability to various products, there has been an increasing amount of multiple providers of the same software component version on the internet.<a href="#section-2.2.2-1" class="pilcrow">¶</a></p>
-<p id="section-2.2.2-2">Some providers include this particular software component as part of their release package bundle and provide the package with proof of authenticity using their own issuer authority.
+<p id="section-2.2.2-2">Some providers include this particular software component as part of their release product/package bundle and provide the package with proof of authenticity using their issuer authority.
 Some packages include the original statement of authenticity, and some do not.
 Over time, some providers no longer offer the exact same software component source code but pre-compiled software component binaries.
 Some sources do not provide the exact same software component, but include patches and fixes produced by third-parties, as these emerge faster than solutions from the original producer.
@@ -1637,7 +1637,7 @@ Due to complex distribution and promotion life-cycle scenarios, the original sof
 <p id="section-2.2.2-3">A consumer of a released software wants to:<a href="#section-2.2.2-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.2.2-4.1">
-              <p id="section-2.2.2-4.1.1">understand if a particular provider is actually the original provider or a promoter<a href="#section-2.2.2-4.1.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.2-4.1.1">understand if a particular provider is a trusted originating producer or an alternative party<a href="#section-2.2.2-4.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.2-4.2">
               <p id="section-2.2.2-4.2.1">know if and how the source, or resulting binary, of a promoted software component differs from the original software component<a href="#section-2.2.2-4.2.1" class="pilcrow">¶</a></p>
@@ -1646,13 +1646,13 @@ Due to complex distribution and promotion life-cycle scenarios, the original sof
               <p id="section-2.2.2-4.3.1">check the provenance and history of a software component's source back to its origin<a href="#section-2.2.2-4.3.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.2-4.4">
-              <p id="section-2.2.2-4.4.1">assess whether to trust a promoter or not<a href="#section-2.2.2-4.4.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.2-4.4.1">assess whether to trust a component or product based on a downloaded package location and source supplier<a href="#section-2.2.2-4.4.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 <p id="section-2.2.2-5">SCITT provides a standardized way to:<a href="#section-2.2.2-5" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.2.2-6.1">
-              <p id="section-2.2.2-6.1.1">reliably discern if a provider is the original producer or is a trustworthy promoter or is an illegitimate provider<a href="#section-2.2.2-6.1.1" class="pilcrow">¶</a></p>
+              <p id="section-2.2.2-6.1.1">reliably discern if a provider is the original, trusted producer or is a trustworthy alternative provider or is an illegitimate provider<a href="#section-2.2.2-6.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-2.2.2-6.2">
               <p id="section-2.2.2-6.2.1">track the provenance path from an original producer to a particular provider<a href="#section-2.2.2-6.2.1" class="pilcrow">¶</a></p>
@@ -2841,7 +2841,7 @@ It is up to the Issuer to notify Transparency Services of credential revocation 
 <dd class="break"></dd>
 <dt id="I-D.draft-ietf-core-href">[I-D.draft-ietf-core-href]</dt>
         <dd>
-<span class="refAuthor">Bormann, C.</span> and <span class="refAuthor">H. Birkholz</span>, <span class="refTitle">"Constrained Resource Identifiers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-core-href-16</span>, <time datetime="2024-07-24" class="refDate">24 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-href-16">https://datatracker.ietf.org/doc/html/draft-ietf-core-href-16</a>&gt;</span>. </dd>
+<span class="refAuthor">Bormann, C.</span> and <span class="refAuthor">H. Birkholz</span>, <span class="refTitle">"Constrained Resource Identifiers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-core-href-17</span>, <time datetime="2025-01-24" class="refDate">24 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-href-17">https://datatracker.ietf.org/doc/html/draft-ietf-core-href-17</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.draft-ietf-rats-eat">[I-D.draft-ietf-rats-eat]</dt>
         <dd>
@@ -3454,6 +3454,36 @@ A Signed Statement (COSE_Sign1) <span class="bcp14">MUST</span> be produced from
 </div>
 </address>
 <p id="appendix-D-1">Orie contributed to improving the generalization of COSE building blocks and document consistency.<a href="#appendix-D-1" class="pilcrow">¶</a></p>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Dick Brooks</span></div>
+<div dir="auto" class="left"><span class="org">Business Cyber Guardian (TM)</span></div>
+<div dir="auto" class="left"><span class="country-name">United States</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:dick@businesscyberguardian.com" class="email">dick@businesscyberguardian.com</a>
+</div>
+</address>
+<p id="appendix-D-2">Dick contributed to the software supply chain use cases.<a href="#appendix-D-2" class="pilcrow">¶</a></p>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Brian Knight</span></div>
+<div dir="auto" class="left"><span class="org">Microsoft</span></div>
+<div dir="auto" class="left"><span class="country-name">United States</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:brianknight@microsoft.com" class="email">brianknight@microsoft.com</a>
+</div>
+</address>
+<p id="appendix-D-3">Brian contributed to the software supply chain use cases.<a href="#appendix-D-3" class="pilcrow">¶</a></p>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Robert Martin</span></div>
+<div dir="auto" class="left"><span class="org">MITRE Corporation</span></div>
+<div dir="auto" class="left"><span class="country-name">United States</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:ramartin@mitre.org" class="email">ramartin@mitre.org</a>
+</div>
+</address>
+<p id="appendix-D-4">Robert contributed to the software supply chain use cases.<a href="#appendix-D-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">

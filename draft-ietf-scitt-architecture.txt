@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 25 July 2025                                         C. Fournet
+Expires: 2 August 2025                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         21 January 2025
+                                                         29 January 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 July 2025.
+   This Internet-Draft will expire on 2 August 2025.
 
 Copyright Notice
 
@@ -310,16 +310,17 @@ Table of Contents
    party illustrates that the weakness is exposed in a way that
    represents an exploitable vulnerability.  The producer of the
    software product provides a statement that confirms the linking of a
-   software component vulnerability with the software product and also
-   issues an advisory statement on how to mitigate the vulnerability.
-   At first, the producer provides an updated software product that
-   still uses the vulnerable software component but shields the issue in
-   a fashion that inhibits exploitation.  Later, a second update of the
-   software product includes a security patch to the affected software
-   component from the software producer.  Finally, a third update
-   includes a new release (updated version) of the formerly insecure
-   software component.  For this release, both the software product and
-   the affected software component are deemed secure by the producer and
+   software component vulnerability with the software product by issuing
+   a product vulnerability disclosure report and also issues an advisory
+   statement on how to mitigate the vulnerability.  At first, the
+   producer provides an updated software product that still uses the
+   vulnerable software component but shields the issue in a fashion that
+   inhibits exploitation.  Later, a second update of the software
+   product includes a security patch to the affected software component
+   from the software producer.  Finally, a third update includes a new
+   release (updated version) of the formerly insecure software
+   component.  For this release, both the software product and the
+   affected software component are deemed secure by the producer and
    consumers.
 
    A consumer of a released software wants to:
@@ -353,29 +354,30 @@ Table of Contents
 
 2.2.2.  Promotion of a Software Component by Multiple Entities
 
-   A software component (e.g., a library) released by a certain original
-   producer is becoming popular.  The released software component is
-   accompanied by a statement of authenticity (e.g., a detached
-   signature).  Over time, due to its enhanced applicability to various
-   products, there has been an increasing amount of multiple providers
-   of the same software component version on the internet.
+   A software component (e.g., a library or software product) released
+   by a trusted producer is common practice for both open-source and
+   commercial offerings.  The released software component is accompanied
+   by a statement of authenticity.  Over time, due to its enhanced
+   applicability to various products, there has been an increasing
+   amount of multiple providers of the same software component version
+   on the internet.
 
    Some providers include this particular software component as part of
-   their release package bundle and provide the package with proof of
-   authenticity using their own issuer authority.  Some packages include
-   the original statement of authenticity, and some do not.  Over time,
-   some providers no longer offer the exact same software component
-   source code but pre-compiled software component binaries.  Some
-   sources do not provide the exact same software component, but include
-   patches and fixes produced by third-parties, as these emerge faster
-   than solutions from the original producer.  Due to complex
+   their release product/package bundle and provide the package with
+   proof of authenticity using their issuer authority.  Some packages
+   include the original statement of authenticity, and some do not.
+   Over time, some providers no longer offer the exact same software
+   component source code but pre-compiled software component binaries.
+   Some sources do not provide the exact same software component, but
+   include patches and fixes produced by third-parties, as these emerge
+   faster than solutions from the original producer.  Due to complex
    distribution and promotion life-cycle scenarios, the original
    software component takes myriad forms.
 
    A consumer of a released software wants to:
 
-   *  understand if a particular provider is actually the original
-      provider or a promoter
+   *  understand if a particular provider is a trusted originating
+      producer or an alternative party
 
    *  know if and how the source, or resulting binary, of a promoted
       software component differs from the original software component
@@ -383,12 +385,14 @@ Table of Contents
    *  check the provenance and history of a software component's source
       back to its origin
 
-   *  assess whether to trust a promoter or not
+   *  assess whether to trust a component or product based on a
+      downloaded package location and source supplier
 
    SCITT provides a standardized way to:
 
-   *  reliably discern if a provider is the original producer or is a
-      trustworthy promoter or is an illegitimate provider
+   *  reliably discern if a provider is the original, trusted producer
+      or is a trustworthy alternative provider or is an illegitimate
+      provider
 
    *  track the provenance path from an original producer to a
       particular provider
@@ -1621,9 +1625,9 @@ Table of Contents
    [I-D.draft-ietf-core-href]
               Bormann, C. and H. Birkholz, "Constrained Resource
               Identifiers", Work in Progress, Internet-Draft, draft-
-              ietf-core-href-16, 24 July 2024,
+              ietf-core-href-17, 24 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-core-
-              href-16>.
+              href-17>.
 
    [I-D.draft-ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
@@ -2088,6 +2092,30 @@ Contributors
 
    Orie contributed to improving the generalization of COSE building
    blocks and document consistency.
+
+   Dick Brooks
+   Business Cyber Guardian (TM)
+   United States
+   Email: dick@businesscyberguardian.com
+
+
+   Dick contributed to the software supply chain use cases.
+
+   Brian Knight
+   Microsoft
+   United States
+   Email: brianknight@microsoft.com
+
+
+   Brian contributed to the software supply chain use cases.
+
+   Robert Martin
+   MITRE Corporation
+   United States
+   Email: ramartin@mitre.org
+
+
+   Robert contributed to the software supply chain use cases.
 
 Authors' Addresses
 
