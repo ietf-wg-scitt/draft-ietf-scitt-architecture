@@ -60,13 +60,34 @@ author:
   country: United States
 
 contributor:
-  - ins: O. Steele
-    name: Orie Steele
-    organization: Transmute
-    email: orie@transmute.industries
-    country: United States
-    contribution: >
-      Orie contributed to improving the generalization of COSE building blocks and document consistency.
+- ins: O. Steele
+  name: Orie Steele
+  organization: Transmute
+  email: orie@transmute.industries
+  country: United States
+  contribution: >
+    Orie contributed to improving the generalization of COSE building blocks and document consistency.
+- ins: D. Brooks
+  name: Dick Brooks
+  organization: Business Cyber Guardian (TM)
+  email: dick@businesscyberguardian.com
+  country: United States
+  contribution: >
+    Dick contributed to the software supply chain use cases.
+- ins: B. Knight
+  name: Brian Knight
+  organization: Microsoft
+  email: brianknight@microsoft.com
+  country: United States
+  contribution: >
+    Brian contributed to the software supply chain use cases.
+- ins: R. A. Martin
+  name: Robert Martin
+  organization: MITRE Corporation
+  email: ramartin@mitre.org
+  country: United States
+  contribution: >
+    Robert contributed to the software supply chain use cases.
 
 normative:
   RFC5280: PKIX
@@ -269,7 +290,7 @@ The intention is to identify any security weaknesses or vulnerabilities in the p
 
 Initially, a particular analysis can identify a simple weakness in a software component.
 Over a period of time, a statement from a third-party illustrates that the weakness is exposed in a way that represents an exploitable vulnerability.
-The producer of the software product provides a statement that confirms the linking of a software component vulnerability with the software product and also issues an advisory statement on how to mitigate the vulnerability.
+The producer of the software product provides a statement that confirms the linking of a software component vulnerability with the software product by issuing a product vulnerability disclosure report and also issues an advisory statement on how to mitigate the vulnerability.
 At first, the producer provides an updated software product that still uses the vulnerable software component but shields the issue in a fashion that inhibits exploitation.
 Later, a second update of the software product includes a security patch to the affected software component from the software producer.
 Finally, a third update includes a new release (updated version) of the formerly insecure software component.
@@ -292,11 +313,11 @@ SCITT provides a standardized way to:
 
 ### Promotion of a Software Component by Multiple Entities
 
-A software component (e.g., a library) released by a certain original producer is becoming popular.
-The released software component is accompanied by a statement of authenticity (e.g., a detached signature).
+A software component (e.g., a library or software product) released by a trusted producer is common practice for both open-source and commercial offerings.
+The released software component is accompanied by a statement of authenticity.
 Over time, due to its enhanced applicability to various products, there has been an increasing amount of multiple providers of the same software component version on the internet.
 
-Some providers include this particular software component as part of their release package bundle and provide the package with proof of authenticity using their own issuer authority.
+Some providers include this particular software component as part of their release product/package bundle and provide the package with proof of authenticity using their issuer authority.
 Some packages include the original statement of authenticity, and some do not.
 Over time, some providers no longer offer the exact same software component source code but pre-compiled software component binaries.
 Some sources do not provide the exact same software component, but include patches and fixes produced by third-parties, as these emerge faster than solutions from the original producer.
@@ -304,14 +325,14 @@ Due to complex distribution and promotion life-cycle scenarios, the original sof
 
 A consumer of a released software wants to:
 
-* understand if a particular provider is actually the original provider or a promoter
+* understand if a particular provider is a trusted originating producer or an alternative party
 * know if and how the source, or resulting binary, of a promoted software component differs from the original software component
 * check the provenance and history of a software component's source back to its origin
-* assess whether to trust a promoter or not
+* assess whether to trust a component or product based on a downloaded package location and source supplier
 
 SCITT provides a standardized way to:
 
-* reliably discern if a provider is the original producer or is a trustworthy promoter or is an illegitimate provider
+* reliably discern if a provider is the original, trusted producer or is a trustworthy alternative provider or is an illegitimate provider
 * track the provenance path from an original producer to a particular provider
 * check the trustworthiness of a provider
 * check the integrity of modifications or transformations applied by a provider
@@ -335,6 +356,7 @@ SCITT provides a standardized way to:
 * provide a tiered and transparent framework that allows for verification of integrity and authenticity of the integrated software at both component and product level before installation
 * notify software integrators of vulnerabilities identified during security scans of running software
 * provide valid annotations on build integrity to ensure conformance
+
 
 # Terminology {#terminology}
 
