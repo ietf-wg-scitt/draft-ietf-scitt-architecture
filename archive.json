@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-28T00:45:48.765479+00:00",
+  "timestamp": "2025-01-30T00:44:37.449175+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -6086,6 +6086,24 @@
           "updatedAt": "2025-01-01T12:53:39Z"
         }
       ]
+    },
+    {
+      "number": 342,
+      "id": "I_kwDOIvmHss6n2OMs",
+      "title": "Remove URNs",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/342",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "achamayou"
+      ],
+      "labels": [],
+      "body": "Consistent with https://github.com/ietf-wg-scitt/draft-ietf-scitt-scrapi/issues/50",
+      "createdAt": "2025-01-28T15:23:42Z",
+      "updatedAt": "2025-01-28T15:23:42Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -43086,24 +43104,26 @@
       "id": "PR_kwDOIvmHss6F8RjK",
       "title": "Add use case from original use case document to address issue 325",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/328",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "rjb4standards",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Added one use case from original use case document: Signing certificate authenticity use case",
       "createdAt": "2024-12-20T18:27:04Z",
-      "updatedAt": "2025-01-22T18:57:26Z",
+      "updatedAt": "2025-01-29T15:36:27Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "rjb4standards/draft-ietf-scitt-architecture",
       "headRefName": "main",
       "headRefOid": "b67ff15176d653b3b2a94cb62e64337c823dc213",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-01-29T15:23:11Z",
+      "mergedAt": "2025-01-29T15:23:10Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "1e1125a03a375bfeee2c4cf4845827463ccda708"
+      },
       "comments": [
         {
           "author": "rjb4standards",
@@ -43118,6 +43138,20 @@
           "body": "LGTM @SteveLasker \r\nThanks for leading us through this update.",
           "createdAt": "2025-01-22T18:57:25Z",
           "updatedAt": "2025-01-22T18:57:25Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "One minor suggestion:\r\n\r\nA software component (e.g., a library or software product) released by a trusted producer is an **essential practic**e for both open-source and commercial offerings.",
+          "createdAt": "2025-01-29T15:35:36Z",
+          "updatedAt": "2025-01-29T15:35:36Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "replaced common with \"essential\"",
+          "createdAt": "2025-01-29T15:36:26Z",
+          "updatedAt": "2025-01-29T15:36:26Z"
         }
       ],
       "reviews": [
@@ -43970,6 +44004,85 @@
           "createdAt": "2025-01-22T18:47:30Z",
           "updatedAt": "2025-01-22T18:47:30Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ZvD61",
+          "commit": {
+            "abbreviatedOid": "b67ff15"
+          },
+          "author": "knight-brian",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "Changes approved.  Thanks!",
+          "createdAt": "2025-01-28T19:40:45Z",
+          "updatedAt": "2025-01-28T19:40:45Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Zy9kp",
+          "commit": {
+            "abbreviatedOid": "b67ff15"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-01-29T08:07:59Z",
+          "updatedAt": "2025-01-29T08:07:59Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Zzkxk",
+          "commit": {
+            "abbreviatedOid": "b67ff15"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "One minor nit but it's fine.",
+          "createdAt": "2025-01-29T09:22:06Z",
+          "updatedAt": "2025-01-29T09:22:23Z",
+          "comments": [
+            {
+              "originalPosition": 57,
+              "body": "I had to read this about 5 times before I could convince myself it makes grammatical sense, but I'm OK with it now. Won't risk resetting all the other ticks to request a clarification.",
+              "createdAt": "2025-01-29T09:22:07Z",
+              "updatedAt": "2025-01-29T09:22:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Z0cqb",
+          "commit": {
+            "abbreviatedOid": "b67ff15"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2025-01-29T10:51:46Z",
+          "updatedAt": "2025-01-29T10:51:46Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6Z3RMC",
+          "commit": {
+            "abbreviatedOid": "b67ff15"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-29T15:22:43Z",
+          "updatedAt": "2025-01-29T15:22:43Z",
+          "comments": [
+            {
+              "originalPosition": 57,
+              "body": "nod. If we can come up with a suggestion, we can merge in an editorial update.",
+              "createdAt": "2025-01-29T15:22:43Z",
+              "updatedAt": "2025-01-29T15:22:43Z"
+            }
+          ]
         }
       ]
     },
