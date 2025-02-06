@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-30T00:44:37.449175+00:00",
+  "timestamp": "2025-02-06T00:46:45.151230+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -6092,7 +6092,7 @@
       "id": "I_kwDOIvmHss6n2OMs",
       "title": "Remove URNs",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/342",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -6101,8 +6101,8 @@
       "labels": [],
       "body": "Consistent with https://github.com/ietf-wg-scitt/draft-ietf-scitt-scrapi/issues/50",
       "createdAt": "2025-01-28T15:23:42Z",
-      "updatedAt": "2025-01-28T15:23:42Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-04T15:17:11Z",
+      "closedAt": "2025-02-04T15:17:11Z",
       "comments": []
     }
   ],
@@ -44516,7 +44516,7 @@
       "labels": [],
       "body": "Fixes #330 \r\n",
       "createdAt": "2024-12-24T00:15:22Z",
-      "updatedAt": "2024-12-24T00:15:22Z",
+      "updatedAt": "2025-02-04T16:08:16Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
@@ -44528,7 +44528,68 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6akNkQ",
+          "commit": {
+            "abbreviatedOid": "c4ce0b8"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-04T15:11:24Z",
+          "updatedAt": "2025-02-04T15:11:25Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Why do we most recently?",
+              "createdAt": "2025-02-04T15:11:25Z",
+              "updatedAt": "2025-02-04T15:11:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ak2-o",
+          "commit": {
+            "abbreviatedOid": "c4ce0b8"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-04T16:07:52Z",
+          "updatedAt": "2025-02-04T16:07:52Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-02-04T16:07:52Z",
+              "updatedAt": "2025-02-04T16:07:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ak3yD",
+          "commit": {
+            "abbreviatedOid": "c4ce0b8"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-04T16:08:15Z",
+          "updatedAt": "2025-02-04T16:08:16Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\n- When using x.509 certificates, support for either `x5t` or `x5chain` in the protected header is REQUIRED to implement.\r\n```\r\n\r\n^ This is all that is needed.",
+              "createdAt": "2025-02-04T16:08:16Z",
+              "updatedAt": "2025-02-04T16:08:16Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 338,
@@ -44710,6 +44771,150 @@
           "body": "LGTM",
           "createdAt": "2025-01-07T15:56:40Z",
           "updatedAt": "2025-01-07T15:56:40Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 343,
+      "id": "PR_kwDOIvmHss6KABiF",
+      "title": "Remove URNs",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/343",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #342",
+      "createdAt": "2025-02-04T13:43:01Z",
+      "updatedAt": "2025-02-04T15:17:10Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "e28c036264333ba458f869e480dc816bfc155fcb",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "remove_urns",
+      "headRefOid": "df63b74ac3e17b742fe97d3a2acccf9443f4b685",
+      "closedAt": "2025-02-04T15:17:10Z",
+      "mergedAt": "2025-02-04T15:17:10Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "6e5646b3a2da6183c820949d4143f1de8ff64e95"
+      },
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@JAG-UK this is blocked behind https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/344",
+          "createdAt": "2025-02-04T14:05:27Z",
+          "updatedAt": "2025-02-04T14:05:27Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6ajPMF",
+          "commit": {
+            "abbreviatedOid": "df63b74"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM, as discussed",
+          "createdAt": "2025-02-04T13:54:06Z",
+          "updatedAt": "2025-02-04T15:13:58Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6akL9V",
+          "commit": {
+            "abbreviatedOid": "df63b74"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "I agree.",
+          "createdAt": "2025-02-04T15:09:09Z",
+          "updatedAt": "2025-02-04T15:13:58Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6akME0",
+          "commit": {
+            "abbreviatedOid": "df63b74"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-04T15:09:19Z",
+          "updatedAt": "2025-02-04T15:13:58Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6akMOF",
+          "commit": {
+            "abbreviatedOid": "df63b74"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-02-04T15:09:31Z",
+          "updatedAt": "2025-02-04T15:13:58Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 344,
+      "id": "PR_kwDOIvmHss6KALYi",
+      "title": "Update GitHub actions versions to fix CI",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/344",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The update editor's copy is currently broken with:\r\n\r\n```\r\nError: This request has been automatically failed because it uses a deprecated version of `actions/upload-artifact: v3`. Learn more: https://github.blog/changelog/2024-04-16-deprecation-notice-v3-of-the-artifact-actions/\r\n```\r\n\r\nSee https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/actions/runs/13136814149/job/36654025399?pr=343",
+      "createdAt": "2025-02-04T13:59:42Z",
+      "updatedAt": "2025-02-04T15:06:58Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "1e1125a03a375bfeee2c4cf4845827463ccda708",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "github_actions_updates",
+      "headRefOid": "2d721bf45fe258e20e3e0901fa32dddaca11285b",
+      "closedAt": "2025-02-04T15:06:58Z",
+      "mergedAt": "2025-02-04T15:06:58Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "e28c036264333ba458f869e480dc816bfc155fcb"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6ajrzT",
+          "commit": {
+            "abbreviatedOid": "2d721bf"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-04T14:30:31Z",
+          "updatedAt": "2025-02-04T14:30:31Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6akKDH",
+          "commit": {
+            "abbreviatedOid": "2d721bf"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-02-04T15:06:47Z",
+          "updatedAt": "2025-02-04T15:06:47Z",
           "comments": []
         }
       ]
