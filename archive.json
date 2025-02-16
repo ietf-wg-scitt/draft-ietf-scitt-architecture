@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-13T00:47:03.205576+00:00",
+  "timestamp": "2025-02-16T00:51:52.023365+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5672,7 +5672,7 @@
       "labels": [],
       "body": "From @mcr,\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> it seems that the receipt received from service A can easily be added to the statement submitted to service B.  It's unclear to me that the signed statement submitted to service A can then be updated.  Does the Append-Only Log record just the protected and payload of the Sign1, or does it also witness the unprotected header?\r\n\r\nWe don't seem to clarify what content is used to append to the ledger. Is it just the to-be-signed-bytes, or the entirety of the signed statement, including the unprotected header?\r\n",
       "createdAt": "2024-12-16T22:37:29Z",
-      "updatedAt": "2025-02-11T15:56:43Z",
+      "updatedAt": "2025-02-13T11:57:27Z",
       "closedAt": null,
       "comments": [
         {
@@ -5842,6 +5842,13 @@
           "body": "Summarizing the journey:\r\n\r\n- The unprotected header is intended for the TS to return information after registration or for the client to attach information, such as the receipt, for convenience of storage and transport of associated metadata.\r\n- Upon registration, the unprotected header MUST be empty, or a 400 is returned via SCRAPI to provide consistency and avoid potential MIM attacks.\r\n- If we wish to register a Transparent Statement, it would need to be submitted as the payload, with a known content-type, and could use the same subject to associate them. This latter one is something we should consider how we handle this scenario and why it's needed.",
           "createdAt": "2024-12-19T15:32:26Z",
           "updatedAt": "2024-12-19T15:32:26Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@SteveLasker @robinbryce @JAG-UK I realise now, as I am editing to add these changes that:\n\n> Upon registration, the unprotected header MUST be empty, or a 400 is returned via SCRAPI to provide consistency and avoid potential MIM attacks.\n\nsubstantially conflicts with:\n\n> If `x5t` is included in the protected header, an `x5chain` with a leaf certificate corresponding to the `x5t` value MAY be included in the unprotected header.\n\nTo be clear, I am fine with removing this, and mandating that `x5chain` must be protected by being placed directly in the protected header (it is what our implementation does, for the reasons spelled out in #307 and #309). But do we still want to allow implementations that include supporting evidence in unprotected header params, so long as they have a binding to the protected header (`x5t` in this case), _verified_ at registration?\n\nIf so, we need more subtle wording, which defines an implementation-specific set of authenticated/bound unprotected header params. Statements containing unprotected header params other than those MUST be rejected then.\n\nWhat do you think? Is unprotected `x5chain` worth the nuance?",
+          "createdAt": "2025-02-13T11:57:26Z",
+          "updatedAt": "2025-02-13T11:57:26Z"
         }
       ]
     },
@@ -45159,6 +45166,40 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 345,
+      "id": "PR_kwDOIvmHss6LGupf",
+      "title": "Clarify trust anchor wording",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/345",
+      "state": "OPEN",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Addressing a concern raised by @briankr-ms, to clarify that the registration policies can contain trust anchors. To give a concrete example, scitt-ccf-ledger policies can contain one or more trust anchors in the following way:\r\n\r\n```\r\nexport function apply(profile, phdr) {\r\nif (phdr.cwt.iss.startsWith(\"did:x509:0:sha256:HnwZ4lezuxq_GVcl_Sk7YWW170qAD0DZBLXilXet0jg::eku::...\"))\r\n{\r\n...\r\n```\r\n\r\nWhich encodes the thumbprint of a trust anchor, and the constraint that the leaf of x5chain must have certain EKU bits set. More detail can be found if desired at https://github.com/microsoft/did-x509\r\n\r\nFor the avoidance of doubt, this is _not_ trying to mention `did` in the draft. This is just clarifying that roots of trust can be encoded in policy. One could also imagine a `did`-free policy along of the lines of:\r\n\r\n```\r\nexport function apply(profile, phdr) {\r\nif (thumbprint(phdr.x5chain[0]) == \"f5ceec3fd104994da13b32e8bdc21bd864e4e7f579ecd157c38c15c1b2390c9f\"))\r\n{\r\n...\r\n```\r\n\r\nHaving them inline is not just a convenience, some use cases will have a non-trivial mapping between acceptable statements and trust anchors, and the set of anchors alone will not be sufficient for a complete audit in that case.",
+      "createdAt": "2025-02-13T13:26:43Z",
+      "updatedAt": "2025-02-13T16:45:46Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "6e5646b3a2da6183c820949d4143f1de8ff64e95",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "clarify_trust_anchors",
+      "headRefOid": "1a8516812ab21d74021c75d20877d1acfe154130",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@achamayou Having identified trust anchors is certainly a requirement. Equally important is to have the list of known \"trusted keys\" that a Transparency Service will trust for any submitted signed statements. The Transparency Service will need to identify the specific key fingerprints/thumbprints assigned to signing parties that are allowed to register a signed statement, which must be verified as part of the registration process for new \"trusted signers\" that allowed to submit signed statements for placement in the registry. \r\nThe signing parties in a signed statement MUST be verified as an authorized party using a recognized/authorized signing key fingerprint/thumbprint when verifying signed statements that go into the registry, otherwise there will be doubt about the trustworthiness of the SCITT process to ensure integrity.",
+          "createdAt": "2025-02-13T16:30:30Z",
+          "updatedAt": "2025-02-13T16:45:46Z"
+        }
+      ],
+      "reviews": []
     }
   ]
 }
