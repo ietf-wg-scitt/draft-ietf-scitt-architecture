@@ -1011,13 +1011,7 @@ It is up to the Issuer to notify Transparency Services of credential revocation 
 
 ## COSE Receipts Header Parameter
 
-{{-COMETRE}} is requesting IANA to add the following entries to the [COSE Header Algorithm Parameters Registry](https://www.iana.org/assignments/cose/cose.xhtml).
-
-- Name: receipts
-- Label: TBD_0 (requested assignment 394)
-- Value type: array (of bstr)
-- Value registry: https://www.iana.org/assignments/cose/cose.xhtml#header-parameters
-- Description: Priority ordered list of CBOR encoded Receipts.
+TBD_0 is requested in {{-COMETRE}}.
 
 ## Media Type Registration
 
