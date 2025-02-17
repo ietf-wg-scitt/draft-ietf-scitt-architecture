@@ -877,11 +877,23 @@ Such policies may use as input all information in the Envelope, the Receipt, and
 
 # Privacy Considerations
 
-Transparency Services MAY support anonymous access.
-Issuers SHOULD ensure Signed Statements submitted to public access services are acceptable for public disclosure.
-Publicly accessible Signed Statements MUST NOT carry confidential information.
-Once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.
-In some deployments, a special role, such as an Auditor, might require access to Signed Statements.
+All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but this does not necessarily exclude network traffic analysis.
+
+The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration. Issuers are responsible for verifying that the privacy and security posture of the Transparency Service is suitable for the contents of their Signed Statements prior to Registration. In particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the privacy posture of the Transparency Service.
+This document supports opaque references (such as hashes) for cases where information needs to be included on the log whilst remaining secret.
+
+While not strictly required for interoperability of Receipts and Signed Statement Registration, most Transparency Services are expected to keep copies of Registered Signed Statements in an auxiliary service nd make them available to authorized users for ease of indexing, auditing or similar activities.
+
+Further, in some implementations of Transparency Services such Signed Statements may be made available publicly for dissemination, wider auditing, or to support query confidentiality. In such cases Issuers are responsible for ensuring that Signed Statements submitted to public access services are acceptable for public disclosure.
+
+In some deployments a special role such as an Auditor might require and be given access to Signed Statements.
+
+Once a Signed Statement has been Registered with a Transparency Service its log entry cannot be removed. In most Transparency Service implementations the append-only log only carries cryptographic metadata (eg a hash) rather than the complete Signed Statement and so does not raise immediate privacy concerns. Nonetheless even this hash can be used to hold an Issuer accountable for statements if an adversary has a copy of the pre-image and the log data, and the number of log entries registered can also give clues about Issuer activity. Such side-channel signals are out of scope for this document to deal with, but should be considered in sensitive use cases.
+
+Care should be taken by Issuers to ensure that linking Signed Statements into a collection does not leak information about the contents of the other Signed Statements referred to.
+
+The confidentiality of queries is implementation-specific, and generally not guaranteed.
+For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.
 
 # Security Considerations
 
@@ -990,22 +1002,6 @@ For example, the registered Transparency Service may include only the hash of a 
 Resistance to denial-of-service is implementation specific.
 
 Actors may want to independently keep their own record of the Signed Statements they issue, endorse, verify, or audit.
-
-### Confidentiality and Privacy
-
-All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but this does not necessarily exclude network traffic analysis.
-
-The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
-
-Some Transparency Services may make every Signed Statement registered with them public, for example to facilitate their dissemination and auditing.
-Issuers are responsible for verifying that the privacy and security posture of the Transparency Service is suitable for the contents of their Signed Statements prior to Registration.
-In particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the privacy posture of the Transparency Service.
-This document supports opaque references (such as hashes) for cases where information needs to be included on the log whilst remaining secret.
-
-A collection of Signed Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.
-
-The confidentiality of queries is implementation-specific, and generally not guaranteed.
-For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.
 
 ### Cryptographic Agility
 
