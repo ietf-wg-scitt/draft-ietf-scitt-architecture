@@ -998,7 +998,8 @@ All contents exchanged between actors is protected using secure authenticated ch
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
 
 Some Transparency Services may make every Signed Statement registered with them public, for example to facilitate their dissemination and auditing.
-Issuers are responsible for verifying that the privacy and security posture of the Transparency Service is suitable for the contents of their Signed Statements prior to Registration. In particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the privacy posture of the Transparency Service.
+Issuers are responsible for verifying that the privacy and security posture of the Transparency Service is suitable for the contents of their Signed Statements prior to Registration.
+In particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the privacy posture of the Transparency Service.
 This document supports opaque references (such as hashes) for cases where information needs to be included on the log whilst remaining secret.
 
 A collection of Signed Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.
