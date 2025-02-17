@@ -993,17 +993,15 @@ Actors may want to independently keep their own record of the Signed Statements 
 
 ### Confidentiality and Privacy
 
-All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network traffic analysis.
+All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but this does not necessarily exclude network traffic analysis.
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
-Some Transparency Services may publish every Signed Statement in their logs, to facilitate their dissemination and auditing.
-Transparency Services MAY return Receipts to Client applications synchronously or asynchronously.
+
+Some Transparency Services may make every Signed Statement registered with them public, for example to facilitate their dissemination and auditing.
+Issuers are responsible for verifying that the privacy and security posture of the Transparency Service is suitable for the contents of their Signed Statements prior to Registration. In particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the privacy posture of the Transparency Service.
+This document supports opaque references (such as hashes) for cases where information needs to be included on the log whilst remaining secret.
 
 A collection of Signed Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.
-
-Issuers must carefully review the inclusion of private/confidential materials in their Statements.
-For example, Issuers must remove Personally Identifiable Information (PII) as clear text in the Statement.
-Alternatively, Issuers may include opaque cryptographic Statements, such as hashes.
 
 The confidentiality of queries is implementation-specific, and generally not guaranteed.
 For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.
