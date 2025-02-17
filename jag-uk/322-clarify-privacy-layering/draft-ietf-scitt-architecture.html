@@ -1268,16 +1268,13 @@ Issuers can register their Signed Statements on one or more Transparency Service
                     <p id="section-toc.1-1.9.2.2.2.2.1"><a href="#section-9.2.2" class="auto internal xref">9.2.2</a>.  <a href="#name-availability-of-receipts" class="internal xref">Availability of Receipts</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.3">
-                    <p id="section-toc.1-1.9.2.2.2.3.1"><a href="#section-9.2.3" class="auto internal xref">9.2.3</a>.  <a href="#name-confidentiality-and-privacy" class="internal xref">Confidentiality and Privacy</a></p>
+                    <p id="section-toc.1-1.9.2.2.2.3.1"><a href="#section-9.2.3" class="auto internal xref">9.2.3</a>.  <a href="#name-cryptographic-agility" class="internal xref">Cryptographic Agility</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.4">
-                    <p id="section-toc.1-1.9.2.2.2.4.1"><a href="#section-9.2.4" class="auto internal xref">9.2.4</a>.  <a href="#name-cryptographic-agility" class="internal xref">Cryptographic Agility</a></p>
+                    <p id="section-toc.1-1.9.2.2.2.4.1"><a href="#section-9.2.4" class="auto internal xref">9.2.4</a>.  <a href="#name-transparency-service-client" class="internal xref">Transparency Service Client Applications</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.5">
-                    <p id="section-toc.1-1.9.2.2.2.5.1"><a href="#section-9.2.5" class="auto internal xref">9.2.5</a>.  <a href="#name-transparency-service-client" class="internal xref">Transparency Service Client Applications</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.6">
-                    <p id="section-toc.1-1.9.2.2.2.6.1"><a href="#section-9.2.6" class="auto internal xref">9.2.6</a>.  <a href="#name-impersonation" class="internal xref">Impersonation</a></p>
+                    <p id="section-toc.1-1.9.2.2.2.5.1"><a href="#section-9.2.5" class="auto internal xref">9.2.5</a>.  <a href="#name-impersonation" class="internal xref">Impersonation</a></p>
 </li>
                 </ul>
 </li>
@@ -2481,11 +2478,16 @@ Such policies may use as input all information in the Envelope, the Receipt, and
       <h2 id="name-privacy-considerations">
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>
       </h2>
-<p id="section-8-1">Transparency Services <span class="bcp14">MAY</span> support anonymous access.
-Issuers <span class="bcp14">SHOULD</span> ensure Signed Statements submitted to public access services are acceptable for public disclosure.
-Publicly accessible Signed Statements <span class="bcp14">MUST NOT</span> carry confidential information.
-Once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.
-In some deployments, a special role, such as an Auditor, might require access to Signed Statements.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-1">All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but this does not necessarily exclude network traffic analysis.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration. Issuers are responsible for verifying that the privacy and security posture of the Transparency Service is suitable for the contents of their Signed Statements prior to Registration. In particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the privacy posture of the Transparency Service.
+This document supports opaque references (such as hashes) for cases where information needs to be included on the log whilst remaining secret.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<p id="section-8-3">While not strictly required for interoperability of Receipts and Signed Statement Registration, most Transparency Services are expected to keep copies of Registered Signed Statements in an auxiliary service nd make them available to authorized users for ease of indexing, auditing or similar activities.<a href="#section-8-3" class="pilcrow">¶</a></p>
+<p id="section-8-4">Further, in some implementations of Transparency Services such Signed Statements may be made available publicly for dissemination, wider auditing, or to support query confidentiality. In such cases Issuers are responsible for ensuring that Signed Statements submitted to public access services are acceptable for public disclosure.<a href="#section-8-4" class="pilcrow">¶</a></p>
+<p id="section-8-5">In some deployments a special role such as an Auditor might require and be given access to Signed Statements.<a href="#section-8-5" class="pilcrow">¶</a></p>
+<p id="section-8-6">Once a Signed Statement has been Registered with a Transparency Service its log entry cannot be removed. In most Transparency Service implementations the append-only log only carries cryptographic metadata (eg a hash) rather than the complete Signed Statement and so does not raise immediate privacy concerns. Nonetheless even this hash can be used to hold an Issuer accountable for statements if an adversary has a copy of the pre-image and the log data, and the number of log entries registered can also give clues about Issuer activity. Such side-channel signals are out of scope for this document to deal with, but should be considered in sensitive use cases.<a href="#section-8-6" class="pilcrow">¶</a></p>
+<p id="section-8-7">Care should be taken by Issuers to ensure that linking Signed Statements into a collection does not leak information about the contents of the other Signed Statements referred to.<a href="#section-8-7" class="pilcrow">¶</a></p>
+<p id="section-8-8">The confidentiality of queries is implementation-specific, and generally not guaranteed.
+For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.<a href="#section-8-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-security-considerations">
@@ -2602,51 +2604,35 @@ For example, the registered Transparency Service may include only the hash of a 
 <p id="section-9.2.2-4">Actors may want to independently keep their own record of the Signed Statements they issue, endorse, verify, or audit.<a href="#section-9.2.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sec-confidentiality-and-privacy">
-<section id="section-9.2.3">
-          <h4 id="name-confidentiality-and-privacy">
-<a href="#section-9.2.3" class="section-number selfRef">9.2.3. </a><a href="#name-confidentiality-and-privacy" class="section-name selfRef">Confidentiality and Privacy</a>
-          </h4>
-<p id="section-9.2.3-1">All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but this does not necessarily exclude network traffic analysis.<a href="#section-9.2.3-1" class="pilcrow">¶</a></p>
-<p id="section-9.2.3-2">The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.<a href="#section-9.2.3-2" class="pilcrow">¶</a></p>
-<p id="section-9.2.3-3">Some Transparency Services may make every Signed Statement registered with them public, for example to facilitate their dissemination and auditing.
-Issuers are responsible for verifying that the privacy and security posture of the Transparency Service is suitable for the contents of their Signed Statements prior to Registration.
-In particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the privacy posture of the Transparency Service.
-This document supports opaque references (such as hashes) for cases where information needs to be included on the log whilst remaining secret.<a href="#section-9.2.3-3" class="pilcrow">¶</a></p>
-<p id="section-9.2.3-4">A collection of Signed Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.<a href="#section-9.2.3-4" class="pilcrow">¶</a></p>
-<p id="section-9.2.3-5">The confidentiality of queries is implementation-specific, and generally not guaranteed.
-For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.<a href="#section-9.2.3-5" class="pilcrow">¶</a></p>
-</section>
-</div>
 <div id="sec-cryptographic-agility">
-<section id="section-9.2.4">
+<section id="section-9.2.3">
           <h4 id="name-cryptographic-agility">
-<a href="#section-9.2.4" class="section-number selfRef">9.2.4. </a><a href="#name-cryptographic-agility" class="section-name selfRef">Cryptographic Agility</a>
+<a href="#section-9.2.3" class="section-number selfRef">9.2.3. </a><a href="#name-cryptographic-agility" class="section-name selfRef">Cryptographic Agility</a>
           </h4>
-<p id="section-9.2.4-1">The SCITT Architecture supports cryptographic agility.
+<p id="section-9.2.3-1">The SCITT Architecture supports cryptographic agility.
 The actors depend only on the subset of signing and Receipt schemes they trust.
-This enables the gradual transition to stronger algorithms, including e.g. post-quantum signature algorithms.<a href="#section-9.2.4-1" class="pilcrow">¶</a></p>
+This enables the gradual transition to stronger algorithms, including e.g. post-quantum signature algorithms.<a href="#section-9.2.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-transparency-service-client-applications">
-<section id="section-9.2.5">
+<section id="section-9.2.4">
           <h4 id="name-transparency-service-client">
-<a href="#section-9.2.5" class="section-number selfRef">9.2.5. </a><a href="#name-transparency-service-client" class="section-name selfRef">Transparency Service Client Applications</a>
+<a href="#section-9.2.4" class="section-number selfRef">9.2.4. </a><a href="#name-transparency-service-client" class="section-name selfRef">Transparency Service Client Applications</a>
           </h4>
-<p id="section-9.2.5-1">Authentication of Client applications is out of scope for this document.
+<p id="section-9.2.4-1">Authentication of Client applications is out of scope for this document.
 Transparency Services <span class="bcp14">MUST</span> authenticate both Client applications and the Issuer of Signed Statements in order to ensure that implementation specific authentication and authorization policies are enforced.
-The specification of authentication and authorization policies is out of scope for this document.<a href="#section-9.2.5-1" class="pilcrow">¶</a></p>
+The specification of authentication and authorization policies is out of scope for this document.<a href="#section-9.2.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-impersonation">
-<section id="section-9.2.6">
+<section id="section-9.2.5">
           <h4 id="name-impersonation">
-<a href="#section-9.2.6" class="section-number selfRef">9.2.6. </a><a href="#name-impersonation" class="section-name selfRef">Impersonation</a>
+<a href="#section-9.2.5" class="section-number selfRef">9.2.5. </a><a href="#name-impersonation" class="section-name selfRef">Impersonation</a>
           </h4>
-<p id="section-9.2.6-1">The identity resolution mechanism is trusted to associate long-term identifiers with their public signature-verification keys.
-Transparency Services and other parties may record identity-resolution evidence to facilitate its auditing.<a href="#section-9.2.6-1" class="pilcrow">¶</a></p>
-<p id="section-9.2.6-2">If one of the credentials of an Issuer gets compromised, the SCITT Architecture still guarantees the authenticity of all Signed Statements signed with this credential that have been registered on a Transparency Service before the compromise.
-It is up to the Issuer to notify Transparency Services of credential revocation to stop Relying Parties from accepting Signed Statements signed with compromised credentials.<a href="#section-9.2.6-2" class="pilcrow">¶</a></p>
+<p id="section-9.2.5-1">The identity resolution mechanism is trusted to associate long-term identifiers with their public signature-verification keys.
+Transparency Services and other parties may record identity-resolution evidence to facilitate its auditing.<a href="#section-9.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-9.2.5-2">If one of the credentials of an Issuer gets compromised, the SCITT Architecture still guarantees the authenticity of all Signed Statements signed with this credential that have been registered on a Transparency Service before the compromise.
+It is up to the Issuer to notify Transparency Services of credential revocation to stop Relying Parties from accepting Signed Statements signed with compromised credentials.<a href="#section-9.2.5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
