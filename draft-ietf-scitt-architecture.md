@@ -578,9 +578,9 @@ Multi-tenant support can be enabled through the use of identifiers in the `iss` 
 Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is accepted to be registered to the Append-only Log.
 
 Transparency Services MUST maintain Registration Policies.
-Transparency Services MUST maintain a list of trust anchors (see definition of trust anchor in {{-Glossary}}) to verify Issuers of Signed Statements.
+Transparency Services MUST maintain a list of trust anchors (see definition of trust anchor in {{-Glossary}}) in order to check the signatures of Signed Statements, either separately, or inside Registration Policies.
 Transparency Services MUST authenticate Signed Statements as part of a Registration Policy.
-For instance, a trust anchor could be an X.509 root certificate, a pointer to an OpenID Connect identity provider, or any other COSE-compatible trust anchor.
+For instance, a trust anchor could be an X.509 root certificate (directly or its thumbprint), a pointer to an OpenID Connect identity provider, or any other COSE-compatible trust anchor.
 
 Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing the associated Receipts.
 
