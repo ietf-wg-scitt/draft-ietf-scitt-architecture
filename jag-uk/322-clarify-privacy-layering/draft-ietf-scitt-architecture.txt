@@ -1250,11 +1250,10 @@ Table of Contents
    Statements into a collection does not leak information about the
    contents of the other Signed Statements referred to.
 
-   The confidentiality of queries is implementation-specific, and
-   generally not guaranteed.  For example, while offline Envelope
-   validation of Signed Statements is private, a Transparency Service
-   may monitor which of its Transparent Statements are being verified
-   from lookups to ensure their freshness.
+   For example, while offline Envelope validation of Signed Statements
+   is private, a Transparency Service may monitor which of its
+   Transparent Statements are being verified from lookups to ensure
+   their freshness.
 
 9.  Security Considerations
 
