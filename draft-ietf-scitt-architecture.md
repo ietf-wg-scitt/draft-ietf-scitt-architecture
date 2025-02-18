@@ -886,7 +886,7 @@ While not strictly required for interoperability of Receipts and Signed Statemen
 
 Further, in some implementations of Transparency Services such Signed Statements may be made available publicly for dissemination, wider auditing, or to support query confidentiality. In such cases Issuers are responsible for ensuring that Signed Statements submitted to public access services are acceptable for public disclosure.
 
-In some deployments a special role such as an Auditor might require and be given access to Signed Statements.
+In some deployments a special role such as an Auditor might require and be given access to both the Transparency Service and related Adjacent Services.
 
 Once a Signed Statement has been Registered with a Transparency Service its log entry cannot be removed. In most Transparency Service implementations the append-only log only carries cryptographic metadata (eg a hash) rather than the complete Signed Statement and so does not raise immediate privacy concerns. Nonetheless even this hash can be used to hold an Issuer accountable for statements if an adversary has a copy of the pre-image and the log data, and the number of log entries registered can also give clues about Issuer activity. Such side-channel signals are out of scope for this document to deal with, but should be considered in sensitive use cases.
 
