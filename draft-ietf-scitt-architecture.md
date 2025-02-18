@@ -892,7 +892,6 @@ Once a Signed Statement has been Registered with a Transparency Service its log 
 
 Care should be taken by Issuers to ensure that linking Signed Statements into a collection does not leak information about the contents of the other Signed Statements referred to.
 
-The confidentiality of queries is implementation-specific, and generally not guaranteed.
 For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.
 
 # Security Considerations
