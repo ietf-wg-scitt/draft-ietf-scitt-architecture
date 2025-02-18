@@ -877,7 +877,7 @@ Such policies may use as input all information in the Envelope, the Receipt, and
 
 # Privacy Considerations
 
-All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but this does not necessarily exclude network traffic analysis.
+Interactions with Transparency Services MUST use appropriately strong encryption and authorization technologies.
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
 Issuers are responsible for verifying that the Transparency Service's privacy and security posture is suitable for the contents of their Signed Statements prior to Registration.
