@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 21 August 2025                                       C. Fournet
+Expires: 22 August 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        17 February 2025
+                                                        18 February 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 August 2025.
+   This Internet-Draft will expire on 22 August 2025.
 
 Copyright Notice
 
@@ -1213,9 +1213,10 @@ Table of Contents
    Statements prior to Registration.  In particular, Issuers must
    carefully review the inclusion of private, confidential, or
    personally identifiable information (PII) in their Statements against
-   the privacy posture of the Transparency Service.  This document
-   supports opaque references (such as hashes) for cases where
-   information needs to be included on the log whilst remaining secret.
+   the privacy posture of the Transparency Service.  Using a hash as the
+   statement about an artifact, supports cases where information needs
+   to be included on the append-only log whilst remaining opaque to the
+   transparency service.
 
    While not strictly required for interoperability of Receipts and
    Signed Statement Registration, most Transparency Services are

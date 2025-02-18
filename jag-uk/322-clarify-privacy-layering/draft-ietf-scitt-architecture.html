@@ -17,12 +17,12 @@ The rise in popularity of verifiable data structures as a mechanism to make acto
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
 Issuers can register their Signed Statements on one or more Transparency Services, with the guarantee that any Relying Parties will be able to verify them. 
     " name="description">
-<meta content="xml2rfc 3.26.0" name="generator">
+<meta content="xml2rfc 3.27.0" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-scitt-architecture-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.26.0
-    Python 3.12.8
+  xml2rfc 3.27.0
+    Python 3.12.9
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
@@ -1056,7 +1056,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 21 August 2025</td>
+<td class="center">Expires 22 August 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1069,12 +1069,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-02-17" class="published">17 February 2025</time>
+<time datetime="2025-02-18" class="published">18 February 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-08-21">21 August 2025</time></dd>
+<dd class="expires"><time datetime="2025-08-22">22 August 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1143,7 +1143,7 @@ Issuers can register their Signed Statements on one or more Transparency Service
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2480,7 +2480,7 @@ Such policies may use as input all information in the Envelope, the Receipt, and
       </h2>
 <p id="section-8-1">All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but this does not necessarily exclude network traffic analysis.<a href="#section-8-1" class="pilcrow">¶</a></p>
 <p id="section-8-2">The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration. Issuers are responsible for verifying that the privacy and security posture of the Transparency Service is suitable for the contents of their Signed Statements prior to Registration. In particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the privacy posture of the Transparency Service.
-This document supports opaque references (such as hashes) for cases where information needs to be included on the log whilst remaining secret.<a href="#section-8-2" class="pilcrow">¶</a></p>
+Using a hash as the statement about an artifact, supports cases where information needs to be included on the append-only log whilst remaining opaque to the transparency service.<a href="#section-8-2" class="pilcrow">¶</a></p>
 <p id="section-8-3">While not strictly required for interoperability of Receipts and Signed Statement Registration, most Transparency Services are expected to keep copies of Registered Signed Statements in an auxiliary service nd make them available to authorized users for ease of indexing, auditing or similar activities.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <p id="section-8-4">Further, in some implementations of Transparency Services such Signed Statements may be made available publicly for dissemination, wider auditing, or to support query confidentiality. In such cases Issuers are responsible for ensuring that Signed Statements submitted to public access services are acceptable for public disclosure.<a href="#section-8-4" class="pilcrow">¶</a></p>
 <p id="section-8-5">In some deployments a special role such as an Auditor might require and be given access to Signed Statements.<a href="#section-8-5" class="pilcrow">¶</a></p>
