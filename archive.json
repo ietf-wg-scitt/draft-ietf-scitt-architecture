@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-16T00:51:52.023365+00:00",
+  "timestamp": "2025-02-18T00:46:39.035887+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5614,7 +5614,7 @@
       "labels": [],
       "body": "Feedback from @mcr:\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> I think [4.1.2](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-10.html#name-initialization-and-bootstra) does not need to be stated.\r\n> Just explain what a well formed, (empty) registry looks like.\r\n",
       "createdAt": "2024-12-16T21:08:52Z",
-      "updatedAt": "2025-02-11T15:53:13Z",
+      "updatedAt": "2025-02-17T14:14:34Z",
       "closedAt": null,
       "comments": [
         {
@@ -5630,6 +5630,13 @@
           "body": "Jon, we use the X.09 thumbprint to verify that a trusted key was used in the transaction: \n\nThe thumbprint is dynamically generated using the SHA-1 algorithm and does not physically exist in the certificate. Since the thumbprint is a unique value for the certificate, it is commonly used to find a particular certificate in a certificate store.",
           "createdAt": "2025-02-11T15:49:01Z",
           "updatedAt": "2025-02-11T15:49:01Z"
+        },
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I have solicited feedback from CT implementers and will feed back here in due course.",
+          "createdAt": "2025-02-17T14:14:33Z",
+          "updatedAt": "2025-02-17T14:14:33Z"
         }
       ]
     },
@@ -5672,7 +5679,7 @@
       "labels": [],
       "body": "From @mcr,\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> it seems that the receipt received from service A can easily be added to the statement submitted to service B.  It's unclear to me that the signed statement submitted to service A can then be updated.  Does the Append-Only Log record just the protected and payload of the Sign1, or does it also witness the unprotected header?\r\n\r\nWe don't seem to clarify what content is used to append to the ledger. Is it just the to-be-signed-bytes, or the entirety of the signed statement, including the unprotected header?\r\n",
       "createdAt": "2024-12-16T22:37:29Z",
-      "updatedAt": "2025-02-13T11:57:27Z",
+      "updatedAt": "2025-02-17T16:35:47Z",
       "closedAt": null,
       "comments": [
         {
@@ -5849,6 +5856,48 @@
           "body": "@SteveLasker @robinbryce @JAG-UK I realise now, as I am editing to add these changes that:\n\n> Upon registration, the unprotected header MUST be empty, or a 400 is returned via SCRAPI to provide consistency and avoid potential MIM attacks.\n\nsubstantially conflicts with:\n\n> If `x5t` is included in the protected header, an `x5chain` with a leaf certificate corresponding to the `x5t` value MAY be included in the unprotected header.\n\nTo be clear, I am fine with removing this, and mandating that `x5chain` must be protected by being placed directly in the protected header (it is what our implementation does, for the reasons spelled out in #307 and #309). But do we still want to allow implementations that include supporting evidence in unprotected header params, so long as they have a binding to the protected header (`x5t` in this case), _verified_ at registration?\n\nIf so, we need more subtle wording, which defines an implementation-specific set of authenticated/bound unprotected header params. Statements containing unprotected header params other than those MUST be rejected then.\n\nWhat do you think? Is unprotected `x5chain` worth the nuance?",
           "createdAt": "2025-02-13T11:57:26Z",
           "updatedAt": "2025-02-13T11:57:26Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "\n> If so, we need more subtle wording, which defines an implementation-specific set of authenticated/bound unprotected header params. Statements containing unprotected header params other than those MUST be rejected then.\n> \n> What do you think? Is unprotected `x5chain` worth the nuance?\n\nCan we get away with something like just\n\n\nUpon registration, the unprotected header MUST be empty, of content not otherwise bound explicity by protected headers, or a 400 is returned via SCRAPI to provide consistency and avoid potential MIM attacks.\n\nOr does this force us to enumerate \"bound explicitly\" in a laborious way ?\n",
+          "createdAt": "2025-02-16T09:21:08Z",
+          "updatedAt": "2025-02-16T09:21:08Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The unprotected header is an extension point, which can include additional signatures, cryptographic keys or other data.\nVariability in the unprotected header has an impact on storage costs for adjacent services, and on verification in scenarios involving multiple receipts that cover the full path from a statement to a consistency proof.\n\nstatement -> signed-statement -> receipt-of-inclusion -> receipt-of-consistency.\n\nThe unprotected header SHOULD be empty when registering a signed statement.\n\nThe server MAY return a 400, and decline to register signed statements with non empty unprotected headers.\n\nThe evaluation of a signed statement, is part of the registration policy for a transparency service.\n\n\n\n\n\n\n\n",
+          "createdAt": "2025-02-16T16:10:43Z",
+          "updatedAt": "2025-02-16T16:40:14Z"
+        },
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I like Orie's suggestion. It's very simple and avoids treading on the toes of other bits of the document, or indeed other specs (the unprotected header belongs to COSE - it should already be clear that its contents are not covered by the Issuer Signature).",
+          "createdAt": "2025-02-16T16:54:38Z",
+          "updatedAt": "2025-02-16T16:54:38Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@OR13 @JAG-UK that's quite a bit more vague than what @robinbryce proposes though, it leaves the door open to services accepting statements with unbound unprotected header params, without specifying if they are to be stripped before inclusion. And I think we've broadly agreed in this thread that this is really undesirable.\n\nI'm otherwise fine with it, in that it allows all desired behaviours (strict rejection of any unprotected header params, limited acceptance of bound unprotected params).",
+          "createdAt": "2025-02-17T09:02:35Z",
+          "updatedAt": "2025-02-17T09:02:35Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@achamayou we can make the SHOULD a MUST, and the MAY a MUST.\n\nIf you make these MUSTs, you would not be able to register a receipt in a transparency service.\nThat use case might not matter, but just for the sake of clarity:\n\nLets assume you have `receipt.gov.cose` for `software.sbom.cose` and after taking a dependency on the sbom, you want to register both.\n\nYou can easily register `software.sbom.cose`, because its just a signed statement.\nYou cannot register `receipt.gov.cose` without breaking the proof, since the proof is in the unprotected header.\n\n... You could decide to drop the unprotected header parameters for the receipt, but then you would loose the ability to follow an explicit validation chain for proof that they vendor had validated `receipt.gov.cose`, because the receipt for the gov receipt would be over a \"broken proof\".\n\nbuilding on the example above:\n\nstatement -> signed-statement -> receipt-of-inclusion(vendor) -> receipt-of-consistency(vendor).\n\nstatement -> signed-statement -> receipt-of-inclusion(gov) -> receipt-of-consistency(gov).\n\nreceipt-of-inclusion(gov) -> receipt-of-inclusion(vendor) -> receipt-of-consistency(vendor).\n\nIf we don't care to have policies that mandate the inclusion of receipts from \"external\" transparency services, than perhaps the MUST is fine.\n\n> it leaves the door open to services accepting statements with unbound unprotected header params, without specifying if they are to be stripped before inclusion.\n\nI think we are talking about specifying conformance vs interop here.\nDo we need interop around the 2 receipt case?... also, nothing stops a transparency service from refusing to register receipts from other transparency services if the SHOULD is preferred, that is registration policy stuff.\n\nI do think it would be complicated to normatively define a single way to handle multiple receipts at this point.\nThe SHOULD is a way to allow that use case, without specifying it.\n",
+          "createdAt": "2025-02-17T14:43:26Z",
+          "updatedAt": "2025-02-17T15:02:17Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@OR13 I understand the multiple-receipt situation, and I am worried we are [stuck in a loop](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/321#issuecomment-2552174680). I can see that being able to submit a transparent statement and incrementally pile up receipts is convenient. I can also understand (even I don't follow it) the rationale behind the `x5t`/`x5chain` split.\n\nThese are two limited cases where unprotected header parameters are effectively protected, either indirectly, or by another root of trust, such as `receipt.gov.cose` in your example.\n\nThe point made in the discussion above is: outside of some exceptions, unprotected header parameters have unknown provenance, since there is no way for the TS to authenticate them. A malicious TS could manufacture some, and an Issuer would not be able to denounce it. A malicious Client sending a statement to the TS on behalf of an Issuer could do the same.\n\nIs it worth removing the ability for auditors to replay registration and end-to-end integrity on statements, for convenience on multiple receipts and detaching `x5chain`?\n\nIf we go the SHOULD route, we say that it's up to the TS implementation to decide how to handle unprotected headers, and whether to provide these guarantees. It's not possible to say that a TS implementing the RFC always meets that bar.\n\nI will add, playing devil's advocate here, that even TS implementations that reject non-empty protected headers still have to be careful in how they allow registration policies to be implemented to achieve replayability, because any amount of non-determinism in the policy logic is enough to wreck it.\n\nSo I'll go ahead with this change.\n",
+          "createdAt": "2025-02-17T16:35:46Z",
+          "updatedAt": "2025-02-17T16:35:46Z"
         }
       ]
     },
@@ -5864,12 +5913,22 @@
         "SteveLasker",
         "JAG-UK"
       ],
-      "labels": [],
+      "labels": [
+        "has-pr"
+      ],
       "body": "From @mcr\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> section 5:\r\n>        Transparency Services MAY support anonymous access. Issuers SHOULD\r\n>        ensure Signed Statements submitted to public access services are\r\n>        acceptable for public disclosure. Publicly accessible Signed\r\n>        Statements MUST NOT carry confidential information.\r\n>I suggest writing:\r\n>  Transparency Services supporting anonymous access need to ensure that\r\n>  issuers are aware of this, snd SHOULD review the submitted statements for\r\n>  attributes known to contain PII.\r\n\r\n> I don't think it's useful for the MUST NOT to be present. It's neither enforceable nor knowable by any party.\r\n",
       "createdAt": "2024-12-16T22:52:11Z",
-      "updatedAt": "2025-02-11T15:53:05Z",
+      "updatedAt": "2025-02-17T12:53:21Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "So it turns out we'd already merged a fix for this, but since I was assigned it I went ahead and tried to tidy up even more anyway.\n\nI have created a PR which we can take or leave.",
+          "createdAt": "2025-02-17T12:51:29Z",
+          "updatedAt": "2025-02-17T12:51:29Z"
+        }
+      ]
     },
     {
       "number": 323,
@@ -6078,15 +6137,17 @@
       "id": "I_kwDOIvmHss6kyBAg",
       "title": "Top level section for Receipts",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/340",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "pending-close"
+      ],
       "body": "While reviewing SCRAPI it points to the Arch document for the definition of SCITT Objects and Identifiers (Signed Statements, Receipts, and Transparent Statements).\r\nThe current Arch document has top-level definitions for Signed Statements and Transparent Statements but doesn't define Receipts.\r\nThe appendix has identifiers for Signed Statements, Receipts, and Transparent Statements. \r\n\r\nWhile the details of Receipts are deferred to [I-D.draft-ietf-cose-merkle-tree-proofs](https://datatracker.ietf.org/doc/html/draft-ietf-cose-merkle-tree-proofs-07), the TOC should cover the concept as a top-level definition for reference.",
       "createdAt": "2024-12-31T17:48:02Z",
-      "updatedAt": "2025-02-11T15:49:08Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-17T15:33:17Z",
+      "closedAt": "2025-02-17T15:33:16Z",
       "comments": [
         {
           "author": "rjb4standards",
@@ -6101,6 +6162,13 @@
           "body": "Section 6.1 of the current editors draft shows the COSE structure for Receipts so this is covered",
           "createdAt": "2025-02-11T15:49:07Z",
           "updatedAt": "2025-02-11T15:49:07Z"
+        },
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Move to close as above: This comment is against an outdated revision.",
+          "createdAt": "2025-02-17T14:15:05Z",
+          "updatedAt": "2025-02-17T14:15:05Z"
         }
       ]
     },
@@ -44358,13 +44426,13 @@
       "labels": [],
       "body": "Fixes #326 ",
       "createdAt": "2024-12-23T23:17:17Z",
-      "updatedAt": "2025-02-11T15:52:37Z",
+      "updatedAt": "2025-02-17T15:53:34Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "fbd114984744207b04eadfb2f9f23280fae1e63d",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "issue-326",
-      "headRefOid": "fbf7c73e1067806cc56569fa412d4fc16cd379f9",
+      "headRefOid": "6dc5bf3c2bcb5101fa1e20148ddfa0a133d3741b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -44562,6 +44630,39 @@
           "createdAt": "2025-02-11T15:52:37Z",
           "updatedAt": "2025-02-11T15:52:37Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cPonq",
+          "commit": {
+            "abbreviatedOid": "fbf7c73"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:15:40Z",
+          "updatedAt": "2025-02-17T15:15:40Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "This PR is to avoid readers implementing numbers that are not assigned.\r\nWhile we're pursuing assignment, we should merge this PR to indicate the numbers are not yet assigned.",
+              "createdAt": "2025-02-17T15:15:40Z",
+              "updatedAt": "2025-02-17T15:15:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cP9-2",
+          "commit": {
+            "abbreviatedOid": "6dc5bf3"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-17T15:53:34Z",
+          "updatedAt": "2025-02-17T15:53:34Z",
+          "comments": []
         }
       ]
     },
@@ -44570,21 +44671,21 @@
       "id": "PR_kwDOIvmHss6GH8HR",
       "title": "Include COSE HASH Envelope reference",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/334",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #333 ",
       "createdAt": "2024-12-23T23:28:19Z",
-      "updatedAt": "2025-01-20T17:32:47Z",
+      "updatedAt": "2025-02-17T15:11:21Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "issue-333",
       "headRefOid": "c5f14733a728e0a3105c6754e485c9512233d513",
-      "closedAt": null,
+      "closedAt": "2025-02-17T15:11:21Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -44658,7 +44759,7 @@
       "labels": [],
       "body": "Fixes #329 ",
       "createdAt": "2024-12-23T23:39:40Z",
-      "updatedAt": "2025-02-11T15:16:36Z",
+      "updatedAt": "2025-02-17T17:35:24Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
@@ -44749,6 +44850,79 @@
           "createdAt": "2025-02-11T15:16:36Z",
           "updatedAt": "2025-02-11T15:16:36Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cP9Ih",
+          "commit": {
+            "abbreviatedOid": "cec91f4"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:52:10Z",
+          "updatedAt": "2025-02-17T15:52:10Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "You could make this a reference directly to the cose receipts draft.\r\nhttps://datatracker.ietf.org/doc/html/draft-ietf-cose-merkle-tree-proofs-07#section-3-1.6.1\r\n\r\nI know its probably a bit late to get rid of \"append only log\",... but COSE Receipts calls these \"Verifiable Data Structures\" and establishes a register for different flavors of them. having both terms (append only log & verifiable data structure) is perhaps confusing.",
+              "createdAt": "2025-02-17T15:52:10Z",
+              "updatedAt": "2025-02-17T15:52:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cP9nr",
+          "commit": {
+            "abbreviatedOid": "cec91f4"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "This PR mixes Adjacent service definition with Transparency Service definition and should be closed.",
+          "createdAt": "2025-02-17T15:53:02Z",
+          "updatedAt": "2025-02-17T15:53:02Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cQT96",
+          "commit": {
+            "abbreviatedOid": "cec91f4"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T16:31:28Z",
+          "updatedAt": "2025-02-17T16:31:28Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nTransparency Services may provide ancillary services to store the contents of the Signed Statement. The Append-only Log MUST store a one-way commitment binding the statement to the log. The commitment MAY also be hiding.\r\n```\r\nA sha256 hash, for example, satisfies the MUST, but is not hiding (proving the statement is on the log reveals the statement to the prover). A pedersen commitment would be both binding and hiding. A commitment is probably a general enough concept that this does not limit the possible implementations ?",
+              "createdAt": "2025-02-17T16:31:28Z",
+              "updatedAt": "2025-02-17T16:32:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cQ35Q",
+          "commit": {
+            "abbreviatedOid": "cec91f4"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T17:35:24Z",
+          "updatedAt": "2025-02-17T17:35:24Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "This architecture is limited to \"signed statements\", the payload can be whatever you want it to be, but the signed statement is a cose sign1.\r\n\r\nI don't think normative language belongs in this document beyond:\r\n\r\nA signed statement is a cose-sign1, ... the verification procedure is define in ....\r\n\r\nand\r\n\r\nA receipt is a cose-sign1, ... the verification precedure is defined in ...\r\n\r\nThese are normative statements, they just don't use MUST.\r\n\r\nI don't think we can get consensus to say \"payload of a signed statement MUST/MAY/SHOULD ....\"",
+              "createdAt": "2025-02-17T17:35:24Z",
+              "updatedAt": "2025-02-17T17:35:24Z"
+            }
+          ]
         }
       ]
     },
@@ -44764,7 +44938,7 @@
       "labels": [],
       "body": "Fixes #330 \r\n",
       "createdAt": "2024-12-24T00:15:22Z",
-      "updatedAt": "2025-02-04T16:08:16Z",
+      "updatedAt": "2025-02-17T15:48:42Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
@@ -44834,6 +45008,46 @@
               "body": "```suggestion\r\n- When using x.509 certificates, support for either `x5t` or `x5chain` in the protected header is REQUIRED to implement.\r\n```\r\n\r\n^ This is all that is needed.",
               "createdAt": "2025-02-04T16:08:16Z",
               "updatedAt": "2025-02-04T16:08:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cPjXp",
+          "commit": {
+            "abbreviatedOid": "c4ce0b8"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:06:44Z",
+          "updatedAt": "2025-02-17T15:06:44Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "Why the deletion? Is this a deferral to the COSE spec?",
+              "createdAt": "2025-02-17T15:06:44Z",
+              "updatedAt": "2025-02-17T15:06:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cP7Pa",
+          "commit": {
+            "abbreviatedOid": "c4ce0b8"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:48:42Z",
+          "updatedAt": "2025-02-17T15:48:42Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": " https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/336#discussion_r1941469555",
+              "createdAt": "2025-02-17T15:48:42Z",
+              "updatedAt": "2025-02-17T15:48:42Z"
             }
           ]
         }
@@ -45179,7 +45393,7 @@
       "labels": [],
       "body": "Addressing a concern raised by @briankr-ms, to clarify that the registration policies can contain trust anchors. To give a concrete example, scitt-ccf-ledger policies can contain one or more trust anchors in the following way:\r\n\r\n```\r\nexport function apply(profile, phdr) {\r\nif (phdr.cwt.iss.startsWith(\"did:x509:0:sha256:HnwZ4lezuxq_GVcl_Sk7YWW170qAD0DZBLXilXet0jg::eku::...\"))\r\n{\r\n...\r\n```\r\n\r\nWhich encodes the thumbprint of a trust anchor, and the constraint that the leaf of x5chain must have certain EKU bits set. More detail can be found if desired at https://github.com/microsoft/did-x509\r\n\r\nFor the avoidance of doubt, this is _not_ trying to mention `did` in the draft. This is just clarifying that roots of trust can be encoded in policy. One could also imagine a `did`-free policy along of the lines of:\r\n\r\n```\r\nexport function apply(profile, phdr) {\r\nif (thumbprint(phdr.x5chain[0]) == \"f5ceec3fd104994da13b32e8bdc21bd864e4e7f579ecd157c38c15c1b2390c9f\"))\r\n{\r\n...\r\n```\r\n\r\nHaving them inline is not just a convenience, some use cases will have a non-trivial mapping between acceptable statements and trust anchors, and the set of anchors alone will not be sufficient for a complete audit in that case.",
       "createdAt": "2025-02-13T13:26:43Z",
-      "updatedAt": "2025-02-13T16:45:46Z",
+      "updatedAt": "2025-02-17T17:28:47Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "6e5646b3a2da6183c820949d4143f1de8ff64e95",
@@ -45197,9 +45411,504 @@
           "body": "@achamayou Having identified trust anchors is certainly a requirement. Equally important is to have the list of known \"trusted keys\" that a Transparency Service will trust for any submitted signed statements. The Transparency Service will need to identify the specific key fingerprints/thumbprints assigned to signing parties that are allowed to register a signed statement, which must be verified as part of the registration process for new \"trusted signers\" that allowed to submit signed statements for placement in the registry. \r\nThe signing parties in a signed statement MUST be verified as an authorized party using a recognized/authorized signing key fingerprint/thumbprint when verifying signed statements that go into the registry, otherwise there will be doubt about the trustworthiness of the SCITT process to ensure integrity.",
           "createdAt": "2025-02-13T16:30:30Z",
           "updatedAt": "2025-02-13T16:45:46Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> The signing parties in a signed statement MUST be verified as an authorized party using a recognized/authorized signing key fingerprint/thumbprint when verifying signed statements that go into the registry, otherwise there will be doubt about the trustworthiness of the SCITT process to ensure integrity.\r\n\r\n@rjb4standards I completely agree with this, but what I am saying (and it sounds like you perhaps disagree with?) is that the policy can pick these keys at registration time, depending on context. There may not be a single list, materialised anywhere, and used unconditionally. Instead the list may be decided programmatically, as the pseudo-code in the description shows.",
+          "createdAt": "2025-02-17T16:46:08Z",
+          "updatedAt": "2025-02-17T16:46:08Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@achamayou I think we are very close on this point. I'm suggesting that a party must be authorized/approved to submit signed statements with a Transparency Service as part of Registration Policy doctrine before being allowed to submit a signed statement. Each approved signing party must provide identification of the key they will use to represent themselves in a signed statement, so that a Transparency Service can validate that a signed statement came from an authorized, trusted signer identified by the signing key fingerprint/thumbprint on file for that party, before a signed statement will be recorded in the Registry. ",
+          "createdAt": "2025-02-17T16:53:39Z",
+          "updatedAt": "2025-02-17T16:53:39Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@rjb4standards agreed, let's see if we can meet completely :)\r\n\r\n> Each approved signing party must provide identification of the key they will use to represent themselves in a signed statement, so that a Transparency Service can validate that a signed statement came from an authorized, trusted signer identified by the signing key fingerprint/thumbprint on file for that party, before a signed statement will be recorded in the Registry.\r\n\r\nIdentification sounds too strong to me, it sounds like the statement must contain the fingerprint of the key itself. We use a `did:x509` (but we could do this with separate claims, the did format is a distraction here, as explained in the PR description) to express the following:\r\n\r\n\"Whatever key signed this, it must be the leaf in a certificate chain rooted in a certificate with _this_ fingerprint, _and_, it must have the following bits set in its EKU section\".\r\n\r\nThat does not identify a single key. It purposefully allows easy key rotation, and trusts the signer to assign different EKU bits to different Issuers, and to do a good job of that. It is not practical, nor desirable for the signer to burden the ledger with constant updates about key rotations, instead this is kept track of separately. The ledger is content with a looser binding that a fingerprint, but one that has a clear trust anchor (the policy), and can be replayed/verified by any party with access to the ledger alone.",
+          "createdAt": "2025-02-17T17:15:05Z",
+          "updatedAt": "2025-02-17T17:15:05Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@achamayou this approach would allow \"any\" key issued by a trusted CA/trust anchor to sign a statement, and it would be considered valid, even if they key belonged to a party that was not authorized to sign a specific artifact, like an SBOM. You and I can both hold valid keys from the same CA, but only my key should be considered authoritative on my SBOM artifact. Your key used to sign my SBOM should be rejected as \"not authorized\".",
+          "createdAt": "2025-02-17T17:23:49Z",
+          "updatedAt": "2025-02-17T17:23:49Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6cP6fH",
+          "commit": {
+            "abbreviatedOid": "1a85168"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:47:22Z",
+          "updatedAt": "2025-02-17T15:47:23Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nTransparency Services MUST maintain a list of trust anchors (see definition of trust anchor in {{-Glossary}}) in order to check the signatures of Signed Statements, either separately, or inside Registration Policies.\r\n```",
+              "createdAt": "2025-02-17T15:47:22Z",
+              "updatedAt": "2025-02-17T15:47:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cP6vu",
+          "commit": {
+            "abbreviatedOid": "1a85168"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-17T15:47:47Z",
+          "updatedAt": "2025-02-17T15:47:47Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cP9TJ",
+          "commit": {
+            "abbreviatedOid": "1a85168"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:52:27Z",
+          "updatedAt": "2025-02-17T15:52:27Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "@OR13 \r\nI would also add: \r\nTransparency Services MUST maintain a list of trusted keys that are valid for submitting signed statements.",
+              "createdAt": "2025-02-17T15:52:27Z",
+              "updatedAt": "2025-02-17T15:52:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cQXhp",
+          "commit": {
+            "abbreviatedOid": "1a85168"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T16:38:40Z",
+          "updatedAt": "2025-02-17T16:38:40Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "The purpose of this change is to clarify that maintaining a standalone list of keys is not necessary, because a policy can fulfill the same role, with more nuance.",
+              "createdAt": "2025-02-17T16:38:40Z",
+              "updatedAt": "2025-02-17T16:38:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cQyp2",
+          "commit": {
+            "abbreviatedOid": "1a85168"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T17:28:47Z",
+          "updatedAt": "2025-02-17T17:28:47Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "The purpose of my proposed change is to eliminate confusion regarding interpretation of what 'verify Issuers' might mean.",
+              "createdAt": "2025-02-17T17:28:47Z",
+              "updatedAt": "2025-02-17T17:28:47Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 346,
+      "id": "PR_kwDOIvmHss6LdLfF",
+      "title": "Update PII handling advice in security section",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/346",
+      "state": "OPEN",
+      "author": "JAG-UK",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Addresses Issue #322",
+      "createdAt": "2025-02-17T12:52:39Z",
+      "updatedAt": "2025-02-17T16:14:35Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "6e5646b3a2da6183c820949d4143f1de8ff64e95",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "jag-uk/322-clarify-privacy-layering",
+      "headRefOid": "35c5f5e3303dffe754be9dc78d568b9ea2b73ee5",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6cPFV8",
+          "commit": {
+            "abbreviatedOid": "de88fee"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2025-02-17T14:17:33Z",
+          "updatedAt": "2025-02-17T14:17:33Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cPYPE",
+          "commit": {
+            "abbreviatedOid": "de88fee"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T14:48:43Z",
+          "updatedAt": "2025-02-17T14:48:43Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "```suggestion\r\nIssuers are responsible for verifying that the privacy and security posture of the Transparency Service is suitable for the contents of their Signed Statements prior to Registration.\r\nIn particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the privacy posture of the Transparency Service.\r\n```",
+              "createdAt": "2025-02-17T14:48:43Z",
+              "updatedAt": "2025-02-17T14:48:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cPZsE",
+          "commit": {
+            "abbreviatedOid": "3f8817c"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-02-17T14:50:53Z",
+          "updatedAt": "2025-02-17T14:50:53Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cPrXf",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:20:27Z",
+          "updatedAt": "2025-02-17T15:20:27Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nInteractions with Transparency Services MUST use appropriately strong encryption and authorization technologies.\r\n```",
+              "createdAt": "2025-02-17T15:20:27Z",
+              "updatedAt": "2025-02-17T15:20:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cPr3g",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:21:20Z",
+          "updatedAt": "2025-02-17T15:21:20Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "Not attached to this language, but we may not need to talk about traffic analysis here, given that the architecture does not specific a network protocol.",
+              "createdAt": "2025-02-17T15:21:20Z",
+              "updatedAt": "2025-02-17T15:21:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cPvuE",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:28:02Z",
+          "updatedAt": "2025-02-17T15:28:02Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\nUsing a hash as the statement about an artifact, supports cases where information needs to be included on the append-only log whilst remaining opaque to the transparency service.\r\n```",
+              "createdAt": "2025-02-17T15:28:02Z",
+              "updatedAt": "2025-02-17T15:28:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cPxrv",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:31:28Z",
+          "updatedAt": "2025-02-17T15:31:28Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "Not sure if we are trying to talk about hash envelope here, and we should avoid a direct reference.\r\n\r\nObviously a registration policy for accepting signed hashes, might need some way to look them up (in a registry for example), before deciding to accept them... at that point, they would not be secret.\r\n\r\nI would prefer to not conflate privacy issues with adjacent services and registration policies, with the generic privacy considerations of a transparency service.",
+              "createdAt": "2025-02-17T15:31:28Z",
+              "updatedAt": "2025-02-17T15:31:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cPyE4",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:32:10Z",
+          "updatedAt": "2025-02-17T15:32:11Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\nWhile not strictly required for interoperability of Receipts and Signed Statement Registration, most Transparency Services are expected to keep copies of Registered Signed Statements in an adjacent service and make them available to authorized users for ease of indexing, auditing or similar activities.\r\n```",
+              "createdAt": "2025-02-17T15:32:11Z",
+              "updatedAt": "2025-02-17T15:32:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cPzcg",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:34:36Z",
+          "updatedAt": "2025-02-17T15:34:36Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "https://datatracker.ietf.org/doc/html/draft-ietf-scitt-architecture-10#section-4.1.4 \r\n\r\nNot sure what this sentence is trying to say, perhaps:\r\n\r\nThe privacy considerations of adjacent services, such as artifact repositories, are out of scope for this document.\r\n",
+              "createdAt": "2025-02-17T15:34:36Z",
+              "updatedAt": "2025-02-17T15:34:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cP0bt",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:36:25Z",
+          "updatedAt": "2025-02-17T15:36:25Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "Are we talking about submitted a signed statement to an artifact repository here?\r\n\r\nOr submitting a signed statement to public transparency service?",
+              "createdAt": "2025-02-17T15:36:25Z",
+              "updatedAt": "2025-02-17T15:36:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cP083",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:37:23Z",
+          "updatedAt": "2025-02-17T15:37:24Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "```suggestion\r\nIn some deployments a special role such as an Auditor might require and be given access to both the Transparency Service and related Adjacent Services.\r\n```",
+              "createdAt": "2025-02-17T15:37:23Z",
+              "updatedAt": "2025-02-17T15:37:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cP3Kx",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:41:16Z",
+          "updatedAt": "2025-02-17T15:41:17Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\nIn most Transparency Service implementations the append-only log only carries cryptographic metadata (eg a hash) rather than the complete Signed Statement and so does not raise immediate privacy concerns. \r\nBy analyzing the relationship between data stored in the Transparency Service and data stored in Adjacent Services, it is possible to perform metadata analysis, which could reveal the order in which artifacts were built, signed and uploaded.\r\n```",
+              "createdAt": "2025-02-17T15:41:16Z",
+              "updatedAt": "2025-02-17T15:41:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cP3gZ",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:41:53Z",
+          "updatedAt": "2025-02-17T15:41:53Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-02-17T15:41:53Z",
+              "updatedAt": "2025-02-17T15:41:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cP3vS",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:42:18Z",
+          "updatedAt": "2025-02-17T15:42:18Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "I think this is covered by the comment on linking TS and AS (adjacent service) data.",
+              "createdAt": "2025-02-17T15:42:18Z",
+              "updatedAt": "2025-02-17T15:42:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cP4kK",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:43:46Z",
+          "updatedAt": "2025-02-17T15:43:46Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\n```\r\n\r\nThe architecture does not specify a query interface... SCRAPI does though.",
+              "createdAt": "2025-02-17T15:43:46Z",
+              "updatedAt": "2025-02-17T15:43:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cP5nQ",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:45:44Z",
+          "updatedAt": "2025-02-17T15:45:44Z",
+          "comments": [
+            {
+              "originalPosition": 25,
+              "body": "```suggestion\r\n```\r\n\r\nI think this is covered by the comment regarding metadata analysis.\r\n\r\nThis sentence might be more appropriate in SCRAPI.\r\n\r\n",
+              "createdAt": "2025-02-17T15:45:44Z",
+              "updatedAt": "2025-02-17T15:45:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cQAfd",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T15:57:31Z",
+          "updatedAt": "2025-02-17T15:58:36Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "What in the architecture and specification require a TS \"be trusted with\" confidentiality? I can understand integrity, but not confidentiality. Secondly, is that a directly relevant concern to privacy claims, and not security?",
+              "createdAt": "2025-02-17T15:57:31Z",
+              "updatedAt": "2025-02-17T15:58:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cQLgd",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-17T16:14:35Z",
+          "updatedAt": "2025-02-17T16:14:35Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "The architecture says that the signed statement is processed by the transparency service.\r\nYou could imagine various forms of processing that might breach the expected confidentiality.\r\nAlthough you might also expect this all to be handled in a public git repo, with comments and discussions on the signed statement and related policies.",
+              "createdAt": "2025-02-17T16:14:35Z",
+              "updatedAt": "2025-02-17T16:14:35Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
