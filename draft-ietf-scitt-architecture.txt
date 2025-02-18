@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 8 August 2025                                        C. Fournet
+Expires: 22 August 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                         4 February 2025
+                                                        18 February 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 August 2025.
+   This Internet-Draft will expire on 22 August 2025.
 
 Copyright Notice
 
@@ -117,7 +117,8 @@ Table of Contents
        9.2.5.  Transparency Service Client Applications
        9.2.6.  Impersonation
    10. IANA Considerations
-     10.1.  Media Type Registration
+     10.1.  COSE Receipts Header Parameter
+     10.2.  Media Type Registration
    11. References
      11.1.  Normative References
      11.2.  Informative References
@@ -967,7 +968,7 @@ Table of Contents
 
    Unprotected_Header = {
      ? &(x5chain: 33) => COSE_X509
-     ? &(receipts: 394)  => [+ Receipt]
+     ? &(receipts: TBD_0)  => [+ Receipt]
      * int => any
    }
 
@@ -1070,7 +1071,7 @@ Table of Contents
 
    Receipts are based on Signed Inclusion Proofs as described in COSE
    Receipts [I-D.draft-ietf-cose-merkle-tree-proofs] that also provides
-   the COSE header parameter semantics for label 394.
+   the COSE header parameter semantics for label TBD_0.
 
    The Registration time is recorded as the timestamp when the
    Transparency Service added this Signed Statement to its Append-only
@@ -1083,13 +1084,13 @@ Table of Contents
    Transparent_Statement = #6.18(COSE_Sign1)
 
    Unprotected_Header = {
-     &(receipts: 394)  => [+ Receipt]
+     &(receipts: TBD_0)  => [+ Receipt]
    }
 
            Figure 6: CDDL definition for a Transparent Statement
 
    Figure 7 illustrates a Transparent Statement with a detached payload,
-   and two Receipts in its unprotected header.  The type of label 394
+   and two Receipts in its unprotected header.  The type of label TBD_0
    receipts in the unprotected header is a CBOR array that can contain
    one or more Receipts (each entry encoded as a .cbor encoded
    Receipts).
@@ -1098,7 +1099,7 @@ Table of Contents
        [
          h'a4012603...6d706c65',       / Protected                 /
          {                             / Unprotected               /
-           394: [                      / Receipts (2)              /
+           TBD_0: [                    / Receipts (2)              /
              h'd284586c...4191f9d2'    / Receipt 1                 /
              h'c624586c...8f4af97e'    / Receipt 2                 /
            ]
@@ -1489,7 +1490,11 @@ Table of Contents
 
 10.  IANA Considerations
 
-10.1.  Media Type Registration
+10.1.  COSE Receipts Header Parameter
+
+   TBD_0 is requested in [I-D.draft-ietf-cose-merkle-tree-proofs].
+
+10.2.  Media Type Registration
 
    Pending WG discussion.
 
