@@ -672,9 +672,6 @@ Relying Parties can choose which Issuers they trust.
 
 Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.
 
-At least one identifier representing one credential MUST be included in the protected header of the COSE Envelope.
-
-For example, when x.509 is utilized, either `x5t`, `x5chain` or `kid` must be included in the protected header.
 Additionally, `x5chain` that corresponds to either `x5t` or `kid` identifying the leaf certificate in the included certification path MAY be included in the unprotected header of the COSE Envelope.
 
 - When using x.509 certificates, support for either `x5t` or `x5chain` in the protected header is REQUIRED to implement.
