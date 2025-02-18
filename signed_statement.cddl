@@ -25,6 +25,6 @@ CWT_Claims = {
 
 Unprotected_Header = {
   ? &(x5chain: 33) => COSE_X509
-  ? &(receipts: 394)  => [+ Receipt]
+  ? &(receipts: TBD_0)  => [+ Receipt]
   * int => any
 }
