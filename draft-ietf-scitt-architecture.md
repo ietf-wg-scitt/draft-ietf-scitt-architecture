@@ -884,7 +884,7 @@ Issuers are responsible for verifying that the Transparency Service's privacy an
 In particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the Transparency Service's privacy posture.
 Using a hash as the statement about an artifact, supports cases where information needs to be included on the append-only log whilst remaining opaque to the transparency service.
 
-While not strictly required for interoperability of Receipts and Signed Statement Registration, most Transparency Services are expected to keep copies of Registered Signed Statements in an auxiliary service nd make them available to authorized users for ease of indexing, auditing or similar activities.
+While not strictly required for interoperability of Receipts and Signed Statement Registration, most Transparency Services are expected to keep copies of Registered Signed Statements in an adjacent service and make them available to authorized users for ease of indexing, auditing or similar activities.
 
 Further, in some implementations of Transparency Services such Signed Statements may be made available publicly for dissemination, wider auditing, or to support query confidentiality. In such cases Issuers are responsible for ensuring that Signed Statements submitted to public access services are acceptable for public disclosure.
 
