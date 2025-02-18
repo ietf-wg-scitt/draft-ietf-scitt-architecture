@@ -880,7 +880,7 @@ Such policies may use as input all information in the Envelope, the Receipt, and
 All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but this does not necessarily exclude network traffic analysis.
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration. Issuers are responsible for verifying that the privacy and security posture of the Transparency Service is suitable for the contents of their Signed Statements prior to Registration. In particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the privacy posture of the Transparency Service.
-This document supports opaque references (such as hashes) for cases where information needs to be included on the log whilst remaining secret.
+Using a hash as the statement about an artifact, supports cases where information needs to be included on the append-only log whilst remaining opaque to the transparency service.
 
 While not strictly required for interoperability of Receipts and Signed Statement Registration, most Transparency Services are expected to keep copies of Registered Signed Statements in an auxiliary service nd make them available to authorized users for ease of indexing, auditing or similar activities.
 
