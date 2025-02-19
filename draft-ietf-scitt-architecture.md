@@ -887,7 +887,6 @@ In some deployments a special role such as an Auditor might require and be given
 
 Once a Signed Statement has been Registered with a Transparency Service its log entry cannot be removed. In most Transparency Service implementations the append-only log only carries cryptographic metadata (eg a hash) rather than the complete Signed Statement and so does not raise immediate privacy concerns. Nonetheless even this hash can be used to hold an Issuer accountable for statements if an adversary has a copy of the pre-image and the log data, and the number of log entries registered can also give clues about Issuer activity. Such side-channel signals are out of scope for this document to deal with, but should be considered in sensitive use cases.
 
-Care should be taken by Issuers to ensure that linking Signed Statements into a collection does not leak information about the contents of the other Signed Statements referred to.
 
 For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.
 
