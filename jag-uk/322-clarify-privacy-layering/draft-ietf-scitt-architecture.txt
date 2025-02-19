@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 22 August 2025                                       C. Fournet
+Expires: 23 August 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        18 February 2025
+                                                        19 February 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 August 2025.
+   This Internet-Draft will expire on 23 August 2025.
 
 Copyright Notice
 
@@ -1229,10 +1229,6 @@ Table of Contents
    clues about Issuer activity.  Such side-channel signals are out of
    scope for this document to deal with, but should be considered in
    sensitive use cases.
-
-   Care should be taken by Issuers to ensure that linking Signed
-   Statements into a collection does not leak information about the
-   contents of the other Signed Statements referred to.
 
    For example, while offline Envelope validation of Signed Statements
    is private, a Transparency Service may monitor which of its
