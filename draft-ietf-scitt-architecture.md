@@ -486,7 +486,6 @@ Requesting a Receipt can result in the production of a new Receipt for the same 
 A Receipt's verification key, signing algorithm, validity period, header parameters or other claims MAY change each time a Receipt is produced.
 
 Anyone with access to the Transparency Service can independently verify its consistency and review the complete list of Transparent Statements registered by each Issuer.
-However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, from the first Transparency Service) and register it on another Transparency Service, where the second Receipt will be over the first Receipt in the unprotected header.
 
 Reputable Issuers are thus incentivized to carefully review their Statements before signing them to produce Signed Statements.
 Similarly, reputable Transparency Services are incentivized to secure their Append-only Log, as any inconsistency can easily be pinpointed by any Auditor with read access to the Transparency Service.
@@ -756,6 +755,9 @@ Details about generating Receipts are described in {{Receipt}}.
 The last two steps may be shared between a batch of Signed Statements registered in the Append-only Log.
 
 A Transparency Service MUST ensure that a Signed Statement is registered before releasing its Receipt.
+
+The unprotected header SHOULD be empty when registering a signed statement.
+The server MAY return an error, and decline to register signed statements with non empty unprotected headers.
 
 The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
 The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.
