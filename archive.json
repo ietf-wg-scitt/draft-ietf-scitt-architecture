@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-18T00:46:39.035887+00:00",
+  "timestamp": "2025-02-20T00:47:30.174117+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -6010,7 +6010,7 @@
       "id": "I_kwDOIvmHss6kGzVT",
       "title": "Make reference to Receipt Label 394 a TBD",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/326",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -6021,8 +6021,8 @@
       ],
       "body": "From @mcr:\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/xXaVeX1b6idRI8oFbvBF10RkF_Q/\r\n",
       "createdAt": "2024-12-20T18:20:35Z",
-      "updatedAt": "2024-12-23T23:19:15Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-18T15:08:25Z",
+      "closedAt": "2025-02-18T15:08:24Z",
       "comments": []
     },
     {
@@ -6228,6 +6228,40 @@
       "createdAt": "2025-01-28T15:23:42Z",
       "updatedAt": "2025-02-04T15:17:11Z",
       "closedAt": "2025-02-04T15:17:11Z",
+      "comments": []
+    },
+    {
+      "number": 347,
+      "id": "I_kwDOIvmHss6qhFlF",
+      "title": "Standardise on 'adjacent services'",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/347",
+      "state": "OPEN",
+      "author": "JAG-UK",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Throughout the document we talk about things like storage and indexing services which are non-core to SCITT interoperability as, variously, 'auxiliary', 'ancillary', and 'adjacent'.\n\n'Adjacent' is best, so standardise on that throughout the document please.",
+      "createdAt": "2025-02-18T15:27:01Z",
+      "updatedAt": "2025-02-18T15:27:01Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 348,
+      "id": "I_kwDOIvmHss6qhMv2",
+      "title": "Revisit reference of Append-Only for VDS",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/348",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "SteveLasker"
+      ],
+      "labels": [],
+      "body": "On 2/18/25, while reviewing #355, we're re-evaluating clarifying details of Append-only log, and what's described, with deferring to the VDS implemented by the TS.\n",
+      "createdAt": "2025-02-18T15:35:45Z",
+      "updatedAt": "2025-02-18T15:35:54Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -44419,24 +44453,26 @@
       "id": "PR_kwDOIvmHss6GH6Es",
       "title": "Change receipts 394 to a TBD with IANA Considerations",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/332",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #326 ",
       "createdAt": "2024-12-23T23:17:17Z",
-      "updatedAt": "2025-02-17T15:53:34Z",
+      "updatedAt": "2025-02-18T15:08:35Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "fbd114984744207b04eadfb2f9f23280fae1e63d",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "issue-326",
       "headRefOid": "6dc5bf3c2bcb5101fa1e20148ddfa0a133d3741b",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-02-18T15:08:23Z",
+      "mergedAt": "2025-02-18T15:08:23Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "0239a90c6f0222e9faa881bbcf7ed81e6acab374"
+      },
       "comments": [],
       "reviews": [
         {
@@ -44752,25 +44788,33 @@
       "id": "PR_kwDOIvmHss6GH9_2",
       "title": "Address what is stored on the ledger",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/335",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #329 ",
       "createdAt": "2024-12-23T23:39:40Z",
-      "updatedAt": "2025-02-17T17:35:24Z",
+      "updatedAt": "2025-02-19T14:25:13Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "issue-329",
       "headRefOid": "cec91f4c3627985a77ab9c9442f19388b6cc3622",
-      "closedAt": null,
+      "closedAt": "2025-02-18T15:36:40Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing in lieu of #348 ",
+          "createdAt": "2025-02-18T15:36:30Z",
+          "updatedAt": "2025-02-18T15:36:30Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss6X-DDk",
@@ -44923,6 +44967,26 @@
               "updatedAt": "2025-02-17T17:35:24Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6clKD7",
+          "commit": {
+            "abbreviatedOid": "cec91f4"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-19T14:25:13Z",
+          "updatedAt": "2025-02-19T14:25:13Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "To be clear: I support removal of line 562 all together. My edit was an effort to state the relationship between signed statement and the vds as a positive requirement in the spirit of the OP. I personally think this is covered sufficiently in the receipts draft and profiles.",
+              "createdAt": "2025-02-19T14:25:13Z",
+              "updatedAt": "2025-02-19T14:25:13Z"
+            }
+          ]
         }
       ]
     },
@@ -44938,13 +45002,13 @@
       "labels": [],
       "body": "Fixes #330 \r\n",
       "createdAt": "2024-12-24T00:15:22Z",
-      "updatedAt": "2025-02-17T15:48:42Z",
+      "updatedAt": "2025-02-18T15:33:22Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "issue-330",
-      "headRefOid": "c4ce0b815f04b83c0fad9e5eff1e2fac67d57c55",
+      "headRefOid": "4616abcadaf0a93be19f9e8f4e39f35ec834d356",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -45048,6 +45112,46 @@
               "body": " https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/336#discussion_r1941469555",
               "createdAt": "2025-02-17T15:48:42Z",
               "updatedAt": "2025-02-17T15:48:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cZcpY",
+          "commit": {
+            "abbreviatedOid": "4616abc"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T15:12:17Z",
+          "updatedAt": "2025-02-18T15:12:17Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I think that should be \"currently\"",
+              "createdAt": "2025-02-18T15:12:17Z",
+              "updatedAt": "2025-02-18T15:12:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cZy3v",
+          "commit": {
+            "abbreviatedOid": "4616abc"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T15:33:21Z",
+          "updatedAt": "2025-02-18T15:33:22Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nWhen using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certification path from an Issuer's certificate to one of the root certificates currently registered as a trust anchor by the Transparency Service.\r\n```",
+              "createdAt": "2025-02-18T15:33:22Z",
+              "updatedAt": "2025-02-18T15:33:22Z"
             }
           ]
         }
@@ -45386,24 +45490,26 @@
       "id": "PR_kwDOIvmHss6LGupf",
       "title": "Clarify trust anchor wording",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/345",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Addressing a concern raised by @briankr-ms, to clarify that the registration policies can contain trust anchors. To give a concrete example, scitt-ccf-ledger policies can contain one or more trust anchors in the following way:\r\n\r\n```\r\nexport function apply(profile, phdr) {\r\nif (phdr.cwt.iss.startsWith(\"did:x509:0:sha256:HnwZ4lezuxq_GVcl_Sk7YWW170qAD0DZBLXilXet0jg::eku::...\"))\r\n{\r\n...\r\n```\r\n\r\nWhich encodes the thumbprint of a trust anchor, and the constraint that the leaf of x5chain must have certain EKU bits set. More detail can be found if desired at https://github.com/microsoft/did-x509\r\n\r\nFor the avoidance of doubt, this is _not_ trying to mention `did` in the draft. This is just clarifying that roots of trust can be encoded in policy. One could also imagine a `did`-free policy along of the lines of:\r\n\r\n```\r\nexport function apply(profile, phdr) {\r\nif (thumbprint(phdr.x5chain[0]) == \"f5ceec3fd104994da13b32e8bdc21bd864e4e7f579ecd157c38c15c1b2390c9f\"))\r\n{\r\n...\r\n```\r\n\r\nHaving them inline is not just a convenience, some use cases will have a non-trivial mapping between acceptable statements and trust anchors, and the set of anchors alone will not be sufficient for a complete audit in that case.",
       "createdAt": "2025-02-13T13:26:43Z",
-      "updatedAt": "2025-02-17T17:28:47Z",
+      "updatedAt": "2025-02-18T15:23:23Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "6e5646b3a2da6183c820949d4143f1de8ff64e95",
       "headRepository": "achamayou/draft-ietf-scitt-architecture",
       "headRefName": "clarify_trust_anchors",
-      "headRefOid": "1a8516812ab21d74021c75d20877d1acfe154130",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "6c898bc4b01645739214adc2e4dd4d0068184618",
+      "closedAt": "2025-02-18T15:23:23Z",
+      "mergedAt": "2025-02-18T15:23:23Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "711bb2ccf3f470655f7ebd636b69af5725985d84"
+      },
       "comments": [
         {
           "author": "rjb4standards",
@@ -45439,6 +45545,13 @@
           "body": "@achamayou this approach would allow \"any\" key issued by a trusted CA/trust anchor to sign a statement, and it would be considered valid, even if they key belonged to a party that was not authorized to sign a specific artifact, like an SBOM. You and I can both hold valid keys from the same CA, but only my key should be considered authoritative on my SBOM artifact. Your key used to sign my SBOM should be rejected as \"not authorized\".",
           "createdAt": "2025-02-17T17:23:49Z",
           "updatedAt": "2025-02-17T17:23:49Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> @achamayou this approach would allow \"any\" key issued by a trusted CA/trust anchor to sign a statement, and it would be considered valid, even if they key belonged to a party that was not authorized to sign a specific artifact, like an SBOM. You and I can both hold valid keys from the same CA, but only my key should be considered authoritative on my SBOM artifact. Your key used to sign my SBOM should be rejected as \"not authorized\".\r\n\r\nI don't think it does, here is why:\r\n\r\n1. If you think only a single (Signed Statement) issuer should ever be able to publish for a subject on a single ledger, it's trivial for the policy to enforce it:\r\n```\r\nif (thumbprint(x5chain[0]) == \"...\" && eku(x5chain[-1]) == 1.... && cwt.sub == \"sbom_foo\")\r\n{\r\n// accept\r\n}\r\nelse\r\n{\r\n// reject\r\n}\r\n```\r\n\r\n2. But that's not necessary really, because a relying party should identify an SBOM not through subject alone, but through a ((Signed Statement) issuer, subject) pair. It's not subject: \"Product Foo\" that I trust, it's subject: \"Product Foo\" from issuer (Signed Statement Issuer): \"Issuer Bar\" that matters.",
+          "createdAt": "2025-02-18T15:13:33Z",
+          "updatedAt": "2025-02-18T15:21:33Z"
         }
       ],
       "reviews": [
@@ -45534,6 +45647,32 @@
               "updatedAt": "2025-02-17T17:28:47Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cZlFM",
+          "commit": {
+            "abbreviatedOid": "6c898bc"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-02-18T15:20:31Z",
+          "updatedAt": "2025-02-18T15:20:31Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cZnpV",
+          "commit": {
+            "abbreviatedOid": "6c898bc"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-18T15:23:15Z",
+          "updatedAt": "2025-02-18T15:23:15Z",
+          "comments": []
         }
       ]
     },
@@ -45549,13 +45688,13 @@
       "labels": [],
       "body": "Addresses Issue #322",
       "createdAt": "2025-02-17T12:52:39Z",
-      "updatedAt": "2025-02-17T16:14:35Z",
+      "updatedAt": "2025-02-19T15:26:59Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "6e5646b3a2da6183c820949d4143f1de8ff64e95",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "jag-uk/322-clarify-privacy-layering",
-      "headRefOid": "35c5f5e3303dffe754be9dc78d568b9ea2b73ee5",
+      "headRefOid": "515736ccbfec85be9f97e1bea0a0919c5e08701c",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -45905,6 +46044,493 @@
               "body": "The architecture says that the signed statement is processed by the transparency service.\r\nYou could imagine various forms of processing that might breach the expected confidentiality.\r\nAlthough you might also expect this all to be handled in a public git repo, with comments and discussions on the signed statement and related policies.",
               "createdAt": "2025-02-17T16:14:35Z",
               "updatedAt": "2025-02-17T16:14:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cXHCY",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T11:53:56Z",
+          "updatedAt": "2025-02-18T11:53:57Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "Not a reference to Hash Envelope specifically, just pointing out that people can commit to data with disclosing it.\r\n\r\nI like your suggestion and will commit it.",
+              "createdAt": "2025-02-18T11:53:56Z",
+              "updatedAt": "2025-02-18T11:53:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cXHoc",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T11:54:47Z",
+          "updatedAt": "2025-02-18T11:54:47Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "These were not my original words, I'm happy to remove altogether",
+              "createdAt": "2025-02-18T11:54:47Z",
+              "updatedAt": "2025-02-18T11:54:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cXIHm",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T11:55:42Z",
+          "updatedAt": "2025-02-18T11:55:43Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "Good idea should add that out-of-scope comment",
+              "createdAt": "2025-02-18T11:55:43Z",
+              "updatedAt": "2025-02-18T11:55:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cXJdF",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T11:57:27Z",
+          "updatedAt": "2025-02-18T11:57:27Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "Either / both? Not sure it matters. I think these were Hannes' words originally, I'm just trying to tidy up the Considerations section so moved things around. \r\n\r\nTBH the public reference is just really over-explaining the point above it, we could consider removing, but I'm sure others would insist on putting it back again",
+              "createdAt": "2025-02-18T11:57:27Z",
+              "updatedAt": "2025-02-18T11:57:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cXMQT",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T12:00:38Z",
+          "updatedAt": "2025-02-18T12:00:38Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "I like this change, but the original text that I ws working with specifically wanted to very clearly spell out that you can't remove data from an append-only log (IKR \ud83e\udd37\ud83c\udffb\u200d\u2642\ufe0f) so I stuck with that angle. \r\n\r\nLet's discuss in the group how naive a reader we expect here.",
+              "createdAt": "2025-02-18T12:00:38Z",
+              "updatedAt": "2025-02-18T12:00:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cXMwE",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T12:01:25Z",
+          "updatedAt": "2025-02-18T12:01:26Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "Agreed, will remove",
+              "createdAt": "2025-02-18T12:01:25Z",
+              "updatedAt": "2025-02-18T12:01:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cXNMc",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T12:02:12Z",
+          "updatedAt": "2025-02-18T12:02:12Z",
+          "comments": [
+            {
+              "originalPosition": 25,
+              "body": "Should discuss, as the append-on-log itself is also valid here",
+              "createdAt": "2025-02-18T12:02:12Z",
+              "updatedAt": "2025-02-18T12:02:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cXNyp",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T12:03:20Z",
+          "updatedAt": "2025-02-18T12:03:20Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "I'd be happy to remove the first sentence. They're not my original words and I think the following text covers the whole topic better than that headline.",
+              "createdAt": "2025-02-18T12:03:20Z",
+              "updatedAt": "2025-02-18T12:03:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cZL-t",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T14:51:30Z",
+          "updatedAt": "2025-02-18T14:51:30Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "Agreed to make out of scope. I also noticed the wording says \"...expected to keep copies...\" which is also not necessarily true. \"...may keep copies...\"",
+              "createdAt": "2025-02-18T14:51:30Z",
+              "updatedAt": "2025-02-18T14:51:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cZWTb",
+          "commit": {
+            "abbreviatedOid": "55c54e0"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T15:04:15Z",
+          "updatedAt": "2025-02-18T15:04:16Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\nThe Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.\r\nIssuers are responsible for verifying that the Transparency Service's privacy and security posture is suitable for the contents of their Signed Statements prior to Registration.\r\nIn particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the Transparency Service's privacy posture.\r\n```",
+              "createdAt": "2025-02-18T15:04:15Z",
+              "updatedAt": "2025-02-18T15:04:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cZ578",
+          "commit": {
+            "abbreviatedOid": "08cf340"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T15:40:49Z",
+          "updatedAt": "2025-02-18T15:40:49Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nInteractions with Transparency Services are expected to use appropriately strong encryption and authorization technologies.\r\n```",
+              "createdAt": "2025-02-18T15:40:49Z",
+              "updatedAt": "2025-02-18T15:40:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6caH5A",
+          "commit": {
+            "abbreviatedOid": "d315e63"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T15:52:50Z",
+          "updatedAt": "2025-02-18T15:52:51Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-02-18T15:52:50Z",
+              "updatedAt": "2025-02-18T15:52:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cl5VH",
+          "commit": {
+            "abbreviatedOid": "35c5f5e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-19T15:26:59Z",
+          "updatedAt": "2025-02-19T15:26:59Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "resolving as updates were applied",
+              "createdAt": "2025-02-19T15:26:59Z",
+              "updatedAt": "2025-02-19T15:26:59Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 349,
+      "id": "PR_kwDOIvmHss6LxT0y",
+      "title": "Clarify that the unprotected header SHOULD be empty when registering a signed statement",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/349",
+      "state": "OPEN",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #321.",
+      "createdAt": "2025-02-19T15:41:20Z",
+      "updatedAt": "2025-02-19T22:23:59Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "711bb2ccf3f470655f7ebd636b69af5725985d84",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "clarify_what_is_notarized_on_the_ledger",
+      "headRefOid": "d1178548fe65bff5de17b17bfb376a6629ee25db",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6cmHss",
+          "commit": {
+            "abbreviatedOid": "d117854"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-19T15:44:41Z",
+          "updatedAt": "2025-02-19T15:44:41Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "Is this a SHOULD or MUST? I thought I remembered we decided MUST.",
+              "createdAt": "2025-02-19T15:44:41Z",
+              "updatedAt": "2025-02-19T15:44:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cmf2L",
+          "commit": {
+            "abbreviatedOid": "d117854"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-19T16:19:30Z",
+          "updatedAt": "2025-02-19T16:19:30Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "I would love MUST, I am [all for it](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/321#issuecomment-2663606794), but that means taking off the stuff about protected `x5t` and unprotected `x5chain`. Are you, @JAG-UK and @robinbryce happy with that?\r\n\r\nI'm good to go, I am firmly in the protected `x5chain` camp! :)",
+              "createdAt": "2025-02-19T16:19:30Z",
+              "updatedAt": "2025-02-19T16:19:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cmrwf",
+          "commit": {
+            "abbreviatedOid": "d117854"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-19T16:37:20Z",
+          "updatedAt": "2025-02-19T16:37:20Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "IMO, leaving it a should, with the ability for some implementations to reject registration, defeats the interop goals. \r\nI realize this unwinds some other decisions, but we had \"punted\" decisions like the x5t to be in the unprotected header to move forward.\r\nThe signed statement isn't stored within the VDS (consolidated term for Append-only ledger), so the service can still store the receipt or other content in the unprotected header in the ancillary service. Unless I'm missing something, the notarized receipt doesn't cover the unprotected header, so I don't see the value of leaving this open-ended.\r\n",
+              "createdAt": "2025-02-19T16:37:20Z",
+              "updatedAt": "2025-02-19T16:37:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cmuvp",
+          "commit": {
+            "abbreviatedOid": "d117854"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-19T16:41:53Z",
+          "updatedAt": "2025-02-19T16:41:53Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "for the x5chain, I'm not suggesting it MUST be in the protected header, it can still be in the unprotected header. However, it MUST be stripped before submitting.\r\nThinking further, if the TS does store the signed statement, and the unprotected header MUST be stripped before submission, the TS would require a different API to upload the signed statement with the unprotected header to be stored in the ancillary service.\r\nSo, I'm a little torn here. I want to remove the SHOULD, as it's a hole in interop.\r\nI would like to support storing the signed statement in the TS ancillary services, and would NOT like to provide yet another API.\r\n\r\nThe alternative is to say the Transparency Service MUST ignore the unprotected header...\r\nI need to read through #321 again to remember why we chose to not allow the unprotected header from being submitted, but ignored. \ud83e\udd37 ",
+              "createdAt": "2025-02-19T16:41:53Z",
+              "updatedAt": "2025-02-19T16:41:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cm1ii",
+          "commit": {
+            "abbreviatedOid": "d117854"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-19T16:52:44Z",
+          "updatedAt": "2025-02-19T16:52:44Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "@SteveLasker welcome (again) to the loop :) I think I prefer stripping to this, because it's clearer and more interoperable. But really I am fine with either. I am also fine with going full protected.\r\n\r\nEdit: I think [this](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/321#issuecomment-2554399899) is where the mood turned against stripping, although to be fair I suggested it just above.",
+              "createdAt": "2025-02-19T16:52:44Z",
+              "updatedAt": "2025-02-19T16:55:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cnowp",
+          "commit": {
+            "abbreviatedOid": "d117854"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-19T18:19:40Z",
+          "updatedAt": "2025-02-19T18:19:40Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "@achamayou checking I am keeping up with this one :-)\r\n\r\nif this is a MUST remove, then we are saying TS's that support x5t/x5tchain are then required to put that in the protected header ? I am basically ok with that because x5 support is not mandatory. this only affects people that want x5 based identities.\r\n\r\nx5t is already in protected headers so thats not a problem.\r\n\r\nI never understood the need to put x5chain in the protected headers if x5t was there, but I'm not the person to make or disupute the case for that.\r\n\r\nThe original problem with un protected headers is producing the pre-image based on some aribitrary transparent statement - how can you know which un protected headers were part of the statement when it was registered ? If you can't know that, you cant work out the correct input for the inclusion proofs and the receipts attached to your transparent statement are useless to everyone who isn't aware of the details of registration on that particular TS.\r\n\r\nBy far the simplest resolution was requiring that the registering client removed all the un protected headers before registration. Then there is zero ambiguity. This only works if this is a MUST strip unprotected. SHOULD would be like saying \"receipts SHOULD be verifiable without knowlege external to the transparent statement\" :-/\r\n\r\nSo, tl;dr I'm currently in favour of MUST. And I don't want to personaly revisit the \"do we need to put x6chain in protected headers\" conversation, and don't feel our implementation is particularly impacted either way.",
+              "createdAt": "2025-02-19T18:19:40Z",
+              "updatedAt": "2025-02-19T18:19:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6coCok",
+          "commit": {
+            "abbreviatedOid": "d117854"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-19T19:10:45Z",
+          "updatedAt": "2025-02-19T19:10:46Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "@robinbryce and I just talked through this. I believe we're having a layering discussion that's causing confusion.\r\nThe \"Registration Process\" is a sub-system of the Transparency Service. \r\nThe Transparency Service, as defined through SCRAPI, CAN ingest a signed statement with content in the unprotected header. It's very useful to have a property bag to enable sharing additional information, even if there's now way to prove when/how/where that data was added. It clearly is defined as \"**Unprotected**\"\r\n\r\nBy allowing a Signed Statement to be submitted to the TS, would enable the Transparency Service to save the unprotected header, as it was submitted. \r\nAnd, it would allow the Transparency Service to strip the unprotected header when doing the registration on the VDS.\r\nI believe we agreed it's a MUST to remove the Unprotected Header when creating a VDS, and the unprotected header MUST be stripped when verifying a VDS to the signed statement.  It's not a MUST that the unprotected header must be stripped on submission to the Transparency Service. \r\n\r\nI'm going to draw a quick picture...",
+              "createdAt": "2025-02-19T19:10:45Z",
+              "updatedAt": "2025-02-19T19:10:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6colut",
+          "commit": {
+            "abbreviatedOid": "d117854"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-19T20:15:50Z",
+          "updatedAt": "2025-02-19T20:15:51Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "> I believe we agreed it's a MUST to remove the Unprotected Header when creating a VDS, and the unprotected header MUST be stripped when verifying a VDS to the signed statement. It's not a MUST that the unprotected header must be stripped on submission to the Transparency Service.\r\n\r\nI think that is this what I meant when I proposed stripping the unprotected header in the first place: it can be sent, it can even be used as supporting evidence in the registration (unprotected `x5chain` with binding for example), _but_ it is stripped before creation of the VDS.\r\n\r\nThis is a slight complication for a sender, because what the receipt binds to is not always exactly what is sent. But the stripping is easy enough to perform?\r\nI will have another go at a PR tomorrow, unless someone else objects :)",
+              "createdAt": "2025-02-19T20:15:50Z",
+              "updatedAt": "2025-02-19T20:15:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6co6AZ",
+          "commit": {
+            "abbreviatedOid": "d117854"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-19T21:00:00Z",
+          "updatedAt": "2025-02-19T21:00:00Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "\r\n![image](https://github.com/user-attachments/assets/f5bedfea-c2b9-45e4-ab08-520e596153ea)\r\n\r\nAn Implementation of a Transparency Service\r\n1. The Signed Envelope, with optional content in the unprotected header submitted to SCRAPI\r\n2. The Signed Statement is accepted and optionally stored in an Ancillary Service, providing indexing, querying, and retrieval of the submitted Signed Statement\r\n3. Within the Transparency Service, the Unprotected Header MAY contain an x5chain used to verify the issuer\r\n4. The Unprotected Header MUST be stripped before creation of the Verfiable Data Structure, placed on the Immutable Ledger.\r\n5. The notarized Receipt of Registration is returned through SCRAPI\r\n6. A Transparent Statement MAY be created, adding the Receipt to the unprotected header of the Signed Statement",
+              "createdAt": "2025-02-19T21:00:00Z",
+              "updatedAt": "2025-02-19T21:00:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cpc0C",
+          "commit": {
+            "abbreviatedOid": "d117854"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-19T22:23:58Z",
+          "updatedAt": "2025-02-19T22:23:59Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "+1 to removing this. Registering signed statements across multiple transparency services are independent actions. While it's possible to attach multiple receipts, the VDS does nothing with the receipts in the unprotected headers. \r\nA TS can store the signed statement, with the receipts, but they're \"unprotected\". ",
+              "createdAt": "2025-02-19T22:23:59Z",
+              "updatedAt": "2025-02-19T22:23:59Z"
             }
           ]
         }
