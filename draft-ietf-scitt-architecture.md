@@ -885,7 +885,7 @@ In particular, Issuers must carefully review the inclusion of private, confident
 
 In some deployments a special role such as an Auditor might require and be given access to both the Transparency Service and related Adjacent Services.
 
-In most Transparency Service implementations the append-only log only carries cryptographic metadata (eg a hash) rather than the complete Signed Statement and so does not raise immediate privacy concerns. 
+In most Transparency Service implementations the append-only log only carries cryptographic metadata (eg a hash) rather than the complete Signed Statement and so does not raise immediate privacy concerns.
 By analyzing the relationship between data stored in the Transparency Service and data stored in Adjacent Services, it is possible to perform metadata analysis, which could reveal the order in which artifacts were built, signed and uploaded.
 
 
