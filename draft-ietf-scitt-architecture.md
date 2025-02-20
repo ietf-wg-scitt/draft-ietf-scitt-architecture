@@ -885,7 +885,8 @@ In particular, Issuers must carefully review the inclusion of private, confident
 
 In some deployments a special role such as an Auditor might require and be given access to both the Transparency Service and related Adjacent Services.
 
-Once a Signed Statement has been Registered with a Transparency Service its log entry cannot be removed. In most Transparency Service implementations the append-only log only carries cryptographic metadata (eg a hash) rather than the complete Signed Statement and so does not raise immediate privacy concerns. Nonetheless even this hash can be used to hold an Issuer accountable for statements if an adversary has a copy of the pre-image and the log data, and the number of log entries registered can also give clues about Issuer activity. Such side-channel signals are out of scope for this document to deal with, but should be considered in sensitive use cases.
+In most Transparency Service implementations the append-only log only carries cryptographic metadata (eg a hash) rather than the complete Signed Statement and so does not raise immediate privacy concerns. 
+By analyzing the relationship between data stored in the Transparency Service and data stored in Adjacent Services, it is possible to perform metadata analysis, which could reveal the order in which artifacts were built, signed and uploaded.
 
 
 For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.
