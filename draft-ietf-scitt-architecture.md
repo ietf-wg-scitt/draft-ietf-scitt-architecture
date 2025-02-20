@@ -756,7 +756,7 @@ The last two steps may be shared between a batch of Signed Statements registered
 
 A Transparency Service MUST ensure that a Signed Statement is registered before releasing its Receipt.
 
-The unprotected header of a Signed Statment added to the Verifiable Data Structure MUST be empty. If the unprotected header of a Signed Statment submitted to the TS is not empty, the TS MUST replace it with an empty unprotected header prior to inclusion. 
+The unprotected header of a Signed Statment added to the Verifiable Data Structure MUST be empty. If the unprotected header of a Signed Statment submitted to the TS is not empty, the TS MUST replace it with an empty unprotected header prior to inclusion.
 
 The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
 The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.
