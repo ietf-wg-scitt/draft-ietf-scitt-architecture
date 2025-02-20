@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 23 August 2025                                       C. Fournet
+Expires: 24 August 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        19 February 2025
+                                                        20 February 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 August 2025.
+   This Internet-Draft will expire on 24 August 2025.
 
 Copyright Notice
 
@@ -1218,22 +1218,13 @@ Table of Contents
    and be given access to both the Transparency Service and related
    Adjacent Services.
 
-   Once a Signed Statement has been Registered with a Transparency
-   Service its log entry cannot be removed.  In most Transparency
-   Service implementations the append-only log only carries
-   cryptographic metadata (eg a hash) rather than the complete Signed
-   Statement and so does not raise immediate privacy concerns.
-   Nonetheless even this hash can be used to hold an Issuer accountable
-   for statements if an adversary has a copy of the pre-image and the
-   log data, and the number of log entries registered can also give
-   clues about Issuer activity.  Such side-channel signals are out of
-   scope for this document to deal with, but should be considered in
-   sensitive use cases.
-
-   For example, while offline Envelope validation of Signed Statements
-   is private, a Transparency Service may monitor which of its
-   Transparent Statements are being verified from lookups to ensure
-   their freshness.
+   In most Transparency Service implementations the append-only log only
+   carries cryptographic metadata (eg a hash) rather than the complete
+   Signed Statement and so does not raise immediate privacy concerns.
+   By analyzing the relationship between data stored in the Transparency
+   Service and data stored in Adjacent Services, it is possible to
+   perform metadata analysis, which could reveal the order in which
+   artifacts were built, signed and uploaded.
 
 9.  Security Considerations
 
