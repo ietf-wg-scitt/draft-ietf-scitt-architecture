@@ -758,7 +758,8 @@ A Transparency Service MUST ensure that a Signed Statement is registered before 
 
 A Transparency Service MAY accept a Signed Statement with content in its unprotected header, and MAY use values from that unprotected header during verification and registration policy evaluation.
 
-However, the unprotected header of all Signed Statements in the Append-only log MUST be empty. A Transparency Service MUST replace the unprotected header with an empty unprotected header before inclusion in the Append-only log.
+However, the unprotected header of all Signed Statements in the Append-only log MUST be empty.
+A Transparency Service MUST replace the unprotected header with an empty unprotected header before inclusion in the Append-only log.
 
 The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
 The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.
