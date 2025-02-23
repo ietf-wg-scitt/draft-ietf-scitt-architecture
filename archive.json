@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-20T00:47:30.174117+00:00",
+  "timestamp": "2025-02-23T00:52:07.290530+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5968,7 +5968,7 @@
       "id": "I_kwDOIvmHss6j1MVX",
       "title": "Placeholder to recover prior use cases and place in the consolidated architecture document",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/325",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "rjb4standards",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -5979,8 +5979,8 @@
       ],
       "body": "The use cases document has expired and the architecture document is being consolidated to include use cases. This issue is in place to assist with the recovery of older use cases into the consolidated architecture document",
       "createdAt": "2024-12-18T19:48:12Z",
-      "updatedAt": "2024-12-24T00:20:06Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-21T13:01:39Z",
+      "closedAt": "2025-02-21T13:01:39Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -6002,6 +6002,20 @@
           "body": "A pull request has been submitted to address Issue 325 adding one missing use case.\r\n\r\nSee PR 328 for details: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/328 ",
           "createdAt": "2024-12-20T18:35:16Z",
           "updatedAt": "2024-12-23T00:37:51Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "With #328 merged, this seems addressed? Is there a remaining gap?",
+          "createdAt": "2025-02-21T11:02:46Z",
+          "updatedAt": "2025-02-21T11:02:46Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I agree.",
+          "createdAt": "2025-02-21T11:48:37Z",
+          "updatedAt": "2025-02-21T11:48:37Z"
         }
       ]
     },
@@ -6128,9 +6142,17 @@
       "labels": [],
       "body": "Line [#466](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L466) states:\r\n\r\n> However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, ~from a~ (see #331)  from the first Transparency Service) and register it on another Transparency Service, **where the second Receipt will be over the first Receipt in the unprotected header**.\r\n\r\nWith the discussion and comments in [#321](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/321#issuecomment-2554645211), the unprotected header will be stripped prior to registration. \r\n\r\nThe change will make _**where the second Receipt will be over the first Receipt in the unprotected header**_ inaccurate. \r\n\r\nThis issue tracks how and if we need to re-register transparent statements, or remove the above reference.",
       "createdAt": "2024-12-30T16:41:06Z",
-      "updatedAt": "2024-12-30T16:41:06Z",
+      "updatedAt": "2025-02-21T11:01:27Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I believe this is resolved by #349, following agreement in #321 that unprotected headers must not be included in the Append-only Log/VDS.\n\nThere is no consensus for carving out an exception for bound or separately trusted claims, such as other receipts, in the unprotected header. Since there is neither a clear use case, nor more importantly an implementation for this \"receipts over receipts mechanism\" (as opposed to multiple receipts over the same statement), I am strongly inclined to leave it out altogether.\n\nIf necessary, a further draft can define a protected header parameter that may be used by an Issuer wanting to make transparent a statement that also includes receipts.",
+          "createdAt": "2025-02-21T11:01:24Z",
+          "updatedAt": "2025-02-21T11:01:24Z"
+        }
+      ]
     },
     {
       "number": 340,
@@ -6242,9 +6264,31 @@
       "labels": [],
       "body": "Throughout the document we talk about things like storage and indexing services which are non-core to SCITT interoperability as, variously, 'auxiliary', 'ancillary', and 'adjacent'.\n\n'Adjacent' is best, so standardise on that throughout the document please.",
       "createdAt": "2025-02-18T15:27:01Z",
-      "updatedAt": "2025-02-18T15:27:01Z",
+      "updatedAt": "2025-02-21T14:27:30Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "```\n$ git log -1\ncommit 711bb2ccf3f470655f7ebd636b69af5725985d84 (HEAD -> main, upstream/main)\nMerge: 0239a90 6c898bc\nAuthor: Steve Lasker <stevenlasker@hotmail.com>\nDate:   Tue Feb 18 07:23:22 2025 -0800\n\n    Merge pull request #345 from achamayou/clarify_trust_anchors\n    \n    Clarify trust anchor wording\n$ grep -ic auxiliary draft-ietf-scitt-architecture.md\n0\n$ grep -ic ancillary draft-ietf-scitt-architecture.md\n0\n```\n\nI think we are ok, there is an \"Adjacent Services\" section which looks clear enough, and no reference to it anywhere else I can find.",
+          "createdAt": "2025-02-21T10:44:25Z",
+          "updatedAt": "2025-02-21T10:47:59Z"
+        },
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> ```\n> $ grep -ic auxiliary draft-ietf-scitt-architecture.md\n> 0\n> $ grep -ic ancillary draft-ietf-scitt-architecture.md\n> 0\n> ```\n\nOh that's interesting, so it's only open PRs that are (re-)introducing this issue. OK let's just make sure we catch this in our PR reviews\n\n\n",
+          "createdAt": "2025-02-21T14:16:21Z",
+          "updatedAt": "2025-02-21T14:16:21Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "As far as I can tell, the open PRs don't mention those either, there were several mentions in the discussion for #348, but not in the diff itself, and #336 and #346 don't mention ancillary/auxiliary services.\n\nI do agree with using \"adjacent\" consistently, it sounds good to me, and it's good to make it explicit too, but I don't think any changes to the text are needed.",
+          "createdAt": "2025-02-21T14:27:27Z",
+          "updatedAt": "2025-02-21T14:27:27Z"
+        }
+      ]
     },
     {
       "number": 348,
@@ -6260,9 +6304,38 @@
       "labels": [],
       "body": "On 2/18/25, while reviewing #355, we're re-evaluating clarifying details of Append-only log, and what's described, with deferring to the VDS implemented by the TS.\n",
       "createdAt": "2025-02-18T15:35:45Z",
-      "updatedAt": "2025-02-18T15:35:54Z",
+      "updatedAt": "2025-02-21T15:48:13Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Is the change to replace all mention of \"Append-only Log\" with \"Verifiable Data Structure\"?",
+          "createdAt": "2025-02-21T14:29:15Z",
+          "updatedAt": "2025-02-21T14:29:15Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Is the change to replace all mention of \"Append-only Log\" with \"Verifiable Data Structure\"?\n\nThat was the discussion on the call last week. We can discuss here if we think that's not a good plan, before opening a pr.",
+          "createdAt": "2025-02-21T15:00:14Z",
+          "updatedAt": "2025-02-21T15:00:14Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Yes I do remember the discussion, but I don't think we landed on a clear decision?\n\nI propose that:\n\n1. In https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md#terminology-terminology, we define \"Append-only log\" as a concept that can be implemented with a verifiable data structure. We already provide additional details under https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md#append-only-log, with links to the CT and COMETRE drafts.\n2. We remove the three mentions of \"ledger\" that somehow survive in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md#append-only-log\n3. We keep everything else the same. Append-only log is a good, understandable term that clearly expresses what's needed for Transparency. Verifiable Data Structure is not, it's unnecessarily open-ended for SCITT purposes.",
+          "createdAt": "2025-02-21T15:41:49Z",
+          "updatedAt": "2025-02-21T15:41:49Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks, @achamayou \nI agree with your position that VDS is accurate, but can lose the basics of the concepts the architecture is intended for.\nI'l make a PR for review.",
+          "createdAt": "2025-02-21T15:48:11Z",
+          "updatedAt": "2025-02-21T15:48:11Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -45002,13 +45075,13 @@
       "labels": [],
       "body": "Fixes #330 \r\n",
       "createdAt": "2024-12-24T00:15:22Z",
-      "updatedAt": "2025-02-18T15:33:22Z",
+      "updatedAt": "2025-02-20T23:03:20Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "764883ffa96088f8ae5bd8916660bdd63c2bfdb7",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "issue-330",
-      "headRefOid": "4616abcadaf0a93be19f9e8f4e39f35ec834d356",
+      "headRefOid": "9699d93b40ee2d07a6cb399d967db223fbcd607e",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -45154,6 +45227,19 @@
               "updatedAt": "2025-02-18T15:33:22Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6c17gT",
+          "commit": {
+            "abbreviatedOid": "9699d93"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-20T23:03:20Z",
+          "updatedAt": "2025-02-20T23:03:20Z",
+          "comments": []
         }
       ]
     },
@@ -45688,13 +45774,13 @@
       "labels": [],
       "body": "Addresses Issue #322",
       "createdAt": "2025-02-17T12:52:39Z",
-      "updatedAt": "2025-02-19T15:26:59Z",
+      "updatedAt": "2025-02-21T09:38:53Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "6e5646b3a2da6183c820949d4143f1de8ff64e95",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "jag-uk/322-clarify-privacy-layering",
-      "headRefOid": "515736ccbfec85be9f97e1bea0a0919c5e08701c",
+      "headRefOid": "30286abeab7a992d5d7083e21862cb6b824b64df",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -46306,13 +46392,86 @@
               "updatedAt": "2025-02-19T15:26:59Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6c0gaK",
+          "commit": {
+            "abbreviatedOid": "b191f0a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-20T20:02:59Z",
+          "updatedAt": "2025-02-20T20:02:59Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-02-20T20:02:59Z",
+              "updatedAt": "2025-02-20T20:02:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6c18tI",
+          "commit": {
+            "abbreviatedOid": "30286ab"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-20T23:07:22Z",
+          "updatedAt": "2025-02-20T23:07:22Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6c28f8",
+          "commit": {
+            "abbreviatedOid": "30286ab"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-21T02:04:42Z",
+          "updatedAt": "2025-02-21T02:04:47Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "Since we do not have so many instances and implementations, can we stipulate \"In most...\"? I don't have a strong objection, but maybe use specification language?\r\n\r\n```suggestion\r\nTransparency Services' append-only logs MAY carry only cryptographic metadata (e.g. a hash), rather than the complete Signed Statement, which does not raise immediate privacy concerns.\r\n```",
+              "createdAt": "2025-02-21T02:04:42Z",
+              "updatedAt": "2025-02-21T02:04:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6c6QQz",
+          "commit": {
+            "abbreviatedOid": "30286ab"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-21T09:38:53Z",
+          "updatedAt": "2025-02-21T09:38:53Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\nClients are responsible for verifying that the Transparency Service's privacy and security posture is suitable for the contents of the Signed Statements they submit prior to Registration.\r\n```\r\n\r\nWe draw a distinction between Clients and Issuers elsewhere, and even clarify \"The Client (which is not necessarily the Issuer)\", and the submission performed by the Client.\r\n\r\nI don't think we say anything about the Client always acting faithfully/honestly on behalf of the Issuer. If that's always the case, then the current wording is fine. If not, perhaps this paragraph and the next ought to be reworded slightly, and a comment added to clarify that the Client is trusted in this process?\r\n\r\nOr maybe I am overthinking this, and this is in fact clear to everyone :)",
+              "createdAt": "2025-02-21T09:38:53Z",
+              "updatedAt": "2025-02-21T09:38:53Z"
+            }
+          ]
         }
       ]
     },
     {
       "number": 349,
       "id": "PR_kwDOIvmHss6LxT0y",
-      "title": "Clarify that the unprotected header SHOULD be empty when registering a signed statement",
+      "title": "Clarify that the unprotected header MUST be empty before a Signed Statement is included in the Append-only log",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/349",
       "state": "OPEN",
       "author": "achamayou",
@@ -46321,13 +46480,13 @@
       "labels": [],
       "body": "Closes #321.",
       "createdAt": "2025-02-19T15:41:20Z",
-      "updatedAt": "2025-02-19T22:23:59Z",
+      "updatedAt": "2025-02-21T14:16:22Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "711bb2ccf3f470655f7ebd636b69af5725985d84",
       "headRepository": "achamayou/draft-ietf-scitt-architecture",
       "headRefName": "clarify_what_is_notarized_on_the_ledger",
-      "headRefOid": "d1178548fe65bff5de17b17bfb376a6629ee25db",
+      "headRefOid": "00d75d2de22533221a12fe0717fb351944c444cd",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -46533,6 +46692,139 @@
               "updatedAt": "2025-02-19T22:23:59Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6cyu3t",
+          "commit": {
+            "abbreviatedOid": "d117854"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-20T16:45:39Z",
+          "updatedAt": "2025-02-20T16:45:39Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "Ok, I have amended the wording now, and I am doing a scan to make sure I didn't miss anything. Please check.",
+              "createdAt": "2025-02-20T16:45:39Z",
+              "updatedAt": "2025-02-20T16:45:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6c0e0h",
+          "commit": {
+            "abbreviatedOid": "c747e3a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-20T19:59:54Z",
+          "updatedAt": "2025-02-20T19:59:54Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\nA Transparency Service may receive a Signed Statement with content in the unprotected header; however, when writing the Verifiable Data Structure, the unprotected header of the Signed Statement MUST replaced with an empty unprotected header.\r\n```",
+              "createdAt": "2025-02-20T19:59:54Z",
+              "updatedAt": "2025-02-20T19:59:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6c29e7",
+          "commit": {
+            "abbreviatedOid": "c747e3a"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-21T02:08:52Z",
+          "updatedAt": "2025-02-21T02:08:53Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "Doesn't it have to be MAY?\r\n\r\n",
+              "createdAt": "2025-02-21T02:08:52Z",
+              "updatedAt": "2025-02-21T02:08:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6c5_ac",
+          "commit": {
+            "abbreviatedOid": "c747e3a"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-21T09:09:34Z",
+          "updatedAt": "2025-02-21T09:09:34Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "The rewrite is hopefully clearer, if a bit heavy. I was a little thrown off by the discussion earlier this week, but realised by skimming through that the document largely talks about \"Append-only log\" as a logical concept, and only briefly mentions VDS (from the COSE receipts draft) as an implementation mechanism. So I've aligned with that here for consistency.",
+              "createdAt": "2025-02-21T09:09:34Z",
+              "updatedAt": "2025-02-21T09:09:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6c6Jg5",
+          "commit": {
+            "abbreviatedOid": "c747e3a"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-21T09:27:20Z",
+          "updatedAt": "2025-02-21T09:27:20Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "@aj-stein my sense is that \"A Transparency Service MAY receive\" is not ideal, because it feels descriptive rather than prescriptive, and so I have rewritten this to be \"The TS MAY accept\".\r\n\r\n@aj-stein @SteveLasker can you check you are happy with the wording?",
+              "createdAt": "2025-02-21T09:27:20Z",
+              "updatedAt": "2025-02-21T09:27:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6c8rk_",
+          "commit": {
+            "abbreviatedOid": "99a89c6"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-21T14:11:29Z",
+          "updatedAt": "2025-02-21T14:11:30Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\nHowever, the unprotected header of all Signed Statements in the Append-only log MUST be empty.\r\nA Transparency Service MUST replace the unprotected header with an empty unprotected header before inclusion in the Append-only log.\r\n```",
+              "createdAt": "2025-02-21T14:11:29Z",
+              "updatedAt": "2025-02-21T14:11:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6c8urr",
+          "commit": {
+            "abbreviatedOid": "00d75d2"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM\r\nWe'll address the Append-only --> VDS reference in #348 ",
+          "createdAt": "2025-02-21T14:16:22Z",
+          "updatedAt": "2025-02-21T14:16:22Z",
+          "comments": []
         }
       ]
     }
