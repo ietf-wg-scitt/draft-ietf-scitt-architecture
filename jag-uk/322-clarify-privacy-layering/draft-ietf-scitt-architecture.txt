@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 24 August 2025                                       C. Fournet
+Expires: 28 August 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        20 February 2025
+                                                        24 February 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 August 2025.
+   This Internet-Draft will expire on 28 August 2025.
 
 Copyright Notice
 
@@ -1218,13 +1218,13 @@ Table of Contents
    and be given access to both the Transparency Service and related
    Adjacent Services.
 
-   In most Transparency Service implementations the append-only log only
-   carries cryptographic metadata (eg a hash) rather than the complete
-   Signed Statement and so does not raise immediate privacy concerns.
-   By analyzing the relationship between data stored in the Transparency
-   Service and data stored in Adjacent Services, it is possible to
-   perform metadata analysis, which could reveal the order in which
-   artifacts were built, signed and uploaded.
+   Transparency Services' append-only logs MAY carry only cryptographic
+   metadata (e.g. a hash), rather than the complete Signed Statement,
+   which does not raise immediate privacy concerns.  By analyzing the
+   relationship between data stored in the Transparency Service and data
+   stored in Adjacent Services, it is possible to perform metadata
+   analysis, which could reveal the order in which artifacts were built,
+   signed and uploaded.
 
 9.  Security Considerations
 
@@ -1497,9 +1497,9 @@ Table of Contents
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-07, 17 October
-              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-07>.
+              Draft, draft-ietf-cose-merkle-tree-proofs-08, 20 February
+              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              cose-merkle-tree-proofs-08>.
 
    [I-D.draft-ietf-scitt-scrapi]
               Birkholz, H. and J. Geater, "SCITT Reference APIs Draft-
