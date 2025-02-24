@@ -102,9 +102,6 @@ normative:
 
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
   IANA.cwt:
-  IANA.named-information:
-  RFC6570: URITemplate
-  RFC4648: Base64Url
 
 informative:
 
@@ -119,7 +116,6 @@ informative:
   RFC4949: Glossary
   RFC7523:
   RFC8725:
-  RFC2397: DataURLs
   RFC9162: CT
   RFC9334: rats-arch
   CWT_CLAIMS:
@@ -155,12 +151,6 @@ informative:
   SWID:
     target: https://csrc.nist.gov/Projects/Software-Identification-SWID/guidelines
     title: SWID Specification
-
-  URLs:
-    target: https://url.spec.whatwg.org/
-    title: URL Living Standard
-
-  I-D.draft-ietf-core-href: CURIs
 
   KEY-MANAGEMENT: DOI.10.6028/NIST.SP.800-57pt2r1
 
