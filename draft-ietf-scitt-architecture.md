@@ -136,8 +136,6 @@ informative:
     target: https://in-toto.io/
     title: in-toto
 
-  MERKLE: DOI.10.1007/3-540-48184-2_32
-
   PBFT: DOI.10.1145/571637.571640
 
   SLSA:
@@ -356,7 +354,6 @@ SCITT provides a standardized way to:
 * notify software integrators of vulnerabilities identified during security scans of running software
 * provide valid annotations on build integrity to ensure conformance
 
-
 # Terminology {#terminology}
 
 The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust, which are used throughout this document.
@@ -367,10 +364,9 @@ The terms "header", "payload", and "to-be-signed bytes" are defined in {{-COSE}}
 
 The term "claim" is defined in {{RFC8392}}.
 
-Append-only Log (Ledger):
+Append-only Log:
 
-: the verifiable append-only data structure that stores Signed Statements in a Transparency Service, often referred to by the synonym Ledger.
-SCITT supports multiple Ledger and Receipt formats to accommodate different Transparency Service implementations, and the proof types associated with different types of Append-only Logs.
+: see Verifiable Data Structure
 
 Artifact:
 
@@ -394,7 +390,7 @@ In COSE, an Envelope consists of a protected header (included in the Issuer's si
 
 Equivocation:
 
-: a state where it is possible for a Transparency Service to provide different views of its Append-only log to Relying Parties about the same Artifact {{EQUIVOCATION}}.
+: a state where it is possible for a Transparency Service to provide different views of its Verifiable Data Structure to Relying Parties about the same Artifact {{EQUIVOCATION}}.
 
 Issuer:
 
@@ -404,19 +400,19 @@ In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE he
 
 Non-equivocation:
 
-: a state where it is impossible for a Transparency Service to provide different views of its Append-only Log to Relying Parties about the same Artifact.
+: a state where it is impossible for a Transparency Service to provide different views of its Verifiable Data Structure to Relying Parties about the same Artifact.
 Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information.
 However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Relying Parties.
 
 Receipt:
 
-: a cryptographic proof that a Signed Statement is included in the Append-only Log.
+: a cryptographic proof that a Signed Statement is included in the Verifiable Data Structure.
 Receipts are signed proofs of verifiable data-structure properties.
 The types of Receipts MUST support inclusion proofs and MAY support other proof types, such as consistency proofs.
 
 Registration:
 
-: the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, adding to the Append-only Log, and producing a Receipt.
+: the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, adding to the Verifiable Data Structure, and producing a Receipt.
 
 Registration Policy:
 
@@ -447,8 +443,8 @@ In these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim 
 
 Transparency Service:
 
-: an entity that maintains and extends the Append-only Log, and endorses its state.
-A Transparency Service can be a complex system, requiring the Transparency Service to provide many security guarantees about its Append-only Log.
+: an entity that maintains and extends the Verifiable Data Structure, and endorses its state.
+A Transparency Service can be a complex system, requiring the Transparency Service to provide many security guarantees about its Verifiable Data Structure.
 The identity of a Transparency Service is captured by a public key that must be known by Relying Parties in order to validate Receipts.
 
 Transparent Statement:
@@ -459,19 +455,21 @@ A Transparent Statement remains a valid Signed Statement, and may be registered 
 
 Verifiable Data Structure:
 
-: a data structure which supports one or more proof types, such as "inclusion proofs" or "consistency proofs" (as defined in {{-COMETRE}}).
-
+: a data structure which supports one or more proof types, such as "inclusion proofs" or "consistency proofs", for Signed Statements as they are Registered to a Transparency Service.
+SCITT supports multiple Verifiable Data Structures and Receipt formats as defined in {{-COMETRE}}, accommodating different Transparency Service implementations.
+May be referenced as an Append-only log, indicating it's immutable nature.
 {: #mybody}
 
 # Definition of Transparency
 
 In this document, the definition of transparency is intended to build over abstract notions of Append-only Logs and Receipts.
 Existing transparency systems such as Certificate Transparency are instances of this definition.
+SCITT supports multiple Append-only log formats, as defined in {{-COMETRE}}, and uses Verifiable Data Structure throughout the document.
 
 A Signed Statement is an identifiable and non-repudiable Statement made by an Issuer.
 The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata.
 Signed Statements can be made transparent by attaching a proof of Registration by a Transparency Service, in the form of a Receipt.
-Receipts demonstrate inclusion of Signed Statements in the Append-only Log of a Transparency Service.
+Receipts demonstrate inclusion of Signed Statements in the Verifiable Data Structure of a Transparency Service.
 By extension, the Signed Statement may say an Artifact (for example, a firmware binary) is transparent if it comes with one or more Transparent Statements from its author or owner, though the context should make it clear what type of Signed Statements is expected for a given Artifact.
 
 Transparency does not prevent dishonest or compromised Issuers, but it holds them accountable.
@@ -480,8 +478,8 @@ The Transparency Service provides a history of Statements, which may be made by 
 
 Transparency is implemented by providing a consistent, append-only, cryptographically verifiable, publicly available record of entries.
 A SCITT instance is referred to as a Transparency Service.
-Implementations of Transparency Services may protect their Append-only Log using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence.
-A Receipt is an offline, universally-verifiable proof that an entry is registered in the Append-only Log.
+Implementations of Transparency Services may protect their Verifiable Data Structure using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence.
+A Receipt is an offline, universally-verifiable proof that an entry is registered in the Verifiable Data Structure.
 Requesting a Receipt can result in the production of a new Receipt for the same Signed Statement.
 A Receipt's verification key, signing algorithm, validity period, header parameters or other claims MAY change each time a Receipt is produced.
 
@@ -489,7 +487,7 @@ Anyone with access to the Transparency Service can independently verify its cons
 However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, from the first Transparency Service) and register it on another Transparency Service, where the second Receipt will be over the first Receipt in the unprotected header.
 
 Reputable Issuers are thus incentivized to carefully review their Statements before signing them to produce Signed Statements.
-Similarly, reputable Transparency Services are incentivized to secure their Append-only Log, as any inconsistency can easily be pinpointed by any Auditor with read access to the Transparency Service.
+Similarly, reputable Transparency Services are incentivized to secure their Verifiable Data Structure, as any inconsistency can easily be pinpointed by any Auditor with read access to the Transparency Service.
 
 The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital Artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.
 
@@ -500,14 +498,14 @@ Considering CT in terms of SCITT:
 - CAs submit the certificates to one or more CT logs (Transparency Services)
 - CT logs produce Signed Certificate Timestamps (Transparent Statements)
 - Signed Certificate Timestamps, Signed Tree Heads, and their respective consistency proofs are checked by Relying Parties
-- The Append-only Log can be checked by Auditors
+- The Verifiable Data Structure can be checked by Auditors
 
 # Architecture Overview
 
 The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements, and auditing Transparent Statements.
 
 In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
-The remaining details of the Receipt's contents are specified in the COSE Signed Merkle Tree Proof document {{-COMETRE}}.
+The remaining details of the Receipt's contents are specified in {{-COMETRE}}.
 
 {{fig-concept-relationship}} illustrates the roles and processes that comprise a Transparency Service independent of any one use case:
 
@@ -517,7 +515,7 @@ The returned Receipt may be combined with the Signed Statement to create a Trans
 - Relying Parties that:
   - collect Receipts of Signed Statements for subsequent registration of Transparent Statements;
   - retrieve Transparent Statements for analysis of Statements about Artifacts themselves (e.g. verification);
-  - or replay all the Transparent Statements to check for the consistency of the Transparency Service's Append-only Log (e.g. auditing)
+  - or replay all the Transparent Statements to check for the consistency of the Transparency Service's Verifiable Data Structure (e.g. auditing)
 
 In addition, {{fig-concept-relationship}} illustrates multiple Transparency Services and multiple Receipts as a single Signed Statement MAY be registered with one or more Transparency Service.
 Each Transparency Service produces a Receipt, which may be aggregated in a single Transparent Statement, demonstrating the Signed Statement was registered by multiple Transparency Services.
@@ -562,8 +560,8 @@ The subsequent sections describe the main concepts, namely Transparency Service,
 
 ## Transparency Service
 
-Transparency Services MUST feature an Append-only Log.
-The Append-only Log is the verifiable data structure that records registered Signed Statements and supports the production of Receipts.
+Transparency Services MUST feature a Verifiable Data Structure.
+The Verifiable Data Structure records registered Signed Statements and supports the production of Receipts.
 
 All Transparency Services MUST expose APIs ({{-SCRAPI}} for the Registration of Signed Statements and issuance of Receipts.
 
@@ -575,14 +573,14 @@ Multi-tenant support can be enabled through the use of identifiers in the `iss` 
 
 ### Registration Policies
 
-Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is accepted to be registered to the Append-only Log.
+Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is accepted to be registered to the Verifiable Data Structure.
 
 Transparency Services MUST maintain Registration Policies.
 Transparency Services MUST maintain a list of trust anchors (see definition of trust anchor in {{-Glossary}}) in order to check the signatures of Signed Statements, either separately, or inside Registration Policies.
 Transparency Services MUST authenticate Signed Statements as part of a Registration Policy.
 For instance, a trust anchor could be an X.509 root certificate (directly or its thumbprint), a pointer to an OpenID Connect identity provider, or any other COSE-compatible trust anchor.
 
-Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Append-only Log, and distributing the associated Receipts.
+Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Verifiable Data Structure, and distributing the associated Receipts.
 
 This specification leaves implementation, encoding and documentation of Registration Policies and trust anchors to the operator of the Transparency Service.
 
@@ -597,13 +595,13 @@ In essence, when using X.509 Signed Statements, the Transparency Service MUST bu
 The protected header of the COSE_Sign1 Envelope MUST include either the Issuer's certificate as `x5t` or the chain including the Issuer's certificate as `x5chain`.
 If `x5t` is included in the protected header, an `x5chain` with a leaf certificate corresponding to the `x5t` value MAY be included in the unprotected header.
 
-The Transparency Service MUST apply the Registration Policy that was most recently added to the Append-only Log at the time of Registration.
+The Transparency Service MUST apply the Registration Policy that was most recently added to the Verifiable Data Structure at the time of Registration.
 
 #### Auditability of Registration
 
 The operator of a Transparency Service MAY update the Registration Policy or the trust anchors of a Transparency Service at any time.
 
-Transparency Services MUST ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Append-only Log and retrievable through audit APIs, or included in the Receipt) to reproduce the Registration checks that were defined by the Registration Policies at the time of Registration.
+Transparency Services MUST ensure that for any Signed Statement they register, enough information is made available to Auditors (either in the Verifiable Data Structure and retrievable through audit APIs, or included in the Receipt) to reproduce the Registration checks that were defined by the Registration Policies at the time of Registration.
 
 ### Initialization and Bootstrapping {#ts-initialization}
 
@@ -613,9 +611,9 @@ Since the mandatory Registration checks rely on having registered Signed Stateme
 - Acceptance of a first Signed Statement whose payload is a valid Registration Policy, without performing Registration checks
 - An out-of-band authenticated management interface
 
-### Append-only Log
+### Verifiable Data Structure
 
-The security properties of the Append-only Log are determined by the choice of the verifiable data structure used by the Transparency Service to implement the Log.
+The security properties are determined by the choice of the Verifiable Data Structure ({{-COMETRE}}) used by the Transparency Service implementation.
 This verifiable data structure MUST support the following security requirements:
 
 Append-Only:
@@ -624,12 +622,12 @@ Append-Only:
 
 Non-equivocation:
 
-: there is no fork in the Append-only Log.
+: there is no fork in the Verifiable Data Structure.
 Everyone with access to its content sees the same ordered collection of Signed Statements and can check that it is consistent with any Receipts they have verified.
 
 Replayability:
 
-: the Append-only Log includes sufficient information to enable authorized actors with access to its content to check that each included Signed Statement has been correctly registered.
+: the Verifiable Data Structure includes sufficient information to enable authorized actors with access to its content to check that each data structure representing each Signed Statement has been correctly registered.
 
 In addition to Receipts, some verifiable data structures might support additional proof types, such as proofs of consistency, or proofs of non inclusion.
 
@@ -748,12 +746,12 @@ The Transparency Service MUST also check the Signed Statement includes the requi
 The Transparency Service MAY validate the Signed Statement payload in order to enforce domain specific registration policies that apply to specific content types.
 1. **Apply Registration Policy:** The Transparency Service MUST check the attributes required by a Registration Policy are present in the protected headers.
   Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.
-1. **Register the Signed Statement** to the Append-only Log.
+1. **Register the Signed Statement** to the Verifiable Data Structure.
 1. **Return the Receipt**, which MAY be asynchronous from Registration.
 The Transparency Service MUST be able to provide a Receipt for all registered Signed Statements.
 Details about generating Receipts are described in {{Receipt}}.
 
-The last two steps may be shared between a batch of Signed Statements registered in the Append-only Log.
+The last two steps may be shared between a batch of Signed Statements registered in the Verifiable Data Structure.
 
 A Transparency Service MUST ensure that a Signed Statement is registered before releasing its Receipt.
 
@@ -771,7 +769,7 @@ When a Receipt is included in a Signed Statement a Transparent Statement is prod
 
 Receipts are based on Signed Inclusion Proofs as described in COSE Receipts {{-COMETRE}} that also provides the COSE header parameter semantics for label TBD_0.
 
-The Registration time is recorded as the timestamp when the Transparency Service added this Signed Statement to its Append-only Log.
+The Registration time is recorded as the timestamp when the Transparency Service added the Signed Statement to its Verifiable Data Structure.
 
 {{fig-transparent-statement-cddl}} illustrates a normative CDDL definition of Transparent Statements.
 See {{fig-signed-statement-cddl}} for the CDDL rule that defines 'COSE_Sign1' as specified in {{Section 4.2 of -COSE}}
@@ -843,7 +841,7 @@ The verifiable data structure (`-111`) uses `1` from (RFC9162_SHA256).
 {: #fig-receipt-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Protected Header"}
 
 {{fig-receipt-inclusion-proof-edn}} illustrates the decoded inclusion proof from {{fig-receipt-edn}}.
-This inclusion proof indicates that the size of the Append-only Log was `8` at the time the Receipt was issued.
+This inclusion proof indicates that the size of the Verifiable Data Structure was `8` at the time the Receipt was issued.
 The structure of this inclusion proof is specific to the verifiable data structure used (RFC9162_SHA256).
 
 ~~~ cbor-diag
@@ -880,7 +878,7 @@ Such policies may use as input all information in the Envelope, the Receipt, and
 Transparency Services MAY support anonymous access.
 Issuers SHOULD ensure Signed Statements submitted to public access services are acceptable for public disclosure.
 Publicly accessible Signed Statements MUST NOT carry confidential information.
-Once a Signed Statement is inserted into the Append-only Log maintained by a Transparency Service, it cannot be removed from the Log.
+Once a Signed Statement is inserted into the Verifiable Data Structure maintained by a Transparency Service, it cannot be removed.
 In some deployments, a special role, such as an Auditor, might require access to Signed Statements.
 
 # Security Considerations
@@ -888,8 +886,8 @@ In some deployments, a special role, such as an Auditor, might require access to
 On its own, verifying a Transparent Statement does not guarantee that its Envelope or contents are trustworthy.
 Just that they have been signed by the apparent Issuer and counter-signed by the Transparency Service.
 If the Relying Party trusts the Issuer, after validation of the Issuer identity, it can infer that an Issuer's Signed Statement was issued with this Envelope and contents, which may be interpreted as the Issuer saying the Artifact is fit for its intended purpose.
-If the Relying Party trusts the Transparency Service, it can independently infer that the Signed Statement passed the Transparency Service Registration Policy and that has been persisted in the Append-only Log.
-Unless advertised in the Transparency Service Registration Policy, the Relying Party cannot assume that the ordering of Signed Statements in the Append-only Log matches the ordering of their issuance.
+If the Relying Party trusts the Transparency Service, it can independently infer that the Signed Statement passed the Transparency Service Registration Policy and that has been persisted in the Verifiable Data Structure.
+Unless advertised in the Transparency Service Registration Policy, the Relying Party cannot assume that the ordering of Signed Statements in the Verifiable Data Structure matches the ordering of their issuance.
 
 Similarly, the fact that an Issuer can be held accountable for its Transparent Statements does not on its own provide any mitigation or remediation mechanism in case one of these Transparent Statements turned out to be misleading or malicious.
 Just that signed evidence will be available to support them.
@@ -909,7 +907,7 @@ Threshold signatures may be use to protect the service key, etc.
 Issuers and Transparency Services MUST rotate their keys in well-defined cryptoperiods, see {{KEY-MANAGEMENT}}.
 
 A Transparency Service MAY provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
-If present, these additional authenticity assurances MUST be registered in the Append-only Log and MUST always be exposed by the Transparency Services' APIs.
+If present, these additional authenticity assurances MUST be registered in the Verifiable Data Structure and MUST always be exposed by the Transparency Services' APIs.
 An example of Signed Statement's payloads that can improve authenticity assurances are trustworthiness assessments that are RATS Conceptual Messages, such as Evidence, Endorsements, or corresponding Attestation Results (see {{-rats-arch}}).
 
 For example, if a Transparency Service is implemented using a set of redundant replicas, each running within its own hardware-protected trusted execution environments (TEEs), then each replica can provide fresh Evidence or fresh Attestation Results about its TEEs.
@@ -930,8 +928,8 @@ SCITT provides the following security guarantees:
 1. Issuers can efficiently prove that their Statement is logged by a Transparency Service
 
 The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
-The second guarantee is achieved by storing the Signed Statement on an Append-only Log.
-The third guarantee is achieved by implementing the Append-only Log using a verifiable data structure (such as a Merkle Tree {{MERKLE}}).
+The second guarantee is achieved by storing the Signed Statement on an Verifiable Data Structure.
+The third guarantee is achieved by implementing a Verifiable Data Structure ({{-COMETRE}}).
 
 ## Threat Model
 
@@ -950,8 +948,8 @@ A Relying Party SHOULD validate a Transparent Statement originating from a given
 Issuers cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a Transparency Service.
 
 Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal.
-Preventing a Transparency Service from registering Signed Statements that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their Append-only Log is not possible.
-In contrast Transparency Services can be held accountable and they can be called out by any Auditor that replays their Append-only Log against any contested Receipt.
+Preventing a Transparency Service from registering Signed Statements that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their Verifiable Data Structure is not possible.
+In contrast Transparency Services can be held accountable and they can be called out by any Auditor that replays their Verifiable Data Structure against any contested Receipt.
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service.
 Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
 
@@ -962,7 +960,7 @@ On the other hand, their liability and the resulting damage to their reputation 
 Relying Parties and Auditors need not be trusted by other actors.
 In particular, so long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.
 
-### Append-only Log
+### Verifiable Data Structure
 
 If a Transparency Service is honest, then a Transparent Statement including a correct Receipt ensures that the associated Signed Statement passed its Registration Policy and was registered appropriately.
 
@@ -970,13 +968,13 @@ Conversely, a corrupt Transparency Service may:
 
 1. refuse or delay the Registration of Signed Statements
 1. register Signed Statements that do not pass its Registration Policy (e.g., Signed Statement with Issuer identities and signatures that do not verify)
-1. issue verifiable Receipts for Signed Statements that do not match its Append-only Log
+1. issue verifiable Receipts for Signed Statements that do not match its Verifiable Data Structure
 1. refuse access to its Transparency Service (e.g., to Auditors, possibly after storage loss)
 
 An Auditor granted (partial) access to a Transparency Service and to a collection of disputed Receipts will be able to replay it, detect any invalid Registration (2) or incorrect Receipt in this collection (3), and blame the Transparency Service for them.
 This ensures any Relying Party that trusts at least one such Auditor that (2, 3) will be blamed to the Transparency Service.
 
-Due to the operational challenge of maintaining a globally consistent Append-only Log, some Transparency Services may provide limited support for historical queries on the Signed Statements they have registered, and accept the risk of being blamed for inconsistent Registration or Issuer Equivocation.
+Due to the operational challenge of maintaining a globally consistent Verifiable Data Structure, some Transparency Services may provide limited support for historical queries on the Signed Statements they have registered, and accept the risk of being blamed for inconsistent Registration or Issuer Equivocation.
 
 Relying Parties and Auditors may also witness (1, 4) but may not be able to collect verifiable evidence for it.
 
