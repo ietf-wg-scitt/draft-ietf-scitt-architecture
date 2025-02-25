@@ -880,7 +880,7 @@ Such policies may use as input all information in the Envelope, the Receipt, and
 Interactions with Transparency Services are expected to use appropriately strong encryption and authorization technologies.
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
-Issuers are responsible for verifying that the Transparency Service's privacy and security posture is suitable for the contents of their Signed Statements prior to Registration.
+Issuers and Clients are responsible for verifying that the Transparency Service's privacy and security posture is suitable for the contents of the Signed Statements they submit prior to Registration.
 In particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the Transparency Service's privacy posture.
 
 In some deployments a special role such as an Auditor might require and be given access to both the Transparency Service and related Adjacent Services.
