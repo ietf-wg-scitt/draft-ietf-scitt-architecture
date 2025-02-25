@@ -112,10 +112,9 @@ Table of Contents
      9.2.  Threat Model
        9.2.1.  Append-only Log
        9.2.2.  Availability of Receipts
-       9.2.3.  Confidentiality and Privacy
-       9.2.4.  Cryptographic Agility
-       9.2.5.  Transparency Service Client Applications
-       9.2.6.  Impersonation
+       9.2.3.  Cryptographic Agility
+       9.2.4.  Transparency Service Client Applications
+       9.2.5.  Impersonation
    10. IANA Considerations
      10.1.  COSE Receipts Header Parameter
      10.2.  Media Type Registration
@@ -1204,14 +1203,29 @@ Table of Contents
 
 8.  Privacy Considerations
 
-   Transparency Services MAY support anonymous access.  Issuers SHOULD
-   ensure Signed Statements submitted to public access services are
-   acceptable for public disclosure.  Publicly accessible Signed
-   Statements MUST NOT carry confidential information.  Once a Signed
-   Statement is inserted into the Append-only Log maintained by a
-   Transparency Service, it cannot be removed from the Log. In some
-   deployments, a special role, such as an Auditor, might require access
-   to Signed Statements.
+   Interactions with Transparency Services are expected to use
+   appropriately strong encryption and authorization technologies.
+
+   The Transparency Service is trusted with the confidentiality of the
+   Signed Statements presented for Registration.  Issuers and Clients
+   are responsible for verifying that the Transparency Service's privacy
+   and security posture is suitable for the contents of the Signed
+   Statements they submit prior to Registration.  In particular, Issuers
+   must carefully review the inclusion of private, confidential, or
+   personally identifiable information (PII) in their Statements against
+   the Transparency Service's privacy posture.
+
+   In some deployments a special role such as an Auditor might require
+   and be given access to both the Transparency Service and related
+   Adjacent Services.
+
+   Transparency Services' append-only logs MAY carry only cryptographic
+   metadata (e.g. a hash), rather than the complete Signed Statement,
+   which does not raise immediate privacy concerns.  By analyzing the
+   relationship between data stored in the Transparency Service and data
+   stored in Adjacent Services, it is possible to perform metadata
+   analysis, which could reveal the order in which artifacts were built,
+   signed and uploaded.
 
 9.  Security Considerations
 
@@ -1428,43 +1442,14 @@ Table of Contents
    Actors may want to independently keep their own record of the Signed
    Statements they issue, endorse, verify, or audit.
 
-9.2.3.  Confidentiality and Privacy
-
-   All contents exchanged between actors is protected using secure
-   authenticated channels (e.g., TLS) but may not exclude network
-   traffic analysis.
-
-   The Transparency Service is trusted with the confidentiality of the
-   Signed Statements presented for Registration.  Some Transparency
-   Services may publish every Signed Statement in their logs, to
-   facilitate their dissemination and auditing.  Transparency Services
-   MAY return Receipts to Client applications synchronously or
-   asynchronously.
-
-   A collection of Signed Statements must not leak information about the
-   contents of other Signed Statements registered on the Transparency
-   Service.
-
-   Issuers must carefully review the inclusion of private/confidential
-   materials in their Statements.  For example, Issuers must remove
-   Personally Identifiable Information (PII) as clear text in the
-   Statement.  Alternatively, Issuers may include opaque cryptographic
-   Statements, such as hashes.
-
-   The confidentiality of queries is implementation-specific, and
-   generally not guaranteed.  For example, while offline Envelope
-   validation of Signed Statements is private, a Transparency Service
-   may monitor which of its Transparent Statements are being verified
-   from lookups to ensure their freshness.
-
-9.2.4.  Cryptographic Agility
+9.2.3.  Cryptographic Agility
 
    The SCITT Architecture supports cryptographic agility.  The actors
    depend only on the subset of signing and Receipt schemes they trust.
    This enables the gradual transition to stronger algorithms, including
    e.g. post-quantum signature algorithms.
 
-9.2.5.  Transparency Service Client Applications
+9.2.4.  Transparency Service Client Applications
 
    Authentication of Client applications is out of scope for this
    document.  Transparency Services MUST authenticate both Client
@@ -1473,7 +1458,7 @@ Table of Contents
    policies are enforced.  The specification of authentication and
    authorization policies is out of scope for this document.
 
-9.2.6.  Impersonation
+9.2.5.  Impersonation
 
    The identity resolution mechanism is trusted to associate long-term
    identifiers with their public signature-verification keys.
