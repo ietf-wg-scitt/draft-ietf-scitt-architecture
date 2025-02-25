@@ -475,10 +475,11 @@ Table of Contents
       Artifact can be checked by all Relying Parties.
 
    Receipt:  a cryptographic proof that a Signed Statement is included
-      in the Verifiable Data Structure.  Receipts are signed proofs of
-      verifiable data-structure properties.  The types of Receipts MUST
-      support inclusion proofs and MAY support other proof types, such
-      as consistency proofs.
+      in the Verifiable Data Structure.  See
+      [I-D.draft-ietf-cose-merkle-tree-proofs] for implementations
+      Receipts are signed proofs of verifiable data-structure
+      properties.  The types of Receipts MUST support inclusion proofs
+      and MAY support other proof types, such as consistency proofs.
 
    Registration:  the process of submitting a Signed Statement to a
       Transparency Service, applying the Transparency Service's
