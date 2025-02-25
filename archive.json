@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-23T00:52:07.290530+00:00",
+  "timestamp": "2025-02-25T00:48:55.523823+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -6115,7 +6115,7 @@
       "id": "I_kwDOIvmHss6kUiao",
       "title": "Include COSE HASH Refernece",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/333",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -6126,9 +6126,24 @@
       ],
       "body": "From @mcr,\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/xXaVeX1b6idRI8oFbvBF10RkF_Q/\r\n\r\n> If Detached payloads are going to be used, then probably this should\r\n>be more clearly stated as a requirement?\r\n\r\n@SteveLasker \r\n> Personally, I believe hashed (not detached) payloads https://datatracker.ietf.org/doc/draft-ietf-cose-hash-envelope/ will be the majority. Should the draft limit to hash envelopes?\r\n\r\n@mcr\r\n> I don't care exactly, but I think more details are needed.\r\n",
       "createdAt": "2024-12-23T23:26:18Z",
-      "updatedAt": "2024-12-23T23:26:38Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2025-02-24T20:52:44Z",
+      "closedAt": "2025-02-24T20:52:41Z",
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Am I right in remembering that we decided not to include this reference to avoid a dependency that would delay the Architecture draft unnecessarily?",
+          "createdAt": "2025-02-24T20:28:45Z",
+          "updatedAt": "2025-02-24T20:28:45Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Correct, we closed the PR, but this didn't auto-close",
+          "createdAt": "2025-02-24T20:52:41Z",
+          "updatedAt": "2025-02-24T20:52:41Z"
+        }
+      ]
     },
     {
       "number": 337,
@@ -6260,11 +6275,13 @@
       "state": "OPEN",
       "author": "JAG-UK",
       "authorAssociation": "CONTRIBUTOR",
-      "assignees": [],
+      "assignees": [
+        "SteveLasker"
+      ],
       "labels": [],
       "body": "Throughout the document we talk about things like storage and indexing services which are non-core to SCITT interoperability as, variously, 'auxiliary', 'ancillary', and 'adjacent'.\n\n'Adjacent' is best, so standardise on that throughout the document please.",
       "createdAt": "2025-02-18T15:27:01Z",
-      "updatedAt": "2025-02-21T14:27:30Z",
+      "updatedAt": "2025-02-24T18:54:39Z",
       "closedAt": null,
       "comments": [
         {
@@ -6301,10 +6318,12 @@
       "assignees": [
         "SteveLasker"
       ],
-      "labels": [],
+      "labels": [
+        "has-pr"
+      ],
       "body": "On 2/18/25, while reviewing #355, we're re-evaluating clarifying details of Append-only log, and what's described, with deferring to the VDS implemented by the TS.\n",
       "createdAt": "2025-02-18T15:35:45Z",
-      "updatedAt": "2025-02-21T15:48:13Z",
+      "updatedAt": "2025-02-24T20:19:37Z",
       "closedAt": null,
       "comments": [
         {
@@ -6334,6 +6353,20 @@
           "body": "Thanks, @achamayou \nI agree with your position that VDS is accurate, but can lose the basics of the concepts the architecture is intended for.\nI'l make a PR for review.",
           "createdAt": "2025-02-21T15:48:11Z",
           "updatedAt": "2025-02-21T15:48:11Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Note: I opened #351.\nConsidering we often hear confusion whether the contents of the statement are recorded \"on the log\", as opposed to a Verifiable Data Structure is committed to the log, I did use Verifiable Data Structure throughout.  PTAL",
+          "createdAt": "2025-02-24T18:53:54Z",
+          "updatedAt": "2025-02-24T18:53:54Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The verifiable data structure is something that is constructed *over* the log, isn't it? Like a Merkle Tree?\n\n> Verifiable Data Structure (VDS):\n> A data structure which supports one or more Proof Types. This property is conceptually similar to \"alg\" (1), it described an algorithm used to maintain the verifiable data structure, for example a binary merkle tree algorithm.\n\nIt's never committed \"to\" the log itself, it's calculated *from* the entries that form the log.",
+          "createdAt": "2025-02-24T20:19:35Z",
+          "updatedAt": "2025-02-24T20:19:35Z"
         }
       ]
     }
@@ -45774,13 +45807,13 @@
       "labels": [],
       "body": "Addresses Issue #322",
       "createdAt": "2025-02-17T12:52:39Z",
-      "updatedAt": "2025-02-21T09:38:53Z",
+      "updatedAt": "2025-02-24T15:23:56Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "6e5646b3a2da6183c820949d4143f1de8ff64e95",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "jag-uk/322-clarify-privacy-layering",
-      "headRefOid": "30286abeab7a992d5d7083e21862cb6b824b64df",
+      "headRefOid": "90a55b2ad04a615c355691170dd243f025d153e6",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -46465,6 +46498,26 @@
               "updatedAt": "2025-02-21T09:38:53Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6dNTII",
+          "commit": {
+            "abbreviatedOid": "30286ab"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-24T15:23:56Z",
+          "updatedAt": "2025-02-24T15:23:56Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "There is a nuance between them, but I agree that Clients interact with the Transparency Service, and Issuers sign statements. Or, rather an Issuers signing material is used to sign statements, which \"Clients\" may operate upon.",
+              "createdAt": "2025-02-24T15:23:56Z",
+              "updatedAt": "2025-02-24T15:23:56Z"
+            }
+          ]
         }
       ]
     },
@@ -46480,7 +46533,7 @@
       "labels": [],
       "body": "Closes #321.",
       "createdAt": "2025-02-19T15:41:20Z",
-      "updatedAt": "2025-02-21T14:16:22Z",
+      "updatedAt": "2025-02-24T12:14:38Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "711bb2ccf3f470655f7ebd636b69af5725985d84",
@@ -46825,6 +46878,252 @@
           "createdAt": "2025-02-21T14:16:22Z",
           "updatedAt": "2025-02-21T14:16:22Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6dK_Im",
+          "commit": {
+            "abbreviatedOid": "00d75d2"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-02-24T12:14:38Z",
+          "updatedAt": "2025-02-24T12:14:38Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 350,
+      "id": "PR_kwDOIvmHss6MVPvC",
+      "title": "Reference Cleanup",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/350",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Remove dangling references, left behind from updated PRs",
+      "createdAt": "2025-02-24T18:01:50Z",
+      "updatedAt": "2025-02-24T18:01:51Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "711bb2ccf3f470655f7ebd636b69af5725985d84",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/ref-cleanup",
+      "headRefOid": "eaf438bbc33348a5e0ef9e9b130e49c201f82088",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 351,
+      "id": "PR_kwDOIvmHss6MVly3",
+      "title": "Replace Append-only with Verifiable Data Structure",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/351",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #348 ",
+      "createdAt": "2025-02-24T18:49:55Z",
+      "updatedAt": "2025-02-24T20:27:18Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "711bb2ccf3f470655f7ebd636b69af5725985d84",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "issure-348",
+      "headRefOid": "0a09271fb087f3f1915a485196fb92c5c102aafb",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6dQg4c",
+          "commit": {
+            "abbreviatedOid": "0a09271"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-24T20:20:16Z",
+          "updatedAt": "2025-02-24T20:20:17Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "```suggestion\r\n: a state where it is possible for a Transparency Service to provide different Verifiable Data Structures to Relying Parties about the same Artifact {{EQUIVOCATION}}.\r\n```",
+              "createdAt": "2025-02-24T20:20:17Z",
+              "updatedAt": "2025-02-24T20:20:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6dQhX5",
+          "commit": {
+            "abbreviatedOid": "0a09271"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-24T20:21:23Z",
+          "updatedAt": "2025-02-24T20:21:24Z",
+          "comments": [
+            {
+              "originalPosition": 26,
+              "body": "\"A sequence of entries captured by a Verifiable Data Structure\"? The log isn't itself a VDS, right?",
+              "createdAt": "2025-02-24T20:21:23Z",
+              "updatedAt": "2025-02-24T20:21:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6dQhom",
+          "commit": {
+            "abbreviatedOid": "0a09271"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-24T20:21:58Z",
+          "updatedAt": "2025-02-24T20:21:59Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "see Verifiable Data Proof? Link to the COSE receipt draft?",
+              "createdAt": "2025-02-24T20:21:58Z",
+              "updatedAt": "2025-02-24T20:21:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6dQhwf",
+          "commit": {
+            "abbreviatedOid": "0a09271"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-24T20:22:15Z",
+          "updatedAt": "2025-02-24T20:22:15Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "```suggestion\r\n: a state where it is impossible for a Transparency Service to provide different Verifiable Data Structures to Relying Parties about the same Artifact.\r\n```",
+              "createdAt": "2025-02-24T20:22:15Z",
+              "updatedAt": "2025-02-24T20:22:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6dQiLO",
+          "commit": {
+            "abbreviatedOid": "0a09271"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-24T20:23:13Z",
+          "updatedAt": "2025-02-24T20:23:13Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "I think this should be Signed Statement rather than Artifact?",
+              "createdAt": "2025-02-24T20:23:13Z",
+              "updatedAt": "2025-02-24T20:23:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6dQirz",
+          "commit": {
+            "abbreviatedOid": "0a09271"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-24T20:24:21Z",
+          "updatedAt": "2025-02-24T20:24:21Z",
+          "comments": [
+            {
+              "originalPosition": 68,
+              "body": "```suggestion\r\n: an entity that maintains and extends the Append-only Log, a Verifiable Data Structure that captures, and endorses it.\r\n```\r\n\r\nI think we still intend to have the TS maintain the log itself, as well as the VDS.",
+              "createdAt": "2025-02-24T20:24:21Z",
+              "updatedAt": "2025-02-24T20:24:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6dQjKO",
+          "commit": {
+            "abbreviatedOid": "0a09271"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-24T20:25:23Z",
+          "updatedAt": "2025-02-24T20:25:23Z",
+          "comments": [
+            {
+              "originalPosition": 69,
+              "body": "```suggestion\r\nA Transparency Service can be a complex system, requiring the Transparency Service to provide many security guarantees about its Append-only Log.\r\n```\r\n\r\nI think the useful end guarantee is about the log and its entries, the VDS is the mechanism used to implement the guarantees.",
+              "createdAt": "2025-02-24T20:25:23Z",
+              "updatedAt": "2025-02-24T20:25:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6dQj3m",
+          "commit": {
+            "abbreviatedOid": "0a09271"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-24T20:26:50Z",
+          "updatedAt": "2025-02-24T20:26:50Z",
+          "comments": [
+            {
+              "originalPosition": 81,
+              "body": "```suggestion\r\nMay be referenced as an Append-only log, indicating its immutable nature.\r\n```\r\n\r\nI don't think this is right, VDS != log.",
+              "createdAt": "2025-02-24T20:26:50Z",
+              "updatedAt": "2025-02-24T20:26:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6dQkEc",
+          "commit": {
+            "abbreviatedOid": "0a09271"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-24T20:27:17Z",
+          "updatedAt": "2025-02-24T20:27:18Z",
+          "comments": [
+            {
+              "originalPosition": 94,
+              "body": "```suggestion\r\nReceipts demonstrate inclusion of Signed Statements in the Append-only Log of a Transparency Service.\r\n```",
+              "createdAt": "2025-02-24T20:27:17Z",
+              "updatedAt": "2025-02-24T20:27:18Z"
+            }
+          ]
         }
       ]
     }
