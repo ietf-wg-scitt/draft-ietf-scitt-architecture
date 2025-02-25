@@ -1785,8 +1785,7 @@ Implementations of Transparency Services may protect their Append-only Log using
 A Receipt is an offline, universally-verifiable proof that an entry is registered in the Append-only Log.
 Requesting a Receipt can result in the production of a new Receipt for the same Signed Statement.
 A Receipt's verification key, signing algorithm, validity period, header parameters or other claims <span class="bcp14">MAY</span> change each time a Receipt is produced.<a href="#section-4-4" class="pilcrow">¶</a></p>
-<p id="section-4-5">Anyone with access to the Transparency Service can independently verify its consistency and review the complete list of Transparent Statements registered by each Issuer.
-However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, from the first Transparency Service) and register it on another Transparency Service, where the second Receipt will be over the first Receipt in the unprotected header.<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-5">Anyone with access to the Transparency Service can independently verify its consistency and review the complete list of Transparent Statements registered by each Issuer.<a href="#section-4-5" class="pilcrow">¶</a></p>
 <p id="section-4-6">Reputable Issuers are thus incentivized to carefully review their Statements before signing them to produce Signed Statements.
 Similarly, reputable Transparency Services are incentivized to secure their Append-only Log, as any inconsistency can easily be pinpointed by any Auditor with read access to the Transparency Service.<a href="#section-4-6" class="pilcrow">¶</a></p>
 <p id="section-4-7">The building blocks defined in SCITT are intended to support applications in any supply chain that produces or relies upon digital Artifacts, from the build and supply of software and IoT devices to advanced manufacturing and food supply.<a href="#section-4-7" class="pilcrow">¶</a></p>
@@ -2325,8 +2324,11 @@ Details about generating Receipts are described in <a href="#Receipt" class="aut
         </ol>
 <p id="section-6.2-3">The last two steps may be shared between a batch of Signed Statements registered in the Append-only Log.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
 <p id="section-6.2-4">A Transparency Service <span class="bcp14">MUST</span> ensure that a Signed Statement is registered before releasing its Receipt.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
-<p id="section-6.2-5">The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
-The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
+<p id="section-6.2-5">A Transparency Service <span class="bcp14">MAY</span> accept a Signed Statement with content in its unprotected header, and <span class="bcp14">MAY</span> use values from that unprotected header during verification and registration policy evaluation.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
+<p id="section-6.2-6">However, the unprotected header of all Signed Statements in the Append-only log <span class="bcp14">MUST</span> be empty.
+A Transparency Service <span class="bcp14">MUST</span> replace the unprotected header with an empty unprotected header before inclusion in the Append-only log.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
+<p id="section-6.2-7">The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
+The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.<a href="#section-6.2-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
