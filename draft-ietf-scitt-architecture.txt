@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 22 August 2025                                       C. Fournet
+Expires: 29 August 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        18 February 2025
+                                                        25 February 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 August 2025.
+   This Internet-Draft will expire on 29 August 2025.
 
 Copyright Notice
 
@@ -1519,9 +1519,9 @@ Table of Contents
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-07, 17 October
-              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-07>.
+              Draft, draft-ietf-cose-merkle-tree-proofs-08, 20 February
+              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              cose-merkle-tree-proofs-08>.
 
    [I-D.draft-ietf-scitt-scrapi]
               Birkholz, H. and J. Geater, "SCITT Reference APIs Draft-
@@ -1533,29 +1533,16 @@ Table of Contents
    [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <https://www.iana.org/assignments/cwt>.
 
-   [IANA.named-information]
-              IANA, "Named Information",
-              <https://www.iana.org/assignments/named-information>.
-
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
-
-   [RFC4648]  Josefsson, S., "The Base16, Base32, and Base64 Data
-              Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
-              <https://www.rfc-editor.org/rfc/rfc4648>.
 
    [RFC5280]  Cooper, D., Santesson, S., Farrell, S., Boeyen, S.,
               Housley, R., and W. Polk, "Internet X.509 Public Key
               Infrastructure Certificate and Certificate Revocation List
               (CRL) Profile", RFC 5280, DOI 10.17487/RFC5280, May 2008,
               <https://www.rfc-editor.org/rfc/rfc5280>.
-
-   [RFC6570]  Gregorio, J., Fielding, R., Hadley, M., Nottingham, M.,
-              and D. Orchard, "URI Template", RFC 6570,
-              DOI 10.17487/RFC6570, March 2012,
-              <https://www.rfc-editor.org/rfc/rfc6570>.
 
    [RFC6838]  Freed, N., Klensin, J., and T. Hansen, "Media Type
               Specifications and Registration Procedures", BCP 13,
@@ -1608,13 +1595,6 @@ Table of Contents
               and contractors", National Institute of Standards and
               Technology (U.S.), DOI 10.6028/nist.fips.201-3, January
               2022, <https://doi.org/10.6028/nist.fips.201-3>.
-
-   [I-D.draft-ietf-core-href]
-              Bormann, C. and H. Birkholz, "Constrained Resource
-              Identifiers", Work in Progress, Internet-Draft, draft-
-              ietf-core-href-18, 3 February 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-core-
-              href-18>.
 
    [I-D.draft-ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
@@ -1675,10 +1655,6 @@ Table of Contents
               DOI 10.1145/571637.571640, November 2002,
               <https://doi.org/10.1145/571637.571640>.
 
-   [RFC2397]  Masinter, L., "The "data" URL scheme", RFC 2397,
-              DOI 10.17487/RFC2397, August 1998,
-              <https://www.rfc-editor.org/rfc/rfc2397>.
-
    [RFC4949]  Shirey, R., "Internet Security Glossary, Version 2",
               FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007,
               <https://www.rfc-editor.org/rfc/rfc4949>.
@@ -1715,9 +1691,6 @@ Table of Contents
    [SWID]     "SWID Specification", n.d.,
               <https://csrc.nist.gov/Projects/Software-Identification-
               SWID/guidelines>.
-
-   [URLs]     "URL Living Standard", n.d.,
-              <https://url.spec.whatwg.org/>.
 
 Appendix A.  Common Terminology Disambiguation
 
