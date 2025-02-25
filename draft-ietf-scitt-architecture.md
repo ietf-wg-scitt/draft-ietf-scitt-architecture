@@ -458,7 +458,7 @@ Verifiable Data Structure:
 
 : a data structure which supports one or more proof types, such as "inclusion proofs" or "consistency proofs", for Signed Statements as they are Registered to a Transparency Service.
 SCITT supports multiple Verifiable Data Structures and Receipt formats as defined in {{-COMETRE}}, accommodating different Transparency Service implementations.
-May be referenced as an Append-only log, indicating it's immutable nature.
+May be referenced as an Append-only log, indicating its immutable nature.
 {: #mybody}
 
 # Definition of Transparency
