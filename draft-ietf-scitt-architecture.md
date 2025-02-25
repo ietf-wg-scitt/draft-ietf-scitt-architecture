@@ -390,7 +390,7 @@ In COSE, an Envelope consists of a protected header (included in the Issuer's si
 
 Equivocation:
 
-: a state where it is possible for a Transparency Service to provide different views of its Verifiable Data Structure to Relying Parties about the same Artifact {{EQUIVOCATION}}.
+: a state where it is possible for a Transparency Service to provide different Verifiable Data Structures to Relying Parties about the same Artifact {{EQUIVOCATION}}.
 
 Issuer:
 
