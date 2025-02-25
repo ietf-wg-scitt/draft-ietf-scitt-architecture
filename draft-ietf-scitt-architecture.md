@@ -366,6 +366,8 @@ The term "claim" is defined in {{RFC8392}}.
 
 Append-only Log:
 
+A sequence of Signed Statements captured by a Verifiable Data Structure.
+
 : see Verifiable Data Structure
 
 Artifact:
