@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 28 August 2025                                       C. Fournet
+Expires: 29 August 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        24 February 2025
+                                                        25 February 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 August 2025.
+   This Internet-Draft will expire on 29 August 2025.
 
 Copyright Notice
 
@@ -455,9 +455,8 @@ Table of Contents
       signature).
 
    Equivocation:  a state where it is possible for a Transparency
-      Service to provide different views of its Verifiable Data
-      Structure to Relying Parties about the same Artifact
-      [EQUIVOCATION].
+      Service to provide different Verifiable Data Structures to Relying
+      Parties about the same Artifact [EQUIVOCATION].
 
    Issuer:  an identifier representing an organization, device, user, or
       entity securing Statements about supply chain Artifacts.  An
