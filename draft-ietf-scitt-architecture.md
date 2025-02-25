@@ -407,6 +407,7 @@ However, the consistency of a collection of Signed Statements about the Artifact
 Receipt:
 
 : a cryptographic proof that a Signed Statement is included in the Verifiable Data Structure.
+See {{-COMETRE}} for implementations
 Receipts are signed proofs of verifiable data-structure properties.
 The types of Receipts MUST support inclusion proofs and MAY support other proof types, such as consistency proofs.
 
