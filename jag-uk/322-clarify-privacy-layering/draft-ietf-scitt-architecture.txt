@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 28 August 2025                                       C. Fournet
+Expires: 29 August 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        24 February 2025
+                                                        25 February 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 August 2025.
+   This Internet-Draft will expire on 29 August 2025.
 
 Copyright Notice
 
@@ -1206,11 +1206,11 @@ Table of Contents
    appropriately strong encryption and authorization technologies.
 
    The Transparency Service is trusted with the confidentiality of the
-   Signed Statements presented for Registration.  Issuers are
-   responsible for verifying that the Transparency Service's privacy and
-   security posture is suitable for the contents of their Signed
-   Statements prior to Registration.  In particular, Issuers must
-   carefully review the inclusion of private, confidential, or
+   Signed Statements presented for Registration.  Issuers and Clients
+   are responsible for verifying that the Transparency Service's privacy
+   and security posture is suitable for the contents of the Signed
+   Statements they submit prior to Registration.  In particular, Issuers
+   must carefully review the inclusion of private, confidential, or
    personally identifiable information (PII) in their Statements against
    the Transparency Service's privacy posture.
 
