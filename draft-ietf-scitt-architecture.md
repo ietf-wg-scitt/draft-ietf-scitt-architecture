@@ -587,7 +587,7 @@ When using X.509 Signed Statements, the Transparency Service MUST build and vali
 The protected header of the COSE_Sign1 Envelope MUST include either the Issuer's certificate as `x5t` or the chain including the Issuer's certificate as `x5chain`.
 If `x5t` is included in the protected header, an `x5chain` with a leaf certificate corresponding to the `x5t` value MAY be included in the unprotected header.
 
-The Transparency Service MUST apply the Registration Policy that was most recently added to the Verifiable Data Structure at the time of Registration.
+The Transparency Service MUST apply the Registration Policy that was most recently committed to the Verifiable Data Structure at the time of Registration.
 
 #### Auditability of Registration
 
