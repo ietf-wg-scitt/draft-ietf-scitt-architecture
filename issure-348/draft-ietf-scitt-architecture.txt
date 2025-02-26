@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 29 August 2025                                       C. Fournet
+Expires: 30 August 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        25 February 2025
+                                                        26 February 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 August 2025.
+   This Internet-Draft will expire on 30 August 2025.
 
 Copyright Notice
 
@@ -797,11 +797,9 @@ Table of Contents
    Policy or the trust anchors of a Transparency Service at any time.
 
    Transparency Services MUST ensure that for any Signed Statement they
-   register, enough information is made available to Auditors (either in
-   the Verifiable Data Structure and retrievable through audit APIs, or
-   included in the Receipt) to reproduce the Registration checks that
-   were defined by the Registration Policies at the time of
-   Registration.
+   register, enough information is made available to Auditors to
+   reproduce the Registration checks that were defined by the
+   Registration Policies at the time of Registration.
 
 5.1.2.  Initialization and Bootstrapping
 
