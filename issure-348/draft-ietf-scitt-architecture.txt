@@ -112,10 +112,9 @@ Table of Contents
      9.2.  Threat Model
        9.2.1.  Verifiable Data Structure
        9.2.2.  Availability of Receipts
-       9.2.3.  Confidentiality and Privacy
-       9.2.4.  Cryptographic Agility
-       9.2.5.  Transparency Service Client Applications
-       9.2.6.  Impersonation
+       9.2.3.  Cryptographic Agility
+       9.2.4.  Transparency Service Client Applications
+       9.2.5.  Impersonation
    10. IANA Considerations
      10.1.  COSE Receipts Header Parameter
      10.2.  Media Type Registration
@@ -597,13 +596,7 @@ Table of Contents
 
    Anyone with access to the Transparency Service can independently
    verify its consistency and review the complete list of Transparent
-   Statements registered by each Issuer.  However, the Registrations on
-   a separate Transparency Service is generally disjoint, though it is
-   possible to take a Transparent Statement (i.e. a Signed Statement
-   with a Receipt in its unprotected header, from the first Transparency
-   Service) and register it on another Transparency Service, where the
-   second Receipt will be over the first Receipt in the unprotected
-   header.
+   Statements registered by each Issuer.
 
    Reputable Issuers are thus incentivized to carefully review their
    Statements before signing them to produce Signed Statements.
@@ -777,10 +770,10 @@ Table of Contents
    header includes multiple identifiers, all those that are registered
    by the Transparency Service MUST be checked.
 
-   In essence, when using X.509 Signed Statements, the Transparency
-   Service MUST build and validate a complete certification path from an
-   Issuer's certificate to one of the root certificates most recently
-   registered as a trust anchor by the Transparency Service.
+   When using X.509 Signed Statements, the Transparency Service MUST
+   build and validate a complete certification path from an Issuer's
+   certificate to one of the root certificates currently registered as a
+   trust anchor by the Transparency Service.
 
    The protected header of the COSE_Sign1 Envelope MUST include either
    the Issuer's certificate as x5t or the chain including the Issuer's
@@ -911,9 +904,7 @@ Table of Contents
    Multiple Issuers can make the same Statement about a single Artifact,
    affirming multiple Issuers agree.
 
-   At least one identifier representing one credential MUST be included
-   in the protected header of the COSE Envelope, as one of x5t, x5chain
-   or kid.  Additionally, x5chain that corresponds to either x5t or kid
+   Additionally, x5chain that corresponds to either x5t or kid
    identifying the leaf certificate in the included certification path
    MAY be included in the unprotected header of the COSE Envelope.
 
@@ -1060,6 +1051,15 @@ Table of Contents
 
    A Transparency Service MUST ensure that a Signed Statement is
    registered before releasing its Receipt.
+
+   A Transparency Service MAY accept a Signed Statement with content in
+   its unprotected header, and MAY use values from that unprotected
+   header during verification and registration policy evaluation.
+
+   However, the unprotected header of all Signed Statements in the
+   Append-only log MUST be empty.  A Transparency Service MUST replace
+   the unprotected header with an empty unprotected header before
+   inclusion in the Append-only log.
 
    The same Signed Statement may be independently registered in multiple
    Transparency Services, producing multiple, independent Receipts.  The
@@ -1215,14 +1215,29 @@ Table of Contents
 
 8.  Privacy Considerations
 
-   Transparency Services MAY support anonymous access.  Issuers SHOULD
-   ensure Signed Statements submitted to public access services are
-   acceptable for public disclosure.  Publicly accessible Signed
-   Statements MUST NOT carry confidential information.  Once a Signed
-   Statement is committed to the Verifiable Data Structure maintained by
-   a Transparency Service, it cannot be removed.  In some deployments, a
-   special role, such as an Auditor, might require access to Signed
-   Statements.
+   Interactions with Transparency Services are expected to use
+   appropriately strong encryption and authorization technologies.
+
+   The Transparency Service is trusted with the confidentiality of the
+   Signed Statements presented for Registration.  Issuers and Clients
+   are responsible for verifying that the Transparency Service's privacy
+   and security posture is suitable for the contents of the Signed
+   Statements they submit prior to Registration.  In particular, Issuers
+   must carefully review the inclusion of private, confidential, or
+   personally identifiable information (PII) in their Statements against
+   the Transparency Service's privacy posture.
+
+   In some deployments a special role such as an Auditor might require
+   and be given access to both the Transparency Service and related
+   Adjacent Services.
+
+   Transparency Services' Append-only logs MAY carry only cryptographic
+   metadata (e.g. a hash), rather than the complete Signed Statement,
+   which does not raise immediate privacy concerns.  By analyzing the
+   relationship between data stored in the Transparency Service and data
+   stored in Adjacent Services, it is possible to perform metadata
+   analysis, which could reveal the order in which artifacts were built,
+   signed and uploaded.
 
 9.  Security Considerations
 
@@ -1438,43 +1453,14 @@ Table of Contents
    Actors may want to independently keep their own record of the Signed
    Statements they issue, endorse, verify, or audit.
 
-9.2.3.  Confidentiality and Privacy
-
-   All contents exchanged between actors is protected using secure
-   authenticated channels (e.g., TLS) but may not exclude network
-   traffic analysis.
-
-   The Transparency Service is trusted with the confidentiality of the
-   Signed Statements presented for Registration.  Some Transparency
-   Services may publish every Signed Statement in their logs, to
-   facilitate their dissemination and auditing.  Transparency Services
-   MAY return Receipts to Client applications synchronously or
-   asynchronously.
-
-   A collection of Signed Statements must not leak information about the
-   contents of other Signed Statements registered on the Transparency
-   Service.
-
-   Issuers must carefully review the inclusion of private/confidential
-   materials in their Statements.  For example, Issuers must remove
-   Personally Identifiable Information (PII) as clear text in the
-   Statement.  Alternatively, Issuers may include opaque cryptographic
-   Statements, such as hashes.
-
-   The confidentiality of queries is implementation-specific, and
-   generally not guaranteed.  For example, while offline Envelope
-   validation of Signed Statements is private, a Transparency Service
-   may monitor which of its Transparent Statements are being verified
-   from lookups to ensure their freshness.
-
-9.2.4.  Cryptographic Agility
+9.2.3.  Cryptographic Agility
 
    The SCITT Architecture supports cryptographic agility.  The actors
    depend only on the subset of signing and Receipt schemes they trust.
    This enables the gradual transition to stronger algorithms, including
    e.g. post-quantum signature algorithms.
 
-9.2.5.  Transparency Service Client Applications
+9.2.4.  Transparency Service Client Applications
 
    Authentication of Client applications is out of scope for this
    document.  Transparency Services MUST authenticate both Client
@@ -1483,7 +1469,7 @@ Table of Contents
    policies are enforced.  The specification of authentication and
    authorization policies is out of scope for this document.
 
-9.2.6.  Impersonation
+9.2.5.  Impersonation
 
    The identity resolution mechanism is trusted to associate long-term
    identifiers with their public signature-verification keys.
@@ -1541,29 +1527,16 @@ Table of Contents
    [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <https://www.iana.org/assignments/cwt>.
 
-   [IANA.named-information]
-              IANA, "Named Information",
-              <https://www.iana.org/assignments/named-information>.
-
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
-
-   [RFC4648]  Josefsson, S., "The Base16, Base32, and Base64 Data
-              Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
-              <https://www.rfc-editor.org/rfc/rfc4648>.
 
    [RFC5280]  Cooper, D., Santesson, S., Farrell, S., Boeyen, S.,
               Housley, R., and W. Polk, "Internet X.509 Public Key
               Infrastructure Certificate and Certificate Revocation List
               (CRL) Profile", RFC 5280, DOI 10.17487/RFC5280, May 2008,
               <https://www.rfc-editor.org/rfc/rfc5280>.
-
-   [RFC6570]  Gregorio, J., Fielding, R., Hadley, M., Nottingham, M.,
-              and D. Orchard, "URI Template", RFC 6570,
-              DOI 10.17487/RFC6570, March 2012,
-              <https://www.rfc-editor.org/rfc/rfc6570>.
 
    [RFC6838]  Freed, N., Klensin, J., and T. Hansen, "Media Type
               Specifications and Registration Procedures", BCP 13,
@@ -1617,13 +1590,6 @@ Table of Contents
               Technology (U.S.), DOI 10.6028/nist.fips.201-3, January
               2022, <https://doi.org/10.6028/nist.fips.201-3>.
 
-   [I-D.draft-ietf-core-href]
-              Bormann, C. and H. Birkholz, "Constrained Resource
-              Identifiers", Work in Progress, Internet-Draft, draft-
-              ietf-core-href-18, 3 February 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-core-
-              href-18>.
-
    [I-D.draft-ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
               Wallace, "The Entity Attestation Token (EAT)", Work in
@@ -1676,10 +1642,6 @@ Table of Contents
               DOI 10.1145/571637.571640, November 2002,
               <https://doi.org/10.1145/571637.571640>.
 
-   [RFC2397]  Masinter, L., "The "data" URL scheme", RFC 2397,
-              DOI 10.17487/RFC2397, August 1998,
-              <https://www.rfc-editor.org/rfc/rfc2397>.
-
    [RFC4949]  Shirey, R., "Internet Security Glossary, Version 2",
               FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007,
               <https://www.rfc-editor.org/rfc/rfc4949>.
@@ -1716,9 +1678,6 @@ Table of Contents
    [SWID]     "SWID Specification", n.d.,
               <https://csrc.nist.gov/Projects/Software-Identification-
               SWID/guidelines>.
-
-   [URLs]     "URL Living Standard", n.d.,
-              <https://url.spec.whatwg.org/>.
 
 Appendix A.  Common Terminology Disambiguation
 
