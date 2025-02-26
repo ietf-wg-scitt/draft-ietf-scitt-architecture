@@ -402,7 +402,7 @@ In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE he
 
 Non-equivocation:
 
-: a state where it is impossible for a Transparency Service to provide different Verifiable Data Structures to Relying Parties about the same Artifact.
+: a state where all proofs provided by the Transparency Service to Relying Parties are produced from a Single Verifiable Data Structure describing a unique sequence of Signed Statements, and are therefore consistent.
 Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information.
 However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Relying Parties.
 
