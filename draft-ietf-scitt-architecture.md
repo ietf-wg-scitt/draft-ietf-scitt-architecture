@@ -881,7 +881,7 @@ Such policies may use as input all information in the Envelope, the Receipt, and
 Transparency Services MAY support anonymous access.
 Issuers SHOULD ensure Signed Statements submitted to public access services are acceptable for public disclosure.
 Publicly accessible Signed Statements MUST NOT carry confidential information.
-Once a Signed Statement is inserted into the Verifiable Data Structure maintained by a Transparency Service, it cannot be removed.
+Once a Signed Statement is committed to the Verifiable Data Structure maintained by a Transparency Service, it cannot be removed.
 In some deployments, a special role, such as an Auditor, might require access to Signed Statements.
 
 # Security Considerations
