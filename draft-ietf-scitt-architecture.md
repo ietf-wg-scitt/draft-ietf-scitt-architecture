@@ -932,7 +932,7 @@ SCITT provides the following security guarantees:
 
 The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
 The second guarantee is achieved by committing the Signed Statement to a Verifiable Data Structure.
-The third guarantee is achieved by implementing a Verifiable Data Structure ({{-COMETRE}}).
+The third guarantee is achieved by the combination of both of these acts
 
 ## Threat Model
 
