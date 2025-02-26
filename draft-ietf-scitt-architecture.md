@@ -931,7 +931,7 @@ SCITT provides the following security guarantees:
 1. Issuers can efficiently prove that their Statement is logged by a Transparency Service
 
 The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
-The second guarantee is achieved by storing the Signed Statement on an Verifiable Data Structure.
+The second guarantee is achieved by committing the Signed Statement to a Verifiable Data Structure.
 The third guarantee is achieved by implementing a Verifiable Data Structure ({{-COMETRE}}).
 
 ## Threat Model
