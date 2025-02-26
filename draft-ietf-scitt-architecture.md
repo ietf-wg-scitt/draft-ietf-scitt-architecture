@@ -467,7 +467,7 @@ May be referenced as an Append-only log, indicating its immutable nature.
 
 In this document, the definition of transparency is intended to build over abstract notions of Append-only Logs and Receipts.
 Existing transparency systems such as Certificate Transparency are instances of this definition.
-SCITT supports multiple Append-only log formats, as defined in {{-COMETRE}}, and uses Verifiable Data Structure throughout the document.
+SCITT supports multiple Verifiable Data Structures, as defined in {{-COMETRE}}.
 
 A Signed Statement is an identifiable and non-repudiable Statement made by an Issuer.
 The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata.
