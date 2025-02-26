@@ -102,9 +102,6 @@ normative:
 
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
   IANA.cwt:
-  IANA.named-information:
-  RFC6570: URITemplate
-  RFC4648: Base64Url
 
 informative:
 
@@ -119,7 +116,6 @@ informative:
   RFC4949: Glossary
   RFC7523:
   RFC8725:
-  RFC2397: DataURLs
   RFC9162: CT
   RFC9334: rats-arch
   CWT_CLAIMS:
@@ -153,12 +149,6 @@ informative:
   SWID:
     target: https://csrc.nist.gov/Projects/Software-Identification-SWID/guidelines
     title: SWID Specification
-
-  URLs:
-    target: https://url.spec.whatwg.org/
-    title: URL Living Standard
-
-  I-D.draft-ietf-core-href: CURIs
 
   KEY-MANAGEMENT: DOI.10.6028/NIST.SP.800-57pt2r1
 
@@ -487,7 +477,6 @@ Requesting a Receipt can result in the production of a new Receipt for the same 
 A Receipt's verification key, signing algorithm, validity period, header parameters or other claims MAY change each time a Receipt is produced.
 
 Anyone with access to the Transparency Service can independently verify its consistency and review the complete list of Transparent Statements registered by each Issuer.
-However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, from the first Transparency Service) and register it on another Transparency Service, where the second Receipt will be over the first Receipt in the unprotected header.
 
 Reputable Issuers are thus incentivized to carefully review their Statements before signing them to produce Signed Statements.
 Similarly, reputable Transparency Services are incentivized to secure their Verifiable Data Structure, as any inconsistency can easily be pinpointed by any Auditor with read access to the Transparency Service.
@@ -593,7 +582,7 @@ During Registration, a Transparency Service MUST, at a minimum, syntactically ch
 The Issuer identity MUST be bound to the Signed Statement by including an identifier in the protected header.
 If the protected header includes multiple identifiers, all those that are registered by the Transparency Service MUST be checked.
 
-In essence, when using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certification path from an Issuer's certificate to one of the root certificates most recently registered as a trust anchor by the Transparency Service.
+When using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certification path from an Issuer's certificate to one of the root certificates currently registered as a trust anchor by the Transparency Service.
 
 The protected header of the COSE_Sign1 Envelope MUST include either the Issuer's certificate as `x5t` or the chain including the Issuer's certificate as `x5chain`.
 If `x5t` is included in the protected header, an `x5chain` with a leaf certificate corresponding to the `x5t` value MAY be included in the unprotected header.
@@ -677,7 +666,6 @@ Relying Parties can choose which Issuers they trust.
 
 Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.
 
-At least one identifier representing one credential MUST be included in the protected header of the COSE Envelope, as one of `x5t`, `x5chain` or `kid`.
 Additionally, `x5chain` that corresponds to either `x5t` or `kid` identifying the leaf certificate in the included certification path MAY be included in the unprotected header of the COSE Envelope.
 
 - When using x.509 certificates, support for either `x5t` or `x5chain` in the protected header is REQUIRED to implement.
@@ -757,6 +745,11 @@ Details about generating Receipts are described in {{Receipt}}.
 The last two steps may be shared between a batch of Signed Statements registered in the Verifiable Data Structure.
 
 A Transparency Service MUST ensure that a Signed Statement is registered before releasing its Receipt.
+
+A Transparency Service MAY accept a Signed Statement with content in its unprotected header, and MAY use values from that unprotected header during verification and registration policy evaluation.
+
+However, the unprotected header of all Signed Statements in the Append-only log MUST be empty.
+A Transparency Service MUST replace the unprotected header with an empty unprotected header before inclusion in the Append-only log.
 
 The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
 The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.
@@ -878,11 +871,16 @@ Such policies may use as input all information in the Envelope, the Receipt, and
 
 # Privacy Considerations
 
-Transparency Services MAY support anonymous access.
-Issuers SHOULD ensure Signed Statements submitted to public access services are acceptable for public disclosure.
-Publicly accessible Signed Statements MUST NOT carry confidential information.
-Once a Signed Statement is committed to the Verifiable Data Structure maintained by a Transparency Service, it cannot be removed.
-In some deployments, a special role, such as an Auditor, might require access to Signed Statements.
+Interactions with Transparency Services are expected to use appropriately strong encryption and authorization technologies.
+
+The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
+Issuers and Clients are responsible for verifying that the Transparency Service's privacy and security posture is suitable for the contents of the Signed Statements they submit prior to Registration.
+In particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the Transparency Service's privacy posture.
+
+In some deployments a special role such as an Auditor might require and be given access to both the Transparency Service and related Adjacent Services.
+
+Transparency Services' Append-only logs MAY carry only cryptographic metadata (e.g. a hash), rather than the complete Signed Statement, which does not raise immediate privacy concerns.
+By analyzing the relationship between data stored in the Transparency Service and data stored in Adjacent Services, it is possible to perform metadata analysis, which could reveal the order in which artifacts were built, signed and uploaded.
 
 # Security Considerations
 
@@ -991,23 +989,6 @@ For example, the registered Transparency Service may include only the hash of a 
 Resistance to denial-of-service is implementation specific.
 
 Actors may want to independently keep their own record of the Signed Statements they issue, endorse, verify, or audit.
-
-### Confidentiality and Privacy
-
-All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network traffic analysis.
-
-The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
-Some Transparency Services may publish every Signed Statement in their logs, to facilitate their dissemination and auditing.
-Transparency Services MAY return Receipts to Client applications synchronously or asynchronously.
-
-A collection of Signed Statements must not leak information about the contents of other Signed Statements registered on the Transparency Service.
-
-Issuers must carefully review the inclusion of private/confidential materials in their Statements.
-For example, Issuers must remove Personally Identifiable Information (PII) as clear text in the Statement.
-Alternatively, Issuers may include opaque cryptographic Statements, such as hashes.
-
-The confidentiality of queries is implementation-specific, and generally not guaranteed.
-For example, while offline Envelope validation of Signed Statements is private, a Transparency Service may monitor which of its Transparent Statements are being verified from lookups to ensure their freshness.
 
 ### Cryptographic Agility
 
