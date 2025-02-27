@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 30 August 2025                                       C. Fournet
+Expires: 31 August 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        26 February 2025
+                                                        27 February 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 August 2025.
+   This Internet-Draft will expire on 31 August 2025.
 
 Copyright Notice
 
@@ -587,12 +587,13 @@ Table of Contents
    Implementations of Transparency Services may protect their Append-
    only Log and Verifiable Data Structure using a combination of trusted
    hardware, consensus protocols, and cryptographic evidence.  A Receipt
-   is an offline, universally-verifiable proof that an entry is
-   registered in the Verifiable Data Structure.  Requesting a Receipt
-   can result in the production of a new Receipt for the same Signed
-   Statement.  A Receipt's verification key, signing algorithm, validity
-   period, header parameters or other claims MAY change each time a
-   Receipt is produced.
+   is a signature over one or more Verifiable Data Structure Proofs that
+   an entry is registered in the Verifiable Data Structure.  It is
+   universally verifiable without online access to the TS.  Requesting a
+   Receipt can result in the production of a new Receipt for the same
+   Signed Statement.  A Receipt's verification key, signing algorithm,
+   validity period, header parameters or other claims MAY change each
+   time a Receipt is produced.
 
    Anyone with access to the Transparency Service can independently
    verify its consistency and review the complete list of Transparent
