@@ -437,7 +437,6 @@ In these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim 
 Transparency Service:
 
 : an entity that maintains and extends the Verifiable Data Structure, and endorses its state.
-A Transparency Service can be a complex system, requiring the Transparency Service to provide many security guarantees about its Append-only Log.
 The identity of a Transparency Service is captured by a public key that must be known by Relying Parties in order to validate Receipts.
 
 Transparent Statement:
