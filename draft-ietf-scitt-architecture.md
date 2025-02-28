@@ -613,7 +613,7 @@ Append-Only:
 
 Non-equivocation:
 
-: there is no fork in the Verifiable Data Structure.
+: there is no fork in the Registered Sequence of Signed Statements accepted by the Transparency Service and committed to the Verifiable Data Structure.
 Everyone with access to its content sees the same ordered collection of Signed Statements and can check that it is consistent with any Receipts they have verified.
 
 Replayability:
