@@ -506,7 +506,7 @@ The returned Receipt may be combined with the Signed Statement to create a Trans
 - Relying Parties that:
   - collect Receipts of Signed Statements for subsequent registration of Transparent Statements;
   - retrieve Transparent Statements for analysis of Statements about Artifacts themselves (e.g. verification);
-  - or replay all the Transparent Statements to check for the consistency of the Transparency Service's Verifiable Data Structure (e.g. auditing)
+  - or replay all the Transparent Statements to check for the consistency and correctness of the Transparency Service's Verifiable Data Structure (e.g. auditing)
 
 In addition, {{fig-concept-relationship}} illustrates multiple Transparency Services and multiple Receipts as a single Signed Statement MAY be registered with one or more Transparency Service.
 Each Transparency Service produces a Receipt, which may be aggregated in a single Transparent Statement, demonstrating the Signed Statement was registered by multiple Transparency Services.
