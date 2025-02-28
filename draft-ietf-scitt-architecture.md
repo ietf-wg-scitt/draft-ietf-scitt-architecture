@@ -469,7 +469,7 @@ The Transparency Service provides a history of Statements, which may be made by 
 
 Transparency is implemented by providing a consistent, append-only, cryptographically verifiable, publicly available record of entries.
 A SCITT instance is referred to as a Transparency Service.
-Implementations of Transparency Services may protect their Registered Sequence of Signed Statements and Verifiable Data Structure using a combination of trusted hardware, consensus protocols, and cryptographic evidence.
+Implementations of Transparency Services may protect their registered sequence of Signed Statements and Verifiable Data Structure using a combination of trusted hardware, consensus protocols, and cryptographic evidence.
 A Receipt is a signature over one or more Verifiable Data Structure Proofs that a Signed Statement is registered in the Verifiable Data Structure.
 It is universally verifiable without online access to the TS.
 Requesting a Receipt can result in the production of a new Receipt for the same Signed Statement.
@@ -613,7 +613,7 @@ Append-Only:
 
 Non-equivocation:
 
-: there is no fork in the Registered Sequence of Signed Statements accepted by the Transparency Service and committed to the Verifiable Data Structure.
+: there is no fork in the registered sequence of Signed Statements accepted by the Transparency Service and committed to the Verifiable Data Structure.
 Everyone with access to its content sees the same ordered collection of Signed Statements and can check that it is consistent with any Receipts they have verified.
 
 Replayability:
