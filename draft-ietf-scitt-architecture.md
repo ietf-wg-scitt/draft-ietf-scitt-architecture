@@ -949,7 +949,9 @@ Issuers cannot be stopped from producing Signed Statements including false asser
 
 Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal.
 Preventing a Transparency Service from registering Signed Statements that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their Verifiable Data Structure is not possible.
-In contrast Transparency Services can be held accountable and they can be called out by any Auditor that replays their Verifiable Data Structure against any contested Receipt.
+In contrast, Transparency Services can be held accountable and blamed by an Auditor that replays the Sequence of Signed Statements captured in their Verifiable Data Structure to confirm that a contested Receipt is valid and was correctly registered.
+
+Transparency Services can provide consistency proofs allowing Auditors to check if a set of Receipts were issued from a single Verifiable Data Structure, without replaying individual Signed Statements.
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service.
 Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
 
