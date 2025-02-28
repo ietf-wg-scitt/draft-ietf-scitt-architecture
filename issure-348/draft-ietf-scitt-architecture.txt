@@ -818,10 +818,12 @@ Table of Contents
       Signed Statement cannot be modified, deleted, or reordered; hence
       its Receipt provides an offline verifiable proof of Registration.
 
-   Non-equivocation:  there is no fork in the Verifiable Data Structure.
-      Everyone with access to its content sees the same ordered
-      collection of Signed Statements and can check that it is
-      consistent with any Receipts they have verified.
+   Non-equivocation:  there is no fork in the Registered Sequence of
+      Signed Statements accepted by the Transparency Service and
+      committed to the Verifiable Data Structure.  Everyone with access
+      to its content sees the same ordered collection of Signed
+      Statements and can check that it is consistent with any Receipts
+      they have verified.
 
    Replayability:  the Verifiable Data Structure includes sufficient
       information to enable authorized actors with access to its content
