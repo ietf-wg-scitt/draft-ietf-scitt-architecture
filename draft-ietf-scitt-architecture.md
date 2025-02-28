@@ -736,7 +736,7 @@ The Transparency Service MUST also check the Signed Statement includes the requi
 The Transparency Service MAY validate the Signed Statement payload in order to enforce domain specific registration policies that apply to specific content types.
 1. **Apply Registration Policy:** The Transparency Service MUST check the attributes required by a Registration Policy are present in the protected headers.
   Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.
-1. **Register the Signed Statement** to the Verifiable Data Structure.
+1. **Register the Signed Statement**
 1. **Return the Receipt**, which MAY be asynchronous from Registration.
 The Transparency Service MUST be able to provide a Receipt for all registered Signed Statements.
 Details about generating Receipts are described in {{Receipt}}.
