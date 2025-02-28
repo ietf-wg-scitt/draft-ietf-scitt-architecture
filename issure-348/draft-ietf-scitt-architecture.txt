@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 31 August 2025                                       C. Fournet
+Expires: 1 September 2025                                     C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        27 February 2025
+                                                        28 February 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 August 2025.
+   This Internet-Draft will expire on 1 September 2025.
 
 Copyright Notice
 
@@ -529,12 +529,9 @@ Table of Contents
       all Transparent Statements associated to a specific Subject.
 
    Transparency Service:  an entity that maintains and extends the
-      Verifiable Data Structure, and endorses its state.  A Transparency
-      Service can be a complex system, requiring the Transparency
-      Service to provide many security guarantees about its Append-only
-      Log. The identity of a Transparency Service is captured by a
-      public key that must be known by Relying Parties in order to
-      validate Receipts.
+      Verifiable Data Structure, and endorses its state.  The identity
+      of a Transparency Service is captured by a public key that must be
+      known by Relying Parties in order to validate Receipts.
 
    Transparent Statement:  a Signed Statement that is augmented with a
       Receipt created via Registration in a Transparency Service.  The
