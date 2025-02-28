@@ -2563,14 +2563,15 @@ A Relying Party <span class="bcp14">SHOULD</span> validate a Transparent Stateme
 <p id="section-9.2-6">Issuers cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a Transparency Service.<a href="#section-9.2-6" class="pilcrow">¶</a></p>
 <p id="section-9.2-7">Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal.
 Preventing a Transparency Service from registering Signed Statements that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their Verifiable Data Structure is not possible.
-In contrast Transparency Services can be held accountable and they can be called out by any Auditor that replays their Verifiable Data Structure against any contested Receipt.
+In contrast, Transparency Services can be held accountable and blamed by an Auditor that replays the Sequence of Signed Statements captured in their Verifiable Data Structure to confirm that a contested Receipt is valid and was correctly registered.<a href="#section-9.2-7" class="pilcrow">¶</a></p>
+<p id="section-9.2-8">Transparency Services can provide consistency proofs allowing Auditors to check if a set of Receipts were issued from a single Verifiable Data Structure, without replaying individual Signed Statements.
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service.
-Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.<a href="#section-9.2-7" class="pilcrow">¶</a></p>
-<p id="section-9.2-8">In both cases, the SCITT architecture provides generic, universally-verifiable cryptographic proofs to individually blame Issuers or the Transparency Service.
+Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.<a href="#section-9.2-8" class="pilcrow">¶</a></p>
+<p id="section-9.2-9">In both cases, the SCITT architecture provides generic, universally-verifiable cryptographic proofs to individually blame Issuers or the Transparency Service.
 On one hand, this enables valid actors to detect and disambiguate malicious actors who employ Equivocation with Signed Statements to different entities.
-On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT architecture.<a href="#section-9.2-8" class="pilcrow">¶</a></p>
-<p id="section-9.2-9">Relying Parties and Auditors need not be trusted by other actors.
-In particular, so long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.<a href="#section-9.2-9" class="pilcrow">¶</a></p>
+On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT architecture.<a href="#section-9.2-9" class="pilcrow">¶</a></p>
+<p id="section-9.2-10">Relying Parties and Auditors need not be trusted by other actors.
+In particular, so long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.<a href="#section-9.2-10" class="pilcrow">¶</a></p>
 <div id="sec-verifiable-data-structure-1">
 <section id="section-9.2.1">
           <h4 id="name-verifiable-data-structure-2">
