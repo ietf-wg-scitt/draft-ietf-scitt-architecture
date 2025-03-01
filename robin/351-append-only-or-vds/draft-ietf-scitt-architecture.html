@@ -2330,7 +2330,7 @@ Details about generating Receipts are described in <a href="#Receipt" class="aut
 <p id="section-6.2-3">The last two steps may be shared between a batch of Signed Statements registered in the Verifiable Data Structure.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
 <p id="section-6.2-4">A Transparency Service <span class="bcp14">MUST</span> ensure that a Signed Statement is registered before releasing its Receipt.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
 <p id="section-6.2-5">A Transparency Service <span class="bcp14">MAY</span> accept a Signed Statement with content in its unprotected header, and <span class="bcp14">MAY</span> use values from that unprotected header during verification and registration policy evaluation.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
-<p id="section-6.2-6">However, the unprotected header of all Signed Statements committed to Verifiable Data Structure <span class="bcp14">MUST</span> be empty.
+<p id="section-6.2-6">However, the unprotected header of all Signed Statements committed to the Verifiable Data Structure <span class="bcp14">MUST</span> be empty.
 A Transparency Service <span class="bcp14">MUST</span> replace the unprotected header with an empty unprotected header before committing to the Verifiable Data Structure.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
 <p id="section-6.2-7">The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
 The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.<a href="#section-6.2-7" class="pilcrow">¶</a></p>
