@@ -364,7 +364,7 @@ Append-only Log:
 
 A Statement Sequence comprising the entire registration history of the Transparency Service.
 
-To make append-only verifiable and transparent, the Transparency Service defines how Signed Statements are made available to Auditors.
+To make the append-only property verifiable and transparent, the Transparency Service defines how Signed Statements are made available to Auditors.
 
 Artifact:
 
