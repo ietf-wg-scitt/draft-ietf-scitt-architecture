@@ -430,7 +430,7 @@ Table of Contents
 
    The term "claim" is defined in [RFC8392].
 
-   Statement Series:
+   Statement Sequence:
 
    A sequence of Signed Statements captured by a Verifiable Data
    Structure.  see Verifiable Data Structure
@@ -439,7 +439,7 @@ Table of Contents
       supply chain.
 
    Auditor:  an entity that checks the correctness and consistency of
-      all Transparent Statements, or transparent Statement Series,
+      all Transparent Statements, or transparent Statement Sequence,
       issued by a Transparency Service.  An Auditor is an example of a
       specialized Relying Party.
 
@@ -1392,7 +1392,7 @@ Table of Contents
    Statements.
 
    Transparency Services can provide proof allowing Auditors to check
-   that a transparent Statement Series is complete and consistent and
+   that a transparent Statement Sequence is complete and consistent and
    contains no ommisions.
 
    Note that the SCITT Architecture does not require trust in a single
