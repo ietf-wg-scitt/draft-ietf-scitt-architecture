@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-27T00:48:38.774861+00:00",
+  "timestamp": "2025-03-02T00:52:17.443218+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5611,7 +5611,7 @@
       "id": "I_kwDOIvmHss6jhQMo",
       "title": "Simplify Initialization and Bootstrapping",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/319",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -5621,8 +5621,8 @@
       "labels": [],
       "body": "Feedback from @mcr:\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> I think [4.1.2](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-10.html#name-initialization-and-bootstra) does not need to be stated.\r\n> Just explain what a well formed, (empty) registry looks like.\r\n",
       "createdAt": "2024-12-16T21:08:52Z",
-      "updatedAt": "2025-02-25T13:40:09Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-28T17:19:53Z",
+      "closedAt": "2025-02-28T17:19:52Z",
       "comments": [
         {
           "author": "JAG-UK",
@@ -5651,6 +5651,27 @@
           "body": "Feedback collected: TL;DR different use case, different considerations. Do the consistent thing.",
           "createdAt": "2025-02-25T13:40:06Z",
           "updatedAt": "2025-02-25T13:40:06Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@JAG-UK, are you suggesting we close this issue?",
+          "createdAt": "2025-02-28T16:56:36Z",
+          "updatedAt": "2025-02-28T16:56:36Z"
+        },
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Yes.\n\nIt's been suggested that an alternative to ignoring the issue would be to ensure that the first entry is a registration of the initial Registration Policy. It's not clear that this is actually needed for interim or security purposes. ",
+          "createdAt": "2025-02-28T17:18:28Z",
+          "updatedAt": "2025-02-28T17:18:28Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@mcr, happy to discuss at IETF 122",
+          "createdAt": "2025-02-28T17:19:52Z",
+          "updatedAt": "2025-02-28T17:19:52Z"
         }
       ]
     },
@@ -5958,7 +5979,7 @@
       "labels": [],
       "body": "From @mcr\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/sOGI7xcUaOJx5Zag8uqsygooLrc/\r\n\r\n> Please do not use BCP14 keywords in the Security Considerations.\r\n> SC should instead always reference some section in the Protocol specification where that was said, while explaining what threat was being mitigated.\r\n> \r\n> Like the bit about TEEs, and the other bit about consensus algorithms, and finally the self-statements (Attestation results I guess?) about the TCB.\r\n> \"Redundant Replicas\" ought to be an entire section on it's own.\r\n> \r\n> \"remote attestation Evidence was appraised by a Relying Party \"\r\n> HENK! Evidence iis appraised by a Verifier :-)\r\n> \r\n> person-in-the-middle is not a term that I proposed in\r\n>     https://na01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdatatracker.ietf.org%2Fdoc%2Fdraft-richardson-saag-onpath-attacker%2F&data=05%7C02%7C%7Ce9ee8d279969424877f708dd1ba04c88%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C638697097466980054%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=UgSf4s3sv%2BirzoyYbc%2BRTq0Mx92uor3HwvCDzbQq8UM%3D&reserved=0\r\n> \r\n> some of have proposed MITM be expanded now to:\r\n>      *Meddler\" in the Middle\r\n> \r\n> (if cookies are the thing being stolen, then \"Monster in the Middle\".\r\n> This, btw, is a nom-nom-nom attack.  Coming to an I-D repo near you)",
       "createdAt": "2024-12-16T22:55:03Z",
-      "updatedAt": "2025-02-11T15:52:50Z",
+      "updatedAt": "2025-02-28T13:02:17Z",
       "closedAt": null,
       "comments": [
         {
@@ -5974,6 +5995,13 @@
           "body": "Good pointer here that if BCP keywords are required in the Security Considerations there's a good chance that content is missing form the main body of the document.\n\nAlso check the current disposition of IESG how strongly they enforce this rule these days",
           "createdAt": "2025-02-11T15:18:19Z",
           "updatedAt": "2025-02-11T15:18:19Z"
+        },
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I have started a branch for this but it's a *huge* change! Given the controversy over whether it's even a problem can we treat it as a nit for last call, on the assumption that we will get comments on this section anyway? ",
+          "createdAt": "2025-02-28T13:02:16Z",
+          "updatedAt": "2025-02-28T13:02:16Z"
         }
       ]
     },
@@ -6179,7 +6207,7 @@
       "labels": [],
       "body": "Line [#466](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L466) states:\r\n\r\n> However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, ~from a~ (see #331)  from the first Transparency Service) and register it on another Transparency Service, **where the second Receipt will be over the first Receipt in the unprotected header**.\r\n\r\nWith the discussion and comments in [#321](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/321#issuecomment-2554645211), the unprotected header will be stripped prior to registration. \r\n\r\nThe change will make _**where the second Receipt will be over the first Receipt in the unprotected header**_ inaccurate. \r\n\r\nThis issue tracks how and if we need to re-register transparent statements, or remove the above reference.",
       "createdAt": "2024-12-30T16:41:06Z",
-      "updatedAt": "2025-02-21T11:01:27Z",
+      "updatedAt": "2025-02-28T18:34:18Z",
       "closedAt": null,
       "comments": [
         {
@@ -6188,6 +6216,13 @@
           "body": "I believe this is resolved by #349, following agreement in #321 that unprotected headers must not be included in the Append-only Log/VDS.\n\nThere is no consensus for carving out an exception for bound or separately trusted claims, such as other receipts, in the unprotected header. Since there is neither a clear use case, nor more importantly an implementation for this \"receipts over receipts mechanism\" (as opposed to multiple receipts over the same statement), I am strongly inclined to leave it out altogether.\n\nIf necessary, a further draft can define a protected header parameter that may be used by an Issuer wanting to make transparent a statement that also includes receipts.",
           "createdAt": "2025-02-21T11:01:24Z",
           "updatedAt": "2025-02-21T11:01:24Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@SteveLasker shall we close this issue then?",
+          "createdAt": "2025-02-28T18:34:16Z",
+          "updatedAt": "2025-02-28T18:34:16Z"
         }
       ]
     },
@@ -6294,17 +6329,19 @@
       "id": "I_kwDOIvmHss6qhFlF",
       "title": "Standardise on 'adjacent services'",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/347",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "JAG-UK",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
         "SteveLasker"
       ],
-      "labels": [],
+      "labels": [
+        "pending-close"
+      ],
       "body": "Throughout the document we talk about things like storage and indexing services which are non-core to SCITT interoperability as, variously, 'auxiliary', 'ancillary', and 'adjacent'.\n\n'Adjacent' is best, so standardise on that throughout the document please.",
       "createdAt": "2025-02-18T15:27:01Z",
-      "updatedAt": "2025-02-24T18:54:39Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-28T16:55:31Z",
+      "closedAt": "2025-02-28T16:55:31Z",
       "comments": [
         {
           "author": "achamayou",
@@ -6326,6 +6363,13 @@
           "body": "As far as I can tell, the open PRs don't mention those either, there were several mentions in the discussion for #348, but not in the diff itself, and #336 and #346 don't mention ancillary/auxiliary services.\n\nI do agree with using \"adjacent\" consistently, it sounds good to me, and it's good to make it explicit too, but I don't think any changes to the text are needed.",
           "createdAt": "2025-02-21T14:27:27Z",
           "updatedAt": "2025-02-21T14:27:27Z"
+        },
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Move to close this, since the confusion is not in the main branch, only in candidate PRs which we can scrub prior to merge.",
+          "createdAt": "2025-02-28T13:00:25Z",
+          "updatedAt": "2025-02-28T13:00:25Z"
         }
       ]
     },
@@ -6334,7 +6378,7 @@
       "id": "I_kwDOIvmHss6qhMv2",
       "title": "Revisit reference of Append-Only for VDS",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/348",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -6345,8 +6389,8 @@
       ],
       "body": "On 2/18/25, while reviewing #355, we're re-evaluating clarifying details of Append-only log, and what's described, with deferring to the VDS implemented by the TS.\n",
       "createdAt": "2025-02-18T15:35:45Z",
-      "updatedAt": "2025-02-26T09:57:14Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-28T16:47:18Z",
+      "closedAt": "2025-02-28T16:47:18Z",
       "comments": [
         {
           "author": "achamayou",
@@ -6410,6 +6454,30 @@
           "body": "@robinbryce I think, the fundamental pillar on which Transparency Service is built is Append ONLY Characteristic (which leads to non repudiation) which is the base on which this architecture is built. We do not want to paint it as Verifiable Data Structure, as it I checked everywhere, A VDS is simply a data base which allows users to cryptographically verify entries, but does not talk about this fundamental characteristic!",
           "createdAt": "2025-02-26T09:57:12Z",
           "updatedAt": "2025-02-26T09:57:12Z"
+        }
+      ]
+    },
+    {
+      "number": 352,
+      "id": "I_kwDOIvmHss6sHQUV",
+      "title": "Append-only VDS?",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/352",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "              Append-only VDS?\r\n\r\n_Originally posted by @henkbirkholz in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/351#discussion_r1975681065_\r\n            ",
+      "createdAt": "2025-02-28T16:25:11Z",
+      "updatedAt": "2025-02-28T18:04:40Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "There are still five mentions of Append-only Log in the draft, according to [a quick search](https://github.com/search?q=repo%3Aietf-wg-scitt%2Fdraft-ietf-scitt-architecture+%22Append-only+Log%22&type=code).\n\nAs discussed, if defining a 5-word Term is a big problem, I think we could:\n\n1. Talk inline about \"the sequence of Signed Statements recorded in the VDS\", it's a little heavy but I think it's sufficient for what we want to say.\n2. Add a clarification that SCITT requires an append-only VDS specifically\n\nDoes that help?",
+          "createdAt": "2025-02-28T18:04:39Z",
+          "updatedAt": "2025-02-28T18:04:39Z"
         }
       ]
     }
@@ -47215,24 +47283,26 @@
       "id": "PR_kwDOIvmHss6MVly3",
       "title": "Replace Append-only with Verifiable Data Structure",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/351",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #348 ",
       "createdAt": "2025-02-24T18:49:55Z",
-      "updatedAt": "2025-02-26T23:59:21Z",
+      "updatedAt": "2025-02-28T16:51:34Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "8c12eaa4811f66d03769669a6d7e10725925fdb7",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "issure-348",
-      "headRefOid": "a3ee63b33a40ab75ca0904c92af6710c813c27fc",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "d4f9e719bd00705e2734d3d9251443638e4b6296",
+      "closedAt": "2025-02-28T16:47:17Z",
+      "mergedAt": "2025-02-28T16:47:17Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "4172484fc6ed2aa10de263da9c8f718601acbb87"
+      },
       "comments": [
         {
           "author": "achamayou",
@@ -47282,6 +47352,160 @@
           "body": "I've reviewed and committed many of the suggestions. Thank you @achamayou and @robinbryce. The remaining aren't as clear how resolve. Please see the comments, make suggestive text, or we can defer to our next call. \r\n\r\n> Why did we move forward with this PR, which captures issue #351?\r\n\r\nIn the editors call (either this week or prior), it was proposed to replace Append-only Log with Verifiable Data Structure. It was intended to be a replacement of the term, while maintaining a reference to Append-only as it speaks to a higher level concept.\r\n\r\nAside from the debate of Append-only compared to VDS, what's really surfaced in the PR discussion is a separation of an additional concept.\r\n\r\nWe have been discussing two layers:\r\n1. An implementation accepts Signed Statements, and MAY store the complete contents of the Signed Statement in an adjacent Evidenturary store. \r\n2. SCITT Defines storing cryptographic proofs of that statement on \"the Append-only Log\", which stores a \"Verifiable Data Structure\". \r\n\r\nI don't believe it was well understood the Append-only Log is two things, rather the log is made up of verifiable data structure(s).\r\nOr, there's confusion where the Signed Statement is stored, in relation to the Append-only Log/VDS.\r\nSee: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/349#discussion_r1962366224 for discussion on the layering\r\n<img src=\"https://private-user-images.githubusercontent.com/7647382/414901840-f5bedfea-c2b9-45e4-ab08-520e596153ea.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDA2MTM5MzYsIm5iZiI6MTc0MDYxMzYzNiwicGF0aCI6Ii83NjQ3MzgyLzQxNDkwMTg0MC1mNWJlZGZlYS1jMmI5LTQ1ZTQtYWIwOC01MjBlNTk2MTUzZWEucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MDIyNiUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTAyMjZUMjM0NzE2WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9ZTQwMTg5Y2M3NjNlMWYxMGU3NmE5MzFiZTBjYjBlMWNmYzg1NGY3MGY0MzlmMmI2NGU4OTE3NzdmN2EyMTk4ZCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.QoYZbRUzTfehs-zCujMQg_k3hzb1BwNWZVM7iEgSc9o\">\r\n\r\nThe PR comments suggest we should articulate these as separate concepts. \r\nWhile we're trying to focus on \"less is more\", it may be important to explain these, as this was the intent of #335, which we closed. However, we still have #329 \r\n\r\nWe should agree if we're:\r\n1. Replacing the term Append-only with Verifiable Data Structure\r\n2. Leaving it as Append-only Log, and ignoring the questions of separation in #329 \r\n3. Expand on the Append-only Log and Verifiable Data Structures as defined in [COSE Receipts](https://datatracker.ietf.org/doc/draft-ietf-cose-merkle-tree-proofs/)\r\n",
           "createdAt": "2025-02-26T23:59:20Z",
           "updatedAt": "2025-02-26T23:59:20Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "If we can't replace append only log with verifiable data structure, we should adjust the text anywhere that is a problem, since it indicates that the receipt is coming from a system which is not fully described in COSE receipts.\n\nAfter we've solved that problem, the terms VDS and append only log are interchangable... And I don't care which we use.\n\nAs a side note:\n\nThe details of the internal storage of VDS are out of scope for the architecture, since we don't require a specific VDS.\n\nAll we need to do is talk about what goes in (signed statements) and what comes out (receipts).\n\nAdjacent services are not a requirement.\n\nThis means that it's perfectly valid to only store tiles (and call the set of tiles stored the log).\n\nAnyone with the tiles can prove the log is constructed correctly, and anyone with a signed statement, can tell if that statement is in the log.\n\nBut storing signed statements or receipts is not required to implement a transparency service.\n\nThe only thing a TS needs to operate is:\n\n1. The VDS it uses to produce receipts.\n2. A registration policy\n3. Verification keys for issuers \n4. Signing capability to issue receipts \n\n\n\n\n\n\n\n\n\n",
+          "createdAt": "2025-02-27T02:26:38Z",
+          "updatedAt": "2025-02-27T02:33:43Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I would add:\r\n5. An agent to enforce registration policy rules",
+          "createdAt": "2025-02-27T12:06:42Z",
+          "updatedAt": "2025-02-27T12:06:42Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> But storing signed statements or receipts is not required to implement a transparency service.\r\n\r\nI particularly support this point\r\n\r\n> If we can't replace append only log with verifiable data structure, we should adjust the text anywhere that is a problem, since it indicates that the receipt is coming from a system which is not fully described in COSE receipts.\r\n\r\nIf we replace \"append only\" with \"verifiable data structure\", do we actually require the \"append only\" property of the VDS in CoMETER ? I thought not. If we need that property where is it asserted ?\r\n\r\nIf we don't require it of the VDS its not provable in any meaningful sense I can see OR the bit of the arch that has \"append only\" is underspecified.",
+          "createdAt": "2025-02-27T12:36:41Z",
+          "updatedAt": "2025-02-27T12:36:41Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The evidence stored in an immutable data store needs to be sufficient to prove that registration policies were followed in order to be a trustworthy registration/transparency service in the eyes of consumers of registration data/signed statements and their accompanying payloads, i.e. SBOM's VDR's etc.",
+          "createdAt": "2025-02-27T12:48:23Z",
+          "updatedAt": "2025-02-27T12:48:23Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> The evidence stored in an immutable data store needs to be sufficient to prove that registration policies were followed in order to be a trustworthy registration/transparency service in the eyes of consumers of registration data/signed statements and their accompanying payloads, i.e. SBOM's VDR's etc.\r\n\r\nI am close to this point, but I see no reason to require the TS to store the evidence. What matters is that it can be available to auditors and that they can handle it interoperably.\r\n\r\nThis ensures that widely distributed, potentially fully decentralized, storage of the evidentiary data remains a natural fit. And it also admits more prosaic cases where a log has just been replicated by some 3rd party and so remains useful and provable even if the TS vendor has gone away.\r\n\r\n> be sufficient to prove that registration policies were followed in order to be a trustworthy registration/transparency service in the eyes of consumers\r\n\r\nI don't think this hair split is at odds with this ?",
+          "createdAt": "2025-02-27T13:05:04Z",
+          "updatedAt": "2025-02-27T13:05:04Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@OR13:\r\n\r\n> Anyone with the tiles can prove the log is constructed correctly, and anyone with a signed statement, can tell if that statement is in the log.\r\n> [...]\r\n> The only thing a TS needs to operate is:\r\n> [...]\r\n> A registration policy\r\n> [...] Verification keys for issuers\r\n\r\nThese statements are incompatible, there is no way to check if the log is constructed correctly with just tiles of digests, because _correctly_ includes checking the verification and registration policy passed. And there is no checking that without the signed statements.\r\n\r\nThe notion that it's quite alright for the TS to act maliciously so long as it is self-consistent is not acceptable to me. Neither is the complete exclusion of storage of that evidence, which _must_ be there if a useful audit is to be performed, _particularly_ in the case when an inconsistency is detected!\r\n\r\nThe operator of the TS must store the evidence and it make available to auditors for the TS to be completely useful, one way or another. No meaningful audit can be conducted without it.",
+          "createdAt": "2025-02-27T13:59:01Z",
+          "updatedAt": "2025-02-27T13:59:01Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "100% agree with @achamayou \"The operator of the TS must store the evidence and it make available to auditors for the TS to be completely useful, one way or another. No meaningful audit can be conducted without it.\"\r\n\r\nAND, the evidence that is stored enables a party, such as an auditor, to verify that the TS Operator is following Registration Policies declared by the Registry operator.",
+          "createdAt": "2025-02-27T14:03:07Z",
+          "updatedAt": "2025-02-27T14:03:07Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> 100% agree with @achamayou \"The operator of the TS must store the evidence and it make available to auditors for the TS to be completely useful, one way or another. No meaningful audit can be conducted without it.\"\r\n> \r\n> AND, the evidence that is stored enables a party, such as an auditor, to verify that the TS Operator is following Registration Policies declared by the Registry operator.\r\n\r\nWe are conflating availability with storage locality and responsibility. They are not the same thing.",
+          "createdAt": "2025-02-27T14:10:28Z",
+          "updatedAt": "2025-02-27T14:10:28Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I'm not concerned with modularity of functions or implementation practices.\r\n\r\nI'm asserting that SCITT MUST have a verifiable, high integrity process that ensure trustworthiness of the materials available within the \"Trust Registry\". Do whatever it takes to ensure that the SCITT process implements policies and practices that will ensure the data contained in the registry is trustworthy and auditable/verifiable as trustworthy.",
+          "createdAt": "2025-02-27T14:16:20Z",
+          "updatedAt": "2025-02-27T14:16:20Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> We are conflating availability with storage locality and responsibility. They are not the same thing.\r\n\r\nI am not conflating them, I understand they are different things. I am saying that the operator must do _both_ to provide a full implementation of SCITT. An operator that does not do that provides a log-consistency service certainly, but I falls substantially short of the Integrity and Trust components of SCITT in my view.\r\n\r\nExactly how the operator stores and makes enough information available for an audit is an implementation choice, naturally.",
+          "createdAt": "2025-02-27T14:29:37Z",
+          "updatedAt": "2025-02-27T14:29:37Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I'm not concerned with modularity of functions or implementation practices.\r\n> \r\n> I'm asserting that SCITT MUST have a verifiable, high integrity process that ensure trustworthiness of the materials available within the \"Trust Registry\". Do whatever it takes to ensure that the SCITT process implements policies and practices that will ensure the data contained in the registry is trustworthy and auditable/verifiable as trustworthy.\r\n\r\nThere is no reason whatsover for SCITT to require the Trust Registry to retain or store the data.\r\n\r\nI can completely get behind this:\r\n\r\nSCITT MUST have a verifiable, high integrity process that ensure trustworthiness of the materials regsitered with the \"Trust Registry\"\r\n\r\nIf the process is verifiable, then where the data provided to the auditors comes from is irelevant. I believe this strengthens scitt and also does not prevent TS's that *want* to couple data storage and verifiability from doing their thing.",
+          "createdAt": "2025-02-27T14:34:25Z",
+          "updatedAt": "2025-02-27T14:34:25Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "100% agree with this \"Exactly how the operator stores and makes enough information available for an audit is an implementation choice, naturally.\"\r\n\r\nOur job is to ensure that SCITT represents an implementable and verifiable \"Trust Registry\" capability so that people using data supplied from a SCITT Trust Registry can be assured that the information is trustworthy, just like a \"Registry of Deeds\" or Land Records data are considered trustworthy when provided by the Registry. .",
+          "createdAt": "2025-02-27T14:47:07Z",
+          "updatedAt": "2025-02-27T14:47:07Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@robinbryce I think we are stuck on _verifiable_, and specifically over what is verifiable :)\r\n\r\nOne could argue that only non-equivocation is in scope, it's the thing that's easiest to make verifiable in a distributed manner, and so that's what the TS should do, no more, no less. This my understanding of your position, please forgive and correct any mistake here.\r\n\r\nOne could also argue that the correctness of entry registration is also in scope. I think that's been the spirit of the draft so far. Registration is not just a DoS mitigation measure, it's a valuable step that TS can perform to authenticate certain claims (issuer, subject etc) and upon which Relying Parties may depend ultimately depend on. A TS that dishonestly registers a statement about a subject may cause greater damage than a TS that accidentally but honestly forks. And so that needs to be verifiable as well, at least to auditors. That is my view, and if I understand correctly, @rjb4standards's too.\r\n\r\nHave I got this right?",
+          "createdAt": "2025-02-27T15:00:15Z",
+          "updatedAt": "2025-02-27T15:00:15Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "If \"consistency\" means \"checking that a registration policy has been applied correctly\"... then... you needs the VDS and all the signed statements, and the registration policy, and the issuer verification keys.\r\n\r\nThen, you can go back to the beginning of time, and check that each statement was registered in accordance with the registration policy, from the beginning of time to the head of the log (assuming the log is a VDS that supports linear ordering of records).\r\n\r\nIn order to apply a registration policy, you need the policy, any keys it requires for any signed statements it covers, and a VDS to use to produce a receipt.\r\n\r\nIf consistency means \"ensuring that 2 VDS are equivalent when they contain the same records\", you only need the VDS algorithm \"CCF / CT Log\", and the input set of records... additionally, some VDS might enable you to prove the append only property of the VDS (this is what the consistency proof in COSE Receipts does).\r\n\r\nIn my mental model, proving consistency of a VDS does not require anything other than the VDS and the algorithm used to produce it.\r\n\r\nIf folks have a mental model where the \"Append Only Log\" can only be shown to be consistent with the availability of information that is not in the VDS, then the \"Append Only Log\" is not a VDS.... and we need to make sure it is defined sufficiently well, to ensure interop.\r\n\r\nTo date, SCITT has not had a \"well formed\" definition of consistency, for example we don't define any meaningful use of the consistency proof receipt type which is defined in COSE Receipts.\r\n\r\nInstead, we have relied mostly on \"consistency properties that an insider would have\", such as \"full read access to adjacent services, issuer verification keys, registration policies (and their update order)\", etc...\r\n\r\nI think thats why this PR has been triggering.\r\n\r\nIf consistency of an append only log, is different than consistency of a verifiable data structure, we do have a terminology problem that needs to be addressed, because the ambiguity has an impact on both interop and security.\r\n\r\nI don't think its hard to solve though... If we can't replace append only log with VDS, we only need to define append only log in terms of VDS + adjacent services, and we should be good.\r\n\r\n",
+          "createdAt": "2025-02-27T15:24:17Z",
+          "updatedAt": "2025-02-27T15:24:17Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Registration is not just a DoS mitigation measure, it's a valuable step that TS can perform to authenticate certain claims (issuer, subject etc) and upon which Relying Parties may depend ultimately depend on\r\n\r\nI'm totally fine with this\r\n\r\nMy understanding of how people intend to use sophisticated registration statements is that they would themselves be signed statements and also registered. \r\n\r\nThis makes them verifiably \"in the log\" by the implementation selected VDS\r\n\r\nThey are auditably *included in the VDS* by anyone with the statement that encodes the policy\r\n\r\nThis leaves the very TS/registration policy specific matter of \"asuring the policy was applied faithfully\". If the Auditor can do that independently then the policy statements and receipts and so on must be sufficient to do this. And such auditors would have to fetch any remote material and reconcile the various problems that entails.\r\n\r\nFor TS's based on simple (or empty) registration policies the Auditor just needs them to be available\r\n\r\nIn either case, if the registration is verifiable (by the VDS) I don't understand why SCITT would care where those statements were sourced from.\r\n\r\nBy taking care to exclude implications of storage location and retention from the arcitecture and focusing on \"verifiable registration\" I believe we enable better answers *for some implementations* to questions like:\r\n\r\n* What happens when data goes end of life ?\r\n* What happens to the relying parties if the TS goes of line ?\r\n* How do you get scalability of audit if a full audit requires interaction with the TS ?\r\n\r\nAnd I agree with @OR13 I don't think we are really super far appart. My slight re-wording of @rjb4standards statement\r\n\r\n\"SCITT MUST have a verifiable, high integrity process that ensure trustworthiness of the materials regsitered with the \"Trust Registry\"\"\r\n\r\nWas meant to show all thats triggering me are mentions of \"storage\" and \"data supplied\".\r\n\r\nFor my part, if we can focus on verifiable registration in the bigger picture statements whilst avoiding implication that security assumptions require the TS to store and retain data I am fine",
+          "createdAt": "2025-02-27T15:35:16Z",
+          "updatedAt": "2025-02-27T15:35:16Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Something to consider:\r\nIs there an option to split this up:\r\n\r\n1. Rename Append-only Log to Verifiable Data Structure (view the changes with comments off to see how this looks)\r\n2. Complete #329 as a separate PR?",
+          "createdAt": "2025-02-27T20:16:05Z",
+          "updatedAt": "2025-02-27T20:16:05Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@SteveLasker I did one more pass, following a very constructive discussion with @robinbryce, please review. I think there may be instances of \"Append-only Log\" left though, and I have a proposed a way to talk about what some of us understood to be the log as the \"Registered Sequence of Signed Statement\", which I think we can use instead, for example when describing audit.",
+          "createdAt": "2025-02-28T13:29:15Z",
+          "updatedAt": "2025-02-28T13:29:24Z"
+        },
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> My understanding of how people intend to use sophisticated registration statements is that they would themselves be signed statements and also registered.\r\n> \r\n> This makes them verifiably \"in the log\" by the implementation selected VDS\r\n> \r\n> They are auditably _included in the VDS_ by anyone with the statement that encodes the policy\r\n\r\n100% yes. I think this detail is at the root of all the difficult parts of this PR discussion.\r\n\r\nFor regular data, including Signed Statements or the Artifacts to which they refer, there is no need to maintain any distinction between an amend-only log in this document as any different to any of the options for VDS implementations in COSE Receipts. \r\n\r\nWhile I very strongly agree with Dick that a whole system that makes use of SCITT and SCRAPI needs to usefully connect real-world data with their provable origins, the discussion on the layer at hand is irrelevant to that. Indeed it's _helpful_ to not address such storage directly here because for some use cases it'll be ideal for an adjacent service of the TS to also store the inputs, decorate them, provide audit capabilities etc...but down at the level of registration we must not make that *required* as it breaks other equally useful configurations, such as the case where the TS NEVER gets to see the actual Artefact, and doesn't keep the Signed Statements, but it's still very useful for detecting tampering or avoiding non-repudiation in supply chains where someone already has the thing in their hands and needs to check that what they have refers to the right thing and it stood behind by whoever they got it from. Or the case where auditors keep hold of copies of things for added independence. And as Robin says, with distributed copies of the VDS this can be achieved long after the original log operator and all its adjacent services goes away.\r\n\r\nSo then, why cling to the Registration Policy as the major point of contention? Because that\u2019s the one case under discussion where the actual data to be verified necessary originates with and comes from the Transparency Service. And then also because proving complete application of these nebulous policy-layer configurations was actually done\u2026but that\u2019s by the by and not for this PR (or any any time soon IMO).\r\n\r\nWe came up with an elegant* solution to this way back at IETF 118. It supported querying of current and past registration policies, holds the TS accountable to such policies by also registering them on the VDS, and explicitly recorded which policy had been applied to a given Registered Signed Statement in the Transparent Statement itself. And because the Registration Policies are cacheable and distributable, they then get to benefit from the same flexible distributed, surviving-the-TS-going-away-or-becoming-hostile properties that regular Signed Statements do. \r\n\r\nThis is what Robin is referring to and I think it\u2019s absolutely right.\r\n\r\n * I am not ruling out the possibility that the solution is also simple and wrong. But that\u2019s not been demonstrated so far. I do fear however that the streamlining of definitions the area of \u2018Transparent Statement\u2019 may have trespassed against this.\r\n",
+          "createdAt": "2025-02-28T14:33:00Z",
+          "updatedAt": "2025-02-28T14:38:17Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> We came up with an elegant* solution to this way back at IETF 118. It supported querying of current and past registration policies, holds the TS accountable to such policies by also registering them on the VDS, and explicitly recorded which policy had been applied to a given Registered Signed Statement in the Transparent Statement itself. And because the Registration Policies are cacheable and distributable, they then get to benefit from the same flexible distributed, surviving-the-TS-going-away-or-becoming-hostile properties that regular Signed Statements do.\r\n\r\nI am not sure how this allows checking that the TS applied the _right_ policy, as opposed any _transparent and past_ policy, to a statement. But I suspect this PR is entirely the wrong place to have this discussion :)",
+          "createdAt": "2025-02-28T14:48:54Z",
+          "updatedAt": "2025-02-28T14:48:54Z"
+        },
+        {
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> the right policy, as opposed any transparent and past policy\r\n\r\nThere are answers to that but...\r\n\r\n> I suspect this PR is entirely the wrong place to have this discussion :)\r\n\r\nAs ever your suspicions are well founded :-)",
+          "createdAt": "2025-02-28T14:55:48Z",
+          "updatedAt": "2025-02-28T14:55:48Z"
+        },
+        {
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> As ever your suspicions are well founded :-)\r\n\r\nI have been quietly watching this PR and have been a little confused as to where it is going. I actually intended to start a thread on the mailing list. \r\n\r\nNot to pile on, but I don't want to be wordy repeat other meaningful explanations from others. This one sticks out to me.\r\n\r\nhttps://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/351#discussion_r1970114280\r\n\r\nWhat is the goal we are trying to solve with this edit? It seems we want to discuss micro-level details in a macro-level architecture document. Others have, rightfully on that front, pushed back on proposals I made (can't speak for others) about the right level of granularity, and I appreciated not having such a proposal merged.\r\n\r\nHas anyone posted to the list to ask if anyone in the WG outside the editors of this PR see the changes as valuable and clarifying the mechanics of a TS?\r\n",
+          "createdAt": "2025-02-28T16:30:52Z",
+          "updatedAt": "2025-02-28T16:31:06Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "> > As ever your suspicions are well founded :-)\r\n> \r\n> I have been quietly watching this PR and have been a little confused as to where it is going. I actually intended to start a thread on the mailing list.\r\n> \r\n> Not to pile on, but I don't want to be wordy repeat other meaningful explanations from others. This one sticks out to me.\r\n> \r\n> [#351 (comment)](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/351#discussion_r1970114280)\r\n> \r\n> What is the goal we are trying to solve with this edit? It seems we want to discuss micro-level details in a macro-level architecture document. Others have, rightfully on that front, pushed back on proposals I made (can't speak for others) about the right level of granularity, and I appreciated not having such a proposal merged.\r\n> \r\n> Has anyone posted to the list to ask if anyone in the WG outside the editors of this PR see the changes as valuable and clarifying the mechanics of a TS?\r\n\r\nThe base intent was to highlight that:\r\n* there is no \"content of logged statement\" in the \"log\" so maybe we should not call it log\r\n* a VDS is not necessarily an append-only structure\r\n\r\nSo we need a set of named words that stage terms to the extend of (this is not good enough yet): VDS -> append-only VDS AND have to make clear this is not a log of statements.",
+          "createdAt": "2025-02-28T16:51:33Z",
+          "updatedAt": "2025-02-28T16:51:33Z"
         }
       ],
       "reviews": [
@@ -47399,9 +47623,9 @@
           "comments": [
             {
               "originalPosition": 68,
-              "body": "```suggestion\r\n: an entity that maintains and extends the Append-only Log, a Verifiable Data Structure that captures, and endorses it.\r\n```\r\n\r\nI think we still intend to have the TS maintain the log itself, as well as the VDS.",
+              "body": "```suggestion\r\n: an entity that decides a Registered Sequence of Signed Statements by committing them to a Verifiable Data Structure, and endorses the state of that Structure.\r\n```\r\n\r\nAnother attempt, a bit heavy maybe, but with a hopefully clearer distinction between the statements and the VDS?",
               "createdAt": "2025-02-24T20:24:21Z",
-              "updatedAt": "2025-02-24T20:24:21Z"
+              "updatedAt": "2025-02-28T12:55:46Z"
             }
           ]
         },
@@ -47599,9 +47823,9 @@
           "comments": [
             {
               "originalPosition": 204,
-              "body": "```suggestion\r\n: there is no fork in the sequence of Signed Statements accepted by the Transparency Service and committed to the VDS.\r\n```\r\n\r\nThe VDS is there to make forks obvious, but the thing we are protecting is the log itself, not the tree.",
+              "body": "```suggestion\r\n: there is no fork in the Registered Sequence of Signed Statements accepted by the Transparency Service and committed to the Verifiable Data Structure.\r\n```\r\n\r\nEdited yet again :)",
               "createdAt": "2025-02-25T08:51:40Z",
-              "updatedAt": "2025-02-26T23:31:11Z"
+              "updatedAt": "2025-02-28T16:35:20Z"
             }
           ]
         },
@@ -47619,9 +47843,9 @@
           "comments": [
             {
               "originalPosition": 210,
-              "body": "```suggestion\r\n: the Append-only Log includes sufficient information to enable authorized actors with access to its content to check that each data structure representing each Signed Statement has been correctly registered.\r\n```\r\n\r\nThe VDS only has digests, it does not contain enough information for an auditor to get roots of trust, registration policies etc. It's only enough to check consistency, not registration.",
+              "body": "```suggestion\r\n: the Registered Sequence of Signed Statements includes sufficient information to enable authorized actors with access to its content to check that each data structure representing each Signed Statement has been correctly registered.\r\n```\r\n\r\nThe VDS only has digests, it does not contain enough information for an auditor to get roots of trust, registration policies etc. It's only enough to check consistency, not registration.\r\n\r\nEdited again :)",
               "createdAt": "2025-02-25T08:52:57Z",
-              "updatedAt": "2025-02-25T08:52:58Z"
+              "updatedAt": "2025-02-28T13:04:34Z"
             }
           ]
         },
@@ -47639,9 +47863,9 @@
           "comments": [
             {
               "originalPosition": 219,
-              "body": "```suggestion\r\n1. **Register the Signed Statement** to the Append-only Log, and commit it to the Verifiable Data Structure.\r\n```",
+              "body": "```suggestion\r\n1. **Register the Signed Statement**\r\n```",
               "createdAt": "2025-02-25T08:53:27Z",
-              "updatedAt": "2025-02-25T08:53:27Z"
+              "updatedAt": "2025-02-28T14:45:00Z"
             }
           ]
         },
@@ -47932,10 +48156,10 @@
           },
           "author": "OR13",
           "authorAssociation": "COLLABORATOR",
-          "state": "CHANGES_REQUESTED",
+          "state": "DISMISSED",
           "body": "I think overall this PR uncovered a lot of confusing terminology (so its been very helpful).\r\n\r\nWe seem to still have confusion on:\r\n\r\n- Is an Append Only Log defined as a VDS + Adjacent Storage?\r\n- Where is registration time recorded (in VDS or Append Only Log? )\r\n- Is time based linearity a property that all VDS must have in order for SCITT to be applicable?\r\n- Is immutability a property that all VDS must have in order for SCITT to be applicable?\r\n\r\nIs consistency / non equivocation a property of the TS / Log or the VDS, or specific implementations of VDS?",
           "createdAt": "2025-02-25T16:23:30Z",
-          "updatedAt": "2025-02-25T17:50:49Z",
+          "updatedAt": "2025-02-28T16:46:17Z",
           "comments": []
         },
         {
@@ -48085,10 +48309,10 @@
           },
           "author": "yogeshbdeshpande",
           "authorAssociation": "COLLABORATOR",
-          "state": "CHANGES_REQUESTED",
+          "state": "DISMISSED",
           "body": "This PR seems un-necessary to me! We should NOT tinker with existing terminologies and re-invent the wheel, when the Draft is going for WGLC! \r\n\r\nI checked multiple places and the concept of Verifiable Data Structure has no bearing on Transparency Services which had Append ONLY as the basic concept.\r\n\r\nWe should simply drop this PR! ",
           "createdAt": "2025-02-26T09:36:32Z",
-          "updatedAt": "2025-02-26T09:36:32Z",
+          "updatedAt": "2025-02-28T16:46:45Z",
           "comments": []
         },
         {
@@ -48485,9 +48709,9 @@
           "comments": [
             {
               "originalPosition": 296,
-              "body": "```suggestion\r\nIn contrast Transparency Services can be held accountable and they can be called out by any Auditor that replays their Append-only log against any contested Receipt.\r\n```\r\n\r\nI don't think it's possible to do a full replay with just the digests, a replay from Signed Statements is necessary. As in other comments, I am perhaps being insufficiently imaginative when thinking about the VDS (which is a Merkle Tree in my mind).",
+              "body": "```suggestion\r\nIn contrast, Transparency Services can be held accountable and blamed by an Auditor that replays the Sequence of Signed Statements captured in their Verifiable Data Structure to confirm that a contested Receipt is valid and was correctly registered.\r\n\r\nTransparency Services can provide consistency proofs allowing Auditors to check if a set of Receipts were issued from a single Verifiable Data Structure, without replaying individual Signed Statements.\r\n```\r\n\r\nI don't think it's possible to do a full replay with just the digests, a replay from Signed Statements is necessary. As in other comments, I am perhaps being insufficiently imaginative when thinking about the VDS (which is a Merkle Tree in my mind).\r\n\r\nEdited once more, @robinbryce is this better?",
               "createdAt": "2025-02-26T13:20:46Z",
-              "updatedAt": "2025-02-26T13:20:46Z"
+              "updatedAt": "2025-02-28T13:24:00Z"
             }
           ]
         },
@@ -48890,6 +49114,891 @@
               "updatedAt": "2025-02-26T23:31:55Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d0-u6",
+          "commit": {
+            "abbreviatedOid": "a3ee63b"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T14:12:52Z",
+          "updatedAt": "2025-02-27T14:12:52Z",
+          "comments": [
+            {
+              "originalPosition": 296,
+              "body": "I am not ok with the second change, because it claims that consistency proofs are sufficient to resolve a dispute. This is not true, they cannot confirm whether registration was performed correctly, and although they can be used to detect forks, they cannot be used to decide which fork(s) contain malicious content. I have amended my proposed change to remove the mention of \"Append-only log\" and use the term \"Verifiable Data Structure\", in an effort to find common ground.",
+              "createdAt": "2025-02-27T14:12:52Z",
+              "updatedAt": "2025-02-27T14:12:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d1FHu",
+          "commit": {
+            "abbreviatedOid": "2ede3a5"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T14:20:29Z",
+          "updatedAt": "2025-02-27T14:20:29Z",
+          "comments": [
+            {
+              "originalPosition": 296,
+              "body": "954 and 955 are meant to be combined. I can perform an audit of a range, and use consistency proofs to asure that the range starts from a known good state, and then subsequent to the range, the log remains consistent.\r\n\r\nI am not trying to undermine the checks available to the auditor. I am trying to ensure the auditor isn't forced to always do a full audit when the area of interest is bounded.",
+              "createdAt": "2025-02-27T14:20:29Z",
+              "updatedAt": "2025-02-27T14:20:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d1XHz",
+          "commit": {
+            "abbreviatedOid": "a3ee63b"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T14:41:28Z",
+          "updatedAt": "2025-02-27T14:41:28Z",
+          "comments": [
+            {
+              "originalPosition": 106,
+              "body": "The definition would have to come from https://cose-wg.github.io/draft-ietf-cose-merkle-tree-proofs/draft-ietf-cose-merkle-tree-proofs.html, and bizarrely, despite a buch of mentions of Verifiable Data Proof starting in 1. Introduction, the Terminology defines VDP to be Verifiable Data Structure Parameters (!): https://cose-wg.github.io/draft-ietf-cose-merkle-tree-proofs/draft-ietf-cose-merkle-tree-proofs.html#name-terminology\r\n\r\nThat's the only place where it's expanded to that, it's expanded to Proof in every other usage in the document. Having said that, you are right that the usage of VDP is otherwise consistently for the proof material _without_ the signature, and so they are not aliases, instead a Receipt can embed one or more VDPs.",
+              "createdAt": "2025-02-27T14:41:28Z",
+              "updatedAt": "2025-02-27T14:41:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d1Yzz",
+          "commit": {
+            "abbreviatedOid": "a3ee63b"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T14:43:45Z",
+          "updatedAt": "2025-02-27T14:43:45Z",
+          "comments": [
+            {
+              "originalPosition": 106,
+              "body": "```suggestion\r\nA Receipt is a signature over one or more Verifiable Data Structure Proofs that an entry is registered in the Verifiable Data Structure.\r\nIt is universally verifiable without online access to the TS.\r\n```\r\n\r\nSplit for clarity?",
+              "createdAt": "2025-02-27T14:43:45Z",
+              "updatedAt": "2025-02-27T20:00:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d1Zzh",
+          "commit": {
+            "abbreviatedOid": "a3ee63b"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T14:45:01Z",
+          "updatedAt": "2025-02-27T14:45:01Z",
+          "comments": [
+            {
+              "originalPosition": 106,
+              "body": "I particularly like \"It is universally verifiable without online access to the TS\"",
+              "createdAt": "2025-02-27T14:45:01Z",
+              "updatedAt": "2025-02-27T14:45:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d1aKc",
+          "commit": {
+            "abbreviatedOid": "a3ee63b"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T14:45:29Z",
+          "updatedAt": "2025-02-27T14:45:29Z",
+          "comments": [
+            {
+              "originalPosition": 106,
+              "body": "That has a stronger privacy posture than CT I think",
+              "createdAt": "2025-02-27T14:45:29Z",
+              "updatedAt": "2025-02-27T14:45:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d1dun",
+          "commit": {
+            "abbreviatedOid": "2ede3a5"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T14:50:06Z",
+          "updatedAt": "2025-02-27T14:50:06Z",
+          "comments": [
+            {
+              "originalPosition": 106,
+              "body": "agree. we already utilise the multiple proofs so its not just a theoritical thing. we found it actively useful",
+              "createdAt": "2025-02-27T14:50:06Z",
+              "updatedAt": "2025-02-27T14:50:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d1tjM",
+          "commit": {
+            "abbreviatedOid": "0a09271"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T15:05:17Z",
+          "updatedAt": "2025-02-27T15:05:18Z",
+          "comments": [
+            {
+              "originalPosition": 94,
+              "body": "Because I don't know what an \"append only log is\"... if it is a normative dependency, and it is not a VDS, what are its requirements beyond the requirements of a VDS?",
+              "createdAt": "2025-02-27T15:05:18Z",
+              "updatedAt": "2025-02-27T15:05:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d2Fdj",
+          "commit": {
+            "abbreviatedOid": "a3ee63b"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T15:32:06Z",
+          "updatedAt": "2025-02-27T15:32:06Z",
+          "comments": [
+            {
+              "originalPosition": 106,
+              "body": "A Receipt proves a signed statement has been registered with a TS, if and only if the signature checker trusts the key used by the TS to sign the receipt.",
+              "createdAt": "2025-02-27T15:32:06Z",
+              "updatedAt": "2025-02-27T15:32:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d4c8Z",
+          "commit": {
+            "abbreviatedOid": "0a09271"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T19:11:59Z",
+          "updatedAt": "2025-02-27T19:11:59Z",
+          "comments": [
+            {
+              "originalPosition": 68,
+              "body": "We really need to decide if we're going to define the Append-only Log/ Verifiable Data Structure as two distinct things.",
+              "createdAt": "2025-02-27T19:11:59Z",
+              "updatedAt": "2025-02-27T19:11:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d4gQm",
+          "commit": {
+            "abbreviatedOid": "cdc4d80"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T19:15:59Z",
+          "updatedAt": "2025-02-27T19:15:59Z",
+          "comments": [
+            {
+              "originalPosition": 210,
+              "body": "Calling @robinbryce for \u2b06\ufe0f ",
+              "createdAt": "2025-02-27T19:15:59Z",
+              "updatedAt": "2025-02-27T19:15:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d4lpn",
+          "commit": {
+            "abbreviatedOid": "0a09271"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T19:24:00Z",
+          "updatedAt": "2025-02-27T19:24:00Z",
+          "comments": [
+            {
+              "originalPosition": 68,
+              "body": "@SteveLasker does \"Verifiable Data Structure\" mean it contains immutable data? \r\nIf so, it's not obvious to me.",
+              "createdAt": "2025-02-27T19:24:00Z",
+              "updatedAt": "2025-02-27T19:24:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d4-Ht",
+          "commit": {
+            "abbreviatedOid": "a3ee63b"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T20:00:38Z",
+          "updatedAt": "2025-02-27T20:00:38Z",
+          "comments": [
+            {
+              "originalPosition": 106,
+              "body": "I'm committing the suggestion, we can review in totality.",
+              "createdAt": "2025-02-27T20:00:38Z",
+              "updatedAt": "2025-02-27T20:00:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_Cik",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T12:01:11Z",
+          "updatedAt": "2025-02-28T12:01:13Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\nRegistered Sequence of Signed Statements:\r\n\r\nA sequence of Signed Statements submitted by Clients that meet applicable registration policies and are captured by a Verifiable Data Structure.\r\n```\r\n\r\nProposal for a term to designate the sequence of signed statements committed to the VDS, as opposed to the VDS itself, and hopefully move away from the controversial \"Append-only Log\". It's useful to have a term for this, when discussing audit.\r\n",
+              "createdAt": "2025-02-28T12:01:12Z",
+              "updatedAt": "2025-02-28T12:01:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_PTZ",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T12:23:43Z",
+          "updatedAt": "2025-02-28T12:23:43Z",
+          "comments": [
+            {
+              "originalPosition": 210,
+              "body": "The MMR does not contain that information. My objection is to the implication that the TS must be responsible for making the information available to auditors. This is inherently centralizing and makes verifiabilty depend on the continued good operations of the TS.\r\n\r\nA requirement that the TS must *define* how the information is available to auditors is fine by me. Its a one line change to make that work I think.\r\n\r\nI beleive the move to replace \"append only log\" as a term with a \"Registered Sequence of Signed Statements\" helps a lot here - see https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/351/files#r1975294713",
+              "createdAt": "2025-02-28T12:23:43Z",
+              "updatedAt": "2025-02-28T12:24:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_jbQ",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T12:57:43Z",
+          "updatedAt": "2025-02-28T12:57:44Z",
+          "comments": [
+            {
+              "originalPosition": 82,
+              "body": "My preference would be to drop the line, and clearly distinguish the \"Register Sequence of Signed Statements\" (*) and the \"VDS\" elsewhere too. (*) I am not hung up on the particularly name, but something that describes the Signed Statements themselves in the order in which they are committed to the VDS.",
+              "createdAt": "2025-02-28T12:57:44Z",
+              "updatedAt": "2025-02-28T12:57:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_kqd",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T12:59:56Z",
+          "updatedAt": "2025-02-28T12:59:56Z",
+          "comments": [
+            {
+              "originalPosition": 94,
+              "body": "There's a logical sequence of statements, which is not a normative dependency but is important when discussing audit. I think we can keep this line that way though.",
+              "createdAt": "2025-02-28T12:59:56Z",
+              "updatedAt": "2025-02-28T12:59:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_lCV",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T13:00:39Z",
+          "updatedAt": "2025-02-28T13:00:39Z",
+          "comments": [
+            {
+              "originalPosition": 105,
+              "body": "```suggestion\r\nImplementations of Transparency Services may protect their Registered Sequence of Signed Statements and Verifiable Data Structure using a combination of trusted hardware, consensus protocols, and cryptographic evidence.\r\n```",
+              "createdAt": "2025-02-28T13:00:39Z",
+              "updatedAt": "2025-02-28T13:00:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_lM8",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T13:00:58Z",
+          "updatedAt": "2025-02-28T13:00:59Z",
+          "comments": [
+            {
+              "originalPosition": 106,
+              "body": "```suggestion\r\nA Receipt is a signature over one or more Verifiable Data Structure Proofs that a Signed Statement is registered in the Verifiable Data Structure.\r\n```",
+              "createdAt": "2025-02-28T13:00:58Z",
+              "updatedAt": "2025-02-28T13:00:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_l3a",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T13:02:19Z",
+          "updatedAt": "2025-02-28T13:02:19Z",
+          "comments": [
+            {
+              "originalPosition": 141,
+              "body": "```suggestion\r\n  - or replay all the Transparent Statements to check for the consistency and correctness of the Transparency Service's Verifiable Data Structure (e.g. auditing)\r\n```",
+              "createdAt": "2025-02-28T13:02:19Z",
+              "updatedAt": "2025-02-28T13:02:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_mcF",
+          "commit": {
+            "abbreviatedOid": "cdc4d80"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T13:03:23Z",
+          "updatedAt": "2025-02-28T13:03:23Z",
+          "comments": [
+            {
+              "originalPosition": 210,
+              "body": "I'm ok with \"\"Registered Sequence of Signed Statements\"\"\r\n\r\nThis does not dictate implementation expectations the way that logs do.",
+              "createdAt": "2025-02-28T13:03:23Z",
+              "updatedAt": "2025-02-28T13:03:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_mwt",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T13:04:01Z",
+          "updatedAt": "2025-02-28T13:04:01Z",
+          "comments": [
+            {
+              "originalPosition": 210,
+              "body": "> A requirement that the TS must define how the information is available to auditors is fine by me. Its a one line change to make that work I think.\r\n\r\nAgreed!",
+              "createdAt": "2025-02-28T13:04:01Z",
+              "updatedAt": "2025-02-28T13:04:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_nka",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T13:05:34Z",
+          "updatedAt": "2025-02-28T13:05:34Z",
+          "comments": [
+            {
+              "originalPosition": 219,
+              "body": "Not sure what to do about @OR13's comment, but I would like to drop this particular suggestion.",
+              "createdAt": "2025-02-28T13:05:34Z",
+              "updatedAt": "2025-02-28T13:05:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_nrJ",
+          "commit": {
+            "abbreviatedOid": "cdc4d80"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T13:05:42Z",
+          "updatedAt": "2025-02-28T13:05:42Z",
+          "comments": [
+            {
+              "originalPosition": 210,
+              "body": "+1",
+              "createdAt": "2025-02-28T13:05:42Z",
+              "updatedAt": "2025-02-28T13:05:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_n0R",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T13:05:53Z",
+          "updatedAt": "2025-02-28T13:05:53Z",
+          "comments": [
+            {
+              "originalPosition": 225,
+              "body": "Agreed",
+              "createdAt": "2025-02-28T13:05:53Z",
+              "updatedAt": "2025-02-28T13:05:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_obK",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T13:07:03Z",
+          "updatedAt": "2025-02-28T13:07:04Z",
+          "comments": [
+            {
+              "originalPosition": 234,
+              "body": "Following discussion, I agree this change is not helpful.",
+              "createdAt": "2025-02-28T13:07:03Z",
+              "updatedAt": "2025-02-28T13:07:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_o9W",
+          "commit": {
+            "abbreviatedOid": "cdc4d80"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T13:08:08Z",
+          "updatedAt": "2025-02-28T13:08:08Z",
+          "comments": [
+            {
+              "originalPosition": 219,
+              "body": "Maybe just stop at \"Register the Signed Statement\"?\r\n\r\nAs Orie says above, the production of a receipt necessarily involves the use of one of the VDS options provided for in COSE Receipts, so removing words reduces redundancy, reduces opportunities for conflicts between references, and enables COSE Receipts to evolve usefully and independently.",
+              "createdAt": "2025-02-28T13:08:08Z",
+              "updatedAt": "2025-02-28T13:08:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_pvF",
+          "commit": {
+            "abbreviatedOid": "cdc4d80"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T13:09:39Z",
+          "updatedAt": "2025-02-28T13:09:39Z",
+          "comments": [
+            {
+              "originalPosition": 219,
+              "body": "+1 Maybe just stop at \"Register the Signed Statement\"",
+              "createdAt": "2025-02-28T13:09:39Z",
+              "updatedAt": "2025-02-28T13:09:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6d_y9H",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T13:26:59Z",
+          "updatedAt": "2025-02-28T13:27:00Z",
+          "comments": [
+            {
+              "originalPosition": 71,
+              "body": "```suggestion\r\n```\r\n\r\nI was going to do edit this sentence, but I think it's actually almost information-free, and so I propose we drop it.",
+              "createdAt": "2025-02-28T13:27:00Z",
+              "updatedAt": "2025-02-28T13:27:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eAmvb",
+          "commit": {
+            "abbreviatedOid": "cdc4d80"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T14:45:17Z",
+          "updatedAt": "2025-02-28T14:45:17Z",
+          "comments": [
+            {
+              "originalPosition": 219,
+              "body": "Amended the amendment accordingly.",
+              "createdAt": "2025-02-28T14:45:17Z",
+              "updatedAt": "2025-02-28T14:45:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eBlar",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T16:20:42Z",
+          "updatedAt": "2025-02-28T16:20:42Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "Append-only VDS?",
+              "createdAt": "2025-02-28T16:20:42Z",
+              "updatedAt": "2025-02-28T16:20:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eBo4E",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T16:26:46Z",
+          "updatedAt": "2025-02-28T16:26:46Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "Resolving, with Issue #352 ",
+              "createdAt": "2025-02-28T16:26:46Z",
+              "updatedAt": "2025-02-28T16:26:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eBqBD",
+          "commit": {
+            "abbreviatedOid": "0138d47"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T16:28:43Z",
+          "updatedAt": "2025-02-28T16:28:44Z",
+          "comments": [
+            {
+              "originalPosition": 68,
+              "body": "deferring to #352 ",
+              "createdAt": "2025-02-28T16:28:43Z",
+              "updatedAt": "2025-02-28T16:28:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eBwVi",
+          "commit": {
+            "abbreviatedOid": "9bcc12f"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T16:39:05Z",
+          "updatedAt": "2025-02-28T16:39:05Z",
+          "comments": [
+            {
+              "originalPosition": 210,
+              "body": "Deferring to #348 ",
+              "createdAt": "2025-02-28T16:39:05Z",
+              "updatedAt": "2025-02-28T16:39:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eByXo",
+          "commit": {
+            "abbreviatedOid": "eaccceb"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T16:42:42Z",
+          "updatedAt": "2025-02-28T16:42:46Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "If we are deleting the references to Merkle trees, which are likely foundational, and we will start talking about VDS, should we not explain where that notion comes from? It is built up in IETF specs and standards, but we do mean to cite the origin of the idea?\r\n\r\n```suggestion\r\n VDS: https://github.com/google/trillian/blob/master/docs/papers/VerifiableDataStructures.pdf\r\n```\r\nThat said, I am not attached to this change and think this path is not constructive for the I-D.",
+              "createdAt": "2025-02-28T16:42:42Z",
+              "updatedAt": "2025-02-28T16:42:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eB0ed",
+          "commit": {
+            "abbreviatedOid": "d4f9e71"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-28T16:46:02Z",
+          "updatedAt": "2025-02-28T16:46:02Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eB01b",
+          "commit": {
+            "abbreviatedOid": "d4f9e71"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-02-28T16:46:43Z",
+          "updatedAt": "2025-02-28T16:46:43Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eB1Cw",
+          "commit": {
+            "abbreviatedOid": "d4f9e71"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-28T16:47:07Z",
+          "updatedAt": "2025-02-28T16:47:07Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eB1sV",
+          "commit": {
+            "abbreviatedOid": "eaccceb"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T16:48:16Z",
+          "updatedAt": "2025-02-28T16:48:16Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "@aj-stein  We just saw this. Can you please open a new PR?",
+              "createdAt": "2025-02-28T16:48:16Z",
+              "updatedAt": "2025-02-28T16:48:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eB1-s",
+          "commit": {
+            "abbreviatedOid": "eaccceb"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T16:48:48Z",
+          "updatedAt": "2025-02-28T16:48:48Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "vds is defined in cose receipts",
+              "createdAt": "2025-02-28T16:48:48Z",
+              "updatedAt": "2025-02-28T16:48:48Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 353,
+      "id": "PR_kwDOIvmHss6NBcSz",
+      "title": "re 351 retain the link to the macro concept of append only log",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/353",
+      "state": "OPEN",
+      "author": "robinbryce",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The introduction of \"Statement Sequence \" is intended to make it clear that Auditors can verify an entire series of statements \"in whole\", thus verifying \"append only\", without regard to how the transparent statements were made available for checking.\r\n\r\nNote: I had not previosly spotted the requirement in Verifiable Data Structure that the VDS beable to prove the append only property if used for a scitt TS. Because of this, I would support droping Append-only in all other places *except* that one. And could live without \"Statement Sequence \". That said, I believe for systems concerned with provenance, the story told by an ordered collection of statements, this is important and useful",
+      "createdAt": "2025-03-01T07:49:34Z",
+      "updatedAt": "2025-03-01T18:29:01Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "4172484fc6ed2aa10de263da9c8f718601acbb87",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "robin/351-append-only-or-vds",
+      "headRefOid": "2e32e8fde4b94a0f938419ae70bb681b3f910b56",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6eF7vx",
+          "commit": {
+            "abbreviatedOid": "ac2bc7f"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-01T08:53:46Z",
+          "updatedAt": "2025-03-01T08:53:47Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "```suggestion\r\nTo make the append-only property verifiable and transparent, the Transparency Service defines how Signed Statements are made available to Auditors.\r\n```\r\n\r\nFeels a bit clearer to me, but happy to follow native speaker advice here :)",
+              "createdAt": "2025-03-01T08:53:46Z",
+              "updatedAt": "2025-03-01T08:53:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eF77i",
+          "commit": {
+            "abbreviatedOid": "ac2bc7f"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "@robinbryce thank you, this is a really good clarification that role of the VDS is to implement the Append-only property over the Statement Sequence.\r\n\r\nStatement Sequence has the benefit of being only two words too :)",
+          "createdAt": "2025-03-01T08:58:31Z",
+          "updatedAt": "2025-03-01T08:58:31Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eGETH",
+          "commit": {
+            "abbreviatedOid": "ac2bc7f"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-01T11:09:43Z",
+          "updatedAt": "2025-03-01T11:09:43Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "Ah, yes your change is better",
+              "createdAt": "2025-03-01T11:09:43Z",
+              "updatedAt": "2025-03-01T11:09:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eGsDW",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Good clarifications, LGTM",
+          "createdAt": "2025-03-01T18:11:02Z",
+          "updatedAt": "2025-03-01T18:11:02Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eGszd",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM\r\nGreat cleanup, thanks @robinbryce, @achamayou ",
+          "createdAt": "2025-03-01T18:29:01Z",
+          "updatedAt": "2025-03-01T18:29:01Z",
+          "comments": []
         }
       ]
     }
