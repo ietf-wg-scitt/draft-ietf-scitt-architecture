@@ -354,11 +354,15 @@ The terms "header", "payload", and "to-be-signed bytes" are defined in {{-COSE}}
 
 The term "claim" is defined in {{RFC8392}}.
 
+Statement Sequence:
+
+: a sequence of Signed Statements captured by a Verifiable Data Structure.
+see Verifiable Data Structure
+
 Append-only Log:
 
-A sequence of Signed Statements captured by a Verifiable Data Structure.
-
-: see Verifiable Data Structure
+: a Statement Sequence comprising the entire registration history of the Transparency Service.
+To make the Append-only property verifiable and transparent, the Transparency Service defines how Signed Statements are made available to Auditors.
 
 Artifact:
 
@@ -366,7 +370,7 @@ Artifact:
 
 Auditor:
 
-: an entity that checks the correctness and consistency of all Transparent Statements issued by a Transparency Service.
+: an entity that checks the correctness and consistency of all Transparent Statements, or the transparent Statement Sequence, issued by a Transparency Service.
 An Auditor is an example of a specialized Relying Party.
 
 Client:
@@ -609,7 +613,7 @@ This verifiable data structure MUST support the following security requirements:
 
 Append-Only:
 
-: once included in the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides an offline verifiable proof of Registration.
+: a property required for a verifiable data structure to be applicable to SCITT, ensuring that the Statement Sequence cannot be modified, deleted or reordered.
 
 Non-equivocation:
 
@@ -747,8 +751,7 @@ A Transparency Service MUST ensure that a Signed Statement is registered before 
 
 A Transparency Service MAY accept a Signed Statement with content in its unprotected header, and MAY use values from that unprotected header during verification and registration policy evaluation.
 
-However, the unprotected header of all Signed Statements in the Append-only log MUST be empty.
-A Transparency Service MUST replace the unprotected header with an empty unprotected header before inclusion in the Append-only log.
+However, the unprotected header of a Signed Statement MUST be set to an empty map before the Signed Statement can be included in a Statement Sequence.
 
 The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
 The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.
@@ -878,7 +881,7 @@ In particular, Issuers must carefully review the inclusion of private, confident
 
 In some deployments a special role such as an Auditor might require and be given access to both the Transparency Service and related Adjacent Services.
 
-Transparency Services' Append-only logs MAY carry only cryptographic metadata (e.g. a hash), rather than the complete Signed Statement, which does not raise immediate privacy concerns.
+Transparency Services' can leverage Verifiable Data Structures which only retain cryptographic metadata (e.g. a hash), rather than the complete Signed Statement, as part of a defense in depth approach to maintaining confidentiality.
 By analyzing the relationship between data stored in the Transparency Service and data stored in Adjacent Services, it is possible to perform metadata analysis, which could reveal the order in which artifacts were built, signed and uploaded.
 
 # Security Considerations
@@ -952,6 +955,10 @@ Preventing a Transparency Service from registering Signed Statements that do not
 In contrast, Transparency Services can be held accountable and blamed by an Auditor that replays the Sequence of Signed Statements captured in their Verifiable Data Structure to confirm that a contested Receipt is valid and was correctly registered.
 
 Transparency Services can provide consistency proofs allowing Auditors to check if a set of Receipts were issued from a single Verifiable Data Structure, without replaying individual Signed Statements.
+
+Certain Verifiable Data Structures enable a Transparency Service to prove properties of its Statement Sequence.
+For example, proving a specific Signed Statement is included in the sequence, or that the sequence has only been extended (Append-only property) since the last time such a proof was created.
+
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service.
 Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
 
