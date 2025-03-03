@@ -356,14 +356,12 @@ The term "claim" is defined in {{RFC8392}}.
 
 Statement Sequence:
 
-A sequence of Signed Statements captured by a Verifiable Data Structure.
-
-: see Verifiable Data Structure
+: a sequence of Signed Statements captured by a Verifiable Data Structure.
+see Verifiable Data Structure
 
 Append-only Log:
 
-A Statement Sequence comprising the entire registration history of the Transparency Service.
-
+: a Statement Sequence comprising the entire registration history of the Transparency Service.
 To make the Append-only property verifiable and transparent, the Transparency Service defines how Signed Statements are made available to Auditors.
 
 Artifact:
@@ -372,7 +370,7 @@ Artifact:
 
 Auditor:
 
-: an entity that checks the correctness and consistency of all Transparent Statements, or transparent Statement Sequence, issued by a Transparency Service.
+: an entity that checks the correctness and consistency of all Transparent Statements, or the transparent Statement Sequence, issued by a Transparency Service.
 An Auditor is an example of a specialized Relying Party.
 
 Client:
@@ -753,7 +751,7 @@ A Transparency Service MUST ensure that a Signed Statement is registered before 
 
 A Transparency Service MAY accept a Signed Statement with content in its unprotected header, and MAY use values from that unprotected header during verification and registration policy evaluation.
 
-However, the unprotected header of a Signed Statement MUST be set to the empty map, before the signed statement can be included in a Statement Sequence.
+However, the unprotected header of a Signed Statement MUST be set to an empty map before the Signed Statement can be included in a Statement Sequence.
 
 The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
 The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.
@@ -958,8 +956,8 @@ In contrast, Transparency Services can be held accountable and blamed by an Audi
 
 Transparency Services can provide consistency proofs allowing Auditors to check if a set of Receipts were issued from a single Verifiable Data Structure, without replaying individual Signed Statements.
 
-Certain Verifiable Data Structures enable a Transparency Service to prove properties of it's Statement Sequence.
-For example, proving a specific signed statement is included in the sequence, or that the sequence has only been extended (append only property) since the last time such a proof was created.
+Certain Verifiable Data Structures enable a Transparency Service to prove properties of its Statement Sequence.
+For example, proving a specific Signed Statement is included in the sequence, or that the sequence has only been extended (Append-only property) since the last time such a proof was created.
 
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service.
 Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
