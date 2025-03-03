@@ -958,7 +958,8 @@ In contrast, Transparency Services can be held accountable and blamed by an Audi
 
 Transparency Services can provide consistency proofs allowing Auditors to check if a set of Receipts were issued from a single Verifiable Data Structure, without replaying individual Signed Statements.
 
-Transparency Services can provide proof allowing Auditors to check that a transparent Statement Sequence is complete and consistent and contains no ommisions.
+Certain Verifiable Data Structures enable a Transparency Service to prove properties of it's Statement Sequence.
+For example, proving a specific signed statement is included in the sequence, or that the sequence has only been extended (append only property) since the last time such a proof was created.
 
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service.
 Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
