@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 1 September 2025                                     C. Fournet
+Expires: 4 September 2025                                     C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                        28 February 2025
+                                                            3 March 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 September 2025.
+   This Internet-Draft will expire on 4 September 2025.
 
 Copyright Notice
 
@@ -430,17 +430,22 @@ Table of Contents
 
    The term "claim" is defined in [RFC8392].
 
-   Append-only Log:
+   Statement Sequence:  a sequence of Signed Statements captured by a
+      Verifiable Data Structure. see Verifiable Data Structure
 
-   A sequence of Signed Statements captured by a Verifiable Data
-   Structure.  see Verifiable Data Structure
+   Append-only Log:  a Statement Sequence comprising the entire
+      registration history of the Transparency Service.  To make the
+      Append-only property verifiable and transparent, the Transparency
+      Service defines how Signed Statements are made available to
+      Auditors.
 
    Artifact:  a physical or non-physical item that is moving along a
       supply chain.
 
    Auditor:  an entity that checks the correctness and consistency of
-      all Transparent Statements issued by a Transparency Service.  An
-      Auditor is an example of a specialized Relying Party.
+      all Transparent Statements, or the transparent Statement Sequence,
+      issued by a Transparency Service.  An Auditor is an example of a
+      specialized Relying Party.
 
    Client:  an application making protected Transparency Service
       resource requests on behalf of the resource owner and with its
@@ -814,9 +819,9 @@ Table of Contents
    used by the Transparency Service implementation.  This verifiable
    data structure MUST support the following security requirements:
 
-   Append-Only:  once included in the verifiable data structure, a
-      Signed Statement cannot be modified, deleted, or reordered; hence
-      its Receipt provides an offline verifiable proof of Registration.
+   Append-Only:  a property required for a verifiable data structure to
+      be applicable to SCITT, ensuring that the Statement Sequence
+      cannot be modified, deleted or reordered.
 
    Non-equivocation:  there is no fork in the registered sequence of
       Signed Statements accepted by the Transparency Service and
@@ -1056,10 +1061,9 @@ Table of Contents
    its unprotected header, and MAY use values from that unprotected
    header during verification and registration policy evaluation.
 
-   However, the unprotected header of all Signed Statements in the
-   Append-only log MUST be empty.  A Transparency Service MUST replace
-   the unprotected header with an empty unprotected header before
-   inclusion in the Append-only log.
+   However, the unprotected header of a Signed Statement MUST be set to
+   an empty map before the Signed Statement can be included in a
+   Statement Sequence.
 
    The same Signed Statement may be independently registered in multiple
    Transparency Services, producing multiple, independent Receipts.  The
@@ -1231,13 +1235,13 @@ Table of Contents
    and be given access to both the Transparency Service and related
    Adjacent Services.
 
-   Transparency Services' Append-only logs MAY carry only cryptographic
-   metadata (e.g. a hash), rather than the complete Signed Statement,
-   which does not raise immediate privacy concerns.  By analyzing the
-   relationship between data stored in the Transparency Service and data
-   stored in Adjacent Services, it is possible to perform metadata
-   analysis, which could reveal the order in which artifacts were built,
-   signed and uploaded.
+   Transparency Services' can leverage Verifiable Data Structures which
+   only retain cryptographic metadata (e.g. a hash), rather than the
+   complete Signed Statement, as part of a defense in depth approach to
+   maintaining confidentiality.  By analyzing the relationship between
+   data stored in the Transparency Service and data stored in Adjacent
+   Services, it is possible to perform metadata analysis, which could
+   reveal the order in which artifacts were built, signed and uploaded.
 
 9.  Security Considerations
 
@@ -1388,10 +1392,18 @@ Table of Contents
    Transparency Services can provide consistency proofs allowing
    Auditors to check if a set of Receipts were issued from a single
    Verifiable Data Structure, without replaying individual Signed
-   Statements.  Note that the SCITT Architecture does not require trust
-   in a single centralized Transparency Service.  Different actors may
-   rely on different Transparency Services, each registering a subset of
-   Signed Statements subject to their own policy.
+   Statements.
+
+   Certain Verifiable Data Structures enable a Transparency Service to
+   prove properties of its Statement Sequence.  For example, proving a
+   specific Signed Statement is included in the sequence, or that the
+   sequence has only been extended (Append-only property) since the last
+   time such a proof was created.
+
+   Note that the SCITT Architecture does not require trust in a single
+   centralized Transparency Service.  Different actors may rely on
+   different Transparency Services, each registering a subset of Signed
+   Statements subject to their own policy.
 
    In both cases, the SCITT architecture provides generic, universally-
    verifiable cryptographic proofs to individually blame Issuers or the
