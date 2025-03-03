@@ -824,9 +824,9 @@ Table of Contents
    used by the Transparency Service implementation.  This verifiable
    data structure MUST support the following security requirements:
 
-   Append-Only:  A property required for a verifiable data structure to
+   Append-Only:  a property required for a verifiable data structure to
       be applicable to SCITT, ensuring that the Statement Sequence
-      cannot modified, deleted or reordered.
+      cannot be modified, deleted or reordered.
 
    Non-equivocation:  there is no fork in the registered sequence of
       Signed Statements accepted by the Transparency Service and
