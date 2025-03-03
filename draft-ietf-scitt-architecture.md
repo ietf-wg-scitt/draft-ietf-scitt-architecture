@@ -155,7 +155,7 @@ informative:
 --- abstract
 
 Traceability of physical and digital Artifacts in supply chains is a long-standing, but increasingly serious security concern.
-The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases.
+The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates) but lacks a generic and scalable architecture that can address a wider range of use cases.
 
 This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
@@ -258,7 +258,7 @@ Threats and practical issues can also arise from unintended side-effects of usin
 For instance digital signatures may fail to verify past their expiry date even though the signed item itself remains completely valid.
 Or a signature may verify even though the information it is securing is now found unreliable but fine-grained revocation is too hard.
 
-Lastly, where data exchange underpins serious business decision-making it is important to hold the producers of those data to a higher standard of accountability.
+Lastly, where data exchange underpins serious business decision-making, it is important to hold the producers of those data to a higher standard of accountability.
 The SCITT architecture provides mechanisms and structures for ensuring that the makers of authoritative statements can be held accountable and not hide or shred the evidence when it becomes inconvenient later.
 
 The following use cases illustrate the scope of SCITT and elaborate on the generic problem statement above.
@@ -270,7 +270,7 @@ The three following use cases are a specialization derived from the generic prob
 ### Security Analysis of a Software Product
 
 A released software product is often accompanied by a set of complementary statements about its security compliance.
-This gives enough confidence to both producers and consumers that the released software meets expected security standards and is suitable to use.
+This gives enough confidence to both producers and consumers that the released software meets the expected security standards and is suitable to use.
 
 Subsequently, multiple security researchers often run sophisticated security analysis tools on the same product.
 The intention is to identify any security weaknesses or vulnerabilities in the package.
@@ -285,24 +285,24 @@ For this release, both the software product and the affected software component 
 
 A consumer of a released software wants to:
 
-* know where to get these security statements from producers and third-parties related to the software product in a timely and unambiguous fashion
-* attribute them to an authoritative issuer
-* associate the statements in a meaningful manner via a set of well-known semantic relationships
-* consistently, efficiently, and homogeneously check their authenticity
+- know where to get these security statements from producers and third-parties related to the software product in a timely and unambiguous fashion
+- attribute them to an authoritative issuer
+- associate the statements in a meaningful manner via a set of well-known semantic relationships
+- consistently, efficiently, and homogeneously check their authenticity
 
 SCITT provides a standardized way to:
 
-* know the various sources of statements
-* express the provenance and historicity of statements
-* relate and link various heterogeneous statements in a simple fashion
-* check that the statement comes from a source with authority to issue that statement
-* confirm that sources provide a complete history of statements related to a given component
+- know the various sources of statements
+- express the provenance and historicity of statements
+- relate and link various heterogeneous statements in a simple fashion
+- check that the statement comes from a source with authority to issue that statement
+- confirm that sources provide a complete history of statements related to a given component
 
 ### Promotion of a Software Component by Multiple Entities
 
 A software component (e.g., a library or software product) released by a trusted producer is common practice for both open-source and commercial offerings.
 The released software component is accompanied by a statement of authenticity.
-Over time, due to its enhanced applicability to various products, there has been an increasing amount of multiple providers of the same software component version on the internet.
+Over time, due to its enhanced applicability to various products, there has been an increasing number of multiple providers of the same software component version on the internet.
 
 Some providers include this particular software component as part of their release product/package bundle and provide the package with proof of authenticity using their issuer authority.
 Some packages include the original statement of authenticity, and some do not.
@@ -312,37 +312,37 @@ Due to complex distribution and promotion life-cycle scenarios, the original sof
 
 A consumer of a released software wants to:
 
-* understand if a particular provider is a trusted originating producer or an alternative party
-* know if and how the source, or resulting binary, of a promoted software component differs from the original software component
-* check the provenance and history of a software component's source back to its origin
-* assess whether to trust a component or product based on a downloaded package location and source supplier
+- understand if a particular provider is a trusted originating producer or an alternative party
+- know if and how the source, or resulting binary, of a promoted software component differs from the original software component
+- check the provenance and history of a software component's source back to its origin
+- assess whether to trust a component or product based on a downloaded package location and source supplier
 
 SCITT provides a standardized way to:
 
-* reliably discern if a provider is the original, trusted producer or is a trustworthy alternative provider or is an illegitimate provider
-* track the provenance path from an original producer to a particular provider
-* check the trustworthiness of a provider
-* check the integrity of modifications or transformations applied by a provider
+- reliably discern if a provider is the original, trusted producer or is a trustworthy alternative provider or is an illegitimate provider
+- track the provenance path from an original producer to a particular provider
+- check the trustworthiness of a provider
+- check the integrity of modifications or transformations applied by a provider
 
 ### Software Integrator Assembling a Software Product for an Autonomous Vehicle
 
 Software Integration is a complex activity.
 This typically involves getting various software components from multiple suppliers, producing an integrated package deployed as part of device assembly.
-For example, car manufacturers source integrated software for their autonomous vehicles from third parties that integrates software components from various sources.
+For example, car manufacturers source integrated software for their autonomous vehicles from third parties that integrate software components from various sources.
 Integration complexity creates a higher risk of security vulnerabilities to the delivered software.
 
 Consumers of integrated software want:
 
-* all components presents in a software product listed
-* the ability to identify and retrieve all components from a secure and tamper-proof location
-* to receive an alert when a vulnerability scan detects a known security issue on a running software component
-* verifiable proofs on build process and build environment with all supplier tiers to ensure end to end build quality and security
+- all components presents in a software product listed
+- the ability to identify and retrieve all components from a secure and tamper-proof location
+- to receive an alert when a vulnerability scan detects a known security issue on a running software component
+- verifiable proofs on build process and build environment with all supplier tiers to ensure end to end build quality and security
 
 SCITT provides a standardized way to:
 
-* provide a tiered and transparent framework that allows for verification of integrity and authenticity of the integrated software at both component and product level before installation
-* notify software integrators of vulnerabilities identified during security scans of running software
-* provide valid annotations on build integrity to ensure conformance
+- provide a tiered and transparent framework that allows for verification of integrity and authenticity of the integrated software at both component and product level before installation
+- notify software integrators of vulnerabilities identified during security scans of running software
+- provide valid annotations on build integrity to ensure conformance
 
 # Terminology {#terminology}
 
@@ -396,7 +396,7 @@ In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE he
 
 Non-equivocation:
 
-: a state where all proofs provided by the Transparency Service to Relying Parties are produced from a Single Verifiable Data Structure describing a unique sequence of Signed Statements, and are therefore consistent.
+: a state where all proofs provided by the Transparency Service to Relying Parties are produced from a Single Verifiable Data Structure describing a unique sequence of Signed Statements and are therefore consistent.
 Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information.
 However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Relying Parties.
 
@@ -428,26 +428,26 @@ Statement:
 
 : any serializable information about an Artifact.
 To help interpretation of Statements, they must be tagged with a media type (as specified in {{RFC6838}}).
-A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version,  or any content an Issuer wishes to publish about an Artifact.
+A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version, or any content an Issuer wishes to publish about an Artifact.
 The additional Statements about an Artifact are correlated by the Subject defined in the {{CWT_CLAIMS}} protected header.
 The Statement is considered opaque to Transparency Service, and MAY be encrypted.
 
 Subject:
 
-: an identifier, defined by the Issuer, that represents the organization, device, user, entity, or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements can be grouped.
+: an identifier, defined by the Issuer, which represents the organization, device, user, entity, or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements can be grouped.
 It is possible that there are multiple Statements about the same Artifact.
 In these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Relying Parties can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific Subject.
 
 Transparency Service:
 
-: an entity that maintains and extends the Verifiable Data Structure, and endorses its state.
+: an entity that maintains and extends the Verifiable Data Structure and endorses its state.
 The identity of a Transparency Service is captured by a public key that must be known by Relying Parties in order to validate Receipts.
 
 Transparent Statement:
 
 : a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
 The Receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
-A Transparent Statement remains a valid Signed Statement, and may be registered again in a different Transparency Service.
+A Transparent Statement remains a valid Signed Statement and may be registered again in a different Transparency Service.
 
 Verifiable Data Structure:
 
@@ -497,7 +497,7 @@ Considering CT in terms of SCITT:
 
 # Architecture Overview
 
-The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements, and auditing Transparent Statements.
+The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements and auditing Transparent Statements.
 
 In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 The remaining details of the Receipt's contents are specified in {{-COMETRE}}.
@@ -575,7 +575,7 @@ Transparency Services MUST maintain a list of trust anchors (see definition of t
 Transparency Services MUST authenticate Signed Statements as part of a Registration Policy.
 For instance, a trust anchor could be an X.509 root certificate (directly or its thumbprint), a pointer to an OpenID Connect identity provider, or any other COSE-compatible trust anchor.
 
-Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Verifiable Data Structure, and distributing the associated Receipts.
+Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Verifiable Data Structure and distributing the associated Receipts.
 
 This specification leaves implementation, encoding and documentation of Registration Policies and trust anchors to the operator of the Transparency Service.
 
@@ -613,7 +613,7 @@ This verifiable data structure MUST support the following security requirements:
 
 Append-Only:
 
-: a property required for a verifiable data structure to be applicable to SCITT, ensuring that the Statement Sequence cannot be modified, deleted or reordered.
+: a property required for a verifiable data structure to be applicable to SCITT, ensuring that the Statement Sequence cannot be modified, deleted, or reordered.
 
 Non-equivocation:
 
@@ -624,14 +624,14 @@ Replayability:
 
 : the Verifiable Data Structure includes sufficient information to enable authorized actors with access to its content to check that each data structure representing each Signed Statement has been correctly registered.
 
-In addition to Receipts, some verifiable data structures might support additional proof types, such as proofs of consistency, or proofs of non inclusion.
+In addition to Receipts, some verifiable data structures might support additional proof types, such as proofs of consistency, or proofs of non-inclusion.
 
 Specific verifiable data structures, such those describes in {{-CT}} and {{-COMETRE}}, and the review of their security requirements for SCITT are out of scope for this document.
 
 ### Adjacent Services
 
 Transparency Services can be deployed along side other database or object storage technologies.
-For example, a Transparency Service that is supporting a software package management system, might be referenced from the APIs exposed for package management.
+For example, a Transparency Service that supports a software package management system, might be referenced from the APIs exposed for package management.
 Providing an ability to request a fresh Receipt for a given software package, or to request a list of Signed Statements associated with the software package.
 
 # Signed Statements
@@ -659,7 +659,7 @@ Issuers and Relying Parties must be able to recognize the Artifact to which the 
 The `iss` and `sub` Claims, within the CWT_Claims protected header, are used to identify the Artifact the Statement pertains to.
 (See Subject under {{terminology}} Terminology.)
 
-Issuers MAY use different signing keys (identified by `kid` in the protected header) for different Artifacts, or sign all Signed Statements under the same key.
+Issuers MAY use different signing keys (identified by `kid` in the protected header) for different Artifacts or sign all Signed Statements under the same key.
 
 An Issuer can make multiple Statements about the same Artifact.
 For example, an Issuer can make amended Statements about the same Artifact as their view changes over time.
@@ -739,7 +739,7 @@ Authentication and authorization are implementation-specific and out of scope of
 The Transparency Service MUST also check the Signed Statement includes the required protected headers.
 The Transparency Service MAY validate the Signed Statement payload in order to enforce domain specific registration policies that apply to specific content types.
 1. **Apply Registration Policy:** The Transparency Service MUST check the attributes required by a Registration Policy are present in the protected headers.
-  Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope, and may use information contained in the attributes of named policies.
+  Custom Signed Statements are evaluated given the current Transparency Service state and the entire Envelope and may use information contained in the attributes of named policies.
 1. **Register the Signed Statement**
 1. **Return the Receipt**, which MAY be asynchronous from Registration.
 The Transparency Service MUST be able to provide a Receipt for all registered Signed Statements.
@@ -861,7 +861,7 @@ Relying Parties MUST apply the verification process as described in Section 4.4 
 
 A Relying Party MUST trust the verification key or certificate and the associated identity of at least one Issuer of a Receipt.
 
-A Relying Party MAY decide to verify only a single Receipt that is acceptable to them, and not check the signature on the Signed Statement or Receipts which rely on verifiable data structures which they do not understand.
+A Relying Party MAY decide to verify only a single Receipt that is acceptable to them and not check the signature on the Signed Statement or Receipts which rely on verifiable data structures which they do not understand.
 
 APIs exposing verification logic for Transparent Statements may provide more details than a single boolean result.
 For example, an API may indicate if the signature on the Receipt or Signed Statement is valid, if Claims related to the validity period are valid, or if the inclusion proof in the Receipt is valid.
@@ -877,12 +877,12 @@ Interactions with Transparency Services are expected to use appropriately strong
 
 The Transparency Service is trusted with the confidentiality of the Signed Statements presented for Registration.
 Issuers and Clients are responsible for verifying that the Transparency Service's privacy and security posture is suitable for the contents of the Signed Statements they submit prior to Registration.
-In particular, Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the Transparency Service's privacy posture.
+Issuers must carefully review the inclusion of private, confidential, or personally identifiable information (PII) in their Statements against the Transparency Service's privacy posture.
 
 In some deployments a special role such as an Auditor might require and be given access to both the Transparency Service and related Adjacent Services.
 
-Transparency Services' can leverage Verifiable Data Structures which only retain cryptographic metadata (e.g. a hash), rather than the complete Signed Statement, as part of a defense in depth approach to maintaining confidentiality.
-By analyzing the relationship between data stored in the Transparency Service and data stored in Adjacent Services, it is possible to perform metadata analysis, which could reveal the order in which artifacts were built, signed and uploaded.
+Transparency Services can leverage Verifiable Data Structures which only retain cryptographic metadata (e.g. a hash), rather than the complete Signed Statement, as part of a defense in depth approach to maintaining confidentiality.
+By analyzing the relationship between data stored in the Transparency Service and data stored in Adjacent Services, it is possible to perform metadata analysis, which could reveal the order in which artifacts were built, signed, and uploaded.
 
 # Security Considerations
 
@@ -920,7 +920,7 @@ The respective Attestation Result, for example, can show that the remote attesta
 Auditors should be aware that the certification path information included in an unprotected `x5chain` header of a to-be-registered Signed Statement can be tampered with by a malicious Transparency Service (e.g., one that does not incorporate remote attestation), which may replace the intermediate certificates and ultimately connect to an unexpected root.
 This modification helps protect against person-in-the-middle attacks, but not denial-of-service.
 Auditors MUST perform certification path validation in accordance with PKIX rules specified in {{-PKIX}}.
-In particular, Auditors MUST verify that certification paths chain to one or more trust anchors (often represented as root certificates).
+Auditors MUST verify that certification paths chain to one or more trust anchors (often represented as root certificates).
 
 ## Security Guarantees
 
@@ -932,7 +932,7 @@ SCITT provides the following security guarantees:
 
 The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata using a distributed public key infrastructure.
 The second guarantee is achieved by committing the Signed Statement to a Verifiable Data Structure.
-The third guarantee is achieved by the combination of both of these acts
+The third guarantee is achieved by the combination of both of these acts.
 
 ## Threat Model
 
@@ -956,7 +956,7 @@ In contrast, Transparency Services can be held accountable and blamed by an Audi
 
 Transparency Services can provide consistency proofs allowing Auditors to check if a set of Receipts were issued from a single Verifiable Data Structure, without replaying individual Signed Statements.
 
-Certain Verifiable Data Structures enable a Transparency Service to prove properties of its Statement Sequence.
+Certain Verifiable Data Structures enable a Transparency Service to prove the properties of its Statement Sequence.
 For example, proving a specific Signed Statement is included in the sequence, or that the sequence has only been extended (Append-only property) since the last time such a proof was created.
 
 Note that the SCITT Architecture does not require trust in a single centralized Transparency Service.
@@ -967,7 +967,7 @@ On one hand, this enables valid actors to detect and disambiguate malicious acto
 On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT architecture.
 
 Relying Parties and Auditors need not be trusted by other actors.
-In particular, so long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.
+So long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.
 
 ### Verifiable Data Structure
 
@@ -983,7 +983,7 @@ Conversely, a corrupt Transparency Service may:
 An Auditor granted (partial) access to a Transparency Service and to a collection of disputed Receipts will be able to replay it, detect any invalid Registration (2) or incorrect Receipt in this collection (3), and blame the Transparency Service for them.
 This ensures any Relying Party that trusts at least one such Auditor that (2, 3) will be blamed to the Transparency Service.
 
-Due to the operational challenge of maintaining a globally consistent Verifiable Data Structure, some Transparency Services may provide limited support for historical queries on the Signed Statements they have registered, and accept the risk of being blamed for inconsistent Registration or Issuer Equivocation.
+Due to the operational challenge of maintaining a globally consistent Verifiable Data Structure, some Transparency Services may provide limited support for historical queries on the Signed Statements they have registered and accept the risk of being blamed for inconsistent Registration or Issuer Equivocation.
 
 Relying Parties and Auditors may also witness (1, 4) but may not be able to collect verifiable evidence for it.
 
@@ -1007,7 +1007,7 @@ This enables the gradual transition to stronger algorithms, including e.g. post-
 ### Transparency Service Client Applications
 
 Authentication of Client applications is out of scope for this document.
-Transparency Services MUST authenticate both Client applications and the Issuer of Signed Statements in order to ensure that implementation specific authentication and authorization policies are enforced.
+Transparency Services MUST authenticate both Client applications and the Issuer of Signed Statements in order to ensure that implementation of specific authentication and authorization policies are enforced.
 The specification of authentication and authorization policies is out of scope for this document.
 
 ### Impersonation
@@ -1034,7 +1034,7 @@ Pending WG discussion.
 
 This document has been developed in coordination with the COSE, OAUTH and RATS WG and uses terminology common to these working groups.
 
-This document uses the terms "Issuer", and "Subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and in particular, the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
+This document uses the terms "Issuer", and "Subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
 
 The terms "verifier" and "Relying Party" are used interchangeably through the document.
 While these terms are related to "Verifier" and "Relying Party" as used in {{RFC9334}}, they do not imply the processing of RATS conceptual messages, such as Evidence or Attestation Results that are specific to remote attestation.
@@ -1043,7 +1043,7 @@ Correspondingly, all RATS conceptual messages, such as Evidence and Attestation 
 
 The terms "Claim" and "Statement" are used throughout this document, where Claim is consistent with the usage in {{-draft-ietf-rats-eat}} and {{RFC7523}}, and Statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the Claims are made.
 
-The term "Subject" provides an identifier of the Issuer's choosing to refer to a given Artifact, and ensures that all associated Statements can be attributed to the identifier chosen by the Issuer.
+The term "Subject" provides an identifier of the Issuer's choosing to refer to a given Artifact and ensures that all associated Statements can be attributed to the identifier chosen by the Issuer.
 
 In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the Issuer identifies themselves using the `iss` Claim, and the specific software that was analyzed as the Subject using the `sub` Claim.
 
