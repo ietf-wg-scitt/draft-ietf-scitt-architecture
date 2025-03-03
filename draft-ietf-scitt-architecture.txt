@@ -24,7 +24,7 @@ Abstract
    in popularity of verifiable data structures as a mechanism to make
    actors more accountable for breaching their compliance promises has
    found some successful applications to specific use cases (such as the
-   supply chain for digital certificates), but lacks a generic and
+   supply chain for digital certificates) but lacks a generic and
    scalable architecture that can address a wider range of use cases.
 
    This document defines a generic, interoperable and scalable
@@ -260,7 +260,7 @@ Table of Contents
    revocation is too hard.
 
    Lastly, where data exchange underpins serious business decision-
-   making it is important to hold the producers of those data to a
+   making, it is important to hold the producers of those data to a
    higher standard of accountability.  The SCITT architecture provides
    mechanisms and structures for ensuring that the makers of
    authoritative statements can be held accountable and not hide or
@@ -279,7 +279,8 @@ Table of Contents
    A released software product is often accompanied by a set of
    complementary statements about its security compliance.  This gives
    enough confidence to both producers and consumers that the released
-   software meets expected security standards and is suitable to use.
+   software meets the expected security standards and is suitable to
+   use.
 
    Subsequently, multiple security researchers often run sophisticated
    security analysis tools on the same product.  The intention is to
@@ -339,7 +340,7 @@ Table of Contents
    commercial offerings.  The released software component is accompanied
    by a statement of authenticity.  Over time, due to its enhanced
    applicability to various products, there has been an increasing
-   amount of multiple providers of the same software component version
+   number of multiple providers of the same software component version
    on the internet.
 
    Some providers include this particular software component as part of
@@ -389,7 +390,7 @@ Table of Contents
    getting various software components from multiple suppliers,
    producing an integrated package deployed as part of device assembly.
    For example, car manufacturers source integrated software for their
-   autonomous vehicles from third parties that integrates software
+   autonomous vehicles from third parties that integrate software
    components from various sources.  Integration complexity creates a
    higher risk of security vulnerabilities to the delivered software.
 
@@ -477,11 +478,11 @@ Table of Contents
    Non-equivocation:  a state where all proofs provided by the
       Transparency Service to Relying Parties are produced from a Single
       Verifiable Data Structure describing a unique sequence of Signed
-      Statements, and are therefore consistent.  Over time, an Issuer
-      may register new Signed Statements about an Artifact in a
-      Transparency Service with new information.  However, the
-      consistency of a collection of Signed Statements about the
-      Artifact can be checked by all Relying Parties.
+      Statements and are therefore consistent.  Over time, an Issuer may
+      register new Signed Statements about an Artifact in a Transparency
+      Service with new information.  However, the consistency of a
+      collection of Signed Statements about the Artifact can be checked
+      by all Relying Parties.
 
    Receipt:  a cryptographic proof that a Signed Statement is included
       in the Verifiable Data Structure.  See
@@ -522,7 +523,7 @@ Table of Contents
       header.  The Statement is considered opaque to Transparency
       Service, and MAY be encrypted.
 
-   Subject:  an identifier, defined by the Issuer, that represents the
+   Subject:  an identifier, defined by the Issuer, which represents the
       organization, device, user, entity, or Artifact about which
       Statements (and Receipts) are made and by which a logical
       collection of Statements can be grouped.  It is possible that
@@ -534,15 +535,15 @@ Table of Contents
       all Transparent Statements associated to a specific Subject.
 
    Transparency Service:  an entity that maintains and extends the
-      Verifiable Data Structure, and endorses its state.  The identity
-      of a Transparency Service is captured by a public key that must be
+      Verifiable Data Structure and endorses its state.  The identity of
+      a Transparency Service is captured by a public key that must be
       known by Relying Parties in order to validate Receipts.
 
    Transparent Statement:  a Signed Statement that is augmented with a
       Receipt created via Registration in a Transparency Service.  The
       Receipt is stored in the unprotected header of COSE Envelope of
       the Signed Statement.  A Transparent Statement remains a valid
-      Signed Statement, and may be registered again in a different
+      Signed Statement and may be registered again in a different
       Transparency Service.
 
    Verifiable Data Structure:  a data structure which supports one or
@@ -636,7 +637,7 @@ Table of Contents
 
    The SCITT architecture consists of a very loose federation of
    Transparency Services, and a set of common formats and protocols for
-   issuing and registering Signed Statements, and auditing Transparent
+   issuing and registering Signed Statements and auditing Transparent
    Statements.
 
    In order to accommodate as many Transparency Service implementations
@@ -757,7 +758,7 @@ Table of Contents
    Registration Policies and trust anchors MUST be made transparent and
    available to all Relying Parties of the Transparency Service by
    registering them as Signed Statements on the Verifiable Data
-   Structure, and distributing the associated Receipts.
+   Structure and distributing the associated Receipts.
 
    This specification leaves implementation, encoding and documentation
    of Registration Policies and trust anchors to the operator of the
@@ -821,7 +822,7 @@ Table of Contents
 
    Append-Only:  a property required for a verifiable data structure to
       be applicable to SCITT, ensuring that the Statement Sequence
-      cannot be modified, deleted or reordered.
+      cannot be modified, deleted, or reordered.
 
    Non-equivocation:  there is no fork in the registered sequence of
       Signed Statements accepted by the Transparency Service and
@@ -837,7 +838,7 @@ Table of Contents
 
    In addition to Receipts, some verifiable data structures might
    support additional proof types, such as proofs of consistency, or
-   proofs of non inclusion.
+   proofs of non-inclusion.
 
    Specific verifiable data structures, such those describes in
    [RFC9162] and [I-D.draft-ietf-cose-merkle-tree-proofs], and the
@@ -848,7 +849,7 @@ Table of Contents
 
    Transparency Services can be deployed along side other database or
    object storage technologies.  For example, a Transparency Service
-   that is supporting a software package management system, might be
+   that supports a software package management system, might be
    referenced from the APIs exposed for package management.  Providing
    an ability to request a fresh Receipt for a given software package,
    or to request a list of Signed Statements associated with the
@@ -895,7 +896,7 @@ Table of Contents
    pertains to.  (See Subject under Section 3 Terminology.)
 
    Issuers MAY use different signing keys (identified by kid in the
-   protected header) for different Artifacts, or sign all Signed
+   protected header) for different Artifacts or sign all Signed
    Statements under the same key.
 
    An Issuer can make multiple Statements about the same Artifact.  For
@@ -1041,7 +1042,7 @@ Table of Contents
        the attributes required by a Registration Policy are present in
        the protected headers.  Custom Signed Statements are evaluated
        given the current Transparency Service state and the entire
-       Envelope, and may use information contained in the attributes of
+       Envelope and may use information contained in the attributes of
        named policies.
 
    4.  *Register the Signed Statement*
@@ -1199,7 +1200,7 @@ Table of Contents
    the associated identity of at least one Issuer of a Receipt.
 
    A Relying Party MAY decide to verify only a single Receipt that is
-   acceptable to them, and not check the signature on the Signed
+   acceptable to them and not check the signature on the Signed
    Statement or Receipts which rely on verifiable data structures which
    they do not understand.
 
@@ -1226,22 +1227,22 @@ Table of Contents
    Signed Statements presented for Registration.  Issuers and Clients
    are responsible for verifying that the Transparency Service's privacy
    and security posture is suitable for the contents of the Signed
-   Statements they submit prior to Registration.  In particular, Issuers
-   must carefully review the inclusion of private, confidential, or
-   personally identifiable information (PII) in their Statements against
-   the Transparency Service's privacy posture.
+   Statements they submit prior to Registration.  Issuers must carefully
+   review the inclusion of private, confidential, or personally
+   identifiable information (PII) in their Statements against the
+   Transparency Service's privacy posture.
 
    In some deployments a special role such as an Auditor might require
    and be given access to both the Transparency Service and related
    Adjacent Services.
 
-   Transparency Services' can leverage Verifiable Data Structures which
+   Transparency Services can leverage Verifiable Data Structures which
    only retain cryptographic metadata (e.g. a hash), rather than the
    complete Signed Statement, as part of a defense in depth approach to
    maintaining confidentiality.  By analyzing the relationship between
    data stored in the Transparency Service and data stored in Adjacent
    Services, it is possible to perform metadata analysis, which could
-   reveal the order in which artifacts were built, signed and uploaded.
+   reveal the order in which artifacts were built, signed, and uploaded.
 
 9.  Security Considerations
 
@@ -1324,9 +1325,9 @@ Table of Contents
    connect to an unexpected root.  This modification helps protect
    against person-in-the-middle attacks, but not denial-of-service.
    Auditors MUST perform certification path validation in accordance
-   with PKIX rules specified in [RFC5280].  In particular, Auditors MUST
-   verify that certification paths chain to one or more trust anchors
-   (often represented as root certificates).
+   with PKIX rules specified in [RFC5280].  Auditors MUST verify that
+   certification paths chain to one or more trust anchors (often
+   represented as root certificates).
 
 9.1.  Security Guarantees
 
@@ -1346,7 +1347,7 @@ Table of Contents
    Statements and associated metadata using a distributed public key
    infrastructure.  The second guarantee is achieved by committing the
    Signed Statement to a Verifiable Data Structure.  The third guarantee
-   is achieved by the combination of both of these acts
+   is achieved by the combination of both of these acts.
 
 9.2.  Threat Model
 
@@ -1395,8 +1396,8 @@ Table of Contents
    Statements.
 
    Certain Verifiable Data Structures enable a Transparency Service to
-   prove properties of its Statement Sequence.  For example, proving a
-   specific Signed Statement is included in the sequence, or that the
+   prove the properties of its Statement Sequence.  For example, proving
+   a specific Signed Statement is included in the sequence, or that the
    sequence has only been extended (Append-only property) since the last
    time such a proof was created.
 
@@ -1413,11 +1414,11 @@ Table of Contents
    liability and the resulting damage to their reputation are
    application specific, and out of scope of the SCITT architecture.
 
-   Relying Parties and Auditors need not be trusted by other actors.  In
-   particular, so long as actors maintain proper control of their
-   signing keys and identity infrastructure they cannot "frame" an
-   Issuer or a Transparency Service for Signed Statements they did not
-   issue or register.
+   Relying Parties and Auditors need not be trusted by other actors.  So
+   long as actors maintain proper control of their signing keys and
+   identity infrastructure they cannot "frame" an Issuer or a
+   Transparency Service for Signed Statements they did not issue or
+   register.
 
 9.2.1.  Verifiable Data Structure
 
@@ -1450,7 +1451,7 @@ Table of Contents
    Due to the operational challenge of maintaining a globally consistent
    Verifiable Data Structure, some Transparency Services may provide
    limited support for historical queries on the Signed Statements they
-   have registered, and accept the risk of being blamed for inconsistent
+   have registered and accept the risk of being blamed for inconsistent
    Registration or Issuer Equivocation.
 
    Relying Parties and Auditors may also witness (1, 4) but may not be
@@ -1482,7 +1483,7 @@ Table of Contents
    Authentication of Client applications is out of scope for this
    document.  Transparency Services MUST authenticate both Client
    applications and the Issuer of Signed Statements in order to ensure
-   that implementation specific authentication and authorization
+   that implementation of specific authentication and authorization
    policies are enforced.  The specification of authentication and
    authorization policies is out of scope for this document.
 
@@ -1703,9 +1704,9 @@ Appendix A.  Common Terminology Disambiguation
 
    This document uses the terms "Issuer", and "Subject" as described in
    [RFC8392], however the usage is consistent with the broader
-   interpretation of these terms in both JOSE and COSE, and in
-   particular, the guidance in [RFC8725] generally applies the COSE
-   equivalent terms with consistent semantics.
+   interpretation of these terms in both JOSE and COSE, and the guidance
+   in [RFC8725] generally applies the COSE equivalent terms with
+   consistent semantics.
 
    The terms "verifier" and "Relying Party" are used interchangeably
    through the document.  While these terms are related to "Verifier"
@@ -1727,7 +1728,7 @@ Appendix A.  Common Terminology Disambiguation
    made.
 
    The term "Subject" provides an identifier of the Issuer's choosing to
-   refer to a given Artifact, and ensures that all associated Statements
+   refer to a given Artifact and ensures that all associated Statements
    can be attributed to the identifier chosen by the Issuer.
 
    In simpler language, a SCITT Statement could be some vendor-specific
