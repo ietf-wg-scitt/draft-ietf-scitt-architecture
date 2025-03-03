@@ -1068,9 +1068,7 @@ Table of Contents
 
    However, the unprotected header of a Signed Statement MUST be set to
    the empty map, before the signed statement can be included in a
-   Statement Sequence.  A Transparency Service MUST replace the
-   unprotected header with an empty unprotected header before committing
-   to the Verifiable Data Structure.
+   Statement Sequence.
 
    The same Signed Statement may be independently registered in multiple
    Transparency Services, producing multiple, independent Receipts.  The
