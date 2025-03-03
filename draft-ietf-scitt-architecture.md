@@ -883,7 +883,7 @@ In particular, Issuers must carefully review the inclusion of private, confident
 
 In some deployments a special role such as an Auditor might require and be given access to both the Transparency Service and related Adjacent Services.
 
-Transparency Services' Verifiable Data Structures MAY carry only cryptographic metadata (e.g. a hash), rather than the complete Signed Statement, which does not raise immediate privacy concerns.
+Transparency Services' can leverage Verifiable Data Structures which only retain cryptographic metadata (e.g. a hash), rather than the complete Signed Statement, as part of a defense in depth approach to maintaining confidentiality.
 By analyzing the relationship between data stored in the Transparency Service and data stored in Adjacent Services, it is possible to perform metadata analysis, which could reveal the order in which artifacts were built, signed and uploaded.
 
 # Security Considerations
