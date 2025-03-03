@@ -615,7 +615,7 @@ This verifiable data structure MUST support the following security requirements:
 
 Append-Only:
 
-: once committed to the verifiable data structure, a Signed Statement cannot be modified, deleted, or reordered; hence its Receipt provides an offline verifiable proof of Registration.
+: A property required for a verifiable data structure to be applicable to SCITT, ensuring that the Statement Sequence cannot modified, deleted or reordered.
 
 Non-equivocation:
 
