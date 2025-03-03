@@ -615,7 +615,7 @@ This verifiable data structure MUST support the following security requirements:
 
 Append-Only:
 
-: A property required for a verifiable data structure to be applicable to SCITT, ensuring that the Statement Sequence cannot modified, deleted or reordered.
+: a property required for a verifiable data structure to be applicable to SCITT, ensuring that the Statement Sequence cannot be modified, deleted or reordered.
 
 Non-equivocation:
 
