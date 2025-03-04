@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-02T00:52:17.443218+00:00",
+  "timestamp": "2025-03-04T00:49:59.951935+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -6462,15 +6462,15 @@
       "id": "I_kwDOIvmHss6sHQUV",
       "title": "Append-only VDS?",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/352",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "              Append-only VDS?\r\n\r\n_Originally posted by @henkbirkholz in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/351#discussion_r1975681065_\r\n            ",
       "createdAt": "2025-02-28T16:25:11Z",
-      "updatedAt": "2025-02-28T18:04:40Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-03T18:30:13Z",
+      "closedAt": "2025-03-03T18:30:13Z",
       "comments": [
         {
           "author": "achamayou",
@@ -6478,6 +6478,13 @@
           "body": "There are still five mentions of Append-only Log in the draft, according to [a quick search](https://github.com/search?q=repo%3Aietf-wg-scitt%2Fdraft-ietf-scitt-architecture+%22Append-only+Log%22&type=code).\n\nAs discussed, if defining a 5-word Term is a big problem, I think we could:\n\n1. Talk inline about \"the sequence of Signed Statements recorded in the VDS\", it's a little heavy but I think it's sufficient for what we want to say.\n2. Add a clarification that SCITT requires an append-only VDS specifically\n\nDoes that help?",
           "createdAt": "2025-02-28T18:04:39Z",
           "updatedAt": "2025-02-28T18:04:39Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed by #353, I believe.",
+          "createdAt": "2025-03-03T11:19:42Z",
+          "updatedAt": "2025-03-03T11:19:42Z"
         }
       ]
     }
@@ -49901,24 +49908,26 @@
       "id": "PR_kwDOIvmHss6NBcSz",
       "title": "re 351 retain the link to the macro concept of append only log",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/353",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "robinbryce",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "The introduction of \"Statement Sequence \" is intended to make it clear that Auditors can verify an entire series of statements \"in whole\", thus verifying \"append only\", without regard to how the transparent statements were made available for checking.\r\n\r\nNote: I had not previosly spotted the requirement in Verifiable Data Structure that the VDS beable to prove the append only property if used for a scitt TS. Because of this, I would support droping Append-only in all other places *except* that one. And could live without \"Statement Sequence \". That said, I believe for systems concerned with provenance, the story told by an ordered collection of statements, this is important and useful",
+      "body": "The introduction of \"Statement Sequence \" is intended to make it clear that Auditors can verify an entire series of statements \"in whole\", thus verifying \"append only\", without regard to how the transparent statements were made available for checking.\r\n\r\nNote: I had not previosly spotted the requirement in Verifiable Data Structure that the VDS beable to prove the append only property if used for a scitt TS. Because of this, I would support droping Append-only in all other places *except* that one. And could live without \"Statement Sequence \". That said, I believe for systems concerned with provenance, the story told by an ordered collection of statements, is important and useful",
       "createdAt": "2025-03-01T07:49:34Z",
-      "updatedAt": "2025-03-01T18:29:01Z",
+      "updatedAt": "2025-03-03T18:03:49Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "4172484fc6ed2aa10de263da9c8f718601acbb87",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "robin/351-append-only-or-vds",
-      "headRefOid": "2e32e8fde4b94a0f938419ae70bb681b3f910b56",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "4dc69cd79678a33a017899977808f47d297c8cff",
+      "closedAt": "2025-03-03T18:03:48Z",
+      "mergedAt": "2025-03-03T18:03:48Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "f5388c0e741d00dbca1b2410c05c029bdab19e88"
+      },
       "comments": [],
       "reviews": [
         {
@@ -49999,8 +50008,362 @@
           "createdAt": "2025-03-01T18:29:01Z",
           "updatedAt": "2025-03-01T18:29:01Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eN8rk",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-03T15:21:44Z",
+          "updatedAt": "2025-03-03T15:21:44Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eN_Gp",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T15:25:23Z",
+          "updatedAt": "2025-03-03T15:25:23Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "```suggestion\r\n: A property required for a verifiable data structure to be applicable to SCITT, ensuring the Statement Sequence cannot be modified, deleted or reordered.\r\n```",
+              "createdAt": "2025-03-03T15:25:23Z",
+              "updatedAt": "2025-03-03T17:22:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eN_Y4",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T15:25:48Z",
+          "updatedAt": "2025-03-03T15:25:48Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "consider moving this definition above \"Append-Only Log\" ",
+              "createdAt": "2025-03-03T15:25:48Z",
+              "updatedAt": "2025-03-03T15:25:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eOBpj",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T15:28:55Z",
+          "updatedAt": "2025-03-03T15:28:56Z",
+          "comments": [
+            {
+              "originalPosition": 43,
+              "body": "```suggestion\r\nHowever, the unprotected header of a Signed Statement MUST be set to an empty map, before the Signed Statement can be included in a Statement Sequence.\r\n```",
+              "createdAt": "2025-03-03T15:28:55Z",
+              "updatedAt": "2025-03-03T17:26:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eOB8i",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T15:29:21Z",
+          "updatedAt": "2025-03-03T15:29:22Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-03-03T15:29:22Z",
+              "updatedAt": "2025-03-03T15:29:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eOCEO",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T15:29:31Z",
+          "updatedAt": "2025-03-03T15:29:32Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "Duplicate?",
+              "createdAt": "2025-03-03T15:29:32Z",
+              "updatedAt": "2025-03-03T15:29:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eOC5g",
+          "commit": {
+            "abbreviatedOid": "85814ac"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T15:30:44Z",
+          "updatedAt": "2025-03-03T15:30:44Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "ah yeah, but also, I was replacing \"included\" with committed elsewhere. In the context of a Statement Sequence though, I am fine with included",
+              "createdAt": "2025-03-03T15:30:44Z",
+              "updatedAt": "2025-03-03T15:30:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eOD9k",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T15:32:20Z",
+          "updatedAt": "2025-03-03T15:32:21Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "```suggestion\r\nTransparency Services can leverage Verifiable Data Structures which only retain cryptographic metadata (e.g. a hash), rather than the complete Signed Statement, as part of a defense in depth approach to maintaining confidentiality.\r\n```",
+              "createdAt": "2025-03-03T15:32:21Z",
+              "updatedAt": "2025-03-03T15:36:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eOEMG",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T15:32:41Z",
+          "updatedAt": "2025-03-03T15:32:41Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "No reason for MAY, but I'm not attached to this change",
+              "createdAt": "2025-03-03T15:32:41Z",
+              "updatedAt": "2025-03-03T15:32:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eOE2H",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T15:33:42Z",
+          "updatedAt": "2025-03-03T15:33:42Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "@OR13 \"Transparency Services\" then?",
+              "createdAt": "2025-03-03T15:33:42Z",
+              "updatedAt": "2025-03-03T15:33:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eOGId",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T15:35:41Z",
+          "updatedAt": "2025-03-03T15:35:42Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "```suggestion\r\nCertain Verifiable Data Structures enable a Transparency Service to prove properties of it's Statement Sequence.\r\nFor example, proving a specific signed statement is included in the sequence, or that the sequence has only been extended (append only property) since the last time such a proof was created.\r\n```",
+              "createdAt": "2025-03-03T15:35:42Z",
+              "updatedAt": "2025-03-03T15:35:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eOGS4",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T15:35:55Z",
+          "updatedAt": "2025-03-03T15:35:55Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "happy for that to be committed",
+              "createdAt": "2025-03-03T15:35:55Z",
+              "updatedAt": "2025-03-03T15:35:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eOG9w",
+          "commit": {
+            "abbreviatedOid": "88405dc"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Overall an improvement, I mostly have nits.",
+          "createdAt": "2025-03-03T15:36:57Z",
+          "updatedAt": "2025-03-03T15:36:57Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6eOHkE",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T15:37:53Z",
+          "updatedAt": "2025-03-03T15:37:54Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "I am fine with, and like, this change",
+              "createdAt": "2025-03-03T15:37:54Z",
+              "updatedAt": "2025-03-03T15:37:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ePKll",
+          "commit": {
+            "abbreviatedOid": "2e32e8f"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T17:23:28Z",
+          "updatedAt": "2025-03-03T17:23:28Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "Note: I've tweaked a bit to add \"...be modified...\"",
+              "createdAt": "2025-03-03T17:23:28Z",
+              "updatedAt": "2025-03-03T17:23:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ePOEE",
+          "commit": {
+            "abbreviatedOid": "61d1ad8"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T17:29:53Z",
+          "updatedAt": "2025-03-03T17:29:54Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "```suggestion\r\nTo make the Append-only property verifiable and transparent, the Transparency Service defines how Signed Statements are made available to Auditors.\r\n```",
+              "createdAt": "2025-03-03T17:29:54Z",
+              "updatedAt": "2025-03-03T17:29:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ePOwD",
+          "commit": {
+            "abbreviatedOid": "7e7e84d"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T17:31:06Z",
+          "updatedAt": "2025-03-03T17:31:07Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "```suggestion\r\n: a property required for a verifiable data structure to be applicable to SCITT, ensuring that the Statement Sequence cannot be modified, deleted or reordered.\r\n```",
+              "createdAt": "2025-03-03T17:31:06Z",
+              "updatedAt": "2025-03-03T17:31:07Z"
+            }
+          ]
         }
       ]
+    },
+    {
+      "number": 354,
+      "id": "PR_kwDOIvmHss6NMTHe",
+      "title": "nit formatting & grammar",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/354",
+      "state": "MERGED",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-03-03T18:29:46Z",
+      "updatedAt": "2025-03-03T18:30:00Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "f5388c0e741d00dbca1b2410c05c029bdab19e88",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "steve/draft11-cleanup",
+      "headRefOid": "c0f3ddc69922d7ad27551bcb893c9ce189ae9e32",
+      "closedAt": "2025-03-03T18:29:53Z",
+      "mergedAt": "2025-03-03T18:29:53Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "4ad18b4a86b4741b569989ebca94bc815dbd6055"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
