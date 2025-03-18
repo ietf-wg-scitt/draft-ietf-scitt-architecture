@@ -497,7 +497,7 @@ Considering CT in terms of SCITT:
 
 # Architecture Overview
 
-The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements and auditing Transparent Statements.
+The SCITT architecture enables a loose federation of Transparency Services, by providing a set of common formats and protocols for issuing and registering Signed Statements and auditing Transparent Statements.
 
 In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 The remaining details of the Receipt's contents are specified in {{-COMETRE}}.
