@@ -558,7 +558,7 @@ The subsequent sections describe the main concepts, namely Transparency Service,
 Transparency Services MUST feature a Verifiable Data Structure.
 The Verifiable Data Structure records registered Signed Statements and supports the production of Receipts.
 
-All Transparency Services MUST expose APIs ({{-SCRAPI}} for the Registration of Signed Statements and issuance of Receipts.
+All Transparency Services MUST expose a minimally conformant API ({{-SCRAPI}} for the Registration of Signed Statements and issuance of Receipts.
 
 Transparency Services MAY support additional APIs for auditing, for instance querying the history of Signed Statements.
 
