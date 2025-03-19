@@ -1007,7 +1007,8 @@ This enables the gradual transition to stronger algorithms, including e.g. post-
 ### Transparency Service Client Applications
 
 Authentication of client applications is out of scope for this document.
-Transparency Services MAY authenticate client applications. Transparency Services MUST authenticate the Issuer of Signed Statements in order to ensure that implementation of specific authentication and authorization policies are enforced.
+Transparency Services MAY authenticate client applications.
+Transparency Services MUST authenticate the Issuer of Signed Statements in order to ensure that implementation of specific authentication and authorization policies are enforced.
 The specification of authentication and authorization policies is out of scope for this document.
 
 ### Impersonation
