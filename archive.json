@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-18T00:50:33.815451+00:00",
+  "timestamp": "2025-03-20T00:50:03.216863+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -6487,6 +6487,268 @@
           "updatedAt": "2025-03-03T11:19:42Z"
         }
       ]
+    },
+    {
+      "number": 355,
+      "id": "I_kwDOIvmHss6uidU3",
+      "title": "Current draft uses Verifiable Data Structure and Verifiable Data Structures ambiguously",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/355",
+      "state": "OPEN",
+      "author": "aj-stein",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Hello, I am re-reading the current editor's copy of the draft as-of https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/commit/4ad18b4a86b4741b569989ebca94bc815dbd6055 and found a frequent usage of this term in the text.\n\n> The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates) but lacks a generic and scalable architecture that can address a wider range of use cases.\n\n> SCITT supports multiple Verifiable Data Structures, as defined in [[I-D.draft-ietf-cose-merkle-tree-proofs](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#I-D.draft-ietf-cose-merkle-tree-proofs)].\n\n> Receipts demonstrate inclusion of Signed Statements in the Verifiable Data Structure of a Transparency Service.\n\n> Implementations of Transparency Services may protect their registered sequence of Signed Statements and Verifiable Data Structure using a combination of trusted hardware, consensus protocols, and cryptographic evidence.\n\n> A Receipt is a signature over one or more Verifiable Data Structure Proofs that a Signed Statement is registered in the Verifiable Data Structure.\n\nIt is an important term, but this sampling from the document, the frequent usage makes the requirements of the architecture more confusing. I will attempt to propose changes for WG consideration.",
+      "createdAt": "2025-03-18T12:00:17Z",
+      "updatedAt": "2025-03-19T15:15:46Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "In my experiences, not every \"submitted statement\" is accepted and placed into the official \u201cRegistry\u201d, which needs to be verifiable.\n\nWe use two data structures, which together provide the verification needed to validate what is in the \u201cofficial Trust Registry\u201d. One is the list of submitted trust declarations (Request Queue) along with a status, and the official \"Trust Registry\" containing items that have passed registration policy requirements. \n\nWe use \u201ccorroborating evidence\u201d contained in both data structures, to validate Trust Registry contents. Verification is more than verifying that noting has changed the \"log\", it also includes validating that the Registry contents match what was requested by the issuer in their signed statement and associated evidence data.\n",
+          "createdAt": "2025-03-18T12:18:50Z",
+          "updatedAt": "2025-03-18T12:20:45Z"
+        },
+        {
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Now that I finished re-reading the text, it seems the draft uses \"Verifiable Data Structure\" in some places as a direct 1:1 synonym to \"Append-Only Log,\" but not as that same synonym in others, I will repeat that, unless cleaned up, that will cause real confusion to implementers.",
+          "createdAt": "2025-03-18T12:46:24Z",
+          "updatedAt": "2025-03-18T12:46:38Z"
+        },
+        {
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> In my experiences, not every \"submitted statement\" is accepted and placed into the official \u201cRegistry\u201d, which needs to be verifiable.\n\nThanks for the context, @rjb4standards. That said, I am not sure how that factors into the requirements for VDS in this new draft, but your response suggests that you see VDS as a synonym for Apped-Only Log or Ledger as it was used before in previous drafts, is that the case?",
+          "createdAt": "2025-03-18T12:48:39Z",
+          "updatedAt": "2025-03-18T12:48:39Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "No, we do not see the \"Verifiable Data Store\" concept as an append only log that relies on some type of cryptographic function to verify integrity.\n\nIn our Trust Registry implementation the \"Registry\" is verifiable using a combination of evidence data that can be used to verify that the Registry is indeed reflective of the original intent with a signed statement submission. The Registry can by cryptographically verified, but it may not contain the correct information, per the original signed statement, which is subject to registration policy constraints. Verifiable data in a registry is determined/verified by an automated audit function using corroborating evidence associated with a trust declaration (signed statement).  ",
+          "createdAt": "2025-03-18T13:01:04Z",
+          "updatedAt": "2025-03-18T13:01:04Z"
+        },
+        {
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> No, we do not see the \"Verifiable Data Store\" concept as an append only log that relies on some type of cryptographic function to verify integrity.\n\nOK, just to be clear, I am talking about Verifiable Data Structure as it is written in the current draft and interpretation, I don't know if store means something else. If you read the draft, and then your replies to me, I suspect the confusion I am worried about re the current draft increases amongst readers, not decreases. I feel like we are talking past each other on this point, and that is why I am worried VDS now peppers the document.\n\nI say the following with love and respect for IETF and my former employer, but: the risk of increasing terminology without a very specific rationale each time leads to extra work with limited value, so it begs the question of why do it. I know that terminology and semantics are unavoidable in standards work, but we should be careful with it. This case seems like one of those where we are not being careful. In a similar but different topic in this draft, I was very emphatic to be careful with the words \"auditor\" and \"auditing\" for that reason because so many, inside and outside of standards work, overload that term its best to avoid confusion around it.",
+          "createdAt": "2025-03-18T13:14:08Z",
+          "updatedAt": "2025-03-18T13:14:08Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Now that I finished re-reading the text, it seems the draft uses \"Verifiable Data Structure\" in some places as a direct 1:1 synonym to \"Append-Only Log,\" but not as that same synonym in others, I will repeat that, unless cleaned up, that will cause real confusion to implementers.\n\n@robinbryce and I are the main (only?) implementers at this point, and after several days of intense discussion on this topic, I can confidently say that the current draft does not cause confusion among these implementers and is much clearer than its predecessors.\n\nVDS is defined in https://datatracker.ietf.org/doc/draft-ietf-cose-merkle-tree-proofs/",
+          "createdAt": "2025-03-19T09:39:51Z",
+          "updatedAt": "2025-03-19T09:44:47Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "100%",
+          "createdAt": "2025-03-19T10:27:24Z",
+          "updatedAt": "2025-03-19T10:27:24Z"
+        },
+        {
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": " > [@robinbryce](https://github.com/robinbryce) and I are the main (only?) implementers at this point, and after several days of intense discussion on this topic, I can confidently say that the current draft does not cause confusion among these implementers and is much clearer than its predecessors.\n\nSo is the goal of the WG and this draft in particular for the two current implementers to remain the only two implementers then?",
+          "createdAt": "2025-03-19T13:10:18Z",
+          "updatedAt": "2025-03-19T13:10:18Z"
+        },
+        {
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Since the reply from two active contributors (and no editors so far) is  \"it works for me, so your opinion is your own\" I guess I can re-read the draft and ask specific questions about what each usage means and others can clarify for me, before I propose any changes.",
+          "createdAt": "2025-03-19T13:12:30Z",
+          "updatedAt": "2025-03-19T13:12:30Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> > [@robinbryce](https://github.com/robinbryce) and I are the main (only?) implementers at this point, and after several days of intense discussion on this topic, I can confidently say that the current draft does not cause confusion among these implementers and is much clearer than its predecessors.\n> \n> So is the goal of the WG and this draft in particular for the two current implementers to remain the only two implementers then?\n\nI think thats a bit of an unfair interpretation of our input here.\n\nSpeaking as one implementor, I found the previous use of \"append only log\" vague, ambiguous and as such the root cause of many other confusing conversations I'd been party to regarding the draft. The whole conversation about what was \"in the log\" versus \"on an adjacent service\" being a great example.\n\nI understand this isn't a universal option, but my strongly held view is that an \"apppend only log\" can only be a transparent system if its properties are provable in a well defined way.\n\nFor me, the VDS defintions established by https://datatracker.ietf.org/doc/draft-ietf-cose-merkle-tree-proofs/, and the specific properties required of the VDS by this draft accomplish this very clearly. \n\nI think recasting \"Append only\" in terms of what is verifiable, via a datastructure, enables the architecture to be much more precise whilst at the same time permiting a much broader church for notions of \"what is on the log\" and what that actually means.\n\nI genuinely believe this change, which retains \"append only\" as a general concept which is desirable and provable, makes this draft much more implementation friendly.",
+          "createdAt": "2025-03-19T14:36:58Z",
+          "updatedAt": "2025-03-19T14:36:58Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Or is this simply about the ocasional pluralization or the verbosity ? Verifiable Data Structure vs Verifiable Data Structure's vs VDS ?",
+          "createdAt": "2025-03-19T14:43:12Z",
+          "updatedAt": "2025-03-19T14:43:12Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@aj-stein it seemed like useful data points to share, in the context of \"real confusion to implementers\". There was no implication that other implementations are not welcome, they obviously are.",
+          "createdAt": "2025-03-19T15:15:45Z",
+          "updatedAt": "2025-03-19T15:15:45Z"
+        }
+      ]
+    },
+    {
+      "number": 356,
+      "id": "I_kwDOIvmHss6uio0-",
+      "title": "Transparency services are always in loose federation?",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/356",
+      "state": "OPEN",
+      "author": "aj-stein",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As of https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/commit/4ad18b4a86b4741b569989ebca94bc815dbd6055, the editor's draft introduces the architecture overview with the following sentence:\n\n> The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements and auditing Transparent Statements.\n\nIt is unclear why the architecture of one SCITT consists of a loose federation of multiple instances. Is this implied requirement, in fact, a mandatory part of the architecture if I intend to implement and operate a TS privately for an isolated use case?\n\nI will propose a change removing this statement or changing the wording to say \"... may consist ...,\" pending WG feedback, because it seems to overreach beyond architecture requirements.",
+      "createdAt": "2025-03-18T12:17:02Z",
+      "updatedAt": "2025-03-18T14:46:10Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "How about\n\n`The SCITT architecture enables a loose federation of Transparency Services, by providing a set of common formats and protocols for issuing and registering Signed Statements and auditing Transparent Statements.` ?",
+          "createdAt": "2025-03-18T12:26:34Z",
+          "updatedAt": "2025-03-18T12:26:34Z"
+        },
+        {
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> How about\n> \n> `The SCITT architecture enables a loose federation of Transparency Services, by providing a set of common formats and protocols for issuing and registering Signed Statements and auditing Transparent Statements.` ?\n\nI was going to be lazier and after finishing up the \"reviewing and thinking\" phase of my feedback, I was simply going to change \"... consists ...\" to \"... may consist ...\" to be lazy. If you prefer that, @robinbryce, I am happy to PR that and credit you in the git commit. \ud83d\ude04 ",
+          "createdAt": "2025-03-18T12:56:25Z",
+          "updatedAt": "2025-03-18T12:56:25Z"
+        },
+        {
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@robinbryce and others, https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/362 is up for review. It's short and sweet. I cribbed wording from https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/356#issuecomment-2733042129.",
+          "createdAt": "2025-03-18T14:46:09Z",
+          "updatedAt": "2025-03-18T14:46:09Z"
+        }
+      ]
+    },
+    {
+      "number": 357,
+      "id": "I_kwDOIvmHss6uispm",
+      "title": "Add a diagram of one transparency service without federation",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/357",
+      "state": "OPEN",
+      "author": "aj-stein",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As of https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/commit/4ad18b4a86b4741b569989ebca94bc815dbd6055, there is still not a diagram like Figure 2, but with only a single TS, roles, and processes defined. Like others on the mailing list and editors' meetings have indicated, it would be beneficial to have both to improve understanding of the architecture.\n\nBarring any contrary feedback from editors or WG members, I will propose a change in a PR to add the same diagram, but one with one TS, and make editorial changes to build up to current Figure 2. I believe it would help understanding for implementers reading the draft.",
+      "createdAt": "2025-03-18T12:22:24Z",
+      "updatedAt": "2025-03-19T15:13:09Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "While I fully agree a picture is worth a thousand words, we've spent quite a bit of time churning, simplifying, formatting the diagram. \nAt this point, only two elements [Transparency Service] and [Receipt] are doubled. \n\nDo we really need \"two thousand\" words of pictures that are 90% the same? Can you highlight where the text is confusing that attempts to explain the duplicity?",
+          "createdAt": "2025-03-19T07:10:02Z",
+          "updatedAt": "2025-03-19T07:10:02Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The need for another diagram is not obvious to me either, I think the existing one provides plenty of clarity, and as @SteveLasker rightly points out, took a lot of effort. We should bear in mind that delaying the RFC is a strong deterrent to production implementation, particularly for SCITT where ledgers and receipts are long lived. As long as the draft can evolve, standing up a service is a risky proposition, and real world adoption is stuck.\n\nI would say that the draft is more than clear enough at this point, and that further delay is harming adoption far more than the lack of an clarifying diagram.",
+          "createdAt": "2025-03-19T10:03:41Z",
+          "updatedAt": "2025-03-19T10:03:41Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "100% agree. I wish the COSE VDS was more permissive to allowing other forms of verification, but we can live with it as is. Our plan is to overlay SCITT onto SAG-CTR after SCITT is stable and major changes are no longer likely. I'm presenting a \"Trust Registry\" concept to DOE and NASA on March 21; slides are here: https://github.com/rjb4standards/Presentations/raw/refs/heads/master/20250321-SAG-CTR.pptx ",
+          "createdAt": "2025-03-19T12:13:00Z",
+          "updatedAt": "2025-03-19T12:13:00Z"
+        },
+        {
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> The need for another diagram is not obvious to me either, I think the existing one provides plenty of clarity, and as [@SteveLasker](https://github.com/SteveLasker) rightly points out, took a lot of effort. We should bear in mind that delaying the RFC is a strong deterrent to production implementation, particularly for SCITT where ledgers and receipts are long lived. As long as the draft can evolve, standing up a service is a risky proposition, and real world adoption is stuck.\n\nSo you are saying the development or operation of your implementation is held up by the RFC process or you suppose that will be the case for others?\n",
+          "createdAt": "2025-03-19T13:09:25Z",
+          "updatedAt": "2025-03-19T13:09:25Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I cannot speak for others, but I can say we (Microsoft) are.",
+          "createdAt": "2025-03-19T14:59:14Z",
+          "updatedAt": "2025-03-19T15:10:04Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The only diagram enhancement I think would add clarity is to \nREPLACE \n.------+----------.\n / Verify Transparent / \n/      Statement        /\n| '----+---------------+ \n\nWITH\n.------+----------.\n / Verify Transparent / \n/      Statement        /\n/ Enforce Reg Policy /\n| '----+---------------+ ",
+          "createdAt": "2025-03-19T15:13:07Z",
+          "updatedAt": "2025-03-19T15:13:07Z"
+        }
+      ]
+    },
+    {
+      "number": 358,
+      "id": "I_kwDOIvmHss6uivE0",
+      "title": "A TS must expose more than one API?",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/358",
+      "state": "OPEN",
+      "author": "aj-stein",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As of https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/commit/4ad18b4a86b4741b569989ebca94bc815dbd6055, the editor's draft states a TS _must_ expose APIs (plural), but refers to one API (in the form of SCRAPI).\n\n> All Transparency Services MUST expose APIs ([[I-D.draft-ietf-scitt-scrapi](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#I-D.draft-ietf-scitt-scrapi)] for the Registration of Signed Statements and issuance of Receipts.\n> Transparency Services MAY support additional APIs for auditing, for instance querying the history of Signed Statements.\n\nFor the first statement, is this not a single mandatory API? I will propose a small, tactical edit to say this API, not APIs, must be implemented.",
+      "createdAt": "2025-03-18T12:26:08Z",
+      "updatedAt": "2025-03-18T12:26:08Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 359,
+      "id": "I_kwDOIvmHss6ujB2E",
+      "title": "TS and client must authenticate?",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/359",
+      "state": "OPEN",
+      "author": "aj-stein",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As of https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/commit/4ad18b4a86b4741b569989ebca94bc815dbd6055, the draft says client authentication is a mandatory requirement, but specification is out of scope for the draft.\n\n> Authentication of Client applications is out of scope for this document. Transparency Services MUST authenticate both Client applications and the Issuer of Signed Statements in order to ensure that implementation of specific authentication and authorization policies are enforced. \n\nSo will SCITT not support use cases for passive access by clients for applications to monitor logs without authentication? Given the explicit design goal to support software supply chain analysis with [all transparency services in the most interoperable way possible](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#section-5-2) and the implicit goal of establishing a federated ecosystem (per #356, even if I disagree with it), this requirement adds burden to acheiving those goals.",
+      "createdAt": "2025-03-18T12:54:57Z",
+      "updatedAt": "2025-03-18T12:54:57Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 360,
+      "id": "I_kwDOIvmHss6ujKUN",
+      "title": "Practical implementation requirements of registration policy still unclear",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/360",
+      "state": "OPEN",
+      "author": "aj-stein",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As of https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/commit/4ad18b4a86b4741b569989ebca94bc815dbd6055, this draft makes mandatory requirement about registration policy updates and the TS, while important details for that requirement vague.\n\n> Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Verifiable Data Structure and distributing the associated Receipts.\n\n> The Transparency Service MUST apply the Registration Policy that was most recently committed to the Verifiable Data Structure at the time of Registration.\n\nRelated to the general sentiment in #355, this particular usage of VDS term suggests it is a 1:1 synonym for \"Append-Only Log\" or \"Ledger\" in previous drafts. If so, that inspires more questions than answers. It would be helpful to add edits that add detail to around this requirement to mitigate that.\n\n1. Is a Registration Policy _only_ its serialization in the VDS or Log or whatever?\n1. What does \"distributing the associated Receipts\" entail in practical way implementers must understand about a conformant TS they develop or operate?\n1. How does \"at the time of Registration\" work for asynchronous calls, given that has been a presumed architecture design pattern and a supported API use case in SCRAPI for current drafts?\n1. To step back at a high level, what does this mean for more public transparency services that are very permissive? Do they have an empty registration policy? None at all?\n \nI have brought up 4 frequently whenever this topic has come up. If we are considering an ecosystem of loosely federated systems, there needs to be some mechanism to express the continuum of permissive to restrictive, and the baseline of \"no policy\" to start has been missed by the WG and successive drafts. This problem will make the architecture very weird if not resolved before finalization.\n\nI am willing to make PRs to drive consensus on these topics, but I am very cognizant there is little to no consensus in the WG on this topic and it always causes churn. What do the editors and WG advise here?\n\n",
+      "createdAt": "2025-03-18T13:08:25Z",
+      "updatedAt": "2025-03-18T13:08:25Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 361,
+      "id": "I_kwDOIvmHss6ujYY2",
+      "title": "Clarify or remove compliance descriptions and terminology",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/361",
+      "state": "OPEN",
+      "author": "aj-stein",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "In several cases in the introduction of the document as of https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/commit/4ad18b4a86b4741b569989ebca94bc815dbd6055, the word compliance is used or Compliance Auditors as a capitalized term in the draft as if it is a term in the draft, however it is not defined.\n\nTo start, what is a compliance promise?\n\n> The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates) but lacks a generic and scalable architecture that can address a wider range of use cases.\n\nWhat is a compliance regulation as opposed to other forms of regulation? I think I know because I work in that space, but would suggest this wording overindexes on what SCITT can do for regulators and implementers in regulated environments.\n\n>  Supply chain security has historically focused on risk management practices to safeguard logistics, meet compliance regulations, forecast demand, and optimize inventory. While these elements are foundational to a healthy supply chain, an integrated cyber security-based perspective of the software supply chains remains broadly undefined.\n\nRe the lead-in to the issue reported, Compliance Auditors is not defined as a term in this draft, not do I think it should be.\n\n> Compliance Auditors may provide information about their compliance assessment of the Artifact. Security companies may publish vulnerability information about an Artifact.\n\nI plan to propose some changes to the draft and adjust or removing this wording for editor and WG feedback.",
+      "createdAt": "2025-03-18T13:25:49Z",
+      "updatedAt": "2025-03-18T13:25:49Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -50364,6 +50626,503 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 362,
+      "id": "PR_kwDOIvmHss6PHqTj",
+      "title": "Clarify federation is not mandatory for #356",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/362",
+      "state": "OPEN",
+      "author": "aj-stein",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-03-18T14:45:00Z",
+      "updatedAt": "2025-03-19T08:34:55Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "4ad18b4a86b4741b569989ebca94bc815dbd6055",
+      "headRepository": "aj-stein/draft-ietf-scitt-architecture",
+      "headRefName": "356-clarify-federation",
+      "headRefOid": "e72aaf75d23b3f15e504795850f253161fa6e9f4",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6gwz2p",
+          "commit": {
+            "abbreviatedOid": "e72aaf7"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-03-19T07:01:47Z",
+          "updatedAt": "2025-03-19T07:01:47Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6gx3Kb",
+          "commit": {
+            "abbreviatedOid": "e72aaf7"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-03-19T08:34:55Z",
+          "updatedAt": "2025-03-19T08:34:55Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 363,
+      "id": "PR_kwDOIvmHss6PMSWB",
+      "title": "Specify one, not multiple required APIs for #358",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/363",
+      "state": "OPEN",
+      "author": "aj-stein",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-03-19T00:59:49Z",
+      "updatedAt": "2025-03-19T08:36:39Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "4ad18b4a86b4741b569989ebca94bc815dbd6055",
+      "headRepository": "aj-stein/draft-ietf-scitt-architecture",
+      "headRefName": "358-one-api-required",
+      "headRefOid": "88e00bca8a29ccc0add96f7fb1c575f4604366cc",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6gwzgL",
+          "commit": {
+            "abbreviatedOid": "88e00bc"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-19T07:00:59Z",
+          "updatedAt": "2025-03-19T07:01:00Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nAll Transparency Services MUST expose the minimally conformant APIs, defined in ({{-SCRAPI}} for the Registration of Signed Statements and issuance of Receipts.\r\n```",
+              "createdAt": "2025-03-19T07:00:59Z",
+              "updatedAt": "2025-03-19T07:01:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6gx37l",
+          "commit": {
+            "abbreviatedOid": "88e00bc"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-19T08:36:12Z",
+          "updatedAt": "2025-03-19T08:36:12Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "+1, this makes the MUST clearer for me",
+              "createdAt": "2025-03-19T08:36:12Z",
+              "updatedAt": "2025-03-19T08:36:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6gx4MM",
+          "commit": {
+            "abbreviatedOid": "88e00bc"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM with @SteveLasker's change",
+          "createdAt": "2025-03-19T08:36:39Z",
+          "updatedAt": "2025-03-19T08:36:39Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 364,
+      "id": "PR_kwDOIvmHss6PMTjG",
+      "title": "Propose client app authentication is optional for #359",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/364",
+      "state": "OPEN",
+      "author": "aj-stein",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-03-19T01:04:38Z",
+      "updatedAt": "2025-03-19T15:28:39Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "4ad18b4a86b4741b569989ebca94bc815dbd6055",
+      "headRepository": "aj-stein/draft-ietf-scitt-architecture",
+      "headRefName": "359-ts-client-auth-optional",
+      "headRefOid": "2e204cfd560cd3cd58080b4820724b168fd7a541",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> I see no harm in allowing TS implementations to accept traffic from unauthenticated clients. I am not sure it will happen very much in practice, because auth is such a convenient way to keep DoS/costs under control, but I would enjoy being proven wrong!\r\n\r\nMaybe we should discuss this on the longer review I posted on the mailing list (https://mailarchive.ietf.org/arch/msg/scitt/pawXA3bkk9lTIrLMiTzCp-8igQI/), but I thought a shared goal of most WG members (and re the other PR where I said it is good, but it shouldn't be implicitly mandatory in #356) is about high-level goals and outcomes. I thought the intent of SCITT for some (or many) is to integrate or subsum SigSum, Sigstore, and build a whole world of TS instances like that. I do not think all of these services' clients authenticate _all operations_, but I get your point.\r\n\r\nAnyway, I will not drag that into the PR here in a way more verbose than I already am, but maybe I misread the intent of the WG at this point.",
+          "createdAt": "2025-03-19T15:23:06Z",
+          "updatedAt": "2025-03-19T15:23:06Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@aj-stein this change seems fine to me, I have approved it. Endpoints that are read-only and can be made sufficiently economical may well be unauthenticated, the more the better. That's what I meant when I said I hope I would be proven wrong :)",
+          "createdAt": "2025-03-19T15:28:38Z",
+          "updatedAt": "2025-03-19T15:28:38Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6gw1g4",
+          "commit": {
+            "abbreviatedOid": "2329a1d"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-19T07:05:50Z",
+          "updatedAt": "2025-03-19T07:05:51Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Why was Client turned to lower case? Client has a reference in the [Terminology](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-11.html#name-terminology) section.",
+              "createdAt": "2025-03-19T07:05:51Z",
+              "updatedAt": "2025-03-19T07:05:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6gw1r9",
+          "commit": {
+            "abbreviatedOid": "2329a1d"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-19T07:06:14Z",
+          "updatedAt": "2025-03-19T07:06:14Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\nTransparency Services MAY authenticate client applications.\r\nTransparency Services MUST authenticate the Issuer of Signed Statements in order to ensure that implementation of specific authentication and authorization policies are enforced.\r\n```",
+              "createdAt": "2025-03-19T07:06:14Z",
+              "updatedAt": "2025-03-19T07:06:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6gx4bp",
+          "commit": {
+            "abbreviatedOid": "b38d422"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-19T08:37:02Z",
+          "updatedAt": "2025-03-19T08:37:03Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nAuthentication of Client applications is out of scope for this document.\r\n```",
+              "createdAt": "2025-03-19T08:37:03Z",
+              "updatedAt": "2025-03-19T08:37:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6gx48X",
+          "commit": {
+            "abbreviatedOid": "b38d422"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-19T08:37:34Z",
+          "updatedAt": "2025-03-19T08:37:34Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\nTransparency Services MAY authenticate Client applications.\r\n```",
+              "createdAt": "2025-03-19T08:37:34Z",
+              "updatedAt": "2025-03-19T08:37:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6gx-Mx",
+          "commit": {
+            "abbreviatedOid": "b38d422"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "I see no harm in allowing TS implementations to accept traffic from unauthenticated clients. I am not sure it will happen very much in practice, because auth is such a convenient way to keep DoS/costs under control, but I would enjoy being proven wrong!",
+          "createdAt": "2025-03-19T08:44:19Z",
+          "updatedAt": "2025-03-19T08:44:19Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6g3qGt",
+          "commit": {
+            "abbreviatedOid": "2329a1d"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-19T15:19:11Z",
+          "updatedAt": "2025-03-19T15:19:11Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "So are Client and Client Application equivalent? Re the definition in the current draft we are discussing:\r\n\r\n> Client:\r\n> an application making protected Transparency Service resource requests on behalf of the resource owner and with its authorization.",
+              "createdAt": "2025-03-19T15:19:11Z",
+              "updatedAt": "2025-03-19T15:19:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6g3uUP",
+          "commit": {
+            "abbreviatedOid": "b38d422"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-19T15:24:07Z",
+          "updatedAt": "2025-03-19T15:24:07Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "I will revert to the capitalization, but these definitions are why I get lost in the sauce so to speak when I read this draft.",
+              "createdAt": "2025-03-19T15:24:07Z",
+              "updatedAt": "2025-03-19T15:24:07Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 365,
+      "id": "PR_kwDOIvmHss6PMWvM",
+      "title": "Remove confusing usages of compliance for #361",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/365",
+      "state": "OPEN",
+      "author": "aj-stein",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-03-19T01:13:41Z",
+      "updatedAt": "2025-03-19T15:24:33Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "4ad18b4a86b4741b569989ebca94bc815dbd6055",
+      "headRepository": "aj-stein/draft-ietf-scitt-architecture",
+      "headRefName": "361-remove-compliance-terminology",
+      "headRefOid": "0220f174b0ffa2f8831b32eb2b51804439c0edb8",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@aj-stein, can you elaborate why \"compliance\" is a bad word, and \"regulatory\" is ok? \r\nI'm trying to understand what background/bias/surface area is causing angst.",
+          "createdAt": "2025-03-19T06:55:57Z",
+          "updatedAt": "2025-03-19T06:55:57Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "+1 to @SteveLasker's question, I always understood \"compliance\" as the act of conforming to rules set out in regulations. They seem largely interchangeable in the sentences where they are being replaced? An example illustrating what misinterpretation is possible with the current wording would be helpful.\r\n\r\nI do object to the first replacement, which goes in a less precise and potentially misleading direction.",
+          "createdAt": "2025-03-19T09:01:59Z",
+          "updatedAt": "2025-03-19T09:01:59Z"
+        },
+        {
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> +1 to @SteveLasker's question, I always understood \"compliance\" as the act of conforming to rules set out in regulations. They seem largely interchangeable in the sentences where they are being replaced? An example illustrating what misinterpretation is possible with the current wording would be helpful.\r\n\r\nCompliance is [to conform, submit, or adapt to something](https://www.merriam-webster.com/dictionary/complying), often used with law or regulations, but not always. Do SCITT TS instances help individuals or organizations meaningfully conform to something without describing the something? If so, how? Plain use of the term \"compliance ...\" without saying \"compliance with X\" or \"Y compliant\" is ambiguous confusing. If you want to talk about regulations, I understand that general category of thing. The act of compliance means little.\r\n\r\n> I do object to the first replacement, which goes in a less precise and potentially misleading direction.\r\n\r\nI will respond to that individual feedback then.",
+          "createdAt": "2025-03-19T13:04:47Z",
+          "updatedAt": "2025-03-19T13:05:19Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@aj-stein I am not sure I understand the value of the distinction, saying \"regulatory\" adds little (\"compliance with a regulation\") but still does not say what the regulations are, where they come from etc. I think being vague is fine here, to remain generally applicable, and because there is no clear interoperability value to being more specific.\r\nBut also see no harm in the replacement!",
+          "createdAt": "2025-03-19T15:23:48Z",
+          "updatedAt": "2025-03-19T15:24:10Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6gyDJy",
+          "commit": {
+            "abbreviatedOid": "ef11f34"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-19T08:50:23Z",
+          "updatedAt": "2025-03-19T08:50:23Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "This is correct but quite a bit more vague than the previous wording. The accountability provided by the TS only covers what the sentence calls `promises` (Transparent Statements), but there is not accountability mechanism for a TS selectively denying, or re-ordering submitted requests (prior to registration) for example.\r\n\r\nIt seems preferable to me to scope accountability precisely (blame for issuing equivocal Transparent Statements), and not try to make it sound more general than it really is.",
+              "createdAt": "2025-03-19T08:50:23Z",
+              "updatedAt": "2025-03-19T08:50:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6g1dWc",
+          "commit": {
+            "abbreviatedOid": "ef11f34"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-19T13:07:31Z",
+          "updatedAt": "2025-03-19T13:07:31Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Compliance promises is a phrase I have never heard anyone use in the field of cybersecurity ever. Can you propose something more crisp? Compliance promise being equivalent to a Transparent Statement is a surprise to me, and I would never have guessed that from reading it.\r\n\r\nI can propose something else later today. ",
+              "createdAt": "2025-03-19T13:07:31Z",
+              "updatedAt": "2025-03-19T13:07:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6g2ENi",
+          "commit": {
+            "abbreviatedOid": "ef11f34"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-19T13:47:56Z",
+          "updatedAt": "2025-03-19T13:47:57Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I reread RFC 6962 and 9162 and those abstracts do not editorialize the bigger picture context for TS logs, so I decided to keep it more accurate, less vague, and bring back some of the previous wording.\r\n\r\n```suggestion\r\nThe rise in popularity of verifiable data structures as a mechanism to make actors publicly log information about digital artifacts has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases.\r\n```",
+              "createdAt": "2025-03-19T13:47:56Z",
+              "updatedAt": "2025-03-19T13:47:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6g3Yk6",
+          "commit": {
+            "abbreviatedOid": "ef11f34"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-19T15:03:31Z",
+          "updatedAt": "2025-03-19T15:03:32Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nThe rise in popularity of verifiable data structures as a mechanism to implement accountability for equivocation has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases.\r\n```",
+              "createdAt": "2025-03-19T15:03:31Z",
+              "updatedAt": "2025-03-19T15:03:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6g3avX",
+          "commit": {
+            "abbreviatedOid": "ef11f34"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-19T15:05:42Z",
+          "updatedAt": "2025-03-19T15:05:42Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I don't think this is more accurate, the point of using a VDS is to create accountability on already published data, it does not make actors log (more) information, and it definitely does not need to be public.",
+              "createdAt": "2025-03-19T15:05:42Z",
+              "updatedAt": "2025-03-19T15:05:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6g3nS4",
+          "commit": {
+            "abbreviatedOid": "ef11f34"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-19T15:16:39Z",
+          "updatedAt": "2025-03-19T15:16:40Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I just wanted to get rid of ambiguous and unhelpful use of the word compliance, I am happy if we use your wording as an alternative to the original.",
+              "createdAt": "2025-03-19T15:16:39Z",
+              "updatedAt": "2025-03-19T15:16:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6g3uqw",
+          "commit": {
+            "abbreviatedOid": "0220f17"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-19T15:24:33Z",
+          "updatedAt": "2025-03-19T15:24:33Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
