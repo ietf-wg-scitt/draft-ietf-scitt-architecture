@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-20T00:50:03.216863+00:00",
+  "timestamp": "2025-03-23T00:54:38.982607+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -50639,7 +50639,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-03-18T14:45:00Z",
-      "updatedAt": "2025-03-19T08:34:55Z",
+      "updatedAt": "2025-03-20T02:31:04Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "4ad18b4a86b4741b569989ebca94bc815dbd6055",
@@ -50677,6 +50677,19 @@
           "createdAt": "2025-03-19T08:34:55Z",
           "updatedAt": "2025-03-19T08:34:55Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6g_dNs",
+          "commit": {
+            "abbreviatedOid": "e72aaf7"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-20T02:31:04Z",
+          "updatedAt": "2025-03-20T02:31:04Z",
+          "comments": []
         }
       ]
     },
@@ -50692,7 +50705,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-03-19T00:59:49Z",
-      "updatedAt": "2025-03-19T08:36:39Z",
+      "updatedAt": "2025-03-20T02:34:28Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "4ad18b4a86b4741b569989ebca94bc815dbd6055",
@@ -50757,6 +50770,39 @@
           "createdAt": "2025-03-19T08:36:39Z",
           "updatedAt": "2025-03-19T08:36:39Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6g_f8c",
+          "commit": {
+            "abbreviatedOid": "88e00bc"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-20T02:34:21Z",
+          "updatedAt": "2025-03-20T02:34:21Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I sorta wonder why we are making SCRAPI MTI, but I don't object to these specific changes",
+              "createdAt": "2025-03-20T02:34:21Z",
+              "updatedAt": "2025-03-20T02:34:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6g_gBz",
+          "commit": {
+            "abbreviatedOid": "88e00bc"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-20T02:34:28Z",
+          "updatedAt": "2025-03-20T02:34:28Z",
+          "comments": []
         }
       ]
     },
@@ -50772,7 +50818,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-03-19T01:04:38Z",
-      "updatedAt": "2025-03-19T15:28:39Z",
+      "updatedAt": "2025-03-20T02:39:51Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "4ad18b4a86b4741b569989ebca94bc815dbd6055",
@@ -50932,6 +50978,26 @@
               "updatedAt": "2025-03-19T15:24:07Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6g_k2P",
+          "commit": {
+            "abbreviatedOid": "2e204cf"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-20T02:39:50Z",
+          "updatedAt": "2025-03-20T02:39:51Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Authenticating issuers is different than authenticating signed statements.\r\n\r\nI think this sentence is supposed to say:\r\n\r\nTS MUST check signature on signed statements.\r\n\r\nOr with including authenticating the issuer:\r\n\r\nTS MUST check signature on signed statements and ensure the public key that verifies the signature is trusted by the TS to identify the issuer.",
+              "createdAt": "2025-03-20T02:39:51Z",
+              "updatedAt": "2025-03-20T02:39:51Z"
+            }
+          ]
         }
       ]
     },
@@ -50947,7 +51013,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-03-19T01:13:41Z",
-      "updatedAt": "2025-03-19T15:24:33Z",
+      "updatedAt": "2025-03-20T02:41:16Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "4ad18b4a86b4741b569989ebca94bc815dbd6055",
@@ -51120,6 +51186,19 @@
           "body": "",
           "createdAt": "2025-03-19T15:24:33Z",
           "updatedAt": "2025-03-19T15:24:33Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6g_mDB",
+          "commit": {
+            "abbreviatedOid": "0220f17"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-20T02:41:16Z",
+          "updatedAt": "2025-03-20T02:41:16Z",
           "comments": []
         }
       ]
