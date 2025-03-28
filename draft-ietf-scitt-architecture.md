@@ -165,6 +165,21 @@ Issuers can register their Signed Statements on one or more Transparency Service
 
 # Introduction
 
+## NEW
+This document defines an architecture, message flows, and a base set of extensible message structures to make signed data items transparent via verifiable data structures that are maintained by corresponding transparency services.
+The goal of the transparency enabled by the Supply Chain Integrity, Transparency, and Trust (SCITT) architecture is to enhance auditability and accountability for signed data items (statements) that are about supply chain commodities (artifacts).
+Registering signed statements at a transparency service is akin to a notarization procedure.
+Transparency services therefore act like notaries that record (register) that statements were made, irrevocably.
+How these statements are managed or stored---beside the specified registration procedure---is out-of-scope of this document.
+Earlier, similar approaches exist, such as Certificate Transparency {{-CT}}.
+The SCITT approach follows a more generic paradigm then previous approaches.
+In this SCITT core architecture, the signed statements registered are opaque to the transparency services that acts as a notary.
+This "content agnostic" approach allows SCITT transparency services to be integrated in any kind of existing solution or to be an initial part of new emerging systems.
+Extensibility is a vital feature of the SCITT architecture, so that requirements from various applications can be accomodated while always assuring interoperability with respect to registration procedures and corresponding auditability and accountability.
+For simplicity, the scope of this document is limited to use cases originating from the software supply chain domain, but the specification defined is applicable to any other type of supply chain statements (also referred to as value-add graphs), for example, statements about hardware supply chains.
+
+
+## OLD
 This document describes the generic, interoperable, and scalable SCITT architecture.
 Its goal is to enhance auditability and accountability across supply chains.
 
