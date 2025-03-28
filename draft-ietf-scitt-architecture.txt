@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 4 September 2025                                     C. Fournet
+Expires: 29 September 2025                                    C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                            3 March 2025
+                                                           28 March 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 September 2025.
+   This Internet-Draft will expire on 29 September 2025.
 
 Copyright Notice
 
@@ -635,8 +635,8 @@ Table of Contents
 
 5.  Architecture Overview
 
-   The SCITT architecture consists of a very loose federation of
-   Transparency Services, and a set of common formats and protocols for
+   The SCITT architecture enables a loose federation of Transparency
+   Services, by providing a set of common formats and protocols for
    issuing and registering Signed Statements and auditing Transparent
    Statements.
 
@@ -1531,16 +1531,15 @@ Table of Contents
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-08, 20 February
+              Draft, draft-ietf-cose-merkle-tree-proofs-09, 25 March
               2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-08>.
+              cose-merkle-tree-proofs-09>.
 
    [I-D.draft-ietf-scitt-scrapi]
-              Birkholz, H. and J. Geater, "SCITT Reference APIs Draft-
-              ietf-scitt-scrapi-03", Work in Progress, Internet-Draft,
-              draft-ietf-scitt-scrapi-03, 8 January 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-scitt-
-              scrapi-03>.
+              Birkholz, H. and J. Geater, "SCITT Reference APIs", Work
+              in Progress, Internet-Draft, draft-ietf-scitt-scrapi-04, 3
+              March 2025, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-scitt-scrapi-04>.
 
    [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <https://www.iana.org/assignments/cwt>.
