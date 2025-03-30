@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-27T00:51:01.612231+00:00",
+  "timestamp": "2025-03-30T00:55:39.504659+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -50632,24 +50632,26 @@
       "id": "PR_kwDOIvmHss6PHqTj",
       "title": "Clarify federation is not mandatory for #356",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/362",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aj-stein",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-03-18T14:45:00Z",
-      "updatedAt": "2025-03-20T02:31:04Z",
+      "updatedAt": "2025-03-28T15:16:17Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "4ad18b4a86b4741b569989ebca94bc815dbd6055",
       "headRepository": "aj-stein/draft-ietf-scitt-architecture",
       "headRefName": "356-clarify-federation",
       "headRefOid": "e72aaf75d23b3f15e504795850f253161fa6e9f4",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-03-28T15:16:17Z",
+      "mergedAt": "2025-03-28T15:16:17Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "144ba76f943f3387f04ea3c9f06fc92bb40c7c9e"
+      },
       "comments": [],
       "reviews": [
         {
@@ -50698,24 +50700,26 @@
       "id": "PR_kwDOIvmHss6PMSWB",
       "title": "Specify one, not multiple required APIs for #358",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/363",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "aj-stein",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-03-19T00:59:49Z",
-      "updatedAt": "2025-03-23T20:21:42Z",
+      "updatedAt": "2025-03-28T15:16:53Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "4ad18b4a86b4741b569989ebca94bc815dbd6055",
       "headRepository": "aj-stein/draft-ietf-scitt-architecture",
       "headRefName": "358-one-api-required",
       "headRefOid": "05b917f1e397f814ba06ad688339f4f4bdb10501",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-03-28T15:16:53Z",
+      "mergedAt": "2025-03-28T15:16:53Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "411c8eb38f9853cfde3c733c2b1025e92122d6ef"
+      },
       "comments": [],
       "reviews": [
         {
@@ -51213,6 +51217,73 @@
           "createdAt": "2025-03-20T02:41:16Z",
           "updatedAt": "2025-03-20T02:41:16Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 366,
+      "id": "PR_kwDOIvmHss6QkrUe",
+      "title": "Editorial Changes for WGLC",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/366",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-03-28T14:58:50Z",
+      "updatedAt": "2025-03-28T15:15:26Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "4ad18b4a86b4741b569989ebca94bc815dbd6055",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "publication-polish",
+      "headRefOid": "43178f1915abd9e00d316c7ff3a7c2e7011ad679",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6ieU8h",
+          "commit": {
+            "abbreviatedOid": "5551073"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-28T15:05:48Z",
+          "updatedAt": "2025-03-28T15:05:49Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\nThe SCITT approach follows a more generic paradigm than previous approaches.\r\n```",
+              "createdAt": "2025-03-28T15:05:48Z",
+              "updatedAt": "2025-03-28T15:05:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ieVKt",
+          "commit": {
+            "abbreviatedOid": "5551073"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-28T15:06:07Z",
+          "updatedAt": "2025-03-28T15:06:08Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\nIn this SCITT core architecture, the signed statements registered are opaque to the transparency services that act as a notary.\r\n```",
+              "createdAt": "2025-03-28T15:06:07Z",
+              "updatedAt": "2025-03-28T15:06:08Z"
+            }
+          ]
         }
       ]
     }
