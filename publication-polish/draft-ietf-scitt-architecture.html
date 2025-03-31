@@ -1345,6 +1345,13 @@ In this SCITT core architecture, the signed statements registered are opaque to 
 This "content-agnostic" approach allows SCITT transparency services to be either integrated in existing solutions or to be an initial part of new emerging systems.
 Extensibility is a vital feature of the SCITT architecture, so that requirements from various applications can be accommodated while always ensuring interoperability with respect to registration procedures and corresponding auditability and accountability.
 For simplicity, the scope of this document is limited to use cases originating from the software supply chain domain, but the specification defined is applicable to any other type of supply chain statements (also referred to as value-add graphs), for example, statements about hardware supply chains.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">This document also defines message structures for signed statements and defines a profile for COSE receipts <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>, i.e., countersignatures with metadata).
+These message structures are based on the Concise Binary Object Representation Standard <span>[<a href="#STD94" class="cite xref">STD94</a>]</span> and corresponding signing is facilitated via the CBOR Object Signing and Encryption Standard <span>[<a href="#STD96" class="cite xref">STD96</a>]</span>.
+The messages structures are defined using the Concise Data Definition Language <span>[<a href="#RFC8610" class="cite xref">RFC8610</a>]</span>.
+In essence, the signatures of signed statements and receipts are based on the COSE_Sign1 specification in <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.2" class="relref">Section 4.2</a> of [<a href="#STD96" class="cite xref">STD96</a>]</span>.
+As these messages provide the foundation of any transparency service implementation for global and cross-domain application interoperability, they are based on complementary COSE specifications, mainly <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>.
+Support of COSE_Sign1 and support for extensibility of COSE Header Parameter sets is therefore a prerequisite for implementing the interoperable message layer that comes with this document.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-3">In summary, this specification is in support of relying parties to obtain proof that signed statements where checked for their validity in the past and that check of validity can itself be checked again after the fact via transparency services as defined in this document.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-old">
@@ -1677,7 +1684,7 @@ Integration complexity creates a higher risk of security vulnerabilities to the 
 <p id="section-3-1">The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust, which are used throughout this document.
 When used in text, the corresponding terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">The terms "header", "payload", and "to-be-signed bytes" are defined in <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-2">The terms "header", "payload", and "to-be-signed bytes" are defined in <span>[<a href="#STD96" class="cite xref">STD96</a>]</span>.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">The term "claim" is defined in <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <span class="break"></span><div id="mybody">
 <dl class="dlParallel" id="section-3-4">
@@ -2100,7 +2107,7 @@ For instance, a trust anchor could be an X.509 root certificate (directly or its
             <h5 id="name-mandatory-registration-chec">
 <a href="#section-5.1.1.1" class="section-number selfRef">5.1.1.1. </a><a href="#name-mandatory-registration-chec" class="section-name selfRef">Mandatory Registration Checks</a>
             </h5>
-<p id="section-5.1.1.1-1">During Registration, a Transparency Service <span class="bcp14">MUST</span>, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.
+<p id="section-5.1.1.1-1">During Registration, a Transparency Service <span class="bcp14">MUST</span>, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to <span>[<a href="#STD96" class="cite xref">STD96</a>]</span>.
 The Issuer identity <span class="bcp14">MUST</span> be bound to the Signed Statement by including an identifier in the protected header.
 If the protected header includes multiple identifiers, all those that are registered by the Transparency Service <span class="bcp14">MUST</span> be checked.<a href="#section-5.1.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.1.1.1-2">When using X.509 Signed Statements, the Transparency Service <span class="bcp14">MUST</span> build and validate a complete certification path from an Issuer's certificate to one of the root certificates currently registered as a trust anchor by the Transparency Service.<a href="#section-5.1.1.1-2" class="pilcrow">¶</a></p>
@@ -2187,7 +2194,7 @@ Providing an ability to request a fresh Receipt for a given software package, or
       <h2 id="name-signed-statements">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-signed-statements" class="section-name selfRef">Signed Statements</a>
       </h2>
-<p id="section-6-1">This specification prioritizes conformance to <span>[<a href="#RFC9052" class="cite xref">RFC9052</a>]</span> and its required and optional properties.
+<p id="section-6-1">This specification prioritizes conformance to <span>[<a href="#STD96" class="cite xref">STD96</a>]</span> and its required and optional properties.
 Profiles and implementation specific choices should be used to determine admissibility of conforming messages.
 This specification is left intentionally open to allow implementations to make Registration restrictions that make the most sense for their operational use cases.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
@@ -2347,7 +2354,7 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
 Authentication and authorization are implementation-specific and out of scope of the SCITT architecture.<a href="#section-6.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-6.2-2.2">
-            <p id="section-6.2-2.2.1"><strong>TS Signed Statement Verification and Validation:</strong> The Transparency Service <span class="bcp14">MUST</span> perform signature verification per <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.4" class="relref">Section 4.4</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span> and <span class="bcp14">MUST</span> verify the signature of the Signed Statement with the signature algorithm and verification key of the Issuer per <span>[<a href="#RFC9360" class="cite xref">RFC9360</a>]</span>.
+            <p id="section-6.2-2.2.1"><strong>TS Signed Statement Verification and Validation:</strong> The Transparency Service <span class="bcp14">MUST</span> perform signature verification per <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.4" class="relref">Section 4.4</a> of [<a href="#STD96" class="cite xref">STD96</a>]</span> and <span class="bcp14">MUST</span> verify the signature of the Signed Statement with the signature algorithm and verification key of the Issuer per <span>[<a href="#RFC9360" class="cite xref">RFC9360</a>]</span>.
 The Transparency Service <span class="bcp14">MUST</span> also check the Signed Statement includes the required protected headers.
 The Transparency Service <span class="bcp14">MAY</span> validate the Signed Statement payload in order to enforce domain specific registration policies that apply to specific content types.<a href="#section-6.2-2.2.1" class="pilcrow">¶</a></p>
 </li>
@@ -2387,7 +2394,7 @@ When a Receipt is included in a Signed Statement a Transparent Statement is prod
 <p id="section-7-3">Receipts are based on Signed Inclusion Proofs as described in COSE Receipts <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span> that also provides the COSE header parameter semantics for label TBD_0.<a href="#section-7-3" class="pilcrow">¶</a></p>
 <p id="section-7-4">The Registration time is recorded as the timestamp when the Transparency Service added the Signed Statement to its Verifiable Data Structure.<a href="#section-7-4" class="pilcrow">¶</a></p>
 <p id="section-7-5"><a href="#fig-transparent-statement-cddl" class="auto internal xref">Figure 6</a> illustrates a normative CDDL definition of Transparent Statements.
-See <a href="#fig-signed-statement-cddl" class="auto internal xref">Figure 3</a> for the CDDL rule that defines 'COSE_Sign1' as specified in <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.2" class="relref">Section 4.2</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span><a href="#section-7-5" class="pilcrow">¶</a></p>
+See <a href="#fig-signed-statement-cddl" class="auto internal xref">Figure 3</a> for the CDDL rule that defines 'COSE_Sign1' as specified in <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.2" class="relref">Section 4.2</a> of [<a href="#STD96" class="cite xref">STD96</a>]</span><a href="#section-7-5" class="pilcrow">¶</a></p>
 <span id="name-cddl-definition-for-a-trans"></span><div id="fig-transparent-statement-cddl">
 <figure id="figure-6">
         <div class="lang-cddl sourcecode" id="section-7-6.1">
@@ -2506,7 +2513,7 @@ The structure of this inclusion proof is specific to the verifiable data structu
         <h3 id="name-validation">
 <a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-validation" class="section-name selfRef">Validation</a>
         </h3>
-<p id="section-7.1-1">Relying Parties <span class="bcp14">MUST</span> apply the verification process as described in Section 4.4 of RFC9052, when checking the signature of Signed Statements and Receipts.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<p id="section-7.1-1">Relying Parties <span class="bcp14">MUST</span> apply the verification process as described in <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.4" class="relref">Section 4.4</a> of [<a href="#STD96" class="cite xref">STD96</a>]</span>, when checking the signature of Signed Statements and Receipts.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
 <p id="section-7.1-2">A Relying Party <span class="bcp14">MUST</span> trust the verification key or certificate and the associated identity of at least one Issuer of a Receipt.<a href="#section-7.1-2" class="pilcrow">¶</a></p>
 <p id="section-7.1-3">A Relying Party <span class="bcp14">MAY</span> decide to verify only a single Receipt that is acceptable to them and not check the signature on the Signed Statement or Receipts which rely on verifiable data structures which they do not understand.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
 <p id="section-7.1-4">APIs exposing verification logic for Transparent Statements may provide more details than a single boolean result.
@@ -2762,13 +2769,17 @@ It is up to the Issuer to notify Transparency Services of credential revocation 
         <dd>
 <span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Vigano, C.</span>, and <span class="refAuthor">C. Bormann</span>, <span class="refTitle">"Concise Data Definition Language (CDDL): A Notational Convention to Express Concise Binary Object Representation (CBOR) and JSON Data Structures"</span>, <span class="seriesInfo">RFC 8610</span>, <span class="seriesInfo">DOI 10.17487/RFC8610</span>, <time datetime="2019-06" class="refDate">June 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8610">https://www.rfc-editor.org/rfc/rfc8610</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC9052">[RFC9052]</dt>
-        <dd>
-<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Structures and Process"</span>, <span class="seriesInfo">STD 96</span>, <span class="seriesInfo">RFC 9052</span>, <span class="seriesInfo">DOI 10.17487/RFC9052</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9052">https://www.rfc-editor.org/rfc/rfc9052</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC9360">[RFC9360]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Header Parameters for Carrying and Referencing X.509 Certificates"</span>, <span class="seriesInfo">RFC 9360</span>, <span class="seriesInfo">DOI 10.17487/RFC9360</span>, <time datetime="2023-02" class="refDate">February 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9360">https://www.rfc-editor.org/rfc/rfc9360</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="STD94">[STD94]</dt>
+        <dd>
+<span class="refAuthor">Bormann, C.</span> and <span class="refAuthor">P. Hoffman</span>, <span class="refTitle">"Concise Binary Object Representation (CBOR)"</span>, <span class="seriesInfo">STD 94</span>, <span class="seriesInfo">RFC 8949</span>, <span class="seriesInfo">DOI 10.17487/RFC8949</span>, <time datetime="2020-12" class="refDate">December 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8949">https://www.rfc-editor.org/rfc/rfc8949</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="STD96">[STD96]</dt>
+      <dd>
+<span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Structures and Process"</span>, <span class="seriesInfo">STD 96</span>, <span class="seriesInfo">RFC 9052</span>, <span class="seriesInfo">DOI 10.17487/RFC9052</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9052">https://www.rfc-editor.org/rfc/rfc9052</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2901,7 +2912,7 @@ Correspondingly, it is often useful for the intended audience to qualify the ter
       </h2>
 <p id="appendix-B-1">Statements about digital Artifacts, containing digital Artifacts, or structured data regarding any type of Artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
 In these cases a Statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
-A Signed Statement (COSE_Sign1) <span class="bcp14">MUST</span> be produced from the to-be-signed bytes according to <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.4" class="relref">Section 4.4</a> of [<a href="#RFC9052" class="cite xref">RFC9052</a>]</span>.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+A Signed Statement (COSE_Sign1) <span class="bcp14">MUST</span> be produced from the to-be-signed bytes according to <span><a href="https://rfc-editor.org/rfc/rfc9052#section-4.4" class="relref">Section 4.4</a> of [<a href="#STD96" class="cite xref">STD96</a>]</span>.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <div id="appendix-B-2">
         <div class="alignLeft art-svg artwork" id="appendix-B-2.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="736" width="376" viewBox="0 0 376 736" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">

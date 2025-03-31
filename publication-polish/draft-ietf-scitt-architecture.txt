@@ -163,6 +163,29 @@ Table of Contents
    referred to as value-add graphs), for example, statements about
    hardware supply chains.
 
+   This document also defines message structures for signed statements
+   and defines a profile for COSE receipts
+   [I-D.draft-ietf-cose-merkle-tree-proofs], i.e., countersignatures
+   with metadata).  These message structures are based on the Concise
+   Binary Object Representation Standard [STD94] and corresponding
+   signing is facilitated via the CBOR Object Signing and Encryption
+   Standard [STD96].  The messages structures are defined using the
+   Concise Data Definition Language [RFC8610].  In essence, the
+   signatures of signed statements and receipts are based on the
+   COSE_Sign1 specification in Section 4.2 of [STD96].  As these
+   messages provide the foundation of any transparency service
+   implementation for global and cross-domain application
+   interoperability, they are based on complementary COSE
+   specifications, mainly [I-D.draft-ietf-cose-merkle-tree-proofs].
+   Support of COSE_Sign1 and support for extensibility of COSE Header
+   Parameter sets is therefore a prerequisite for implementing the
+   interoperable message layer that comes with this document.
+
+   In summary, this specification is in support of relying parties to
+   obtain proof that signed statements where checked for their validity
+   in the past and that check of validity can itself be checked again
+   after the fact via transparency services as defined in this document.
+
 1.2.  OLD
 
    This document describes the generic, interoperable, and scalable
@@ -464,7 +487,7 @@ Table of Contents
    included in this section.
 
    The terms "header", "payload", and "to-be-signed bytes" are defined
-   in [RFC9052].
+   in [STD96].
 
    The term "claim" is defined in [RFC8392].
 
@@ -805,9 +828,9 @@ Table of Contents
 
    During Registration, a Transparency Service MUST, at a minimum,
    syntactically check the Issuer of the Signed Statement by
-   cryptographically verifying the COSE signature according to
-   [RFC9052].  The Issuer identity MUST be bound to the Signed Statement
-   by including an identifier in the protected header.  If the protected
+   cryptographically verifying the COSE signature according to [STD96].
+   The Issuer identity MUST be bound to the Signed Statement by
+   including an identifier in the protected header.  If the protected
    header includes multiple identifiers, all those that are registered
    by the Transparency Service MUST be checked.
 
@@ -894,7 +917,7 @@ Table of Contents
 
 6.  Signed Statements
 
-   This specification prioritizes conformance to [RFC9052] and its
+   This specification prioritizes conformance to [STD96] and its
    required and optional properties.  Profiles and implementation
    specific choices should be used to determine admissibility of
    conforming messages.  This specification is left intentionally open
@@ -1067,7 +1090,7 @@ Table of Contents
 
    2.  *TS Signed Statement Verification and Validation:* The
        Transparency Service MUST perform signature verification per
-       Section 4.4 of [RFC9052] and MUST verify the signature of the
+       Section 4.4 of [STD96] and MUST verify the signature of the
        Signed Statement with the signature algorithm and verification
        key of the Issuer per [RFC9360].  The Transparency Service MUST
        also check the Signed Statement includes the required protected
@@ -1132,7 +1155,7 @@ Table of Contents
 
    Figure 6 illustrates a normative CDDL definition of Transparent
    Statements.  See Figure 3 for the CDDL rule that defines 'COSE_Sign1'
-   as specified in Section 4.2 of [RFC9052]
+   as specified in Section 4.2 of [STD96]
 
    Transparent_Statement = #6.18(COSE_Sign1)
 
@@ -1230,7 +1253,7 @@ Table of Contents
 7.1.  Validation
 
    Relying Parties MUST apply the verification process as described in
-   Section 4.4 of RFC9052, when checking the signature of Signed
+   Section 4.4 of [STD96], when checking the signature of Signed
    Statements and Receipts.
 
    A Relying Party MUST trust the verification key or certificate and
@@ -1611,15 +1634,20 @@ Table of Contents
               JSON Data Structures", RFC 8610, DOI 10.17487/RFC8610,
               June 2019, <https://www.rfc-editor.org/rfc/rfc8610>.
 
-   [RFC9052]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
-              Structures and Process", STD 96, RFC 9052,
-              DOI 10.17487/RFC9052, August 2022,
-              <https://www.rfc-editor.org/rfc/rfc9052>.
-
    [RFC9360]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
               Header Parameters for Carrying and Referencing X.509
               Certificates", RFC 9360, DOI 10.17487/RFC9360, February
               2023, <https://www.rfc-editor.org/rfc/rfc9360>.
+
+   [STD94]    Bormann, C. and P. Hoffman, "Concise Binary Object
+              Representation (CBOR)", STD 94, RFC 8949,
+              DOI 10.17487/RFC8949, December 2020,
+              <https://www.rfc-editor.org/rfc/rfc8949>.
+
+   [STD96]    Schaad, J., "CBOR Object Signing and Encryption (COSE):
+              Structures and Process", STD 96, RFC 9052,
+              DOI 10.17487/RFC9052, August 2022,
+              <https://www.rfc-editor.org/rfc/rfc9052>.
 
 11.2.  Informative References
 
@@ -1823,7 +1851,7 @@ Appendix B.  Signing Statements Remotely
    Internet.  In these cases a Statement can also be hash, which becomes
    the payload included in COSE to-be-signed bytes.  A Signed Statement
    (COSE_Sign1) MUST be produced from the to-be-signed bytes according
-   to Section 4.4 of [RFC9052].
+   to Section 4.4 of [STD96].
 
       .----+-----.
      |  Artifact  |
