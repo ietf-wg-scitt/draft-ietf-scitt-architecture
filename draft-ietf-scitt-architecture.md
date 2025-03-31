@@ -191,30 +191,13 @@ Support of COSE_Sign1 and support for extensibility of COSE Header Parameter set
 
 In summary, this specification is in support of relying parties to obtain proof that signed statements where checked for their validity in the past and that check of validity can itself be checked again after the fact via transparency services as defined in this document.
 
-## OLD
-This document describes the generic, interoperable, and scalable SCITT architecture.
-Its goal is to enhance auditability and accountability across supply chains.
-
-In supply chains, downstream Artifacts are built upon upstream Artifacts.
-The complexity of traceability and quality control for these supply chains increases with the number of Artifacts and parties contributing to them.
-There are many parties who publish information about Artifacts:
-For example, the original manufacturer may provide information about the state of the Artifact when it left the factory.
-The shipping company may add information about the transport environment of the Artifact.
-Compliance Auditors may provide information about their compliance assessment of the Artifact.
-Security companies may publish vulnerability information about an Artifact.
-The original manufacturer may subsequently provide additional information about the manufacturing process they discovered after the Artifact left the factory.
-Some of these parties may publish information about their analysis or use of an Artifact.
-
-SCITT provides a way for Relying Parties to obtain this information in a way that is "transparent", that is, parties cannot lie about the information that they publish without it being detected.
-SCITT achieves this by having producers publish information in a Transparency Service, where Relying Parties can check the information.
-
 ## Requirements Notation
 
 {::boilerplate bcp14-tagged}
 
 # Exemplary Software Supply Chain (SSC) Use Cases
 
-To illustrate the applicability of the SCITT architecture and its messages this section details the exemplary context of software supply chain (SSC) use cases.
+To illustrate the applicability of the SCITT architecture and its messages, this section details the exemplary context of software supply chain (SSC) use cases.
 The building blocks provided by the SCITT architecture and related documents (e.g., {{-SCRAPI}}) are not restricted to software supply chain use cases.
 Software supply chains serve as a useful application guidance and first usage scenario.
 
