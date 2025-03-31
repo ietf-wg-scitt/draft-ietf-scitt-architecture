@@ -171,7 +171,7 @@ The goal of the transparency enabled by the Supply Chain Integrity, Transparency
 Registering signed statements with a transparency service is akin to a notarization procedure.
 Transparency services therefore act like notaries that each record (register) a single, linear and irrevocable history of statements that were made.
 How these statements are managed or stored---beside the specified registration procedure---is out-of-scope of this document.
-Earlier, similar approaches exist, such as Certificate Transparency {{-CT}}.
+Earlier, similar approaches for specific classes of artifacts exist, such as Certificate Transparency {{-CT}}.
 The SCITT approach follows a more generic paradigm than previous approaches.
 In this SCITT core architecture, the signed statements registered are opaque to the transparency services that act as a notary.
 This "content agnostic" approach allows SCITT transparency services to be integrated in any kind of existing solution or to be an initial part of new emerging systems.
