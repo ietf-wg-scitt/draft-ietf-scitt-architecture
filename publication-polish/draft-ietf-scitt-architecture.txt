@@ -85,8 +85,7 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
-     1.1.  OLD
-     1.2.  Requirements Notation
+     1.1.  Requirements Notation
    2.  Exemplary Software Supply Chain (SSC) Use Cases
      2.1.  Generic SSC Problem Statement
      2.2.  Eclectic SSC Use Cases
@@ -183,36 +182,7 @@ Table of Contents
    in the past and that check of validity can itself be checked again
    after the fact via transparency services as defined in this document.
 
-1.1.  OLD
-
-   This document describes the generic, interoperable, and scalable
-   SCITT architecture.  Its goal is to enhance auditability and
-   accountability across supply chains.
-
-   In supply chains, downstream Artifacts are built upon upstream
-   Artifacts.  The complexity of traceability and quality control for
-   these supply chains increases with the number of Artifacts and
-   parties contributing to them.  There are many parties who publish
-   information about Artifacts: For example, the original manufacturer
-   may provide information about the state of the Artifact when it left
-   the factory.  The shipping company may add information about the
-   transport environment of the Artifact.  Compliance Auditors may
-   provide information about their compliance assessment of the
-   Artifact.  Security companies may publish vulnerability information
-   about an Artifact.  The original manufacturer may subsequently
-   provide additional information about the manufacturing process they
-   discovered after the Artifact left the factory.  Some of these
-   parties may publish information about their analysis or use of an
-   Artifact.
-
-   SCITT provides a way for Relying Parties to obtain this information
-   in a way that is "transparent", that is, parties cannot lie about the
-   information that they publish without it being detected.  SCITT
-   achieves this by having producers publish information in a
-   Transparency Service, where Relying Parties can check the
-   information.
-
-1.2.  Requirements Notation
+1.1.  Requirements Notation
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
@@ -223,7 +193,7 @@ Table of Contents
 2.  Exemplary Software Supply Chain (SSC) Use Cases
 
    To illustrate the applicability of the SCITT architecture and its
-   messages this section details the exemplary context of software
+   messages, this section details the exemplary context of software
    supply chain (SSC) use cases.  The building blocks provided by the
    SCITT architecture and related documents (e.g.,
    [I-D.draft-ietf-scitt-scrapi]) are not restricted to software supply
