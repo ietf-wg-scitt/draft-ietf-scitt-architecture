@@ -195,7 +195,7 @@ In summary, this specification is in support of relying parties to obtain proof 
 
 {::boilerplate bcp14-tagged}
 
-# Software Supply Chain Scope 
+# Software Supply Chain Scope
 
 To illustrate the applicability of the SCITT architecture and its messages, this section details the exemplary context of software supply chain (SSC) use cases.
 The building blocks provided by the SCITT architecture and related documents (e.g., {{-SCRAPI}}) are not restricted to software supply chain use cases.
