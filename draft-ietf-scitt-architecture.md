@@ -93,11 +93,16 @@ normative:
   RFC5280: PKIX
   RFC6838:
   RFC8610: CDDL
-  RFC9052: COSE
+  STD94:
+    -: CBOR
+    =: RFC8949
+  STD96:
+    -: COSE
+    =: RFC9052
   RFC9360:
   RFC8392:
   COSWID: RFC9393
-  I-D.draft-ietf-cose-merkle-tree-proofs: COMETRE
+  I-D.draft-ietf-cose-merkle-tree-proofs: RECEIPTS
   I-D.draft-ietf-scitt-scrapi: SCRAPI
 
   CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
@@ -178,6 +183,14 @@ This "content-agnostic" approach allows SCITT transparency services to be either
 Extensibility is a vital feature of the SCITT architecture, so that requirements from various applications can be accommodated while always ensuring interoperability with respect to registration procedures and corresponding auditability and accountability.
 For simplicity, the scope of this document is limited to use cases originating from the software supply chain domain, but the specification defined is applicable to any other type of supply chain statements (also referred to as value-add graphs), for example, statements about hardware supply chains.
 
+This document also defines message structures for signed statements and defines a profile for COSE receipts {{-RECEIPTS}}, i.e., countersignatures with metadata).
+These message structures are based on the Concise Binary Object Representation Standard {{-CBOR}} and corresponding signing is facilitated via the CBOR Object Signing and Encryption Standard {{-COSE}}.
+The messages structures are defined using the Concise Data Definition Language {{-CDDL}}.
+In essence, the signatures of signed statements and receipts are based on the COSE_Sign1 specification in {{Section 4.2 of -COSE}}.
+As these messages provide the foundation of any transparency service implementation for global and cross-domain application interoperability, they are based on complementary COSE specifications, mainly {{-RECEIPTS}}.
+Support of COSE_Sign1 and support for extensibility of COSE Header Parameter sets is therefore a prerequisite for implementing the interoperable message layer that comes with this document.
+
+In summary, this specification is in support of relying parties to obtain proof that signed statements where checked for their validity in the past and that check of validity can itself be checked again after the fact via transparency services as defined in this document.
 
 ## OLD
 This document describes the generic, interoperable, and scalable SCITT architecture.
@@ -418,7 +431,7 @@ However, the consistency of a collection of Signed Statements about the Artifact
 Receipt:
 
 : a cryptographic proof that a Signed Statement is included in the Verifiable Data Structure.
-See {{-COMETRE}} for implementations
+See {{-RECEIPTS}} for implementations
 Receipts are signed proofs of verifiable data-structure properties.
 The types of Receipts MUST support inclusion proofs and MAY support other proof types, such as consistency proofs.
 
@@ -467,14 +480,14 @@ A Transparent Statement remains a valid Signed Statement and may be registered a
 Verifiable Data Structure:
 
 : a data structure which supports one or more proof types, such as "inclusion proofs" or "consistency proofs", for Signed Statements as they are Registered to a Transparency Service.
-SCITT supports multiple Verifiable Data Structures and Receipt formats as defined in {{-COMETRE}}, accommodating different Transparency Service implementations.
+SCITT supports multiple Verifiable Data Structures and Receipt formats as defined in {{-RECEIPTS}}, accommodating different Transparency Service implementations.
 {: #mybody}
 
 # Definition of Transparency
 
 In this document, the definition of transparency is intended to build over abstract notions of Append-only Logs and Receipts.
 Existing transparency systems such as Certificate Transparency are instances of this definition.
-SCITT supports multiple Verifiable Data Structures, as defined in {{-COMETRE}}.
+SCITT supports multiple Verifiable Data Structures, as defined in {{-RECEIPTS}}.
 
 A Signed Statement is an identifiable and non-repudiable Statement made by an Issuer.
 The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata.
@@ -515,7 +528,7 @@ Considering CT in terms of SCITT:
 The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements and auditing Transparent Statements.
 
 In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
-The remaining details of the Receipt's contents are specified in {{-COMETRE}}.
+The remaining details of the Receipt's contents are specified in {{-RECEIPTS}}.
 
 {{fig-concept-relationship}} illustrates the roles and processes that comprise a Transparency Service independent of any one use case:
 
@@ -596,7 +609,7 @@ This specification leaves implementation, encoding and documentation of Registra
 
 #### Mandatory Registration Checks
 
-During Registration, a Transparency Service MUST, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to {{RFC9052}}.
+During Registration, a Transparency Service MUST, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to {{-COSE}}.
 The Issuer identity MUST be bound to the Signed Statement by including an identifier in the protected header.
 If the protected header includes multiple identifiers, all those that are registered by the Transparency Service MUST be checked.
 
@@ -623,7 +636,7 @@ Since the mandatory Registration checks rely on having registered Signed Stateme
 
 ### Verifiable Data Structure
 
-The security properties are determined by the choice of the Verifiable Data Structure ({{-COMETRE}}) used by the Transparency Service implementation.
+The security properties are determined by the choice of the Verifiable Data Structure ({{-RECEIPTS}}) used by the Transparency Service implementation.
 This verifiable data structure MUST support the following security requirements:
 
 Append-Only:
@@ -641,7 +654,7 @@ Replayability:
 
 In addition to Receipts, some verifiable data structures might support additional proof types, such as proofs of consistency, or proofs of non-inclusion.
 
-Specific verifiable data structures, such those describes in {{-CT}} and {{-COMETRE}}, and the review of their security requirements for SCITT are out of scope for this document.
+Specific verifiable data structures, such those describes in {{-CT}} and {{-RECEIPTS}}, and the review of their security requirements for SCITT are out of scope for this document.
 
 ### Adjacent Services
 
@@ -651,7 +664,7 @@ Providing an ability to request a fresh Receipt for a given software package, or
 
 # Signed Statements
 
-This specification prioritizes conformance to {{RFC9052}} and its required and optional properties.
+This specification prioritizes conformance to {{-COSE}} and its required and optional properties.
 Profiles and implementation specific choices should be used to determine admissibility of conforming messages.
 This specification is left intentionally open to allow implementations to make Registration restrictions that make the most sense for their operational use cases.
 
@@ -699,7 +712,7 @@ The protected header of a Signed Statement and a Receipt MUST include the `CWT C
 The `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `Subject Claim` (Claim label 2) {{IANA.cwt}}.
 
 A Receipt is a Signed Statement, (COSE_Sign1), with additional Claims in its protected header related to verifying the inclusion proof in its unprotected header.
-See {{-COMETRE}}.
+See {{-RECEIPTS}}.
 
 ## Signed Statement Examples
 
@@ -750,7 +763,7 @@ To register a Signed Statement, the Transparency Service performs the following 
 
 1. **Client authentication:** A Client authenticates with the Transparency Service before registering Signed Statements on behalf of one or more Issuers.
 Authentication and authorization are implementation-specific and out of scope of the SCITT architecture.
-1. **TS Signed Statement Verification and Validation:** The Transparency Service MUST perform signature verification per {{Section 4.4 of RFC9052}} and MUST verify the signature of the Signed Statement with the signature algorithm and verification key of the Issuer per {{RFC9360}}.
+1. **TS Signed Statement Verification and Validation:** The Transparency Service MUST perform signature verification per {{Section 4.4 of -COSE}} and MUST verify the signature of the Signed Statement with the signature algorithm and verification key of the Issuer per {{RFC9360}}.
 The Transparency Service MUST also check the Signed Statement includes the required protected headers.
 The Transparency Service MAY validate the Signed Statement payload in order to enforce domain specific registration policies that apply to specific content types.
 1. **Apply Registration Policy:** The Transparency Service MUST check the attributes required by a Registration Policy are present in the protected headers.
@@ -780,7 +793,7 @@ Client applications MAY request Receipts regardless of the identity of the Issue
 When a Signed Statement is registered by a Transparency Service a Receipt becomes available.
 When a Receipt is included in a Signed Statement a Transparent Statement is produced.
 
-Receipts are based on Signed Inclusion Proofs as described in COSE Receipts {{-COMETRE}} that also provides the COSE header parameter semantics for label TBD_0.
+Receipts are based on Signed Inclusion Proofs as described in COSE Receipts {{-RECEIPTS}} that also provides the COSE header parameter semantics for label TBD_0.
 
 The Registration time is recorded as the timestamp when the Transparency Service added the Signed Statement to its Verifiable Data Structure.
 
@@ -816,7 +829,7 @@ The type of label TBD_0 `receipts` in the unprotected header is a CBOR array tha
 The Receipt contains inclusion proofs for verifiable data structures.
 The unprotected header contains verifiable data structure proofs.
 See the protected header for details regarding the specific verifiable data structure used.
-Per the COSE Verifiable Data Structure Registry documented in {{-COMETRE}}, the COSE key type RFC9162_SHA256 is value `1`.
+Per the COSE Verifiable Data Structure Registry documented in {{-RECEIPTS}}, the COSE key type RFC9162_SHA256 is value `1`.
 Labels identify inclusion proofs (`-1`) and consistency proofs (`-2`).
 
 ~~~ cbor-diag
@@ -872,7 +885,7 @@ The structure of this inclusion proof is specific to the verifiable data structu
 
 ## Validation {#validation}
 
-Relying Parties MUST apply the verification process as described in Section 4.4 of RFC9052, when checking the signature of Signed Statements and Receipts.
+Relying Parties MUST apply the verification process as described in {{Section 4.4 of -COSE}}, when checking the signature of Signed Statements and Receipts.
 
 A Relying Party MUST trust the verification key or certificate and the associated identity of at least one Issuer of a Receipt.
 
@@ -1037,7 +1050,7 @@ It is up to the Issuer to notify Transparency Services of credential revocation 
 
 ## COSE Receipts Header Parameter
 
-TBD_0 is requested in {{-COMETRE}}.
+TBD_0 is requested in {{-RECEIPTS}}.
 
 ## Media Type Registration
 
