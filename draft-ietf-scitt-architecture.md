@@ -189,7 +189,7 @@ These message structures are based on the Concise Binary Object Representation S
 The messages structures are defined using the Concise Data Definition Language {{-CDDL}}.
 The signed statements and receipts signatures are based on the COSE_Sign1 specification in {{Section 4.2 of -COSE}}.
 As these messages provide the foundation of any transparency service implementation for global and cross-domain application interoperability, they are based on complementary COSE specifications, mainly {{-RECEIPTS}}.
-Support of COSE_Sign1 and support for extensibility of COSE Header Parameter sets is therefore a prerequisite for implementing the interoperable message layer that comes with this document.
+Therefore, support of COSE_Sign1 and extensibility of COSE Header Parameters are prerequisites for implementing the interoperable message layer included in this document.
 
 In summary, this specification is in support of relying parties to obtain proof that signed statements where checked for their validity in the past and that check of validity can itself be checked again after the fact via transparency services as defined in this document.
 
