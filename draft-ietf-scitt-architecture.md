@@ -191,7 +191,7 @@ The signed statements and receipts signatures are based on the COSE_Sign1 specif
 As these messages provide the foundation of any transparency service implementation for global and cross-domain application interoperability, they are based on complementary COSE specifications, mainly {{-RECEIPTS}}.
 Therefore, support of COSE_Sign1 and extensibility of COSE Header Parameters are prerequisites for implementing the interoperable message layer included in this document.
 
-In summary, this specification is in support of relying parties to obtain proof that signed statements where checked for their validity in the past and that check of validity can itself be checked again after the fact via transparency services as defined in this document.
+In summary, this specification supports relying parties obtaining proof that signed statements were recorded and checked for their validity at the time they were registered.
 
 ## Requirements Notation
 
