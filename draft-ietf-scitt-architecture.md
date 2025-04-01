@@ -160,10 +160,10 @@ informative:
 --- abstract
 
 Traceability of physical and digital Artifacts in supply chains is a long-standing, but increasingly serious security concern.
-The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates) but lacks a generic and scalable architecture that can address a wider range of use cases.
+The rise in popularity of verifiable data structures as a mechanism to implement accountability for tampering or equivocation has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases.
 
 This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
-It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
+It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing procedures and regulatory requirements.
 Issuers can register their Signed Statements on one or more Transparency Services, with the guarantee that any Relying Parties will be able to verify them.
 
 --- middle
@@ -205,7 +205,7 @@ Software supply chains serve as a useful application guidance and first usage sc
 ## Generic SSC Problem Statement
 
 Supply chain security is a prerequisite to protecting consumers and minimizing economic, public health, and safety threats.
-Supply chain security has historically focused on risk management practices to safeguard logistics, meet compliance regulations, forecast demand, and optimize inventory.
+Supply chain security has historically focused on risk management practices to safeguard logistics, meet regulatory requirements, forecast demand, and optimize inventory.
 While these elements are foundational to a healthy supply chain, an integrated cyber security-based perspective of the software supply chains remains broadly undefined.
 Recently, the global community has experienced numerous supply chain attacks targeting weaknesses in software supply chains.
 As illustrated in {{lifecycle-threats}}, a software supply chain attack may leverage one or more life-cycle stages and directly or indirectly target the component.
@@ -259,7 +259,7 @@ As illustrated in {{lifecycle-threats}}, a software supply chain attack may leve
 {: #lifecycle-threats title="Example SSC Life-Cycle Threats"}
 
 DevSecOps often depends on third-party and open-source software.
-These dependencies can be quite complex throughout the supply chain and render the checking of lifecycle compliance difficult.
+These dependencies can be quite complex throughout the supply chain, so checking provenance and traceability throughout their lifecycle is difficult.
 There is a need for manageable auditability and accountability of digital products.
 Typically, the range of types of statements about digital products (and their dependencies) is vast, heterogeneous, and can differ between community policy requirements.
 Taking the type and structure of all statements about digital and products into account might not be possible.
@@ -280,7 +280,7 @@ The three following use cases are a specialization derived from the generic prob
 
 ### Security Analysis of a Software Product
 
-A released software product is often accompanied by a set of complementary statements about its security compliance.
+A released software product is often accompanied by a set of complementary statements about its security properties.
 This gives enough confidence to both producers and consumers that the released software meets the expected security standards and is suitable to use.
 
 Subsequently, multiple security researchers often run sophisticated security analysis tools on the same product.
@@ -508,7 +508,7 @@ Considering CT in terms of SCITT:
 
 # Architecture Overview
 
-The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements and auditing Transparent Statements.
+The SCITT architecture enables a loose federation of Transparency Services, by providing a set of common formats and protocols for issuing and registering Signed Statements and auditing Transparent Statements.
 
 In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 The remaining details of the Receipt's contents are specified in {{-RECEIPTS}}.
@@ -569,7 +569,7 @@ The subsequent sections describe the main concepts, namely Transparency Service,
 Transparency Services MUST feature a Verifiable Data Structure.
 The Verifiable Data Structure records registered Signed Statements and supports the production of Receipts.
 
-All Transparency Services MUST expose APIs ({{-SCRAPI}} for the Registration of Signed Statements and issuance of Receipts.
+All Transparency Services MUST expose the minimally conformant APIs, defined in ({{-SCRAPI}} for the Registration of Signed Statements and issuance of Receipts.
 
 Transparency Services MAY support additional APIs for auditing, for instance querying the history of Signed Statements.
 
@@ -1018,7 +1018,7 @@ This enables the gradual transition to stronger algorithms, including e.g. post-
 ### Transparency Service Client Applications
 
 Authentication of Client applications is out of scope for this document.
-Transparency Services MUST authenticate both Client applications and the Issuer of Signed Statements in order to ensure that implementation of specific authentication and authorization policies are enforced.
+Transparency Services MAY authenticate Client applications.
 The specification of authentication and authorization policies is out of scope for this document.
 
 ### Impersonation
