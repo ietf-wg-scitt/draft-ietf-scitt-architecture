@@ -12,9 +12,9 @@
 <meta content="Steve Lasker" name="author">
 <meta content="
        Traceability of physical and digital Artifacts in supply chains is a long-standing, but increasingly serious security concern.
-The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates) but lacks a generic and scalable architecture that can address a wider range of use cases. 
+The rise in popularity of verifiable data structures as a mechanism to implement accountability for tampering or equivocation has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases. 
        This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
-It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
+It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing procedures and regulatory requirements.
 Issuers can register their Signed Statements on one or more Transparency Services, with the guarantee that any Relying Parties will be able to verify them. 
     " name="description">
 <meta content="xml2rfc 3.28.0" name="generator">
@@ -1104,9 +1104,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">Traceability of physical and digital Artifacts in supply chains is a long-standing, but increasingly serious security concern.
-The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates) but lacks a generic and scalable architecture that can address a wider range of use cases.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+The rise in popularity of verifiable data structures as a mechanism to implement accountability for tampering or equivocation has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
-It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
+It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing procedures and regulatory requirements.
 Issuers can register their Signed Statements on one or more Transparency Services, with the guarantee that any Relying Parties will be able to verify them.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
@@ -1369,7 +1369,7 @@ Software supply chains serve as a useful application guidance and first usage sc
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-generic-ssc-problem-stateme" class="section-name selfRef">Generic SSC Problem Statement</a>
         </h3>
 <p id="section-2.1-1">Supply chain security is a prerequisite to protecting consumers and minimizing economic, public health, and safety threats.
-Supply chain security has historically focused on risk management practices to safeguard logistics, meet compliance regulations, forecast demand, and optimize inventory.
+Supply chain security has historically focused on risk management practices to safeguard logistics, meet regulatory requirements, forecast demand, and optimize inventory.
 While these elements are foundational to a healthy supply chain, an integrated cyber security-based perspective of the software supply chains remains broadly undefined.
 Recently, the global community has experienced numerous supply chain attacks targeting weaknesses in software supply chains.
 As illustrated in <a href="#lifecycle-threats" class="auto internal xref">Figure 1</a>, a software supply chain attack may leverage one or more life-cycle stages and directly or indirectly target the component.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
@@ -1486,7 +1486,7 @@ As illustrated in <a href="#lifecycle-threats" class="auto internal xref">Figure
           </figcaption></figure>
 </div>
 <p id="section-2.1-3">DevSecOps often depends on third-party and open-source software.
-These dependencies can be quite complex throughout the supply chain and render the checking of lifecycle compliance difficult.
+These dependencies can be quite complex throughout the supply chain, so checking provenance and traceability throughout their lifecycle is difficult.
 There is a need for manageable auditability and accountability of digital products.
 Typically, the range of types of statements about digital products (and their dependencies) is vast, heterogeneous, and can differ between community policy requirements.
 Taking the type and structure of all statements about digital and products into account might not be possible.
@@ -1511,7 +1511,7 @@ The SCITT architecture provides mechanisms and structures for ensuring that the 
           <h4 id="name-security-analysis-of-a-soft">
 <a href="#section-2.2.1" class="section-number selfRef">2.2.1. </a><a href="#name-security-analysis-of-a-soft" class="section-name selfRef">Security Analysis of a Software Product</a>
           </h4>
-<p id="section-2.2.1-1">A released software product is often accompanied by a set of complementary statements about its security compliance.
+<p id="section-2.2.1-1">A released software product is often accompanied by a set of complementary statements about its security properties.
 This gives enough confidence to both producers and consumers that the released software meets the expected security standards and is suitable to use.<a href="#section-2.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.2.1-2">Subsequently, multiple security researchers often run sophisticated security analysis tools on the same product.
 The intention is to identify any security weaknesses or vulnerabilities in the package.<a href="#section-2.2.1-2" class="pilcrow">¶</a></p>
@@ -1832,7 +1832,7 @@ Considering CT in terms of SCITT:<a href="#section-4-8" class="pilcrow">¶</a></
       <h2 id="name-architecture-overview">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-architecture-overview" class="section-name selfRef">Architecture Overview</a>
       </h2>
-<p id="section-5-1">The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing and registering Signed Statements and auditing Transparent Statements.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">The SCITT architecture enables a loose federation of Transparency Services, by providing a set of common formats and protocols for issuing and registering Signed Statements and auditing Transparent Statements.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <p id="section-5-2">In order to accommodate as many Transparency Service implementations as possible, this document only specifies the format of Signed Statements (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the Transparency Service identity and the agility parameters for the Signed Inclusion Proofs.
 The remaining details of the Receipt's contents are specified in <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <p id="section-5-3"><a href="#fig-concept-relationship" class="auto internal xref">Figure 2</a> illustrates the roles and processes that comprise a Transparency Service independent of any one use case:<a href="#section-5-3" class="pilcrow">¶</a></p>
@@ -2054,7 +2054,7 @@ Each Transparency Service produces a Receipt, which may be aggregated in a singl
         </h3>
 <p id="section-5.1-1">Transparency Services <span class="bcp14">MUST</span> feature a Verifiable Data Structure.
 The Verifiable Data Structure records registered Signed Statements and supports the production of Receipts.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2">All Transparency Services <span class="bcp14">MUST</span> expose APIs (<span>[<a href="#I-D.draft-ietf-scitt-scrapi" class="cite xref">I-D.draft-ietf-scitt-scrapi</a>]</span> for the Registration of Signed Statements and issuance of Receipts.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">All Transparency Services <span class="bcp14">MUST</span> expose the minimally conformant APIs, defined in (<span>[<a href="#I-D.draft-ietf-scitt-scrapi" class="cite xref">I-D.draft-ietf-scitt-scrapi</a>]</span> for the Registration of Signed Statements and issuance of Receipts.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1-3">Transparency Services <span class="bcp14">MAY</span> support additional APIs for auditing, for instance querying the history of Signed Statements.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1-4">Typically a Transparency Service has a single Issuer identity which is present in the <code>iss</code> Claim of Receipts for that service.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <p id="section-5.1-5">Multi-tenant support can be enabled through the use of identifiers in the <code>iss</code> Claim, for example, <code>ts.example</code> may have a distinct Issuer identity for each sub domain, such as <code>customer1.ts.example</code> and <code>customer2.ts.example</code>.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
@@ -2640,7 +2640,7 @@ This enables the gradual transition to stronger algorithms, including e.g. post-
 <a href="#section-9.2.4" class="section-number selfRef">9.2.4. </a><a href="#name-transparency-service-client" class="section-name selfRef">Transparency Service Client Applications</a>
           </h4>
 <p id="section-9.2.4-1">Authentication of Client applications is out of scope for this document.
-Transparency Services <span class="bcp14">MUST</span> authenticate both Client applications and the Issuer of Signed Statements in order to ensure that implementation of specific authentication and authorization policies are enforced.
+Transparency Services <span class="bcp14">MAY</span> authenticate Client applications.
 The specification of authentication and authorization policies is out of scope for this document.<a href="#section-9.2.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
