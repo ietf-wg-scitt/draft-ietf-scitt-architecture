@@ -589,7 +589,7 @@ When using X.509 Signed Statements, the Transparency Service MUST build and vali
 The protected header of the COSE_Sign1 Envelope MUST include either the Issuer's certificate as `x5t` or the chain including the Issuer's certificate as `x5chain`.
 If `x5t` is included in the protected header, an `x5chain` with a leaf certificate corresponding to the `x5t` value MAY be included in the unprotected header.
 
-Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Verifiable Data Structure, and distributing the associated Receipts.
+Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Verifiable Data Structure, and returning the associated Receipt.
 
 The Transparency Service MUST apply the Registration Policy that was most recently committed to the Verifiable Data Structure at the time of Registration.
 
