@@ -187,7 +187,7 @@ For simplicity, the scope of this document is limited to use cases originating f
 This document also defines message structures for signed statements and defines a profile for COSE receipts {{-RECEIPTS}}, i.e., countersignatures with metadata).
 These message structures are based on the Concise Binary Object Representation Standard {{-CBOR}} and corresponding signing is facilitated via the CBOR Object Signing and Encryption Standard {{-COSE}}.
 The messages structures are defined using the Concise Data Definition Language {{-CDDL}}.
-In essence, the signatures of signed statements and receipts are based on the COSE_Sign1 specification in {{Section 4.2 of -COSE}}.
+The signed statements and receipts signatures are based on the COSE_Sign1 specification in {{Section 4.2 of -COSE}}.
 As these messages provide the foundation of any transparency service implementation for global and cross-domain application interoperability, they are based on complementary COSE specifications, mainly {{-RECEIPTS}}.
 Support of COSE_Sign1 and support for extensibility of COSE Header Parameter sets is therefore a prerequisite for implementing the interoperable message layer that comes with this document.
 
