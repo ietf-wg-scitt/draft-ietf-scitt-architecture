@@ -176,7 +176,7 @@ Registering signed statements with a transparency service is akin to a notarizat
 Transparency services perform notary operations, confirming a policy is met before recording the statement on the ledger.
 The SCITT ledger represents a linear and irrevocable history of statements that were made.
 Once the signed statement is registered, the notary issues a receipt, signed by the transparency service, just as a notary stamps the document being notarized.```
-How these statements are managed or stored---beside the specified registration procedure---is out-of-scope of this document.
+How these statements are managed or stored, besides the specified registration procedure, is out of the scope of this document.
 Earlier, similar approaches for specific classes of artifacts exist, such as Certificate Transparency {{-CT}}.
 The SCITT approach follows a more generic paradigm than previous approaches.
 In this SCITT core architecture, the signed statements registered are opaque to the transparency services that act as a notary.
