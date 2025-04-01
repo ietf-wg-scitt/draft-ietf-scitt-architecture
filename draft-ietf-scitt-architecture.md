@@ -174,12 +174,10 @@ This document defines an architecture, a base set of extensible message structur
 The goal of the transparency enabled by the Supply Chain Integrity, Transparency, and Trust (SCITT) architecture is to enhance auditability and accountability for signed content (statements) that are about supply chain commodities (artifacts).
 Registering signed statements with a transparency service is akin to a notarization procedure.
 Transparency services perform notary operations, confirming a policy is met before recording the statement on the ledger.
-The SCITT ledger represents a linear and irrevocable history of statements that were made.
-Once the signed statement is registered, the notary issues a receipt, signed by the transparency service, just as a notary stamps the document being notarized.
-How these statements are managed or stored, besides the specified registration procedure, is out of the scope of this document.
+The SCITT ledger represents a linear and irrevocable history of statements made.
+Once the signed statement is registered, the transparency service issues a receipt, just as a notary stamps the document being notarized.
 Similar approaches have been implemented for specific classes of artifacts, such as Certificate Transparency {{-CT}}.
 The SCITT approach follows a more generic paradigm than previous approaches.
-In this SCITT core architecture, the signed statements registered are opaque to the transparency services that act as a notary.
 This "content-agnostic" approach allows SCITT transparency services to be either integrated in existing solutions or to be an initial part of new emerging systems.
 Extensibility is a vital feature of the SCITT architecture, so that requirements from various applications can be accommodated while always ensuring interoperability with respect to registration procedures and corresponding auditability and accountability.
 For simplicity, the scope of this document is limited to use cases originating from the software supply chain domain, but the specification defined is applicable to any other type of supply chain statements (also referred to as value-add graphs), for example, statements about hardware supply chains.
