@@ -571,7 +571,7 @@ Multi-tenant support can be enabled through the use of identifiers in the `iss` 
 Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is registered to the Verifiable Data Structure.
 For consistency across implementations, Transparency Services MUST maintain Registration Policies.
 
-Beyond the mandatory registration checks, the scope of additional checks, including no additional checks, is up to the implementation.
+Beyond the mandatory Registration checks, the scope of additional checks, including no additional checks, is up to the implementation.
 
 This specification leaves implementation, encoding and documentation of Registration Policies and trust anchors to the operator of the Transparency Service.
 
