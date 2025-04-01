@@ -781,10 +781,10 @@ Table of Contents
    certificate corresponding to the x5t value MAY be included in the
    unprotected header.
 
-   Registration Policies and trust anchors MUST be made transparent and
+   Registration Policies and trust anchors MUST be made Transparent and
    available to all Relying Parties of the Transparency Service by
-   registering them as Signed Statements on the Verifiable Data
-   Structure, and returning the associated Receipt.
+   Registering them as Signed Statements on the Verifiable Data
+   Structure.
 
    The Transparency Service MUST apply the Registration Policy that was
    most recently committed to the Verifiable Data Structure at the time
