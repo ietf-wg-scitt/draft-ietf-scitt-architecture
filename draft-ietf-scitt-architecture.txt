@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 29 September 2025                                    C. Fournet
+Expires: 3 October 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                           28 March 2025
+                                                            1 April 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 September 2025.
+   This Internet-Draft will expire on 3 October 2025.
 
 Copyright Notice
 
@@ -1481,11 +1481,9 @@ Table of Contents
 9.2.4.  Transparency Service Client Applications
 
    Authentication of Client applications is out of scope for this
-   document.  Transparency Services MUST authenticate both Client
-   applications and the Issuer of Signed Statements in order to ensure
-   that implementation of specific authentication and authorization
-   policies are enforced.  The specification of authentication and
-   authorization policies is out of scope for this document.
+   document.  Transparency Services MAY authenticate Client
+   applications.  The specification of authentication and authorization
+   policies is out of scope for this document.
 
 9.2.5.  Impersonation
 
