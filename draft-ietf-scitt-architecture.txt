@@ -86,7 +86,7 @@ Table of Contents
 
    1.  Introduction
      1.1.  Requirements Notation
-   2.  Exemplary Software Supply Chain (SSC) Use Cases
+   2.  Software Supply Chain Scope
      2.1.  Generic SSC Problem Statement
      2.2.  Eclectic SSC Use Cases
        2.2.1.  Security Analysis of a Software Product
@@ -128,32 +128,57 @@ Table of Contents
 
 1.  Introduction
 
-   This document describes the generic, interoperable, and scalable
-   SCITT architecture.  Its goal is to enhance auditability and
-   accountability across supply chains.
+   This document defines an architecture, a base set of extensible
+   message structures, and associated flows to make signed content
+   transparent via verifiable data structures maintained by
+   corresponding transparency services.  The goal of the transparency
+   enabled by the Supply Chain Integrity, Transparency, and Trust
+   (SCITT) architecture is to enhance auditability and accountability
+   for signed content (statements) that are about supply chain
+   commodities (artifacts).  Registering signed statements with a
+   transparency service is akin to a notarization procedure.
+   Transparency services perform notary operations, confirming a policy
+   is met before recording the statement on the ledger.  The SCITT
+   ledger represents a linear and irrevocable history of statements
+   made.  Once the signed statement is registered, the transparency
+   service issues a receipt, just as a notary stamps the document being
+   notarized.  Similar approaches have been implemented for specific
+   classes of artifacts, such as Certificate Transparency [RFC9162].
+   The SCITT approach follows a more generic paradigm than previous
+   approaches.  This "content-agnostic" approach allows SCITT
+   transparency services to be either integrated in existing solutions
+   or to be an initial part of new emerging systems.  Extensibility is a
+   vital feature of the SCITT architecture, so that requirements from
+   various applications can be accommodated while always ensuring
+   interoperability with respect to registration procedures and
+   corresponding auditability and accountability.  For simplicity, the
+   scope of this document is limited to use cases originating from the
+   software supply chain domain, but the specification defined is
+   applicable to any other type of supply chain statements (also
+   referred to as value-add graphs), for example, statements about
+   hardware supply chains.
 
-   In supply chains, downstream Artifacts are built upon upstream
-   Artifacts.  The complexity of traceability and quality control for
-   these supply chains increases with the number of Artifacts and
-   parties contributing to them.  There are many parties who publish
-   information about Artifacts: For example, the original manufacturer
-   may provide information about the state of the Artifact when it left
-   the factory.  The shipping company may add information about the
-   transport environment of the Artifact.  Auditors may provide
-   information about their assessment of the Artifact and its
-   reliability in their audit process.  Security companies may publish
-   vulnerability information about an Artifact.  The original
-   manufacturer may subsequently provide additional information about
-   the manufacturing process they discovered after the Artifact left the
-   factory.  Some of these parties may publish information about their
-   analysis or use of an Artifact.
+   This document also defines message structures for signed statements
+   and defines a profile for COSE receipts
+   [I-D.draft-ietf-cose-merkle-tree-proofs], i.e., signed verifiable
+   data structure proofs).  These message structures are based on the
+   Concise Binary Object Representation Standard [STD94] and
+   corresponding signing is facilitated via the CBOR Object Signing and
+   Encryption Standard [STD96].  The message structures are defined
+   using the Concise Data Definition Language [RFC8610].  The signed
+   statements and receipts are based on the COSE_Sign1 specification in
+   Section 4.2 of [STD96].  As these messages provide the foundation of
+   any transparency service implementation for global and cross-domain
+   application interoperability, they are based on complementary COSE
+   specifications, mainly [I-D.draft-ietf-cose-merkle-tree-proofs].
+   Therefore, support of COSE_Sign1 and extensibility of COSE Header
+   Parameters are prerequisites for implementing the interoperable
+   message layer included in this document.
 
-   SCITT provides a way for Relying Parties to obtain this information
-   in a way that is "transparent", that is, parties cannot lie about the
-   information that they publish without it being detected.  SCITT
-   achieves this by having producers publish information in a
-   Transparency Service, where Relying Parties can check the
-   information.
+   In summary, this specification supports relying parties obtaining
+   proof that signed statements were recorded and checked for their
+   validity at the time they were registered.  How these statements are
+   managed or stored is out-of-scope of this document.
 
 1.1.  Requirements Notation
 
@@ -163,10 +188,10 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-2.  Exemplary Software Supply Chain (SSC) Use Cases
+2.  Software Supply Chain Scope
 
    To illustrate the applicability of the SCITT architecture and its
-   messages this section details the exemplary context of software
+   messages, this section details the exemplary context of software
    supply chain (SSC) use cases.  The building blocks provided by the
    SCITT architecture and related documents (e.g.,
    [I-D.draft-ietf-scitt-scrapi]) are not restricted to software supply
@@ -427,7 +452,7 @@ Table of Contents
    included in this section.
 
    The terms "header", "payload", and "to-be-signed bytes" are defined
-   in [RFC9052].
+   in [STD96].
 
    The term "claim" is defined in [RFC8392].
 
@@ -768,9 +793,9 @@ Table of Contents
 
    During Registration, a Transparency Service MUST, at a minimum,
    syntactically check the Issuer of the Signed Statement by
-   cryptographically verifying the COSE signature according to
-   [RFC9052].  The Issuer identity MUST be bound to the Signed Statement
-   by including an identifier in the protected header.  If the protected
+   cryptographically verifying the COSE signature according to [STD96].
+   The Issuer identity MUST be bound to the Signed Statement by
+   including an identifier in the protected header.  If the protected
    header includes multiple identifiers, all those that are registered
    by the Transparency Service MUST be checked.
 
@@ -857,7 +882,7 @@ Table of Contents
 
 6.  Signed Statements
 
-   This specification prioritizes conformance to [RFC9052] and its
+   This specification prioritizes conformance to [STD96] and its
    required and optional properties.  Profiles and implementation
    specific choices should be used to determine admissibility of
    conforming messages.  This specification is left intentionally open
@@ -1030,7 +1055,7 @@ Table of Contents
 
    2.  *TS Signed Statement Verification and Validation:* The
        Transparency Service MUST perform signature verification per
-       Section 4.4 of [RFC9052] and MUST verify the signature of the
+       Section 4.4 of [STD96] and MUST verify the signature of the
        Signed Statement with the signature algorithm and verification
        key of the Issuer per [RFC9360].  The Transparency Service MUST
        also check the Signed Statement includes the required protected
@@ -1095,7 +1120,7 @@ Table of Contents
 
    Figure 6 illustrates a normative CDDL definition of Transparent
    Statements.  See Figure 3 for the CDDL rule that defines 'COSE_Sign1'
-   as specified in Section 4.2 of [RFC9052]
+   as specified in Section 4.2 of [STD96]
 
    Transparent_Statement = #6.18(COSE_Sign1)
 
@@ -1193,7 +1218,7 @@ Table of Contents
 7.1.  Validation
 
    Relying Parties MUST apply the verification process as described in
-   Section 4.4 of RFC9052, when checking the signature of Signed
+   Section 4.4 of [STD96], when checking the signature of Signed
    Statements and Receipts.
 
    A Relying Party MUST trust the verification key or certificate and
@@ -1572,15 +1597,20 @@ Table of Contents
               JSON Data Structures", RFC 8610, DOI 10.17487/RFC8610,
               June 2019, <https://www.rfc-editor.org/rfc/rfc8610>.
 
-   [RFC9052]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
-              Structures and Process", STD 96, RFC 9052,
-              DOI 10.17487/RFC9052, August 2022,
-              <https://www.rfc-editor.org/rfc/rfc9052>.
-
    [RFC9360]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
               Header Parameters for Carrying and Referencing X.509
               Certificates", RFC 9360, DOI 10.17487/RFC9360, February
               2023, <https://www.rfc-editor.org/rfc/rfc9360>.
+
+   [STD94]    Bormann, C. and P. Hoffman, "Concise Binary Object
+              Representation (CBOR)", STD 94, RFC 8949,
+              DOI 10.17487/RFC8949, December 2020,
+              <https://www.rfc-editor.org/rfc/rfc8949>.
+
+   [STD96]    Schaad, J., "CBOR Object Signing and Encryption (COSE):
+              Structures and Process", STD 96, RFC 9052,
+              DOI 10.17487/RFC9052, August 2022,
+              <https://www.rfc-editor.org/rfc/rfc9052>.
 
 11.2.  Informative References
 
@@ -1784,7 +1814,7 @@ Appendix B.  Signing Statements Remotely
    Internet.  In these cases a Statement can also be hash, which becomes
    the payload included in COSE to-be-signed bytes.  A Signed Statement
    (COSE_Sign1) MUST be produced from the to-be-signed bytes according
-   to Section 4.4 of [RFC9052].
+   to Section 4.4 of [STD96].
 
       .----+-----.
      |  Artifact  |
