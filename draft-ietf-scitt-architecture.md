@@ -568,14 +568,10 @@ Multi-tenant support can be enabled through the use of identifiers in the `iss` 
 
 ### Registration Policies
 
-Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is accepted to be registered to the Verifiable Data Structure.
+Registration Policies refer to additional checks over and above the Mandatory Registration Checks that are performed before a Signed Statement is registered to the Verifiable Data Structure.
+For consistency across implementations, Transparency Services MUST maintain Registration Policies.
 
-Transparency Services MUST maintain Registration Policies.
-Transparency Services MUST maintain a list of trust anchors (see definition of trust anchor in {{-Glossary}}) in order to check the signatures of Signed Statements, either separately, or inside Registration Policies.
-Transparency Services MUST authenticate Signed Statements as part of a Registration Policy.
-For instance, a trust anchor could be an X.509 root certificate (directly or its thumbprint), a pointer to an OpenID Connect identity provider, or any other COSE-compatible trust anchor.
-
-Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Verifiable Data Structure, and distributing the associated Receipts.
+Beyond the mandatory registration checks, the scope of additional checks, including no additional checks, is up to the implementation.
 
 This specification leaves implementation, encoding and documentation of Registration Policies and trust anchors to the operator of the Transparency Service.
 
@@ -585,10 +581,15 @@ During Registration, a Transparency Service MUST, at a minimum, syntactically ch
 The Issuer identity MUST be bound to the Signed Statement by including an identifier in the protected header.
 If the protected header includes multiple identifiers, all those that are registered by the Transparency Service MUST be checked.
 
-When using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certification path from an Issuer's certificate to one of the root certificates currently registered as a trust anchor by the Transparency Service.
+Transparency Services MUST maintain a list of trust anchors (see definition of trust anchor in {{-Glossary}}) in order to check the signatures of Signed Statements, either separately, or inside Registration Policies.
+Transparency Services MUST authenticate Signed Statements as part of a Registration Policy.
+For instance, a trust anchor could be an X.509 root certificate (directly or its thumbprint), a pointer to an OpenID Connect identity provider, or any other COSE-compatible trust anchor.
 
+When using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certification path from an Issuer's certificate to one of the root certificates currently registered as a trust anchor by the Transparency Service.
 The protected header of the COSE_Sign1 Envelope MUST include either the Issuer's certificate as `x5t` or the chain including the Issuer's certificate as `x5chain`.
 If `x5t` is included in the protected header, an `x5chain` with a leaf certificate corresponding to the `x5t` value MAY be included in the unprotected header.
+
+Registration Policies and trust anchors MUST be made transparent and available to all Relying Parties of the Transparency Service by registering them as Signed Statements on the Verifiable Data Structure, and distributing the associated Receipts.
 
 The Transparency Service MUST apply the Registration Policy that was most recently committed to the Verifiable Data Structure at the time of Registration.
 
