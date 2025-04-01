@@ -190,6 +190,7 @@ As these messages provide the foundation of any transparency service implementat
 Therefore, support of COSE_Sign1 and extensibility of COSE Header Parameters are prerequisites for implementing the interoperable message layer included in this document.
 
 In summary, this specification supports relying parties obtaining proof that signed statements were recorded and checked for their validity at the time they were registered.
+How these statements are managed or stored is out-of-scope of this document.
 
 ## Requirements Notation
 
