@@ -173,7 +173,7 @@ The complexity of traceability and quality control for these supply chains incre
 There are many parties who publish information about Artifacts:
 For example, the original manufacturer may provide information about the state of the Artifact when it left the factory.
 The shipping company may add information about the transport environment of the Artifact.
-Auditors may provide information about their assessment of the Artifact.
+Auditors may provide information about their assessment of the Artifact and its reliability in their audit process.
 Security companies may publish vulnerability information about an Artifact.
 The original manufacturer may subsequently provide additional information about the manufacturing process they discovered after the Artifact left the factory.
 Some of these parties may publish information about their analysis or use of an Artifact.
