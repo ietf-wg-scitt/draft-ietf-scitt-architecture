@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-30T00:55:39.504659+00:00",
+  "timestamp": "2025-04-01T00:58:21.825498+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -51232,18 +51232,26 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-03-28T14:58:50Z",
-      "updatedAt": "2025-03-28T15:15:26Z",
+      "updatedAt": "2025-03-31T19:11:48Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "4ad18b4a86b4741b569989ebca94bc815dbd6055",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "publication-polish",
-      "headRefOid": "43178f1915abd9e00d316c7ff3a7c2e7011ad679",
+      "headRefOid": "105b9e0c3f740e8318a87d724705d7a7b4470a9f",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@henkbirkholz arguably ready for review?",
+          "createdAt": "2025-03-31T14:15:27Z",
+          "updatedAt": "2025-03-31T14:15:27Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOIvmHss6ieU8h",
@@ -51282,6 +51290,565 @@
               "body": "```suggestion\r\nIn this SCITT core architecture, the signed statements registered are opaque to the transparency services that act as a notary.\r\n```",
               "createdAt": "2025-03-28T15:06:07Z",
               "updatedAt": "2025-03-28T15:06:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ioqJj",
+          "commit": {
+            "abbreviatedOid": "43178f1"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T08:35:11Z",
+          "updatedAt": "2025-03-31T08:35:11Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nThis document defines an architecture, a base set of extensible message structures and associated flows to make signed data items transparent via verifiable data structures maintained by corresponding transparency services.\r\n```\r\nSeems slightly more logical to introduce the messages first and the flows next.",
+              "createdAt": "2025-03-31T08:35:11Z",
+              "updatedAt": "2025-03-31T08:35:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iorYo",
+          "commit": {
+            "abbreviatedOid": "43178f1"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T08:37:29Z",
+          "updatedAt": "2025-03-31T08:37:29Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\nRegistering signed statements with a transparency service is akin to a notarization procedure.\r\n```\r\nFeels more natural, but I am not sure, and a review from a native speaker would be ideal :)",
+              "createdAt": "2025-03-31T08:37:29Z",
+              "updatedAt": "2025-03-31T08:37:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iosDX",
+          "commit": {
+            "abbreviatedOid": "43178f1"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T08:38:36Z",
+          "updatedAt": "2025-03-31T08:38:36Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nTransparency services therefore act like notaries that each record (register) a single, linear and irrevocable history of statements that were made.\r\n```",
+              "createdAt": "2025-03-31T08:38:36Z",
+              "updatedAt": "2025-03-31T08:38:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iosw7",
+          "commit": {
+            "abbreviatedOid": "43178f1"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T08:39:50Z",
+          "updatedAt": "2025-03-31T08:39:50Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\nEarlier, similar approaches for specific classes of artifacts exist, such as Certificate Transparency {{-CT}}.\r\n```",
+              "createdAt": "2025-03-31T08:39:50Z",
+              "updatedAt": "2025-03-31T08:39:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iotgR",
+          "commit": {
+            "abbreviatedOid": "43178f1"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T08:41:12Z",
+          "updatedAt": "2025-03-31T08:41:12Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\nIn its core architecture, signed statements are opaque to the transparency services that act as notaries.\r\n```",
+              "createdAt": "2025-03-31T08:41:12Z",
+              "updatedAt": "2025-03-31T08:41:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ioukI",
+          "commit": {
+            "abbreviatedOid": "43178f1"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T08:43:08Z",
+          "updatedAt": "2025-03-31T08:43:09Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "```suggestion\r\nThis \"content-agnostic\" approach allows SCITT transparency services to be either integrated in existing solutions or to be an initial part of new emerging systems.\r\n```",
+              "createdAt": "2025-03-31T08:43:08Z",
+              "updatedAt": "2025-03-31T08:43:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iou7G",
+          "commit": {
+            "abbreviatedOid": "43178f1"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T08:43:49Z",
+          "updatedAt": "2025-03-31T08:43:49Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\nExtensibility is a vital feature of the SCITT architecture, so that requirements from various applications can be accommodated while always ensuring interoperability with respect to registration procedures and corresponding auditability and accountability.\r\n```",
+              "createdAt": "2025-03-31T08:43:49Z",
+              "updatedAt": "2025-03-31T08:43:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ioySu",
+          "commit": {
+            "abbreviatedOid": "43178f1"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "This looks good to me (but let's not forget to delete the old intro). I have proposed some minor tweaks, which can be entirely disregarded without consequence if they do not help clarity.",
+          "createdAt": "2025-03-31T08:50:09Z",
+          "updatedAt": "2025-03-31T08:50:09Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6io4YO",
+          "commit": {
+            "abbreviatedOid": "dd04741"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T09:01:02Z",
+          "updatedAt": "2025-03-31T09:01:02Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "Ah. I prefer to repeat the subject to make reference to previous sentences more unambiguous, but I can live with one \"it\".",
+              "createdAt": "2025-03-31T09:01:02Z",
+              "updatedAt": "2025-03-31T09:01:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iqw5A",
+          "commit": {
+            "abbreviatedOid": "33ee990"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T12:29:31Z",
+          "updatedAt": "2025-03-31T12:29:32Z",
+          "comments": [
+            {
+              "originalPosition": 45,
+              "body": "Drop lines 195 to 210?",
+              "createdAt": "2025-03-31T12:29:32Z",
+              "updatedAt": "2025-03-31T12:29:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iqw8a",
+          "commit": {
+            "abbreviatedOid": "33ee990"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T12:29:38Z",
+          "updatedAt": "2025-03-31T12:29:38Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-03-31T12:29:38Z",
+              "updatedAt": "2025-03-31T12:29:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iqxlO",
+          "commit": {
+            "abbreviatedOid": "33ee990"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-31T12:30:47Z",
+          "updatedAt": "2025-03-31T12:30:47Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6irQ1i",
+          "commit": {
+            "abbreviatedOid": "33ee990"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T13:12:19Z",
+          "updatedAt": "2025-03-31T13:12:20Z",
+          "comments": [
+            {
+              "originalPosition": 45,
+              "body": "okay",
+              "createdAt": "2025-03-31T13:12:19Z",
+              "updatedAt": "2025-03-31T13:12:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6isEYH",
+          "commit": {
+            "abbreviatedOid": "0901873"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-31T14:14:48Z",
+          "updatedAt": "2025-03-31T14:14:48Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6it6NO",
+          "commit": {
+            "abbreviatedOid": "968ac91"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T17:05:18Z",
+          "updatedAt": "2025-03-31T17:05:18Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "@henkbirkholz what is this format? Just curious why this was changed, and should we do it consistently? ",
+              "createdAt": "2025-03-31T17:05:18Z",
+              "updatedAt": "2025-03-31T17:05:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iuAwb",
+          "commit": {
+            "abbreviatedOid": "968ac91"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T17:17:19Z",
+          "updatedAt": "2025-03-31T17:17:19Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "\"data items\" feels weird, How about \"content\", rather than jumping into techno \"payloads\"\r\n\r\n```suggestion\r\nThis document defines an architecture, a base set of extensible message structures, and associated flows to make signed content transparent via verifiable data structures maintained by corresponding transparency services.\r\n```",
+              "createdAt": "2025-03-31T17:17:19Z",
+              "updatedAt": "2025-03-31T17:17:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iuBP1",
+          "commit": {
+            "abbreviatedOid": "968ac91"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T17:18:18Z",
+          "updatedAt": "2025-03-31T17:18:19Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "```suggestion\r\nThe goal of the transparency enabled by the Supply Chain Integrity, Transparency, and Trust (SCITT) architecture is to enhance auditability and accountability for signed content (statements) that are about supply chain commodities (artifacts).\r\n```",
+              "createdAt": "2025-03-31T17:18:18Z",
+              "updatedAt": "2025-03-31T17:18:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iuEQy",
+          "commit": {
+            "abbreviatedOid": "968ac91"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T17:24:20Z",
+          "updatedAt": "2025-03-31T17:24:20Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "```suggestion\r\nTransparency services perform notary operations, confirming a policy is met before recording the statement on the ledger.\r\nOne the signed statement is registered, the notary issues a receipt, signed by the transparency service, just as a notary stamps the document being notarized.```",
+              "createdAt": "2025-03-31T17:24:20Z",
+              "updatedAt": "2025-03-31T17:24:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iuEjL",
+          "commit": {
+            "abbreviatedOid": "968ac91"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T17:24:56Z",
+          "updatedAt": "2025-03-31T17:24:56Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "```suggestion\r\nHow these statements are managed or stored, besides the specified registration procedure, is out of the scope of this document.\r\n```",
+              "createdAt": "2025-03-31T17:24:56Z",
+              "updatedAt": "2025-03-31T17:24:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iuGHU",
+          "commit": {
+            "abbreviatedOid": "968ac91"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T17:27:59Z",
+          "updatedAt": "2025-03-31T17:27:59Z",
+          "comments": [
+            {
+              "originalPosition": 43,
+              "body": "```suggestion\r\nSimilar approaches have been implemented for specific classes of artifacts, such as Certificate Transparency {{-CT}}.\r\n```",
+              "createdAt": "2025-03-31T17:27:59Z",
+              "updatedAt": "2025-03-31T17:27:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iuH3o",
+          "commit": {
+            "abbreviatedOid": "968ac91"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T17:31:22Z",
+          "updatedAt": "2025-03-31T17:31:23Z",
+          "comments": [
+            {
+              "originalPosition": 45,
+              "body": "```suggestion\r\nIn the SCITT architecture, the signed statements are opaque to the transparency service, just as a notary doesn't evaluate the document being notarized.\r\n```",
+              "createdAt": "2025-03-31T17:31:23Z",
+              "updatedAt": "2025-03-31T17:31:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iuJES",
+          "commit": {
+            "abbreviatedOid": "968ac91"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T17:33:48Z",
+          "updatedAt": "2025-03-31T17:33:48Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "```suggestion\r\nSimilar to a notary that isn't specific to a document type, the SCITT Architecture \"content-agnostic\" approach allows SCITT transparency services to be integrated into existing solutions or an initial part of emerging systems.\r\n```",
+              "createdAt": "2025-03-31T17:33:48Z",
+              "updatedAt": "2025-03-31T17:33:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iuKJ0",
+          "commit": {
+            "abbreviatedOid": "968ac91"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T17:36:00Z",
+          "updatedAt": "2025-03-31T17:36:01Z",
+          "comments": [
+            {
+              "originalPosition": 50,
+              "body": "I thought we were avoiding \"countersignatures\" \ud83e\udd37\u200d\u2642\ufe0f ",
+              "createdAt": "2025-03-31T17:36:00Z",
+              "updatedAt": "2025-03-31T17:36:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iuKeO",
+          "commit": {
+            "abbreviatedOid": "968ac91"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T17:36:40Z",
+          "updatedAt": "2025-03-31T17:36:40Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "```suggestion\r\nThe signed statements and receipts signatures are based on the COSE_Sign1 specification in {{Section 4.2 of -COSE}}.\r\n```",
+              "createdAt": "2025-03-31T17:36:40Z",
+              "updatedAt": "2025-03-31T17:37:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iuLIx",
+          "commit": {
+            "abbreviatedOid": "968ac91"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T17:38:00Z",
+          "updatedAt": "2025-03-31T17:38:01Z",
+          "comments": [
+            {
+              "originalPosition": 55,
+              "body": "```suggestion\r\nTherefore, support of COSE_Sign1 and extensibility of COSE Header Parameters are prerequisites for implementing the interoperable message layer included in this document.\r\n```",
+              "createdAt": "2025-03-31T17:38:01Z",
+              "updatedAt": "2025-03-31T17:38:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iuMo2",
+          "commit": {
+            "abbreviatedOid": "968ac91"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T17:40:56Z",
+          "updatedAt": "2025-03-31T17:40:56Z",
+          "comments": [
+            {
+              "originalPosition": 57,
+              "body": "```suggestion\r\nIn summary, this specification supports relying parties obtaining proof that signed statements were recorded and checked for their validity at the time they were registered.\r\nThe validity can be rechecked after the fact via transparency services as defined in this document.\r\n```\r\nI'm not sure the last sentence is needed.",
+              "createdAt": "2025-03-31T17:40:56Z",
+              "updatedAt": "2025-03-31T17:41:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iuND6",
+          "commit": {
+            "abbreviatedOid": "968ac91"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T17:41:46Z",
+          "updatedAt": "2025-03-31T17:41:46Z",
+          "comments": [
+            {
+              "originalPosition": 64,
+              "body": "```suggestion\r\n# Software Supply Chain Scope\r\n```",
+              "createdAt": "2025-03-31T17:41:46Z",
+              "updatedAt": "2025-03-31T17:41:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6iu746",
+          "commit": {
+            "abbreviatedOid": "105b9e0"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T18:39:45Z",
+          "updatedAt": "2025-03-31T18:39:54Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "I'd prefer data items or payloads over content. Content vague, and this is a technical specification.",
+              "createdAt": "2025-03-31T18:39:45Z",
+              "updatedAt": "2025-03-31T18:39:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ivMEg",
+          "commit": {
+            "abbreviatedOid": "105b9e0"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-31T19:11:48Z",
+          "updatedAt": "2025-03-31T19:11:48Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "We do now. Here in this I-D. It's an annotation for the reference to be part of an Internet Standard document.",
+              "createdAt": "2025-03-31T19:11:48Z",
+              "updatedAt": "2025-03-31T19:11:48Z"
             }
           ]
         }
