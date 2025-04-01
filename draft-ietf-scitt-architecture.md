@@ -155,10 +155,10 @@ informative:
 --- abstract
 
 Traceability of physical and digital Artifacts in supply chains is a long-standing, but increasingly serious security concern.
-The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates) but lacks a generic and scalable architecture that can address a wider range of use cases.
+The rise in popularity of verifiable data structures as a mechanism to implement accountability for tampering or equivocation has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases.
 
 This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
-It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing and compliance requirements.
+It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing procedures and regulatory requirements.
 Issuers can register their Signed Statements on one or more Transparency Services, with the guarantee that any Relying Parties will be able to verify them.
 
 --- middle
@@ -173,7 +173,7 @@ The complexity of traceability and quality control for these supply chains incre
 There are many parties who publish information about Artifacts:
 For example, the original manufacturer may provide information about the state of the Artifact when it left the factory.
 The shipping company may add information about the transport environment of the Artifact.
-Compliance Auditors may provide information about their compliance assessment of the Artifact.
+Auditors may provide information about their assessment of the Artifact and its reliability in their audit process.
 Security companies may publish vulnerability information about an Artifact.
 The original manufacturer may subsequently provide additional information about the manufacturing process they discovered after the Artifact left the factory.
 Some of these parties may publish information about their analysis or use of an Artifact.
@@ -194,7 +194,7 @@ Software supply chains serve as a useful application guidance and first usage sc
 ## Generic SSC Problem Statement
 
 Supply chain security is a prerequisite to protecting consumers and minimizing economic, public health, and safety threats.
-Supply chain security has historically focused on risk management practices to safeguard logistics, meet compliance regulations, forecast demand, and optimize inventory.
+Supply chain security has historically focused on risk management practices to safeguard logistics, meet regulatory requirements, forecast demand, and optimize inventory.
 While these elements are foundational to a healthy supply chain, an integrated cyber security-based perspective of the software supply chains remains broadly undefined.
 Recently, the global community has experienced numerous supply chain attacks targeting weaknesses in software supply chains.
 As illustrated in {{lifecycle-threats}}, a software supply chain attack may leverage one or more life-cycle stages and directly or indirectly target the component.
@@ -248,7 +248,7 @@ As illustrated in {{lifecycle-threats}}, a software supply chain attack may leve
 {: #lifecycle-threats title="Example SSC Life-Cycle Threats"}
 
 DevSecOps often depends on third-party and open-source software.
-These dependencies can be quite complex throughout the supply chain and render the checking of lifecycle compliance difficult.
+These dependencies can be quite complex throughout the supply chain, so checking provenance and traceability throughout their lifecycle is difficult.
 There is a need for manageable auditability and accountability of digital products.
 Typically, the range of types of statements about digital products (and their dependencies) is vast, heterogeneous, and can differ between community policy requirements.
 Taking the type and structure of all statements about digital and products into account might not be possible.
@@ -269,7 +269,7 @@ The three following use cases are a specialization derived from the generic prob
 
 ### Security Analysis of a Software Product
 
-A released software product is often accompanied by a set of complementary statements about its security compliance.
+A released software product is often accompanied by a set of complementary statements about its security properties.
 This gives enough confidence to both producers and consumers that the released software meets the expected security standards and is suitable to use.
 
 Subsequently, multiple security researchers often run sophisticated security analysis tools on the same product.
