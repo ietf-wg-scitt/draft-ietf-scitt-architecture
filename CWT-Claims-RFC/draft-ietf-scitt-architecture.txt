@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 4 September 2025                                     C. Fournet
+Expires: 5 October 2025                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                            3 March 2025
+                                                            3 April 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -21,20 +21,20 @@ Abstract
 
    Traceability of physical and digital Artifacts in supply chains is a
    long-standing, but increasingly serious security concern.  The rise
-   in popularity of verifiable data structures as a mechanism to make
-   actors more accountable for breaching their compliance promises has
-   found some successful applications to specific use cases (such as the
-   supply chain for digital certificates), but lacks a generic and
-   scalable architecture that can address a wider range of use cases.
+   in popularity of verifiable data structures as a mechanism to
+   implement accountability for tampering or equivocation has found some
+   successful applications to specific use cases (such as the supply
+   chain for digital certificates), but lacks a generic and scalable
+   architecture that can address a wider range of use cases.
 
    This document defines a generic, interoperable and scalable
    architecture to enable transparency across any supply chain with
    minimum adoption barriers.  It provides flexibility, enabling
    interoperability across different implementations of Transparency
-   Services with various auditing and compliance requirements.  Issuers
-   can register their Signed Statements on one or more Transparency
-   Services, with the guarantee that any Relying Parties will be able to
-   verify them.
+   Services with various auditing procedures and regulatory
+   requirements.  Issuers can register their Signed Statements on one or
+   more Transparency Services, with the guarantee that any Relying
+   Parties will be able to verify them.
 
 About This Document
 
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 September 2025.
+   This Internet-Draft will expire on 5 October 2025.
 
 Copyright Notice
 
@@ -86,7 +86,7 @@ Table of Contents
 
    1.  Introduction
      1.1.  Requirements Notation
-   2.  Exemplary Software Supply Chain (SSC) Use Cases
+   2.  Software Supply Chain Scope
      2.1.  Generic SSC Problem Statement
      2.2.  Eclectic SSC Use Cases
        2.2.1.  Security Analysis of a Software Product
@@ -128,32 +128,57 @@ Table of Contents
 
 1.  Introduction
 
-   This document describes the generic, interoperable, and scalable
-   SCITT architecture.  Its goal is to enhance auditability and
-   accountability across supply chains.
+   This document defines an architecture, a base set of extensible
+   message structures, and associated flows to make signed content
+   transparent via verifiable data structures maintained by
+   corresponding transparency services.  The goal of the transparency
+   enabled by the Supply Chain Integrity, Transparency, and Trust
+   (SCITT) architecture is to enhance auditability and accountability
+   for signed content (statements) that are about supply chain
+   commodities (artifacts).  Registering signed statements with a
+   transparency service is akin to a notarization procedure.
+   Transparency services perform notary operations, confirming a policy
+   is met before recording the statement on the ledger.  The SCITT
+   ledger represents a linear and irrevocable history of statements
+   made.  Once the signed statement is registered, the transparency
+   service issues a receipt, just as a notary stamps the document being
+   notarized.  Similar approaches have been implemented for specific
+   classes of artifacts, such as Certificate Transparency [RFC9162].
+   The SCITT approach follows a more generic paradigm than previous
+   approaches.  This "content-agnostic" approach allows SCITT
+   transparency services to be either integrated in existing solutions
+   or to be an initial part of new emerging systems.  Extensibility is a
+   vital feature of the SCITT architecture, so that requirements from
+   various applications can be accommodated while always ensuring
+   interoperability with respect to registration procedures and
+   corresponding auditability and accountability.  For simplicity, the
+   scope of this document is limited to use cases originating from the
+   software supply chain domain, but the specification defined is
+   applicable to any other type of supply chain statements (also
+   referred to as value-add graphs), for example, statements about
+   hardware supply chains.
 
-   In supply chains, downstream Artifacts are built upon upstream
-   Artifacts.  The complexity of traceability and quality control for
-   these supply chains increases with the number of Artifacts and
-   parties contributing to them.  There are many parties who publish
-   information about Artifacts: For example, the original manufacturer
-   may provide information about the state of the Artifact when it left
-   the factory.  The shipping company may add information about the
-   transport environment of the Artifact.  Compliance Auditors may
-   provide information about their compliance assessment of the
-   Artifact.  Security companies may publish vulnerability information
-   about an Artifact.  The original manufacturer may subsequently
-   provide additional information about the manufacturing process they
-   discovered after the Artifact left the factory.  Some of these
-   parties may publish information about their analysis or use of an
-   Artifact.
+   This document also defines message structures for signed statements
+   and defines a profile for COSE receipts
+   [I-D.draft-ietf-cose-merkle-tree-proofs], i.e., signed verifiable
+   data structure proofs).  These message structures are based on the
+   Concise Binary Object Representation Standard [STD94] and
+   corresponding signing is facilitated via the CBOR Object Signing and
+   Encryption Standard [STD96].  The message structures are defined
+   using the Concise Data Definition Language [RFC8610].  The signed
+   statements and receipts are based on the COSE_Sign1 specification in
+   Section 4.2 of [STD96].  As these messages provide the foundation of
+   any transparency service implementation for global and cross-domain
+   application interoperability, they are based on complementary COSE
+   specifications, mainly [I-D.draft-ietf-cose-merkle-tree-proofs].
+   Therefore, support of COSE_Sign1 and extensibility of COSE Header
+   Parameters are prerequisites for implementing the interoperable
+   message layer included in this document.
 
-   SCITT provides a way for Relying Parties to obtain this information
-   in a way that is "transparent", that is, parties cannot lie about the
-   information that they publish without it being detected.  SCITT
-   achieves this by having producers publish information in a
-   Transparency Service, where Relying Parties can check the
-   information.
+   In summary, this specification supports relying parties obtaining
+   proof that signed statements were recorded and checked for their
+   validity at the time they were registered.  How these statements are
+   managed or stored is out-of-scope of this document.
 
 1.1.  Requirements Notation
 
@@ -163,10 +188,10 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-2.  Exemplary Software Supply Chain (SSC) Use Cases
+2.  Software Supply Chain Scope
 
    To illustrate the applicability of the SCITT architecture and its
-   messages this section details the exemplary context of software
+   messages, this section details the exemplary context of software
    supply chain (SSC) use cases.  The building blocks provided by the
    SCITT architecture and related documents (e.g.,
    [I-D.draft-ietf-scitt-scrapi]) are not restricted to software supply
@@ -178,7 +203,7 @@ Table of Contents
    Supply chain security is a prerequisite to protecting consumers and
    minimizing economic, public health, and safety threats.  Supply chain
    security has historically focused on risk management practices to
-   safeguard logistics, meet compliance regulations, forecast demand,
+   safeguard logistics, meet regulatory requirements, forecast demand,
    and optimize inventory.  While these elements are foundational to a
    healthy supply chain, an integrated cyber security-based perspective
    of the software supply chains remains broadly undefined.  Recently,
@@ -235,19 +260,19 @@ Table of Contents
                   Figure 1: Example SSC Life-Cycle Threats
 
    DevSecOps often depends on third-party and open-source software.
-   These dependencies can be quite complex throughout the supply chain
-   and render the checking of lifecycle compliance difficult.  There is
-   a need for manageable auditability and accountability of digital
-   products.  Typically, the range of types of statements about digital
-   products (and their dependencies) is vast, heterogeneous, and can
-   differ between community policy requirements.  Taking the type and
-   structure of all statements about digital and products into account
-   might not be possible.  Examples of statements may include commit
-   signatures, build environment and parameters, software bill of
-   materials, static and dynamic application security testing results,
-   fuzz testing results, release approvals, deployment records,
-   vulnerability scan results, and patch logs.  In consequence, instead
-   of trying to understand and describe the detailed syntax and
+   These dependencies can be quite complex throughout the supply chain,
+   so checking provenance and traceability throughout their lifecycle is
+   difficult.  There is a need for manageable auditability and
+   accountability of digital products.  Typically, the range of types of
+   statements about digital products (and their dependencies) is vast,
+   heterogeneous, and can differ between community policy requirements.
+   Taking the type and structure of all statements about digital and
+   products into account might not be possible.  Examples of statements
+   may include commit signatures, build environment and parameters,
+   software bill of materials, static and dynamic application security
+   testing results, fuzz testing results, release approvals, deployment
+   records, vulnerability scan results, and patch logs.  In consequence,
+   instead of trying to understand and describe the detailed syntax and
    semantics of every type of statement about digital products, the
    SCITT architecture focuses on ensuring statement authenticity,
    visibility/transparency, and intends to provide scalable
@@ -260,7 +285,7 @@ Table of Contents
    revocation is too hard.
 
    Lastly, where data exchange underpins serious business decision-
-   making it is important to hold the producers of those data to a
+   making, it is important to hold the producers of those data to a
    higher standard of accountability.  The SCITT architecture provides
    mechanisms and structures for ensuring that the makers of
    authoritative statements can be held accountable and not hide or
@@ -277,9 +302,10 @@ Table of Contents
 2.2.1.  Security Analysis of a Software Product
 
    A released software product is often accompanied by a set of
-   complementary statements about its security compliance.  This gives
+   complementary statements about its security properties.  This gives
    enough confidence to both producers and consumers that the released
-   software meets expected security standards and is suitable to use.
+   software meets the expected security standards and is suitable to
+   use.
 
    Subsequently, multiple security researchers often run sophisticated
    security analysis tools on the same product.  The intention is to
@@ -339,7 +365,7 @@ Table of Contents
    commercial offerings.  The released software component is accompanied
    by a statement of authenticity.  Over time, due to its enhanced
    applicability to various products, there has been an increasing
-   amount of multiple providers of the same software component version
+   number of multiple providers of the same software component version
    on the internet.
 
    Some providers include this particular software component as part of
@@ -389,7 +415,7 @@ Table of Contents
    getting various software components from multiple suppliers,
    producing an integrated package deployed as part of device assembly.
    For example, car manufacturers source integrated software for their
-   autonomous vehicles from third parties that integrates software
+   autonomous vehicles from third parties that integrate software
    components from various sources.  Integration complexity creates a
    higher risk of security vulnerabilities to the delivered software.
 
@@ -426,7 +452,7 @@ Table of Contents
    included in this section.
 
    The terms "header", "payload", and "to-be-signed bytes" are defined
-   in [RFC9052].
+   in [STD96].
 
    The term "claim" is defined in [RFC8392].
 
@@ -477,11 +503,11 @@ Table of Contents
    Non-equivocation:  a state where all proofs provided by the
       Transparency Service to Relying Parties are produced from a Single
       Verifiable Data Structure describing a unique sequence of Signed
-      Statements, and are therefore consistent.  Over time, an Issuer
-      may register new Signed Statements about an Artifact in a
-      Transparency Service with new information.  However, the
-      consistency of a collection of Signed Statements about the
-      Artifact can be checked by all Relying Parties.
+      Statements and are therefore consistent.  Over time, an Issuer may
+      register new Signed Statements about an Artifact in a Transparency
+      Service with new information.  However, the consistency of a
+      collection of Signed Statements about the Artifact can be checked
+      by all Relying Parties.
 
    Receipt:  a cryptographic proof that a Signed Statement is included
       in the Verifiable Data Structure.  See
@@ -517,12 +543,13 @@ Table of Contents
       software Artifact, an endorsement or attestation about an
       Artifact, indicate the End of Life (EOL), redirection to a newer
       version, or any content an Issuer wishes to publish about an
-      Artifact.  The additional Statements about an Artifact are
-      correlated by the Subject defined in the [CWT_CLAIMS] protected
-      header.  The Statement is considered opaque to Transparency
+      Artifact.  Additional Statements about an Artifact are correlated
+      by the Subject Claim as defined in the IANA CWT [IANA.cwt]
+      registry and used as a protected header parameter as defined in
+      [RFC9597].  The Statement is considered opaque to Transparency
       Service, and MAY be encrypted.
 
-   Subject:  an identifier, defined by the Issuer, that represents the
+   Subject:  an identifier, defined by the Issuer, which represents the
       organization, device, user, entity, or Artifact about which
       Statements (and Receipts) are made and by which a logical
       collection of Statements can be grouped.  It is possible that
@@ -534,15 +561,15 @@ Table of Contents
       all Transparent Statements associated to a specific Subject.
 
    Transparency Service:  an entity that maintains and extends the
-      Verifiable Data Structure, and endorses its state.  The identity
-      of a Transparency Service is captured by a public key that must be
+      Verifiable Data Structure and endorses its state.  The identity of
+      a Transparency Service is captured by a public key that must be
       known by Relying Parties in order to validate Receipts.
 
    Transparent Statement:  a Signed Statement that is augmented with a
       Receipt created via Registration in a Transparency Service.  The
       Receipt is stored in the unprotected header of COSE Envelope of
       the Signed Statement.  A Transparent Statement remains a valid
-      Signed Statement, and may be registered again in a different
+      Signed Statement and may be registered again in a different
       Transparency Service.
 
    Verifiable Data Structure:  a data structure which supports one or
@@ -634,9 +661,9 @@ Table of Contents
 
 5.  Architecture Overview
 
-   The SCITT architecture consists of a very loose federation of
-   Transparency Services, and a set of common formats and protocols for
-   issuing and registering Signed Statements, and auditing Transparent
+   The SCITT architecture enables a loose federation of Transparency
+   Services, by providing a set of common formats and protocols for
+   issuing and registering Signed Statements and auditing Transparent
    Statements.
 
    In order to accommodate as many Transparency Service implementations
@@ -722,9 +749,9 @@ Table of Contents
    Verifiable Data Structure records registered Signed Statements and
    supports the production of Receipts.
 
-   All Transparency Services MUST expose APIs
-   ([I-D.draft-ietf-scitt-scrapi] for the Registration of Signed
-   Statements and issuance of Receipts.
+   All Transparency Services MUST expose the minimally conformant APIs,
+   defined in ([I-D.draft-ietf-scitt-scrapi] for the Registration of
+   Signed Statements and issuance of Receipts.
 
    Transparency Services MAY support additional APIs for auditing, for
    instance querying the history of Signed Statements.
@@ -741,23 +768,12 @@ Table of Contents
 
    Registration Policies refer to additional checks over and above the
    Mandatory Registration Checks that are performed before a Signed
-   Statement is accepted to be registered to the Verifiable Data
-   Structure.
+   Statement is registered to the Verifiable Data Structure.  To enable
+   audit-ability, Transparency Services MUST maintain Registration
+   Policies.
 
-   Transparency Services MUST maintain Registration Policies.
-   Transparency Services MUST maintain a list of trust anchors (see
-   definition of trust anchor in [RFC4949]) in order to check the
-   signatures of Signed Statements, either separately, or inside
-   Registration Policies.  Transparency Services MUST authenticate
-   Signed Statements as part of a Registration Policy.  For instance, a
-   trust anchor could be an X.509 root certificate (directly or its
-   thumbprint), a pointer to an OpenID Connect identity provider, or any
-   other COSE-compatible trust anchor.
-
-   Registration Policies and trust anchors MUST be made transparent and
-   available to all Relying Parties of the Transparency Service by
-   registering them as Signed Statements on the Verifiable Data
-   Structure, and distributing the associated Receipts.
+   Beyond the mandatory Registration checks, the scope of additional
+   checks, including no additional checks, is up to the implementation.
 
    This specification leaves implementation, encoding and documentation
    of Registration Policies and trust anchors to the operator of the
@@ -767,22 +783,35 @@ Table of Contents
 
    During Registration, a Transparency Service MUST, at a minimum,
    syntactically check the Issuer of the Signed Statement by
-   cryptographically verifying the COSE signature according to
-   [RFC9052].  The Issuer identity MUST be bound to the Signed Statement
-   by including an identifier in the protected header.  If the protected
+   cryptographically verifying the COSE signature according to [STD96].
+   The Issuer identity MUST be bound to the Signed Statement by
+   including an identifier in the protected header.  If the protected
    header includes multiple identifiers, all those that are registered
    by the Transparency Service MUST be checked.
+
+   Transparency Services MUST maintain a list of trust anchors (see
+   definition of trust anchor in [RFC4949]) in order to check the
+   signatures of Signed Statements, either separately, or inside
+   Registration Policies.  Transparency Services MUST authenticate
+   Signed Statements as part of a Registration Policy.  For instance, a
+   trust anchor could be an X.509 root certificate (directly or its
+   thumbprint), a pointer to an OpenID Connect identity provider, or any
+   other COSE-compatible trust anchor.
 
    When using X.509 Signed Statements, the Transparency Service MUST
    build and validate a complete certification path from an Issuer's
    certificate to one of the root certificates currently registered as a
-   trust anchor by the Transparency Service.
+   trust anchor by the Transparency Service.  The protected header of
+   the COSE_Sign1 Envelope MUST include either the Issuer's certificate
+   as x5t or the chain including the Issuer's certificate as x5chain.
+   If x5t is included in the protected header, an x5chain with a leaf
+   certificate corresponding to the x5t value MAY be included in the
+   unprotected header.
 
-   The protected header of the COSE_Sign1 Envelope MUST include either
-   the Issuer's certificate as x5t or the chain including the Issuer's
-   certificate as x5chain.  If x5t is included in the protected header,
-   an x5chain with a leaf certificate corresponding to the x5t value MAY
-   be included in the unprotected header.
+   Registration Policies and trust anchors MUST be made Transparent and
+   available to all Relying Parties of the Transparency Service by
+   Registering them as Signed Statements on the Verifiable Data
+   Structure.
 
    The Transparency Service MUST apply the Registration Policy that was
    most recently committed to the Verifiable Data Structure at the time
@@ -821,7 +850,7 @@ Table of Contents
 
    Append-Only:  a property required for a verifiable data structure to
       be applicable to SCITT, ensuring that the Statement Sequence
-      cannot be modified, deleted or reordered.
+      cannot be modified, deleted, or reordered.
 
    Non-equivocation:  there is no fork in the registered sequence of
       Signed Statements accepted by the Transparency Service and
@@ -837,7 +866,7 @@ Table of Contents
 
    In addition to Receipts, some verifiable data structures might
    support additional proof types, such as proofs of consistency, or
-   proofs of non inclusion.
+   proofs of non-inclusion.
 
    Specific verifiable data structures, such those describes in
    [RFC9162] and [I-D.draft-ietf-cose-merkle-tree-proofs], and the
@@ -848,7 +877,7 @@ Table of Contents
 
    Transparency Services can be deployed along side other database or
    object storage technologies.  For example, a Transparency Service
-   that is supporting a software package management system, might be
+   that supports a software package management system, might be
    referenced from the APIs exposed for package management.  Providing
    an ability to request a fresh Receipt for a given software package,
    or to request a list of Signed Statements associated with the
@@ -856,7 +885,7 @@ Table of Contents
 
 6.  Signed Statements
 
-   This specification prioritizes conformance to [RFC9052] and its
+   This specification prioritizes conformance to [STD96] and its
    required and optional properties.  Profiles and implementation
    specific choices should be used to determine admissibility of
    conforming messages.  This specification is left intentionally open
@@ -869,7 +898,7 @@ Table of Contents
    (3: payload type) to serialize the Statement payload.  For a software
    supply chain, payloads describing the software Artifacts may include:
 
-   *  [COSWID]
+   *  [RFC9393]
 
    *  [CycloneDX]
 
@@ -895,7 +924,7 @@ Table of Contents
    pertains to.  (See Subject under Section 3 Terminology.)
 
    Issuers MAY use different signing keys (identified by kid in the
-   protected header) for different Artifacts, or sign all Signed
+   protected header) for different Artifacts or sign all Signed
    Statements under the same key.
 
    An Issuer can make multiple Statements about the same Artifact.  For
@@ -929,9 +958,8 @@ Table of Contents
 
    The protected header of a Signed Statement and a Receipt MUST include
    the CWT Claims header parameter as specified in Section 2 of
-   [CWT_CLAIMS_COSE].  The CWT Claims value MUST include the Issuer
-   Claim (Claim label 1) and the Subject Claim (Claim label 2)
-   [IANA.cwt].
+   [RFC9597].  The CWT Claims value MUST include the Issuer Claim (Claim
+   label 1) and the Subject Claim (Claim label 2) [IANA.cwt].
 
    A Receipt is a Signed Statement, (COSE_Sign1), with additional Claims
    in its protected header related to verifying the inclusion proof in
@@ -1029,7 +1057,7 @@ Table of Contents
 
    2.  *TS Signed Statement Verification and Validation:* The
        Transparency Service MUST perform signature verification per
-       Section 4.4 of [RFC9052] and MUST verify the signature of the
+       Section 4.4 of [STD96] and MUST verify the signature of the
        Signed Statement with the signature algorithm and verification
        key of the Issuer per [RFC9360].  The Transparency Service MUST
        also check the Signed Statement includes the required protected
@@ -1041,7 +1069,7 @@ Table of Contents
        the attributes required by a Registration Policy are present in
        the protected headers.  Custom Signed Statements are evaluated
        given the current Transparency Service state and the entire
-       Envelope, and may use information contained in the attributes of
+       Envelope and may use information contained in the attributes of
        named policies.
 
    4.  *Register the Signed Statement*
@@ -1094,7 +1122,7 @@ Table of Contents
 
    Figure 6 illustrates a normative CDDL definition of Transparent
    Statements.  See Figure 3 for the CDDL rule that defines 'COSE_Sign1'
-   as specified in Section 4.2 of [RFC9052]
+   as specified in Section 4.2 of [STD96]
 
    Transparent_Statement = #6.18(COSE_Sign1)
 
@@ -1192,14 +1220,14 @@ Table of Contents
 7.1.  Validation
 
    Relying Parties MUST apply the verification process as described in
-   Section 4.4 of RFC9052, when checking the signature of Signed
+   Section 4.4 of [STD96], when checking the signature of Signed
    Statements and Receipts.
 
    A Relying Party MUST trust the verification key or certificate and
    the associated identity of at least one Issuer of a Receipt.
 
    A Relying Party MAY decide to verify only a single Receipt that is
-   acceptable to them, and not check the signature on the Signed
+   acceptable to them and not check the signature on the Signed
    Statement or Receipts which rely on verifiable data structures which
    they do not understand.
 
@@ -1226,22 +1254,22 @@ Table of Contents
    Signed Statements presented for Registration.  Issuers and Clients
    are responsible for verifying that the Transparency Service's privacy
    and security posture is suitable for the contents of the Signed
-   Statements they submit prior to Registration.  In particular, Issuers
-   must carefully review the inclusion of private, confidential, or
-   personally identifiable information (PII) in their Statements against
-   the Transparency Service's privacy posture.
+   Statements they submit prior to Registration.  Issuers must carefully
+   review the inclusion of private, confidential, or personally
+   identifiable information (PII) in their Statements against the
+   Transparency Service's privacy posture.
 
    In some deployments a special role such as an Auditor might require
    and be given access to both the Transparency Service and related
    Adjacent Services.
 
-   Transparency Services' can leverage Verifiable Data Structures which
+   Transparency Services can leverage Verifiable Data Structures which
    only retain cryptographic metadata (e.g. a hash), rather than the
    complete Signed Statement, as part of a defense in depth approach to
    maintaining confidentiality.  By analyzing the relationship between
    data stored in the Transparency Service and data stored in Adjacent
    Services, it is possible to perform metadata analysis, which could
-   reveal the order in which artifacts were built, signed and uploaded.
+   reveal the order in which artifacts were built, signed, and uploaded.
 
 9.  Security Considerations
 
@@ -1324,9 +1352,9 @@ Table of Contents
    connect to an unexpected root.  This modification helps protect
    against person-in-the-middle attacks, but not denial-of-service.
    Auditors MUST perform certification path validation in accordance
-   with PKIX rules specified in [RFC5280].  In particular, Auditors MUST
-   verify that certification paths chain to one or more trust anchors
-   (often represented as root certificates).
+   with PKIX rules specified in [RFC5280].  Auditors MUST verify that
+   certification paths chain to one or more trust anchors (often
+   represented as root certificates).
 
 9.1.  Security Guarantees
 
@@ -1346,7 +1374,7 @@ Table of Contents
    Statements and associated metadata using a distributed public key
    infrastructure.  The second guarantee is achieved by committing the
    Signed Statement to a Verifiable Data Structure.  The third guarantee
-   is achieved by the combination of both of these acts
+   is achieved by the combination of both of these acts.
 
 9.2.  Threat Model
 
@@ -1395,8 +1423,8 @@ Table of Contents
    Statements.
 
    Certain Verifiable Data Structures enable a Transparency Service to
-   prove properties of its Statement Sequence.  For example, proving a
-   specific Signed Statement is included in the sequence, or that the
+   prove the properties of its Statement Sequence.  For example, proving
+   a specific Signed Statement is included in the sequence, or that the
    sequence has only been extended (Append-only property) since the last
    time such a proof was created.
 
@@ -1413,11 +1441,11 @@ Table of Contents
    liability and the resulting damage to their reputation are
    application specific, and out of scope of the SCITT architecture.
 
-   Relying Parties and Auditors need not be trusted by other actors.  In
-   particular, so long as actors maintain proper control of their
-   signing keys and identity infrastructure they cannot "frame" an
-   Issuer or a Transparency Service for Signed Statements they did not
-   issue or register.
+   Relying Parties and Auditors need not be trusted by other actors.  So
+   long as actors maintain proper control of their signing keys and
+   identity infrastructure they cannot "frame" an Issuer or a
+   Transparency Service for Signed Statements they did not issue or
+   register.
 
 9.2.1.  Verifiable Data Structure
 
@@ -1450,7 +1478,7 @@ Table of Contents
    Due to the operational challenge of maintaining a globally consistent
    Verifiable Data Structure, some Transparency Services may provide
    limited support for historical queries on the Signed Statements they
-   have registered, and accept the risk of being blamed for inconsistent
+   have registered and accept the risk of being blamed for inconsistent
    Registration or Issuer Equivocation.
 
    Relying Parties and Auditors may also witness (1, 4) but may not be
@@ -1480,11 +1508,9 @@ Table of Contents
 9.2.4.  Transparency Service Client Applications
 
    Authentication of Client applications is out of scope for this
-   document.  Transparency Services MUST authenticate both Client
-   applications and the Issuer of Signed Statements in order to ensure
-   that implementation specific authentication and authorization
-   policies are enforced.  The specification of authentication and
-   authorization policies is out of scope for this document.
+   document.  Transparency Services MAY authenticate Client
+   applications.  The specification of authentication and authorization
+   policies is out of scope for this document.
 
 9.2.5.  Impersonation
 
@@ -1515,31 +1541,18 @@ Table of Contents
 
 11.1.  Normative References
 
-   [COSWID]   Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D.
-              Waltermire, "Concise Software Identification Tags",
-              RFC 9393, DOI 10.17487/RFC9393, June 2023,
-              <https://www.rfc-editor.org/rfc/rfc9393>.
-
-   [CWT_CLAIMS_COSE]
-              Looker, T. and M. B. Jones, "CBOR Web Token (CWT) Claims
-              in COSE Headers", Work in Progress, Internet-Draft, draft-
-              ietf-cose-cwt-claims-in-headers-10, 29 November 2023,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-cose-
-              cwt-claims-in-headers-10>.
-
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-08, 20 February
+              Draft, draft-ietf-cose-merkle-tree-proofs-09, 25 March
               2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-08>.
+              cose-merkle-tree-proofs-09>.
 
    [I-D.draft-ietf-scitt-scrapi]
-              Birkholz, H. and J. Geater, "SCITT Reference APIs Draft-
-              ietf-scitt-scrapi-03", Work in Progress, Internet-Draft,
-              draft-ietf-scitt-scrapi-03, 8 January 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-scitt-
-              scrapi-03>.
+              Birkholz, H. and J. Geater, "SCITT Reference APIs", Work
+              in Progress, Internet-Draft, draft-ietf-scitt-scrapi-04, 3
+              March 2025, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-scitt-scrapi-04>.
 
    [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <https://www.iana.org/assignments/cwt>.
@@ -1574,21 +1587,31 @@ Table of Contents
               JSON Data Structures", RFC 8610, DOI 10.17487/RFC8610,
               June 2019, <https://www.rfc-editor.org/rfc/rfc8610>.
 
-   [RFC9052]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
-              Structures and Process", STD 96, RFC 9052,
-              DOI 10.17487/RFC9052, August 2022,
-              <https://www.rfc-editor.org/rfc/rfc9052>.
-
    [RFC9360]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
               Header Parameters for Carrying and Referencing X.509
               Certificates", RFC 9360, DOI 10.17487/RFC9360, February
               2023, <https://www.rfc-editor.org/rfc/rfc9360>.
 
-11.2.  Informative References
+   [RFC9393]  Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D.
+              Waltermire, "Concise Software Identification Tags",
+              RFC 9393, DOI 10.17487/RFC9393, June 2023,
+              <https://www.rfc-editor.org/rfc/rfc9393>.
 
-   [CWT_CLAIMS]
-              "CBOR Web Token (CWT) Claims", n.d.,
-              <https://www.iana.org/assignments/cwt/cwt.xhtml>.
+   [RFC9597]  Looker, T. and M.B. Jones, "CBOR Web Token (CWT) Claims in
+              COSE Headers", RFC 9597, DOI 10.17487/RFC9597, June 2024,
+              <https://www.rfc-editor.org/rfc/rfc9597>.
+
+   [STD94]    Bormann, C. and P. Hoffman, "Concise Binary Object
+              Representation (CBOR)", STD 94, RFC 8949,
+              DOI 10.17487/RFC8949, December 2020,
+              <https://www.rfc-editor.org/rfc/rfc8949>.
+
+   [STD96]    Schaad, J., "CBOR Object Signing and Encryption (COSE):
+              Structures and Process", STD 96, RFC 9052,
+              DOI 10.17487/RFC9052, August 2022,
+              <https://www.rfc-editor.org/rfc/rfc9052>.
+
+11.2.  Informative References
 
    [CycloneDX]
               "CycloneDX", n.d.,
@@ -1703,9 +1726,9 @@ Appendix A.  Common Terminology Disambiguation
 
    This document uses the terms "Issuer", and "Subject" as described in
    [RFC8392], however the usage is consistent with the broader
-   interpretation of these terms in both JOSE and COSE, and in
-   particular, the guidance in [RFC8725] generally applies the COSE
-   equivalent terms with consistent semantics.
+   interpretation of these terms in both JOSE and COSE, and the guidance
+   in [RFC8725] generally applies the COSE equivalent terms with
+   consistent semantics.
 
    The terms "verifier" and "Relying Party" are used interchangeably
    through the document.  While these terms are related to "Verifier"
@@ -1727,7 +1750,7 @@ Appendix A.  Common Terminology Disambiguation
    made.
 
    The term "Subject" provides an identifier of the Issuer's choosing to
-   refer to a given Artifact, and ensures that all associated Statements
+   refer to a given Artifact and ensures that all associated Statements
    can be attributed to the identifier chosen by the Issuer.
 
    In simpler language, a SCITT Statement could be some vendor-specific
@@ -1786,7 +1809,7 @@ Appendix B.  Signing Statements Remotely
    Internet.  In these cases a Statement can also be hash, which becomes
    the payload included in COSE to-be-signed bytes.  A Signed Statement
    (COSE_Sign1) MUST be produced from the to-be-signed bytes according
-   to Section 4.4 of [RFC9052].
+   to Section 4.4 of [STD96].
 
       .----+-----.
      |  Artifact  |
