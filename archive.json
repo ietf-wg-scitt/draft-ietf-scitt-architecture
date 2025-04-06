@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-03T00:51:26.832912+00:00",
+  "timestamp": "2025-04-06T00:55:16.140398+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -51436,7 +51436,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-03-28T14:58:50Z",
-      "updatedAt": "2025-04-01T17:28:22Z",
+      "updatedAt": "2025-04-03T16:30:08Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "46ac16db84ff368357fdcfa3ed2ddc52b5776fde",
@@ -52683,6 +52683,19 @@
               "updatedAt": "2025-04-01T14:55:09Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6jWSK3",
+          "commit": {
+            "abbreviatedOid": "e981fb1"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Thanks Henk",
+          "createdAt": "2025-04-03T16:30:08Z",
+          "updatedAt": "2025-04-03T16:30:08Z",
+          "comments": []
         }
       ]
     },
@@ -52912,6 +52925,53 @@
           "createdAt": "2025-04-01T15:08:28Z",
           "updatedAt": "2025-04-01T15:08:28Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 368,
+      "id": "PR_kwDOIvmHss6RPivc",
+      "title": "Updated References and a Case of Refernce Use",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/368",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-04-03T11:30:06Z",
+      "updatedAt": "2025-04-03T16:12:31Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "1f1790a5c2b5bc113dcf929cede5c548f9545a65",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "CWT-Claims-RFC",
+      "headRefOid": "4428a0e0f9f897d36274c56f18c794833d49482d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6jWB2i",
+          "commit": {
+            "abbreviatedOid": "4428a0e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-03T16:12:31Z",
+          "updatedAt": "2025-04-03T16:12:31Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "as referenced, this doesn't render as COSWID, rather, it renders with RFC9393\r\nWas that intentional? \r\n\r\n- [RFC9393]\r\n- [CycloneDX]\r\n- [in-toto]\r\n- [SPDX-CBOR]\r\n- [SPDX-JSON]\r\n- [SLSA]\r\n- [SWID]\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+              "createdAt": "2025-04-03T16:12:31Z",
+              "updatedAt": "2025-04-03T16:12:31Z"
+            }
+          ]
         }
       ]
     }
