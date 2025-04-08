@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 3 October 2025                                       C. Fournet
+Expires: 10 October 2025                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                            1 April 2025
+                                                            8 April 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 October 2025.
+   This Internet-Draft will expire on 10 October 2025.
 
 Copyright Notice
 
@@ -543,9 +543,10 @@ Table of Contents
       software Artifact, an endorsement or attestation about an
       Artifact, indicate the End of Life (EOL), redirection to a newer
       version, or any content an Issuer wishes to publish about an
-      Artifact.  The additional Statements about an Artifact are
-      correlated by the Subject defined in the [CWT_CLAIMS] protected
-      header.  The Statement is considered opaque to Transparency
+      Artifact.  Additional Statements about an Artifact are correlated
+      by the Subject Claim as defined in the IANA CWT [IANA.cwt]
+      registry and used as a protected header parameter as defined in
+      [RFC9597].  The Statement is considered opaque to Transparency
       Service, and MAY be encrypted.
 
    Subject:  an identifier, defined by the Issuer, which represents the
@@ -897,7 +898,7 @@ Table of Contents
    (3: payload type) to serialize the Statement payload.  For a software
    supply chain, payloads describing the software Artifacts may include:
 
-   *  [COSWID]
+   *  [CoSWID]
 
    *  [CycloneDX]
 
@@ -957,9 +958,8 @@ Table of Contents
 
    The protected header of a Signed Statement and a Receipt MUST include
    the CWT Claims header parameter as specified in Section 2 of
-   [CWT_CLAIMS_COSE].  The CWT Claims value MUST include the Issuer
-   Claim (Claim label 1) and the Subject Claim (Claim label 2)
-   [IANA.cwt].
+   [RFC9597].  The CWT Claims value MUST include the Issuer Claim (Claim
+   label 1) and the Subject Claim (Claim label 2) [IANA.cwt].
 
    A Receipt is a Signed Statement, (COSE_Sign1), with additional Claims
    in its protected header related to verifying the inclusion proof in
@@ -1541,24 +1541,12 @@ Table of Contents
 
 11.1.  Normative References
 
-   [COSWID]   Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D.
-              Waltermire, "Concise Software Identification Tags",
-              RFC 9393, DOI 10.17487/RFC9393, June 2023,
-              <https://www.rfc-editor.org/rfc/rfc9393>.
-
-   [CWT_CLAIMS_COSE]
-              Looker, T. and M. B. Jones, "CBOR Web Token (CWT) Claims
-              in COSE Headers", Work in Progress, Internet-Draft, draft-
-              ietf-cose-cwt-claims-in-headers-10, 29 November 2023,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-cose-
-              cwt-claims-in-headers-10>.
-
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-09, 25 March
+              Draft, draft-ietf-cose-merkle-tree-proofs-10, 3 April
               2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-09>.
+              cose-merkle-tree-proofs-10>.
 
    [I-D.draft-ietf-scitt-scrapi]
               Birkholz, H. and J. Geater, "SCITT Reference APIs", Work
@@ -1604,6 +1592,10 @@ Table of Contents
               Certificates", RFC 9360, DOI 10.17487/RFC9360, February
               2023, <https://www.rfc-editor.org/rfc/rfc9360>.
 
+   [RFC9597]  Looker, T. and M.B. Jones, "CBOR Web Token (CWT) Claims in
+              COSE Headers", RFC 9597, DOI 10.17487/RFC9597, June 2024,
+              <https://www.rfc-editor.org/rfc/rfc9597>.
+
    [STD94]    Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", STD 94, RFC 8949,
               DOI 10.17487/RFC8949, December 2020,
@@ -1616,9 +1608,10 @@ Table of Contents
 
 11.2.  Informative References
 
-   [CWT_CLAIMS]
-              "CBOR Web Token (CWT) Claims", n.d.,
-              <https://www.iana.org/assignments/cwt/cwt.xhtml>.
+   [CoSWID]   Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D.
+              Waltermire, "Concise Software Identification Tags",
+              RFC 9393, DOI 10.17487/RFC9393, June 2023,
+              <https://www.rfc-editor.org/rfc/rfc9393>.
 
    [CycloneDX]
               "CycloneDX", n.d.,
