@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 5 October 2025                                       C. Fournet
+Expires: 10 October 2025                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                            3 April 2025
+                                                            8 April 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 October 2025.
+   This Internet-Draft will expire on 10 October 2025.
 
 Copyright Notice
 
@@ -898,7 +898,7 @@ Table of Contents
    (3: payload type) to serialize the Statement payload.  For a software
    supply chain, payloads describing the software Artifacts may include:
 
-   *  [RFC9393]
+   *  [COSWID]
 
    *  [CycloneDX]
 
@@ -1544,9 +1544,9 @@ Table of Contents
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-09, 25 March
+              Draft, draft-ietf-cose-merkle-tree-proofs-10, 3 April
               2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-09>.
+              cose-merkle-tree-proofs-10>.
 
    [I-D.draft-ietf-scitt-scrapi]
               Birkholz, H. and J. Geater, "SCITT Reference APIs", Work
@@ -1592,11 +1592,6 @@ Table of Contents
               Certificates", RFC 9360, DOI 10.17487/RFC9360, February
               2023, <https://www.rfc-editor.org/rfc/rfc9360>.
 
-   [RFC9393]  Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D.
-              Waltermire, "Concise Software Identification Tags",
-              RFC 9393, DOI 10.17487/RFC9393, June 2023,
-              <https://www.rfc-editor.org/rfc/rfc9393>.
-
    [RFC9597]  Looker, T. and M.B. Jones, "CBOR Web Token (CWT) Claims in
               COSE Headers", RFC 9597, DOI 10.17487/RFC9597, June 2024,
               <https://www.rfc-editor.org/rfc/rfc9597>.
@@ -1612,6 +1607,11 @@ Table of Contents
               <https://www.rfc-editor.org/rfc/rfc9052>.
 
 11.2.  Informative References
+
+   [COSWID]   Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D.
+              Waltermire, "Concise Software Identification Tags",
+              RFC 9393, DOI 10.17487/RFC9393, June 2023,
+              <https://www.rfc-editor.org/rfc/rfc9393>.
 
    [CycloneDX]
               "CycloneDX", n.d.,
