@@ -101,7 +101,6 @@ normative:
     -: COSE
     =: RFC9052
   RFC9360:
-  RFC9393: COSWID
   RFC9597: CWT_CLAIMS_COSE
   I-D.draft-ietf-cose-merkle-tree-proofs: RECEIPTS
   I-D.draft-ietf-scitt-scrapi: SCRAPI
@@ -122,6 +121,8 @@ informative:
   RFC8725:
   RFC9162: CT
   RFC9334: rats-arch
+
+  COSWID: RFC9393
 
   CycloneDX:
     target: https://cyclonedx.org/specification/overview/
@@ -652,7 +653,7 @@ There are many types of Statements (such as SBOMs, malware scans, audit reports,
 An Issuer must first decide on a suitable format (`3`: payload type) to serialize the Statement payload.
 For a software supply chain, payloads describing the software Artifacts may include:
 
-- {{-COSWID}}
+- {{COSWID}}
 - {{CycloneDX}}
 - {{in-toto}}
 - {{SPDX-CBOR}}
