@@ -122,7 +122,7 @@ informative:
   RFC9162: CT
   RFC9334: rats-arch
 
-  COSWID: RFC9393
+  CoSWID: RFC9393
 
   CycloneDX:
     target: https://cyclonedx.org/specification/overview/
@@ -653,7 +653,7 @@ There are many types of Statements (such as SBOMs, malware scans, audit reports,
 An Issuer must first decide on a suitable format (`3`: payload type) to serialize the Statement payload.
 For a software supply chain, payloads describing the software Artifacts may include:
 
-- {{COSWID}}
+- {{CoSWID}}
 - {{CycloneDX}}
 - {{in-toto}}
 - {{SPDX-CBOR}}
