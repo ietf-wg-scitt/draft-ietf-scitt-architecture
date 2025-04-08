@@ -92,6 +92,7 @@ contributor:
 normative:
   RFC5280: PKIX
   RFC6838:
+  RFC8392:
   RFC8610: CDDL
   STD94:
     -: CBOR
@@ -100,12 +101,9 @@ normative:
     -: COSE
     =: RFC9052
   RFC9360:
-  RFC8392:
-  COSWID: RFC9393
+  RFC9597: CWT_CLAIMS_COSE
   I-D.draft-ietf-cose-merkle-tree-proofs: RECEIPTS
   I-D.draft-ietf-scitt-scrapi: SCRAPI
-
-  CWT_CLAIMS_COSE: I-D.ietf-cose-cwt-claims-in-headers
   IANA.cwt:
 
 informative:
@@ -123,9 +121,8 @@ informative:
   RFC8725:
   RFC9162: CT
   RFC9334: rats-arch
-  CWT_CLAIMS:
-    target: https://www.iana.org/assignments/cwt/cwt.xhtml
-    title: CBOR Web Token (CWT) Claims
+
+  CoSWID: RFC9393
 
   CycloneDX:
     target: https://cyclonedx.org/specification/overview/
@@ -440,7 +437,7 @@ Statement:
 : any serializable information about an Artifact.
 To help interpretation of Statements, they must be tagged with a media type (as specified in {{RFC6838}}).
 A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version, or any content an Issuer wishes to publish about an Artifact.
-The additional Statements about an Artifact are correlated by the Subject defined in the {{CWT_CLAIMS}} protected header.
+Additional Statements about an Artifact are correlated by the Subject Claim as defined in the IANA CWT {{IANA.cwt}} registry and used as a protected header parameter as defined in {{-CWT_CLAIMS_COSE}}.
 The Statement is considered opaque to Transparency Service, and MAY be encrypted.
 
 Subject:
@@ -656,7 +653,7 @@ There are many types of Statements (such as SBOMs, malware scans, audit reports,
 An Issuer must first decide on a suitable format (`3`: payload type) to serialize the Statement payload.
 For a software supply chain, payloads describing the software Artifacts may include:
 
-- {{COSWID}}
+- {{CoSWID}}
 - {{CycloneDX}}
 - {{in-toto}}
 - {{SPDX-CBOR}}
@@ -692,7 +689,7 @@ The `iss` value's length MUST be between 1 and 8192 characters in length.
 The `kid` header parameter MUST be present when neither `x5t` nor `x5chain` is present in the protected header.
 Key discovery protocols are out-of-scope of this document.
 
-The protected header of a Signed Statement and a Receipt MUST include the `CWT Claims` header parameter as specified in {{Section 2 of CWT_CLAIMS_COSE}}.
+The protected header of a Signed Statement and a Receipt MUST include the `CWT Claims` header parameter as specified in {{Section 2 of -CWT_CLAIMS_COSE}}.
 The `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `Subject Claim` (Claim label 2) {{IANA.cwt}}.
 
 A Receipt is a Signed Statement, (COSE_Sign1), with additional Claims in its protected header related to verifying the inclusion proof in its unprotected header.
