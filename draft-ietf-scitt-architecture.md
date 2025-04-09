@@ -899,7 +899,9 @@ By analyzing the relationship between data stored in the Transparency Service an
 
 Unless advertised in the Transparency Service Registration Policy, the Relying Party cannot assume that the ordering of Signed Statements in the Verifiable Data Structure matches the ordering of their issuance.
 Issuers can provide false statements either intentionally or unintentionally, registering their statements only prevents them from hiding when they have made statements.
+
 Issuers and Transparency Services MUST:
+
 - carefully protect their private signing keys.
 - avoid using keys for more than one purpose.
 - use a Trusted Execution Environment (TEE) for cryptographic operations where possible.
