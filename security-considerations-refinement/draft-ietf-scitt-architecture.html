@@ -2509,29 +2509,39 @@ By analyzing the relationship between data stored in the Transparency Service an
 <a href="#section-9" class="section-number selfRef">9. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
 <p id="section-9-1">Unless advertised in the Transparency Service Registration Policy, the Relying Party cannot assume that the ordering of Signed Statements in the Verifiable Data Structure matches the ordering of their issuance.
-Issuers can provide false statements either intentionally or unintentionally, registering their statements only prevents them from hiding when they have made statements.
-Issuers and Transparency Services <span class="bcp14">MUST</span>:
-- carefully protect their private signing keys.
-- avoid using keys for more than one purpose.
-- use a Trusted Execution Environment (TEE) for cryptographic operations where possible.
-- rotate their keys in well-defined cryptoperiods, see <span>[<a href="#KEY-MANAGEMENT" class="cite xref">KEY-MANAGEMENT</a>]</span>.<a href="#section-9-1" class="pilcrow">¶</a></p>
-<p id="section-9-2">Issuers and Transparency Services <span class="bcp14">SHOULD</span>:<a href="#section-9-2" class="pilcrow">¶</a></p>
+Issuers can provide false statements either intentionally or unintentionally, registering their statements only prevents them from hiding when they have made statements.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<p id="section-9-2">Issuers and Transparency Services <span class="bcp14">MUST</span>:<a href="#section-9-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-9-3.1">
-          <p id="section-9-3.1.1">The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance <span>[<a href="#PBFT" class="cite xref">PBFT</a>]</span> and may be used to protect against malicious or vulnerable replicas.<a href="#section-9-3.1.1" class="pilcrow">¶</a></p>
+          <p id="section-9-3.1.1">carefully protect their private signing keys.<a href="#section-9-3.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-9-3.2">
-          <p id="section-9-3.2.1">Provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.<a href="#section-9-3.2.1" class="pilcrow">¶</a></p>
+          <p id="section-9-3.2.1">avoid using keys for more than one purpose.<a href="#section-9-3.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-9-3.3">
-          <p id="section-9-3.3.1">If present, these additional authenticity assurances such as RATS Conceptual Messages, <span class="bcp14">MUST</span> be registered in the Verifiable Data Structure and <span class="bcp14">MUST</span> always be exposed by the Transparency Services' APIs.
-The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts.
-The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a Relying Party and complies with well-known Reference Values and Endorsements.<a href="#section-9-3.3.1" class="pilcrow">¶</a></p>
+          <p id="section-9-3.3.1">use a Trusted Execution Environment (TEE) for cryptographic operations where possible.<a href="#section-9-3.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-9-3.4">
+          <p id="section-9-3.4.1">rotate their keys in well-defined cryptoperiods, see <span>[<a href="#KEY-MANAGEMENT" class="cite xref">KEY-MANAGEMENT</a>]</span>.<a href="#section-9-3.4.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-9-4">Editors note: Not possible to do this, now that we drop the cert chain before registration, when it is present in unprotected header, we suggest to remove this text.
+<p id="section-9-4">Issuers and Transparency Services <span class="bcp14">SHOULD</span>:<a href="#section-9-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-9-5.1">
+          <p id="section-9-5.1.1">The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance <span>[<a href="#PBFT" class="cite xref">PBFT</a>]</span> and may be used to protect against malicious or vulnerable replicas.<a href="#section-9-5.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-9-5.2">
+          <p id="section-9-5.2.1">Provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.<a href="#section-9-5.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-9-5.3">
+          <p id="section-9-5.3.1">If present, these additional authenticity assurances such as RATS Conceptual Messages, <span class="bcp14">MUST</span> be registered in the Verifiable Data Structure and <span class="bcp14">MUST</span> always be exposed by the Transparency Services' APIs.
+The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts.
+The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a Relying Party and complies with well-known Reference Values and Endorsements.<a href="#section-9-5.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-9-6">Editors note: Not possible to do this, now that we drop the cert chain before registration, when it is present in unprotected header, we suggest to remove this text.
 Auditors <span class="bcp14">MUST</span> perform certification path validation in accordance with PKIX rules specified in <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>.
-Auditors <span class="bcp14">MUST</span> verify that certification paths chain to one or more trust anchors (often represented as root certificates).<a href="#section-9-4" class="pilcrow">¶</a></p>
+Auditors <span class="bcp14">MUST</span> verify that certification paths chain to one or more trust anchors (often represented as root certificates).<a href="#section-9-6" class="pilcrow">¶</a></p>
 <div id="sec-security-guarantees">
 <section id="section-9.1">
         <h3 id="name-security-guarantees">
