@@ -906,6 +906,7 @@ Issuers and Transparency Services MUST:
 - rotate their keys in well-defined cryptoperiods, see {{KEY-MANAGEMENT}}.
 
 Issuers and Transparency Services SHOULD:
+
 - The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance {{PBFT}} and may be used to protect against malicious or vulnerable replicas.
 - Provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
 - If present, these additional authenticity assurances such as RATS Conceptual Messages, MUST be registered in the Verifiable Data Structure and MUST always be exposed by the Transparency Services' APIs.
