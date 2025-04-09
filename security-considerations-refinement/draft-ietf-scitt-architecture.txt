@@ -108,11 +108,14 @@ Table of Contents
      7.1.  Validation
    8.  Privacy Considerations
    9.  Security Considerations
-     9.1.  Security Guarantees
-     9.2.  Threat Model
-       9.2.1.  Verifiable Data Structure
-       9.2.2.  Cryptographic Agility
-       9.2.3.  Key compromise
+     9.1.  Ordering of Signed Statements
+     9.2.  Accuracy of Statements
+     9.3.  Key Management
+     9.4.  Transparency Service Operational Considerations
+     9.5.  Threat Model
+       9.5.1.  Verifiable Data Structure
+       9.5.2.  Cryptographic Agility
+       9.5.3.  Key Compromise
    10. IANA Considerations
      10.1.  COSE Receipts Header Parameter
      10.2.  Media Type Registration
@@ -1275,56 +1278,6 @@ Table of Contents
 
 9.  Security Considerations
 
-   Unless advertised in the Transparency Service Registration Policy,
-   the Relying Party cannot assume that the ordering of Signed
-   Statements in the Verifiable Data Structure matches the ordering of
-   their issuance.  Issuers can provide false statements either
-   intentionally or unintentionally, registering their statements only
-   prevents them from hiding when they have made statements.
-
-   Issuers and Transparency Services MUST:
-
-   *  carefully protect their private signing keys.
-
-   *  avoid using keys for more than one purpose.
-
-   *  use a Trusted Execution Environment (TEE) for cryptographic
-      operations where possible.
-
-   *  rotate their keys in well-defined cryptoperiods, see
-      [KEY-MANAGEMENT].
-
-   Issuers and Transparency Services SHOULD:
-
-   *  The Transparency Service may be replicated with a consensus
-      algorithm, such as Practical Byzantine Fault Tolerance [PBFT] and
-      may be used to protect against malicious or vulnerable replicas.
-
-   *  Provide additional authenticity assurances about its secure
-      implementation and operation, enabling remote attestation of the
-      hardware platforms and/or software Trusted Computing Bases (TCB)
-      that run the Transparency Service.
-
-   *  If present, these additional authenticity assurances such as RATS
-      Conceptual Messages, MUST be registered in the Verifiable Data
-      Structure and MUST always be exposed by the Transparency Services'
-      APIs.  The respective Evidence can show, for example, the binding
-      of the hardware platform to the software that runs the
-      Transparency Service, the long-term public key of the service, or
-      the key used by the replica for signing Receipts.  The respective
-      Attestation Result, for example, can show that the remote
-      attestation Evidence was appraised by a Relying Party and complies
-      with well-known Reference Values and Endorsements.
-
-   Editors note: Not possible to do this, now that we drop the cert
-   chain before registration, when it is present in unprotected header,
-   we suggest to remove this text.  Auditors MUST perform certification
-   path validation in accordance with PKIX rules specified in [RFC5280].
-   Auditors MUST verify that certification paths chain to one or more
-   trust anchors (often represented as root certificates).
-
-9.1.  Security Guarantees
-
    SCITT provides the following security guarantees:
 
    1.  Statements made by Issuers about supply chain Artifacts are
@@ -1342,25 +1295,97 @@ Table of Contents
    Structure.  The third guarantee is achieved by the combination of
    both of these acts.
 
-9.2.  Threat Model
+9.1.  Ordering of Signed Statements
+
+   Statements are signed prior to submitting to a SCITT Transparency
+   service.  Unless advertised in the Transparency Service Registration
+   Policy, the Relying Party cannot assume that the ordering of Signed
+   Statements in the Verifiable Data Structure matches the ordering of
+   their issuance.
+
+9.2.  Accuracy of Statements
+
+   Issuers can make false Statements either intentionally or
+   unintentionally.  Registering Statements proves Issuers made a
+   Statement, which may be amended with a new Signed Statement with the
+   same subject in the cwt_claims protected header.  Other Issuers may
+   make new Statements to reflect new or corrected information.  Relying
+   Parties may choose to include or exclude Statements from Issuers to
+   determine the accuracy of a collection of Statements.
+
+9.3.  Key Management
+
+   Issuers and Transparency Services MUST:
+
+   *  carefully protect their private signing keys
+
+   *  avoid using keys for more than one purpose
+
+   *  rotate their keys in well-defined cryptoperiods, see
+      [KEY-MANAGEMENT]
+
+   Issuers and Transparency Services SHOULD:
+
+   *  use a Trusted Execution Environment (TEE) for cryptographic
+      operations.
+
+9.4.  Transparency Service Operational Considerations
+
+   Issuers and Transparency Services SHOULD:
+
+   *  protect against malicious or vulnerable replicas by replicating
+      with a consensus algorithm, such as Practical Byzantine Fault
+      Tolerance [PBFT].
+
+   *  provide additional authenticity assurances about its secure
+      implementation and operation, enabling remote attestation of the
+      hardware platforms and/or software Trusted Computing Bases (TCB)
+      that run the Transparency Service.
+
+   Additional authenticity assurances, such as [RFC9334] Conceptual
+   Messages, MUST be registered in the Verifiable Data Structure and
+   MUST always be exposed by the Transparency Services' APIs.  The
+   respective Evidence can show, for example, the binding of the
+   hardware platform to the software that runs the Transparency Service,
+   the long-term public key of the service, or the key used by the
+   replica for signing Receipts.  The respective Attestation Result, for
+   example, can show that the remote attestation Evidence was appraised
+   by a Relying Party and complies with well-known Reference Values and
+   Endorsements.
+
+   *Editors Note*: Not possible to do the following PKIX rules.
+
+      Now that we dropped the cert chain before registration, when it is
+      present in unprotected header, we suggest to remove the following
+      text.
+
+   Auditors MUST perform certification path validation in accordance
+   with PKIX rules specified in [RFC5280].  Auditors MUST verify that
+   certification paths chain to one or more trust anchors (often
+   represented as root certificates).
+
+9.5.  Threat Model
 
    This section provides a generic threat model for SCITT, describing
    its residual security properties when some of its actors (Issuers,
    Transparency Services, and Auditors) are corrupt or compromised.
    This threat model may need to be refined to account for specific
-   supply chain use cases.  SCITT primarily supports checking of Signed
-   Statement authenticity, both from the Issuer (authentication) and
-   from the Transparency Service (transparency).  These guarantees are
-   meant to hold for extensive periods of time, possibly decades.
-   Issuer and Transparency Services can both be compromised, this threat
-   is best addressed with redundancy.  Relying parties are able to
-   verify the issuer signature on signed statements, the transparency
-   service signature on receipts, and the inclusion proof on receipts.
-   Issuers cannot be stopped from producing Signed Statements including
-   false assertions in their Statement payload (either by mistake or by
-   corruption), but these Issuers can made accountable by ensuring their
-   Signed Statements are systematically registered at a Transparency
-   Service.
+   supply chain use cases.
+
+   SCITT primarily supports checking of Signed Statement authenticity,
+   both from the Issuer (authentication) and from the Transparency
+   Service (transparency).  These guarantees are meant to hold for
+   extensive periods of time, possibly decades.  Issuers and
+   Transparency Services can both be compromised, which should be
+   addressed with redundant and independent implementations.
+
+   Relying parties are able to verify the issuer signature on signed
+   statements, the transparency service signature on receipts, and the
+   inclusion proof on receipts.  Issuers cannot be stopped from
+   producing Signed Statements including false assertions in their
+   Statement payload (either by mistake or by corruption), but these
+   Issuers can made accountable by ensuring their Signed Statements are
+   systematically registered at a Transparency Service.
 
    Similarly, providing strong residual guarantees against faulty/
    corrupt Transparency Services is a SCITT design goal.  Preventing a
@@ -1389,20 +1414,20 @@ Table of Contents
    Transparency Service for Signed Statements they did not issue or
    register.
 
-9.2.1.  Verifiable Data Structure
+9.5.1.  Verifiable Data Structure
 
-   See [I-D.draft-ietf-cose-merkle-tree-proofs] for the generic security
-   considerations that apply to Verifiable Data Structure and Receipts.
    The security considerations for specific verifiable data structures
-   are out of scope for this document.
+   are out of scope for this document.  See
+   [I-D.draft-ietf-cose-merkle-tree-proofs] for the generic security
+   considerations that apply to Verifiable Data Structure and Receipts.
 
-9.2.2.  Cryptographic Agility
+9.5.2.  Cryptographic Agility
 
    The SCITT Architecture supports cryptographic agility.  There are no
    mandatory to implement signing algorithms for Signed Statements or
    Receipts.
 
-9.2.3.  Key compromise
+9.5.3.  Key Compromise
 
    Revocation strategies for compromised keys are out of scope for this
    document.  It is important for Issuers and Transparency Service to
