@@ -938,9 +938,6 @@ Issuers and Transparency Services SHOULD:
 - protect against malicious or vulnerable replicas by replicating with a consensus algorithm, such as Practical Byzantine Fault Tolerance {{PBFT}}.
 - provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
 
-Additional authenticity assurances, such as {{-RATS}} Conceptual Messages, MUST be registered in the Verifiable Data Structure and MUST always be exposed by the Transparency Services' APIs.
-The respective Evidence can show, for example, the binding of the hardware platform to the software that runs the Transparency Service, the long-term public key of the service, or the key used by the replica for signing Receipts.
-The respective Attestation Result, for example, can show that the remote attestation Evidence was appraised by a Relying Party and complies with well-known Reference Values and Endorsements.
 
 **Editors Note**: Not possible to do the following PKIX rules.
 
