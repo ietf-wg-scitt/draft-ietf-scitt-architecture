@@ -939,12 +939,8 @@ Issuers and Transparency Services SHOULD:
 - provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
 
 
-**Editors Note**: Not possible to do the following PKIX rules.
 
-> Now that we dropped the cert chain before registration, when it is present in unprotected header, we suggest to remove the following text.
 
-Auditors MUST perform certification path validation in accordance with PKIX rules specified in {{-PKIX}}.
-Auditors MUST verify that certification paths chain to one or more trust anchors (often represented as root certificates).
 
 ## Threat Model
 
