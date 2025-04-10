@@ -952,7 +952,6 @@ These guarantees are meant to hold for extensive periods of time, possibly decad
 Issuers and Transparency Services can both be compromised, which should be addressed with redundant and independent implementations.
 
 Relying parties are able to verify the issuer signature on signed statements, the transparency service signature on receipts, and the inclusion proof on receipts.
-Issuers cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a Transparency Service.
 
 Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal.
 Preventing a Transparency Service from registering Signed Statements that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their Verifiable Data Structure is not possible.
