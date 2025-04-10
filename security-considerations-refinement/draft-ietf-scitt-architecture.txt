@@ -1359,11 +1359,7 @@ Table of Contents
 
    Relying parties are able to verify the issuer signature on signed
    statements, the transparency service signature on receipts, and the
-   inclusion proof on receipts.  Issuers cannot be stopped from
-   producing Signed Statements including false assertions in their
-   Statement payload (either by mistake or by corruption), but these
-   Issuers can made accountable by ensuring their Signed Statements are
-   systematically registered at a Transparency Service.
+   inclusion proof on receipts.
 
    Similarly, providing strong residual guarantees against faulty/
    corrupt Transparency Services is a SCITT design goal.  Preventing a

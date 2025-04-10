@@ -2603,8 +2603,7 @@ This threat model may need to be refined to account for specific supply chain us
 <p id="section-9.5-2">SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency).
 These guarantees are meant to hold for extensive periods of time, possibly decades.
 Issuers and Transparency Services can both be compromised, which should be addressed with redundant and independent implementations.<a href="#section-9.5-2" class="pilcrow">¶</a></p>
-<p id="section-9.5-3">Relying parties are able to verify the issuer signature on signed statements, the transparency service signature on receipts, and the inclusion proof on receipts.
-Issuers cannot be stopped from producing Signed Statements including false assertions in their Statement payload (either by mistake or by corruption), but these Issuers can made accountable by ensuring their Signed Statements are systematically registered at a Transparency Service.<a href="#section-9.5-3" class="pilcrow">¶</a></p>
+<p id="section-9.5-3">Relying parties are able to verify the issuer signature on signed statements, the transparency service signature on receipts, and the inclusion proof on receipts.<a href="#section-9.5-3" class="pilcrow">¶</a></p>
 <p id="section-9.5-4">Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal.
 Preventing a Transparency Service from registering Signed Statements that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their Verifiable Data Structure is not possible.
 Some Transparency Services leverage Verifiable Data Structure that can prove their own consistency over time to Auditors.<a href="#section-9.5-4" class="pilcrow">¶</a></p>
