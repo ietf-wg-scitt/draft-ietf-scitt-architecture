@@ -981,7 +981,7 @@ There are no mandatory to implement signing algorithms for Signed Statements or 
 ### Key Compromise
 
 Revocation strategies for compromised keys are out of scope for this document.
-It is important for Issuers and Transparency Services to clearly communicate when keys are compromised, so that Signed Statements can be rejected by Transparency Services, or Receipts can be ignored by Relying Parties.
+It is important for Issuers and Transparency Services to clearly communicate when keys are compromised, so that Signed Statements can be rejected by Transparency Services or Receipts can be ignored by Relying Parties.
 
 # IANA Considerations
 
