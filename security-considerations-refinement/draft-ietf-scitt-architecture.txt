@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 11 October 2025                                      C. Fournet
+Expires: 12 October 2025                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                            9 April 2025
+                                                           10 April 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 October 2025.
+   This Internet-Draft will expire on 12 October 2025.
 
 Copyright Notice
 
@@ -1341,17 +1341,6 @@ Table of Contents
       implementation and operation, enabling remote attestation of the
       hardware platforms and/or software Trusted Computing Bases (TCB)
       that run the Transparency Service.
-
-   Additional authenticity assurances, such as [RFC9334] Conceptual
-   Messages, MUST be registered in the Verifiable Data Structure and
-   MUST always be exposed by the Transparency Services' APIs.  The
-   respective Evidence can show, for example, the binding of the
-   hardware platform to the software that runs the Transparency Service,
-   the long-term public key of the service, or the key used by the
-   replica for signing Receipts.  The respective Attestation Result, for
-   example, can show that the remote attestation Evidence was appraised
-   by a Relying Party and complies with well-known Reference Values and
-   Endorsements.
 
    *Editors Note*: Not possible to do the following PKIX rules.
 
