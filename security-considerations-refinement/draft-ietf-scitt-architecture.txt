@@ -1342,17 +1342,6 @@ Table of Contents
       hardware platforms and/or software Trusted Computing Bases (TCB)
       that run the Transparency Service.
 
-   *Editors Note*: Not possible to do the following PKIX rules.
-
-      Now that we dropped the cert chain before registration, when it is
-      present in unprotected header, we suggest to remove the following
-      text.
-
-   Auditors MUST perform certification path validation in accordance
-   with PKIX rules specified in [RFC5280].  Auditors MUST verify that
-   certification paths chain to one or more trust anchors (often
-   represented as root certificates).
-
 9.5.  Threat Model
 
    This section provides a generic threat model for SCITT, describing
