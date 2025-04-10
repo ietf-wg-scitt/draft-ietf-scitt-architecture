@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-06T00:55:16.140398+00:00",
+  "timestamp": "2025-04-10T00:51:54.138778+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5407,11 +5407,11 @@
       ],
       "labels": [
         "help wanted",
-        "ready-for-pr"
+        "has-pr"
       ],
       "body": "The security consideration section gives me the impression that different authors worked on the content and put the text in there without re-reading the product. As a consequence, there is a lot of repetition.",
       "createdAt": "2024-07-20T18:34:16Z",
-      "updatedAt": "2025-02-11T15:52:50Z",
+      "updatedAt": "2025-04-08T15:28:15Z",
       "closedAt": null,
       "comments": []
     },
@@ -6123,7 +6123,7 @@
       "id": "I_kwDOIvmHss6kIMkE",
       "title": "Clarify what is stored on the ledger",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/329",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -6132,8 +6132,8 @@
       ],
       "body": "A reader of the Arch doc may assume the content of the signed statements is stored on the Ledger, as opposed to verifiable proofs of the signed statement.\r\nThis has evolved over time as, at least some of us, assumed the signed statement _was_ stored on the ledger. \r\nThe current belief of the authors is the ledger stores \"hashes\", verifiable proofs of the signed statement, that can live forever without concerns of PII information. However, the current state of the doc doesn't really qualify this distinction.\r\n\r\nStoring the actual signed statement, including the payload, or other elements of the protected header on the ledger also raises PII information concerns, such as #322 \r\n\r\nA complete Transparency Service may provide ancillary services that may store the content of the signed statement, or even the contents of a hashed payload, however that's beyond the scope of the SCITT Draft.\r\n\r\nThis issue tracks:\r\n- [ ] Clarifying the ledger only stores \"proofs\" (or a better agreed upon term)\r\n- [ ] Clarifying a service may store the signed statements, but likely not on the ledger so they can delete and/or redact PII information that may be written (intentionally or accidentally)",
       "createdAt": "2024-12-20T23:05:33Z",
-      "updatedAt": "2025-02-26T00:25:09Z",
-      "closedAt": null,
+      "updatedAt": "2025-04-08T14:20:58Z",
+      "closedAt": "2025-04-08T14:20:57Z",
       "comments": [
         {
           "author": "SteveLasker",
@@ -6141,6 +6141,13 @@
           "body": "We closed #335, which leaves this issue outstanding \ud83e\udd37\u200d\u2642 ",
           "createdAt": "2025-02-26T00:25:07Z",
           "updatedAt": "2025-02-26T00:25:07Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing with merged #348 ",
+          "createdAt": "2025-04-08T14:20:57Z",
+          "updatedAt": "2025-04-08T14:20:57Z"
         }
       ]
     },
@@ -6202,15 +6209,15 @@
       "id": "I_kwDOIvmHss6ktuEm",
       "title": "Reconcile how transparent statements are re-recorded on the ledger",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/337",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Line [#466](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/blob/main/draft-ietf-scitt-architecture.md?plain=1#L466) states:\r\n\r\n> However, the Registrations on a separate Transparency Service is generally disjoint, though it is possible to take a Transparent Statement (i.e. a Signed Statement with a Receipt in its unprotected header, ~from a~ (see #331)  from the first Transparency Service) and register it on another Transparency Service, **where the second Receipt will be over the first Receipt in the unprotected header**.\r\n\r\nWith the discussion and comments in [#321](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/321#issuecomment-2554645211), the unprotected header will be stripped prior to registration. \r\n\r\nThe change will make _**where the second Receipt will be over the first Receipt in the unprotected header**_ inaccurate. \r\n\r\nThis issue tracks how and if we need to re-register transparent statements, or remove the above reference.",
       "createdAt": "2024-12-30T16:41:06Z",
-      "updatedAt": "2025-02-28T18:34:18Z",
-      "closedAt": null,
+      "updatedAt": "2025-04-08T14:20:24Z",
+      "closedAt": "2025-04-08T14:20:23Z",
       "comments": [
         {
           "author": "achamayou",
@@ -6225,6 +6232,13 @@
           "body": "@SteveLasker shall we close this issue then?",
           "createdAt": "2025-02-28T18:34:16Z",
           "updatedAt": "2025-02-28T18:34:16Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Resolved with #348 ",
+          "createdAt": "2025-04-08T14:20:23Z",
+          "updatedAt": "2025-04-08T14:20:23Z"
         }
       ]
     },
@@ -6273,7 +6287,7 @@
       "id": "I_kwDOIvmHss6kykL7",
       "title": "Feedback: Update the TOC",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/341",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -6282,8 +6296,8 @@
       "labels": [],
       "body": "From @mcr\r\n\r\nProposed ToC for \"architecture\" document.\r\nAny resemblance to RFC793 is purely intentional.\r\n\r\n0. Title:\r\n   Architectural Principals of a Trustworthy and Transparent Digital Supply Chain\r\n   (XXX well, I think this is still wrong)\r\n\r\n1.  INTRODUCTION\r\n* Motivation     - current 1.0 plus parts of current 4.0 Architecture Overview\r\n* Terminology    - current 2.0 plus 3.0 much of Transparency\r\n* Append-Only Logs - rest of 3.0, plus 4.1.0, and pieces of 6.2.1\r\n* Scope          - rest of 4.0 architecture, including diagram\r\n* About This Document - bits of 3.0, particularly \"The building blocks defined...\", should explain the rest of the document.\r\n* Interfaces     - pointers to SCAPI document, high-level of operational requirements\r\n* Operation      - chunks of high-level of Security Considerations 6.2.2\r\n                   (Receipts), 6.2.4 Agility, and Threat Model\r\n                   [Note: these are high-level requirements.  For instance, the statement in 6.2.3, \"All contents exchanged between actors is protected using secure authenticated channels (e.g., TLS) but may not exclude network\" would be included.\r\n\r\n2.  PHILOSOPHY ....................................................... 7\r\n\r\n* Elements of the Transparency Trust system. Details of 4.1.\r\n* Model of Operation - walk us through the *details* (with forward references to 3. FUNCTIONAL) about how a statement is created, what it contains, how it is submitted, and how it can be verified.\r\n* Signed Statements (4.2), but not 4.2.1.\r\n* Transparent Statements (first half of 4.4)\r\n* Validation (first half of 4.4.1)\r\n\r\n3.  FUNCTIONAL SPECIFICATION ........................................ 15\r\n\r\n* Introduction to Transparent Statements. (4.4), with the CDDL, and a bit deeper explanation.\r\n* Receipts CDDL.  Figure 7.\r\n* Replication and Consistency. (which bits of ACID apply, and in which way)\r\n\r\n4. Privacy Considerations\r\n5. Security Considerations\r\n* addressing threat model issues from 1.Operation\r\n",
       "createdAt": "2024-12-31T23:11:01Z",
-      "updatedAt": "2025-02-11T15:53:45Z",
-      "closedAt": null,
+      "updatedAt": "2025-04-08T14:19:14Z",
+      "closedAt": "2025-04-08T14:19:14Z",
       "comments": [
         {
           "author": "aj-stein",
@@ -6305,6 +6319,13 @@
           "body": "+1",
           "createdAt": "2025-01-01T12:53:39Z",
           "updatedAt": "2025-01-01T12:53:39Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Based on discussions at IETF 122: closing in lieu of merged #366, and opened #369 as what we believe is the remaining item. ",
+          "createdAt": "2025-04-08T14:19:11Z",
+          "updatedAt": "2025-04-08T14:19:11Z"
         }
       ]
     },
@@ -6783,6 +6804,24 @@
       "createdAt": "2025-03-18T13:25:49Z",
       "updatedAt": "2025-04-01T14:18:47Z",
       "closedAt": "2025-04-01T14:18:47Z",
+      "comments": []
+    },
+    {
+      "number": 369,
+      "id": "I_kwDOIvmHss6xnncg",
+      "title": "Update the abstract",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/369",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "ready-for-pr"
+      ],
+      "body": "",
+      "createdAt": "2025-04-08T14:17:34Z",
+      "updatedAt": "2025-04-08T14:17:34Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -52931,26 +52970,28 @@
     {
       "number": 368,
       "id": "PR_kwDOIvmHss6RPivc",
-      "title": "Updated References and a Case of Refernce Use",
+      "title": "Updated References and a Case of Reference Use",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/368",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-04-03T11:30:06Z",
-      "updatedAt": "2025-04-03T16:12:31Z",
+      "updatedAt": "2025-04-08T14:12:15Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "1f1790a5c2b5bc113dcf929cede5c548f9545a65",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "CWT-Claims-RFC",
-      "headRefOid": "4428a0e0f9f897d36274c56f18c794833d49482d",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "c9d8dae27db4d79d8ca9b1bcd1abf414cdab2b17",
+      "closedAt": "2025-04-08T14:12:14Z",
+      "mergedAt": "2025-04-08T14:12:14Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "1aa8b767612b09ee6aabe31c48354c8ff6ba6733"
+      },
       "comments": [],
       "reviews": [
         {
@@ -52970,6 +53011,187 @@
               "body": "as referenced, this doesn't render as COSWID, rather, it renders with RFC9393\r\nWas that intentional? \r\n\r\n- [RFC9393]\r\n- [CycloneDX]\r\n- [in-toto]\r\n- [SPDX-CBOR]\r\n- [SPDX-JSON]\r\n- [SLSA]\r\n- [SWID]\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
               "createdAt": "2025-04-03T16:12:31Z",
               "updatedAt": "2025-04-03T16:12:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6j6mXF",
+          "commit": {
+            "abbreviatedOid": "4428a0e"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-08T13:45:39Z",
+          "updatedAt": "2025-04-08T13:45:40Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "hm... good point. I can reverse the one item.",
+              "createdAt": "2025-04-08T13:45:39Z",
+              "updatedAt": "2025-04-08T13:45:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6j6qC_",
+          "commit": {
+            "abbreviatedOid": "4428a0e"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-08T13:49:46Z",
+          "updatedAt": "2025-04-08T13:49:46Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "Done",
+              "createdAt": "2025-04-08T13:49:46Z",
+              "updatedAt": "2025-04-08T13:49:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6j62e-",
+          "commit": {
+            "abbreviatedOid": "c9d8dae"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-04-08T14:01:45Z",
+          "updatedAt": "2025-04-08T14:01:45Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6j695N",
+          "commit": {
+            "abbreviatedOid": "c9d8dae"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-04-08T14:09:54Z",
+          "updatedAt": "2025-04-08T14:09:54Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 370,
+      "id": "PR_kwDOIvmHss6RzrcP",
+      "title": "Refine Security Considerations",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/370",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This pull request attempts to address #287 \r\n\r\nThe PR surfaces several issues which need to be addressed given changes made to the body of the document.",
+      "createdAt": "2025-04-08T15:27:42Z",
+      "updatedAt": "2025-04-09T17:28:50Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "1aa8b767612b09ee6aabe31c48354c8ff6ba6733",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "security-considerations-refinement",
+      "headRefOid": "836844df9c54f89ee695cfbf567532ae8a98b79c",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This is a great improvement. \r\nI've pushed some additional changes: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/370/commits/836844df9c54f89ee695cfbf567532ae8a98b79c\r\n\r\nWe still need to:\r\n- reconcile the editors note\r\n- decide how much detail we want to cover with RATS as the section needs a bit more work.\r\n- the threat model can use more editing\r\n\r\n",
+          "createdAt": "2025-04-09T17:26:40Z",
+          "updatedAt": "2025-04-09T17:28:48Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6kJdn2",
+          "commit": {
+            "abbreviatedOid": "c28e60c"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-09T15:41:57Z",
+          "updatedAt": "2025-04-09T15:41:57Z",
+          "comments": [
+            {
+              "originalPosition": 140,
+              "body": "Suggest flipping the order:\r\n```suggestion\r\nThe security considerations for specific verifiable data structures are out of scope for this document.\r\nSee {{-RECEIPTS}} for the generic security considerations that apply to Verifiable Data Structure and Receipts.\r\n```",
+              "createdAt": "2025-04-09T15:41:57Z",
+              "updatedAt": "2025-04-09T15:41:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kJh1Q",
+          "commit": {
+            "abbreviatedOid": "c28e60c"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-09T15:47:35Z",
+          "updatedAt": "2025-04-09T15:47:35Z",
+          "comments": [
+            {
+              "originalPosition": 54,
+              "body": "```suggestion\r\nIssuers and Transparency Services SHOULD:\r\n\r\n- The Transparency Service may be replicated with a consensus algorithm, such as Practical Byzantine Fault Tolerance {{PBFT}} and may be used to protect against malicious or vulnerable replicas.\r\n```",
+              "createdAt": "2025-04-09T15:47:35Z",
+              "updatedAt": "2025-04-09T15:47:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kJjHv",
+          "commit": {
+            "abbreviatedOid": "b5ff5d3"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-09T15:49:25Z",
+          "updatedAt": "2025-04-09T15:49:26Z",
+          "comments": [
+            {
+              "originalPosition": 48,
+              "body": "```suggestion\r\n\r\nIssuers and Transparency Services MUST:\r\n\r\n- carefully protect their private signing keys.\r\n```",
+              "createdAt": "2025-04-09T15:49:25Z",
+              "updatedAt": "2025-04-09T15:49:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kJqWO",
+          "commit": {
+            "abbreviatedOid": "568cc56"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-09T15:59:40Z",
+          "updatedAt": "2025-04-09T15:59:41Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "this section says \"MUST\", then says \"where possible\" which is conflicted",
+              "createdAt": "2025-04-09T15:59:40Z",
+              "updatedAt": "2025-04-09T15:59:41Z"
             }
           ]
         }
