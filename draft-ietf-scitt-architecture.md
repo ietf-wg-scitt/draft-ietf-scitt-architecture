@@ -760,7 +760,7 @@ A Transparency Service MUST ensure that a Signed Statement is registered before 
 
 A Transparency Service MAY accept a Signed Statement with content in its unprotected header, and MAY use values from that unprotected header during verification and registration policy evaluation.
 
-However, the unprotected header of a Signed Statement MUST be set to an empty map before the Signed Statement can be included in a Statement Sequence.
+Transparency Services MAY alter or discard the unprotected header of any Signed Statement prior to registration.
 
 The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
 The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.
