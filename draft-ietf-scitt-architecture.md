@@ -927,21 +927,6 @@ Issuers and Transparency Services MUST:
 - avoid using keys for more than one purpose
 - rotate their keys in well-defined cryptoperiods, see {{KEY-MANAGEMENT}}
 
-Issuers and Transparency Services SHOULD:
-
-- use a Trusted Execution Environment (TEE) for cryptographic operations.
-
-## Transparency Service Operational Considerations
-
-Issuers and Transparency Services SHOULD:
-
-- protect against malicious or vulnerable replicas by replicating with a consensus algorithm, such as Practical Byzantine Fault Tolerance {{PBFT}}.
-- provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
-
-
-
-
-
 ## Threat Model
 
 This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are corrupt or compromised.
