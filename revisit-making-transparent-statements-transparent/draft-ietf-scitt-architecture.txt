@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 12 October 2025                                      C. Fournet
+Expires: 13 October 2025                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                           10 April 2025
+                                                           11 April 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 October 2025.
+   This Internet-Draft will expire on 13 October 2025.
 
 Copyright Notice
 
@@ -1090,16 +1090,8 @@ Table of Contents
    its unprotected header, and MAY use values from that unprotected
    header during verification and registration policy evaluation.
 
-   To support registering a Transparent Statement from a first
-   Transparency Service, with a second Transparency Services, while
-   maintaining the ability to refer to Transparent Statements by hash
-   requires normalizing the unprotected header.
-
-   Normalization procedures for unprotected header are a registration
-   policy specific activity, and are out of scope for this document.
-
-   Some Transparency Services MAY decide to not support registering
-   Transparent Statements.
+   Transparency Services MAY alter or discard the unprotected header of
+   any Signed Statement prior to registration.
 
    The same Signed Statement may be independently registered in multiple
    Transparency Services, producing multiple, independent Receipts.  The
