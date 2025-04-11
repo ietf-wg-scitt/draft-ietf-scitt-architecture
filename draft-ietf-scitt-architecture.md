@@ -760,11 +760,7 @@ A Transparency Service MUST ensure that a Signed Statement is registered before 
 
 A Transparency Service MAY accept a Signed Statement with content in its unprotected header, and MAY use values from that unprotected header during verification and registration policy evaluation.
 
-To support registering a Transparent Statement from a first Transparency Service, with a second Transparency Services, while maintaining the ability to refer to Transparent Statements by hash requires normalizing the unprotected header.
-
-Normalization procedures for unprotected header are a registration policy specific activity, and are out of scope for this document.
-
-Some Transparency Services MAY decide to not support registering Transparent Statements.
+Transparency Services MAY alter or discard the unprotected header of any Signed Statement prior to registration.
 
 The same Signed Statement may be independently registered in multiple Transparency Services, producing multiple, independent Receipts.
 The multiple Receipts may be attached to the unprotected header of the Signed Statement, creating a Transparent Statement.
