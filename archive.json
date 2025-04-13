@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-10T00:51:54.138778+00:00",
+  "timestamp": "2025-04-13T02:22:10.943344+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5411,9 +5411,17 @@
       ],
       "body": "The security consideration section gives me the impression that different authors worked on the content and put the text in there without re-reading the product. As a consequence, there is a lot of repetition.",
       "createdAt": "2024-07-20T18:34:16Z",
-      "updatedAt": "2025-04-08T15:28:15Z",
+      "updatedAt": "2025-04-10T17:00:54Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "an attempt to fix the issue was merged via #370 \n\n@hannestschofenig, could you check the preliminary result in current main, please?",
+          "createdAt": "2025-04-10T17:00:53Z",
+          "updatedAt": "2025-04-10T17:00:53Z"
+        }
+      ]
     },
     {
       "number": 289,
@@ -53087,24 +53095,26 @@
       "id": "PR_kwDOIvmHss6RzrcP",
       "title": "Refine Security Considerations",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/370",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This pull request attempts to address #287 \r\n\r\nThe PR surfaces several issues which need to be addressed given changes made to the body of the document.",
       "createdAt": "2025-04-08T15:27:42Z",
-      "updatedAt": "2025-04-09T17:28:50Z",
+      "updatedAt": "2025-04-11T09:05:14Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "1aa8b767612b09ee6aabe31c48354c8ff6ba6733",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "security-considerations-refinement",
-      "headRefOid": "836844df9c54f89ee695cfbf567532ae8a98b79c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "962b388c498959af5aefa249e9d5792eb0219577",
+      "closedAt": "2025-04-10T16:59:17Z",
+      "mergedAt": "2025-04-10T16:59:17Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "92b034e05b0ee95d87155c83536e7f12c90ada4a"
+      },
       "comments": [
         {
           "author": "SteveLasker",
@@ -53112,6 +53122,27 @@
           "body": "This is a great improvement. \r\nI've pushed some additional changes: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/370/commits/836844df9c54f89ee695cfbf567532ae8a98b79c\r\n\r\nWe still need to:\r\n- reconcile the editors note\r\n- decide how much detail we want to cover with RATS as the section needs a bit more work.\r\n- the threat model can use more editing\r\n\r\n",
           "createdAt": "2025-04-09T17:26:40Z",
           "updatedAt": "2025-04-09T17:28:48Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I support the enhanced language provided by Orie clarifying what a SCITT Registry does provide, starting at line 900.",
+          "createdAt": "2025-04-10T16:34:03Z",
+          "updatedAt": "2025-04-10T16:34:03Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "fixes #287 ",
+          "createdAt": "2025-04-10T16:52:10Z",
+          "updatedAt": "2025-04-10T16:52:10Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We agreed to open a new PR to move the accuracy section into the threat model.",
+          "createdAt": "2025-04-10T16:57:49Z",
+          "updatedAt": "2025-04-10T16:57:49Z"
         }
       ],
       "reviews": [
@@ -53194,6 +53225,683 @@
               "updatedAt": "2025-04-09T15:59:41Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kW-ba",
+          "commit": {
+            "abbreviatedOid": "836844d"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T16:27:48Z",
+          "updatedAt": "2025-04-10T16:27:49Z",
+          "comments": [
+            {
+              "originalPosition": 90,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-04-10T16:27:49Z",
+              "updatedAt": "2025-04-10T16:27:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kXAZH",
+          "commit": {
+            "abbreviatedOid": "d20bef4"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T16:30:16Z",
+          "updatedAt": "2025-04-10T16:30:16Z",
+          "comments": [
+            {
+              "originalPosition": 101,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-04-10T16:30:16Z",
+              "updatedAt": "2025-04-10T16:30:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kXAlI",
+          "commit": {
+            "abbreviatedOid": "d20bef4"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T16:30:26Z",
+          "updatedAt": "2025-04-10T16:30:26Z",
+          "comments": [
+            {
+              "originalPosition": 95,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-04-10T16:30:26Z",
+              "updatedAt": "2025-04-10T16:30:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kXAsA",
+          "commit": {
+            "abbreviatedOid": "d20bef4"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T16:30:33Z",
+          "updatedAt": "2025-04-10T16:30:33Z",
+          "comments": [
+            {
+              "originalPosition": 90,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-04-10T16:30:33Z",
+              "updatedAt": "2025-04-10T16:30:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kXKIC",
+          "commit": {
+            "abbreviatedOid": "d20bef4"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T16:39:08Z",
+          "updatedAt": "2025-04-10T16:39:08Z",
+          "comments": [
+            {
+              "originalPosition": 101,
+              "body": "as we \"mess\" with the bytes-to-be-registered and purge the unprotected header, potential `x5chain` are lost and cannot be used by auditors.\r\n\r\n```suggestion\r\n```",
+              "createdAt": "2025-04-10T16:39:08Z",
+              "updatedAt": "2025-04-10T16:40:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kXK2g",
+          "commit": {
+            "abbreviatedOid": "d20bef4"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T16:39:41Z",
+          "updatedAt": "2025-04-10T16:39:41Z",
+          "comments": [
+            {
+              "originalPosition": 90,
+              "body": "```suggestion\r\n```\r\n\r\nsee below",
+              "createdAt": "2025-04-10T16:39:41Z",
+              "updatedAt": "2025-04-10T16:39:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kXLOW",
+          "commit": {
+            "abbreviatedOid": "d20bef4"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T16:39:56Z",
+          "updatedAt": "2025-04-10T16:39:56Z",
+          "comments": [
+            {
+              "originalPosition": 95,
+              "body": "```suggestion\r\n```\r\n\r\nsee below",
+              "createdAt": "2025-04-10T16:39:56Z",
+              "updatedAt": "2025-04-10T16:39:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kXT34",
+          "commit": {
+            "abbreviatedOid": "b40aa24"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T16:48:15Z",
+          "updatedAt": "2025-04-10T16:48:15Z",
+          "comments": [
+            {
+              "originalPosition": 184,
+              "body": "```suggestion\r\nIt is important for Issuers and Transparency Services to clearly communicate when keys are compromised, so that Signed Statements can be rejected by Transparency Services, or Receipts can be ignored by Relying Parties.\r\n```",
+              "createdAt": "2025-04-10T16:48:15Z",
+              "updatedAt": "2025-04-10T16:48:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kXUJi",
+          "commit": {
+            "abbreviatedOid": "3ac2dd9"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T16:48:40Z",
+          "updatedAt": "2025-04-10T16:48:41Z",
+          "comments": [
+            {
+              "originalPosition": 184,
+              "body": "```suggestion\r\nIt is important for Issuers and Transparency Services to clearly communicate when keys are compromised, so that Signed Statements can be rejected by Transparency Services or Receipts can be ignored by Relying Parties.\r\n```",
+              "createdAt": "2025-04-10T16:48:41Z",
+              "updatedAt": "2025-04-10T16:48:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kXVUA",
+          "commit": {
+            "abbreviatedOid": "f458d06"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-04-10T16:50:14Z",
+          "updatedAt": "2025-04-10T16:50:14Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kXVxO",
+          "commit": {
+            "abbreviatedOid": "b40aa24"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-04-10T16:50:45Z",
+          "updatedAt": "2025-04-10T16:50:45Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kXYdC",
+          "commit": {
+            "abbreviatedOid": "f458d06"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T16:55:02Z",
+          "updatedAt": "2025-04-10T16:55:03Z",
+          "comments": [
+            {
+              "originalPosition": 115,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-04-10T16:55:03Z",
+              "updatedAt": "2025-04-10T16:55:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kYYKe",
+          "commit": {
+            "abbreviatedOid": "962b388"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T18:28:04Z",
+          "updatedAt": "2025-04-10T18:28:05Z",
+          "comments": [
+            {
+              "originalPosition": 68,
+              "body": "Why TEE specifically ? That is a very specific way of ensuring a security perimeter for signing. I would prefer a requirement to declare how the permiter is established",
+              "createdAt": "2025-04-10T18:28:04Z",
+              "updatedAt": "2025-04-10T18:28:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kYaYh",
+          "commit": {
+            "abbreviatedOid": "962b388"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T18:31:13Z",
+          "updatedAt": "2025-04-10T18:31:13Z",
+          "comments": [
+            {
+              "originalPosition": 84,
+              "body": "Why have we added back in specifics on replication, and in particular consensus algorithms ? There is no problem with vulnerable replicas provided an effective use of consistency proofs is used to ensure no split view.",
+              "createdAt": "2025-04-10T18:31:13Z",
+              "updatedAt": "2025-04-10T18:31:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kYbq_",
+          "commit": {
+            "abbreviatedOid": "962b388"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T18:32:24Z",
+          "updatedAt": "2025-04-10T18:32:24Z",
+          "comments": [
+            {
+              "originalPosition": 85,
+              "body": "This is very very late in the day to be adding a SHOULD that has such deep implications for the operational platform of the transparency service. On the face of it I strongly object to this one",
+              "createdAt": "2025-04-10T18:32:24Z",
+              "updatedAt": "2025-04-10T18:32:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kYeyl",
+          "commit": {
+            "abbreviatedOid": "962b388"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T18:33:44Z",
+          "updatedAt": "2025-04-10T18:33:44Z",
+          "comments": [
+            {
+              "originalPosition": 109,
+              "body": "Why are we comfortable removing this line ?",
+              "createdAt": "2025-04-10T18:33:44Z",
+              "updatedAt": "2025-04-10T18:33:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kYrI-",
+          "commit": {
+            "abbreviatedOid": "962b388"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-10T18:39:13Z",
+          "updatedAt": "2025-04-10T18:39:14Z",
+          "comments": [
+            {
+              "originalPosition": 124,
+              "body": "Is 969 removed because we have that somewhere else ? The property that a sequence, which may not be the whole log, is complete is important. Are we saying  the scope of verifiability in scitt doesn't include this ?",
+              "createdAt": "2025-04-10T18:39:13Z",
+              "updatedAt": "2025-04-10T18:39:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kddOS",
+          "commit": {
+            "abbreviatedOid": "962b388"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-11T05:33:50Z",
+          "updatedAt": "2025-04-11T05:33:50Z",
+          "comments": [
+            {
+              "originalPosition": 109,
+              "body": "This was considered duplicative text from line [917](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/370/files#diff-585fb424519b79cf000445f3425fa56d328cbaca5d2a622740ddc4e5ca91dbe1R917)",
+              "createdAt": "2025-04-11T05:33:50Z",
+              "updatedAt": "2025-04-11T05:33:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kfL6b",
+          "commit": {
+            "abbreviatedOid": "962b388"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-11T08:55:45Z",
+          "updatedAt": "2025-04-11T08:55:45Z",
+          "comments": [
+            {
+              "originalPosition": 68,
+              "body": "It\u2019s a reference to the scitt-ccf-ledger implementation, which enforces its trust boundary that way. But you are right that it\u2019s not the only way to do it, so it can either be kept as an example or removed for brevity.",
+              "createdAt": "2025-04-11T08:55:45Z",
+              "updatedAt": "2025-04-11T08:55:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kfQdU",
+          "commit": {
+            "abbreviatedOid": "962b388"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-11T09:02:15Z",
+          "updatedAt": "2025-04-11T09:02:15Z",
+          "comments": [
+            {
+              "originalPosition": 84,
+              "body": "I don\u2019t think these have been added back, they have been floating around for a while. There is no PBFT implementation, this text is not helpful for interoperability or for implementers.\r\n\r\nSeparately, I think there is value in hardening the TS, but I am sure that\u2019s not controversial :)",
+              "createdAt": "2025-04-11T09:02:15Z",
+              "updatedAt": "2025-04-11T09:02:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kfSSP",
+          "commit": {
+            "abbreviatedOid": "962b388"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-11T09:05:14Z",
+          "updatedAt": "2025-04-11T09:05:14Z",
+          "comments": [
+            {
+              "originalPosition": 85,
+              "body": "+1, these were there a long time, but under \u201cfor example\u201d rather than SHOULD. I am very biased and continue to believe they\u2019re a good example, but agree that SHOULD is excessive.",
+              "createdAt": "2025-04-11T09:05:14Z",
+              "updatedAt": "2025-04-11T09:05:14Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 371,
+      "id": "PR_kwDOIvmHss6SIx9-",
+      "title": "Allow Registering Transparent Statements",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/371",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Consider the case where a \"Hardware Vendor\" signs a statement, which is made transparent in an \"Operating System Vendor\"s transparency service.... and then this Transparent Statement (including the receipt from the OS vendor) is registered with a \"Government Regulator\" Transparency Service.\r\n\r\nPreviously, we forbid this use case, by mandating the unprotected header be set to empty.\r\nThis also caused us to drop cert chains, and counter signatures.\r\n\r\nThis PR allows:\r\n\r\n- higher order receipts (receipts for transparent statements)\r\n- making cert chains transparent, along with their signed statement\r\n- making counter signatures transparent, along with their signed statement\r\n\r\nIt clarifies that support for making transparent statements transparent is optional, not all transparency services will decide to support the cases above... none the less, the architecture should allow vendors to decide.",
+      "createdAt": "2025-04-10T17:15:01Z",
+      "updatedAt": "2025-04-11T14:17:11Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "92b034e05b0ee95d87155c83536e7f12c90ada4a",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "revisit-making-transparent-statements-transparent",
+      "headRefOid": "284b68e6166f006be3304db698b4b8edf9335950",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The scenario that Orie describes is quite plausible when you consider that the US Coast Guard is expecting operators to maintain an \"approved product list\"(\"Trust Registry\", IMO) as required under new maritime regulations for the US: \r\nhttps://www.federalregister.gov/d/2025-00708/p-1457\r\n\r\n(b) \r\n\r\nDevice security measures.\r\n\r\nEach owner or operator or designated CySO of a U.S.-flagged vessel, facility, or OCS facility must ensure the following device security measures are in place, addressed in Section 6 of the Cybersecurity Plan, and made available to the Coast Guard upon request:\r\n\r\n(1) Develop and maintain a list of approved hardware, firmware, and software that may be installed on IT or OT systems. Any hardware, firmware, and software installed on IT and OT systems must be on the owner- or operator-approved list;\r\n\r\n",
+          "createdAt": "2025-04-10T17:35:09Z",
+          "updatedAt": "2025-04-10T17:35:09Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Just repeating the discussion for why we nulled it out, not saying the scenario is bad, just the technical issue, and the interoperability of the spec:\r\nSince it's unprotected, there's no integrity protection it's not changed, either by MIM attacks, or changed (possibly intentionally) by the TS. \r\nThe reason we agreed to nill it, is it gaurentees what was intended to be registered (to be signed bytes) were consistent. \r\nIf we want to record unprotected content, including valid receipt/transparent statement scenarios, we need to rectify the interoperable, repeatable aspect. \r\n",
+          "createdAt": "2025-04-10T17:50:18Z",
+          "updatedAt": "2025-04-10T17:50:18Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Yep, I'm fine with the proposed change. As I understand it, this permits two transparency services to settle on a normalization procedure and use registration policies to express it. And it also allows any transparency service to say: \"no we don't support that\"\r\n\r\nI like that",
+          "createdAt": "2025-04-10T18:22:01Z",
+          "updatedAt": "2025-04-10T18:22:01Z"
+        },
+        {
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "body": "ah nuts, sorry. but I've reflected on this a bit and I'm back to being uncomfortable. The very permissiveness, which I like, also seems to force more burden on clients.\r\n\r\n> Previously, we forbid this use case, by mandating the unprotected header be set to empty\r\n\r\nI didn't see it that way. I did see it as forcing transparent statements to be registered as payload. Doing this seems no worse than relying on registration policies which would, by the arch, be TS implementation specific anyway.",
+          "createdAt": "2025-04-11T12:59:01Z",
+          "updatedAt": "2025-04-11T12:59:01Z"
+        },
+        {
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Putting things in unsigned headers is by definition has no protection by the owning signed statement.  Instead the values of those headers can be independently signed like receipts.\r\n________________________________\r\nFrom: Steve Lasker ***@***.***>\r\nSent: Friday, April 11, 2025 9:57 AM\r\nTo: ietf-wg-scitt/draft-ietf-scitt-architecture ***@***.***>\r\nCc: Roy Williams (E+P) ***@***.***>; Comment ***@***.***>\r\nSubject: Re: [ietf-wg-scitt/draft-ietf-scitt-architecture] Allow Registering Transparent Statements (PR #371)\r\n\r\n\r\n@SteveLasker requested changes on this pull request.\r\n\r\nI'd suggest we revisit the goals for how we want to register a transparent statement. Perhaps the receipt should be in the payload, with a reference to the original signed statement.\r\nIn either case, the previous text allowed unprotected headers to be submitted for consideration by the registration policy but set to nill prior to writing to the log to assure the log can be reconstructed. In this case, there's no way of know if it was tampered with, or valid changes made as the unprotected headed is unprotected.\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub<https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/371#pullrequestreview-2760456348>, or unsubscribe<https://github.com/notifications/unsubscribe-auth/AJP7OQD77V4RGS2CKU6UXI32Y7C5HAVCNFSM6AAAAAB24GQPXGVHI2DSMVQWIX3LMV43YUDVNRWFEZLROVSXG5CSMV3GSZLXHMZDONRQGQ2TMMZUHA>.\r\nYou are receiving this because you commented.Message ID: ***@***.***>\r\n",
+          "createdAt": "2025-04-11T14:08:54Z",
+          "updatedAt": "2025-04-11T14:08:54Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@SteveLasker \r\n\r\nWe can always add more text... but:\r\n\r\n>  Perhaps the receipt should be in the payload, with a reference to the original signed statement.\r\n\r\nWrite a draft : )\r\n\r\nThats not how we define receipts in:\r\n\r\nhttps://datatracker.ietf.org/doc/draft-ietf-cose-merkle-tree-proofs/\r\n\r\n",
+          "createdAt": "2025-04-11T14:13:34Z",
+          "updatedAt": "2025-04-11T14:13:46Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Thats not how we define receipts in: https://datatracker.ietf.org/doc/draft-ietf-cose-merkle-tree-proofs/\r\n\r\nAgreed, however that's what I'm suggesting we should revisit. If the result is this wonkyness with inconsistencies of what goes on the ledger, we should revisit the requirements and goals.",
+          "createdAt": "2025-04-11T14:17:09Z",
+          "updatedAt": "2025-04-11T14:17:09Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6kh2t9",
+          "commit": {
+            "abbreviatedOid": "7ec10ed"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2025-04-11T13:14:47Z",
+          "updatedAt": "2025-04-11T13:14:57Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "This muddles the message.  Other unprotected header values can exist and that does not turn a signed statement into a transparent one.  I think you need to state that a signed statement with the existence of any unprotected headers may be rejected.  Though I think the better implementation is to store (or hash) the signed statement without including unprotected headers.",
+              "createdAt": "2025-04-11T13:14:47Z",
+              "updatedAt": "2025-04-11T13:14:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kh7Af",
+          "commit": {
+            "abbreviatedOid": "7ec10ed"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-11T13:21:13Z",
+          "updatedAt": "2025-04-11T13:21:13Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "> I think you need to state that a signed statement with the existence of any unprotected headers may be rejected.\r\n\r\nThat is what this is saying:\r\n\r\n \"Some Transparency Services MAY decide to not support registering Transparent Statements.\"\r\n \r\n I could be more clear:\r\n \r\n Transparency Services can reject signed statements according to their registration policy.\r\n A Transparency Service might have a policy of not allowing:\r\n - Anything other than Hash Envelopes\r\n - Any COSE sign 1 with a counter signature (hash envelope or otherwise)\r\n - Any COSE sign 1 with a certificate chain in the unprotected header.\r\n - Any COSE sign 1 with attached receipts in the unprotected header (we call these Transparent Statements)\r\n \r\n Some Transparency Services MAY overwrite the unprotected header before registering it.\r\n \r\n\r\n ",
+              "createdAt": "2025-04-11T13:21:13Z",
+              "updatedAt": "2025-04-11T13:21:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kiCm6",
+          "commit": {
+            "abbreviatedOid": "7ec10ed"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-11T13:32:25Z",
+          "updatedAt": "2025-04-11T13:32:25Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "Ok, that is a bit draconian and you can keep it simpler to state that a service may have policy to not allow: \r\nAny COSE sign 1 with some or any unprotected headers, or\r\nMay record into the ledger after overwriting the unprotected header.\r\n",
+              "createdAt": "2025-04-11T13:32:25Z",
+              "updatedAt": "2025-04-11T13:32:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kiHxO",
+          "commit": {
+            "abbreviatedOid": "7ec10ed"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-11T13:40:11Z",
+          "updatedAt": "2025-04-11T13:40:12Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nTransparency Services MAY alter or discard the unprotected header of any Signed Statement prior to registration.\r\n```",
+              "createdAt": "2025-04-11T13:40:11Z",
+              "updatedAt": "2025-04-11T13:42:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kiH3A",
+          "commit": {
+            "abbreviatedOid": "7ec10ed"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-11T13:40:20Z",
+          "updatedAt": "2025-04-11T13:40:20Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "Perhaps: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/371/files#r2039586775",
+              "createdAt": "2025-04-11T13:40:20Z",
+              "updatedAt": "2025-04-11T13:40:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kiJNo",
+          "commit": {
+            "abbreviatedOid": "7ec10ed"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-11T13:42:20Z",
+          "updatedAt": "2025-04-11T13:42:20Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "Brent and I think that is simpler.",
+              "createdAt": "2025-04-11T13:42:20Z",
+              "updatedAt": "2025-04-11T13:42:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kiLe_",
+          "commit": {
+            "abbreviatedOid": "284b68e"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-04-11T13:45:33Z",
+          "updatedAt": "2025-04-11T13:45:33Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kiTic",
+          "commit": {
+            "abbreviatedOid": "284b68e"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "I'd suggest we revisit the goals for how we want to register a transparent statement. Perhaps the receipt should be in the payload, with a reference to the original signed statement. \r\nIn either case, the previous text allowed unprotected headers to be submitted for consideration by the registration policy but set to nill prior to writing to the log to assure the log can be reconstructed. In this case, there's no way of know if it was tampered with, or valid changes made as the unprotected headed is unprotected. ",
+          "createdAt": "2025-04-11T13:57:17Z",
+          "updatedAt": "2025-04-11T13:57:17Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 372,
+      "id": "PR_kwDOIvmHss6SNPDQ",
+      "title": "Security Considerations Cleanup - Part Deux",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/372",
+      "state": "OPEN",
+      "author": "SteveLasker",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-04-11T06:24:19Z",
+      "updatedAt": "2025-04-11T13:58:30Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "92b034e05b0ee95d87155c83536e7f12c90ada4a",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "security-considerations-2",
+      "headRefOid": "3cf03b4204e0e3aa58a2cd38407d4ea51754d6d4",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The current state is to clean out the history of text, not related to the Threat Model. \r\nSuggesting we now add focused threat model text",
+          "createdAt": "2025-04-11T13:58:29Z",
+          "updatedAt": "2025-04-11T13:58:29Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6khR4g",
+          "commit": {
+            "abbreviatedOid": "989671c"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "\\<strikethrough\\>Totally agree with these changes for editorial, interoperability, and content reasons.\\</strikethrough\\>\r\n\r\n^^^ This was on small commit 1 (can we please standardise on marking things as Draft if the original author is still making large changes?)\r\n\r\nLooking again at commit 2",
+          "createdAt": "2025-04-11T12:20:36Z",
+          "updatedAt": "2025-04-11T13:05:46Z",
+          "comments": []
         }
       ]
     }
