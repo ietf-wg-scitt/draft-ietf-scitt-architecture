@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-13T02:22:10.943344+00:00",
+  "timestamp": "2025-04-15T00:53:31.591111+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -53646,7 +53646,7 @@
       "labels": [],
       "body": "Consider the case where a \"Hardware Vendor\" signs a statement, which is made transparent in an \"Operating System Vendor\"s transparency service.... and then this Transparent Statement (including the receipt from the OS vendor) is registered with a \"Government Regulator\" Transparency Service.\r\n\r\nPreviously, we forbid this use case, by mandating the unprotected header be set to empty.\r\nThis also caused us to drop cert chains, and counter signatures.\r\n\r\nThis PR allows:\r\n\r\n- higher order receipts (receipts for transparent statements)\r\n- making cert chains transparent, along with their signed statement\r\n- making counter signatures transparent, along with their signed statement\r\n\r\nIt clarifies that support for making transparent statements transparent is optional, not all transparency services will decide to support the cases above... none the less, the architecture should allow vendors to decide.",
       "createdAt": "2025-04-10T17:15:01Z",
-      "updatedAt": "2025-04-11T14:17:11Z",
+      "updatedAt": "2025-04-14T16:47:51Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "92b034e05b0ee95d87155c83536e7f12c90ada4a",
@@ -53706,6 +53706,69 @@
           "body": "> Thats not how we define receipts in: https://datatracker.ietf.org/doc/draft-ietf-cose-merkle-tree-proofs/\r\n\r\nAgreed, however that's what I'm suggesting we should revisit. If the result is this wonkyness with inconsistencies of what goes on the ledger, we should revisit the requirements and goals.",
           "createdAt": "2025-04-11T14:17:09Z",
           "updatedAt": "2025-04-11T14:17:09Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> The very permissiveness, which I like, also seems to force more burden on clients.\r\n\r\n+1. Are there implementations of this higher-order receipt scheme? If so, what do they look like? How do clients validate them?\r\n\r\nThere is a simple way implementations can make cert chains transparent at no complexity cost to validators, and which we have implemented (microsoft/scitt-ccf-ledger): reject inputs where they are unprotected.",
+          "createdAt": "2025-04-14T02:12:24Z",
+          "updatedAt": "2025-04-14T02:12:24Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The SCITT architecture by itself does not offer much interoperability or security.\n\n1. Registration policies are transparency service or vendor specific.\n2. No mandatory to implement VDS means different vendors can support different services, and may not be able to verify each other's inclusion proofs (3 formats already exists)\n3. No mandatory to implement statement or receipt signing algorithms means vendors can choose from the wide range of possible cose algorithms, and possibly have no overlap.\n\nDespite this flexibility, we have a requirement that is enforced on all transparency services which prevents common COSE messages from being made transparent. \n\nWhat the verifier sees and what the transparency service records are now different, allowing verifiers to be confused by attacks that exploit the fact that the unprotected headers content is not covered by the receipt.\n\nThe policy which governs what can be made transparent is naturally the realm of the vendors that operate transparency services.\n\nIf this PR is closed and we keep the current language, vendors that need to support certain use cases will simply have to use COSE Receipts without SCITT.\n\nIt seems a better choice for scitt to allow vendors to choose what they will issue receipts for... Allowing receipts for transparent statements, signed statements with counter signatures, signed statements with cert chains, COSE then timestamp, and any other COSE objects that make use of the unprotected header.\n\nThe current requirements forbid transparency services from issuing receipts for the exact bytes that are verified by a relying party.\n\nThis is the primary reason to reopen this topic.\n\nWe seem to be forced to chose between interoperability and security, and we've taken  a path that creates more interop by weakening security and limiting the use cases where scitt can apply.\n\nThere are better ways to improve interoperability without sacrificing security or use cases... If we don't have the energy to do that work now, let's not preclude a future group from addressing this topic without being forced to make breaking changes.\n\nThis PR won't change the fact that we know some vendors will drop unprotected headers.. it just allows other vendors to make better choices for use cases that require unprotected headers to be made transparent at the time of registration.\n",
+          "createdAt": "2025-04-14T02:56:46Z",
+          "updatedAt": "2025-04-14T02:56:46Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Somewhere along the way, we seem to have also lost sight of the fact that a merkle root and inclusion path from a trusted source is enough to authenticate any object... \n\nIn COSE Receipts every entry in the VDS can be a cat picture and you still get a receipt... It's just that you only get a receipt... You don't get a transparent statement.\n\nIn this analogy the cat picture is the unprotected header... Because it has no signature.\n\nSCITT does not allow you to submit a cat picture for registration, but COSE Receipts does.\n\nIn SCITT, only a cose sign1 can be registered.\n\nIt's inaccurate to say that the unprotected header is not secured... That's only true if it's not included in the log... If a TS doesn't like the bytes, it rejects the registration... That's what the spec says today... The only change this PR makes is allowing some TS to record the actual bytes that they reviewed during registration.",
+          "createdAt": "2025-04-14T03:09:23Z",
+          "updatedAt": "2025-04-14T03:09:23Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Are there implementations of this higher-order receipt scheme? If so, what do they look like? How do clients validate them?\r\n\r\n@OR13 it would be great to get some answers to these questions. If we are going to have a last minute discussion about destroying what little interoperability SCITT receipts provide, it would help to be sure we are trying to solve a real problem.",
+          "createdAt": "2025-04-14T09:44:43Z",
+          "updatedAt": "2025-04-14T09:44:43Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@achamayou AFAIK there are no implementations of \"Receipts for Transparent Statements\", or \"Receipts for COSE than Timestamp\" or \"Receipts for Signatures that are Counter Signed\".\r\n\r\nI'm not aware of any cross vendor interop regarding SCITT, so its hard to imagine there would be an implementation of Receipts for Transparent Statements, given the only case where that would emerge is where 2 vendors both ran transparency services, and the second vendor was only interested in providing transparency regarding what the first vendor had issued, and they did not trust each other.\r\n\r\nI don't think we are \"solving\" this problem by allowing for it to happen without specifying it.\r\n\r\nWe are just currently not allowing vendors to solve it, or a future WG from solving it without breaking compatibility.\r\n\r\nVendors will already have to choose which VDS to use, and which COSE Algorithms to support, we are not making interop worse by allowing them to choose if they want to issue receipts for transparent statements from other vendors.\r\n\r\nAnd regarding security, if I give you a receipt for a transparent statement that contained certs, countersignatures and receipts, you at least know that I had reviewed those, and deemed them acceptable to be included in my log.\r\n\r\nConsider the case where I review them and then drop them before adding the signed statement to the log.\r\n\r\nHow do I convince an Auditor that the certs were good, or that the countersignature or timestamp was from an uncompromised source?\r\n\r\nIf the Auditor can't tell, what should they say to the relying parties?\r\n\r\nIf I were the auditor, I would tell the RP this:\r\n\r\nThe TS discards the trust material it uses to evaluate the signatures on binaries, and by doing so, they have made it impossible for me to confirm if they followed their own policies.\r\n\r\nAs an RP, if you see a signed statement with both certs and a receipt in the unprotected header, you cannot trust it... because the certs that were used to register it could end in a different trust chain than the ones that are being conveyed along with the receipt.\r\n",
+          "createdAt": "2025-04-14T13:49:56Z",
+          "updatedAt": "2025-04-14T13:51:36Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> What the verifier sees and what the transparency service records are now different, allowing verifiers to be confused by attacks that exploit the fact that the unprotected headers content is not covered by the receipt.\r\n\r\nWhy are verifiers confused? With the unprotected header being capable of being tampered with, they shouldn't trust anything in the unprotected header. \r\n\r\n> We seem to be forced to chose between interoperability and security, and we've taken a path that creates more interop by weakening security and limiting the use cases where scitt can apply.\r\n\r\nYou seem to be arguing that an unprotected header is more secure than the protected content. This isn't just about interop, rather it's about being able to reproduce what's added to the VDS, as the unprotected header can be altered, making it insecure to the TS, and unreliable to any verifying party, as it's completely unknown what/when/why content was added to the unprotected header.\r\n\r\n> Vendors will already have to choose which VDS to use, and which COSE Algorithms to support, we are not making interop worse by allowing them to choose if they want to issue receipts for transparent statements from other vendors.\r\n\r\nBeing able to issue receipts for transparent statements is a good goal. In hindsight, we're realizing the infrastructure for doing this doesn't actually provide any additional security, and can provide implied security where it's not accurate.\r\n\r\n> The TS discards the trust material it uses to evaluate the signatures on binaries, and by doing so, they have made it impossible for me to confirm if they followed their own policies.\r\n\r\nWe're not saying they discard the contents. They can maintain the submitted content in an ancillary service. We're saying the VDS represents what was integrity protected, and doesn't record what could be random, or intentionally manipulated. ",
+          "createdAt": "2025-04-14T15:54:29Z",
+          "updatedAt": "2025-04-14T15:54:29Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> We're not saying they discard the contents. They can maintain the submitted content in an ancillary service. We're saying the VDS represents what was integrity protected, and doesn't record what could be random, or intentionally manipulated.\r\n\r\nWe are not saying this with BCP 14 language... We are saying that what goes into the log is different than what the TS uses to evaluate if the message is compliant with their registration policy.\r\n\r\nIts exactly this point that I am making... If the TS does not cover the unprotected header, I can take the receipt, add new information to the unprotected header, and try to convince both an auditor and an RP that the message is transparent.\r\n\r\nIn a world where the log included the unprotected header, the RP could be assured that the receipt covered material that met the registration policy, and if the RP lost trust in the TS, an auditor could restore that faith, by confirming that the TS did not \"swap out\" the certs, counter signature or receipts in the unprotected header (and keep multiple copies in an auxiliary service, for easy deception in the future.)",
+          "createdAt": "2025-04-14T16:05:09Z",
+          "updatedAt": "2025-04-14T16:06:12Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> We are saying that what goes into the log is different than what the TS uses to evaluate if the message is compliant with their registration policy.\r\n\r\nThe cert chain has been a debate for a while. Perhaps we should re-evaluate that. Or, are you arguing the receipts being added to the unprotected header is the scenario you wish to cover?\r\n\r\nI want to be careful we're arguing over fixing the scenario, not papering over some unrealistic guarantee over explicitly marked \"unprotected\" content. \r\n\r\n> Its exactly this point that I am making... If the TS does not cover the unprotected header, I can take the receipt, add new information to the unprotected header, and try to convince both an auditor and an RP that the message is transparent.\r\n\r\nAt no point should anyone trust content in the unprotected header, ever. These are hints, that should not be trusted, and are essentially \"property bag\" elements that can communicate untrusted information, that can optimize a solution. \r\n\r\n> In a world where the log included the unprotected header, the RP could be assured that the receipt covered material that met the registration policy, and if the RP lost trust in the TS, an auditor could restore that faith, by confirming that the TS did not \"swap out\" the certs, counter signature or receipts in the unprotected header (and keep multiple copies in an auxiliary service, for easy deception in the future.)\r\n\r\nSince the unprotected header is not guaranteed to be what was submitted, I don't see how any additional trust can be put in it.\r\n\r\nWhich is why I'm proposing if we need to include something critical, e2e, then we should put it in protected (to be signed) bytes so they can be trusted.\r\n\r\nI'm still trying to understand if we're debating over the cert chain, or the receipts being placed in the unprotected header.",
+          "createdAt": "2025-04-14T16:22:48Z",
+          "updatedAt": "2025-04-14T16:22:48Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> At no point should anyone trust content in the unprotected header, ever. \r\n\r\nWrong.\r\n\r\nIts fine to trust the content of the unprotected header, if you have a receipt from a TS that you trust... and that receipt covers the signed statement (including its unprotected header at the time of registration).\r\n\r\nThe entire point of issuing a receipt is to allow an RP to trust the TS instead of the original issuer... when you have a receipt that covers what the original issuer used to convince the TS to register the statement, you have that property.\r\n\r\nIf you have a receipt that covers information that is different than what the TS reviewed during registration... You don't have that property, and in fact, you might be convinced to verify the same signed statement with different unprotected headers, and with no way to know which ones were present when the receipt was issued (no receipt for critical verification material)\r\n\r\nIn KT the CommitmentValue is not a \"COSE Sign1\"... the entire \"CommitmentValue\" is \"unprotected\"... https://datatracker.ietf.org/doc/html/draft-ietf-keytrans-protocol-00#name-commitment\r\n\r\nIn CT the ordered list of inputs (D_n) are not \"COST Sign1\"... these are also not protected... https://datatracker.ietf.org/doc/html/rfc9162#section-2.1.1\r\n\r\nIf we don't agree on the properties you get from inclusion in the VDS, then we don't agree on the fundamentals of transparency.\r\n\r\nThe fact that SCITT has focused on including only \"Signed Statements (COSE Sign1)\" does not change the fact that other TS systems are handling unprotected information and proving it was suitable to be registered just fine.\r\n\r\nHere is an example of binary transparency that doesn't use signed statements at all:\r\n\r\nhttps://wiki.mozilla.org/Security/Binary_Transparency\r\n\r\nNotice the tree is built from unprotected information, the inclusion of each of these leaves in the tree is the process that enables transparency.\r\n\r\n\r\n\r\n",
+          "createdAt": "2025-04-14T16:47:50Z",
+          "updatedAt": "2025-04-14T16:47:50Z"
         }
       ],
       "reviews": [
@@ -53853,6 +53916,19 @@
           "body": "I'd suggest we revisit the goals for how we want to register a transparent statement. Perhaps the receipt should be in the payload, with a reference to the original signed statement. \r\nIn either case, the previous text allowed unprotected headers to be submitted for consideration by the registration policy but set to nill prior to writing to the log to assure the log can be reconstructed. In this case, there's no way of know if it was tampered with, or valid changes made as the unprotected headed is unprotected. ",
           "createdAt": "2025-04-11T13:57:17Z",
           "updatedAt": "2025-04-11T13:57:17Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6kr6I6",
+          "commit": {
+            "abbreviatedOid": "284b68e"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "For reasons discussed previously in #321, I object to including potentially unauthenticated input in the VDS. This is risky from a security and interoperability perspective.\r\n\r\nClients will have to implement non-trivial and TS-specific logic to understand which unprotected header parameters were original and can be traced back to the input payload, versus those that were injected by the TS. A weak registration policy can even make this impossible.\r\n\r\n\r\nIf someone downstream wants to inject further unprotected parameters in the statement, for example to add parallel (as opposed to higher order) receipts, clients will now need to separate or edit out those from the ones that were there at VDS injection time.",
+          "createdAt": "2025-04-14T02:16:37Z",
+          "updatedAt": "2025-04-14T02:42:28Z",
           "comments": []
         }
       ]
