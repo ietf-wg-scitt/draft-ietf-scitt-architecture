@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-17T00:52:23.938628+00:00",
+  "timestamp": "2025-04-20T00:56:51.782798+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5406,12 +5406,12 @@
         "henkbirkholz"
       ],
       "labels": [
-        "help wanted",
-        "has-pr"
+        "has-pr",
+        "pending-close"
       ],
       "body": "The security consideration section gives me the impression that different authors worked on the content and put the text in there without re-reading the product. As a consequence, there is a lot of repetition.",
       "createdAt": "2024-07-20T18:34:16Z",
-      "updatedAt": "2025-04-10T17:00:54Z",
+      "updatedAt": "2025-04-17T16:27:18Z",
       "closedAt": null,
       "comments": [
         {
@@ -5420,6 +5420,13 @@
           "body": "an attempt to fix the issue was merged via #370 \n\n@hannestschofenig, could you check the preliminary result in current main, please?",
           "createdAt": "2025-04-10T17:00:53Z",
           "updatedAt": "2025-04-10T17:00:53Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Makred pending close, as we merged the PR. @hannestschofenig, please let us know if you'd like to see something additional. ",
+          "createdAt": "2025-04-17T16:27:05Z",
+          "updatedAt": "2025-04-17T16:27:05Z"
         }
       ]
     },
@@ -6822,13 +6829,15 @@
       "state": "OPEN",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "henkbirkholz"
+      ],
       "labels": [
         "ready-for-pr"
       ],
       "body": "",
       "createdAt": "2025-04-08T14:17:34Z",
-      "updatedAt": "2025-04-08T14:17:34Z",
+      "updatedAt": "2025-04-17T16:27:37Z",
       "closedAt": null,
       "comments": []
     }
