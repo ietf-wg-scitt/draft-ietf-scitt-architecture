@@ -927,6 +927,11 @@ Issuers and Transparency Services MUST:
 - avoid using keys for more than one purpose
 - rotate their keys in well-defined cryptoperiods, see {{KEY-MANAGEMENT}}
 
+### Verifiable Data Structure
+
+The security considerations for specific Verifiable Data Structures are out of scope for this document.
+See {{-RECEIPTS}} for the generic security considerations that apply to Verifiable Data Structure and Receipts.
+
 ## Threat Model
 
 This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are corrupt or compromised.
