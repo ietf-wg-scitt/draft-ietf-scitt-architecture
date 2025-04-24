@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-20T00:56:51.782798+00:00",
+  "timestamp": "2025-04-24T00:53:20.559457+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -53648,21 +53648,21 @@
       "id": "PR_kwDOIvmHss6SIx9-",
       "title": "Allow Registering Transparent Statements",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/371",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Consider the case where a \"Hardware Vendor\" signs a statement, which is made transparent in an \"Operating System Vendor\"s transparency service.... and then this Transparent Statement (including the receipt from the OS vendor) is registered with a \"Government Regulator\" Transparency Service.\r\n\r\nPreviously, we forbid this use case, by mandating the unprotected header be set to empty.\r\nThis also caused us to drop cert chains, and counter signatures.\r\n\r\nThis PR allows:\r\n\r\n- higher order receipts (receipts for transparent statements)\r\n- making cert chains transparent, along with their signed statement\r\n- making counter signatures transparent, along with their signed statement\r\n\r\nIt clarifies that support for making transparent statements transparent is optional, not all transparency services will decide to support the cases above... none the less, the architecture should allow vendors to decide.",
       "createdAt": "2025-04-10T17:15:01Z",
-      "updatedAt": "2025-04-16T04:46:12Z",
+      "updatedAt": "2025-04-22T14:52:14Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "92b034e05b0ee95d87155c83536e7f12c90ada4a",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "revisit-making-transparent-statements-transparent",
       "headRefOid": "284b68e6166f006be3304db698b4b8edf9335950",
-      "closedAt": null,
+      "closedAt": "2025-04-22T14:52:14Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -53813,6 +53813,13 @@
           "body": "> If you never nest receipts, then you really have no need to erase the unprotected header... because you don't have the problem on verifying a signed statement with multiple nested receipts from different TS providers.\r\n\r\nIt seems to me that you definitely do, because you need to compute the detached payload of the (potentially multiple, though un-nested) receipts, and for that you need to know what they included in their VDS (the leaf in their merkle proofs, when they use merkle trees).\r\nVerifiers need a deterministic way to re-compute this value, and the one we have now has the virtue of being simple, largely free from canonicalization worries and uniform across proof variants. It is possible to side-step this by providing an explicit committed value, but it\u2019s a security flaw for the same reason that attaching the payload in the receipt would be: it makes incorrect verification easier, and needs another reserved parameter, extra size etc.\r\n\r\n> if you are worried about nested receipts / 2nd order receipt transparency.\r\n\r\nI am not worried about this at all, but I am worried about making validation much worse.\r\n\r\nI also see no reason that this can\u2019t be proposed as a separate RFC when there are implementations that show how this works and why this is useful.",
           "createdAt": "2025-04-16T04:46:11Z",
           "updatedAt": "2025-04-16T04:46:11Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Decision on the call to close this PR and raise a new one addressing the security considerations and body of the document, to clarify that SCITT architecture is for \"Single Issuer Signature Transparency\"",
+          "createdAt": "2025-04-22T14:52:14Z",
+          "updatedAt": "2025-04-22T14:52:14Z"
         }
       ],
       "reviews": [
