@@ -942,7 +942,7 @@ Issuers and Transparency Services can both be compromised.
 The SCITT Architecture does not require trust in a single centralized Transparency Service.
 Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
 Running multiple, independent Transparency Services provides different organizations to represent consistent or divergent opinions.
-It is the role of the relying party to decide which Transparency Services and Issuers they choose to trust for their scenario.
+It is the role of the Relying Party to decide which Transparency Services and Issuers they choose to trust for their scenario.
 
 **Editors Note**:
 List specific threat model goals.
