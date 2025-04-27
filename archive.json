@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-24T00:53:20.559457+00:00",
+  "timestamp": "2025-04-27T00:56:52.726527+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -53989,21 +53989,21 @@
       "id": "PR_kwDOIvmHss6SNPDQ",
       "title": "Security Considerations Cleanup - Part Deux",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/372",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-04-11T06:24:19Z",
-      "updatedAt": "2025-04-11T13:58:30Z",
+      "updatedAt": "2025-04-24T17:58:40Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "92b034e05b0ee95d87155c83536e7f12c90ada4a",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "security-considerations-2",
-      "headRefOid": "3cf03b4204e0e3aa58a2cd38407d4ea51754d6d4",
-      "closedAt": null,
+      "headRefOid": "fce05db7b39f4757762edfc53cba5478421747ee",
+      "closedAt": "2025-04-24T17:58:40Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -54014,6 +54014,20 @@
           "body": "The current state is to clean out the history of text, not related to the Threat Model. \r\nSuggesting we now add focused threat model text",
           "createdAt": "2025-04-11T13:58:29Z",
           "updatedAt": "2025-04-11T13:58:29Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Because #373 had a bit of overlap at first, and then some more, and then quite a lot, I ended up pulling the remaining changes in there, and so I am proposing it as an augmented version of #372.",
+          "createdAt": "2025-04-24T12:56:15Z",
+          "updatedAt": "2025-04-24T12:56:15Z"
+        },
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as #373 encompases these changes",
+          "createdAt": "2025-04-24T17:58:40Z",
+          "updatedAt": "2025-04-24T17:58:40Z"
         }
       ],
       "reviews": [
@@ -54028,6 +54042,100 @@
           "body": "\\<strikethrough\\>Totally agree with these changes for editorial, interoperability, and content reasons.\\</strikethrough\\>\r\n\r\n^^^ This was on small commit 1 (can we please standardise on marking things as Draft if the original author is still making large changes?)\r\n\r\nLooking again at commit 2",
           "createdAt": "2025-04-11T12:20:36Z",
           "updatedAt": "2025-04-11T13:05:46Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6mWhpm",
+          "commit": {
+            "abbreviatedOid": "3cf03b4"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-24T12:27:42Z",
+          "updatedAt": "2025-04-24T12:27:42Z",
+          "comments": [
+            {
+              "originalPosition": 43,
+              "body": "```suggestion\r\nIt is the role of the Relying Party to decide which Transparency Services and Issuers they choose to trust for their scenario.\r\n```\r\n\r\nWe have capitalised Relying Party everywhere else, exception in the introduction before it is defined formally.",
+              "createdAt": "2025-04-24T12:27:42Z",
+              "updatedAt": "2025-04-24T12:29:09Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 373,
+      "id": "PR_kwDOIvmHss6Twv7I",
+      "title": "Clarify scope of transparency and update Security Considerations",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/373",
+      "state": "OPEN",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Following discussion in #371, and in parallel with #372, from which I have merged all changes except the Editor's Note, this is clarifying the scope of the transparency provided by SCITT, and updating the Security Considerations section.\r\n\r\nI have gone with \"Single-Issuer Signed Statement Transparency\" rather than \"Single-Issuer Signature Transparency\" because it's a little more accurate (we could be making just the signature component of the envelope transparent). It's a little clunkier, but I don't think we will win a literary prize with this document anyway. Happy to switch back if I'm alone in this opinion.",
+      "createdAt": "2025-04-24T12:47:37Z",
+      "updatedAt": "2025-04-24T18:11:03Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "92b034e05b0ee95d87155c83536e7f12c90ada4a",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "scope",
+      "headRefOid": "1d20c0f77ab304b8e4b7bb4eceb897a789d0980a",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Also did a quick pass over the abstract (raised in #369), to make it a bit shorter and clearer (in my opinion).",
+          "createdAt": "2025-04-24T13:22:03Z",
+          "updatedAt": "2025-04-24T13:22:03Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6mW_Lw",
+          "commit": {
+            "abbreviatedOid": "f038ad9"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "All very positive changes, appreciate the more accurate language re statements vs signatures.",
+          "createdAt": "2025-04-24T12:51:14Z",
+          "updatedAt": "2025-04-24T12:51:14Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6ma4VY",
+          "commit": {
+            "abbreviatedOid": "1d20c0f"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thank you, @achamayou ",
+          "createdAt": "2025-04-24T17:58:05Z",
+          "updatedAt": "2025-04-24T17:58:05Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6mbBe-",
+          "commit": {
+            "abbreviatedOid": "1d20c0f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-04-24T18:11:03Z",
+          "updatedAt": "2025-04-24T18:11:03Z",
           "comments": []
         }
       ]
