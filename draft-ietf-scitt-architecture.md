@@ -156,7 +156,8 @@ informative:
 
 --- abstract
 
-Traceability in supply chains is a growing security concern. While verifiable data structures have addressed specific issues, such as digital certificates, they lack a universal architecture for all supply chains. 
+Traceability in supply chains is a growing security concern.
+While verifiable data structures have addressed specific issues, such as digital certificates, they lack a universal architecture for all supply chains. 
 This document proposes a scalable architecture for single-issuer signed statement transparency applicable to any supply chain. 
 It ensures flexibility, interoperability between different transparency services, and compliance with various auditing procedures and regulatory requirements.
 
