@@ -157,18 +157,17 @@ informative:
 --- abstract
 
 Traceability of physical and digital Artifacts in supply chains is a long-standing, but increasingly serious security concern.
-The rise in popularity of verifiable data structures as a mechanism to implement accountability for tampering or equivocation has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases.
+The rise in popularity of verifiable data structures as a mechanism to implement accountability for tampering or equivocation has found some successful applications to specific use cases, such as digital certificates, but an architecture generally applicable to all supply chains is missing.
 
-This document defines a generic, interoperable and scalable architecture to enable transparency across any supply chain with minimum adoption barriers.
+This document defines a generic, interoperable and scalable architecture to enable single-issuer signed statement transparency across any supply chain with minimum adoption barriers.
 It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing procedures and regulatory requirements.
-Issuers can register their Signed Statements on one or more Transparency Services, with the guarantee that any Relying Parties will be able to verify them.
 
 --- middle
 
 # Introduction
 
 This document defines an architecture, a base set of extensible message structures, and associated flows to make signed content transparent via verifiable data structures maintained by corresponding transparency services.
-The goal of the transparency enabled by the Supply Chain Integrity, Transparency, and Trust (SCITT) architecture is to enhance auditability and accountability for signed content (statements) that are about supply chain commodities (artifacts).
+The goal of the transparency enabled by the Supply Chain Integrity, Transparency, and Trust (SCITT) architecture is to enhance auditability and accountability for single-issuer signed content (statements) that are about supply chain commodities (artifacts).
 Registering signed statements with a transparency service is akin to a notarization procedure.
 Transparency services perform notary operations, confirming a policy is met before recording the statement on the ledger.
 The SCITT ledger represents a linear and irrevocable history of statements made.
@@ -903,9 +902,9 @@ SCITT provides the following security guarantees:
 1. Statement provenance and history can be independently and consistently audited
 1. Issuers can efficiently prove that their Statement is logged by a Transparency Service
 
-The first guarantee is achieved by requiring Issuers to sign their Statements and associated metadata.
+The first guarantee is achieved by requiring Issuers to sign their Statements.
 The second guarantee is achieved by proving a Signed Statement is present in a Verifiable Data Structure.
-The third guarantee is achieved by the combination of both of these acts.
+The third guarantee is achieved by the combination of both of these steps.
 
 ## Ordering of Signed Statements
 
@@ -914,8 +913,8 @@ Unless advertised in the Transparency Service Registration Policy, the Relying P
 
 ## Accuracy of Statements
 
-Issuers can make false Statements either intentionally or unintentionally.
-Registering Statements proves Issuers made a Statement, which may be amended with a new Signed Statement with the same subject in the cwt_claims protected header.
+Issuers can make false Statements either intentionally or unintentionally, registering a Statement only proves it was produced by an Issuer.
+A registered Statement may be superseded by a subsequently submitted Signed Statement from the same Issuer, with the same subject in the cwt_claims protected header.
 Other Issuers may make new Statements to reflect new or corrected information.
 Relying Parties may choose to include or exclude Statements from Issuers to determine the accuracy of a collection of Statements.
 
@@ -927,38 +926,22 @@ Issuers and Transparency Services MUST:
 - avoid using keys for more than one purpose
 - rotate their keys in well-defined cryptoperiods, see {{KEY-MANAGEMENT}}
 
-Issuers and Transparency Services SHOULD:
+### Verifiable Data Structure
 
-- use a Trusted Execution Environment (TEE) for cryptographic operations.
-
-## Transparency Service Operational Considerations
-
-Issuers and Transparency Services SHOULD:
-
-- protect against malicious or vulnerable replicas by replicating with a consensus algorithm, such as Practical Byzantine Fault Tolerance {{PBFT}}.
-- provide additional authenticity assurances about its secure implementation and operation, enabling remote attestation of the hardware platforms and/or software Trusted Computing Bases (TCB) that run the Transparency Service.
-
-
-
-
+The security considerations for specific Verifiable Data Structures are out of scope for this document.
+See {{-RECEIPTS}} for the generic security considerations that apply to Verifiable Data Structure and Receipts.
 
 ## Threat Model
 
-This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are corrupt or compromised.
-This threat model may need to be refined to account for specific supply chain use cases.
+This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are either corrupt or compromised.
 
 SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency).
-These guarantees are meant to hold for extensive periods of time, possibly decades.
-Issuers and Transparency Services can both be compromised, which should be addressed with redundant and independent implementations.
+Issuers and Transparency Services can both be compromised.
 
-Relying parties are able to verify the issuer signature on signed statements, the transparency service signature on receipts, and the inclusion proof on receipts.
-
-Similarly, providing strong residual guarantees against faulty/corrupt Transparency Services is a SCITT design goal.
-Preventing a Transparency Service from registering Signed Statements that do not meet its stated Registration Policy, or to issue Receipts that are not consistent with their Verifiable Data Structure is not possible.
-Some Transparency Services leverage Verifiable Data Structure that can prove their own consistency over time to Auditors.
-
-Note that the SCITT Architecture does not require trust in a single centralized Transparency Service.
+The SCITT Architecture does not require trust in a single centralized Transparency Service.
 Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
+Running multiple, independent Transparency Services provides different organizations to represent consistent or divergent opinions.
+It is the role of the relying party to decide which Transparency Services and Issuers they choose to trust for their scenario.
 
 In both cases, the SCITT architecture provides generic, universally-verifiable cryptographic proofs to individually blame Issuers or the Transparency Service.
 On one hand, this enables valid actors to detect and disambiguate malicious actors who employ Equivocation with Signed Statements to different entities.
@@ -966,11 +949,6 @@ On the other hand, their liability and the resulting damage to their reputation 
 
 Relying Parties and Auditors need not be trusted by other actors.
 So long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.
-
-### Verifiable Data Structure
-
-The security considerations for specific verifiable data structures are out of scope for this document.
-See {{-RECEIPTS}} for the generic security considerations that apply to Verifiable Data Structure and Receipts.
 
 ### Cryptographic Agility
 
