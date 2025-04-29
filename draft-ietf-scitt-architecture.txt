@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 12 October 2025                                      C. Fournet
+Expires: 31 October 2025                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                           10 April 2025
+                                                           29 April 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -23,18 +23,16 @@ Abstract
    long-standing, but increasingly serious security concern.  The rise
    in popularity of verifiable data structures as a mechanism to
    implement accountability for tampering or equivocation has found some
-   successful applications to specific use cases (such as the supply
-   chain for digital certificates), but lacks a generic and scalable
-   architecture that can address a wider range of use cases.
+   successful applications to specific use cases, such as digital
+   certificates, but an architecture generally applicable to all supply
+   chains is missing.
 
    This document defines a generic, interoperable and scalable
-   architecture to enable transparency across any supply chain with
-   minimum adoption barriers.  It provides flexibility, enabling
-   interoperability across different implementations of Transparency
-   Services with various auditing procedures and regulatory
-   requirements.  Issuers can register their Signed Statements on one or
-   more Transparency Services, with the guarantee that any Relying
-   Parties will be able to verify them.
+   architecture to enable single-issuer signed statement transparency
+   across any supply chain with minimum adoption barriers.  It provides
+   flexibility, enabling interoperability across different
+   implementations of Transparency Services with various auditing
+   procedures and regulatory requirements.
 
 About This Document
 
@@ -66,7 +64,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 October 2025.
+   This Internet-Draft will expire on 31 October 2025.
 
 Copyright Notice
 
@@ -111,11 +109,10 @@ Table of Contents
      9.1.  Ordering of Signed Statements
      9.2.  Accuracy of Statements
      9.3.  Key Management
-     9.4.  Transparency Service Operational Considerations
-     9.5.  Threat Model
-       9.5.1.  Verifiable Data Structure
-       9.5.2.  Cryptographic Agility
-       9.5.3.  Key Compromise
+       9.3.1.  Verifiable Data Structure
+     9.4.  Threat Model
+       9.4.1.  Cryptographic Agility
+       9.4.2.  Key Compromise
    10. IANA Considerations
      10.1.  COSE Receipts Header Parameter
      10.2.  Media Type Registration
@@ -135,8 +132,8 @@ Table of Contents
    corresponding transparency services.  The goal of the transparency
    enabled by the Supply Chain Integrity, Transparency, and Trust
    (SCITT) architecture is to enhance auditability and accountability
-   for signed content (statements) that are about supply chain
-   commodities (artifacts).  Registering signed statements with a
+   for single-issuer signed content (statements) that are about supply
+   chain commodities (artifacts).  Registering signed statements with a
    transparency service is akin to a notarization procedure.
    Transparency services perform notary operations, confirming a policy
    is met before recording the statement on the ledger.  The SCITT
@@ -1290,10 +1287,9 @@ Table of Contents
        Transparency Service
 
    The first guarantee is achieved by requiring Issuers to sign their
-   Statements and associated metadata.  The second guarantee is achieved
-   by proving a Signed Statement is present in a Verifiable Data
-   Structure.  The third guarantee is achieved by the combination of
-   both of these acts.
+   Statements.  The second guarantee is achieved by proving a Signed
+   Statement is present in a Verifiable Data Structure.  The third
+   guarantee is achieved by the combination of both of these steps.
 
 9.1.  Ordering of Signed Statements
 
@@ -1306,12 +1302,13 @@ Table of Contents
 9.2.  Accuracy of Statements
 
    Issuers can make false Statements either intentionally or
-   unintentionally.  Registering Statements proves Issuers made a
-   Statement, which may be amended with a new Signed Statement with the
-   same subject in the cwt_claims protected header.  Other Issuers may
-   make new Statements to reflect new or corrected information.  Relying
-   Parties may choose to include or exclude Statements from Issuers to
-   determine the accuracy of a collection of Statements.
+   unintentionally, registering a Statement only proves it was produced
+   by an Issuer.  A registered Statement may be superseded by a
+   subsequently submitted Signed Statement from the same Issuer, with
+   the same subject in the cwt_claims protected header.  Other Issuers
+   may make new Statements to reflect new or corrected information.
+   Relying Parties may choose to include or exclude Statements from
+   Issuers to determine the accuracy of a collection of Statements.
 
 9.3.  Key Management
 
@@ -1324,55 +1321,33 @@ Table of Contents
    *  rotate their keys in well-defined cryptoperiods, see
       [KEY-MANAGEMENT]
 
-   Issuers and Transparency Services SHOULD:
+9.3.1.  Verifiable Data Structure
 
-   *  use a Trusted Execution Environment (TEE) for cryptographic
-      operations.
+   The security considerations for specific Verifiable Data Structures
+   are out of scope for this document.  See
+   [I-D.draft-ietf-cose-merkle-tree-proofs] for the generic security
+   considerations that apply to Verifiable Data Structure and Receipts.
 
-9.4.  Transparency Service Operational Considerations
-
-   Issuers and Transparency Services SHOULD:
-
-   *  protect against malicious or vulnerable replicas by replicating
-      with a consensus algorithm, such as Practical Byzantine Fault
-      Tolerance [PBFT].
-
-   *  provide additional authenticity assurances about its secure
-      implementation and operation, enabling remote attestation of the
-      hardware platforms and/or software Trusted Computing Bases (TCB)
-      that run the Transparency Service.
-
-9.5.  Threat Model
+9.4.  Threat Model
 
    This section provides a generic threat model for SCITT, describing
    its residual security properties when some of its actors (Issuers,
-   Transparency Services, and Auditors) are corrupt or compromised.
-   This threat model may need to be refined to account for specific
-   supply chain use cases.
+   Transparency Services, and Auditors) are either corrupt or
+   compromised.
 
    SCITT primarily supports checking of Signed Statement authenticity,
    both from the Issuer (authentication) and from the Transparency
-   Service (transparency).  These guarantees are meant to hold for
-   extensive periods of time, possibly decades.  Issuers and
-   Transparency Services can both be compromised, which should be
-   addressed with redundant and independent implementations.
+   Service (transparency).  Issuers and Transparency Services can both
+   be compromised.
 
-   Relying parties are able to verify the issuer signature on signed
-   statements, the transparency service signature on receipts, and the
-   inclusion proof on receipts.
-
-   Similarly, providing strong residual guarantees against faulty/
-   corrupt Transparency Services is a SCITT design goal.  Preventing a
-   Transparency Service from registering Signed Statements that do not
-   meet its stated Registration Policy, or to issue Receipts that are
-   not consistent with their Verifiable Data Structure is not possible.
-   Some Transparency Services leverage Verifiable Data Structure that
-   can prove their own consistency over time to Auditors.
-
-   Note that the SCITT Architecture does not require trust in a single
-   centralized Transparency Service.  Different actors may rely on
-   different Transparency Services, each registering a subset of Signed
-   Statements subject to their own policy.
+   The SCITT Architecture does not require trust in a single centralized
+   Transparency Service.  Different actors may rely on different
+   Transparency Services, each registering a subset of Signed Statements
+   subject to their own policy.  Running multiple, independent
+   Transparency Services provides different organizations to represent
+   consistent or divergent opinions.  It is the role of the relying
+   party to decide which Transparency Services and Issuers they choose
+   to trust for their scenario.
 
    In both cases, the SCITT architecture provides generic, universally-
    verifiable cryptographic proofs to individually blame Issuers or the
@@ -1388,20 +1363,13 @@ Table of Contents
    Transparency Service for Signed Statements they did not issue or
    register.
 
-9.5.1.  Verifiable Data Structure
-
-   The security considerations for specific verifiable data structures
-   are out of scope for this document.  See
-   [I-D.draft-ietf-cose-merkle-tree-proofs] for the generic security
-   considerations that apply to Verifiable Data Structure and Receipts.
-
-9.5.2.  Cryptographic Agility
+9.4.1.  Cryptographic Agility
 
    The SCITT Architecture supports cryptographic agility.  There are no
    mandatory to implement signing algorithms for Signed Statements or
    Receipts.
 
-9.5.3.  Key Compromise
+9.4.2.  Key Compromise
 
    Revocation strategies for compromised keys are out of scope for this
    document.  It is important for Issuers and Transparency Services to
@@ -1426,9 +1394,9 @@ Table of Contents
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-10, 3 April
+              Draft, draft-ietf-cose-merkle-tree-proofs-11, 28 April
               2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-10>.
+              cose-merkle-tree-proofs-11>.
 
    [I-D.draft-ietf-scitt-scrapi]
               Birkholz, H. and J. Geater, "SCITT Reference APIs", Work
