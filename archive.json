@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-27T00:56:52.726527+00:00",
+  "timestamp": "2025-05-01T00:59:19.801278+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -5399,7 +5399,7 @@
       "id": "I_kwDOIvmHss6QTa0S",
       "title": "Redundancy in the Security Consideration Section",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/287",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "hannestschofenig",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -5411,8 +5411,8 @@
       ],
       "body": "The security consideration section gives me the impression that different authors worked on the content and put the text in there without re-reading the product. As a consequence, there is a lot of repetition.",
       "createdAt": "2024-07-20T18:34:16Z",
-      "updatedAt": "2025-04-17T16:27:18Z",
-      "closedAt": null,
+      "updatedAt": "2025-04-29T14:16:20Z",
+      "closedAt": "2025-04-29T14:16:20Z",
       "comments": [
         {
           "author": "henkbirkholz",
@@ -54071,24 +54071,26 @@
       "id": "PR_kwDOIvmHss6Twv7I",
       "title": "Clarify scope of transparency and update Security Considerations",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/373",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Following discussion in #371, and in parallel with #372, from which I have merged all changes except the Editor's Note, this is clarifying the scope of the transparency provided by SCITT, and updating the Security Considerations section.\r\n\r\nI have gone with \"Single-Issuer Signed Statement Transparency\" rather than \"Single-Issuer Signature Transparency\" because it's a little more accurate (we could be making just the signature component of the envelope transparent). It's a little clunkier, but I don't think we will win a literary prize with this document anyway. Happy to switch back if I'm alone in this opinion.",
       "createdAt": "2025-04-24T12:47:37Z",
-      "updatedAt": "2025-04-24T18:11:03Z",
+      "updatedAt": "2025-04-29T14:15:51Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "92b034e05b0ee95d87155c83536e7f12c90ada4a",
       "headRepository": "achamayou/draft-ietf-scitt-architecture",
       "headRefName": "scope",
       "headRefOid": "1d20c0f77ab304b8e4b7bb4eceb897a789d0980a",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-04-29T14:15:51Z",
+      "mergedAt": "2025-04-29T14:15:51Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "2a3feab968cb82c1063bd7bf1b01dea2916baa5d"
+      },
       "comments": [
         {
           "author": "achamayou",
@@ -54136,6 +54138,92 @@
           "body": "",
           "createdAt": "2025-04-24T18:11:03Z",
           "updatedAt": "2025-04-24T18:11:03Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6nHwHu",
+          "commit": {
+            "abbreviatedOid": "1d20c0f"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-04-29T14:15:16Z",
+          "updatedAt": "2025-04-29T14:15:16Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 374,
+      "id": "PR_kwDOIvmHss6UXYHe",
+      "title": "Update abstract closes #369",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/374",
+      "state": "OPEN",
+      "author": "OR13",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-04-29T14:53:41Z",
+      "updatedAt": "2025-04-29T17:00:04Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "2a3feab968cb82c1063bd7bf1b01dea2916baa5d",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "Updated-abstract",
+      "headRefOid": "3c313608bab83afd369caa02619b36d384ee1c3a",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6nIckt",
+          "commit": {
+            "abbreviatedOid": "f7a94b6"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-04-29T14:55:46Z",
+          "updatedAt": "2025-04-29T14:55:46Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6nJ2se",
+          "commit": {
+            "abbreviatedOid": "f7a94b6"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-29T16:59:20Z",
+          "updatedAt": "2025-04-29T16:59:21Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nTraceability in supply chains is a growing security concern.\r\nWhile verifiable data structures have addressed specific issues, such as digital certificates, they lack a universal architecture for all supply chains. \r\n```",
+              "createdAt": "2025-04-29T16:59:21Z",
+              "updatedAt": "2025-04-29T16:59:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6nJ3J8",
+          "commit": {
+            "abbreviatedOid": "3c31360"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-04-29T17:00:04Z",
+          "updatedAt": "2025-04-29T17:00:04Z",
           "comments": []
         }
       ]
