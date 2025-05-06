@@ -156,11 +156,10 @@ informative:
 
 --- abstract
 
-Traceability of physical and digital Artifacts in supply chains is a long-standing, but increasingly serious security concern.
-The rise in popularity of verifiable data structures as a mechanism to implement accountability for tampering or equivocation has found some successful applications to specific use cases, such as digital certificates, but an architecture generally applicable to all supply chains is missing.
-
-This document defines a generic, interoperable and scalable architecture to enable single-issuer signed statement transparency across any supply chain with minimum adoption barriers.
-It provides flexibility, enabling interoperability across different implementations of Transparency Services with various auditing procedures and regulatory requirements.
+Traceability in supply chains is a growing security concern.
+While verifiable data structures have addressed specific issues, such as equivocation over digital certificates, they lack a universal architecture for all supply chains.
+This document proposes a scalable architecture for single-issuer signed statement transparency applicable to any supply chain.
+It ensures flexibility, interoperability between different transparency services, and compliance with various auditing procedures and regulatory requirements.
 
 --- middle
 
