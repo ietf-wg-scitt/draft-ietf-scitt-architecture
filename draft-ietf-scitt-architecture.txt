@@ -5,13 +5,13 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 31 October 2025                                      C. Fournet
+Expires: 7 November 2025                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
                                                               DataTrails
-                                                           29 April 2025
+                                                              6 May 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -19,20 +19,15 @@ Expires: 31 October 2025                                      C. Fournet
 
 Abstract
 
-   Traceability of physical and digital Artifacts in supply chains is a
-   long-standing, but increasingly serious security concern.  The rise
-   in popularity of verifiable data structures as a mechanism to
-   implement accountability for tampering or equivocation has found some
-   successful applications to specific use cases, such as digital
-   certificates, but an architecture generally applicable to all supply
-   chains is missing.
-
-   This document defines a generic, interoperable and scalable
-   architecture to enable single-issuer signed statement transparency
-   across any supply chain with minimum adoption barriers.  It provides
-   flexibility, enabling interoperability across different
-   implementations of Transparency Services with various auditing
-   procedures and regulatory requirements.
+   Traceability in supply chains is a growing security concern.  While
+   verifiable data structures have addressed specific issues, such as
+   equivocation over digital certificates, they lack a universal
+   architecture for all supply chains.  This document proposes a
+   scalable architecture for single-issuer signed statement transparency
+   applicable to any supply chain.  It ensures flexibility,
+   interoperability between different transparency services, and
+   compliance with various auditing procedures and regulatory
+   requirements.
 
 About This Document
 
@@ -64,7 +59,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 October 2025.
+   This Internet-Draft will expire on 7 November 2025.
 
 Copyright Notice
 
@@ -1394,9 +1389,9 @@ Table of Contents
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-11, 28 April
-              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-11>.
+              Draft, draft-ietf-cose-merkle-tree-proofs-13, 6 May 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-cose-
+              merkle-tree-proofs-13>.
 
    [I-D.draft-ietf-scitt-scrapi]
               Birkholz, H. and J. Geater, "SCITT Reference APIs", Work
