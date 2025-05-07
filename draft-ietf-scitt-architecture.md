@@ -62,11 +62,18 @@ author:
 contributor:
 - ins: O. Steele
   name: Orie Steele
-  organization: Transmute
-  email: orie@transmute.industries
+  organization: Tradeverifyd
+  email: orie@or13.io
   country: United States
   contribution: >
     Orie contributed to improving the generalization of COSE building blocks and document consistency.
+- ins: A. Chamayou
+  name: Amaury Chamayou
+  organization: Microsoft
+  email: Amaury.Chamayou@microsoft.com
+  country: United Kingdom
+  contribution: >
+    Amaury contributed elemental parts to finalize normative language on registration behavior and the single-issuer design, as well as overall document consistency
 - ins: D. Brooks
   name: Dick Brooks
   organization: Business Cyber Guardian (TM)
