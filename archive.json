@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-01T00:59:19.801278+00:00",
+  "timestamp": "2025-05-08T00:55:00.969641+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -6826,7 +6826,7 @@
       "id": "I_kwDOIvmHss6xnncg",
       "title": "Update the abstract",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/369",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "SteveLasker",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -6837,8 +6837,8 @@
       ],
       "body": "",
       "createdAt": "2025-04-08T14:17:34Z",
-      "updatedAt": "2025-04-17T16:27:37Z",
-      "closedAt": null,
+      "updatedAt": "2025-05-06T14:12:52Z",
+      "closedAt": "2025-05-06T14:12:52Z",
       "comments": []
     }
   ],
@@ -54160,24 +54160,26 @@
       "id": "PR_kwDOIvmHss6UXYHe",
       "title": "Update abstract closes #369",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/374",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "OR13",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-04-29T14:53:41Z",
-      "updatedAt": "2025-04-29T17:00:04Z",
+      "updatedAt": "2025-05-06T14:12:51Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "2a3feab968cb82c1063bd7bf1b01dea2916baa5d",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "Updated-abstract",
-      "headRefOid": "3c313608bab83afd369caa02619b36d384ee1c3a",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "b115638dc26c227eef0ff4d0a3fcfa0c7e8c8044",
+      "closedAt": "2025-05-06T14:12:51Z",
+      "mergedAt": "2025-05-06T14:12:51Z",
+      "mergedBy": "JAG-UK",
+      "mergeCommit": {
+        "oid": "b54bcf64384742444aeb8f08d7217d7b689e2278"
+      },
       "comments": [],
       "reviews": [
         {
@@ -54224,6 +54226,190 @@
           "body": "LGTM",
           "createdAt": "2025-04-29T17:00:04Z",
           "updatedAt": "2025-04-29T17:00:04Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6n_fbq",
+          "commit": {
+            "abbreviatedOid": "3c31360"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-06T14:09:25Z",
+          "updatedAt": "2025-05-06T14:09:25Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\nWhile verifiable data structures have addressed specific issues, such as equivocation over digital certificates, they lack a universal architecture for all supply chains.\r\n```",
+              "createdAt": "2025-05-06T14:09:25Z",
+              "updatedAt": "2025-05-06T14:09:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6n_grx",
+          "commit": {
+            "abbreviatedOid": "e5ef40b"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-05-06T14:10:57Z",
+          "updatedAt": "2025-05-06T14:10:57Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6n_gt4",
+          "commit": {
+            "abbreviatedOid": "e5ef40b"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "LGTM",
+          "createdAt": "2025-05-06T14:11:00Z",
+          "updatedAt": "2025-05-06T14:11:00Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6n_gxL",
+          "commit": {
+            "abbreviatedOid": "3c31360"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "non-equivocation ftw",
+          "createdAt": "2025-05-06T14:11:04Z",
+          "updatedAt": "2025-05-06T14:11:04Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6n_hiJ",
+          "commit": {
+            "abbreviatedOid": "e5ef40b"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-06T14:11:59Z",
+          "updatedAt": "2025-05-06T14:12:00Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\nThis document proposes a scalable architecture for single-issuer signed statement transparency applicable to any supply chain.\r\n```",
+              "createdAt": "2025-05-06T14:11:59Z",
+              "updatedAt": "2025-05-06T14:12:00Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 375,
+      "id": "PR_kwDOIvmHss6VPB4E",
+      "title": "Adding Amaury as a contributor",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/375",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "and updated Orie's email address along the way\r\n\r\nNext steps:\r\n1.) submit -12\r\n2.) request WGLC on list\r\n",
+      "createdAt": "2025-05-07T08:56:58Z",
+      "updatedAt": "2025-05-07T23:01:15Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "b54bcf64384742444aeb8f08d7217d7b689e2278",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "amaury-contribution",
+      "headRefOid": "32a31a6620b0e8e2060cc61cdf8d3d06ea59f49e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6oJMBB",
+          "commit": {
+            "abbreviatedOid": "32a31a6"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-05-07T08:59:06Z",
+          "updatedAt": "2025-05-07T08:59:06Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6oJoQa",
+          "commit": {
+            "abbreviatedOid": "32a31a6"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGtM",
+          "createdAt": "2025-05-07T09:35:13Z",
+          "updatedAt": "2025-05-07T09:35:13Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6oJ-Q0",
+          "commit": {
+            "abbreviatedOid": "32a31a6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-05-07T10:06:05Z",
+          "updatedAt": "2025-05-07T10:06:05Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6oKQlk",
+          "commit": {
+            "abbreviatedOid": "32a31a6"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-05-07T10:35:26Z",
+          "updatedAt": "2025-05-07T10:35:26Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6oLIqd",
+          "commit": {
+            "abbreviatedOid": "32a31a6"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-05-07T12:04:51Z",
+          "updatedAt": "2025-05-07T12:04:51Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6oSZ1I",
+          "commit": {
+            "abbreviatedOid": "32a31a6"
+          },
+          "author": "roywill",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-05-07T23:01:15Z",
+          "updatedAt": "2025-05-07T23:01:15Z",
           "comments": []
         }
       ]
