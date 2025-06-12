@@ -52,12 +52,7 @@ author:
   country: UK
 - ins: S. Lasker
   name: Steve Lasker
-  org: DataTrails
-  email: steve.lasker@datatrails.ai
-  code: '98199'
-  city: Seattle
-  region: WA
-  country: United States
+  email: stevenlasker@hotmail.com
 
 contributor:
 - ins: O. Steele
