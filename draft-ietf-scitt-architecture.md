@@ -97,7 +97,6 @@ contributor:
     Robert contributed to the software supply chain use cases.
 
 normative:
-  RFC5280: PKIX
   RFC6838:
   RFC8392:
   RFC8610: CDDL
@@ -140,8 +139,6 @@ informative:
   in-toto:
     target: https://in-toto.io/
     title: in-toto
-
-  PBFT: DOI.10.1145/571637.571640
 
   SLSA:
     target: https://slsa.dev/
