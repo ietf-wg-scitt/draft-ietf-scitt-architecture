@@ -70,7 +70,7 @@ contributor:
 - ins: A. Chamayou
   name: Amaury Chamayou
   organization: Microsoft
-  email: Amaury.Chamayou@microsoft.com
+  email: amaury.chamayou@microsoft.com
   country: United Kingdom
   contribution: >
     Amaury contributed elemental parts to finalize normative language on registration behavior and the single-issuer design, as well as overall document consistency
@@ -968,15 +968,119 @@ It is important for Issuers and Transparency Services to clearly communicate whe
 
 # IANA Considerations
 
+IANA is requested to register:
+
+*  allocate media type application/signed-statement+cose in the "Media Types" registry, see below.
+*  allocate media type application/receipt+cose in the "Media Types" registry, see below.
+
 ## COSE Receipts Header Parameter
 
 394 is requested in {{-RECEIPTS}} and has received an early assignment.
 
 ## Media Type Registration
 
-Pending WG discussion.
+This section register the following media types in the "Media Types" registry:
 
---- back
+* 'application/signed-statement+cose' to indicate that the content is a Signed Statement.
+
+~~~
+      Type name: application
+
+      Subtype name: signed-statement+cose
+
+      Required parameters: N/A
+
+      Optional parameters: N/A
+
+      Encoding considerations: binary
+
+      Security considerations: See the Security Considerations section
+      of [[This RFC]].
+
+      Interoperability considerations: N/A
+
+      Published specification: [[This RFC]]
+
+      Applications that use this media type: Used to provide an identifiable
+        and non-repudiable Statement about an Artifact signed by an Issuer.
+
+      Fragment identifier considerations: N/A
+
+      Additional information:
+
+      *  Deprecated alias names for this type: N/A
+
+      *  Magic number(s): N/A
+
+      *  File extension(s): cose
+
+      *  Macintosh file type code(s): N/A
+
+      Person & email address to contact for further information:
+      iesg@ietf.org
+
+      Intended usage: COMMON
+
+      Restrictions on usage: N/A
+
+      Author: Amaury Chamayou, <amaury.chamayou@microsoft.com>
+
+      Change Controller: IETF
+
+      Provisional registration?  No
+~~~
+
+* 'application/receipt+cose' to indicate that the content is a COSE Receipt, see {{-RECEIPTS}}.
+
+~~~
+      Type name: application
+
+      Subtype name: receipt+cose
+
+      Required parameters: N/A
+
+      Optional parameters: N/A
+
+      Encoding considerations: binary
+
+      Security considerations: See the Security Considerations section
+      of [[This RFC]].
+
+      Interoperability considerations: N/A
+
+      Published specification: [[This RFC]]
+
+      Applications that use this media type: Used to establish
+        or verify transparency over Statements. Typically emitted
+        by a Transparency Service, for the benefit of Relying Parties
+        wanting to ensure Non-equivocation over all or part of a
+        Statement Sequence.
+
+      Fragment identifier considerations: N/A
+
+      Additional information:
+
+      *  Deprecated alias names for this type: N/A
+
+      *  Magic number(s): N/A
+
+      *  File extension(s): cose
+
+      *  Macintosh file type code(s): N/A
+
+      Person & email address to contact for further information:
+      iesg@ietf.org
+
+      Intended usage: COMMON
+
+      Restrictions on usage: N/A
+
+      Author: Amaury Chamayou, <amaury.chamayou@microsoft.com>
+
+      Change Controller: IETF
+
+      Provisional registration?  No
+~~~
 
 # Common Terminology Disambiguation
 
