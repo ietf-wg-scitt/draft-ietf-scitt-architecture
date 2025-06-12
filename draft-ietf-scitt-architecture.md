@@ -161,6 +161,9 @@ informative:
 
   KEY-MANAGEMENT: DOI.10.6028/NIST.SP.800-57pt2r1
 
+entity:
+  SELF: "RFCthis"
+
 --- abstract
 
 Traceability in supply chains is a growing security concern.
