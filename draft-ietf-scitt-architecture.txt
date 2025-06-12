@@ -1470,13 +1470,6 @@ Table of Contents
               Technology (U.S.), DOI 10.6028/nist.fips.201-3, January
               2022, <https://doi.org/10.6028/nist.fips.201-3>.
 
-   [I-D.draft-ietf-rats-eat]
-              Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
-              Wallace, "The Entity Attestation Token (EAT)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-eat-31, 6
-              September 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-rats-eat-31>.
-
    [in-toto]  "in-toto", n.d., <https://in-toto.io/>.
 
    [KEY-MANAGEMENT]
@@ -1538,6 +1531,11 @@ Table of Contents
               Architecture", RFC 9334, DOI 10.17487/RFC9334, January
               2023, <https://www.rfc-editor.org/rfc/rfc9334>.
 
+   [RFC9711]  Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
+              Wallace, "The Entity Attestation Token (EAT)", RFC 9711,
+              DOI 10.17487/RFC9711, April 2025,
+              <https://www.rfc-editor.org/rfc/rfc9711>.
+
    [SLSA]     "SLSA", n.d., <https://slsa.dev/>.
 
    [SPDX-CBOR]
@@ -1577,10 +1575,9 @@ Appendix A.  Common Terminology Disambiguation
    "verifier"'s verification capabilities.
 
    The terms "Claim" and "Statement" are used throughout this document,
-   where Claim is consistent with the usage in [I-D.draft-ietf-rats-eat]
-   and [RFC7523], and Statement is reserved for any arbitrary bytes,
-   possibly identified with a media type, about which the Claims are
-   made.
+   where Claim is consistent with the usage in [RFC9711] and [RFC7523],
+   and Statement is reserved for any arbitrary bytes, possibly
+   identified with a media type, about which the Claims are made.
 
    The term "Subject" provides an identifier of the Issuer's choosing to
    refer to a given Artifact and ensures that all associated Statements

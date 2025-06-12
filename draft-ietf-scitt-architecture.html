@@ -2723,10 +2723,6 @@ It is important for Issuers and Transparency Services to clearly communicate whe
         <dd>
 <span class="refTitle">"Personal identity verification (PIV) of federal employees and contractors"</span>, <span class="refContent">National Institute of Standards and Technology (U.S.)</span>, <span class="seriesInfo">DOI 10.6028/nist.fips.201-3</span>, <time datetime="2022-01" class="refDate">January 2022</time>, <span>&lt;<a href="https://doi.org/10.6028/nist.fips.201-3">https://doi.org/10.6028/nist.fips.201-3</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.draft-ietf-rats-eat">[I-D.draft-ietf-rats-eat]</dt>
-        <dd>
-<span class="refAuthor">Lundblade, L.</span>, <span class="refAuthor">Mandyam, G.</span>, <span class="refAuthor">O'Donoghue, J.</span>, and <span class="refAuthor">C. Wallace</span>, <span class="refTitle">"The Entity Attestation Token (EAT)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-rats-eat-31</span>, <time datetime="2024-09-06" class="refDate">6 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-rats-eat-31">https://datatracker.ietf.org/doc/html/draft-ietf-rats-eat-31</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="in-toto">[in-toto]</dt>
         <dd>
 <span class="refTitle">"in-toto"</span>, <span>n.d.</span>, <span>&lt;<a href="https://in-toto.io/">https://in-toto.io/</a>&gt;</span>. </dd>
@@ -2767,6 +2763,10 @@ It is important for Issuers and Transparency Services to clearly communicate whe
         <dd>
 <span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Thaler, D.</span>, <span class="refAuthor">Richardson, M.</span>, <span class="refAuthor">Smith, N.</span>, and <span class="refAuthor">W. Pan</span>, <span class="refTitle">"Remote ATtestation procedureS (RATS) Architecture"</span>, <span class="seriesInfo">RFC 9334</span>, <span class="seriesInfo">DOI 10.17487/RFC9334</span>, <time datetime="2023-01" class="refDate">January 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9334">https://www.rfc-editor.org/rfc/rfc9334</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC9711">[RFC9711]</dt>
+        <dd>
+<span class="refAuthor">Lundblade, L.</span>, <span class="refAuthor">Mandyam, G.</span>, <span class="refAuthor">O'Donoghue, J.</span>, and <span class="refAuthor">C. Wallace</span>, <span class="refTitle">"The Entity Attestation Token (EAT)"</span>, <span class="seriesInfo">RFC 9711</span>, <span class="seriesInfo">DOI 10.17487/RFC9711</span>, <time datetime="2025-04" class="refDate">April 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9711">https://www.rfc-editor.org/rfc/rfc9711</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="SLSA">[SLSA]</dt>
         <dd>
 <span class="refTitle">"SLSA"</span>, <span>n.d.</span>, <span>&lt;<a href="https://slsa.dev/">https://slsa.dev/</a>&gt;</span>. </dd>
@@ -2799,7 +2799,7 @@ It is important for Issuers and Transparency Services to clearly communicate whe
 While these terms are related to "Verifier" and "Relying Party" as used in <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>, they do not imply the processing of RATS conceptual messages, such as Evidence or Attestation Results that are specific to remote attestation.
 A SCITT "verifier" and "Relying Party" and "Issuer" of Receipts or Statements might take on the role of a RATS "Attester".
 Correspondingly, all RATS conceptual messages, such as Evidence and Attestation Results, can be the content of SCITT Statements and a SCITT "verifier" can also take on the role of a RATS "Verifier" to, for example, conduct the procedure of Appraisal of Evidence as a part of a SCITT "verifier"'s verification capabilities.<a href="#appendix-A-3" class="pilcrow">¶</a></p>
-<p id="appendix-A-4">The terms "Claim" and "Statement" are used throughout this document, where Claim is consistent with the usage in <span>[<a href="#I-D.draft-ietf-rats-eat" class="cite xref">I-D.draft-ietf-rats-eat</a>]</span> and <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span>, and Statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the Claims are made.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
+<p id="appendix-A-4">The terms "Claim" and "Statement" are used throughout this document, where Claim is consistent with the usage in <span>[<a href="#RFC9711" class="cite xref">RFC9711</a>]</span> and <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span>, and Statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the Claims are made.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
 <p id="appendix-A-5">The term "Subject" provides an identifier of the Issuer's choosing to refer to a given Artifact and ensures that all associated Statements can be attributed to the identifier chosen by the Issuer.<a href="#appendix-A-5" class="pilcrow">¶</a></p>
 <p id="appendix-A-6">In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the Issuer identifies themselves using the <code>iss</code> Claim, and the specific software that was analyzed as the Subject using the <code>sub</code> Claim.<a href="#appendix-A-6" class="pilcrow">¶</a></p>
 <p id="appendix-A-7">In <span>[<a href="#RFC7523" class="cite xref">RFC7523</a>]</span>, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer".
