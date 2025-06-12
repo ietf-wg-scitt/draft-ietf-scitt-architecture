@@ -979,7 +979,7 @@ IANA is requested to register:
 
 ## Media Type Registration
 
-This section register the following media types in the "Media Types" registry:
+IANA is requested to add the following media types to the "Media Types" registry {{!IANA.media-types}}.
 
 * 'application/signed-statement+cose' to indicate that the content is a Signed Statement.
 
