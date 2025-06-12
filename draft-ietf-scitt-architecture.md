@@ -970,8 +970,8 @@ It is important for Issuers and Transparency Services to clearly communicate whe
 
 IANA is requested to register:
 
-*  allocate media type application/signed-statement+cose in the "Media Types" registry, see below.
-*  allocate media type application/receipt+cose in the "Media Types" registry, see below.
+*  the media type application/signed-statement+cose in the "Media Types" registry, see below.
+*  the media type application/receipt+cose in the "Media Types" registry, see below.
 
 ## COSE Receipts Header Parameter
 
