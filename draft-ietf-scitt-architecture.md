@@ -973,7 +973,7 @@ It is important for Issuers and Transparency Services to clearly communicate whe
 
 IANA is requested to register:
 
-*  the media type application/signed-statement+cose in the "Media Types" registry, see below.
+*  the media type application/statement+cose in the "Media Types" registry, see below.
 *  the media type application/receipt+cose in the "Media Types" registry, see below.
 
 ## COSE Receipts Header Parameter
@@ -1044,18 +1044,18 @@ Restrictions on usage:
 Author/Change controller:
 : IETF
 
-## Media Type application/scitt-receipt+cose Registration
+## Media Type application/receipt+cose Registration
 
 | Name           | Template                   | Reference               |
-| scitt-receipt+cose | application/scitt-receipt+cose | {{Receipt}} of {{&SELF}} |
-{: #new-media-types-scitt-receipt title="SCITT Receipt Media Type Registration"}
+| receipt+cose   | application/receipt+cose  | {{Receipt}} of {{&SELF}} |
+{: #new-media-types-receipt title="SCITT Receipt Media Type Registration"}
 
 {:compact}
 Type name:
 : application
 
 Subtype name:
-: scitt-receipt+cose
+: receipt+cose
 
 Required parameters:
 : n/a
