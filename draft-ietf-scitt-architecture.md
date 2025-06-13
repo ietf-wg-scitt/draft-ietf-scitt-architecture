@@ -651,7 +651,7 @@ Transparency Services can be deployed along side other database or object storag
 For example, a Transparency Service that supports a software package management system, might be referenced from the APIs exposed for package management.
 Providing an ability to request a fresh Receipt for a given software package, or to request a list of Signed Statements associated with the software package.
 
-# Signed Statements
+# Signed Statements {#signed-statements}
 
 This specification prioritizes conformance to {{-COSE}} and its required and optional properties.
 Profiles and implementation specific choices should be used to determine admissibility of conforming messages.
@@ -903,7 +903,7 @@ In some deployments a special role such as an Auditor might require and be given
 Transparency Services can leverage Verifiable Data Structures which only retain cryptographic metadata (e.g. a hash), rather than the complete Signed Statement, as part of a defense in depth approach to maintaining confidentiality.
 By analyzing the relationship between data stored in the Transparency Service and data stored in Adjacent Services, it is possible to perform metadata analysis, which could reveal the order in which artifacts were built, signed, and uploaded.
 
-# Security Considerations
+# Security Considerations {#SecConSec}
 
 SCITT provides the following security guarantees:
 
@@ -980,110 +980,131 @@ IANA is requested to register:
 
 394 is requested in {{-RECEIPTS}} and has received an early assignment.
 
-## Media Type Registration
+## Media Type application/statement+cose Registration
 
-IANA is requested to add the following media types to the "Media Types" registry {{!IANA.media-types}}.
+IANA is requested to add the following Media-Type to the "Media Types" registry {{!IANA.media-types}}.
 
-* 'application/signed-statement+cose' to indicate that the content is a Signed Statement.
+| Name           | Template                   | Reference               |
+| statement+cose | application/statement+cose | {{signed-statements}} of {{&SELF}} |
+{: #new-media-types-scitt-statement title="SCITT Signed Statement Media Type Registration"}
 
-~~~
-      Type name: application
+{:compact}
+Type name:
+: application
 
-      Subtype name: signed-statement+cose
+Subtype name:
+: statement+cose
 
-      Required parameters: N/A
+Required parameters:
+: n/a
 
-      Optional parameters: N/A
+Optional parameters:
+: n/a
 
-      Encoding considerations: binary
+Encoding considerations:
+: binary (CBOR data item)
 
-      Security considerations: See the Security Considerations section
-      of [[This RFC]].
+Security considerations:
+: {{SecConSec}} of {{&SELF}}
 
-      Interoperability considerations: N/A
+Interoperability considerations:
+: none
 
-      Published specification: [[This RFC]]
+Published specification:
+: {{&SELF}}
 
-      Applications that use this media type: Used to provide an identifiable
-        and non-repudiable Statement about an Artifact signed by an Issuer.
+Applications that use this media type:
+: Used to provide an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
 
-      Fragment identifier considerations: N/A
+Fragment identifier considerations:
+: n/a
 
-      Additional information:
+Additional information:
+: Deprecated alias names for this type:
+  : N/A
 
-      *  Deprecated alias names for this type: N/A
+  Magic number(s):
+  : N/A
 
-      *  Magic number(s): N/A
+  File extension(s):
+  : .scitt
 
-      *  File extension(s): cose
+  Macintosh file type code(s):
+  : N/A
 
-      *  Macintosh file type code(s): N/A
+Person and email address to contact for further information:
+: iesg@ietf.org
 
-      Person & email address to contact for further information:
-      iesg@ietf.org
+Intended usage:
+: COMMON
 
-      Intended usage: COMMON
+Restrictions on usage:
+: none
 
-      Restrictions on usage: N/A
+Author/Change controller:
+: IETF
 
-      Author: Amaury Chamayou, <amaury.chamayou@microsoft.com>
+## Media Type application/scitt-receipt+cose Registration
 
-      Change Controller: IETF
+| Name           | Template                   | Reference               |
+| scitt-receipt+cose | application/scitt-receipt+cose | {{Receipt}} of {{&SELF}} |
+{: #new-media-types-scitt-receipt title="SCITT Receipt Media Type Registration"}
 
-      Provisional registration?  No
-~~~
+{:compact}
+Type name:
+: application
 
-* 'application/receipt+cose' to indicate that the content is a COSE Receipt, see {{-RECEIPTS}}.
+Subtype name:
+: scitt-receipt+cose
 
-~~~
-      Type name: application
+Required parameters:
+: n/a
 
-      Subtype name: receipt+cose
+Optional parameters:
+: n/a
 
-      Required parameters: N/A
+Encoding considerations:
+: binary (CBOR data item)
 
-      Optional parameters: N/A
+Security considerations:
+: {{SecConSec}} of {{&SELF}}
 
-      Encoding considerations: binary
+Interoperability considerations:
+: none
 
-      Security considerations: See the Security Considerations section
-      of [[This RFC]].
+Published specification:
+: {{&SELF}}
 
-      Interoperability considerations: N/A
+Applications that use this media type:
+: Used to establish or verify transparency over Statements. Typically emitted by a Transparency Service, for the benefit of Relying Parties wanting to ensure Non-equivocation over all or part of a Statement Sequence.
 
-      Published specification: [[This RFC]]
+Fragment identifier considerations:
+: n/a
 
-      Applications that use this media type: Used to establish
-        or verify transparency over Statements. Typically emitted
-        by a Transparency Service, for the benefit of Relying Parties
-        wanting to ensure Non-equivocation over all or part of a
-        Statement Sequence.
+Additional information:
+: Deprecated alias names for this type:
+  : N/A
 
-      Fragment identifier considerations: N/A
+  Magic number(s):
+  : N/A
 
-      Additional information:
+  File extension(s):
+  : .receipt
 
-      *  Deprecated alias names for this type: N/A
+  Macintosh file type code(s):
+  : N/A
 
-      *  Magic number(s): N/A
+Person and email address to contact for further information:
+: iesg@ietf.org
 
-      *  File extension(s): cose
+Intended usage:
+: COMMON
 
-      *  Macintosh file type code(s): N/A
+Restrictions on usage:
+: none
 
-      Person & email address to contact for further information:
-      iesg@ietf.org
-
-      Intended usage: COMMON
-
-      Restrictions on usage: N/A
-
-      Author: Amaury Chamayou, <amaury.chamayou@microsoft.com>
-
-      Change Controller: IETF
-
-      Provisional registration?  No
-~~~
+Author/Change controller:
+: IETF
 
 # Common Terminology Disambiguation
 
