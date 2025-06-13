@@ -5,12 +5,12 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 14 December 2025                                     C. Fournet
+Expires: 15 December 2025                                     C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                            12 June 2025
+                                                            13 June 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 December 2025.
+   This Internet-Draft will expire on 15 December 2025.
 
 Copyright Notice
 
@@ -109,12 +109,13 @@ Table of Contents
        9.4.2.  Key Compromise
    10. IANA Considerations
      10.1.  COSE Receipts Header Parameter
-     10.2.  Media Type Registration
-   11. References
-     11.1.  Normative References
-     11.2.  Informative References
-   Appendix A.  Common Terminology Disambiguation
-   Appendix B.  Signing Statements Remotely
+     10.2.  Media Type application/scitt-statement+cose Registration
+     10.3.  Media Type application/scitt-receipt+cose Registration
+   11. Common Terminology Disambiguation
+   12. Signing Statements Remotely
+   13. References
+     13.1.  Normative References
+     13.2.  Informative References
    Contributors
    Authors' Addresses
 
@@ -1373,18 +1374,234 @@ Table of Contents
 
 10.  IANA Considerations
 
+   IANA is requested to register:
+
+   *  the media type application/scitt-statement+cose in the "Media
+      Types" registry, see below.
+
+   *  the media type application/scitt-receipt+cose in the "Media Types"
+      registry, see below.
+
 10.1.  COSE Receipts Header Parameter
 
    394 is requested in [I-D.draft-ietf-cose-merkle-tree-proofs] and has
    received an early assignment.
 
-10.2.  Media Type Registration
+10.2.  Media Type application/scitt-statement+cose Registration
 
-   Pending WG discussion.
+   IANA is requested to add the following Media-Type to the "Media
+   Types" registry [IANA.media-types].
 
-11.  References
+       +======================+======================+============+
+       | Name                 | Template             | Reference  |
+       +======================+======================+============+
+       | scitt-statement+cose | application/scitt-   | Section 6  |
+       |                      | statement+cose       | of RFCthis |
+       +----------------------+----------------------+------------+
 
-11.1.  Normative References
+         Table 1: SCITT Signed Statement Media Type Registration
+
+   Type name:  application
+   Subtype name:  statement+cose
+   Required parameters:  n/a
+   Optional parameters:  n/a
+   Encoding considerations:  binary (CBOR data item)
+   Security considerations:  Section 9 of RFCthis
+   Interoperability considerations:  none
+   Published specification:  RFCthis
+   Applications that use this media type:  Used to provide an
+      identifiable and non-repudiable Statement about an Artifact signed
+      by an Issuer.
+   Fragment identifier considerations:  n/a
+   Additional information:  Deprecated alias names for this type:  N/A
+
+                            Magic number(s):  N/A
+
+                            File extension(s):  .scitt
+
+                            Macintosh file type code(s):  N/A
+   Person and email address to contact for further information:  iesg@ie
+      tf.org
+   Intended usage:  COMMON
+   Restrictions on usage:  none
+   Author/Change controller:  IETF
+
+10.3.  Media Type application/scitt-receipt+cose Registration
+
+   +====================+================================+============+
+   | Name               | Template                       | Reference  |
+   +====================+================================+============+
+   | scitt-receipt+cose | application/scitt-receipt+cose | Section 7  |
+   |                    |                                | of RFCthis |
+   +--------------------+--------------------------------+------------+
+
+              Table 2: SCITT Receipt Media Type Registration
+
+   Type name:  application
+   Subtype name:  receipt+cose
+   Required parameters:  n/a
+   Optional parameters:  n/a
+   Encoding considerations:  binary (CBOR data item)
+   Security considerations:  Section 9 of RFCthis
+   Interoperability considerations:  none
+   Published specification:  RFCthis
+   Applications that use this media type:  Used to establish or verify
+      transparency over Statements.  Typically emitted by a Transparency
+      Service, for the benefit of Relying Parties wanting to ensure Non-
+      equivocation over all or part of a Statement Sequence.
+   Fragment identifier considerations:  n/a
+   Additional information:  Deprecated alias names for this type:  N/A
+
+                            Magic number(s):  N/A
+
+                            File extension(s):  .receipt
+
+                            Macintosh file type code(s):  N/A
+   Person and email address to contact for further information:  iesg@ie
+      tf.org
+   Intended usage:  COMMON
+   Restrictions on usage:  none
+   Author/Change controller:  IETF
+
+11.  Common Terminology Disambiguation
+
+   This document has been developed in coordination with the COSE, OAUTH
+   and RATS WG and uses terminology common to these working groups.
+
+   This document uses the terms "Issuer", and "Subject" as described in
+   [RFC8392], however the usage is consistent with the broader
+   interpretation of these terms in both JOSE and COSE, and the guidance
+   in [RFC8725] generally applies the COSE equivalent terms with
+   consistent semantics.
+
+   The terms "verifier" and "Relying Party" are used interchangeably
+   through the document.  While these terms are related to "Verifier"
+   and "Relying Party" as used in [RFC9334], they do not imply the
+   processing of RATS conceptual messages, such as Evidence or
+   Attestation Results that are specific to remote attestation.  A SCITT
+   "verifier" and "Relying Party" and "Issuer" of Receipts or Statements
+   might take on the role of a RATS "Attester".  Correspondingly, all
+   RATS conceptual messages, such as Evidence and Attestation Results,
+   can be the content of SCITT Statements and a SCITT "verifier" can
+   also take on the role of a RATS "Verifier" to, for example, conduct
+   the procedure of Appraisal of Evidence as a part of a SCITT
+   "verifier"'s verification capabilities.
+
+   The terms "Claim" and "Statement" are used throughout this document,
+   where Claim is consistent with the usage in [RFC9711] and [RFC7523],
+   and Statement is reserved for any arbitrary bytes, possibly
+   identified with a media type, about which the Claims are made.
+
+   The term "Subject" provides an identifier of the Issuer's choosing to
+   refer to a given Artifact and ensures that all associated Statements
+   can be attributed to the identifier chosen by the Issuer.
+
+   In simpler language, a SCITT Statement could be some vendor-specific
+   software bill of materials (SBOM), results from a model checker,
+   static analyzer, or RATS Evidence about the authenticity of an SBOM
+   creation process, where the Issuer identifies themselves using the
+   iss Claim, and the specific software that was analyzed as the Subject
+   using the sub Claim.
+
+   In [RFC7523], the Authorization Server (AS) verifies Private Key JWT
+   client authentication requests, and issues access tokens to clients
+   configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-
+   bearer".  This means the AS initially acts as a "verifier" of the
+   authentication credentials in form of a JWT, and then later as an
+   "Issuer" of access and refresh tokens.  This mirrors how Signed
+   Statements are verified before Receipts are issued by a Transparency
+   Service.  Note that the use of [RFC7523] is only one possible
+   approach for client authentication in OAuth.
+
+   [FIPS.201] defines "assertion" as "A verifiable statement from an IdP
+   to an RP that contains information about an end user".
+
+   [NIST.SP.800-63-3] defines "assertion" as "A statement from a
+   verifier to an RP that contains information about a subscriber.
+   Assertions may also contain verified attributes."
+
+   This document uses the term Statement to refer to potentially
+   unsecured data and associated Claims, and Signed Statement and
+   Receipt to refer to assertions from an Issuer, or the Transparency
+   Service.
+
+   [NIST.SP.1800-19] defines "attestation" as "The process of providing
+   a digital signature for a set of measurements securely stored in
+   hardware, and then having the requester validate the signature and
+   the set of measurements."
+
+   NIST guidance "Software Supply Chain Security Guidance EO 14028" uses
+   the definition from [NIST_EO14028], which states that an
+   "attestation" is "The issue of a statement, based on a decision, that
+   fulfillment of specified requirements has been demonstrated.".  In
+   the RATS context, a "NIST attestation" is similar to a RATS
+   "Endorsement".  Occasionally, RATS Evidence and RATS Attestation
+   Results or the procedures of creating these conceptual messages are
+   referred to as "attestation" or (in cases of the use as a verb) "to
+   attest".  The stand-alone use of "attestation" and "to attest" is
+   discouraged outside a well-defined context, such as specification
+   text that highlights the application of terminology, explicitly.
+   Correspondingly, it is often useful for the intended audience to
+   qualify the term "attestation" to avoid confusion and ambiguity.
+
+12.  Signing Statements Remotely
+
+   Statements about digital Artifacts, containing digital Artifacts, or
+   structured data regarding any type of Artifacts, can be too large or
+   too sensitive to be send to a remote Transparency Services over the
+   Internet.  In these cases a Statement can also be hash, which becomes
+   the payload included in COSE to-be-signed bytes.  A Signed Statement
+   (COSE_Sign1) MUST be produced from the to-be-signed bytes according
+   to Section 4.4 of [STD96].
+
+      .----+-----.
+     |  Artifact  |
+      '+-+-------'
+       | |
+    .-'  v
+   |  .--+-------.
+   | |  Hash      +-+
+   |  '----------'  |     /\
+    '-.             |    /  \     .----------.
+       |            +-->+ OR +-->+  Payload   |
+       v            |    \  /     '--------+-'
+      .+--------.   |     \/               |
+     | Statement +--+                      |
+      '---------'                          |
+                                           |
+                                           |
+              ...  Producer Network ...    |
+
+                         ...
+
+              ...   Issuer Network ...     |
+                                           |
+                                           |
+    .---------.                            |
+   | Identity  |     (iss, x5t)            |
+   | Document  +--------------------+      |
+    `----+----`                     |      |
+         ^                          |      |
+    .----+-------.                  |      |
+   | Private Key  |                 |      |
+    '----+-------'                  v      |
+         |                     .----+---.  |
+         |                    |  Header  | |
+         |                     '----+---'  |
+         v                          v      v
+       .-+-----------.       .------+------+--.
+      /             /       /                  \
+     /    Sign     +<------+ To Be Signed Bytes |
+    /             /         \                  /
+   '-----+-------'           '----------------'
+         v
+    .----+-------.
+   | COSE Sign 1  |
+    '------------'
+
+13.  References
+
+13.1.  Normative References
 
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
@@ -1401,6 +1618,10 @@ Table of Contents
 
    [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <https://www.iana.org/assignments/cwt>.
+
+   [IANA.media-types]
+              IANA, "Media Types",
+              <https://www.iana.org/assignments/media-types>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -1445,7 +1666,7 @@ Table of Contents
               DOI 10.17487/RFC9052, August 2022,
               <https://www.rfc-editor.org/rfc/rfc9052>.
 
-11.2.  Informative References
+13.2.  Informative References
 
    [CoSWID]   Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D.
               Waltermire, "Concise Software Identification Tags",
@@ -1549,142 +1770,6 @@ Table of Contents
               <https://csrc.nist.gov/Projects/Software-Identification-
               SWID/guidelines>.
 
-Appendix A.  Common Terminology Disambiguation
-
-   This document has been developed in coordination with the COSE, OAUTH
-   and RATS WG and uses terminology common to these working groups.
-
-   This document uses the terms "Issuer", and "Subject" as described in
-   [RFC8392], however the usage is consistent with the broader
-   interpretation of these terms in both JOSE and COSE, and the guidance
-   in [RFC8725] generally applies the COSE equivalent terms with
-   consistent semantics.
-
-   The terms "verifier" and "Relying Party" are used interchangeably
-   through the document.  While these terms are related to "Verifier"
-   and "Relying Party" as used in [RFC9334], they do not imply the
-   processing of RATS conceptual messages, such as Evidence or
-   Attestation Results that are specific to remote attestation.  A SCITT
-   "verifier" and "Relying Party" and "Issuer" of Receipts or Statements
-   might take on the role of a RATS "Attester".  Correspondingly, all
-   RATS conceptual messages, such as Evidence and Attestation Results,
-   can be the content of SCITT Statements and a SCITT "verifier" can
-   also take on the role of a RATS "Verifier" to, for example, conduct
-   the procedure of Appraisal of Evidence as a part of a SCITT
-   "verifier"'s verification capabilities.
-
-   The terms "Claim" and "Statement" are used throughout this document,
-   where Claim is consistent with the usage in [RFC9711] and [RFC7523],
-   and Statement is reserved for any arbitrary bytes, possibly
-   identified with a media type, about which the Claims are made.
-
-   The term "Subject" provides an identifier of the Issuer's choosing to
-   refer to a given Artifact and ensures that all associated Statements
-   can be attributed to the identifier chosen by the Issuer.
-
-   In simpler language, a SCITT Statement could be some vendor-specific
-   software bill of materials (SBOM), results from a model checker,
-   static analyzer, or RATS Evidence about the authenticity of an SBOM
-   creation process, where the Issuer identifies themselves using the
-   iss Claim, and the specific software that was analyzed as the Subject
-   using the sub Claim.
-
-   In [RFC7523], the Authorization Server (AS) verifies Private Key JWT
-   client authentication requests, and issues access tokens to clients
-   configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-
-   bearer".  This means the AS initially acts as a "verifier" of the
-   authentication credentials in form of a JWT, and then later as an
-   "Issuer" of access and refresh tokens.  This mirrors how Signed
-   Statements are verified before Receipts are issued by a Transparency
-   Service.  Note that the use of [RFC7523] is only one possible
-   approach for client authentication in OAuth.
-
-   [FIPS.201] defines "assertion" as "A verifiable statement from an IdP
-   to an RP that contains information about an end user".
-
-   [NIST.SP.800-63-3] defines "assertion" as "A statement from a
-   verifier to an RP that contains information about a subscriber.
-   Assertions may also contain verified attributes."
-
-   This document uses the term Statement to refer to potentially
-   unsecured data and associated Claims, and Signed Statement and
-   Receipt to refer to assertions from an Issuer, or the Transparency
-   Service.
-
-   [NIST.SP.1800-19] defines "attestation" as "The process of providing
-   a digital signature for a set of measurements securely stored in
-   hardware, and then having the requester validate the signature and
-   the set of measurements."
-
-   NIST guidance "Software Supply Chain Security Guidance EO 14028" uses
-   the definition from [NIST_EO14028], which states that an
-   "attestation" is "The issue of a statement, based on a decision, that
-   fulfillment of specified requirements has been demonstrated.".  In
-   the RATS context, a "NIST attestation" is similar to a RATS
-   "Endorsement".  Occasionally, RATS Evidence and RATS Attestation
-   Results or the procedures of creating these conceptual messages are
-   referred to as "attestation" or (in cases of the use as a verb) "to
-   attest".  The stand-alone use of "attestation" and "to attest" is
-   discouraged outside a well-defined context, such as specification
-   text that highlights the application of terminology, explicitly.
-   Correspondingly, it is often useful for the intended audience to
-   qualify the term "attestation" to avoid confusion and ambiguity.
-
-Appendix B.  Signing Statements Remotely
-
-   Statements about digital Artifacts, containing digital Artifacts, or
-   structured data regarding any type of Artifacts, can be too large or
-   too sensitive to be send to a remote Transparency Services over the
-   Internet.  In these cases a Statement can also be hash, which becomes
-   the payload included in COSE to-be-signed bytes.  A Signed Statement
-   (COSE_Sign1) MUST be produced from the to-be-signed bytes according
-   to Section 4.4 of [STD96].
-
-      .----+-----.
-     |  Artifact  |
-      '+-+-------'
-       | |
-    .-'  v
-   |  .--+-------.
-   | |  Hash      +-+
-   |  '----------'  |     /\
-    '-.             |    /  \     .----------.
-       |            +-->+ OR +-->+  Payload   |
-       v            |    \  /     '--------+-'
-      .+--------.   |     \/               |
-     | Statement +--+                      |
-      '---------'                          |
-                                           |
-                                           |
-              ...  Producer Network ...    |
-
-                         ...
-
-              ...   Issuer Network ...     |
-                                           |
-                                           |
-    .---------.                            |
-   | Identity  |     (iss, x5t)            |
-   | Document  +--------------------+      |
-    `----+----`                     |      |
-         ^                          |      |
-    .----+-------.                  |      |
-   | Private Key  |                 |      |
-    '----+-------'                  v      |
-         |                     .----+---.  |
-         |                    |  Header  | |
-         |                     '----+---'  |
-         v                          v      v
-       .-+-----------.       .------+------+--.
-      /             /       /                  \
-     /    Sign     +<------+ To Be Signed Bytes |
-    /             /         \                  /
-   '-----+-------'           '----------------'
-         v
-    .----+-------.
-   | COSE Sign 1  |
-    '------------'
-
 Contributors
 
    Orie Steele
@@ -1699,7 +1784,7 @@ Contributors
    Amaury Chamayou
    Microsoft
    United Kingdom
-   Email: Amaury.Chamayou@microsoft.com
+   Email: amaury.chamayou@microsoft.com
 
 
    Amaury contributed elemental parts to finalize normative language on
