@@ -65,7 +65,7 @@ contributor:
 - ins: A. Chamayou
   name: Amaury Chamayou
   organization: Microsoft
-  email: Amaury.Chamayou@microsoft.com
+  email: amaury.chamayou@microsoft.com
   country: United Kingdom
   contribution: >
     Amaury contributed elemental parts to finalize normative language on registration behavior and the single-issuer design, as well as overall document consistency
@@ -152,6 +152,9 @@ informative:
     title: SWID Specification
 
   KEY-MANAGEMENT: DOI.10.6028/NIST.SP.800-57pt2r1
+
+entity:
+  SELF: "RFCthis"
 
 --- abstract
 
@@ -640,7 +643,7 @@ Transparency Services can be deployed along side other database or object storag
 For example, a Transparency Service that supports a software package management system, might be referenced from the APIs exposed for package management.
 Providing an ability to request a fresh Receipt for a given software package, or to request a list of Signed Statements associated with the software package.
 
-# Signed Statements
+# Signed Statements {#signed-statements}
 
 This specification prioritizes conformance to {{-COSE}} and its required and optional properties.
 Profiles and implementation specific choices should be used to determine admissibility of conforming messages.
@@ -892,7 +895,7 @@ In some deployments a special role such as an Auditor might require and be given
 Transparency Services can leverage Verifiable Data Structures which only retain cryptographic metadata (e.g. a hash), rather than the complete Signed Statement, as part of a defense in depth approach to maintaining confidentiality.
 By analyzing the relationship between data stored in the Transparency Service and data stored in Adjacent Services, it is possible to perform metadata analysis, which could reveal the order in which artifacts were built, signed, and uploaded.
 
-# Security Considerations
+# Security Considerations {#SecConSec}
 
 SCITT provides the following security guarantees:
 
@@ -960,15 +963,140 @@ It is important for Issuers and Transparency Services to clearly communicate whe
 
 # IANA Considerations
 
+IANA is requested to register:
+
+*  the media type application/scitt-statement+cose in the "Media Types" registry, see below.
+*  the media type application/scitt-receipt+cose in the "Media Types" registry, see below.
+
 ## COSE Receipts Header Parameter
 
 394 is requested in {{-RECEIPTS}} and has received an early assignment.
 
-## Media Type Registration
+## Media Type application/scitt-statement+cose Registration
 
-Pending WG discussion.
+IANA is requested to add the following Media-Type to the "Media Types" registry {{!IANA.media-types}}.
 
---- back
+| Name           | Template                   | Reference               |
+| scitt-statement+cose | application/scitt-statement+cose | {{signed-statements}} of {{&SELF}} |
+{: #new-media-types-scitt-statement title="SCITT Signed Statement Media Type Registration"}
+
+{:compact}
+Type name:
+: application
+
+Subtype name:
+: statement+cose
+
+Required parameters:
+: n/a
+
+Optional parameters:
+: n/a
+
+Encoding considerations:
+: binary (CBOR data item)
+
+Security considerations:
+: {{SecConSec}} of {{&SELF}}
+
+Interoperability considerations:
+: none
+
+Published specification:
+: {{&SELF}}
+
+Applications that use this media type:
+: Used to provide an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
+
+Fragment identifier considerations:
+: n/a
+
+Additional information:
+: Deprecated alias names for this type:
+  : N/A
+
+  Magic number(s):
+  : N/A
+
+  File extension(s):
+  : .scitt
+
+  Macintosh file type code(s):
+  : N/A
+
+Person and email address to contact for further information:
+: iesg@ietf.org
+
+Intended usage:
+: COMMON
+
+Restrictions on usage:
+: none
+
+Author/Change controller:
+: IETF
+
+## Media Type application/scitt-receipt+cose Registration
+
+| Name           | Template                   | Reference               |
+| scitt-receipt+cose   | application/scitt-receipt+cose  | {{Receipt}} of {{&SELF}} |
+{: #new-media-types-receipt title="SCITT Receipt Media Type Registration"}
+
+{:compact}
+Type name:
+: application
+
+Subtype name:
+: receipt+cose
+
+Required parameters:
+: n/a
+
+Optional parameters:
+: n/a
+
+Encoding considerations:
+: binary (CBOR data item)
+
+Security considerations:
+: {{SecConSec}} of {{&SELF}}
+
+Interoperability considerations:
+: none
+
+Published specification:
+: {{&SELF}}
+
+Applications that use this media type:
+: Used to establish or verify transparency over Statements. Typically emitted by a Transparency Service, for the benefit of Relying Parties wanting to ensure Non-equivocation over all or part of a Statement Sequence.
+
+Fragment identifier considerations:
+: n/a
+
+Additional information:
+: Deprecated alias names for this type:
+  : N/A
+
+  Magic number(s):
+  : N/A
+
+  File extension(s):
+  : .receipt
+
+  Macintosh file type code(s):
+  : N/A
+
+Person and email address to contact for further information:
+: iesg@ietf.org
+
+Intended usage:
+: COMMON
+
+Restrictions on usage:
+: none
+
+Author/Change controller:
+: IETF
 
 # Common Terminology Disambiguation
 
