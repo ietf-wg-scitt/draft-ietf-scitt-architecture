@@ -52,12 +52,7 @@ author:
   country: UK
 - ins: S. Lasker
   name: Steve Lasker
-  org: DataTrails
-  email: steve.lasker@datatrails.ai
-  code: '98199'
-  city: Seattle
-  region: WA
-  country: United States
+  email: stevenlasker@hotmail.com
 
 contributor:
 - ins: O. Steele
@@ -97,7 +92,6 @@ contributor:
     Robert contributed to the software supply chain use cases.
 
 normative:
-  RFC5280: PKIX
   RFC6838:
   RFC8392:
   RFC8610: CDDL
@@ -115,7 +109,7 @@ normative:
 
 informative:
 
-  I-D.draft-ietf-rats-eat: draft-ietf-rats-eat
+  RFC9711:
   NIST.SP.1800-19:
   NIST.SP.800-63-3:
   FIPS.201: DOI.10.6028/NIST.FIPS.201-3
@@ -140,8 +134,6 @@ informative:
   in-toto:
     target: https://in-toto.io/
     title: in-toto
-
-  PBFT: DOI.10.1145/571637.571640
 
   SLSA:
     target: https://slsa.dev/
@@ -1117,7 +1109,7 @@ While these terms are related to "Verifier" and "Relying Party" as used in {{RFC
 A SCITT "verifier" and "Relying Party" and "Issuer" of Receipts or Statements might take on the role of a RATS "Attester".
 Correspondingly, all RATS conceptual messages, such as Evidence and Attestation Results, can be the content of SCITT Statements and a SCITT "verifier" can also take on the role of a RATS "Verifier" to, for example, conduct the procedure of Appraisal of Evidence as a part of a SCITT "verifier"'s verification capabilities.
 
-The terms "Claim" and "Statement" are used throughout this document, where Claim is consistent with the usage in {{-draft-ietf-rats-eat}} and {{RFC7523}}, and Statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the Claims are made.
+The terms "Claim" and "Statement" are used throughout this document, where Claim is consistent with the usage in {{RFC9711}} and {{RFC7523}}, and Statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the Claims are made.
 
 The term "Subject" provides an identifier of the Issuer's choosing to refer to a given Artifact and ensures that all associated Statements can be attributed to the identifier chosen by the Issuer.
 
