@@ -965,19 +965,19 @@ It is important for Issuers and Transparency Services to clearly communicate whe
 
 IANA is requested to register:
 
-*  the media type application/statement+cose in the "Media Types" registry, see below.
-*  the media type application/receipt+cose in the "Media Types" registry, see below.
+*  the media type application/scitt-statement+cose in the "Media Types" registry, see below.
+*  the media type application/scitt-receipt+cose in the "Media Types" registry, see below.
 
 ## COSE Receipts Header Parameter
 
 394 is requested in {{-RECEIPTS}} and has received an early assignment.
 
-## Media Type application/statement+cose Registration
+## Media Type application/scitt-statement+cose Registration
 
 IANA is requested to add the following Media-Type to the "Media Types" registry {{!IANA.media-types}}.
 
 | Name           | Template                   | Reference               |
-| statement+cose | application/statement+cose | {{signed-statements}} of {{&SELF}} |
+| scitt-statement+cose | application/scitt-statement+cose | {{signed-statements}} of {{&SELF}} |
 {: #new-media-types-scitt-statement title="SCITT Signed Statement Media Type Registration"}
 
 {:compact}
@@ -1036,10 +1036,10 @@ Restrictions on usage:
 Author/Change controller:
 : IETF
 
-## Media Type application/receipt+cose Registration
+## Media Type application/scitt-receipt+cose Registration
 
 | Name           | Template                   | Reference               |
-| receipt+cose   | application/receipt+cose  | {{Receipt}} of {{&SELF}} |
+| scitt-receipt+cose   | application/scitt-receipt+cose  | {{Receipt}} of {{&SELF}} |
 {: #new-media-types-receipt title="SCITT Receipt Media Type Registration"}
 
 {:compact}
