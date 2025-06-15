@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-11T00:58:29.779709+00:00",
+  "timestamp": "2025-06-15T01:02:28.101661+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -54412,6 +54412,570 @@
           "body": "",
           "createdAt": "2025-05-07T23:01:15Z",
           "updatedAt": "2025-05-07T23:01:15Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 376,
+      "id": "PR_kwDOIvmHss6aL1qN",
+      "title": "Update TBD_0 with early assignment for receipts",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/376",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "`receipts` has been assigned `394`, as per https://www.iana.org/assignments/cose/cose.xhtml",
+      "createdAt": "2025-06-12T10:11:46Z",
+      "updatedAt": "2025-06-12T10:16:54Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "cfc0125c4b895d6bc4c66987701efba1c4553c80",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "update_tbd0_with_early_assignment",
+      "headRefOid": "2ba647e12881a385ca1d602406d91a79f79454f7",
+      "closedAt": "2025-06-12T10:16:54Z",
+      "mergedAt": "2025-06-12T10:16:54Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "c7454890ecf185bf20f180edf0025638b9133b3e"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6uEilG",
+          "commit": {
+            "abbreviatedOid": "2ba647e"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "@achamayou thanks for the editorial polish before pestering rfced with it!",
+          "createdAt": "2025-06-12T10:15:49Z",
+          "updatedAt": "2025-06-12T10:15:49Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 377,
+      "id": "PR_kwDOIvmHss6aL-cx",
+      "title": "Fix extraneous references spotted by idnits",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/377",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Verified that these are unused before dropping them.",
+      "createdAt": "2025-06-12T10:25:05Z",
+      "updatedAt": "2025-06-12T11:55:23Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "c7454890ecf185bf20f180edf0025638b9133b3e",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "fix_idnits",
+      "headRefOid": "0e0593435ad3c42a96c07ce289e501d52ec7290a",
+      "closedAt": "2025-06-12T10:39:19Z",
+      "mergedAt": "2025-06-12T10:39:19Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "ed18fc46aac332a1a487ba69ada1b4fc070578c7"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6uEzWx",
+          "commit": {
+            "abbreviatedOid": "0e05934"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "@achamayou thanks again for your thoughtful suggestions during your writeup! ",
+          "createdAt": "2025-06-12T10:39:10Z",
+          "updatedAt": "2025-06-12T10:39:10Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uGFXX",
+          "commit": {
+            "abbreviatedOid": "0e05934"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "LGTM",
+          "createdAt": "2025-06-12T11:55:23Z",
+          "updatedAt": "2025-06-12T11:55:23Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 378,
+      "id": "PR_kwDOIvmHss6aMC1-",
+      "title": "Update RATS EAT to RFC9711",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/378",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "A little more reference tidy up.",
+      "createdAt": "2025-06-12T10:31:34Z",
+      "updatedAt": "2025-06-12T11:53:58Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "c7454890ecf185bf20f180edf0025638b9133b3e",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "rats_eat_is_rfc_9711",
+      "headRefOid": "00c80beb5d918dd4fc187db2855c93785829ae59",
+      "closedAt": "2025-06-12T10:41:35Z",
+      "mergedAt": "2025-06-12T10:41:35Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "56c01fe6953592ab3b357e77dec22130f6abeca4"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6uE0av",
+          "commit": {
+            "abbreviatedOid": "00c80be"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "this editorial change lgtm",
+          "createdAt": "2025-06-12T10:40:13Z",
+          "updatedAt": "2025-06-12T10:40:13Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uGEJX",
+          "commit": {
+            "abbreviatedOid": "00c80be"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "LGTM",
+          "createdAt": "2025-06-12T11:53:58Z",
+          "updatedAt": "2025-06-12T11:53:58Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 379,
+      "id": "PR_kwDOIvmHss6aOCP8",
+      "title": "Update details for Steve Lasker",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/379",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Minor editorial change.",
+      "createdAt": "2025-06-12T13:30:34Z",
+      "updatedAt": "2025-06-12T16:28:06Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "56c01fe6953592ab3b357e77dec22130f6abeca4",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "update_steve_laskers_details",
+      "headRefOid": "c084decb31c37659d42a2cee07353dfa841488ed",
+      "closedAt": "2025-06-12T16:28:06Z",
+      "mergedAt": "2025-06-12T16:28:06Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "9220ad0b0743c941c6d3b6273a9f35e3dbf0b589"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6uKDRU",
+          "commit": {
+            "abbreviatedOid": "c084dec"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-06-12T16:20:29Z",
+          "updatedAt": "2025-06-12T16:20:29Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 380,
+      "id": "PR_kwDOIvmHss6aOTBT",
+      "title": "Defined and request scitt-statement and scitt-receipt media types",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/380",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Following WG discussion, write up the Media Type assignment request section.",
+      "createdAt": "2025-06-12T13:49:37Z",
+      "updatedAt": "2025-06-13T15:43:56Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "9220ad0b0743c941c6d3b6273a9f35e3dbf0b589",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "request_media_type_allocation",
+      "headRefOid": "c9ac245d3827cd8081f80cf86ee0cdac8d289a07",
+      "closedAt": "2025-06-13T15:43:56Z",
+      "mergedAt": "2025-06-13T15:43:56Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "7759710259cb381b71a19b09e325a706e888eb6f"
+      },
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This PR was originally proposing:\r\n\r\n- `signed-statement+cose`\r\n- `receipt+cose`\r\n\r\nMy rationale for this was, they're the inputs and outputs of the TS. A Statement is a document with claims inside, it's got its own Media Type (see definition), and a Receipt is a signed verifiable data proof.\r\n\r\n@henkbirkholz says that `+cose` already carries the \"wrapped in COSE, and therefore signed\" meaning, and that we should therefore have `statement+cose`. This was loosely the consensus in the last meeting, although somewhat tied with `scitt-statement`.\r\n\r\nI am fine with this, but I claim that this makes `receipt+cose` inconsistent, because a receipt is already signed. Following the same rationale, we should have `proof+cose` or `vdp+cose`. Or just `receipt`.\r\n\r\n@henkbirkholz @OR13 @JAG-UK @SteveLasker and others, can you please comment?",
+          "createdAt": "2025-06-13T08:50:47Z",
+          "updatedAt": "2025-06-13T08:52:39Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I have made the document consistent on `statement+cose` and `receipt+cose`, because that was the consensus yesterday.",
+          "createdAt": "2025-06-13T11:49:08Z",
+          "updatedAt": "2025-06-13T11:49:08Z"
+        },
+        {
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I don't have a strong opinion here, but I would consistently use prefixes and suffixes for the aesthetic alignment:\r\n\r\neither:\r\n\r\n```\r\napplication/scitt-statement+cose\r\napplication/scitt-receipt+cose\r\n```\r\n\r\n```\r\napplication/scitt-signed-statement\r\napplication/scitt-receipt\r\n```\r\n\r\n```\r\napplication/signed-statement\r\napplication/receipt\r\n```\r\n\r\n\r\n```\r\napplication/statement+cose\r\napplication/receipt+cose\r\n```\r\n\r\nKeep in mind the media type review with always suggest not squatting on generic things, so the last one would likely be rejected.\r\n\r\nIt would be hard to argue with:\r\n\r\n```\r\napplication/scitt-statement+cose\r\napplication/scitt-receipt+cose\r\n```\r\n\r\nand if we recommend their content format representation they will end as numbers usually anyway.",
+          "createdAt": "2025-06-13T14:35:06Z",
+          "updatedAt": "2025-06-13T14:35:06Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@OR13 @JAG-UK @yogeshbdeshpande thank you for the feedback and reviews, I have updated to:\r\n\r\n```\r\napplication/scitt-statement+cose\r\napplication/scitt-receipt+cose\r\n```",
+          "createdAt": "2025-06-13T14:51:49Z",
+          "updatedAt": "2025-06-13T14:58:41Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "Okay. Obviously, I feel compelled to point out that a scitt-receipt+cose sounds like two layers of cose, as a receipt without cose is not a receipt -  but I'll leave it at that.",
+          "createdAt": "2025-06-13T15:18:41Z",
+          "updatedAt": "2025-06-13T15:18:41Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Okay. Obviously, I feel compelled to point out that a scitt-receipt+cose sounds like two layers of cose, as a receipt without cose is not a receipt - but I'll leave it at that.\r\n\r\nAgreed (see my earlier comment), but since we have both consensus and aesthetic alignment, I think we move forward.",
+          "createdAt": "2025-06-13T15:43:49Z",
+          "updatedAt": "2025-06-13T15:43:49Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6uIANB",
+          "commit": {
+            "abbreviatedOid": "41c2284"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-12T14:01:20Z",
+          "updatedAt": "2025-06-12T14:01:21Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\r\nIANA is requested to register:\r\n\r\n*  the media type application/signed-statement+cose in the \"Media Types\" registry, see below.\r\n*  the media type application/receipt+cose in the \"Media Types\" registry, see below.\r\n\r\n```",
+              "createdAt": "2025-06-12T14:01:20Z",
+              "updatedAt": "2025-06-12T14:01:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uIIdY",
+          "commit": {
+            "abbreviatedOid": "41c2284"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-12T14:06:37Z",
+          "updatedAt": "2025-06-12T14:06:38Z",
+          "comments": [
+            {
+              "originalPosition": 25,
+              "body": "```suggestion\r\nIANA is requested to add the following media types to the \"Media Types\" registry {{!IANA.media-types}}.\r\n```",
+              "createdAt": "2025-06-12T14:06:37Z",
+              "updatedAt": "2025-06-12T14:06:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uMyqq",
+          "commit": {
+            "abbreviatedOid": "4538454"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-06-12T20:37:10Z",
+          "updatedAt": "2025-06-12T20:37:10Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uPr-K",
+          "commit": {
+            "abbreviatedOid": "4538454"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-06-13T03:55:42Z",
+          "updatedAt": "2025-06-13T03:55:42Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uRq_5",
+          "commit": {
+            "abbreviatedOid": "b63c472"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-13T08:36:09Z",
+          "updatedAt": "2025-06-13T08:36:10Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "```suggestion\r\n## Media Type application/signed-statement+cose Registration\r\n```",
+              "createdAt": "2025-06-13T08:36:10Z",
+              "updatedAt": "2025-06-13T08:36:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uRrM7",
+          "commit": {
+            "abbreviatedOid": "b63c472"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-13T08:36:28Z",
+          "updatedAt": "2025-06-13T08:36:29Z",
+          "comments": [
+            {
+              "originalPosition": 56,
+              "body": "```suggestion\r\n| statement+cose | application/signed-statement+cose | {{signed-statements}} of {{&SELF}} |\r\n```",
+              "createdAt": "2025-06-13T08:36:29Z",
+              "updatedAt": "2025-06-13T08:36:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uRrXE",
+          "commit": {
+            "abbreviatedOid": "b63c472"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-13T08:36:44Z",
+          "updatedAt": "2025-06-13T08:36:44Z",
+          "comments": [
+            {
+              "originalPosition": 55,
+              "body": "```suggestion\r\n| Name           | Template                          | Reference               |\r\n```",
+              "createdAt": "2025-06-13T08:36:44Z",
+              "updatedAt": "2025-06-13T08:36:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uRreq",
+          "commit": {
+            "abbreviatedOid": "b63c472"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-13T08:36:55Z",
+          "updatedAt": "2025-06-13T08:36:56Z",
+          "comments": [
+            {
+              "originalPosition": 64,
+              "body": "```suggestion\r\n: signed-statement+cose\r\n```",
+              "createdAt": "2025-06-13T08:36:55Z",
+              "updatedAt": "2025-06-13T08:36:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uT9bC",
+          "commit": {
+            "abbreviatedOid": "b63c472"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-06-13T11:26:16Z",
+          "updatedAt": "2025-06-13T11:26:16Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uV7PE",
+          "commit": {
+            "abbreviatedOid": "df561f7"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-06-13T14:11:43Z",
+          "updatedAt": "2025-06-13T14:11:43Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uWJRS",
+          "commit": {
+            "abbreviatedOid": "df561f7"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "lgtm",
+          "createdAt": "2025-06-13T14:29:30Z",
+          "updatedAt": "2025-06-13T14:29:30Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uWbNJ",
+          "commit": {
+            "abbreviatedOid": "df561f7"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-13T14:52:20Z",
+          "updatedAt": "2025-06-13T14:52:20Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "```suggestion\r\n*  the media type application/scitt-statement+cose in the \"Media Types\" registry, see below.\r\n*  the media type application/scitt-receipt+cose in the \"Media Types\" registry, see below.\r\n```",
+              "createdAt": "2025-06-13T14:52:20Z",
+              "updatedAt": "2025-06-13T14:52:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uWbWh",
+          "commit": {
+            "abbreviatedOid": "df561f7"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-13T14:52:31Z",
+          "updatedAt": "2025-06-13T14:52:32Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "```suggestion\r\n## Media Type application/scitt-statement+cose Registration\r\n```",
+              "createdAt": "2025-06-13T14:52:31Z",
+              "updatedAt": "2025-06-13T14:52:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uWbjb",
+          "commit": {
+            "abbreviatedOid": "df561f7"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-13T14:52:49Z",
+          "updatedAt": "2025-06-13T14:52:49Z",
+          "comments": [
+            {
+              "originalPosition": 56,
+              "body": "```suggestion\r\n| scitt-statement+cose | application/scitt-statement+cose | {{signed-statements}} of {{&SELF}} |\r\n```",
+              "createdAt": "2025-06-13T14:52:49Z",
+              "updatedAt": "2025-06-13T14:52:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uWby8",
+          "commit": {
+            "abbreviatedOid": "df561f7"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-13T14:53:08Z",
+          "updatedAt": "2025-06-13T14:53:08Z",
+          "comments": [
+            {
+              "originalPosition": 118,
+              "body": "```suggestion\r\n| scitt-receipt+cose   | application/scitt-receipt+cose  | {{Receipt}} of {{&SELF}} |\r\n```",
+              "createdAt": "2025-06-13T14:53:08Z",
+              "updatedAt": "2025-06-13T14:53:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uWcCh",
+          "commit": {
+            "abbreviatedOid": "df561f7"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-13T14:53:30Z",
+          "updatedAt": "2025-06-13T14:53:30Z",
+          "comments": [
+            {
+              "originalPosition": 115,
+              "body": "```suggestion\r\n## Media Type application/scitt-receipt+cose Registration\r\n```",
+              "createdAt": "2025-06-13T14:53:30Z",
+              "updatedAt": "2025-06-13T14:53:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6uWtpG",
+          "commit": {
+            "abbreviatedOid": "c9ac245"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "> @OR13 @JAG-UK @yogeshbdeshpande thank you for the feedback and reviews, I have updated to:\r\n> \r\n> ```\r\n> application/scitt-statement+cose\r\n> application/scitt-receipt+cose\r\n> ```\r\n\r\nThis basically checks all boxes. Rough consensus on most verbose is fine with me. Content-Formats will go into a complementary PR, I assume. Currently, I am using some airplane Internet and it is not great. I'll setup a the corresponding C-F PR when I am at my destination.",
+          "createdAt": "2025-06-13T15:13:43Z",
+          "updatedAt": "2025-06-13T15:13:43Z",
           "comments": []
         }
       ]
