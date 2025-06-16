@@ -1100,7 +1100,7 @@ Author/Change controller:
 
 ## CoAP Content-Format Registrations
 
-IANA is requested to register the following Content-Format numbers in the "CoAP Content-Formats" sub-registry, within the "Constrained RESTful Environments (CoRE) Parameters" Registry {{!IANA.core-parameters}} in the 0-255 Range that requires two bytes to represent the number:
+IANA is requested to register the following Content-Format numbers in the "CoAP Content-Formats" sub-registry, within the "Constrained RESTful Environments (CoRE) Parameters" Registry {{!IANA.core-parameters}} in the 0-255 Range:
 
 | Content-Type                     | Content Coding | ID | Reference |
 | application/scitt-statement+cose | -              | 103 | {{&SELF}} |
