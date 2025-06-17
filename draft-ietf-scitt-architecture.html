@@ -21,7 +21,7 @@ It ensures flexibility, interoperability between different transparency services
 <meta content="draft-ietf-scitt-architecture-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.28.1
-    Python 3.12.10
+    Python 3.12.11
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
@@ -30,7 +30,7 @@ It ensures flexibility, interoperability between different transparency services
     platformdirs 4.3.8
     pycountry 24.6.1
     PyYAML 6.0.2
-    requests 2.32.3
+    requests 2.32.4
     setuptools 80.9.0
     wcwidth 0.2.13
 -->
@@ -1055,7 +1055,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 15 December 2025</td>
+<td class="center">Expires 19 December 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-06-13" class="published">13 June 2025</time>
+<time datetime="2025-06-17" class="published">17 June 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-12-15">15 December 2025</time></dd>
+<dd class="expires"><time datetime="2025-12-19">19 December 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1140,7 +1140,7 @@ It ensures flexibility, interoperability between different transparency services
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 15 December 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 19 December 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1290,6 +1290,9 @@ It ensures flexibility, interoperability between different transparency services
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.3">
                 <p id="section-toc.1-1.10.2.3.1"><a href="#section-10.3" class="auto internal xref">10.3</a>.  <a href="#name-media-type-application-scitt" class="internal xref">Media Type application/scitt-receipt+cose Registration</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.4">
+                <p id="section-toc.1-1.10.2.4.1"><a href="#section-10.4" class="auto internal xref">10.4</a>.  <a href="#name-coap-content-format-registr" class="internal xref">CoAP Content-Format Registrations</a></p>
 </li>
             </ul>
 </li>
@@ -2897,6 +2900,44 @@ It is important for Issuers and Transparency Services to clearly communicate whe
 </dl>
 </section>
 </div>
+<div id="sec-coap-content-format-registrations">
+<section id="section-10.4">
+        <h3 id="name-coap-content-format-registr">
+<a href="#section-10.4" class="section-number selfRef">10.4. </a><a href="#name-coap-content-format-registr" class="section-name selfRef">CoAP Content-Format Registrations</a>
+        </h3>
+<p id="section-10.4-1">IANA is requested to register the following Content-Format numbers in the "CoAP Content-Formats" sub-registry, within the "Constrained RESTful Environments (CoRE) Parameters" Registry <span>[<a href="#IANA.core-parameters" class="cite xref">IANA.core-parameters</a>]</span> in the 0-255 Range:<a href="#section-10.4-1" class="pilcrow">¶</a></p>
+<span id="name-scitt-content-formats-regis"></span><div id="new-content-formats">
+<table class="center" id="table-3">
+          <caption>
+<a href="#table-3" class="selfRef">Table 3</a>:
+<a href="#name-scitt-content-formats-regis" class="selfRef">SCITT Content-Formats Registration</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Content-Type</th>
+              <th class="text-left" rowspan="1" colspan="1">Content Coding</th>
+              <th class="text-left" rowspan="1" colspan="1">ID</th>
+              <th class="text-left" rowspan="1" colspan="1">Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">application/scitt-statement+cose</td>
+              <td class="text-left" rowspan="1" colspan="1">-</td>
+              <td class="text-left" rowspan="1" colspan="1">103</td>
+              <td class="text-left" rowspan="1" colspan="1">RFCthis</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">application/scitt-receipt+cose</td>
+              <td class="text-left" rowspan="1" colspan="1">-</td>
+              <td class="text-left" rowspan="1" colspan="1">104</td>
+              <td class="text-left" rowspan="1" colspan="1">RFCthis</td>
+            </tr>
+          </tbody>
+        </table>
+</div>
+</section>
+</div>
 </section>
 </div>
 <div id="sec-common-terminology-disambiguation">
@@ -3091,6 +3132,10 @@ A Signed Statement (COSE_Sign1) <span class="bcp14">MUST</span> be produced from
 <dt id="I-D.draft-ietf-scitt-scrapi">[I-D.draft-ietf-scitt-scrapi]</dt>
         <dd>
 <span class="refAuthor">Birkholz, H.</span> and <span class="refAuthor">J. Geater</span>, <span class="refTitle">"SCITT Reference APIs"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-scitt-scrapi-04</span>, <time datetime="2025-03-03" class="refDate">3 March 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-scitt-scrapi-04">https://datatracker.ietf.org/doc/html/draft-ietf-scitt-scrapi-04</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IANA.core-parameters">[IANA.core-parameters]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"Constrained RESTful Environments (CoRE) Parameters"</span>, <span>&lt;<a href="https://www.iana.org/assignments/core-parameters">https://www.iana.org/assignments/core-parameters</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IANA.cwt">[IANA.cwt]</dt>
         <dd>

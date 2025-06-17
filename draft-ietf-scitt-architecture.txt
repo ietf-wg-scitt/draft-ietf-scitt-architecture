@@ -5,12 +5,12 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 15 December 2025                                     C. Fournet
+Expires: 19 December 2025                                     C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                            13 June 2025
+                                                            17 June 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 December 2025.
+   This Internet-Draft will expire on 19 December 2025.
 
 Copyright Notice
 
@@ -111,6 +111,7 @@ Table of Contents
      10.1.  COSE Receipts Header Parameter
      10.2.  Media Type application/scitt-statement+cose Registration
      10.3.  Media Type application/scitt-receipt+cose Registration
+     10.4.  CoAP Content-Format Registrations
    11. Common Terminology Disambiguation
    12. Signing Statements Remotely
    13. References
@@ -1463,6 +1464,25 @@ Table of Contents
    Restrictions on usage:  none
    Author/Change controller:  IETF
 
+10.4.  CoAP Content-Format Registrations
+
+   IANA is requested to register the following Content-Format numbers in
+   the "CoAP Content-Formats" sub-registry, within the "Constrained
+   RESTful Environments (CoRE) Parameters" Registry
+   [IANA.core-parameters] in the 0-255 Range:
+
+        +======================+================+=====+===========+
+        | Content-Type         | Content Coding | ID  | Reference |
+        +======================+================+=====+===========+
+        | application/scitt-   | -              | 103 | RFCthis   |
+        | statement+cose       |                |     |           |
+        +----------------------+----------------+-----+-----------+
+        | application/scitt-   | -              | 104 | RFCthis   |
+        | receipt+cose         |                |     |           |
+        +----------------------+----------------+-----+-----------+
+
+                Table 3: SCITT Content-Formats Registration
+
 11.  Common Terminology Disambiguation
 
    This document has been developed in coordination with the COSE, OAUTH
@@ -1615,6 +1635,11 @@ Table of Contents
               in Progress, Internet-Draft, draft-ietf-scitt-scrapi-04, 3
               March 2025, <https://datatracker.ietf.org/doc/html/draft-
               ietf-scitt-scrapi-04>.
+
+   [IANA.core-parameters]
+              IANA, "Constrained RESTful Environments (CoRE)
+              Parameters",
+              <https://www.iana.org/assignments/core-parameters>.
 
    [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <https://www.iana.org/assignments/cwt>.
