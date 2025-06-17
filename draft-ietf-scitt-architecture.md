@@ -1098,6 +1098,15 @@ Restrictions on usage:
 Author/Change controller:
 : IETF
 
+## CoAP Content-Format Registrations
+
+IANA is requested to register the following Content-Format numbers in the "CoAP Content-Formats" sub-registry, within the "Constrained RESTful Environments (CoRE) Parameters" Registry {{!IANA.core-parameters}} in the 0-255 Range:
+
+| Content-Type                     | Content Coding | ID | Reference |
+| application/scitt-statement+cose | -              | 103 | {{&SELF}} |
+| application/scitt-receipt+cose   | - | 104 | {{&SELF}} |
+{: #new-content-formats title="SCITT Content-Formats Registration"}
+
 # Common Terminology Disambiguation
 
 This document has been developed in coordination with the COSE, OAUTH and RATS WG and uses terminology common to these working groups.
