@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-06-15T01:02:28.101661+00:00",
+  "timestamp": "2025-06-17T00:56:31.521001+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -54977,6 +54977,66 @@
           "createdAt": "2025-06-13T15:13:43Z",
           "updatedAt": "2025-06-13T15:13:43Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 381,
+      "id": "PR_kwDOIvmHss6ay--Y",
+      "title": "Adding Content-Formats",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/381",
+      "state": "OPEN",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "based on the recently polished media-types Section",
+      "createdAt": "2025-06-16T22:24:38Z",
+      "updatedAt": "2025-06-16T23:12:38Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "7759710259cb381b71a19b09e325a706e888eb6f",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "c-f",
+      "headRefOid": "df257b82f46e70303a862f46f1ab7c838b320376",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6u3L5Q",
+          "commit": {
+            "abbreviatedOid": "4c6a1f5"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-06-16T22:46:14Z",
+          "updatedAt": "2025-06-16T22:46:14Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6u3MX3",
+          "commit": {
+            "abbreviatedOid": "4c6a1f5"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "Sorry to go back on an approval, but I wondered if there is a meaningful reason for two separate content format types given one is a specialization of the other.",
+          "createdAt": "2025-06-16T22:47:25Z",
+          "updatedAt": "2025-06-16T22:47:53Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "Actually maybe I take my approval back: is there a purposeful distinction between a Statement and Receipt in the content format? Isn't a Receipt just a Signed Statement with specific content in the unprotected header?",
+              "createdAt": "2025-06-16T22:47:26Z",
+              "updatedAt": "2025-06-16T22:47:53Z"
+            }
+          ]
         }
       ]
     }
