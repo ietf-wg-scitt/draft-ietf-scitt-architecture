@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-06-17T00:56:31.521001+00:00",
+  "timestamp": "2025-06-19T00:56:49.235214+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -54985,24 +54985,26 @@
       "id": "PR_kwDOIvmHss6ay--Y",
       "title": "Adding Content-Formats",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/381",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "henkbirkholz",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "based on the recently polished media-types Section",
       "createdAt": "2025-06-16T22:24:38Z",
-      "updatedAt": "2025-06-16T23:12:38Z",
+      "updatedAt": "2025-06-17T14:06:26Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "7759710259cb381b71a19b09e325a706e888eb6f",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "c-f",
       "headRefOid": "df257b82f46e70303a862f46f1ab7c838b320376",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-06-17T14:06:26Z",
+      "mergedAt": "2025-06-17T14:06:26Z",
+      "mergedBy": "OR13",
+      "mergeCommit": {
+        "oid": "c2657bad9e58efe4d7769d87c36f7e15fba5e2f1"
+      },
       "comments": [],
       "reviews": [
         {
@@ -55037,6 +55039,138 @@
               "updatedAt": "2025-06-16T22:47:53Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6u6dcN",
+          "commit": {
+            "abbreviatedOid": "df257b8"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-17T08:00:38Z",
+          "updatedAt": "2025-06-17T08:00:38Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "> Isn't a Receipt just a Signed Statement with specific content in the unprotected header?\r\n\r\nAnd in the protected header (395), but yes, one could make the case that a Receipt is a kind of Signed Statement. Because Signed Statements are inputs to the TS, and Receipts output, this may fall in the technically correct, but confusing to users category.",
+              "createdAt": "2025-06-17T08:00:38Z",
+              "updatedAt": "2025-06-17T08:00:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6u6djw",
+          "commit": {
+            "abbreviatedOid": "df257b8"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-06-17T08:00:47Z",
+          "updatedAt": "2025-06-17T08:00:47Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6u6doR",
+          "commit": {
+            "abbreviatedOid": "df257b8"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-17T08:00:54Z",
+          "updatedAt": "2025-06-17T08:00:54Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "it is always meaningful to distinguish cose receipt from cose statement as receipt has some requirement on specific content, which is the inclusion proofs, so makes sense to have a clear distinction between the two...",
+              "createdAt": "2025-06-17T08:00:54Z",
+              "updatedAt": "2025-06-17T08:00:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6u6dy0",
+          "commit": {
+            "abbreviatedOid": "df257b8"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2025-06-17T08:01:07Z",
+          "updatedAt": "2025-06-17T08:01:07Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6u9HN0",
+          "commit": {
+            "abbreviatedOid": "df257b8"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-06-17T11:25:15Z",
+          "updatedAt": "2025-06-17T11:25:15Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6u9uun",
+          "commit": {
+            "abbreviatedOid": "4c6a1f5"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-17T12:16:00Z",
+          "updatedAt": "2025-06-17T12:16:00Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "I agree it's a helpful distinction for users of the system, especially those implementing or executing verifiers.",
+              "createdAt": "2025-06-17T12:16:00Z",
+              "updatedAt": "2025-06-17T12:16:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6u_Gpf",
+          "commit": {
+            "abbreviatedOid": "df257b8"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-17T13:51:59Z",
+          "updatedAt": "2025-06-17T13:51:59Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "> Actually maybe I take my approval back: is there a purposeful distinction between a Statement and Receipt in the content format? Isn't a Receipt just a Signed Statement with specific content in the unprotected header?\r\n\r\nNo, it is not. They are just structure as similar as possible to keep the code size small and reviewable.\r\nMaybe you are thinking of a Transparent Statement (Signed Statement + Receipt).",
+              "createdAt": "2025-06-17T13:51:59Z",
+              "updatedAt": "2025-06-17T13:51:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss6u_Sh7",
+          "commit": {
+            "abbreviatedOid": "df257b8"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-06-17T14:04:45Z",
+          "updatedAt": "2025-06-17T14:04:45Z",
+          "comments": []
         }
       ]
     }
