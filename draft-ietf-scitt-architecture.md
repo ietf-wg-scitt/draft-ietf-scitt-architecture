@@ -104,7 +104,6 @@ normative:
   RFC9360:
   RFC9597: CWT_CLAIMS_COSE
   I-D.draft-ietf-cose-merkle-tree-proofs: RECEIPTS
-  I-D.draft-ietf-scitt-scrapi: SCRAPI
   IANA.cwt:
 
 informative:
@@ -196,7 +195,7 @@ How these statements are managed or stored is out-of-scope of this document.
 # Software Supply Chain Scope
 
 To illustrate the applicability of the SCITT architecture and its messages, this section details the exemplary context of software supply chain (SSC) use cases.
-The building blocks provided by the SCITT architecture and related documents (e.g., {{-SCRAPI}}) are not restricted to software supply chain use cases.
+The building blocks provided by the SCITT architecture are not restricted to software supply chain use cases.
 Software supply chains serve as a useful application guidance and first usage scenario.
 
 ## Generic SSC Problem Statement
@@ -565,10 +564,6 @@ The subsequent sections describe the main concepts, namely Transparency Service,
 
 Transparency Services MUST feature a Verifiable Data Structure.
 The Verifiable Data Structure records registered Signed Statements and supports the production of Receipts.
-
-All Transparency Services MUST expose the minimally conformant APIs, defined in ({{-SCRAPI}} for the Registration of Signed Statements and issuance of Receipts.
-
-Transparency Services MAY support additional APIs for auditing, for instance querying the history of Signed Statements.
 
 Typically a Transparency Service has a single Issuer identity which is present in the `iss` Claim of Receipts for that service.
 
