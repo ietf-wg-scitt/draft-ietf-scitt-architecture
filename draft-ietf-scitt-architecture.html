@@ -16,11 +16,11 @@ While verifiable data structures have addressed specific issues, such as equivoc
 This document proposes a scalable architecture for single-issuer signed statement transparency applicable to any supply chain.
 It ensures flexibility, interoperability between different transparency services, and compliance with various auditing procedures and regulatory requirements. 
     " name="description">
-<meta content="xml2rfc 3.28.1" name="generator">
+<meta content="xml2rfc 3.29.0" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-scitt-architecture-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.28.1
+  xml2rfc 3.29.0
     Python 3.12.11
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
@@ -1051,11 +1051,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SCITT Architecture</td>
-<td class="right">June 2025</td>
+<td class="right">July 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 19 December 2025</td>
+<td class="center">Expires 5 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-06-17" class="published">17 June 2025</time>
+<time datetime="2025-07-04" class="published">4 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-12-19">19 December 2025</time></dd>
+<dd class="expires"><time datetime="2026-01-05">5 January 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1140,7 +1140,7 @@ It ensures flexibility, interoperability between different transparency services
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 19 December 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1366,7 +1366,7 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-software-supply-chain-scope" class="section-name selfRef">Software Supply Chain Scope</a>
       </h2>
 <p id="section-2-1">To illustrate the applicability of the SCITT architecture and its messages, this section details the exemplary context of software supply chain (SSC) use cases.
-The building blocks provided by the SCITT architecture and related documents (e.g., <span>[<a href="#I-D.draft-ietf-scitt-scrapi" class="cite xref">I-D.draft-ietf-scitt-scrapi</a>]</span>) are not restricted to software supply chain use cases.
+The building blocks provided by the SCITT architecture are not restricted to software supply chain use cases.
 Software supply chains serve as a useful application guidance and first usage scenario.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <div id="sec-generic-ssc-problem-statement">
 <section id="section-2.1">
@@ -2059,10 +2059,8 @@ Each Transparency Service produces a Receipt, which may be aggregated in a singl
         </h3>
 <p id="section-5.1-1">Transparency Services <span class="bcp14">MUST</span> feature a Verifiable Data Structure.
 The Verifiable Data Structure records registered Signed Statements and supports the production of Receipts.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2">All Transparency Services <span class="bcp14">MUST</span> expose the minimally conformant APIs, defined in (<span>[<a href="#I-D.draft-ietf-scitt-scrapi" class="cite xref">I-D.draft-ietf-scitt-scrapi</a>]</span> for the Registration of Signed Statements and issuance of Receipts.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
-<p id="section-5.1-3">Transparency Services <span class="bcp14">MAY</span> support additional APIs for auditing, for instance querying the history of Signed Statements.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
-<p id="section-5.1-4">Typically a Transparency Service has a single Issuer identity which is present in the <code>iss</code> Claim of Receipts for that service.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
-<p id="section-5.1-5">Multi-tenant support can be enabled through the use of identifiers in the <code>iss</code> Claim, for example, <code>ts.example</code> may have a distinct Issuer identity for each sub domain, such as <code>customer1.ts.example</code> and <code>customer2.ts.example</code>.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">Typically a Transparency Service has a single Issuer identity which is present in the <code>iss</code> Claim of Receipts for that service.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">Multi-tenant support can be enabled through the use of identifiers in the <code>iss</code> Claim, for example, <code>ts.example</code> may have a distinct Issuer identity for each sub domain, such as <code>customer1.ts.example</code> and <code>customer2.ts.example</code>.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <div id="sec-registration-policies">
 <section id="section-5.1.1">
           <h4 id="name-registration-policies">
@@ -3129,10 +3127,6 @@ A Signed Statement (COSE_Sign1) <span class="bcp14">MUST</span> be produced from
         <dd>
 <span class="refAuthor">Steele, O.</span>, <span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Delignat-Lavaud, A.</span>, and <span class="refAuthor">C. Fournet</span>, <span class="refTitle">"COSE Receipts"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cose-merkle-tree-proofs-14</span>, <time datetime="2025-05-11" class="refDate">11 May 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cose-merkle-tree-proofs-14">https://datatracker.ietf.org/doc/html/draft-ietf-cose-merkle-tree-proofs-14</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.draft-ietf-scitt-scrapi">[I-D.draft-ietf-scitt-scrapi]</dt>
-        <dd>
-<span class="refAuthor">Birkholz, H.</span> and <span class="refAuthor">J. Geater</span>, <span class="refTitle">"SCITT Reference APIs"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-scitt-scrapi-04</span>, <time datetime="2025-03-03" class="refDate">3 March 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-scitt-scrapi-04">https://datatracker.ietf.org/doc/html/draft-ietf-scitt-scrapi-04</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="IANA.core-parameters">[IANA.core-parameters]</dt>
         <dd>
 <span class="refAuthor">IANA</span>, <span class="refTitle">"Constrained RESTful Environments (CoRE) Parameters"</span>, <span>&lt;<a href="https://www.iana.org/assignments/core-parameters">https://www.iana.org/assignments/core-parameters</a>&gt;</span>. </dd>
@@ -3216,11 +3210,11 @@ A Signed Statement (COSE_Sign1) <span class="bcp14">MUST</span> be produced from
 <dd class="break"></dd>
 <dt id="NIST.SP.1800-19">[NIST.SP.1800-19]</dt>
         <dd>
-<span class="refAuthor">Bartock, M.</span>, <span class="refAuthor">Dodson, D.</span>, <span class="refAuthor">Souppaya, M.</span>, <span class="refAuthor">Carroll, D.</span>, <span class="refAuthor">Masten, R.</span>, <span class="refAuthor">Scinta, G.</span>, <span class="refAuthor">Massis, P.</span>, <span class="refAuthor">Prafullchandra, H.</span>, <span class="refAuthor">Malnar, J.</span>, <span class="refAuthor">Singh, H.</span>, <span class="refAuthor">Ghandi, R.</span>, <span class="refAuthor">Storey, L. E.</span>, <span class="refAuthor">Yeluri, R.</span>, <span class="refAuthor">Shea, T.</span>, <span class="refAuthor">Dalton, M.</span>, <span class="refAuthor">Weber, R.</span>, <span class="refAuthor">Scarfone, K.</span>, <span class="refAuthor">Dukes, A.</span>, <span class="refAuthor">Haskins, J.</span>, <span class="refAuthor">Phoenix, C.</span>, <span class="refAuthor">Swarts, B.</span>, and <span class="refAuthor">National Institute of Standards and Technology (U.S.)</span>, <span class="refTitle">"Trusted cloud :security practice guide for VMware hybrid cloud infrastructure as a service (IaaS) environments"</span>, <span class="seriesInfo">NIST Special Publications (General) 1800-19</span>, <span class="seriesInfo">DOI 10.6028/NIST.SP.1800-19</span>, <time datetime="2022-04-20" class="refDate">20 April 2022</time>, <span>&lt;<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1800-19.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1800-19.pdf</a>&gt;</span>. </dd>
+<span class="refAuthor">Bartock, M.</span>, <span class="refAuthor">Dodson, D.</span>, <span class="refAuthor">Souppaya, M.</span>, <span class="refAuthor">Carroll, D.</span>, <span class="refAuthor">Masten, R.</span>, <span class="refAuthor">Scinta, G.</span>, <span class="refAuthor">Massis, P.</span>, <span class="refAuthor">Prafullchandra, H.</span>, <span class="refAuthor">Malnar, J.</span>, <span class="refAuthor">Singh, H.</span>, <span class="refAuthor">Ghandi, R.</span>, <span class="refAuthor">Storey, L. E</span>, <span class="refAuthor">Yeluri, R.</span>, <span class="refAuthor">Shea, T.</span>, <span class="refAuthor">Dalton, M.</span>, <span class="refAuthor">Weber, R.</span>, <span class="refAuthor">Scarfone, K.</span>, <span class="refAuthor">Dukes, A.</span>, <span class="refAuthor">Haskins, J.</span>, <span class="refAuthor">Phoenix, C.</span>, <span class="refAuthor">Swarts, B.</span>, and <span class="refAuthor">National Institute of Standards and Technology (U.S.)</span>, <span class="refTitle">"Trusted cloud :security practice guide for VMware hybrid cloud infrastructure as a service (IaaS) environments"</span>, <span class="seriesInfo">NIST Special Publications (General) 1800-19</span>, <span class="seriesInfo">DOI 10.6028/NIST.SP.1800-19</span>, <time datetime="2022-04-20" class="refDate">20 April 2022</time>, <span>&lt;<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1800-19.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1800-19.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="NIST.SP.800-63-3">[NIST.SP.800-63-3]</dt>
         <dd>
-<span class="refAuthor">Grassi, P. A.</span>, <span class="refAuthor">Garcia, M. E.</span>, <span class="refAuthor">Fenton, J. L.</span>, and <span class="refAuthor">NIST</span>, <span class="refTitle">"Digital identity guidelines: revision 3"</span>, <span class="seriesInfo">NIST Special Publications (General) 800-63-3</span>, <span class="seriesInfo">DOI 10.6028/NIST.SP.800-63-3</span>, <time datetime="2017-06-22" class="refDate">22 June 2017</time>, <span>&lt;<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-3.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-3.pdf</a>&gt;</span>. </dd>
+<span class="refAuthor">Grassi, P. A</span>, <span class="refAuthor">Garcia, M. E</span>, <span class="refAuthor">Fenton, J. L</span>, and <span class="refAuthor">NIST</span>, <span class="refTitle">"Digital identity guidelines: revision 3"</span>, <span class="seriesInfo">NIST Special Publications (General) 800-63-3</span>, <span class="seriesInfo">DOI 10.6028/NIST.SP.800-63-3</span>, <time datetime="2017-06-22" class="refDate">22 June 2017</time>, <span>&lt;<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-3.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-3.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="NIST_EO14028">[NIST_EO14028]</dt>
         <dd>

@@ -5,12 +5,12 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 19 December 2025                                     C. Fournet
+Expires: 5 January 2026                                       C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                            17 June 2025
+                                                             4 July 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 December 2025.
+   This Internet-Draft will expire on 5 January 2026.
 
 Copyright Notice
 
@@ -187,10 +187,9 @@ Table of Contents
    To illustrate the applicability of the SCITT architecture and its
    messages, this section details the exemplary context of software
    supply chain (SSC) use cases.  The building blocks provided by the
-   SCITT architecture and related documents (e.g.,
-   [I-D.draft-ietf-scitt-scrapi]) are not restricted to software supply
-   chain use cases.  Software supply chains serve as a useful
-   application guidance and first usage scenario.
+   SCITT architecture are not restricted to software supply chain use
+   cases.  Software supply chains serve as a useful application guidance
+   and first usage scenario.
 
 2.1.  Generic SSC Problem Statement
 
@@ -742,13 +741,6 @@ Table of Contents
    Transparency Services MUST feature a Verifiable Data Structure.  The
    Verifiable Data Structure records registered Signed Statements and
    supports the production of Receipts.
-
-   All Transparency Services MUST expose the minimally conformant APIs,
-   defined in ([I-D.draft-ietf-scitt-scrapi] for the Registration of
-   Signed Statements and issuance of Receipts.
-
-   Transparency Services MAY support additional APIs for auditing, for
-   instance querying the history of Signed Statements.
 
    Typically a Transparency Service has a single Issuer identity which
    is present in the iss Claim of Receipts for that service.
@@ -1630,12 +1622,6 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-cose-
               merkle-tree-proofs-14>.
 
-   [I-D.draft-ietf-scitt-scrapi]
-              Birkholz, H. and J. Geater, "SCITT Reference APIs", Work
-              in Progress, Internet-Draft, draft-ietf-scitt-scrapi-04, 3
-              March 2025, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-scitt-scrapi-04>.
-
    [IANA.core-parameters]
               IANA, "Constrained RESTful Environments (CoRE)
               Parameters",
@@ -1727,7 +1713,7 @@ Table of Contents
    [NIST.SP.1800-19]
               Bartock, M., Dodson, D., Souppaya, M., Carroll, D.,
               Masten, R., Scinta, G., Massis, P., Prafullchandra, H.,
-              Malnar, J., Singh, H., Ghandi, R., Storey, L. E., Yeluri,
+              Malnar, J., Singh, H., Ghandi, R., Storey, L. E, Yeluri,
               R., Shea, T., Dalton, M., Weber, R., Scarfone, K., Dukes,
               A., Haskins, J., Phoenix, C., Swarts, B., and National
               Institute of Standards and Technology (U.S.), "Trusted
@@ -1739,7 +1725,7 @@ Table of Contents
               NIST.SP.1800-19.pdf>.
 
    [NIST.SP.800-63-3]
-              Grassi, P. A., Garcia, M. E., Fenton, J. L., and NIST,
+              Grassi, P. A, Garcia, M. E, Fenton, J. L, and NIST,
               "Digital identity guidelines: revision 3", NIST Special
               Publications (General) 800-63-3,
               DOI 10.6028/NIST.SP.800-63-3, 22 June 2017,
