@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-06-19T00:56:49.235214+00:00",
+  "timestamp": "2025-07-06T01:02:32.302642+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -55170,6 +55170,63 @@
           "body": "",
           "createdAt": "2025-06-17T14:04:45Z",
           "updatedAt": "2025-06-17T14:04:45Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 382,
+      "id": "PR_kwDOIvmHss6dR_HO",
+      "title": "Tentative Edit: remove dependency on SCRAPI document",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/382",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Removing this dependency allows the architecture document to progress on its own, without being blocked by the finalisation of the SCRAPI document.",
+      "createdAt": "2025-07-03T14:29:49Z",
+      "updatedAt": "2025-07-04T08:56:22Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "c2657bad9e58efe4d7769d87c36f7e15fba5e2f1",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "remove_dependency_on_scrapi",
+      "headRefOid": "ef2ee2f94379b57906cf7ca2a56a581b546fec6c",
+      "closedAt": "2025-07-04T08:56:22Z",
+      "mergedAt": "2025-07-04T08:56:22Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "663d7b3ce4b113afdab86b71cbcf63650b11b396"
+      },
+      "comments": [
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "No objection to this suggestion. SCRAPI can be addressed independently. We expect to have the SCRAPI stubs running on SAG-CTR by September 1, based on current specifications in effect 2025-07-01",
+          "createdAt": "2025-07-03T15:28:12Z",
+          "updatedAt": "2025-07-03T15:28:12Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "yes",
+          "createdAt": "2025-07-04T08:54:33Z",
+          "updatedAt": "2025-07-04T08:54:33Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss6x_Tyd",
+          "commit": {
+            "abbreviatedOid": "ef2ee2f"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-07-04T08:54:51Z",
+          "updatedAt": "2025-07-04T08:54:51Z",
           "comments": []
         }
       ]
