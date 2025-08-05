@@ -105,9 +105,9 @@ Table of Contents
      9.2.  Accuracy of Statements
      9.3.  Key Management
        9.3.1.  Verifiable Data Structure
+       9.3.2.  Key Compromise
      9.4.  Threat Model
        9.4.1.  Cryptographic Agility
-       9.4.2.  Key Compromise
    10. IANA Considerations
      10.1.  COSE Receipts Header Parameter
      10.2.  Media Type application/scitt-statement+cose Registration
@@ -1367,6 +1367,14 @@ Table of Contents
    [I-D.draft-ietf-cose-merkle-tree-proofs] for the generic security
    considerations that apply to Verifiable Data Structure and Receipts.
 
+9.3.2.  Key Compromise
+
+   Revocation strategies for compromised keys are out of scope for this
+   document.  It is important for Issuers and Transparency Services to
+   clearly communicate when keys are compromised, so that Signed
+   Statements can be rejected by Transparency Services or Receipts can
+   be ignored by Relying Parties.
+
 9.4.  Threat Model
 
    This section provides a generic threat model for SCITT, describing
@@ -1407,14 +1415,6 @@ Table of Contents
    The SCITT Architecture supports cryptographic agility.  There are no
    mandatory to implement signing algorithms for Signed Statements or
    Receipts.
-
-9.4.2.  Key Compromise
-
-   Revocation strategies for compromised keys are out of scope for this
-   document.  It is important for Issuers and Transparency Services to
-   clearly communicate when keys are compromised, so that Signed
-   Statements can be rejected by Transparency Services or Receipts can
-   be ignored by Relying Parties.
 
 10.  IANA Considerations
 
