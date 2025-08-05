@@ -128,8 +128,6 @@ informative:
     target: https://cyclonedx.org/specification/overview/
     title: CycloneDX
 
-  EQUIVOCATION: DOI.10.1145/1323293.1294280
-
   in-toto:
     target: https://in-toto.io/
     title: in-toto
@@ -393,7 +391,7 @@ In COSE, an Envelope consists of a protected header (included in the Issuer's si
 
 Equivocation:
 
-: a state where a Transparency Service provides inconsistent proofs to Relying Parties, containing conflicting claims about the Signed Statement bound at a given position in the Verifiable Data Structure {{EQUIVOCATION}}.
+: a state where a Transparency Service provides inconsistent proofs to Relying Parties, containing conflicting claims about the Signed Statement bound at a given position in the Verifiable Data Structure.
 
 Issuer:
 
