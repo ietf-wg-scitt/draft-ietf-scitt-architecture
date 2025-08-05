@@ -735,6 +735,58 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
 ~~~
 {: #fig-signed-statement-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement's Protected Header"}
 
+## Signing Large or Sensitive Statements
+
+Statements payloads might be too large or too sensitive to be sent to a remote Transparency Service.
+In these cases a Statement can be made over the hash of a payload, rather than the full payload bytes.
+
+~~~aasvg
+   .----+-----.
+  |  Artifact  |
+   '+-+-------'
+    | |
+ .-'  v
+|  .--+-------.
+| |  Hash      +-+
+|  '----------'  |     /\
+ '-.             |    /  \     .----------.
+    |            +-->+ OR +-->+  Payload   |
+    v            |    \  /     '--------+-'
+   .+--------.   |     \/               |
+  | Statement +--+                      |
+   '---------'                          |
+                                        |
+                                        |
+           ...  Producer Network ...    |
+
+                      ...
+
+           ...   Issuer Network ...     |
+                                        |
+                                        |
+ .---------.                            |
+| Identity  |     (iss, x5t)            |
+| Document  +--------------------+      |
+ `----+----`                     |      |
+      ^                          |      |
+ .----+-------.                  |      |
+| Private Key  |                 |      |
+ '----+-------'                  v      |
+      |                     .----+---.  |
+      |                    |  Header  | |
+      |                     '----+---'  |
+      v                          v      v
+    .-+-----------.       .------+------+--.
+   /             /       /                  \
+  /    Sign     +<------+ To Be Signed Bytes |
+ /             /         \                  /
+'-----+-------'           '----------------'
+      v
+ .----+-------.
+| COSE Sign 1  |
+ '------------'
+~~~
+
 ## Registration of Signed Statements
 
 To register a Signed Statement, the Transparency Service performs the following steps:
@@ -1140,56 +1192,3 @@ In the RATS context, a "NIST attestation" is similar to a RATS "Endorsement".
 Occasionally, RATS Evidence and RATS Attestation Results or the procedures of creating these conceptual messages are referred to as "attestation" or (in cases of the use as a verb) "to attest".
 The stand-alone use of "attestation" and "to attest" is discouraged outside a well-defined context, such as specification text that highlights the application of terminology, explicitly.
 Correspondingly, it is often useful for the intended audience to qualify the term "attestation" to avoid confusion and ambiguity.
-
-# Signing Statements Remotely
-
-Statements about digital Artifacts, containing digital Artifacts, or structured data regarding any type of Artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
-In these cases a Statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
-A Signed Statement (COSE_Sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of -COSE}}.
-
-~~~aasvg
-   .----+-----.
-  |  Artifact  |
-   '+-+-------'
-    | |
- .-'  v
-|  .--+-------.
-| |  Hash      +-+
-|  '----------'  |     /\
- '-.             |    /  \     .----------.
-    |            +-->+ OR +-->+  Payload   |
-    v            |    \  /     '--------+-'
-   .+--------.   |     \/               |
-  | Statement +--+                      |
-   '---------'                          |
-                                        |
-                                        |
-           ...  Producer Network ...    |
-
-                      ...
-
-           ...   Issuer Network ...     |
-                                        |
-                                        |
- .---------.                            |
-| Identity  |     (iss, x5t)            |
-| Document  +--------------------+      |
- `----+----`                     |      |
-      ^                          |      |
- .----+-------.                  |      |
-| Private Key  |                 |      |
- '----+-------'                  v      |
-      |                     .----+---.  |
-      |                    |  Header  | |
-      |                     '----+---'  |
-      v                          v      v
-    .-+-----------.       .------+------+--.
-   /             /       /                  \
-  /    Sign     +<------+ To Be Signed Bytes |
- /             /         \                  /
-'-----+-------'           '----------------'
-      v
- .----+-------.
-| COSE Sign 1  |
- '------------'
-~~~
