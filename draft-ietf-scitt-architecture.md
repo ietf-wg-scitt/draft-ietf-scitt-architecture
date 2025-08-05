@@ -111,7 +111,9 @@ informative:
   RFC9711:
   NIST.SP.1800-19:
   NIST.SP.800-63-3:
-  FIPS.201: DOI.10.6028/NIST.FIPS.201-3
+  FIPS.201:
+    target: https://csrc.nist.gov/pubs/fips/201-3/final
+    title: FIPS 201-3
   NIST_EO14028:
     target: https://www.nist.gov/system/files/documents/2022/02/04/software-supply-chain-security-guidance-under-EO-14028-section-4e.pdf
     title: Software Supply Chain Security Guidance Under Executive Order (EO) 14028 Section 4e
@@ -150,7 +152,9 @@ informative:
     target: https://csrc.nist.gov/Projects/Software-Identification-SWID/guidelines
     title: SWID Specification
 
-  KEY-MANAGEMENT: DOI.10.6028/NIST.SP.800-57pt2r1
+  KEY-MANAGEMENT:
+    target: https://csrc.nist.gov/pubs/sp/800/57/pt2/r1/final
+    title: NIST SP 800-57 Part 2 Rev. 1
 
 entity:
   SELF: "RFCthis"
