@@ -96,7 +96,8 @@ Table of Contents
        6.1.4.  Adjacent Services
    7.  Signed Statements
      7.1.  Signed Statement Examples
-     7.2.  Registration of Signed Statements
+     7.2.  Signing Large or Sensitive Statements
+     7.3.  Registration of Signed Statements
    8.  Transparent Statements
      8.1.  Validation
    9.  Privacy Considerations
@@ -105,18 +106,17 @@ Table of Contents
      10.2.  Accuracy of Statements
      10.3.  Key Management
        10.3.1.  Verifiable Data Structure
+       10.3.2.  Key Compromise
      10.4.  Threat Model
        10.4.1.  Cryptographic Agility
-       10.4.2.  Key Compromise
    11. IANA Considerations
      11.1.  COSE Receipts Header Parameter
      11.2.  Media Type application/scitt-statement+cose Registration
      11.3.  Media Type application/scitt-receipt+cose Registration
      11.4.  CoAP Content-Format Registrations
-   12. Signing Statements Remotely
-   13. References
-     13.1.  Normative References
-     13.2.  Informative References
+   12. References
+     12.1.  Normative References
+     12.2.  Informative References
    Contributors
    Authors' Addresses
 
@@ -1058,7 +1058,58 @@ Table of Contents
       Figure 5: CBOR Extended Diagnostic Notation example of a Signed
                         Statement's Protected Header
 
-7.2.  Registration of Signed Statements
+7.2.  Signing Large or Sensitive Statements
+
+   Statements payloads might be too large or too sensitive to be sent to
+   a remote Transparency Service.  In these cases a Statement can be
+   made over the hash of a payload, rather than the full payload bytes.
+
+      .----+-----.
+     |  Artifact  |
+      '+-+-------'
+       | |
+    .-'  v
+   |  .--+-------.
+   | |  Hash      +-+
+   |  '----------'  |     /\
+    '-.             |    /  \     .----------.
+       |            +-->+ OR +-->+  Payload   |
+       v            |    \  /     '--------+-'
+      .+--------.   |     \/               |
+     | Statement +--+                      |
+      '---------'                          |
+                                           |
+                                           |
+              ...  Producer Network ...    |
+
+                         ...
+
+              ...   Issuer Network ...     |
+                                           |
+                                           |
+    .---------.                            |
+   | Identity  |     (iss, x5t)            |
+   | Document  +--------------------+      |
+    `----+----`                     |      |
+         ^                          |      |
+    .----+-------.                  |      |
+   | Private Key  |                 |      |
+    '----+-------'                  v      |
+         |                     .----+---.  |
+         |                    |  Header  | |
+         |                     '----+---'  |
+         v                          v      v
+       .-+-----------.       .------+------+--.
+      /             /       /                  \
+     /    Sign     +<------+ To Be Signed Bytes |
+    /             /         \                  /
+   '-----+-------'           '----------------'
+         v
+    .----+-------.
+   | COSE Sign 1  |
+    '------------'
+
+7.3.  Registration of Signed Statements
 
    To register a Signed Statement, the Transparency Service performs the
    following steps:
@@ -1344,6 +1395,14 @@ Table of Contents
    [I-D.draft-ietf-cose-merkle-tree-proofs] for the generic security
    considerations that apply to Verifiable Data Structure and Receipts.
 
+10.3.2.  Key Compromise
+
+   Revocation strategies for compromised keys are out of scope for this
+   document.  It is important for Issuers and Transparency Services to
+   clearly communicate when keys are compromised, so that Signed
+   Statements can be rejected by Transparency Services or Receipts can
+   be ignored by Relying Parties.
+
 10.4.  Threat Model
 
    This section provides a generic threat model for SCITT, describing
@@ -1384,14 +1443,6 @@ Table of Contents
    The SCITT Architecture supports cryptographic agility.  There are no
    mandatory to implement signing algorithms for Signed Statements or
    Receipts.
-
-10.4.2.  Key Compromise
-
-   Revocation strategies for compromised keys are out of scope for this
-   document.  It is important for Issuers and Transparency Services to
-   clearly communicate when keys are compromised, so that Signed
-   Statements can be rejected by Transparency Services or Receipts can
-   be ignored by Relying Parties.
 
 11.  IANA Considerations
 
@@ -1503,64 +1554,9 @@ Table of Contents
 
                 Table 3: SCITT Content-Formats Registration
 
-12.  Signing Statements Remotely
+12.  References
 
-   Statements about digital Artifacts, containing digital Artifacts, or
-   structured data regarding any type of Artifacts, can be too large or
-   too sensitive to be send to a remote Transparency Services over the
-   Internet.  In these cases a Statement can also be hash, which becomes
-   the payload included in COSE to-be-signed bytes.  A Signed Statement
-   (COSE_Sign1) MUST be produced from the to-be-signed bytes according
-   to Section 4.4 of [STD96].
-
-      .----+-----.
-     |  Artifact  |
-      '+-+-------'
-       | |
-    .-'  v
-   |  .--+-------.
-   | |  Hash      +-+
-   |  '----------'  |     /\
-    '-.             |    /  \     .----------.
-       |            +-->+ OR +-->+  Payload   |
-       v            |    \  /     '--------+-'
-      .+--------.   |     \/               |
-     | Statement +--+                      |
-      '---------'                          |
-                                           |
-                                           |
-              ...  Producer Network ...    |
-
-                         ...
-
-              ...   Issuer Network ...     |
-                                           |
-                                           |
-    .---------.                            |
-   | Identity  |     (iss, x5t)            |
-   | Document  +--------------------+      |
-    `----+----`                     |      |
-         ^                          |      |
-    .----+-------.                  |      |
-   | Private Key  |                 |      |
-    '----+-------'                  v      |
-         |                     .----+---.  |
-         |                    |  Header  | |
-         |                     '----+---'  |
-         v                          v      v
-       .-+-----------.       .------+------+--.
-      /             /       /                  \
-     /    Sign     +<------+ To Be Signed Bytes |
-    /             /         \                  /
-   '-----+-------'           '----------------'
-         v
-    .----+-------.
-   | COSE Sign 1  |
-    '------------'
-
-13.  References
-
-13.1.  Normative References
+12.1.  Normative References
 
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
@@ -1624,7 +1620,7 @@ Table of Contents
               DOI 10.17487/RFC9052, August 2022,
               <https://www.rfc-editor.org/rfc/rfc9052>.
 
-13.2.  Informative References
+12.2.  Informative References
 
    [CoSWID]   Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D.
               Waltermire, "Concise Software Identification Tags",
