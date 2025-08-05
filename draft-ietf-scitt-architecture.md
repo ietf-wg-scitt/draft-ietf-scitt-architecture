@@ -745,6 +745,58 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
 ~~~
 {: #fig-signed-statement-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement's Protected Header"}
 
+## Signing Large or Sensitive Statements
+
+Statements payloads might be too large or too sensitive to be sent to a remote Transparency Service.
+In these cases a Statement can be made over the hash of a payload, rather than the full payload bytes.
+
+~~~aasvg
+   .----+-----.
+  |  Artifact  |
+   '+-+-------'
+    | |
+ .-'  v
+|  .--+-------.
+| |  Hash      +-+
+|  '----------'  |     /\
+ '-.             |    /  \     .----------.
+    |            +-->+ OR +-->+  Payload   |
+    v            |    \  /     '--------+-'
+   .+--------.   |     \/               |
+  | Statement +--+                      |
+   '---------'                          |
+                                        |
+                                        |
+           ...  Producer Network ...    |
+
+                      ...
+
+           ...   Issuer Network ...     |
+                                        |
+                                        |
+ .---------.                            |
+| Identity  |     (iss, x5t)            |
+| Document  +--------------------+      |
+ `----+----`                     |      |
+      ^                          |      |
+ .----+-------.                  |      |
+| Private Key  |                 |      |
+ '----+-------'                  v      |
+      |                     .----+---.  |
+      |                    |  Header  | |
+      |                     '----+---'  |
+      v                          v      v
+    .-+-----------.       .------+------+--.
+   /             /       /                  \
+  /    Sign     +<------+ To Be Signed Bytes |
+ /             /         \                  /
+'-----+-------'           '----------------'
+      v
+ .----+-------.
+| COSE Sign 1  |
+ '------------'
+~~~
+
 ## Registration of Signed Statements
 
 To register a Signed Statement, the Transparency Service performs the following steps:
@@ -939,6 +991,11 @@ Issuers and Transparency Services MUST:
 The security considerations for specific Verifiable Data Structures are out of scope for this document.
 See {{-RECEIPTS}} for the generic security considerations that apply to Verifiable Data Structure and Receipts.
 
+### Key Compromise
+
+Revocation strategies for compromised keys are out of scope for this document.
+It is important for Issuers and Transparency Services to clearly communicate when keys are compromised, so that Signed Statements can be rejected by Transparency Services or Receipts can be ignored by Relying Parties.
+
 ## Threat Model
 
 This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are either corrupt or compromised.
@@ -962,11 +1019,6 @@ So long as actors maintain proper control of their signing keys and identity inf
 
 The SCITT Architecture supports cryptographic agility.
 There are no mandatory to implement signing algorithms for Signed Statements or Receipts.
-
-### Key Compromise
-
-Revocation strategies for compromised keys are out of scope for this document.
-It is important for Issuers and Transparency Services to clearly communicate when keys are compromised, so that Signed Statements can be rejected by Transparency Services or Receipts can be ignored by Relying Parties.
 
 # IANA Considerations
 
@@ -1113,56 +1165,3 @@ IANA is requested to register the following Content-Format numbers in the "CoAP 
 | application/scitt-statement+cose | -              | 103 | {{&SELF}} |
 | application/scitt-receipt+cose   | - | 104 | {{&SELF}} |
 {: #new-content-formats title="SCITT Content-Formats Registration"}
-
-# Signing Statements Remotely
-
-Statements about digital Artifacts, containing digital Artifacts, or structured data regarding any type of Artifacts, can be too large or too sensitive to be send to a remote Transparency Services over the Internet.
-In these cases a Statement can also be hash, which becomes the payload included in COSE to-be-signed bytes.
-A Signed Statement (COSE_Sign1) MUST be produced from the to-be-signed bytes according to {{Section 4.4 of -COSE}}.
-
-~~~aasvg
-   .----+-----.
-  |  Artifact  |
-   '+-+-------'
-    | |
- .-'  v
-|  .--+-------.
-| |  Hash      +-+
-|  '----------'  |     /\
- '-.             |    /  \     .----------.
-    |            +-->+ OR +-->+  Payload   |
-    v            |    \  /     '--------+-'
-   .+--------.   |     \/               |
-  | Statement +--+                      |
-   '---------'                          |
-                                        |
-                                        |
-           ...  Producer Network ...    |
-
-                      ...
-
-           ...   Issuer Network ...     |
-                                        |
-                                        |
- .---------.                            |
-| Identity  |     (iss, x5t)            |
-| Document  +--------------------+      |
- `----+----`                     |      |
-      ^                          |      |
- .----+-------.                  |      |
-| Private Key  |                 |      |
- '----+-------'                  v      |
-      |                     .----+---.  |
-      |                    |  Header  | |
-      |                     '----+---'  |
-      v                          v      v
-    .-+-----------.       .------+------+--.
-   /             /       /                  \
-  /    Sign     +<------+ To Be Signed Bytes |
- /             /         \                  /
-'-----+-------'           '----------------'
-      v
- .----+-------.
-| COSE Sign 1  |
- '------------'
-~~~
