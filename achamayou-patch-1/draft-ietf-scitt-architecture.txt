@@ -95,7 +95,8 @@ Table of Contents
        5.1.4.  Adjacent Services
    6.  Signed Statements
      6.1.  Signed Statement Examples
-     6.2.  Registration of Signed Statements
+     6.2.  Signing Large or Sensitive Statements
+     6.3.  Registration of Signed Statements
    7.  Transparent Statements
      7.1.  Validation
    8.  Privacy Considerations
@@ -113,10 +114,9 @@ Table of Contents
      10.3.  Media Type application/scitt-receipt+cose Registration
      10.4.  CoAP Content-Format Registrations
    11. Common Terminology Disambiguation
-   12. Signing Statements Remotely
-   13. References
-     13.1.  Normative References
-     13.2.  Informative References
+   12. References
+     12.1.  Normative References
+     12.2.  Informative References
    Contributors
    Authors' Addresses
 
@@ -1030,7 +1030,58 @@ Table of Contents
       Figure 5: CBOR Extended Diagnostic Notation example of a Signed
                         Statement's Protected Header
 
-6.2.  Registration of Signed Statements
+6.2.  Signing Large or Sensitive Statements
+
+   Statements payloads might be too large or too sensitive to be sent to
+   a remote Transparency Service.  In these cases a Statement can be
+   made over the hash of a payload, rather than the full payload bytes.
+
+      .----+-----.
+     |  Artifact  |
+      '+-+-------'
+       | |
+    .-'  v
+   |  .--+-------.
+   | |  Hash      +-+
+   |  '----------'  |     /\
+    '-.             |    /  \     .----------.
+       |            +-->+ OR +-->+  Payload   |
+       v            |    \  /     '--------+-'
+      .+--------.   |     \/               |
+     | Statement +--+                      |
+      '---------'                          |
+                                           |
+                                           |
+              ...  Producer Network ...    |
+
+                         ...
+
+              ...   Issuer Network ...     |
+                                           |
+                                           |
+    .---------.                            |
+   | Identity  |     (iss, x5t)            |
+   | Document  +--------------------+      |
+    `----+----`                     |      |
+         ^                          |      |
+    .----+-------.                  |      |
+   | Private Key  |                 |      |
+    '----+-------'                  v      |
+         |                     .----+---.  |
+         |                    |  Header  | |
+         |                     '----+---'  |
+         v                          v      v
+       .-+-----------.       .------+------+--.
+      /             /       /                  \
+     /    Sign     +<------+ To Be Signed Bytes |
+    /             /         \                  /
+   '-----+-------'           '----------------'
+         v
+    .----+-------.
+   | COSE Sign 1  |
+    '------------'
+
+6.3.  Registration of Signed Statements
 
    To register a Signed Statement, the Transparency Service performs the
    following steps:
@@ -1556,64 +1607,9 @@ Table of Contents
    Correspondingly, it is often useful for the intended audience to
    qualify the term "attestation" to avoid confusion and ambiguity.
 
-12.  Signing Statements Remotely
+12.  References
 
-   Statements about digital Artifacts, containing digital Artifacts, or
-   structured data regarding any type of Artifacts, can be too large or
-   too sensitive to be send to a remote Transparency Services over the
-   Internet.  In these cases a Statement can also be hash, which becomes
-   the payload included in COSE to-be-signed bytes.  A Signed Statement
-   (COSE_Sign1) MUST be produced from the to-be-signed bytes according
-   to Section 4.4 of [STD96].
-
-      .----+-----.
-     |  Artifact  |
-      '+-+-------'
-       | |
-    .-'  v
-   |  .--+-------.
-   | |  Hash      +-+
-   |  '----------'  |     /\
-    '-.             |    /  \     .----------.
-       |            +-->+ OR +-->+  Payload   |
-       v            |    \  /     '--------+-'
-      .+--------.   |     \/               |
-     | Statement +--+                      |
-      '---------'                          |
-                                           |
-                                           |
-              ...  Producer Network ...    |
-
-                         ...
-
-              ...   Issuer Network ...     |
-                                           |
-                                           |
-    .---------.                            |
-   | Identity  |     (iss, x5t)            |
-   | Document  +--------------------+      |
-    `----+----`                     |      |
-         ^                          |      |
-    .----+-------.                  |      |
-   | Private Key  |                 |      |
-    '----+-------'                  v      |
-         |                     .----+---.  |
-         |                    |  Header  | |
-         |                     '----+---'  |
-         v                          v      v
-       .-+-----------.       .------+------+--.
-      /             /       /                  \
-     /    Sign     +<------+ To Be Signed Bytes |
-    /             /         \                  /
-   '-----+-------'           '----------------'
-         v
-    .----+-------.
-   | COSE Sign 1  |
-    '------------'
-
-13.  References
-
-13.1.  Normative References
+12.1.  Normative References
 
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
@@ -1677,7 +1673,7 @@ Table of Contents
               DOI 10.17487/RFC9052, August 2022,
               <https://www.rfc-editor.org/rfc/rfc9052>.
 
-13.2.  Informative References
+12.2.  Informative References
 
    [CoSWID]   Birkholz, H., Fitzgerald-McKay, J., Schmidt, C., and D.
               Waltermire, "Concise Software Identification Tags",
@@ -1688,19 +1684,14 @@ Table of Contents
               "CycloneDX", n.d.,
               <https://cyclonedx.org/specification/overview/>.
 
-   [FIPS.201] "Personal identity verification (PIV) of federal employees
-              and contractors", National Institute of Standards and
-              Technology (U.S.), DOI 10.6028/nist.fips.201-3, January
-              2022, <https://doi.org/10.6028/nist.fips.201-3>.
+   [FIPS.201] "FIPS 201-3", n.d.,
+              <https://csrc.nist.gov/pubs/fips/201-3/final>.
 
    [in-toto]  "in-toto", n.d., <https://in-toto.io/>.
 
    [KEY-MANAGEMENT]
-              Barker, E. and W. Barker, "Recommendation for key
-              management:: part 2 -- best practices for key management
-              organizations", National Institute of Standards and
-              Technology, DOI 10.6028/nist.sp.800-57pt2r1, May 2019,
-              <https://doi.org/10.6028/nist.sp.800-57pt2r1>.
+              "NIST SP 800-57 Part 2 Rev. 1", n.d.,
+              <https://csrc.nist.gov/pubs/sp/800/57/pt2/r1/final>.
 
    [NIST.SP.1800-19]
               Bartock, M., Dodson, D., Souppaya, M., Carroll, D.,
