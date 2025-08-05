@@ -110,10 +110,6 @@ informative:
 
   RFC9711:
   NIST.SP.1800-19:
-  NIST.SP.800-63-3:
-  FIPS.201:
-    target: https://csrc.nist.gov/pubs/fips/201-3/final
-    title: FIPS 201-3
   NIST_EO14028:
     target: https://www.nist.gov/system/files/documents/2022/02/04/software-supply-chain-security-guidance-under-EO-14028-section-4e.pdf
     title: Software Supply Chain Security Guidance Under Executive Order (EO) 14028 Section 4e
@@ -463,6 +459,20 @@ Verifiable Data Structure:
 : a data structure which supports one or more proof types, such as "inclusion proofs" or "consistency proofs", for Signed Statements as they are Registered to a Transparency Service.
 SCITT supports multiple Verifiable Data Structures and Receipt formats as defined in {{-RECEIPTS}}, accommodating different Transparency Service implementations.
 {: #mybody}
+
+# Common Terminology Disambiguation
+
+This document has been developed in coordination with the COSE, OAUTH and RATS WG and uses terminology common to these working groups.
+
+This document uses the terms "Issuer", and "Subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
+
+The terms "Claim" as used in this document is consistent with the usage in {{RFC9711}} and {{RFC7523}}.
+
+{{NIST.SP.1800-19}} defines "attestation" as "The process of providing a digital signature for a set of measurements securely stored in hardware, and then having the requester validate the signature and the set of measurements."
+
+NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the definition from {{NIST_EO14028}}, which states that an "attestation" is "The issue of a statement, based on a decision, that fulfillment of specified requirements has been demonstrated.".
+
+It is often useful for the intended audience to qualify the term "attestation" in their specific context to avoid confusion and ambiguity.
 
 # Definition of Transparency
 
@@ -1103,43 +1113,6 @@ IANA is requested to register the following Content-Format numbers in the "CoAP 
 | application/scitt-statement+cose | -              | 103 | {{&SELF}} |
 | application/scitt-receipt+cose   | - | 104 | {{&SELF}} |
 {: #new-content-formats title="SCITT Content-Formats Registration"}
-
-# Common Terminology Disambiguation
-
-This document has been developed in coordination with the COSE, OAUTH and RATS WG and uses terminology common to these working groups.
-
-This document uses the terms "Issuer", and "Subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
-
-The terms "verifier" and "Relying Party" are used interchangeably through the document.
-While these terms are related to "Verifier" and "Relying Party" as used in {{RFC9334}}, they do not imply the processing of RATS conceptual messages, such as Evidence or Attestation Results that are specific to remote attestation.
-A SCITT "verifier" and "Relying Party" and "Issuer" of Receipts or Statements might take on the role of a RATS "Attester".
-Correspondingly, all RATS conceptual messages, such as Evidence and Attestation Results, can be the content of SCITT Statements and a SCITT "verifier" can also take on the role of a RATS "Verifier" to, for example, conduct the procedure of Appraisal of Evidence as a part of a SCITT "verifier"'s verification capabilities.
-
-The terms "Claim" and "Statement" are used throughout this document, where Claim is consistent with the usage in {{RFC9711}} and {{RFC7523}}, and Statement is reserved for any arbitrary bytes, possibly identified with a media type, about which the Claims are made.
-
-The term "Subject" provides an identifier of the Issuer's choosing to refer to a given Artifact and ensures that all associated Statements can be attributed to the identifier chosen by the Issuer.
-
-In simpler language, a SCITT Statement could be some vendor-specific software bill of materials (SBOM), results from a model checker, static analyzer, or RATS Evidence about the authenticity of an SBOM creation process, where the Issuer identifies themselves using the `iss` Claim, and the specific software that was analyzed as the Subject using the `sub` Claim.
-
-In {{RFC7523}}, the Authorization Server (AS) verifies Private Key JWT client authentication requests, and issues access tokens to clients configured to use "urn:ietf:params:oauth:client-assertion-type:jwt-bearer".
-This means the AS initially acts as a "verifier" of the authentication credentials in form of a JWT, and then later as an "Issuer" of access and refresh tokens.
-This mirrors how Signed Statements are verified before Receipts are issued by a Transparency Service.
-Note that the use of {{RFC7523}} is only one possible approach for client authentication in OAuth.
-
-{{FIPS.201}} defines "assertion" as "A verifiable statement from an IdP to an RP that contains information about an end user".
-
-{{NIST.SP.800-63-3}} defines "assertion" as "A statement from a verifier to an RP that contains information about a subscriber.
-Assertions may also contain verified attributes."
-
-This document uses the term Statement to refer to potentially unsecured data and associated Claims, and Signed Statement and Receipt to refer to assertions from an Issuer, or the Transparency Service.
-
-{{NIST.SP.1800-19}} defines "attestation" as "The process of providing a digital signature for a set of measurements securely stored in hardware, and then having the requester validate the signature and the set of measurements."
-
-NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the definition from {{NIST_EO14028}}, which states that an "attestation" is "The issue of a statement, based on a decision, that fulfillment of specified requirements has been demonstrated.".
-In the RATS context, a "NIST attestation" is similar to a RATS "Endorsement".
-Occasionally, RATS Evidence and RATS Attestation Results or the procedures of creating these conceptual messages are referred to as "attestation" or (in cases of the use as a verb) "to attest".
-The stand-alone use of "attestation" and "to attest" is discouraged outside a well-defined context, such as specification text that highlights the application of terminology, explicitly.
-Correspondingly, it is often useful for the intended audience to qualify the term "attestation" to avoid confusion and ambiguity.
 
 # Signing Statements Remotely
 
