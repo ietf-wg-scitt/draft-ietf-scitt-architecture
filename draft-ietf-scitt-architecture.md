@@ -929,6 +929,11 @@ Issuers and Transparency Services MUST:
 The security considerations for specific Verifiable Data Structures are out of scope for this document.
 See {{-RECEIPTS}} for the generic security considerations that apply to Verifiable Data Structure and Receipts.
 
+### Key Compromise
+
+Revocation strategies for compromised keys are out of scope for this document.
+It is important for Issuers and Transparency Services to clearly communicate when keys are compromised, so that Signed Statements can be rejected by Transparency Services or Receipts can be ignored by Relying Parties.
+
 ## Threat Model
 
 This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are either corrupt or compromised.
@@ -952,11 +957,6 @@ So long as actors maintain proper control of their signing keys and identity inf
 
 The SCITT Architecture supports cryptographic agility.
 There are no mandatory to implement signing algorithms for Signed Statements or Receipts.
-
-### Key Compromise
-
-Revocation strategies for compromised keys are out of scope for this document.
-It is important for Issuers and Transparency Services to clearly communicate when keys are compromised, so that Signed Statements can be rejected by Transparency Services or Receipts can be ignored by Relying Parties.
 
 # IANA Considerations
 
