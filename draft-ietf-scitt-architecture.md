@@ -337,7 +337,7 @@ Integration complexity creates a higher risk of security vulnerabilities to the 
 
 Consumers of integrated software want:
 
-- all components presents in a software product listed
+- a list of all components present in a software product
 - the ability to identify and retrieve all components from a secure and tamper-proof location
 - to receive an alert when a vulnerability scan detects a known security issue on a running software component
 - verifiable proofs on build process and build environment with all supplier tiers to ensure end to end build quality and security
