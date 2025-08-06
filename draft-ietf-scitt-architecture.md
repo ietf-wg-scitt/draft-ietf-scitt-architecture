@@ -359,11 +359,6 @@ The terms "header", "payload", and "to-be-signed bytes" are defined in {{-COSE}}
 
 The term "claim" is defined in {{RFC8392}}.
 
-Statement Sequence:
-
-: a sequence of Signed Statements captured by a Verifiable Data Structure.
-see Verifiable Data Structure
-
 Append-only Log:
 
 : a Statement Sequence comprising the entire registration history of the Transparency Service.
@@ -436,6 +431,11 @@ To help interpretation of Statements, they must be tagged with a media type (as 
 A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version, or any content an Issuer wishes to publish about an Artifact.
 Additional Statements about an Artifact are correlated by the Subject Claim as defined in the IANA CWT {{IANA.cwt}} registry and used as a protected header parameter as defined in {{-CWT_CLAIMS_COSE}}.
 The Statement is considered opaque to Transparency Service, and MAY be encrypted.
+
+Statement Sequence:
+
+: a sequence of Signed Statements captured by a Verifiable Data Structure.
+See Verifiable Data Structure.
 
 Subject:
 
