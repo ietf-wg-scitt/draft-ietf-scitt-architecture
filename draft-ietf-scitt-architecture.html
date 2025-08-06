@@ -1055,7 +1055,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 6 February 2026</td>
+<td class="center">Expires 7 February 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-08-05" class="published">5 August 2025</time>
+<time datetime="2025-08-06" class="published">6 August 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-02-06">6 February 2026</time></dd>
+<dd class="expires"><time datetime="2026-02-07">7 February 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1140,7 +1140,7 @@ It ensures flexibility, interoperability between different transparency services
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 6 February 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 February 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1661,97 +1661,97 @@ To ensure readability, only a core set of terms is included in this section.<a h
 <p id="section-3-3">The term "claim" is defined in <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <span class="break"></span><div id="mybody">
 <dl class="dlParallel" id="section-3-4">
-        <dt id="section-3-4.1">Statement Sequence:</dt>
+        <dt id="section-3-4.1">Append-only Log:</dt>
         <dd style="margin-left: 1.5em" id="section-3-4.2">
-          <p id="section-3-4.2.1">a sequence of Signed Statements captured by a Verifiable Data Structure.
-see Verifiable Data Structure<a href="#section-3-4.2.1" class="pilcrow">¶</a></p>
+          <p id="section-3-4.2.1">a Statement Sequence comprising the entire registration history of the Transparency Service.
+To make the Append-only property verifiable and transparent, the Transparency Service defines how Signed Statements are made available to Auditors.<a href="#section-3-4.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.3">Append-only Log:</dt>
+<dt id="section-3-4.3">Artifact:</dt>
         <dd style="margin-left: 1.5em" id="section-3-4.4">
-          <p id="section-3-4.4.1">a Statement Sequence comprising the entire registration history of the Transparency Service.
-To make the Append-only property verifiable and transparent, the Transparency Service defines how Signed Statements are made available to Auditors.<a href="#section-3-4.4.1" class="pilcrow">¶</a></p>
+          <p id="section-3-4.4.1">a physical or non-physical item that is moving along a supply chain.<a href="#section-3-4.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.5">Artifact:</dt>
+<dt id="section-3-4.5">Auditor:</dt>
         <dd style="margin-left: 1.5em" id="section-3-4.6">
-          <p id="section-3-4.6.1">a physical or non-physical item that is moving along a supply chain.<a href="#section-3-4.6.1" class="pilcrow">¶</a></p>
+          <p id="section-3-4.6.1">an entity that checks the correctness and consistency of all Transparent Statements, or the transparent Statement Sequence, issued by a Transparency Service.
+An Auditor is an example of a specialized Relying Party.<a href="#section-3-4.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.7">Auditor:</dt>
+<dt id="section-3-4.7">Client:</dt>
         <dd style="margin-left: 1.5em" id="section-3-4.8">
-          <p id="section-3-4.8.1">an entity that checks the correctness and consistency of all Transparent Statements, or the transparent Statement Sequence, issued by a Transparency Service.
-An Auditor is an example of a specialized Relying Party.<a href="#section-3-4.8.1" class="pilcrow">¶</a></p>
+          <p id="section-3-4.8.1">an application making protected Transparency Service resource requests on behalf of the resource owner and with its authorization.<a href="#section-3-4.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.9">Client:</dt>
+<dt id="section-3-4.9">Envelope:</dt>
         <dd style="margin-left: 1.5em" id="section-3-4.10">
-          <p id="section-3-4.10.1">an application making protected Transparency Service resource requests on behalf of the resource owner and with its authorization.<a href="#section-3-4.10.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-4.11">Envelope:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.12">
-          <p id="section-3-4.12.1">metadata, created by the Issuer to produce a Signed Statement.
+          <p id="section-3-4.10.1">metadata, created by the Issuer to produce a Signed Statement.
 The Envelope contains the identity of the Issuer and information about the Artifact, enabling Transparency Service Registration Policies to validate the Signed Statement.
 A Signed Statement is a COSE Envelope wrapped around a Statement, binding the metadata in the Envelope to the Statement.
-In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).<a href="#section-3-4.12.1" class="pilcrow">¶</a></p>
+In COSE, an Envelope consists of a protected header (included in the Issuer's signature) and an unprotected header (not included in the Issuer's signature).<a href="#section-3-4.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.13">Equivocation:</dt>
+<dt id="section-3-4.11">Equivocation:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-4.12">
+          <p id="section-3-4.12.1">a state where a Transparency Service provides inconsistent proofs to Relying Parties, containing conflicting claims about the Signed Statement bound at a given position in the Verifiable Data Structure.<a href="#section-3-4.12.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-4.13">Issuer:</dt>
         <dd style="margin-left: 1.5em" id="section-3-4.14">
-          <p id="section-3-4.14.1">a state where a Transparency Service provides inconsistent proofs to Relying Parties, containing conflicting claims about the Signed Statement bound at a given position in the Verifiable Data Structure.<a href="#section-3-4.14.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-4.15">Issuer:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.16">
-          <p id="section-3-4.16.1">an identifier representing an organization, device, user, or entity securing Statements about supply chain Artifacts.
+          <p id="section-3-4.14.1">an identifier representing an organization, device, user, or entity securing Statements about supply chain Artifacts.
 An Issuer may be the owner or author of Artifacts, or an independent third party such as an Auditor, reviewer or an endorser.
-In SCITT Statements and Receipts, the <code>iss</code> CWT Claim is a member of the COSE header parameter <code>15: CWT_Claims</code> within the protected header of a COSE Envelope.<a href="#section-3-4.16.1" class="pilcrow">¶</a></p>
+In SCITT Statements and Receipts, the <code>iss</code> CWT Claim is a member of the COSE header parameter <code>15: CWT_Claims</code> within the protected header of a COSE Envelope.<a href="#section-3-4.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.17">Non-equivocation:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.18">
-          <p id="section-3-4.18.1">a state where all proofs provided by the Transparency Service to Relying Parties are produced from a Single Verifiable Data Structure describing a unique sequence of Signed Statements and are therefore consistent.
+<dt id="section-3-4.15">Non-equivocation:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-4.16">
+          <p id="section-3-4.16.1">a state where all proofs provided by the Transparency Service to Relying Parties are produced from a Single Verifiable Data Structure describing a unique sequence of Signed Statements and are therefore consistent.
 Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information.
-However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Relying Parties.<a href="#section-3-4.18.1" class="pilcrow">¶</a></p>
+However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Relying Parties.<a href="#section-3-4.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.19">Receipt:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.20">
-          <p id="section-3-4.20.1">a cryptographic proof that a Signed Statement is included in the Verifiable Data Structure.
+<dt id="section-3-4.17">Receipt:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-4.18">
+          <p id="section-3-4.18.1">a cryptographic proof that a Signed Statement is included in the Verifiable Data Structure.
 See <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span> for implementations
 Receipts are signed proofs of verifiable data-structure properties.
-The types of Receipts <span class="bcp14">MUST</span> support inclusion proofs and <span class="bcp14">MAY</span> support other proof types, such as consistency proofs.<a href="#section-3-4.20.1" class="pilcrow">¶</a></p>
+The types of Receipts <span class="bcp14">MUST</span> support inclusion proofs and <span class="bcp14">MAY</span> support other proof types, such as consistency proofs.<a href="#section-3-4.18.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.21">Registration:</dt>
+<dt id="section-3-4.19">Registration:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-4.20">
+          <p id="section-3-4.20.1">the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, adding to the Verifiable Data Structure, and producing a Receipt.<a href="#section-3-4.20.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-4.21">Registration Policy:</dt>
         <dd style="margin-left: 1.5em" id="section-3-4.22">
-          <p id="section-3-4.22.1">the process of submitting a Signed Statement to a Transparency Service, applying the Transparency Service's Registration Policy, adding to the Verifiable Data Structure, and producing a Receipt.<a href="#section-3-4.22.1" class="pilcrow">¶</a></p>
+          <p id="section-3-4.22.1">the pre-condition enforced by the Transparency Service before registering a Signed Statement, based on information in the non-opaque header and metadata contained in its COSE Envelope.<a href="#section-3-4.22.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.23">Registration Policy:</dt>
+<dt id="section-3-4.23">Relying Party:</dt>
         <dd style="margin-left: 1.5em" id="section-3-4.24">
-          <p id="section-3-4.24.1">the pre-condition enforced by the Transparency Service before registering a Signed Statement, based on information in the non-opaque header and metadata contained in its COSE Envelope.<a href="#section-3-4.24.1" class="pilcrow">¶</a></p>
+          <p id="section-3-4.24.1">a Relying Parties consumes Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.<a href="#section-3-4.24.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.25">Relying Party:</dt>
+<dt id="section-3-4.25">Signed Statement:</dt>
         <dd style="margin-left: 1.5em" id="section-3-4.26">
-          <p id="section-3-4.26.1">a Relying Parties consumes Transparent Statements, verifying their proofs and inspecting the Statement payload, either before using corresponding Artifacts, or later to audit an Artifact's provenance on the supply chain.<a href="#section-3-4.26.1" class="pilcrow">¶</a></p>
+          <p id="section-3-4.26.1">an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
+In SCITT, Signed Statements are encoded as COSE signed objects; the <code>payload</code> of the COSE structure contains the issued Statement.<a href="#section-3-4.26.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-4.27">Signed Statement:</dt>
+<dt id="section-3-4.27">Statement:</dt>
         <dd style="margin-left: 1.5em" id="section-3-4.28">
-          <p id="section-3-4.28.1">an identifiable and non-repudiable Statement about an Artifact signed by an Issuer.
-In SCITT, Signed Statements are encoded as COSE signed objects; the <code>payload</code> of the COSE structure contains the issued Statement.<a href="#section-3-4.28.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-4.29">Statement:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-4.30">
-          <p id="section-3-4.30.1">any serializable information about an Artifact.
+          <p id="section-3-4.28.1">any serializable information about an Artifact.
 To help interpretation of Statements, they must be tagged with a media type (as specified in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>).
 A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version, or any content an Issuer wishes to publish about an Artifact.
 Additional Statements about an Artifact are correlated by the Subject Claim as defined in the IANA CWT <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span> registry and used as a protected header parameter as defined in <span>[<a href="#RFC9597" class="cite xref">RFC9597</a>]</span>.
-The Statement is considered opaque to Transparency Service, and <span class="bcp14">MAY</span> be encrypted.<a href="#section-3-4.30.1" class="pilcrow">¶</a></p>
+The Statement is considered opaque to Transparency Service, and <span class="bcp14">MAY</span> be encrypted.<a href="#section-3-4.28.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-4.29">Statement Sequence:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-4.30">
+          <p id="section-3-4.30.1">a sequence of Signed Statements captured by a Verifiable Data Structure.
+See Verifiable Data Structure.<a href="#section-3-4.30.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-4.31">Subject:</dt>

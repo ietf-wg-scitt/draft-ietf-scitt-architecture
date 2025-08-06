@@ -5,12 +5,12 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 6 February 2026                                      C. Fournet
+Expires: 7 February 2026                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                           5 August 2025
+                                                           6 August 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 February 2026.
+   This Internet-Draft will expire on 7 February 2026.
 
 Copyright Notice
 
@@ -449,9 +449,6 @@ Table of Contents
 
    The term "claim" is defined in [RFC8392].
 
-   Statement Sequence:  a sequence of Signed Statements captured by a
-      Verifiable Data Structure. see Verifiable Data Structure
-
    Append-only Log:  a Statement Sequence comprising the entire
       registration history of the Transparency Service.  To make the
       Append-only property verifiable and transparent, the Transparency
@@ -541,6 +538,9 @@ Table of Contents
       registry and used as a protected header parameter as defined in
       [RFC9597].  The Statement is considered opaque to Transparency
       Service, and MAY be encrypted.
+
+   Statement Sequence:  a sequence of Signed Statements captured by a
+      Verifiable Data Structure.  See Verifiable Data Structure.
 
    Subject:  an identifier, defined by the Issuer, which represents the
       organization, device, user, entity, or Artifact about which
