@@ -432,7 +432,7 @@ In SCITT, Signed Statements are encoded as COSE signed objects; the `payload` of
 Statement:
 
 : any serializable information about an Artifact.
-To help interpretation of Statements, they must be tagged with a media type (as specified in {{RFC6838}}).
+To help interpretation of Statements, they must be tagged with a relevant media type (as specified in {{RFC6838}}).
 A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version, or any content an Issuer wishes to publish about an Artifact.
 Additional Statements about an Artifact are correlated by the Subject Claim as defined in the IANA CWT {{IANA.cwt}} registry and used as a protected header parameter as defined in {{-CWT_CLAIMS_COSE}}.
 The Statement is considered opaque to Transparency Service, and MAY be encrypted.
