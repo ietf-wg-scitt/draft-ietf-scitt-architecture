@@ -305,11 +305,10 @@ SCITT provides a standardized way to:
 
 ### Promotion of a Software Component by Multiple Entities
 
-A software component (e.g., a library or software product) released by a trusted producer is common practice for both open-source and commercial offerings.
-The released software component is accompanied by a statement of authenticity.
-Over time, due to its enhanced applicability to various products, there has been an increasing number of multiple providers of the same software component version on the internet.
+A software component (e.g., a library or software product), open-source or commercial, is often initially released by a single trusted producer, who can choose to attach a statement of authenticity to it.
+As that component becomes used in a growing range of other products, providers other than the original trusted producer often re-distribute, or release their own version of that component.
 
-Some providers include this particular software component as part of their release product/package bundle and provide the package with proof of authenticity using their issuer authority.
+Some providers include it as part of their release product/package bundle and provide the package with proof of authenticity using their issuer authority.
 Some packages include the original statement of authenticity, and some do not.
 Over time, some providers no longer offer the exact same software component source code but pre-compiled software component binaries.
 Some sources do not provide the exact same software component, but include patches and fixes produced by third-parties, as these emerge faster than solutions from the original producer.
