@@ -1016,8 +1016,7 @@ So long as actors maintain proper control of their signing keys and identity inf
 
 ### Cryptographic Agility
 
-The SCITT Architecture supports cryptographic agility.
-There are no mandatory to implement signing algorithms for Signed Statements or Receipts.
+Because the SCITT Architecture leverages {{-COSE}} for Statements and Receipts, it benefits from the format's cryptographic agility.
 
 # IANA Considerations
 
