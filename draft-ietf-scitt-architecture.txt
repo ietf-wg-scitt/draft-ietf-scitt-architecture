@@ -1438,9 +1438,8 @@ Table of Contents
 
 10.4.1.  Cryptographic Agility
 
-   The SCITT Architecture supports cryptographic agility.  There are no
-   mandatory to implement signing algorithms for Signed Statements or
-   Receipts.
+   Because the SCITT Architecture leverages [STD96] for Statements and
+   Receipts, it benefits from the format's cryptographic agility.
 
 11.  IANA Considerations
 
