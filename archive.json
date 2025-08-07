@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-06T01:02:32.302642+00:00",
+  "timestamp": "2025-08-07T01:02:11.467169+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -6840,6 +6840,56 @@
       "updatedAt": "2025-05-06T14:12:52Z",
       "closedAt": "2025-05-06T14:12:52Z",
       "comments": []
+    },
+    {
+      "number": 383,
+      "id": "I_kwDOIvmHss7ES-dq",
+      "title": "AD Review of draft 15: simple language/editorial changes",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/383",
+      "state": "CLOSED",
+      "author": "JAG-UK",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "achamayou"
+      ],
+      "labels": [],
+      "body": "Subset of comments from the AD review that are concerned with simple-ish language changes \n\n- [x]  Section 2.2.2, para 1, last sentence:  'there has been an increasing number of multiple providers' is quite awkward.  Perhaps, 'there has been an increasing number of providers', would be better?  And just to be sure I understand the paragraph, the initial offering is by a single producer, but over time more distinct producers offer the component?\n\n- [x] Section 2.2.3, first bullet list, first bullet: 'all components presents' is not good English.  Perhaps, 'all components are present in a...'  Or I'm misunderstanding the intent of the bullet.\n\n- [x] Section 3:  move Statement Sequence down to it's proper place in the 'S' section.\n\n- [x] Section 3, Statement:  Any particular mediatype?  Or will any random mediatype work?\n\n- [x] Section 9.4.2:  Move this to Section 9.3.\n\n- [x] Section 11:  It would be better if this were up closer to Section 3 (Terminology), and even better if it were incorporated into Section 3.  Overloading terms is my least favorite thing.  The way this is written it appears as if there is a lot of this.  Please, see if this can be made simpler and more concise.\n\n- [x] Section 12:  This seems like it would be better as part of Section 6, maybe as an additional subsection.  There are also some confusing wording choices such as 'digital Artifacts, containing digital Artifacts' and 'Statement can also be hash' (which should be 'a hash', I think).  I can't quite tell if this is about remotely signing a statement or if the statement contents are stored remotely.  Some clarification is necessary.\n\n- [x]  Informative References, Equivocation:  This source doesn't appear to be freely available at the source you list.  However, I found it here too:  https://www.read.seas.harvard.edu/~kohler/class/08w-dsi/chun07attested.pdf",
+      "createdAt": "2025-08-05T14:16:56Z",
+      "updatedAt": "2025-08-06T13:15:13Z",
+      "closedAt": "2025-08-06T13:15:13Z",
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in linked PRs.",
+          "createdAt": "2025-08-06T13:15:13Z",
+          "updatedAt": "2025-08-06T13:15:13Z"
+        }
+      ]
+    },
+    {
+      "number": 384,
+      "id": "I_kwDOIvmHss7ETCKe",
+      "title": "AD Review of draft 15: Security considerations",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/384",
+      "state": "OPEN",
+      "author": "JAG-UK",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Section 2.2.3, first bullet list, third bullet, second bullet list, second bullet:  These are different.  The rest are how a consumer can gather information.  These bullets are about alerts and notification. How does that work?  Is something sent out? Or does a consumer have to come back and check the logs over time?\n\nSection 4, para 2:  Non-repudiation is extremely difficult to maintain and prove.  Is this requirement central to the work? (see my comments on Section 9)\n\nSection 4, para 3:  What compels a dishonest or compromised Issuers to participate in this scheme?\n\nSection 5.1, last para:  idnits is confused about the concept of 'sub domain' and something that doesn't really qualify to be a sub domain in the DNS sense (customer1.ts.example).  If this para is meant to be describing something called 'sub domain' in the DNS sense, then can we change the example names to comply with that scheme.  If sub domain means something different, then maybe we can use another word to describe it? (my objective here is clarity)\n\nSection 5.1.2:  Are all three methods equally acceptable?  If not, why not?\n\nSection 6, para 7:  soapbox:  'Relying Parties can choose which Issuers they trust.'  This is a lovely idea, but we have seen in the PKI space that it isn't easy for RPs.  Nothing to change, but there are considerations in this draft that implementers will have to deal with.  Please add this to Section 9.\n\nSection 9 general:  I read security considerations with questions in mind - Why do I care?, What do I need to keep in mind?  What are the common/uncommon issues?  Telling me what is provided is nice, but not enough.\n\nSection 9, missing considerations:  \na.  Section 5.1.2 lists 3 different ways to bootstrap the TS, are there pros and cons?  From a security point of view, are they all the same?  Is one better than another?\nb.  Non-repudiation is listed as part of what makes a Signed Statement, what if the private key is compromised?  What if the owner of the private key claims the key is compromised (but it isn't actually)?\nc.  List the issue of dishonest or compromised Issuers refusing to participate in this scheme as a potential issue.\nd.  The establishment of a set of 'trust anchors' will be (if history is to be trusted) a rocky road.  The fact that RPs have to choose to trust Issuers has consequences.\n\nSection 9.3:  What are the consequences if these things are not done properly?  For example, Issuers and TS that lose access to their private signing keys can be impersonated at what consequence?  If Non-repudiation is critical, loss of that is one of the consequences.\n\nSection 9.4.1:  I'm not sure why this is here.  Are you expecting an TS to accept a broad array of signature options?  Either to verify a Signed Statement or to create a receipt?\n\nDeb Cooley \nSec AD",
+      "createdAt": "2025-08-05T14:21:31Z",
+      "updatedAt": "2025-08-06T14:44:20Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Section 2.2.3: drop notification bullet point #393\n\nSection 4 para 2: This is central to the work. It is difficult, and losing keys has consequences. We need to address this in considerations. [TBD]\n\nSection 5.1: These are valid subdomains, unclear what the objection is. Perhaps `tenant1.ts.example` is clearer? Or is this `tenant1.ts.example.`?\n\nSection 5.1.2: Yes, all three methods are acceptable, because 6.1.1.1 Mandatory Registration Checks uses normative language to mandate that registration policies must be registered on the VDS and made available to all RPs, and so they are all equally auditable.\n\nSection 6, para 7: Add considerations. [TBD]\n\nSection 9: the TS is a verifiable record of statements being made, whether issuers are diligent in keeping track of their keys is out of scope. The existence of the Statement Log enables reputation and eventual action against sloppy or malicious issuers. Considerations. [TBD]\n\nSection 9.4.1: reference to COSE #394",
+          "createdAt": "2025-08-05T15:30:40Z",
+          "updatedAt": "2025-08-06T14:44:20Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -54167,7 +54217,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-04-29T14:53:41Z",
-      "updatedAt": "2025-05-06T14:12:51Z",
+      "updatedAt": "2025-08-05T14:31:48Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "2a3feab968cb82c1063bd7bf1b01dea2916baa5d",
@@ -55227,6 +55277,479 @@
           "body": "",
           "createdAt": "2025-07-04T08:54:51Z",
           "updatedAt": "2025-07-04T08:54:51Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 385,
+      "id": "PR_kwDOIvmHss6iNd76",
+      "title": "Removed un-necessary EQUIVOCATION reference",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/385",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Address item from #383 \r\n\r\n> Informative References, Equivocation: This source doesn't appear to be freely available at the source you list. However, I found it here too: https://www.read.seas.harvard.edu/~kohler/class/08w-dsi/chun07attested.pdf\r\n\r\nThe reference is not needed, the fact that there is not a good public link for it does not need to be a problem.",
+      "createdAt": "2025-08-05T14:24:43Z",
+      "updatedAt": "2025-08-05T14:31:39Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "663d7b3ce4b113afdab86b71cbcf63650b11b396",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-1",
+      "headRefOid": "27a8c2181b5184e0c757955d85763fa308c50f98",
+      "closedAt": "2025-08-05T14:31:34Z",
+      "mergedAt": "2025-08-05T14:31:33Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "8478facffd2cb48144ac989488a25ec510f163a0"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss64F9Iz",
+          "commit": {
+            "abbreviatedOid": "27a8c21"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-08-05T14:31:21Z",
+          "updatedAt": "2025-08-05T14:31:21Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 386,
+      "id": "PR_kwDOIvmHss6iNq0y",
+      "title": "Clarify, shorten, and re-locate section on signing large or sensitive statements",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/386",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Another item in #383\r\n\r\n> Section 12: This seems like it would be better as part of Section 6, maybe as an additional subsection. There are also some confusing wording choices such as 'digital Artifacts, containing digital Artifacts' and 'Statement can also be hash' (which should be 'a hash', I think). I can't quite tell if this is about remotely signing a statement or if the statement contents are stored remotely. Some clarification is necessary.",
+      "createdAt": "2025-08-05T14:42:45Z",
+      "updatedAt": "2025-08-05T15:31:03Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "8478facffd2cb48144ac989488a25ec510f163a0",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-1",
+      "headRefOid": "cffaf590589aaee2bcadf5ce311466bcf2b37f6f",
+      "closedAt": "2025-08-05T15:31:03Z",
+      "mergedAt": "2025-08-05T15:31:03Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "b86b051bdcdd941e06ff94fb092e66462fa3ad13"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss64Gd1Z",
+          "commit": {
+            "abbreviatedOid": "cffaf59"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Co-created online. LGTM",
+          "createdAt": "2025-08-05T15:06:14Z",
+          "updatedAt": "2025-08-05T15:06:14Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 387,
+      "id": "PR_kwDOIvmHss6iN6ib",
+      "title": "Simplify and relocate Common Terminology Disambiguation according to AD feeback",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/387",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Another item in #383\r\n\r\n> Section 11: It would be better if this were up closer to Section 3 (Terminology), and even better if it were incorporated into Section 3. Overloading terms is my least favorite thing. The way this is written it appears as if there is a lot of this. Please, see if this can be made simpler and more concise.",
+      "createdAt": "2025-08-05T15:04:45Z",
+      "updatedAt": "2025-08-05T16:53:23Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "2b2ad456c48df4e349b6c0e5af643af236739c4f",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-2",
+      "headRefOid": "2055ea78dec0d92d110403c65fe7d09849997dcc",
+      "closedAt": "2025-08-05T16:53:23Z",
+      "mergedAt": "2025-08-05T16:53:23Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "ab2f854e31ade5b6d452ccb6fdc326a8a46f9da4"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss64GdoJ",
+          "commit": {
+            "abbreviatedOid": "17d2f14"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Co-created online. LGTM",
+          "createdAt": "2025-08-05T15:06:02Z",
+          "updatedAt": "2025-08-05T15:06:02Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss64HojX",
+          "commit": {
+            "abbreviatedOid": "c74cfb1"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-08-05T16:51:48Z",
+          "updatedAt": "2025-08-05T16:51:48Z",
+          "comments": [
+            {
+              "originalPosition": 74,
+              "body": "```suggestion\r\n{: #new-content-formats title=\"SCITT Content-Formats Registration\"}\r\n\r\n```",
+              "createdAt": "2025-08-05T16:51:48Z",
+              "updatedAt": "2025-08-05T16:51:49Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 388,
+      "id": "PR_kwDOIvmHss6iN791",
+      "title": "Relocate 9.4.2 to 9.3",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/388",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Sub item of #383\r\n\r\n> Section 9.4.2: Move this to Section 9.3.",
+      "createdAt": "2025-08-05T15:06:44Z",
+      "updatedAt": "2025-08-05T15:31:49Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "8478facffd2cb48144ac989488a25ec510f163a0",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-3",
+      "headRefOid": "9ec396030add29038ba7eff47e7e5c7797f9698d",
+      "closedAt": "2025-08-05T15:31:49Z",
+      "mergedAt": "2025-08-05T15:31:49Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "2b2ad456c48df4e349b6c0e5af643af236739c4f"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss64Geqv",
+          "commit": {
+            "abbreviatedOid": "9ec3960"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Co-created online. LGTM",
+          "createdAt": "2025-08-05T15:07:12Z",
+          "updatedAt": "2025-08-05T15:07:12Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 389,
+      "id": "PR_kwDOIvmHss6iVhMl",
+      "title": "Minor media type clarification",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/389",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Towards #383\r\n\r\n> Section 3, Statement: Any particular mediatype? Or will any random mediatype work?\r\n\r\nAny media type will technically work, but one that accurately describes the Payload of the Statement is obviously preferable.",
+      "createdAt": "2025-08-06T08:32:06Z",
+      "updatedAt": "2025-08-06T09:54:04Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "ab2f854e31ade5b6d452ccb6fdc326a8a46f9da4",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-4",
+      "headRefOid": "21b4de52550a69f83aa720ac5e21f45b9b960bc6",
+      "closedAt": "2025-08-06T09:54:04Z",
+      "mergedAt": "2025-08-06T09:54:04Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "fa6af5e03b627bd21ced78463c130d71d6eb4fa3"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss64SMad",
+          "commit": {
+            "abbreviatedOid": "21b4de5"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-08-06T09:51:27Z",
+          "updatedAt": "2025-08-06T09:51:27Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss64SNok",
+          "commit": {
+            "abbreviatedOid": "21b4de5"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2025-08-06T09:52:42Z",
+          "updatedAt": "2025-08-06T09:52:42Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 390,
+      "id": "PR_kwDOIvmHss6iVizl",
+      "title": "Move Statement Sequence to the right position in definitions",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/390",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Towards #383\r\n\r\n> Section 3: move Statement Sequence down to it's proper place in the 'S' section.",
+      "createdAt": "2025-08-06T08:34:05Z",
+      "updatedAt": "2025-08-06T09:53:48Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "ab2f854e31ade5b6d452ccb6fdc326a8a46f9da4",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-5",
+      "headRefOid": "e1af66c7df20a472b838004577bc664d8a74bf6c",
+      "closedAt": "2025-08-06T09:53:48Z",
+      "mergedAt": "2025-08-06T09:53:48Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "6eb1b5c42bb74b0e0298f3f1e145d2fd665ad85b"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss64SKvz",
+          "commit": {
+            "abbreviatedOid": "e1af66c"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-08-06T09:49:47Z",
+          "updatedAt": "2025-08-06T09:49:47Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss64SNCQ",
+          "commit": {
+            "abbreviatedOid": "e1af66c"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-08-06T09:52:05Z",
+          "updatedAt": "2025-08-06T09:52:05Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 391,
+      "id": "PR_kwDOIvmHss6iWher",
+      "title": "Improve grammar in 2.2.3 bullet point",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/391",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Towards #383\r\n\r\n> Section 2.2.3, first bullet list, first bullet: 'all components presents' is not good English. Perhaps, 'all components are present in a...' Or I'm misunderstanding the intent of the bullet.",
+      "createdAt": "2025-08-06T09:56:21Z",
+      "updatedAt": "2025-08-06T13:14:43Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "fa6af5e03b627bd21ced78463c130d71d6eb4fa3",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-6",
+      "headRefOid": "0868e3dea99b0bf8cc88a5bef7b6bd7717198bb5",
+      "closedAt": "2025-08-06T13:14:43Z",
+      "mergedAt": "2025-08-06T13:14:42Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "872f1fda50f9b62cc13e0e85083899bab8a786d2"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss64UgR0",
+          "commit": {
+            "abbreviatedOid": "0868e3d"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-08-06T12:46:54Z",
+          "updatedAt": "2025-08-06T12:46:54Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 392,
+      "id": "PR_kwDOIvmHss6iWtN7",
+      "title": "Re-worded 2.2.2 for clarity",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/392",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Towards #383 \r\n\r\n> Section 2.2.2, para 1, last sentence: 'there has been an increasing number of multiple providers' is quite awkward. Perhaps, 'there has been an increasing number of providers', would be better? And just to be sure I understand the paragraph, the initial offering is by a single producer, but over time more distinct producers offer the component?\r\n\r\nClarified the fact that more distinct producers offer the component, or a (modified) version of the component.",
+      "createdAt": "2025-08-06T10:14:39Z",
+      "updatedAt": "2025-08-06T13:14:32Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "fa6af5e03b627bd21ced78463c130d71d6eb4fa3",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-7",
+      "headRefOid": "510d80edccbbb5e3936aeebd341cb7ea669368fb",
+      "closedAt": "2025-08-06T13:14:32Z",
+      "mergedAt": "2025-08-06T13:14:31Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "6dc15f6023a0bb366a616cb3031c0c36db312677"
+      },
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Yes, that is a rather odd choice of word, but not what the feedback item was about, and not what this PR seeks to address...",
+          "createdAt": "2025-08-06T13:14:27Z",
+          "updatedAt": "2025-08-06T13:14:27Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss64UfPo",
+          "commit": {
+            "abbreviatedOid": "510d80e"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "I have a feeling some people might object to \"issuer *authority*\" but since this text was already there and your change answers the complaint very well...tick. ",
+          "createdAt": "2025-08-06T12:46:01Z",
+          "updatedAt": "2025-08-06T12:46:01Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 393,
+      "id": "PR_kwDOIvmHss6iY2_i",
+      "title": "Remove mentions of user notification",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/393",
+      "state": "OPEN",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "In response to AD feedback captured in #384, scanning of artifacts and notification of users are out of scope for SCITT.\r\n\r\nWhile the Statement Log is a very useful basis for such functionality, the TS does not provide it, and the user/an auxiliary service currently needs to do that separately.",
+      "createdAt": "2025-08-06T13:32:26Z",
+      "updatedAt": "2025-08-06T14:19:09Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "872f1fda50f9b62cc13e0e85083899bab8a786d2",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-8",
+      "headRefOid": "23becc2787402ece3dd6505fac0d874c38550345",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Certainly not a core SCITT TS requirement, but a TS may offer this capability as an adjunct service offering.",
+          "createdAt": "2025-08-06T13:36:18Z",
+          "updatedAt": "2025-08-06T13:36:18Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@rjb4standards agreed, but since this is the only mention of notification in the document, and that there is nothing in SCRAPI about this, nor any TS implementation of that feature that I am aware of atm, I think it's still reasonable to remove for clarity.",
+          "createdAt": "2025-08-06T14:19:09Z",
+          "updatedAt": "2025-08-06T14:19:09Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 394,
+      "id": "PR_kwDOIvmHss6iZkNP",
+      "title": "Clarify cryptographic agility",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/394",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Towards #384\r\n\r\n> Section 9.4.1: I'm not sure why this is here. Are you expecting an TS to accept a broad array of signature options? Either to verify a Signed Statement or to create a receipt?",
+      "createdAt": "2025-08-06T14:26:40Z",
+      "updatedAt": "2025-08-06T14:31:40Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "872f1fda50f9b62cc13e0e85083899bab8a786d2",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-9",
+      "headRefOid": "21b895d5df4ca9430b80be97b5d8dae1ec32adc5",
+      "closedAt": "2025-08-06T14:31:40Z",
+      "mergedAt": "2025-08-06T14:31:39Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "70bf36c7e006704d92443bf0606315d16e2d4312"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss64WhXF",
+          "commit": {
+            "abbreviatedOid": "21b895d"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Good compromise",
+          "createdAt": "2025-08-06T14:28:55Z",
+          "updatedAt": "2025-08-06T14:28:55Z",
           "comments": []
         }
       ]
