@@ -578,7 +578,7 @@ The Verifiable Data Structure records registered Signed Statements and supports 
 
 Typically a Transparency Service has a single Issuer identity which is present in the `iss` Claim of Receipts for that service.
 
-Multi-tenant support can be enabled through the use of identifiers in the `iss` Claim, for example, `ts.example` may have a distinct Issuer identity for each sub domain, such as `customer1.ts.example` and `customer2.ts.example`.
+Multi-tenant support can be enabled through the use of identifiers in the `iss` Claim, for example, `ts.example.` may have a distinct Issuer identity for each sub domain, such as `tenant1.ts.example.` and `tenant2.ts.example.`.
 
 ### Registration Policies
 
