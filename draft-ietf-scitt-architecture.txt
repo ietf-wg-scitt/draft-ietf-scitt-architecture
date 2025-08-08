@@ -766,9 +766,9 @@ Table of Contents
    is present in the iss Claim of Receipts for that service.
 
    Multi-tenant support can be enabled through the use of identifiers in
-   the iss Claim, for example, ts.example may have a distinct Issuer
-   identity for each sub domain, such as customer1.ts.example and
-   customer2.ts.example.
+   the iss Claim, for example, ts.example. may have a distinct Issuer
+   identity for each sub domain, such as tenant1.ts.example. and
+   tenant2.ts.example..
 
 6.1.1.  Registration Policies
 
