@@ -993,6 +993,11 @@ See {{-RECEIPTS}} for the generic security considerations that apply to Verifiab
 Revocation strategies for compromised keys are out of scope for this document.
 It is important for Issuers and Transparency Services to clearly communicate when keys are compromised, so that Signed Statements can be rejected by Transparency Services or Receipts can be ignored by Relying Parties.
 
+### Bootstrapping
+
+Bootstrapping mechanisms that solely rely on Statement registration to set and update registration policy can be audited without additional implementation-specific knowledge, and are therefore preferable.
+Mechanisms that rely on pre-configured values and do not allow updates are unsuitable for use in long-lived service deployments, in which the ability to patch a potentially faulty policy is essential.
+
 ## Threat Model
 
 This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are either corrupt or compromised.
