@@ -5,12 +5,12 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 7 February 2026                                      C. Fournet
+Expires: 9 February 2026                                      C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                           6 August 2025
+                                                           8 August 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 February 2026.
+   This Internet-Draft will expire on 9 February 2026.
 
 Copyright Notice
 
@@ -417,9 +417,6 @@ Table of Contents
    *  the ability to identify and retrieve all components from a secure
       and tamper-proof location
 
-   *  to receive an alert when a vulnerability scan detects a known
-      security issue on a running software component
-
    *  verifiable proofs on build process and build environment with all
       supplier tiers to ensure end to end build quality and security
 
@@ -428,9 +425,6 @@ Table of Contents
    *  provide a tiered and transparent framework that allows for
       verification of integrity and authenticity of the integrated
       software at both component and product level before installation
-
-   *  notify software integrators of vulnerabilities identified during
-      security scans of running software
 
    *  provide valid annotations on build integrity to ensure conformance
 
@@ -1558,9 +1552,9 @@ Table of Contents
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
               Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-14, 11 May 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-cose-
-              merkle-tree-proofs-14>.
+              Draft, draft-ietf-cose-merkle-tree-proofs-15, 7 August
+              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              cose-merkle-tree-proofs-15>.
 
    [IANA.core-parameters]
               IANA, "Constrained RESTful Environments (CoRE)
