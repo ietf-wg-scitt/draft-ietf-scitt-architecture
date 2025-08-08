@@ -1273,6 +1273,9 @@ It ensures flexibility, interoperability between different transparency services
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.3.2.2">
                     <p id="section-toc.1-1.10.2.3.2.2.1"><a href="#section-10.3.2" class="auto internal xref">10.3.2</a>.  <a href="#name-key-compromise" class="internal xref">Key Compromise</a></p>
 </li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.3.2.3">
+                    <p id="section-toc.1-1.10.2.3.2.3.1"><a href="#section-10.3.3" class="auto internal xref">10.3.3</a>.  <a href="#name-bootstrapping" class="internal xref">Bootstrapping</a></p>
+</li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.4">
@@ -2734,6 +2737,15 @@ See <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I
           </h4>
 <p id="section-10.3.2-1">Revocation strategies for compromised keys are out of scope for this document.
 It is important for Issuers and Transparency Services to clearly communicate when keys are compromised, so that Signed Statements can be rejected by Transparency Services or Receipts can be ignored by Relying Parties.<a href="#section-10.3.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-bootstrapping">
+<section id="section-10.3.3">
+          <h4 id="name-bootstrapping">
+<a href="#section-10.3.3" class="section-number selfRef">10.3.3. </a><a href="#name-bootstrapping" class="section-name selfRef">Bootstrapping</a>
+          </h4>
+<p id="section-10.3.3-1">Bootstrapping mechanisms that solely rely on Statement registration to set and update registration policy can be audited without additional implementation-specific knowledge, and are therefore preferable.
+Mechanisms that rely on pre-configured values and do not allow updates are unsuitable for use in long-lived service deployments, in which the ability to patch a potentially faulty policy is essential.<a href="#section-10.3.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

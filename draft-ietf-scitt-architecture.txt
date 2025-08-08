@@ -107,6 +107,7 @@ Table of Contents
      10.3.  Key Management
        10.3.1.  Verifiable Data Structure
        10.3.2.  Key Compromise
+       10.3.3.  Bootstrapping
      10.4.  Threat Model
        10.4.1.  Cryptographic Agility
    11. IANA Considerations
@@ -1394,6 +1395,16 @@ Table of Contents
    clearly communicate when keys are compromised, so that Signed
    Statements can be rejected by Transparency Services or Receipts can
    be ignored by Relying Parties.
+
+10.3.3.  Bootstrapping
+
+   Bootstrapping mechanisms that solely rely on Statement registration
+   to set and update registration policy can be audited without
+   additional implementation-specific knowledge, and are therefore
+   preferable.  Mechanisms that rely on pre-configured values and do not
+   allow updates are unsuitable for use in long-lived service
+   deployments, in which the ability to patch a potentially faulty
+   policy is essential.
 
 10.4.  Threat Model
 
