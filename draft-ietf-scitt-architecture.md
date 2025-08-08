@@ -997,7 +997,8 @@ It is important for Issuers and Transparency Services to clearly communicate whe
 
 ### Bootstrapping
 
-Bootstrapping mechanisms that solely rely on Statement registration to set and update registration policy can be audited without additional implementation-specific knowledge, and are therefore preferable. Mechanisms that rely on pre-configured values and do not allow updates are unsuitable for use in long-lived service deployments, in which the ability to patch a potentially faulty policy is essentially.
+Bootstrapping mechanisms that solely rely on Statement registration to set and update registration policy can be audited without additional implementation-specific knowledge, and are therefore preferable.
+Mechanisms that rely on pre-configured values and do not allow updates are unsuitable for use in long-lived service deployments, in which the ability to patch a potentially faulty policy is essential.
 
 ## Threat Model
 
