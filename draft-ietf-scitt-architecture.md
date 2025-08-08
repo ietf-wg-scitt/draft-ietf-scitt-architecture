@@ -339,13 +339,11 @@ Consumers of integrated software want:
 
 - a list of all components present in a software product
 - the ability to identify and retrieve all components from a secure and tamper-proof location
-- to receive an alert when a vulnerability scan detects a known security issue on a running software component
 - verifiable proofs on build process and build environment with all supplier tiers to ensure end to end build quality and security
 
 SCITT provides a standardized way to:
 
 - provide a tiered and transparent framework that allows for verification of integrity and authenticity of the integrated software at both component and product level before installation
-- notify software integrators of vulnerabilities identified during security scans of running software
 - provide valid annotations on build integrity to ensure conformance
 
 # Terminology {#terminology}
