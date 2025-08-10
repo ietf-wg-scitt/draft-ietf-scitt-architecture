@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-08-07T01:02:11.467169+00:00",
+  "timestamp": "2025-08-10T01:05:05.480925+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -6877,17 +6877,17 @@
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
-      "body": "Section 2.2.3, first bullet list, third bullet, second bullet list, second bullet:  These are different.  The rest are how a consumer can gather information.  These bullets are about alerts and notification. How does that work?  Is something sent out? Or does a consumer have to come back and check the logs over time?\n\nSection 4, para 2:  Non-repudiation is extremely difficult to maintain and prove.  Is this requirement central to the work? (see my comments on Section 9)\n\nSection 4, para 3:  What compels a dishonest or compromised Issuers to participate in this scheme?\n\nSection 5.1, last para:  idnits is confused about the concept of 'sub domain' and something that doesn't really qualify to be a sub domain in the DNS sense (customer1.ts.example).  If this para is meant to be describing something called 'sub domain' in the DNS sense, then can we change the example names to comply with that scheme.  If sub domain means something different, then maybe we can use another word to describe it? (my objective here is clarity)\n\nSection 5.1.2:  Are all three methods equally acceptable?  If not, why not?\n\nSection 6, para 7:  soapbox:  'Relying Parties can choose which Issuers they trust.'  This is a lovely idea, but we have seen in the PKI space that it isn't easy for RPs.  Nothing to change, but there are considerations in this draft that implementers will have to deal with.  Please add this to Section 9.\n\nSection 9 general:  I read security considerations with questions in mind - Why do I care?, What do I need to keep in mind?  What are the common/uncommon issues?  Telling me what is provided is nice, but not enough.\n\nSection 9, missing considerations:  \na.  Section 5.1.2 lists 3 different ways to bootstrap the TS, are there pros and cons?  From a security point of view, are they all the same?  Is one better than another?\nb.  Non-repudiation is listed as part of what makes a Signed Statement, what if the private key is compromised?  What if the owner of the private key claims the key is compromised (but it isn't actually)?\nc.  List the issue of dishonest or compromised Issuers refusing to participate in this scheme as a potential issue.\nd.  The establishment of a set of 'trust anchors' will be (if history is to be trusted) a rocky road.  The fact that RPs have to choose to trust Issuers has consequences.\n\nSection 9.3:  What are the consequences if these things are not done properly?  For example, Issuers and TS that lose access to their private signing keys can be impersonated at what consequence?  If Non-repudiation is critical, loss of that is one of the consequences.\n\nSection 9.4.1:  I'm not sure why this is here.  Are you expecting an TS to accept a broad array of signature options?  Either to verify a Signed Statement or to create a receipt?\n\nDeb Cooley \nSec AD",
+      "body": "- [x] Section 2.2.3, first bullet list, third bullet, second bullet list, second bullet:  These are different.  The rest are how a consumer can gather information.  These bullets are about alerts and notification. How does that work?  Is something sent out? Or does a consumer have to come back and check the logs over time?\n\n- [ ] Section 4, para 2:  Non-repudiation is extremely difficult to maintain and prove.  Is this requirement central to the work? (see my comments on Section 9)\n\n- [ ] Section 4, para 3:  What compels a dishonest or compromised Issuers to participate in this scheme?\n\n- [x] Section 5.1, last para:  idnits is confused about the concept of 'sub domain' and something that doesn't really qualify to be a sub domain in the DNS sense (customer1.ts.example).  If this para is meant to be describing something called 'sub domain' in the DNS sense, then can we change the example names to comply with that scheme.  If sub domain means something different, then maybe we can use another word to describe it? (my objective here is clarity)\n\n- [x] Section 5.1.2:  Are all three methods equally acceptable?  If not, why not?\n\n- [ ] Section 6, para 7:  soapbox:  'Relying Parties can choose which Issuers they trust.'  This is a lovely idea, but we have seen in the PKI space that it isn't easy for RPs.  Nothing to change, but there are considerations in this draft that implementers will have to deal with.  Please add this to Section 9.\n\n- [ ] Section 9 general:  I read security considerations with questions in mind - Why do I care?, What do I need to keep in mind?  What are the common/uncommon issues?  Telling me what is provided is nice, but not enough.\n\nSection 9, missing considerations:  \n\n- [ ] a.  Section 5.1.2 lists 3 different ways to bootstrap the TS, are there pros and cons?  From a security point of view, are they all the same?  Is one better than another?\n\n- [ ] b.  Non-repudiation is listed as part of what makes a Signed Statement, what if the private key is compromised?  What if the owner of the private key claims the key is compromised (but it isn't actually)?\n\n- [ ] c.  List the issue of dishonest or compromised Issuers refusing to participate in this scheme as a potential issue.\n\n- [ ] d.  The establishment of a set of 'trust anchors' will be (if history is to be trusted) a rocky road.  The fact that RPs have to choose to trust Issuers has consequences.\n\n- [ ] Section 9.3:  What are the consequences if these things are not done properly?  For example, Issuers and TS that lose access to their private signing keys can be impersonated at what consequence?  If Non-repudiation is critical, loss of that is one of the consequences.\n\n- [x] Section 9.4.1:  I'm not sure why this is here.  Are you expecting an TS to accept a broad array of signature options?  Either to verify a Signed Statement or to create a receipt?",
       "createdAt": "2025-08-05T14:21:31Z",
-      "updatedAt": "2025-08-06T14:44:20Z",
+      "updatedAt": "2025-08-08T09:24:22Z",
       "closedAt": null,
       "comments": [
         {
           "author": "achamayou",
           "authorAssociation": "COLLABORATOR",
-          "body": "Section 2.2.3: drop notification bullet point #393\n\nSection 4 para 2: This is central to the work. It is difficult, and losing keys has consequences. We need to address this in considerations. [TBD]\n\nSection 5.1: These are valid subdomains, unclear what the objection is. Perhaps `tenant1.ts.example` is clearer? Or is this `tenant1.ts.example.`?\n\nSection 5.1.2: Yes, all three methods are acceptable, because 6.1.1.1 Mandatory Registration Checks uses normative language to mandate that registration policies must be registered on the VDS and made available to all RPs, and so they are all equally auditable.\n\nSection 6, para 7: Add considerations. [TBD]\n\nSection 9: the TS is a verifiable record of statements being made, whether issuers are diligent in keeping track of their keys is out of scope. The existence of the Statement Log enables reputation and eventual action against sloppy or malicious issuers. Considerations. [TBD]\n\nSection 9.4.1: reference to COSE #394",
+          "body": "Section 2.2.3: drop notification bullet point #393\n\nSection 4 para 2: Non-repudiation is central to the value of transparency. We need to address this in considerations. [TBD]\n\nSection 5.1: These are valid subdomains. Perhaps `tenant1.ts.example` is clearer? Or is this `tenant1.ts.example.`? #395\n\nSection 5.1.2: Yes, all three methods are acceptable, because 6.1.1.1 Mandatory Registration Checks uses normative language to mandate that registration policies must be registered on the VDS and made available to all RPs, and so they are all equally auditable. #396\n\nSection 6, para 7: Add considerations. [TBD]\n\nSection 9: the TS is a verifiable record of statements being made, whether issuers are diligent in keeping track of their keys is out of scope. The existence of the Statement Log enables reputation and eventual action against sloppy or malicious issuers. Considerations. [TBD]\n\nSection 9.4.1: reference to COSE #394",
           "createdAt": "2025-08-05T15:30:40Z",
-          "updatedAt": "2025-08-06T14:44:20Z"
+          "updatedAt": "2025-08-07T17:26:16Z"
         }
       ]
     }
@@ -55676,24 +55676,26 @@
       "id": "PR_kwDOIvmHss6iY2_i",
       "title": "Remove mentions of user notification",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/393",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "In response to AD feedback captured in #384, scanning of artifacts and notification of users are out of scope for SCITT.\r\n\r\nWhile the Statement Log is a very useful basis for such functionality, the TS does not provide it, and the user/an auxiliary service currently needs to do that separately.",
       "createdAt": "2025-08-06T13:32:26Z",
-      "updatedAt": "2025-08-06T14:19:09Z",
+      "updatedAt": "2025-08-08T07:10:59Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "872f1fda50f9b62cc13e0e85083899bab8a786d2",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "achamayou-patch-8",
       "headRefOid": "23becc2787402ece3dd6505fac0d874c38550345",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-08-08T07:10:59Z",
+      "mergedAt": "2025-08-08T07:10:59Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "0d33b42977f63e90f45c637606e2c49046b01764"
+      },
       "comments": [
         {
           "author": "rjb4standards",
@@ -55710,7 +55712,34 @@
           "updatedAt": "2025-08-06T14:19:09Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss64uhKR",
+          "commit": {
+            "abbreviatedOid": "23becc2"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-08-08T01:06:10Z",
+          "updatedAt": "2025-08-08T01:06:10Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss64vYlq",
+          "commit": {
+            "abbreviatedOid": "23becc2"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "A scenario SCITT can provide through extensibility, but not defined in the standard as we didn't go to the point of definiting pub/sub or other similar APIs.",
+          "createdAt": "2025-08-08T04:37:13Z",
+          "updatedAt": "2025-08-08T04:37:13Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 394,
@@ -55750,6 +55779,165 @@
           "body": "Good compromise",
           "createdAt": "2025-08-06T14:28:55Z",
           "updatedAt": "2025-08-06T14:28:55Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 395,
+      "id": "PR_kwDOIvmHss6ioQ61",
+      "title": "Disambiguate sub-domains",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/395",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Towards #384\r\n\r\n> Section 5.1, last para: idnits is confused about the concept of 'sub domain' and something that doesn't really qualify to be a sub domain in the DNS sense (customer1.ts.example). If this para is meant to be describing something called 'sub domain' in the DNS sense, then can we change the example names to comply with that scheme. If sub domain means something different, then maybe we can use another word to describe it? (my objective here is clarity)",
+      "createdAt": "2025-08-07T17:10:09Z",
+      "updatedAt": "2025-08-08T07:11:17Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "70bf36c7e006704d92443bf0606315d16e2d4312",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-10",
+      "headRefOid": "3ae82ddb095c289972d4870a13425b35c7cd03f1",
+      "closedAt": "2025-08-08T07:11:17Z",
+      "mergedAt": "2025-08-08T07:11:17Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "027f1187829df52544a4dcbec4859676052630ba"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss64uhGp",
+          "commit": {
+            "abbreviatedOid": "3ae82dd"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-08-08T01:05:57Z",
+          "updatedAt": "2025-08-08T01:05:57Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss64vY1m",
+          "commit": {
+            "abbreviatedOid": "3ae82dd"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-08-08T04:38:09Z",
+          "updatedAt": "2025-08-08T04:38:09Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 396,
+      "id": "PR_kwDOIvmHss6ioYvu",
+      "title": "Bootstrapping consideration",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/396",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Towards #384 \r\n\r\n> Section 5.1.2: Are all three methods equally acceptable? If not, why not?\r\n\r\n> a. Section 5.1.2 lists 3 different ways to bootstrap the TS, are there pros and cons? From a security point of view, are they all the same? Is one better than another?",
+      "createdAt": "2025-08-07T17:22:57Z",
+      "updatedAt": "2025-08-08T07:12:32Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "70bf36c7e006704d92443bf0606315d16e2d4312",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-11",
+      "headRefOid": "54d43b9331521b4b5cfd691065b34e1a6ae8f14a",
+      "closedAt": "2025-08-08T07:12:32Z",
+      "mergedAt": "2025-08-08T07:12:32Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "8dd6d21d7595d71f707158756d50e05891d55e75"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss64uhDE",
+          "commit": {
+            "abbreviatedOid": "cd1a461"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-08-08T01:05:44Z",
+          "updatedAt": "2025-08-08T01:05:44Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss64vZw8",
+          "commit": {
+            "abbreviatedOid": "cd1a461"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-08-08T04:40:06Z",
+          "updatedAt": "2025-08-08T04:40:06Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nBootstrapping mechanisms that solely rely on Statement registration to set and update registration policy can be audited without additional implementation-specific knowledge, and are therefore preferable.\r\nMechanisms that rely on pre-configured values and do not allow updates are unsuitable for use in long-lived service deployments, in which the ability to patch a potentially faulty policy is essential.\r\n```",
+              "createdAt": "2025-08-08T04:40:06Z",
+              "updatedAt": "2025-08-08T04:40:06Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 397,
+      "id": "PR_kwDOIvmHss6iw9iP",
+      "title": "Update AJ's account in CODEOWNERs",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/397",
+      "state": "MERGED",
+      "author": "aj-stein",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I realized I was getting pings now but viewing merged PRs I am still listed as a CODEOWNER with my old account. This change routes PR/MR approvals to the right account, or my approvals don't mean much anyway.",
+      "createdAt": "2025-08-08T13:14:38Z",
+      "updatedAt": "2025-08-09T05:09:40Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "8dd6d21d7595d71f707158756d50e05891d55e75",
+      "headRepository": "aj-stein/draft-ietf-scitt-architecture",
+      "headRefName": "patch-1",
+      "headRefOid": "eca58057189e1b95344626e33e5d01fc78ab7547",
+      "closedAt": "2025-08-09T05:09:40Z",
+      "mergedAt": "2025-08-09T05:09:39Z",
+      "mergedBy": "SteveLasker",
+      "mergeCommit": {
+        "oid": "b61a87691de80aeae546e115e1cc32cb022764aa"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss648E2P",
+          "commit": {
+            "abbreviatedOid": "eca5805"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-08-09T05:09:23Z",
+          "updatedAt": "2025-08-09T05:09:23Z",
           "comments": []
         }
       ]
