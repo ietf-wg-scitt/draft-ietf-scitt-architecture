@@ -457,7 +457,7 @@ Verifiable Data Structure:
 SCITT supports multiple Verifiable Data Structures and Receipt formats as defined in {{-RECEIPTS}}, accommodating different Transparency Service implementations.
 {: #mybody}
 
-# Common Terminology Disambiguation
+## Common Terminology Disambiguation
 
 This document has been developed in coordination with the COSE, OAUTH and RATS WG and uses terminology common to these working groups.
 
@@ -1012,6 +1012,10 @@ The Statement (scitt-statement+cose) and Receipt (scitt-receipt+cose) media type
 The payload media type ('content type') is included in the COSE envelope header.
 {{-COSE}} describes the security implications of reliance on this header parameter.
 
+## Cryptographic Agility
+
+Because the SCITT Architecture leverages {{-COSE}} for Statements and Receipts, it benefits from the format's cryptographic agility.
+
 ## Threat Model
 
 This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are either corrupt or compromised.
@@ -1030,10 +1034,6 @@ On the other hand, their liability and the resulting damage to their reputation 
 
 Relying Parties and Auditors need not be trusted by other actors.
 So long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.
-
-### Cryptographic Agility
-
-Because the SCITT Architecture leverages {{-COSE}} for Statements and Receipts, it benefits from the format's cryptographic agility.
 
 # IANA Considerations
 
