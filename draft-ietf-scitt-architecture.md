@@ -963,6 +963,9 @@ The first guarantee is achieved by requiring Issuers to sign their Statements.
 The second guarantee is achieved by proving a Signed Statement is present in a Verifiable Data Structure.
 The third guarantee is achieved by the combination of both of these steps.
 
+In addition to deciding whether to trust a Transparency Service, Relying Parties can use the history of registered Signed Statements to decide which Issuers they choose to trust.
+This decision process is out of scope of this document.
+
 ## Ordering of Signed Statements
 
 Statements are signed prior to submitting to a SCITT Transparency service.
@@ -974,6 +977,11 @@ Issuers can make false Statements either intentionally or unintentionally, regis
 A registered Statement may be superseded by a subsequently submitted Signed Statement from the same Issuer, with the same subject in the cwt_claims protected header.
 Other Issuers may make new Statements to reflect new or corrected information.
 Relying Parties may choose to include or exclude Statements from Issuers to determine the accuracy of a collection of Statements.
+
+## Issuer Participation
+
+Issuers can refuse to register their Statements with a Transparency Service, or selectively submit some but not all the Statements they issue.
+It is important for Relying Parties not to accept Signed Statements for which they cannot discover Receipts issued by a Transparency Service they trust.
 
 ## Key Management
 
