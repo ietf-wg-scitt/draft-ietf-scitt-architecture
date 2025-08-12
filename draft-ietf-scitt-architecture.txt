@@ -5,12 +5,12 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 10 February 2026                                     C. Fournet
+Expires: 13 February 2026                                     C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                           9 August 2025
+                                                          12 August 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 February 2026.
+   This Internet-Draft will expire on 13 February 2026.
 
 Copyright Notice
 
@@ -104,12 +104,13 @@ Table of Contents
    10. Security Considerations
      10.1.  Ordering of Signed Statements
      10.2.  Accuracy of Statements
-     10.3.  Key Management
-       10.3.1.  Verifiable Data Structure
-       10.3.2.  Key Compromise
-       10.3.3.  Bootstrapping
-     10.4.  Threat Model
-       10.4.1.  Cryptographic Agility
+     10.3.  Issuer Participation
+     10.4.  Key Management
+       10.4.1.  Verifiable Data Structure
+       10.4.2.  Key Compromise
+       10.4.3.  Bootstrapping
+     10.5.  Threat Model
+       10.5.1.  Cryptographic Agility
    11. IANA Considerations
      11.1.  COSE Receipts Header Parameter
      11.2.  Media Type application/scitt-statement+cose Registration
@@ -1351,6 +1352,11 @@ Table of Contents
    Statement is present in a Verifiable Data Structure.  The third
    guarantee is achieved by the combination of both of these steps.
 
+   In addition to deciding whether to trust a Transparency Service,
+   Relying Parties can use the history of registered Signed Statements
+   to decide which Issuers they choose to trust.  This decision process
+   is out of scope of this document.
+
 10.1.  Ordering of Signed Statements
 
    Statements are signed prior to submitting to a SCITT Transparency
@@ -1370,7 +1376,15 @@ Table of Contents
    Relying Parties may choose to include or exclude Statements from
    Issuers to determine the accuracy of a collection of Statements.
 
-10.3.  Key Management
+10.3.  Issuer Participation
+
+   Issuers can refuse to register their Statements with a Transparency
+   Service, or selectively submit some but not all the Statements they
+   issue.  It is important for Relying Parties not to accept Signed
+   Statements for which they cannot discover Receipts issued by a
+   Transparency Service they trust.
+
+10.4.  Key Management
 
    Issuers and Transparency Services MUST:
 
@@ -1381,14 +1395,14 @@ Table of Contents
    *  rotate their keys in well-defined cryptoperiods, see
       [KEY-MANAGEMENT]
 
-10.3.1.  Verifiable Data Structure
+10.4.1.  Verifiable Data Structure
 
    The security considerations for specific Verifiable Data Structures
    are out of scope for this document.  See
    [I-D.draft-ietf-cose-merkle-tree-proofs] for the generic security
    considerations that apply to Verifiable Data Structure and Receipts.
 
-10.3.2.  Key Compromise
+10.4.2.  Key Compromise
 
    Revocation strategies for compromised keys are out of scope for this
    document.  It is important for Issuers and Transparency Services to
@@ -1396,7 +1410,7 @@ Table of Contents
    Statements can be rejected by Transparency Services or Receipts can
    be ignored by Relying Parties.
 
-10.3.3.  Bootstrapping
+10.4.3.  Bootstrapping
 
    Bootstrapping mechanisms that solely rely on Statement registration
    to set and update registration policy can be audited without
@@ -1406,7 +1420,7 @@ Table of Contents
    deployments, in which the ability to patch a potentially faulty
    policy is essential.
 
-10.4.  Threat Model
+10.5.  Threat Model
 
    This section provides a generic threat model for SCITT, describing
    its residual security properties when some of its actors (Issuers,
@@ -1441,7 +1455,7 @@ Table of Contents
    Transparency Service for Signed Statements they did not issue or
    register.
 
-10.4.1.  Cryptographic Agility
+10.5.1.  Cryptographic Agility
 
    Because the SCITT Architecture leverages [STD96] for Statements and
    Receipts, it benefits from the format's cryptographic agility.
