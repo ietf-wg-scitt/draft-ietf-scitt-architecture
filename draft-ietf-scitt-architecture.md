@@ -1006,6 +1006,12 @@ It is important for Issuers and Transparency Services to clearly communicate whe
 Bootstrapping mechanisms that solely rely on Statement registration to set and update registration policy can be audited without additional implementation-specific knowledge, and are therefore preferable.
 Mechanisms that rely on pre-configured values and do not allow updates are unsuitable for use in long-lived service deployments, in which the ability to patch a potentially faulty policy is essential.
 
+## Implications of Media-Type Usage {#MediaTypeSecConSec}
+
+The Statement (scitt-statement+cose) and Receipt (scitt-receipt+cose) media types describe the expected content of COSE envelope headers.
+The payload media type ('content type') is included in the COSE envelope header.
+{{-COSE}} describes the security implications of reliance on this header parameter.
+
 ## Threat Model
 
 This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are either corrupt or compromised.
@@ -1065,7 +1071,7 @@ Encoding considerations:
 : binary (CBOR data item)
 
 Security considerations:
-: {{SecConSec}} of {{&SELF}}
+: {{MediaTypeSecConSec}} of {{&SELF}}
 
 Interoperability considerations:
 : none
@@ -1127,7 +1133,7 @@ Encoding considerations:
 : binary (CBOR data item)
 
 Security considerations:
-: {{SecConSec}} of {{&SELF}}
+: {{MediaTypeSecConSec}} of {{&SELF}}
 
 Interoperability considerations:
 : none
