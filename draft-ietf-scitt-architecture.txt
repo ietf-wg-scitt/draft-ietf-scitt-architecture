@@ -109,8 +109,9 @@ Table of Contents
        10.4.1.  Verifiable Data Structure
        10.4.2.  Key Compromise
        10.4.3.  Bootstrapping
-     10.5.  Threat Model
-       10.5.1.  Cryptographic Agility
+     10.5.  Implications of Media-Type Usage
+     10.6.  Threat Model
+       10.6.1.  Cryptographic Agility
    11. IANA Considerations
      11.1.  COSE Receipts Header Parameter
      11.2.  Media Type application/scitt-statement+cose Registration
@@ -1420,7 +1421,15 @@ Table of Contents
    deployments, in which the ability to patch a potentially faulty
    policy is essential.
 
-10.5.  Threat Model
+10.5.  Implications of Media-Type Usage
+
+   The Statement (scitt-statement+cose) and Receipt (scitt-receipt+cose)
+   media types describe the expected content of COSE envelope headers.
+   The payload media type ('content type') is included in the COSE
+   envelope header.  [STD96] describes the security implications of
+   reliance on this header parameter.
+
+10.6.  Threat Model
 
    This section provides a generic threat model for SCITT, describing
    its residual security properties when some of its actors (Issuers,
@@ -1455,7 +1464,7 @@ Table of Contents
    Transparency Service for Signed Statements they did not issue or
    register.
 
-10.5.1.  Cryptographic Agility
+10.6.1.  Cryptographic Agility
 
    Because the SCITT Architecture leverages [STD96] for Statements and
    Receipts, it benefits from the format's cryptographic agility.
@@ -1494,7 +1503,7 @@ Table of Contents
    Required parameters:  n/a
    Optional parameters:  n/a
    Encoding considerations:  binary (CBOR data item)
-   Security considerations:  Section 10 of RFCthis
+   Security considerations:  Section 10.5 of RFCthis
    Interoperability considerations:  none
    Published specification:  RFCthis
    Applications that use this media type:  Used to provide an
@@ -1530,7 +1539,7 @@ Table of Contents
    Required parameters:  n/a
    Optional parameters:  n/a
    Encoding considerations:  binary (CBOR data item)
-   Security considerations:  Section 10 of RFCthis
+   Security considerations:  Section 10.5 of RFCthis
    Interoperability considerations:  none
    Published specification:  RFCthis
    Applications that use this media type:  Used to establish or verify

@@ -1282,10 +1282,13 @@ It ensures flexibility, interoperability between different transparency services
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.5">
-                <p id="section-toc.1-1.10.2.5.1"><a href="#section-10.5" class="auto internal xref">10.5</a>.  <a href="#name-threat-model" class="internal xref">Threat Model</a></p>
+                <p id="section-toc.1-1.10.2.5.1"><a href="#section-10.5" class="auto internal xref">10.5</a>.  <a href="#name-implications-of-media-type-" class="internal xref">Implications of Media-Type Usage</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.6">
+                <p id="section-toc.1-1.10.2.6.1"><a href="#section-10.6" class="auto internal xref">10.6</a>.  <a href="#name-threat-model" class="internal xref">Threat Model</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.5.2.1">
-                    <p id="section-toc.1-1.10.2.5.2.1.1"><a href="#section-10.5.1" class="auto internal xref">10.5.1</a>.  <a href="#name-cryptographic-agility" class="internal xref">Cryptographic Agility</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.6.2.1">
+                    <p id="section-toc.1-1.10.2.6.2.1.1"><a href="#section-10.6.1" class="auto internal xref">10.6.1</a>.  <a href="#name-cryptographic-agility" class="internal xref">Cryptographic Agility</a></p>
 </li>
                 </ul>
 </li>
@@ -2764,29 +2767,39 @@ Mechanisms that rely on pre-configured values and do not allow updates are unsui
 </div>
 </section>
 </div>
-<div id="sec-threat-model">
+<div id="MediaTypeSecConSec">
 <section id="section-10.5">
-        <h3 id="name-threat-model">
-<a href="#section-10.5" class="section-number selfRef">10.5. </a><a href="#name-threat-model" class="section-name selfRef">Threat Model</a>
+        <h3 id="name-implications-of-media-type-">
+<a href="#section-10.5" class="section-number selfRef">10.5. </a><a href="#name-implications-of-media-type-" class="section-name selfRef">Implications of Media-Type Usage</a>
         </h3>
-<p id="section-10.5-1">This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are either corrupt or compromised.<a href="#section-10.5-1" class="pilcrow">¶</a></p>
-<p id="section-10.5-2">SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency).
-Issuers and Transparency Services can both be compromised.<a href="#section-10.5-2" class="pilcrow">¶</a></p>
-<p id="section-10.5-3">The SCITT Architecture does not require trust in a single centralized Transparency Service.
+<p id="section-10.5-1">The Statement (scitt-statement+cose) and Receipt (scitt-receipt+cose) media types describe the expected content of COSE envelope headers.
+The payload media type ('content type') is included in the COSE envelope header.
+<span>[<a href="#STD96" class="cite xref">STD96</a>]</span> describes the security implications of reliance on this header parameter.<a href="#section-10.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-threat-model">
+<section id="section-10.6">
+        <h3 id="name-threat-model">
+<a href="#section-10.6" class="section-number selfRef">10.6. </a><a href="#name-threat-model" class="section-name selfRef">Threat Model</a>
+        </h3>
+<p id="section-10.6-1">This section provides a generic threat model for SCITT, describing its residual security properties when some of its actors (Issuers, Transparency Services, and Auditors) are either corrupt or compromised.<a href="#section-10.6-1" class="pilcrow">¶</a></p>
+<p id="section-10.6-2">SCITT primarily supports checking of Signed Statement authenticity, both from the Issuer (authentication) and from the Transparency Service (transparency).
+Issuers and Transparency Services can both be compromised.<a href="#section-10.6-2" class="pilcrow">¶</a></p>
+<p id="section-10.6-3">The SCITT Architecture does not require trust in a single centralized Transparency Service.
 Different actors may rely on different Transparency Services, each registering a subset of Signed Statements subject to their own policy.
 Running multiple, independent Transparency Services provides different organizations to represent consistent or divergent opinions.
-It is the role of the relying party to decide which Transparency Services and Issuers they choose to trust for their scenario.<a href="#section-10.5-3" class="pilcrow">¶</a></p>
-<p id="section-10.5-4">In both cases, the SCITT architecture provides generic, universally-verifiable cryptographic proofs to individually blame Issuers or the Transparency Service.
+It is the role of the relying party to decide which Transparency Services and Issuers they choose to trust for their scenario.<a href="#section-10.6-3" class="pilcrow">¶</a></p>
+<p id="section-10.6-4">In both cases, the SCITT architecture provides generic, universally-verifiable cryptographic proofs to individually blame Issuers or the Transparency Service.
 On one hand, this enables valid actors to detect and disambiguate malicious actors who employ Equivocation with Signed Statements to different entities.
-On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT architecture.<a href="#section-10.5-4" class="pilcrow">¶</a></p>
-<p id="section-10.5-5">Relying Parties and Auditors need not be trusted by other actors.
-So long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.<a href="#section-10.5-5" class="pilcrow">¶</a></p>
+On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT architecture.<a href="#section-10.6-4" class="pilcrow">¶</a></p>
+<p id="section-10.6-5">Relying Parties and Auditors need not be trusted by other actors.
+So long as actors maintain proper control of their signing keys and identity infrastructure they cannot "frame" an Issuer or a Transparency Service for Signed Statements they did not issue or register.<a href="#section-10.6-5" class="pilcrow">¶</a></p>
 <div id="sec-cryptographic-agility">
-<section id="section-10.5.1">
+<section id="section-10.6.1">
           <h4 id="name-cryptographic-agility">
-<a href="#section-10.5.1" class="section-number selfRef">10.5.1. </a><a href="#name-cryptographic-agility" class="section-name selfRef">Cryptographic Agility</a>
+<a href="#section-10.6.1" class="section-number selfRef">10.6.1. </a><a href="#name-cryptographic-agility" class="section-name selfRef">Cryptographic Agility</a>
           </h4>
-<p id="section-10.5.1-1">Because the SCITT Architecture leverages <span>[<a href="#STD96" class="cite xref">STD96</a>]</span> for Statements and Receipts, it benefits from the format's cryptographic agility.<a href="#section-10.5.1-1" class="pilcrow">¶</a></p>
+<p id="section-10.6.1-1">Because the SCITT Architecture leverages <span>[<a href="#STD96" class="cite xref">STD96</a>]</span> for Statements and Receipts, it benefits from the format's cryptographic agility.<a href="#section-10.6.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2872,7 +2885,7 @@ So long as actors maintain proper control of their signing keys and identity inf
           <dd class="break"></dd>
 <dt id="section-11.2-3.11">Security considerations:</dt>
           <dd style="margin-left: 1.5em" id="section-11.2-3.12">
-            <p id="section-11.2-3.12.1"><a href="#SecConSec" class="auto internal xref">Section 10</a> of RFCthis<a href="#section-11.2-3.12.1" class="pilcrow">¶</a></p>
+            <p id="section-11.2-3.12.1"><a href="#MediaTypeSecConSec" class="auto internal xref">Section 10.5</a> of RFCthis<a href="#section-11.2-3.12.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-11.2-3.13">Interoperability considerations:</dt>
@@ -3000,7 +3013,7 @@ So long as actors maintain proper control of their signing keys and identity inf
           <dd class="break"></dd>
 <dt id="section-11.3-2.11">Security considerations:</dt>
           <dd style="margin-left: 1.5em" id="section-11.3-2.12">
-            <p id="section-11.3-2.12.1"><a href="#SecConSec" class="auto internal xref">Section 10</a> of RFCthis<a href="#section-11.3-2.12.1" class="pilcrow">¶</a></p>
+            <p id="section-11.3-2.12.1"><a href="#MediaTypeSecConSec" class="auto internal xref">Section 10.5</a> of RFCthis<a href="#section-11.3-2.12.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-11.3-2.13">Interoperability considerations:</dt>
