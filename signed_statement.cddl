@@ -14,6 +14,7 @@ Protected_Header = {
   ? &(content_type: 3) => tstr / uint
   ? &(kid: 4) => bstr
   ? &(x5t: 34) => COSE_CertHash
+  ? &(x5chain: 33) => COSE_X509
   * int => any
 }
 
