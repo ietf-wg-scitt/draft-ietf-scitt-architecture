@@ -5,12 +5,12 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 13 February 2026                                     C. Fournet
+Expires: 15 February 2026                                     C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                          12 August 2025
+                                                          14 August 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 February 2026.
+   This Internet-Draft will expire on 15 February 2026.
 
 Copyright Notice
 
@@ -1428,6 +1428,9 @@ Table of Contents
    The payload media type ('content type') is included in the COSE
    envelope header.  [STD96] describes the security implications of
    reliance on this header parameter.
+
+   Both media types describe COSE Sign1 messages, which are normatively
+   signed, and therefore provide integrity protection.
 
 9.6.  Cryptographic Agility
 
