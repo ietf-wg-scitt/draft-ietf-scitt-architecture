@@ -151,8 +151,10 @@ informative:
     title: NIST SP 800-57 Part 2 Rev. 1
 
   EQUIVOCATION:
-    title: Attested Append-Only Memory: Making Adversaries Stick to their Word (DOI.10.1145/1323293.1294280)
     target: https://www.read.seas.harvard.edu/~kohler/class/08w-dsi/chun07attested.pdf
+    title: "Attested Append-Only Memory: Making Adversaries Stick to their Word"
+    seriesinfo:
+      DOI: 10.1145/1323293.1294280
 
 entity:
   SELF: "RFCthis"
