@@ -150,6 +150,12 @@ informative:
     target: https://csrc.nist.gov/pubs/sp/800/57/pt2/r1/final
     title: NIST SP 800-57 Part 2 Rev. 1
 
+  EQUIVOCATION:
+    target: https://www.read.seas.harvard.edu/~kohler/class/08w-dsi/chun07attested.pdf
+    title: "Attested Append-Only Memory: Making Adversaries Stick to their Word"
+    seriesinfo:
+      DOI: 10.1145/1323293.1294280
+
 entity:
   SELF: "RFCthis"
 
@@ -393,7 +399,7 @@ In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE he
 
 Non-equivocation:
 
-: a state where all proofs provided by the Transparency Service to Relying Parties are produced from a Single Verifiable Data Structure describing a unique sequence of Signed Statements and are therefore consistent.
+: a state where all proofs provided by the Transparency Service to Relying Parties are produced from a Single Verifiable Data Structure describing a unique sequence of Signed Statements and are therefore consistent {{EQUIVOCATION}}.
 Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information.
 However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Relying Parties.
 
