@@ -152,8 +152,6 @@ informative:
 
   EQUIVOCATION:
     title: Attested Append-Only Memory: Making Adversaries Stick to their Word (DOI.10.1145/1323293.1294280)
-    seriesinfo:
-      DOI: 10.1145/1323293.1294280
     target: https://www.read.seas.harvard.edu/~kohler/class/08w-dsi/chun07attested.pdf
 
 entity:
