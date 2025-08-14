@@ -998,8 +998,8 @@ See {{-RECEIPTS}} for the generic security considerations that apply to Verifiab
 
 ### Key Compromise
 
-Revocation strategies for compromised keys are out of scope for this document.
 It is important for Issuers and Transparency Services to clearly communicate when keys are compromised, so that Signed Statements can be rejected by Transparency Services or Receipts can be ignored by Relying Parties.
+Revocation strategies for compromised keys are out of scope for this document.
 
 ### Bootstrapping
 
