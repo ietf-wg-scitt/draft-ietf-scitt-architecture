@@ -108,14 +108,12 @@ normative:
 
 informative:
 
-  RFC9711:
   NIST.SP.1800-19:
   NIST_EO14028:
     target: https://www.nist.gov/system/files/documents/2022/02/04/software-supply-chain-security-guidance-under-EO-14028-section-4e.pdf
     title: Software Supply Chain Security Guidance Under Executive Order (EO) 14028 Section 4e
     date: 2022-02-04
   RFC4949: Glossary
-  RFC7523:
   RFC8725:
   RFC9162: CT
   RFC9334: RATS
@@ -354,7 +352,10 @@ SCITT provides a standardized way to:
 
 # Terminology {#terminology}
 
-The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust, which are used throughout this document.
+The terms defined in this section have special meaning in the context of Supply Chain Integrity, Transparency, and Trust, and are used throughout this document.
+
+This document has been developed in coordination with the COSE, OAUTH and RATS WG and uses terminology common to these working groups as much as possible.
+
 When used in text, the corresponding terms are capitalized.
 To ensure readability, only a core set of terms is included in this section.
 
@@ -396,6 +397,7 @@ Issuer:
 : an identifier representing an organization, device, user, or entity securing Statements about supply chain Artifacts.
 An Issuer may be the owner or author of Artifacts, or an independent third party such as an Auditor, reviewer or an endorser.
 In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE header parameter `15: CWT_Claims` within the protected header of a COSE Envelope.
+This document uses the terms "Issuer", and "Subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
 
 Non-equivocation:
 
@@ -432,6 +434,9 @@ Statement:
 : any serializable information about an Artifact.
 To help interpretation of Statements, they must be tagged with a relevant media type (as specified in {{RFC6838}}).
 A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version, or any content an Issuer wishes to publish about an Artifact.
+{{NIST.SP.1800-19}} defines "attestation" as "The process of providing a digital signature for a set of measurements securely stored in hardware, and then having the requester validate the signature and the set of measurements."
+NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the definition from {{NIST_EO14028}}, which states that an "attestation" is "The issue of a statement, based on a decision, that fulfillment of specified requirements has been demonstrated.".
+It is often useful for the intended audience to qualify the term "attestation" in their specific context to avoid confusion and ambiguity.
 Additional Statements about an Artifact are correlated by the Subject Claim as defined in the IANA CWT {{IANA.cwt}} registry and used as a protected header parameter as defined in {{-CWT_CLAIMS_COSE}}.
 The Statement is considered opaque to Transparency Service, and MAY be encrypted.
 
@@ -462,20 +467,6 @@ Verifiable Data Structure:
 : a data structure which supports one or more proof types, such as "inclusion proofs" or "consistency proofs", for Signed Statements as they are Registered to a Transparency Service.
 SCITT supports multiple Verifiable Data Structures and Receipt formats as defined in {{-RECEIPTS}}, accommodating different Transparency Service implementations.
 {: #mybody}
-
-## Common Terminology Disambiguation
-
-This document has been developed in coordination with the COSE, OAUTH and RATS WG and uses terminology common to these working groups.
-
-This document uses the terms "Issuer", and "Subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
-
-The terms "Claim" as used in this document is consistent with the usage in {{RFC9711}} and {{RFC7523}}.
-
-{{NIST.SP.1800-19}} defines "attestation" as "The process of providing a digital signature for a set of measurements securely stored in hardware, and then having the requester validate the signature and the set of measurements."
-
-NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the definition from {{NIST_EO14028}}, which states that an "attestation" is "The issue of a statement, based on a decision, that fulfillment of specified requirements has been demonstrated.".
-
-It is often useful for the intended audience to qualify the term "attestation" in their specific context to avoid confusion and ambiguity.
 
 # Definition of Transparency
 
