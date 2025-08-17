@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-08-14T00:57:53.179535+00:00",
+  "timestamp": "2025-08-17T01:01:58.010686+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -6872,15 +6872,15 @@
       "id": "I_kwDOIvmHss7ETCKe",
       "title": "AD Review of draft 15: Security considerations",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/384",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "JAG-UK",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "- [x] Section 2.2.3, first bullet list, third bullet, second bullet list, second bullet:  These are different.  The rest are how a consumer can gather information.  These bullets are about alerts and notification. How does that work?  Is something sent out? Or does a consumer have to come back and check the logs over time?\n\n- [ ] Section 4, para 2:  Non-repudiation is extremely difficult to maintain and prove.  Is this requirement central to the work? (see my comments on Section 9)\n\n- [x] Section 4, para 3:  What compels a dishonest or compromised Issuers to participate in this scheme?\n\n- [x] Section 5.1, last para:  idnits is confused about the concept of 'sub domain' and something that doesn't really qualify to be a sub domain in the DNS sense (customer1.ts.example).  If this para is meant to be describing something called 'sub domain' in the DNS sense, then can we change the example names to comply with that scheme.  If sub domain means something different, then maybe we can use another word to describe it? (my objective here is clarity)\n\n- [x] Section 5.1.2:  Are all three methods equally acceptable?  If not, why not?\n\n- [ ] Section 6, para 7:  soapbox:  'Relying Parties can choose which Issuers they trust.'  This is a lovely idea, but we have seen in the PKI space that it isn't easy for RPs.  Nothing to change, but there are considerations in this draft that implementers will have to deal with.  Please add this to Section 9.\n\n- [ ] Section 9 general:  I read security considerations with questions in mind - Why do I care?, What do I need to keep in mind?  What are the common/uncommon issues?  Telling me what is provided is nice, but not enough.\n\nSection 9, missing considerations:  \n\n- [x] a.  Section 5.1.2 lists 3 different ways to bootstrap the TS, are there pros and cons?  From a security point of view, are they all the same?  Is one better than another?\n\n- [ ] b.  Non-repudiation is listed as part of what makes a Signed Statement, what if the private key is compromised?  What if the owner of the private key claims the key is compromised (but it isn't actually)?\n\n- [x] c.  List the issue of dishonest or compromised Issuers refusing to participate in this scheme as a potential issue.\n\n- [ ] d.  The establishment of a set of 'trust anchors' will be (if history is to be trusted) a rocky road.  The fact that RPs have to choose to trust Issuers has consequences.\n\n- [ ] Section 9.3:  What are the consequences if these things are not done properly?  For example, Issuers and TS that lose access to their private signing keys can be impersonated at what consequence?  If Non-repudiation is critical, loss of that is one of the consequences.\n\n- [x] Section 9.4.1:  I'm not sure why this is here.  Are you expecting an TS to accept a broad array of signature options?  Either to verify a Signed Statement or to create a receipt?",
       "createdAt": "2025-08-05T14:21:31Z",
-      "updatedAt": "2025-08-12T18:46:28Z",
-      "closedAt": null,
+      "updatedAt": "2025-08-15T16:51:03Z",
+      "closedAt": "2025-08-15T16:51:03Z",
       "comments": [
         {
           "author": "achamayou",
@@ -6888,6 +6888,13 @@
           "body": "Section 2.2.3: drop notification bullet point #393\n\nSection 4 para 2: Non-repudiation is central to the value of transparency. We need to address this in considerations. [TBD]\n\nSection 5.1: These are valid subdomains. Perhaps `tenant1.ts.example` is clearer? Or is this `tenant1.ts.example.`? #395\n\nSection 5.1.2: Yes, all three methods are acceptable, because 6.1.1.1 Mandatory Registration Checks uses normative language to mandate that registration policies must be registered on the VDS and made available to all RPs, and so they are all equally auditable. #396\n\nSection 6, para 7: Add considerations. [TBD]\n\nSection 9: the TS is a verifiable record of statements being made, whether issuers are diligent in keeping track of their keys is out of scope. The existence of the Statement Log enables reputation and eventual action against sloppy or malicious issuers. Considerations. [TBD]\n\nSection 9.4.1: reference to COSE #394",
           "createdAt": "2025-08-05T15:30:40Z",
           "updatedAt": "2025-08-07T17:26:16Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Other comments were addressed on the mailing list.",
+          "createdAt": "2025-08-15T16:51:03Z",
+          "updatedAt": "2025-08-15T16:51:03Z"
         }
       ]
     }
@@ -56112,51 +56119,358 @@
       "id": "PR_kwDOIvmHss6jfqgy",
       "title": "Clarify Transparent Statement Schema",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/401",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Editorial change to make the CDDL clearer and more consistent with 5.1.1.1:\r\n\r\n> The protected header of the COSE_Sign1 Envelope MUST include either the Issuer's certificate as x5t or the chain including the Issuer's certificate as x5chain. If x5t is included in the protected header, an x5chain with a leaf certificate corresponding to the x5t value MAY be included in the unprotected header.\r\n\r\nAnd 6:\r\n\r\n> When using x.509 certificates, support for either x5t or x5chain in the protected header is REQUIRED to implement.\r\n\r\nThere is no normative change, this was always covered by `* int => any`.\r\n",
       "createdAt": "2025-08-13T13:59:29Z",
-      "updatedAt": "2025-08-13T13:59:30Z",
+      "updatedAt": "2025-08-14T10:36:00Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "3a9904713afe6003cac0e3fd19f9f11385a30e56",
       "headRepository": "achamayou/draft-ietf-scitt-architecture",
       "headRefName": "clarify_transparent_statement_schema",
       "headRefOid": "3f153530c7e15fda86b90ed0146302b9ec4d0936",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-08-14T10:36:00Z",
+      "mergedAt": "2025-08-14T10:36:00Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "4fedf5b032ab74e4813a4c22c44d3b3e6a7d91a2"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss659x2J",
+          "commit": {
+            "abbreviatedOid": "3f15353"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "Good catch! This aligns with normative text and thereby is an editorial change.",
+          "createdAt": "2025-08-14T10:10:41Z",
+          "updatedAt": "2025-08-14T10:10:41Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss6591UL",
+          "commit": {
+            "abbreviatedOid": "3f15353"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2025-08-14T10:14:53Z",
+          "updatedAt": "2025-08-14T10:14:53Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 402,
       "id": "PR_kwDOIvmHss6jhhgb",
       "title": "Clarify Security Consideration for Media Type",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/402",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Clarification in response to feedback from Alexey Melnikov.",
       "createdAt": "2025-08-13T16:50:31Z",
-      "updatedAt": "2025-08-13T16:50:33Z",
+      "updatedAt": "2025-08-14T10:35:15Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "3a9904713afe6003cac0e3fd19f9f11385a30e56",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "achamayou-patch-15",
       "headRefOid": "e5c99997a070da8eb38d3fa23da75018e456bc2a",
+      "closedAt": "2025-08-14T10:35:15Z",
+      "mergedAt": "2025-08-14T10:35:15Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "a85677002846fdef62f5971952292808a72e99eb"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss659yjk",
+          "commit": {
+            "abbreviatedOid": "e5c9999"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "LGTM. This clarification was requested by Alexey on the media-type list.",
+          "createdAt": "2025-08-14T10:11:27Z",
+          "updatedAt": "2025-08-14T10:11:27Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 403,
+      "id": "PR_kwDOIvmHss6jtcRW",
+      "title": "Re-order sentence in 9.4.2 as per AD review",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/403",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Editorial change.",
+      "createdAt": "2025-08-14T15:54:01Z",
+      "updatedAt": "2025-08-14T17:16:57Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "4fedf5b032ab74e4813a4c22c44d3b3e6a7d91a2",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-16",
+      "headRefOid": "cbcdc48764d3cc3e8f76239be7584afe33b1436e",
+      "closedAt": "2025-08-14T17:16:56Z",
+      "mergedAt": "2025-08-14T17:16:56Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "244cd00a181a5bc9b3ccbbc001882a93fcebb53f"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss66DFBx",
+          "commit": {
+            "abbreviatedOid": "cbcdc48"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-08-14T16:55:31Z",
+          "updatedAt": "2025-08-14T16:55:31Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 404,
+      "id": "PR_kwDOIvmHss6jto9C",
+      "title": "Fold Common Terminology Disambiguation into Terminology as per AD feedback",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/404",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Editorial change.",
+      "createdAt": "2025-08-14T16:14:28Z",
+      "updatedAt": "2025-08-15T08:42:44Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "4fedf5b032ab74e4813a4c22c44d3b3e6a7d91a2",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-17",
+      "headRefOid": "e4b81e6c6ccd8a0b66648e31cb5f8be72a2b0ad6",
+      "closedAt": "2025-08-15T08:42:44Z",
+      "mergedAt": "2025-08-15T08:42:44Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "eeb78d86ac48212051fb79fb42192ffa40d5df6c"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss66CfPV",
+          "commit": {
+            "abbreviatedOid": "e4b81e6"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-08-14T16:17:08Z",
+          "updatedAt": "2025-08-14T16:17:09Z",
+          "comments": [
+            {
+              "originalPosition": 55,
+              "body": "I have dropped this, because as far I can tell it doesn't add anything to line 357, and hence dropped the two other references. Happy to add it back if someone thinks they can work it into the sentence after \"defined in {{RFC8392}}\".",
+              "createdAt": "2025-08-14T16:17:09Z",
+              "updatedAt": "2025-08-14T16:17:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss66J9S7",
+          "commit": {
+            "abbreviatedOid": "e4b81e6"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-08-15T07:43:07Z",
+          "updatedAt": "2025-08-15T07:43:08Z",
+          "comments": [
+            {
+              "originalPosition": 55,
+              "body": "[edit] retracting my earlier comment. This good enough and addresses Deb's newest comment.",
+              "createdAt": "2025-08-15T07:43:07Z",
+              "updatedAt": "2025-08-15T08:02:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss66KElr",
+          "commit": {
+            "abbreviatedOid": "e4b81e6"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-08-15T08:02:42Z",
+          "updatedAt": "2025-08-15T08:02:42Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 405,
+      "id": "PR_kwDOIvmHss6jt-xK",
+      "title": "Restore equivocation reference in response to AD feedback",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/405",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Editorial change",
+      "createdAt": "2025-08-14T16:46:23Z",
+      "updatedAt": "2025-08-14T17:53:52Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "4fedf5b032ab74e4813a4c22c44d3b3e6a7d91a2",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-18",
+      "headRefOid": "4c2bc6a14e4250f4d2610b5841d80bc9cb6ce111",
+      "closedAt": "2025-08-14T17:53:52Z",
+      "mergedAt": "2025-08-14T17:53:52Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "3348fd50e71e4a21a599584c36d7667b9ea804a3"
+      },
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I tried using the syntax I found under https://github.com/cabo/kramdown-rfc?tab=readme-ov-file#references to squeeze in the DOI, which I do not want to omit, but it does not appear to work. The public link is great, but it's somebody's home directory as far as I can tell, and it's not necessarily as good as the DOI in the long run.",
+          "createdAt": "2025-08-14T17:24:02Z",
+          "updatedAt": "2025-08-14T17:24:02Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "It all worked fine, it was the colon in the title...",
+          "createdAt": "2025-08-14T17:53:44Z",
+          "updatedAt": "2025-08-14T17:53:44Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss66DIIR",
+          "commit": {
+            "abbreviatedOid": "486ee28"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "Good choice :sparkle: \r\n\r\nDefinitely WFM",
+          "createdAt": "2025-08-14T16:59:02Z",
+          "updatedAt": "2025-08-14T16:59:02Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss66D8rL",
+          "commit": {
+            "abbreviatedOid": "486ee28"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-08-14T17:45:26Z",
+          "updatedAt": "2025-08-14T17:45:27Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n    title: Attested Append-Only Memory: Making Adversaries Stick to their Word (DOI.10.1145/1323293.1294280)\r\n```",
+              "createdAt": "2025-08-14T17:45:27Z",
+              "updatedAt": "2025-08-14T17:45:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss66D8zq",
+          "commit": {
+            "abbreviatedOid": "486ee28"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-08-14T17:45:38Z",
+          "updatedAt": "2025-08-14T17:45:38Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2025-08-14T17:45:38Z",
+              "updatedAt": "2025-08-14T17:45:39Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 406,
+      "id": "PR_kwDOIvmHss6j3S_V",
+      "title": "Split out Attestation in Terminology",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/406",
+      "state": "OPEN",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Editorial change prompted by AD feedback.",
+      "createdAt": "2025-08-15T16:38:18Z",
+      "updatedAt": "2025-08-15T16:49:16Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "eeb78d86ac48212051fb79fb42192ffa40d5df6c",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "split_out_attestation",
+      "headRefOid": "38fbee2540c83efe3aea31c1d2622bfffb60dca7",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "There are multiple attestation artifacts being collected by CISA following NIST Guidance including SBOM's Vulnerability Disclosure Reports and adherence with NIST SSDF. Most the the links are provided in this CISA document: https://cisa.gov/sag\r\n\r\nLet me know if you need anything to assist with this.",
+          "createdAt": "2025-08-15T16:45:04Z",
+          "updatedAt": "2025-08-15T16:45:04Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thank you for the pointer @rjb4standards, this change is specifically looking to address this comment from the AD:\r\n\r\n> Section 3, Statement: How about just making 'attestation' its own entry?",
+          "createdAt": "2025-08-15T16:49:16Z",
+          "updatedAt": "2025-08-15T16:49:16Z"
+        }
+      ],
       "reviews": []
     }
   ]
