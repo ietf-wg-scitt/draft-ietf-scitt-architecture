@@ -1055,7 +1055,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 16 February 2026</td>
+<td class="center">Expires 19 February 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-08-15" class="published">15 August 2025</time>
+<time datetime="2025-08-18" class="published">18 August 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-02-16">16 February 2026</time></dd>
+<dd class="expires"><time datetime="2026-02-19">19 February 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1140,7 +1140,7 @@ It ensures flexibility, interoperability between different transparency services
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 16 February 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 19 February 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1738,48 +1738,52 @@ The types of Receipts <span class="bcp14">MUST</span> support inclusion proofs a
 In SCITT, Signed Statements are encoded as COSE signed objects; the <code>payload</code> of the COSE structure contains the issued Statement.<a href="#section-3-6.26.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-6.27">Statement:</dt>
+<dt id="section-3-6.27">Attestation:</dt>
         <dd style="margin-left: 1.5em" id="section-3-6.28">
-          <p id="section-3-6.28.1">any serializable information about an Artifact.
+          <p id="section-3-6.28.1"><span>[<a href="#NIST.SP.1800-19" class="cite xref">NIST.SP.1800-19</a>]</span> defines "attestation" as "The process of providing a digital signature for a set of measurements securely stored in hardware, and then having the requester validate the signature and the set of measurements."
+NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the definition from <span>[<a href="#NIST_EO14028" class="cite xref">NIST_EO14028</a>]</span>, which states that an "attestation" is "The issue of a statement, based on a decision, that fulfillment of specified requirements has been demonstrated.".
+It is often useful for the intended audience to qualify the term "attestation" in their specific context to avoid confusion and ambiguity.<a href="#section-3-6.28.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-6.29">Statement:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-6.30">
+          <p id="section-3-6.30.1">any serializable information about an Artifact.
 To help interpretation of Statements, they must be tagged with a relevant media type (as specified in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>).
 A Statement may represent a Software Bill Of Materials (SBOM) that lists the ingredients of a software Artifact, an endorsement or attestation about an Artifact, indicate the End of Life (EOL), redirection to a newer version, or any content an Issuer wishes to publish about an Artifact.
-<span>[<a href="#NIST.SP.1800-19" class="cite xref">NIST.SP.1800-19</a>]</span> defines "attestation" as "The process of providing a digital signature for a set of measurements securely stored in hardware, and then having the requester validate the signature and the set of measurements."
-NIST guidance "Software Supply Chain Security Guidance EO 14028" uses the definition from <span>[<a href="#NIST_EO14028" class="cite xref">NIST_EO14028</a>]</span>, which states that an "attestation" is "The issue of a statement, based on a decision, that fulfillment of specified requirements has been demonstrated.".
-It is often useful for the intended audience to qualify the term "attestation" in their specific context to avoid confusion and ambiguity.
 Additional Statements about an Artifact are correlated by the Subject Claim as defined in the IANA CWT <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span> registry and used as a protected header parameter as defined in <span>[<a href="#RFC9597" class="cite xref">RFC9597</a>]</span>.
-The Statement is considered opaque to Transparency Service, and <span class="bcp14">MAY</span> be encrypted.<a href="#section-3-6.28.1" class="pilcrow">¶</a></p>
+The Statement is considered opaque to Transparency Service, and <span class="bcp14">MAY</span> be encrypted.<a href="#section-3-6.30.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-6.29">Statement Sequence:</dt>
-        <dd style="margin-left: 1.5em" id="section-3-6.30">
-          <p id="section-3-6.30.1">a sequence of Signed Statements captured by a Verifiable Data Structure.
-See Verifiable Data Structure.<a href="#section-3-6.30.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-3-6.31">Subject:</dt>
+<dt id="section-3-6.31">Statement Sequence:</dt>
         <dd style="margin-left: 1.5em" id="section-3-6.32">
-          <p id="section-3-6.32.1">an identifier, defined by the Issuer, which represents the organization, device, user, entity, or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements can be grouped.
-It is possible that there are multiple Statements about the same Artifact.
-In these cases, distinct Issuers (<code>iss</code>) might agree to use the <code>sub</code> CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Relying Parties can leverage <code>sub</code> to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific Subject.<a href="#section-3-6.32.1" class="pilcrow">¶</a></p>
+          <p id="section-3-6.32.1">a sequence of Signed Statements captured by a Verifiable Data Structure.
+See Verifiable Data Structure.<a href="#section-3-6.32.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-6.33">Transparency Service:</dt>
+<dt id="section-3-6.33">Subject:</dt>
         <dd style="margin-left: 1.5em" id="section-3-6.34">
-          <p id="section-3-6.34.1">an entity that maintains and extends the Verifiable Data Structure and endorses its state.
-The identity of a Transparency Service is captured by a public key that must be known by Relying Parties in order to validate Receipts.<a href="#section-3-6.34.1" class="pilcrow">¶</a></p>
+          <p id="section-3-6.34.1">an identifier, defined by the Issuer, which represents the organization, device, user, entity, or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements can be grouped.
+It is possible that there are multiple Statements about the same Artifact.
+In these cases, distinct Issuers (<code>iss</code>) might agree to use the <code>sub</code> CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Relying Parties can leverage <code>sub</code> to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific Subject.<a href="#section-3-6.34.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-6.35">Transparent Statement:</dt>
+<dt id="section-3-6.35">Transparency Service:</dt>
         <dd style="margin-left: 1.5em" id="section-3-6.36">
-          <p id="section-3-6.36.1">a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
-The Receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
-A Transparent Statement remains a valid Signed Statement and may be registered again in a different Transparency Service.<a href="#section-3-6.36.1" class="pilcrow">¶</a></p>
+          <p id="section-3-6.36.1">an entity that maintains and extends the Verifiable Data Structure and endorses its state.
+The identity of a Transparency Service is captured by a public key that must be known by Relying Parties in order to validate Receipts.<a href="#section-3-6.36.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-6.37">Verifiable Data Structure:</dt>
+<dt id="section-3-6.37">Transparent Statement:</dt>
         <dd style="margin-left: 1.5em" id="section-3-6.38">
-          <p id="section-3-6.38.1">a data structure which supports one or more proof types, such as "inclusion proofs" or "consistency proofs", for Signed Statements as they are Registered to a Transparency Service.
-SCITT supports multiple Verifiable Data Structures and Receipt formats as defined in <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>, accommodating different Transparency Service implementations.<a href="#section-3-6.38.1" class="pilcrow">¶</a></p>
+          <p id="section-3-6.38.1">a Signed Statement that is augmented with a Receipt created via Registration in a Transparency Service.
+The Receipt is stored in the unprotected header of COSE Envelope of the Signed Statement.
+A Transparent Statement remains a valid Signed Statement and may be registered again in a different Transparency Service.<a href="#section-3-6.38.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-3-6.39">Verifiable Data Structure:</dt>
+        <dd style="margin-left: 1.5em" id="section-3-6.40">
+          <p id="section-3-6.40.1">a data structure which supports one or more proof types, such as "inclusion proofs" or "consistency proofs", for Signed Statements as they are Registered to a Transparency Service.
+SCITT supports multiple Verifiable Data Structures and Receipt formats as defined in <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>, accommodating different Transparency Service implementations.<a href="#section-3-6.40.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
