@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-08-17T01:01:58.010686+00:00",
+  "timestamp": "2025-08-19T00:55:51.490535+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -56437,24 +56437,26 @@
       "id": "PR_kwDOIvmHss6j3S_V",
       "title": "Split out Attestation in Terminology",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/406",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Editorial change prompted by AD feedback.",
       "createdAt": "2025-08-15T16:38:18Z",
-      "updatedAt": "2025-08-15T16:49:16Z",
+      "updatedAt": "2025-08-18T19:21:00Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "eeb78d86ac48212051fb79fb42192ffa40d5df6c",
       "headRepository": "achamayou/draft-ietf-scitt-architecture",
       "headRefName": "split_out_attestation",
       "headRefOid": "38fbee2540c83efe3aea31c1d2622bfffb60dca7",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-08-18T13:04:53Z",
+      "mergedAt": "2025-08-18T13:04:53Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "10ff90f37505f043d9553fd454c287f15b8663ba"
+      },
       "comments": [
         {
           "author": "rjb4standards",
@@ -56469,9 +56471,43 @@
           "body": "Thank you for the pointer @rjb4standards, this change is specifically looking to address this comment from the AD:\r\n\r\n> Section 3, Statement: How about just making 'attestation' its own entry?",
           "createdAt": "2025-08-15T16:49:16Z",
           "updatedAt": "2025-08-15T16:49:16Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I support this proposed update as part of a -19 release. \r\nThis also aligns with EU CRA attestation concepts: Among its key provisions, the CRA emphasizes the necessity of Software Bill of Materials (SBOM), attestation",
+          "createdAt": "2025-08-18T19:21:00Z",
+          "updatedAt": "2025-08-18T19:21:00Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss66Vfm2",
+          "commit": {
+            "abbreviatedOid": "38fbee2"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM ",
+          "createdAt": "2025-08-17T05:23:59Z",
+          "updatedAt": "2025-08-17T05:23:59Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss66Z2n3",
+          "commit": {
+            "abbreviatedOid": "38fbee2"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2025-08-18T08:32:00Z",
+          "updatedAt": "2025-08-18T08:32:00Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
