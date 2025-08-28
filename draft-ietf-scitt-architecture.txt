@@ -5,12 +5,12 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 19 February 2026                                     C. Fournet
+Expires: 1 March 2026                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                          18 August 2025
+                                                          28 August 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 February 2026.
+   This Internet-Draft will expire on 1 March 2026.
 
 Copyright Notice
 
@@ -1562,15 +1562,15 @@ Table of Contents
    IANA is requested to register the following Content-Format numbers in
    the "CoAP Content-Formats" sub-registry, within the "Constrained
    RESTful Environments (CoRE) Parameters" Registry
-   [IANA.core-parameters] in the 0-255 Range:
+   [IANA.core-parameters] in the 256-9999 Range:
 
         +======================+================+=====+===========+
         | Content-Type         | Content Coding | ID  | Reference |
         +======================+================+=====+===========+
-        | application/scitt-   | -              | 103 | RFCthis   |
+        | application/scitt-   | -              | 227 | RFCthis   |
         | statement+cose       |                |     |           |
         +----------------------+----------------+-----+-----------+
-        | application/scitt-   | -              | 104 | RFCthis   |
+        | application/scitt-   | -              | 278 | RFCthis   |
         | receipt+cose         |                |     |           |
         +----------------------+----------------+-----+-----------+
 
