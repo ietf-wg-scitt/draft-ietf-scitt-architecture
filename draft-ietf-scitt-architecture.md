@@ -1179,6 +1179,6 @@ Author/Change controller:
 IANA is requested to register the following Content-Format numbers in the "CoAP Content-Formats" sub-registry, within the "Constrained RESTful Environments (CoRE) Parameters" Registry {{!IANA.core-parameters}} in the 256-9999 Range:
 
 | Content-Type                     | Content Coding | ID | Reference |
-| application/scitt-statement+cose | -              | 227 | {{&SELF}} |
+| application/scitt-statement+cose | -              | 277 | {{&SELF}} |
 | application/scitt-receipt+cose   | - | 278 | {{&SELF}} |
 {: #new-content-formats title="SCITT Content-Formats Registration"}
