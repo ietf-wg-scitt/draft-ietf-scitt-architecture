@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-08-19T00:55:51.490535+00:00",
+  "timestamp": "2025-08-31T00:56:24.884357+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -56505,6 +56505,158 @@
           "body": "LGTM!",
           "createdAt": "2025-08-18T08:32:00Z",
           "updatedAt": "2025-08-18T08:32:00Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 407,
+      "id": "PR_kwDOIvmHss6l0Xg_",
+      "title": "Updated content-type IDs based on DE feedback",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/407",
+      "state": "MERGED",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-08-28T14:24:50Z",
+      "updatedAt": "2025-08-28T15:38:40Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "10ff90f37505f043d9553fd454c287f15b8663ba",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "content-format",
+      "headRefOid": "5d7b9c342b6e5ace48ddba231bde72e7373bd61e",
+      "closedAt": "2025-08-28T15:38:39Z",
+      "mergedAt": "2025-08-28T15:38:39Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "73107008fbb76a6366dbcc702550b4a225e565ef"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss68p5-8",
+          "commit": {
+            "abbreviatedOid": "5d7b9c3"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM, this is what was agreed in https://mailarchive.ietf.org/arch/msg/scitt/W1to1uydFiXvSAyZ2g_j4112Oao",
+          "createdAt": "2025-08-28T14:25:52Z",
+          "updatedAt": "2025-08-28T14:25:52Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss68qm5t",
+          "commit": {
+            "abbreviatedOid": "5d7b9c3"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Aligned with conversation with expert",
+          "createdAt": "2025-08-28T15:01:31Z",
+          "updatedAt": "2025-08-28T15:01:31Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 408,
+      "id": "PR_kwDOIvmHss6l1VpC",
+      "title": "Fix typo in CoAP ID made in #407",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/408",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Editorial change to correct the ID value.\r\n\r\n```\r\nHello Henk,\r\n\r\nAssigning 277 and 278 is okay for me!\r\n\r\n@IANA/David: The registration request can be approved when the new media type registrations are approved.\r\n\r\nbest regards,\r\nEsko\r\n\r\nOn 20-8-2025 18:07, Henk Birkholz wrote:\r\nHello Esko,\r\n\r\nthank you! Valid question. We discussed this and our reply is essentially: as you rightfully suspected, we do not need to stay in the 0-255 range.\r\n\r\nAfter a quick look at the registry, would you be okay with:\r\n\r\n| Content-Type                     | Content Coding | ID  | Reference |\r\n| application/scitt-statement+cose | -              | 277 | {{&SELF}} |\r\n| application/scitt-receipt+cose   | -              | 278 | {{&SELF}} |\r\n\r\n\r\nFor the I-D authors,\r\n\r\nHenk\r\n```\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/W1to1uydFiXvSAyZ2g_j4112Oao/",
+      "createdAt": "2025-08-28T15:42:25Z",
+      "updatedAt": "2025-08-29T11:38:10Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "73107008fbb76a6366dbcc702550b4a225e565ef",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-19",
+      "headRefOid": "ab93703182174a8c35260eae6a3b89a3eec774b5",
+      "closedAt": "2025-08-29T11:38:10Z",
+      "mergedAt": "2025-08-29T11:38:10Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "b7774790f001c4e8471b3d4e7697b63ad084085d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss682kgl",
+          "commit": {
+            "abbreviatedOid": "ab93703"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": ":sweat_smile: ",
+          "createdAt": "2025-08-29T11:37:43Z",
+          "updatedAt": "2025-08-29T11:37:43Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 409,
+      "id": "PR_kwDOIvmHss6l8Ovi",
+      "title": "Fix grammatical mistake in Relying Party definition",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/409",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Spotted in Gen-ART review, editorial change.\r\n\r\n```\r\nNits/editorial comments:\r\nSmall nit. Section 3 in the relying party term: a relying parties. Either\r\nwithout the a or party instead of parties.\r\n```\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/scitt/BZFRF94GmGucm4Y_cM_RRbNgYrQ/",
+      "createdAt": "2025-08-29T08:09:04Z",
+      "updatedAt": "2025-08-29T11:38:51Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "73107008fbb76a6366dbcc702550b4a225e565ef",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-20",
+      "headRefOid": "e0c874e4e3f4ec65533fd04b4e7727ba7b000366",
+      "closedAt": "2025-08-29T11:38:51Z",
+      "mergedAt": "2025-08-29T11:38:50Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "ee56935c100c43dbefe34767c994a7bd3300e117"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss680VBW",
+          "commit": {
+            "abbreviatedOid": "e0c874e"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-08-29T08:19:21Z",
+          "updatedAt": "2025-08-29T08:19:21Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss682lBd",
+          "commit": {
+            "abbreviatedOid": "e0c874e"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-08-29T11:38:35Z",
+          "updatedAt": "2025-08-29T11:38:35Z",
           "comments": []
         }
       ]
