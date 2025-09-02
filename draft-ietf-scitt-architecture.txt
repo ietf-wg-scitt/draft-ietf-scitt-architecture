@@ -5,12 +5,12 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 2 March 2026                                         C. Fournet
+Expires: 6 March 2026                                         C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                          29 August 2025
+                                                        2 September 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 March 2026.
+   This Internet-Draft will expire on 6 March 2026.
 
 Copyright Notice
 
@@ -1217,10 +1217,11 @@ Table of Contents
    contains inclusion proofs for verifiable data structures.  The
    unprotected header contains verifiable data structure proofs.  See
    the protected header for details regarding the specific verifiable
-   data structure used.  Per the COSE Verifiable Data Structure Registry
-   documented in [I-D.draft-ietf-cose-merkle-tree-proofs], the COSE key
-   type RFC9162_SHA256 is value 1.  Labels identify inclusion proofs
-   (-1) and consistency proofs (-2).
+   data structure used.  Per the COSE Verifiable Data Structure
+   Algorithms Registry documented in
+   [I-D.draft-ietf-cose-merkle-tree-proofs], the COSE key type
+   RFC9162_SHA256 is value 1.  Labels identify inclusion proofs (-1) and
+   consistency proofs (-2).
 
    18(                                 / COSE Sign 1               /
        [
