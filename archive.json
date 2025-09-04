@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-08-31T00:56:24.884357+00:00",
+  "timestamp": "2025-09-04T00:49:53.820003+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -56658,6 +56658,81 @@
           "createdAt": "2025-08-29T11:38:35Z",
           "updatedAt": "2025-08-29T11:38:35Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 410,
+      "id": "PR_kwDOIvmHss6mc_dN",
+      "title": "Update registry name",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/410",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "See corresponding change in response to AD feedback in https://github.com/cose-wg/draft-ietf-cose-merkle-tree-proofs/pull/96",
+      "createdAt": "2025-09-02T13:06:34Z",
+      "updatedAt": "2025-09-02T14:15:42Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "ee56935c100c43dbefe34767c994a7bd3300e117",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "update_registry_name",
+      "headRefOid": "2c3571917f5178caca34a0d49eb05dd3399bca08",
+      "closedAt": "2025-09-02T14:15:42Z",
+      "mergedAt": "2025-09-02T14:15:42Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "100b7e03e1996465c8d452a161c6df889823c083"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss69V2Pd",
+          "commit": {
+            "abbreviatedOid": "974c345"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "This aligns with AD feedback on COSE Receipts :+1:",
+          "createdAt": "2025-09-02T13:39:45Z",
+          "updatedAt": "2025-09-02T13:39:45Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss69WDbS",
+          "commit": {
+            "abbreviatedOid": "974c345"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-02T13:51:57Z",
+          "updatedAt": "2025-09-02T13:51:57Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss69WcrI",
+          "commit": {
+            "abbreviatedOid": "974c345"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-02T14:15:18Z",
+          "updatedAt": "2025-09-02T14:15:24Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nPer the COSE Verifiable Data Structure Algorithms Registry documented in {{-RECEIPTS}}, the COSE key type RFC9162_SHA256 is value `1`.\r\n```",
+              "createdAt": "2025-09-02T14:15:18Z",
+              "updatedAt": "2025-09-02T14:15:24Z"
+            }
+          ]
         }
       ]
     }
