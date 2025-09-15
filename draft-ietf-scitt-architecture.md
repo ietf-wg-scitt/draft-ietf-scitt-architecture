@@ -1012,7 +1012,7 @@ The Statement (scitt-statement+cose) and Receipt (scitt-receipt+cose) media type
 The payload media type ('content type') is included in the COSE envelope header.
 {{-COSE}} describes the security implications of reliance on this header parameter.
 
-Both media types describe COSE Sign1 messages, which are normatively signed, and therefore provide integrity protection.
+Both media types describe COSE Sign1 messages, which include a signature, and therefore provide integrity protection.
 
 ## Cryptographic Agility
 
