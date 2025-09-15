@@ -116,7 +116,6 @@ informative:
   RFC4949: Glossary
   RFC8725:
   RFC9162: CT
-  RFC9334: RATS
 
   CoSWID: RFC9393
 
