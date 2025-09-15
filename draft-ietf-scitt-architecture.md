@@ -204,7 +204,7 @@ Software supply chains serve as a useful application guidance and first usage sc
 
 Supply chain security is a prerequisite to protecting consumers and minimizing economic, public health, and safety threats.
 Supply chain security has historically focused on risk management practices to safeguard logistics, meet regulatory requirements, forecast demand, and optimize inventory.
-While these elements are foundational to a healthy supply chain, an integrated cyber security-based perspective of the software supply chains remains broadly undefined.
+While these elements are foundational to a healthy supply chain, an integrated cyber-security-based perspective of the software supply chains remains broadly undefined.
 Recently, the global community has experienced numerous supply chain attacks targeting weaknesses in software supply chains.
 As illustrated in {{lifecycle-threats}}, a software supply chain attack may leverage one or more life-cycle stages and directly or indirectly target the component.
 
@@ -408,7 +408,7 @@ However, the consistency of a collection of Signed Statements about the Artifact
 Receipt:
 
 : a cryptographic proof that a Signed Statement is included in the Verifiable Data Structure.
-See {{-RECEIPTS}} for implementations
+See {{-RECEIPTS}} for implementations.
 Receipts are signed proofs of verifiable data-structure properties.
 The types of Receipts MUST support inclusion proofs and MAY support other proof types, such as consistency proofs.
 
@@ -645,7 +645,7 @@ Specific verifiable data structures, such those describes in {{-CT}} and {{-RECE
 
 Transparency Services can be deployed along side other database or object storage technologies.
 For example, a Transparency Service that supports a software package management system, might be referenced from the APIs exposed for package management.
-Providing an ability to request a fresh Receipt for a given software package, or to request a list of Signed Statements associated with the software package.
+It can also provide the ability to request a fresh Receipt for a given software package, or a list of Signed Statements associated with that package.
 
 # Signed Statements {#signed-statements}
 
@@ -696,7 +696,7 @@ Key discovery protocols are out-of-scope of this document.
 The protected header of a Signed Statement and a Receipt MUST include the `CWT Claims` header parameter as specified in {{Section 2 of -CWT_CLAIMS_COSE}}.
 The `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `Subject Claim` (Claim label 2) {{IANA.cwt}}.
 
-A Receipt is a Signed Statement, (COSE_Sign1), with additional Claims in its protected header related to verifying the inclusion proof in its unprotected header.
+A Receipt is a Signed Statement (COSE_Sign1) with additional Claims in its protected header related to verifying the inclusion proof in its unprotected header.
 See {{-RECEIPTS}}.
 
 ## Signed Statement Examples
@@ -715,7 +715,7 @@ Implementation-specific Registration Policies may define additional mandatory la
 Detached payloads support large Statements, and ensure Signed Statements can integrate with existing storage systems.
 
 ~~~ cbor-diag
-18(                                 / COSE Sign 1      /
+18(                                 / COSE_Sign1       /
     [
       h'a4012603...6d706c65',       / Protected        /
       {},                           / Unprotected      /
@@ -790,7 +790,7 @@ In these cases a Statement can be made over the hash of a payload, rather than t
 '-----+-------'           '----------------'
       v
  .----+-------.
-| COSE Sign 1  |
+| COSE_Sign1   |
  '------------'
 ~~~
 
@@ -848,7 +848,7 @@ See {{fig-signed-statement-cddl}} for the CDDL rule that defines 'COSE_Sign1' as
 The type of label 394 `receipts` in the unprotected header is a CBOR array that can contain one or more Receipts (each entry encoded as a .cbor encoded Receipts).
 
 ~~~ cbor-diag
-18(                                 / COSE Sign 1               /
+18(                                 / COSE_Sign1                /
     [
       h'a4012603...6d706c65',       / Protected                 /
       {                             / Unprotected               /
@@ -872,7 +872,7 @@ Per the COSE Verifiable Data Structure Algorithms Registry documented in {{-RECE
 Labels identify inclusion proofs (`-1`) and consistency proofs (`-2`).
 
 ~~~ cbor-diag
-18(                                 / COSE Sign 1               /
+18(                                 / COSE_Sign1                /
     [
       h'a4012604...6d706c65',       / Protected                 /
       {                             / Unprotected               /
@@ -973,7 +973,7 @@ Unless advertised in the Transparency Service Registration Policy, the Relying P
 
 ## Accuracy of Statements
 
-Issuers can make false Statements either intentionally or unintentionally, registering a Statement only proves it was produced by an Issuer.
+Issuers can make false Statements either intentionally or unintentionally; registering a Statement only proves it was produced by an Issuer.
 A registered Statement may be superseded by a subsequently submitted Signed Statement from the same Issuer, with the same subject in the cwt_claims protected header.
 Other Issuers may make new Statements to reflect new or corrected information.
 Relying Parties may choose to include or exclude Statements from Issuers to determine the accuracy of a collection of Statements.
@@ -1012,7 +1012,7 @@ The Statement (scitt-statement+cose) and Receipt (scitt-receipt+cose) media type
 The payload media type ('content type') is included in the COSE envelope header.
 {{-COSE}} describes the security implications of reliance on this header parameter.
 
-Both media types describe COSE Sign1 messages, which are normatively signed, and therefore provide integrity protection.
+Both media types describe COSE_Sign1 messages, which are normatively signed, and therefore provide integrity protection.
 
 ## Cryptographic Agility
 
