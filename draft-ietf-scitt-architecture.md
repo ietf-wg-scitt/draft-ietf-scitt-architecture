@@ -180,12 +180,11 @@ This "content-agnostic" approach allows SCITT transparency services to be either
 Extensibility is a vital feature of the SCITT architecture, so that requirements from various applications can be accommodated while always ensuring interoperability with respect to registration procedures and corresponding auditability and accountability.
 For simplicity, the scope of this document is limited to use cases originating from the software supply chain domain, but the specification defined is applicable to any other type of supply chain statements (also referred to as value-add graphs), for example, statements about hardware supply chains.
 
-This document also defines message structures for signed statements and defines a profile for COSE receipts {{-RECEIPTS}}, i.e., signed verifiable data structure proofs).
+This document also defines message structures for signed statements and transparent statements, which embed COSE receipts {{-RECEIPTS}}, i.e., signed verifiable data structure proofs).
 These message structures are based on the Concise Binary Object Representation Standard {{-CBOR}} and corresponding signing is facilitated via the CBOR Object Signing and Encryption Standard {{-COSE}}.
 The message structures are defined using the Concise Data Definition Language {{-CDDL}}.
-The signed statements and receipts are based on the COSE_Sign1 specification in {{Section 4.2 of -COSE}}.
-As these messages provide the foundation of any transparency service implementation for global and cross-domain application interoperability, they are based on complementary COSE specifications, mainly {{-RECEIPTS}}.
-Therefore, support of COSE_Sign1 and extensibility of COSE Header Parameters are prerequisites for implementing the interoperable message layer included in this document.
+The signed statements and receipts are based respectively on the COSE_Sign1 specification in {{Section 4.2 of -COSE}} and on COSE receipts {{-RECEIPTS}}.
+The application-domain-agnostic nature of COSE_Sign1 and its extensibility through COSE Header Parameters are prerequisites for implementing the interoperable message layer defined in this document.
 
 In summary, this specification supports relying parties obtaining proof that signed statements were recorded and checked for their validity at the time they were registered.
 How these statements are managed or stored is out-of-scope of this document.
