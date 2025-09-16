@@ -199,7 +199,7 @@ Table of Contents
    security has historically focused on risk management practices to
    safeguard logistics, meet regulatory requirements, forecast demand,
    and optimize inventory.  While these elements are foundational to a
-   healthy supply chain, an integrated cyber security-based perspective
+   healthy supply chain, an integrated cyber-security-based perspective
    of the software supply chains remains broadly undefined.  Recently,
    the global community has experienced numerous supply chain attacks
    targeting weaknesses in software supply chains.  As illustrated in
@@ -505,7 +505,7 @@ Table of Contents
 
    Receipt:  a cryptographic proof that a Signed Statement is included
       in the Verifiable Data Structure.  See
-      [I-D.draft-ietf-cose-merkle-tree-proofs] for implementations
+      [I-D.draft-ietf-cose-merkle-tree-proofs] for implementations.
       Receipts are signed proofs of verifiable data-structure
       properties.  The types of Receipts MUST support inclusion proofs
       and MAY support other proof types, such as consistency proofs.
@@ -881,10 +881,9 @@ Table of Contents
    Transparency Services can be deployed along side other database or
    object storage technologies.  For example, a Transparency Service
    that supports a software package management system, might be
-   referenced from the APIs exposed for package management.  Providing
-   an ability to request a fresh Receipt for a given software package,
-   or to request a list of Signed Statements associated with the
-   software package.
+   referenced from the APIs exposed for package management.  It can also
+   provide the ability to request a fresh Receipt for a given software
+   package, or a list of Signed Statements associated with that package.
 
 6.  Signed Statements
 
@@ -964,7 +963,7 @@ Table of Contents
    [RFC9597].  The CWT Claims value MUST include the Issuer Claim (Claim
    label 1) and the Subject Claim (Claim label 2) [IANA.cwt].
 
-   A Receipt is a Signed Statement, (COSE_Sign1), with additional Claims
+   A Receipt is a Signed Statement (COSE_Sign1) with additional Claims
    in its protected header related to verifying the inclusion proof in
    its unprotected header.  See
    [I-D.draft-ietf-cose-merkle-tree-proofs].
@@ -1018,7 +1017,7 @@ Table of Contents
    payloads support large Statements, and ensure Signed Statements can
    integrate with existing storage systems.
 
-   18(                                 / COSE Sign 1      /
+   18(                                 / COSE_Sign1       /
        [
          h'a4012603...6d706c65',       / Protected        /
          {},                           / Unprotected      /
@@ -1096,7 +1095,7 @@ Table of Contents
    '-----+-------'           '----------------'
          v
     .----+-------.
-   | COSE Sign 1  |
+   | COSE_Sign1   |
     '------------'
 
 6.3.  Registration of Signed Statements
@@ -1197,7 +1196,7 @@ Table of Contents
    one or more Receipts (each entry encoded as a .cbor encoded
    Receipts).
 
-   18(                                 / COSE Sign 1               /
+   18(                                 / COSE_Sign1                /
        [
          h'a4012603...6d706c65',       / Protected                 /
          {                             / Unprotected               /
@@ -1224,7 +1223,7 @@ Table of Contents
    RFC9162_SHA256 is value 1.  Labels identify inclusion proofs (-1) and
    consistency proofs (-2).
 
-   18(                                 / COSE Sign 1               /
+   18(                                 / COSE_Sign1                /
        [
          h'a4012604...6d706c65',       / Protected                 /
          {                             / Unprotected               /
@@ -1365,7 +1364,7 @@ Table of Contents
 9.2.  Accuracy of Statements
 
    Issuers can make false Statements either intentionally or
-   unintentionally, registering a Statement only proves it was produced
+   unintentionally; registering a Statement only proves it was produced
    by an Issuer.  A registered Statement may be superseded by a
    subsequently submitted Signed Statement from the same Issuer, with
    the same subject in the cwt_claims protected header.  Other Issuers
@@ -1425,7 +1424,7 @@ Table of Contents
    envelope header.  [STD96] describes the security implications of
    reliance on this header parameter.
 
-   Both media types describe COSE Sign1 messages, which include a
+   Both media types describe COSE_Sign1 messages, which include a
    signature, and therefore provide integrity protection.
 
 9.6.  Cryptographic Agility

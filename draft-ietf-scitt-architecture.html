@@ -1376,7 +1376,7 @@ Software supply chains serve as a useful application guidance and first usage sc
         </h3>
 <p id="section-2.1-1">Supply chain security is a prerequisite to protecting consumers and minimizing economic, public health, and safety threats.
 Supply chain security has historically focused on risk management practices to safeguard logistics, meet regulatory requirements, forecast demand, and optimize inventory.
-While these elements are foundational to a healthy supply chain, an integrated cyber security-based perspective of the software supply chains remains broadly undefined.
+While these elements are foundational to a healthy supply chain, an integrated cyber-security-based perspective of the software supply chains remains broadly undefined.
 Recently, the global community has experienced numerous supply chain attacks targeting weaknesses in software supply chains.
 As illustrated in <a href="#lifecycle-threats" class="auto internal xref">Figure 1</a>, a software supply chain attack may leverage one or more life-cycle stages and directly or indirectly target the component.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 <span id="name-example-ssc-life-cycle-thre"></span><div id="lifecycle-threats">
@@ -1709,7 +1709,7 @@ However, the consistency of a collection of Signed Statements about the Artifact
 <dt id="section-3-6.17">Receipt:</dt>
         <dd style="margin-left: 1.5em" id="section-3-6.18">
           <p id="section-3-6.18.1">a cryptographic proof that a Signed Statement is included in the Verifiable Data Structure.
-See <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span> for implementations
+See <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span> for implementations.
 Receipts are signed proofs of verifiable data-structure properties.
 The types of Receipts <span class="bcp14">MUST</span> support inclusion proofs and <span class="bcp14">MAY</span> support other proof types, such as consistency proofs.<a href="#section-3-6.18.1" class="pilcrow">¶</a></p>
 </dd>
@@ -2157,7 +2157,7 @@ Everyone with access to its content sees the same ordered collection of Signed S
           </h4>
 <p id="section-5.1.4-1">Transparency Services can be deployed along side other database or object storage technologies.
 For example, a Transparency Service that supports a software package management system, might be referenced from the APIs exposed for package management.
-Providing an ability to request a fresh Receipt for a given software package, or to request a list of Signed Statements associated with the software package.<a href="#section-5.1.4-1" class="pilcrow">¶</a></p>
+It can also provide the ability to request a fresh Receipt for a given software package, or a list of Signed Statements associated with that package.<a href="#section-5.1.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2224,7 +2224,7 @@ The <code>iss</code> value's length <span class="bcp14">MUST</span> be between 1
 Key discovery protocols are out-of-scope of this document.<a href="#section-6-13" class="pilcrow">¶</a></p>
 <p id="section-6-14">The protected header of a Signed Statement and a Receipt <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://rfc-editor.org/rfc/rfc9597#section-2" class="relref">Section 2</a> of [<a href="#RFC9597" class="cite xref">RFC9597</a>]</span>.
 The <code>CWT Claims</code> value <span class="bcp14">MUST</span> include the <code>Issuer Claim</code> (Claim label 1) and the <code>Subject Claim</code> (Claim label 2) <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span>.<a href="#section-6-14" class="pilcrow">¶</a></p>
-<p id="section-6-15">A Receipt is a Signed Statement, (COSE_Sign1), with additional Claims in its protected header related to verifying the inclusion proof in its unprotected header.
+<p id="section-6-15">A Receipt is a Signed Statement (COSE_Sign1) with additional Claims in its protected header related to verifying the inclusion proof in its unprotected header.
 See <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>.<a href="#section-6-15" class="pilcrow">¶</a></p>
 <div id="sec-signed-statement-examples">
 <section id="section-6.1">
@@ -2281,7 +2281,7 @@ Detached payloads support large Statements, and ensure Signed Statements can int
 <figure id="figure-4">
           <div class="lang-cbor-diag sourcecode" id="section-6.1-5.1">
 <pre>
-18(                                 / COSE Sign 1      /
+18(                                 / COSE_Sign1       /
     [
       h'a4012603...6d706c65',       / Protected        /
       {},                           / Unprotected      /
@@ -2452,9 +2452,7 @@ In these cases a Statement can be made over the hash of a payload, rather than t
                 <text x="244" y="628">Be</text>
                 <text x="284" y="628">Signed</text>
                 <text x="336" y="628">Bytes</text>
-                <text x="36" y="708">COSE</text>
-                <text x="76" y="708">Sign</text>
-                <text x="104" y="708">1</text>
+                <text x="60" y="708">COSE_Sign1</text>
               </g>
             </svg><a href="#section-6.2-2.1" class="pilcrow">¶</a>
 </div>
@@ -2536,7 +2534,7 @@ The type of label 394 <code>receipts</code> in the unprotected header is a CBOR 
 <figure id="figure-7">
         <div class="lang-cbor-diag sourcecode" id="section-7-8.1">
 <pre>
-18(                                 / COSE Sign 1               /
+18(                                 / COSE_Sign1                /
     [
       h'a4012603...6d706c65',       / Protected                 /
       {                             / Unprotected               /
@@ -2565,7 +2563,7 @@ Labels identify inclusion proofs (<code>-1</code>) and consistency proofs (<code
 <figure id="figure-8">
         <div class="lang-cbor-diag sourcecode" id="section-7-10.1">
 <pre>
-18(                                 / COSE Sign 1               /
+18(                                 / COSE_Sign1                /
     [
       h'a4012604...6d706c65',       / Protected                 /
       {                             / Unprotected               /
@@ -2695,7 +2693,7 @@ Unless advertised in the Transparency Service Registration Policy, the Relying P
         <h3 id="name-accuracy-of-statements">
 <a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-accuracy-of-statements" class="section-name selfRef">Accuracy of Statements</a>
         </h3>
-<p id="section-9.2-1">Issuers can make false Statements either intentionally or unintentionally, registering a Statement only proves it was produced by an Issuer.
+<p id="section-9.2-1">Issuers can make false Statements either intentionally or unintentionally; registering a Statement only proves it was produced by an Issuer.
 A registered Statement may be superseded by a subsequently submitted Signed Statement from the same Issuer, with the same subject in the cwt_claims protected header.
 Other Issuers may make new Statements to reflect new or corrected information.
 Relying Parties may choose to include or exclude Statements from Issuers to determine the accuracy of a collection of Statements.<a href="#section-9.2-1" class="pilcrow">¶</a></p>
@@ -2764,7 +2762,7 @@ Mechanisms that rely on pre-configured values and do not allow updates are unsui
 <p id="section-9.5-1">The Statement (scitt-statement+cose) and Receipt (scitt-receipt+cose) media types describe the expected content of COSE envelope headers.
 The payload media type ('content type') is included in the COSE envelope header.
 <span>[<a href="#STD96" class="cite xref">STD96</a>]</span> describes the security implications of reliance on this header parameter.<a href="#section-9.5-1" class="pilcrow">¶</a></p>
-<p id="section-9.5-2">Both media types describe COSE Sign1 messages, which include a signature, and therefore provide integrity protection.<a href="#section-9.5-2" class="pilcrow">¶</a></p>
+<p id="section-9.5-2">Both media types describe COSE_Sign1 messages, which include a signature, and therefore provide integrity protection.<a href="#section-9.5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-cryptographic-agility">
