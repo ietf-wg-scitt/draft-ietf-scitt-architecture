@@ -1030,7 +1030,7 @@ Different actors may rely on different Transparency Services, each registering a
 Running multiple, independent Transparency Services provides different organizations to represent consistent or divergent opinions.
 It is the role of the relying party to decide which Transparency Services and Issuers they choose to trust for their scenario.
 
-In both cases, the SCITT architecture provides generic, universally-verifiable cryptographic proofs to individually attribute Statements to Issuers or the Transparency Service.
+In both cases, the SCITT architecture provides generic, universally-verifiable cryptographic proofs to hold Issuers or Transparency Services accountable.
 On one hand, this enables valid actors to detect and disambiguate malicious actors who employ Equivocation with Signed Statements to different entities.
 On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT architecture.
 
