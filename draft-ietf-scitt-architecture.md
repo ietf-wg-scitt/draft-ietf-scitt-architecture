@@ -109,6 +109,7 @@ normative:
 informative:
 
   NIST.SP.1800-19:
+  NIST.SP.800-204C:
   NIST_EO14028:
     target: https://www.nist.gov/system/files/documents/2022/02/04/software-supply-chain-security-guidance-under-EO-14028-section-4e.pdf
     title: Software Supply Chain Security Guidance Under Executive Order (EO) 14028 Section 4e
@@ -255,7 +256,7 @@ As illustrated in {{lifecycle-threats}}, a software supply chain attack may leve
 ~~~
 {: #lifecycle-threats title="Example SSC Life-Cycle Threats"}
 
-DevSecOps often depends on third-party and open-source software.
+DevSecOps, as defined in {{NIST.SP.800-204C}}, often depends on third-party and open-source software.
 These dependencies can be quite complex throughout the supply chain, so checking provenance and traceability throughout their lifecycle is difficult.
 There is a need for manageable auditability and accountability of digital products.
 Typically, the range of types of statements about digital products (and their dependencies) is vast, heterogeneous, and can differ between community policy requirements.
