@@ -806,10 +806,10 @@ Table of Contents
    certificate to one of the root certificates currently registered as a
    trust anchor by the Transparency Service.  The protected header of
    the COSE_Sign1 Envelope MUST include either the Issuer's certificate
-   as x5t or the chain including the Issuer's certificate as x5chain.
-   If x5t is included in the protected header, an x5chain with a leaf
-   certificate corresponding to the x5t value MAY be included in the
-   unprotected header.
+   as x5t or the chain including the Issuer's certificate as x5chain, as
+   defined in [RFC9360].  If x5t is included in the protected header, an
+   x5chain with a leaf certificate corresponding to the x5t value MAY be
+   included in the unprotected header.
 
    Registration Policies and trust anchors MUST be made Transparent and
    available to all Relying Parties of the Transparency Service by
