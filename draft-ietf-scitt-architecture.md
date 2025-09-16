@@ -1044,10 +1044,6 @@ IANA is requested to register:
 *  the media type application/scitt-statement+cose in the "Media Types" registry, see below.
 *  the media type application/scitt-receipt+cose in the "Media Types" registry, see below.
 
-## COSE Receipts Header Parameter
-
-394 is requested in {{-RECEIPTS}} and has received an early assignment.
-
 ## Media Type application/scitt-statement+cose Registration
 
 IANA is requested to add the following Media-Type to the "Media Types" registry {{!IANA.media-types}}.
