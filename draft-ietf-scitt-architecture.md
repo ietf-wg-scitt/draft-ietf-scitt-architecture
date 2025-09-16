@@ -109,6 +109,7 @@ normative:
 informative:
 
   NIST.SP.1800-19:
+  NIST.SP.800-204C:
   NIST_EO14028:
     target: https://www.nist.gov/system/files/documents/2022/02/04/software-supply-chain-security-guidance-under-EO-14028-section-4e.pdf
     title: Software Supply Chain Security Guidance Under Executive Order (EO) 14028 Section 4e
@@ -116,7 +117,6 @@ informative:
   RFC4949: Glossary
   RFC8725:
   RFC9162: CT
-  RFC9334: RATS
 
   CoSWID: RFC9393
 
@@ -161,7 +161,7 @@ entity:
 
 Traceability in supply chains is a growing security concern.
 While verifiable data structures have addressed specific issues, such as equivocation over digital certificates, they lack a universal architecture for all supply chains.
-This document proposes a scalable architecture for single-issuer signed statement transparency applicable to any supply chain.
+This document defines a scalable architecture for single-issuer signed statement transparency applicable to any supply chain.
 It ensures flexibility, interoperability between different transparency services, and compliance with various auditing procedures and regulatory requirements.
 
 --- middle
@@ -180,12 +180,11 @@ This "content-agnostic" approach allows SCITT transparency services to be either
 Extensibility is a vital feature of the SCITT architecture, so that requirements from various applications can be accommodated while always ensuring interoperability with respect to registration procedures and corresponding auditability and accountability.
 For simplicity, the scope of this document is limited to use cases originating from the software supply chain domain, but the specification defined is applicable to any other type of supply chain statements (also referred to as value-add graphs), for example, statements about hardware supply chains.
 
-This document also defines message structures for signed statements and defines a profile for COSE receipts {{-RECEIPTS}}, i.e., signed verifiable data structure proofs).
+This document also defines message structures for signed statements and transparent statements, which embed COSE receipts {{-RECEIPTS}}, i.e., signed verifiable data structure proofs).
 These message structures are based on the Concise Binary Object Representation Standard {{-CBOR}} and corresponding signing is facilitated via the CBOR Object Signing and Encryption Standard {{-COSE}}.
 The message structures are defined using the Concise Data Definition Language {{-CDDL}}.
-The signed statements and receipts are based on the COSE_Sign1 specification in {{Section 4.2 of -COSE}}.
-As these messages provide the foundation of any transparency service implementation for global and cross-domain application interoperability, they are based on complementary COSE specifications, mainly {{-RECEIPTS}}.
-Therefore, support of COSE_Sign1 and extensibility of COSE Header Parameters are prerequisites for implementing the interoperable message layer included in this document.
+The signed statements and receipts are based respectively on the COSE_Sign1 specification in {{Section 4.2 of -COSE}} and on COSE receipts {{-RECEIPTS}}.
+The application-domain-agnostic nature of COSE_Sign1 and its extensibility through COSE Header Parameters are prerequisites for implementing the interoperable message layer defined in this document.
 
 In summary, this specification supports relying parties obtaining proof that signed statements were recorded and checked for their validity at the time they were registered.
 How these statements are managed or stored is out-of-scope of this document.
@@ -204,7 +203,7 @@ Software supply chains serve as a useful application guidance and first usage sc
 
 Supply chain security is a prerequisite to protecting consumers and minimizing economic, public health, and safety threats.
 Supply chain security has historically focused on risk management practices to safeguard logistics, meet regulatory requirements, forecast demand, and optimize inventory.
-While these elements are foundational to a healthy supply chain, an integrated cyber security-based perspective of the software supply chains remains broadly undefined.
+While these elements are foundational to a healthy supply chain, an integrated cyber-security-based perspective of the software supply chains remains broadly undefined.
 Recently, the global community has experienced numerous supply chain attacks targeting weaknesses in software supply chains.
 As illustrated in {{lifecycle-threats}}, a software supply chain attack may leverage one or more life-cycle stages and directly or indirectly target the component.
 
@@ -256,11 +255,11 @@ As illustrated in {{lifecycle-threats}}, a software supply chain attack may leve
 ~~~
 {: #lifecycle-threats title="Example SSC Life-Cycle Threats"}
 
-DevSecOps often depends on third-party and open-source software.
+DevSecOps, as defined in {{NIST.SP.800-204C}}, often depends on third-party and open-source software.
 These dependencies can be quite complex throughout the supply chain, so checking provenance and traceability throughout their lifecycle is difficult.
 There is a need for manageable auditability and accountability of digital products.
 Typically, the range of types of statements about digital products (and their dependencies) is vast, heterogeneous, and can differ between community policy requirements.
-Taking the type and structure of all statements about digital and products into account might not be possible.
+Taking the type and structure of all statements about digital products into account might not be possible.
 Examples of statements may include commit signatures, build environment and parameters, software bill of materials, static and dynamic application security testing results, fuzz testing results, release approvals, deployment records, vulnerability scan results, and patch logs.
 In consequence, instead of trying to understand and describe the detailed syntax and semantics of every type of statement about digital products, the SCITT architecture focuses on ensuring statement authenticity, visibility/transparency, and intends to provide scalable accessibility.
 Threats and practical issues can also arise from unintended side-effects of using security techniques outside their proper bounds.
@@ -401,14 +400,14 @@ This document uses the terms "Issuer", and "Subject" as described in {{RFC8392}}
 
 Non-equivocation:
 
-: a state where all proofs provided by the Transparency Service to Relying Parties are produced from a Single Verifiable Data Structure describing a unique sequence of Signed Statements and are therefore consistent {{EQUIVOCATION}}.
+: a state where all proofs provided by the Transparency Service to Relying Parties are produced from a single Verifiable Data Structure describing a unique sequence of Signed Statements and are therefore consistent {{EQUIVOCATION}}.
 Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information.
 However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Relying Parties.
 
 Receipt:
 
 : a cryptographic proof that a Signed Statement is included in the Verifiable Data Structure.
-See {{-RECEIPTS}} for implementations
+See {{-RECEIPTS}} for implementations.
 Receipts are signed proofs of verifiable data-structure properties.
 The types of Receipts MUST support inclusion proofs and MAY support other proof types, such as consistency proofs.
 
@@ -452,7 +451,7 @@ Subject:
 
 : an identifier, defined by the Issuer, which represents the organization, device, user, entity, or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements can be grouped.
 It is possible that there are multiple Statements about the same Artifact.
-In these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Relying Parties can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific Subject.
+In these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim, defined in {{RFC8392}}, to create a coherent sequence of Signed Statements about the same Artifact and Relying Parties can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific Subject.
 
 Transparency Service:
 
@@ -598,7 +597,7 @@ Transparency Services MUST authenticate Signed Statements as part of a Registrat
 For instance, a trust anchor could be an X.509 root certificate (directly or its thumbprint), a pointer to an OpenID Connect identity provider, or any other COSE-compatible trust anchor.
 
 When using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certification path from an Issuer's certificate to one of the root certificates currently registered as a trust anchor by the Transparency Service.
-The protected header of the COSE_Sign1 Envelope MUST include either the Issuer's certificate as `x5t` or the chain including the Issuer's certificate as `x5chain`.
+The protected header of the COSE_Sign1 Envelope MUST include either the Issuer's certificate as `x5t` or the chain including the Issuer's certificate as `x5chain`, as defined in {{RFC9360}}.
 If `x5t` is included in the protected header, an `x5chain` with a leaf certificate corresponding to the `x5t` value MAY be included in the unprotected header.
 
 Registration Policies and trust anchors MUST be made Transparent and available to all Relying Parties of the Transparency Service by Registering them as Signed Statements on the Verifiable Data Structure.
@@ -645,7 +644,7 @@ Specific verifiable data structures, such those describes in {{-CT}} and {{-RECE
 
 Transparency Services can be deployed along side other database or object storage technologies.
 For example, a Transparency Service that supports a software package management system, might be referenced from the APIs exposed for package management.
-Providing an ability to request a fresh Receipt for a given software package, or to request a list of Signed Statements associated with the software package.
+It can also provide the ability to request a fresh Receipt for a given software package, or a list of Signed Statements associated with that package.
 
 # Signed Statements {#signed-statements}
 
@@ -696,7 +695,7 @@ Key discovery protocols are out-of-scope of this document.
 The protected header of a Signed Statement and a Receipt MUST include the `CWT Claims` header parameter as specified in {{Section 2 of -CWT_CLAIMS_COSE}}.
 The `CWT Claims` value MUST include the `Issuer Claim` (Claim label 1) and the `Subject Claim` (Claim label 2) {{IANA.cwt}}.
 
-A Receipt is a Signed Statement, (COSE_Sign1), with additional Claims in its protected header related to verifying the inclusion proof in its unprotected header.
+A Receipt is a Signed Statement (COSE_Sign1) with additional Claims in its protected header related to verifying the inclusion proof in its unprotected header.
 See {{-RECEIPTS}}.
 
 ## Signed Statement Examples
@@ -715,7 +714,7 @@ Implementation-specific Registration Policies may define additional mandatory la
 Detached payloads support large Statements, and ensure Signed Statements can integrate with existing storage systems.
 
 ~~~ cbor-diag
-18(                                 / COSE Sign 1      /
+18(                                 / COSE_Sign1       /
     [
       h'a4012603...6d706c65',       / Protected        /
       {},                           / Unprotected      /
@@ -790,7 +789,7 @@ In these cases a Statement can be made over the hash of a payload, rather than t
 '-----+-------'           '----------------'
       v
  .----+-------.
-| COSE Sign 1  |
+| COSE_Sign1   |
  '------------'
 ~~~
 
@@ -848,7 +847,7 @@ See {{fig-signed-statement-cddl}} for the CDDL rule that defines 'COSE_Sign1' as
 The type of label 394 `receipts` in the unprotected header is a CBOR array that can contain one or more Receipts (each entry encoded as a .cbor encoded Receipts).
 
 ~~~ cbor-diag
-18(                                 / COSE Sign 1               /
+18(                                 / COSE_Sign1                /
     [
       h'a4012603...6d706c65',       / Protected                 /
       {                             / Unprotected               /
@@ -872,7 +871,7 @@ Per the COSE Verifiable Data Structure Algorithms Registry documented in {{-RECE
 Labels identify inclusion proofs (`-1`) and consistency proofs (`-2`).
 
 ~~~ cbor-diag
-18(                                 / COSE Sign 1               /
+18(                                 / COSE_Sign1                /
     [
       h'a4012604...6d706c65',       / Protected                 /
       {                             / Unprotected               /
@@ -973,7 +972,7 @@ Unless advertised in the Transparency Service Registration Policy, the Relying P
 
 ## Accuracy of Statements
 
-Issuers can make false Statements either intentionally or unintentionally, registering a Statement only proves it was produced by an Issuer.
+Issuers can make false Statements either intentionally or unintentionally; registering a Statement only proves it was produced by an Issuer.
 A registered Statement may be superseded by a subsequently submitted Signed Statement from the same Issuer, with the same subject in the `CWT Claims` protected header.
 Other Issuers may make new Statements to reflect new or corrected information.
 Relying Parties may choose to include or exclude Statements from Issuers to determine the accuracy of a collection of Statements.
@@ -1012,7 +1011,7 @@ The Statement (scitt-statement+cose) and Receipt (scitt-receipt+cose) media type
 The payload media type ('content type') is included in the COSE envelope header.
 {{-COSE}} describes the security implications of reliance on this header parameter.
 
-Both media types describe COSE Sign1 messages, which are normatively signed, and therefore provide integrity protection.
+Both media types describe COSE_Sign1 messages, which include a signature, and therefore provide integrity protection.
 
 ## Cryptographic Agility
 
@@ -1030,7 +1029,7 @@ Different actors may rely on different Transparency Services, each registering a
 Running multiple, independent Transparency Services provides different organizations to represent consistent or divergent opinions.
 It is the role of the relying party to decide which Transparency Services and Issuers they choose to trust for their scenario.
 
-In both cases, the SCITT architecture provides generic, universally-verifiable cryptographic proofs to individually blame Issuers or the Transparency Service.
+In both cases, the SCITT architecture provides generic, universally-verifiable cryptographic proofs to hold Issuers or Transparency Services accountable.
 On one hand, this enables valid actors to detect and disambiguate malicious actors who employ Equivocation with Signed Statements to different entities.
 On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT architecture.
 
@@ -1043,10 +1042,6 @@ IANA is requested to register:
 
 *  the media type application/scitt-statement+cose in the "Media Types" registry, see below.
 *  the media type application/scitt-receipt+cose in the "Media Types" registry, see below.
-
-## COSE Receipts Header Parameter
-
-394 is requested in {{-RECEIPTS}} and has received an early assignment.
 
 ## Media Type application/scitt-statement+cose Registration
 
