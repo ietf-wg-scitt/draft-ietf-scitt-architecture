@@ -569,8 +569,7 @@ The subsequent sections describe the main concepts, namely Transparency Service,
 
 ## Transparency Service
 
-Transparency Services MUST feature a Verifiable Data Structure.
-The Verifiable Data Structure records registered Signed Statements and supports the production of Receipts.
+Transparency Services MUST produce COSE Receipts {{-RECEIPTS}}.
 
 Typically a Transparency Service has a single Issuer identity which is present in the `iss` Claim of Receipts for that service.
 
