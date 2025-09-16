@@ -563,11 +563,12 @@ Table of Contents
       Statements (and Receipts) are made and by which a logical
       collection of Statements can be grouped.  It is possible that
       there are multiple Statements about the same Artifact.  In these
-      cases, distinct Issuers (iss) might agree to use the sub CWT Claim
-      to create a coherent sequence of Signed Statements about the same
-      Artifact and Relying Parties can leverage sub to ensure
-      completeness and Non-equivocation across Statements by identifying
-      all Transparent Statements associated to a specific Subject.
+      cases, distinct Issuers (iss) might agree to use the sub CWT
+      Claim, defined in [RFC8392], to create a coherent sequence of
+      Signed Statements about the same Artifact and Relying Parties can
+      leverage sub to ensure completeness and Non-equivocation across
+      Statements by identifying all Transparent Statements associated to
+      a specific Subject.
 
    Transparency Service:  an entity that maintains and extends the
       Verifiable Data Structure and endorses its state.  The identity of
