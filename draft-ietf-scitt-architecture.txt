@@ -485,12 +485,12 @@ Table of Contents
       Issuer may be the owner or author of Artifacts, or an independent
       third party such as an Auditor, reviewer or an endorser.  In SCITT
       Statements and Receipts, the iss CWT Claim is a member of the COSE
-      header parameter 15: CWT_Claims within the protected header of a
-      COSE Envelope.  This document uses the terms "Issuer", and
-      "Subject" as described in [RFC8392], however the usage is
-      consistent with the broader interpretation of these terms in both
-      JOSE and COSE, and the guidance in [RFC8725] generally applies the
-      COSE equivalent terms with consistent semantics.
+      header parameter 15: CWT Claims as defined in [RFC9597] within the
+      protected header of a COSE Envelope.  This document uses the terms
+      "Issuer", and "Subject" as described in [RFC8392], however the
+      usage is consistent with the broader interpretation of these terms
+      in both JOSE and COSE, and the guidance in [RFC8725] generally
+      applies the COSE equivalent terms with consistent semantics.
 
    Non-equivocation:  a state where all proofs provided by the
       Transparency Service to Relying Parties are produced from a single
@@ -919,7 +919,7 @@ Table of Contents
    Issuers can produce Signed Statements about different Artifacts under
    the same Identity.  Issuers and Relying Parties must be able to
    recognize the Artifact to which the Statements pertain by looking at
-   the Signed Statement.  The iss and sub Claims, within the CWT_Claims
+   the Signed Statement.  The iss and sub Claims, within the CWT Claims
    protected header, are used to identify the Artifact the Statement
    pertains to.  (See Subject under Section 3 Terminology.)
 
@@ -1365,7 +1365,7 @@ Table of Contents
    unintentionally; registering a Statement only proves it was produced
    by an Issuer.  A registered Statement may be superseded by a
    subsequently submitted Signed Statement from the same Issuer, with
-   the same subject in the cwt_claims protected header.  Other Issuers
+   the same subject in the CWT Claims protected header.  Other Issuers
    may make new Statements to reflect new or corrected information.
    Relying Parties may choose to include or exclude Statements from
    Issuers to determine the accuracy of a collection of Statements.

@@ -1694,7 +1694,7 @@ In COSE, an Envelope consists of a protected header (included in the Issuer's si
         <dd style="margin-left: 1.5em" id="section-3-6.14">
           <p id="section-3-6.14.1">an identifier representing an organization, device, user, or entity securing Statements about supply chain Artifacts.
 An Issuer may be the owner or author of Artifacts, or an independent third party such as an Auditor, reviewer or an endorser.
-In SCITT Statements and Receipts, the <code>iss</code> CWT Claim is a member of the COSE header parameter <code>15: CWT_Claims</code> within the protected header of a COSE Envelope.
+In SCITT Statements and Receipts, the <code>iss</code> CWT Claim is a member of the COSE header parameter <code>15: CWT Claims</code> as defined in <span>[<a href="#RFC9597" class="cite xref">RFC9597</a>]</span> within the protected header of a COSE Envelope.
 This document uses the terms "Issuer", and "Subject" as described in <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and the guidance in <span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span> generally applies the COSE equivalent terms with consistent semantics.<a href="#section-3-6.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
@@ -2200,7 +2200,7 @@ For a software supply chain, payloads describing the software Artifacts may incl
 <p id="section-6-4">Once all the Envelope headers are set, an Issuer <span class="bcp14">MUST</span> use a standard COSE implementation to produce an appropriately serialized Signed Statement.<a href="#section-6-4" class="pilcrow">¶</a></p>
 <p id="section-6-5">Issuers can produce Signed Statements about different Artifacts under the same Identity.
 Issuers and Relying Parties must be able to recognize the Artifact to which the Statements pertain by looking at the Signed Statement.
-The <code>iss</code> and <code>sub</code> Claims, within the CWT_Claims protected header, are used to identify the Artifact the Statement pertains to.
+The <code>iss</code> and <code>sub</code> Claims, within the <code>CWT Claims</code> protected header, are used to identify the Artifact the Statement pertains to.
 (See Subject under <a href="#terminology" class="auto internal xref">Section 3</a> Terminology.)<a href="#section-6-5" class="pilcrow">¶</a></p>
 <p id="section-6-6">Issuers <span class="bcp14">MAY</span> use different signing keys (identified by <code>kid</code> in the protected header) for different Artifacts or sign all Signed Statements under the same key.<a href="#section-6-6" class="pilcrow">¶</a></p>
 <p id="section-6-7">An Issuer can make multiple Statements about the same Artifact.
@@ -2693,7 +2693,7 @@ Unless advertised in the Transparency Service Registration Policy, the Relying P
 <a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-accuracy-of-statements" class="section-name selfRef">Accuracy of Statements</a>
         </h3>
 <p id="section-9.2-1">Issuers can make false Statements either intentionally or unintentionally; registering a Statement only proves it was produced by an Issuer.
-A registered Statement may be superseded by a subsequently submitted Signed Statement from the same Issuer, with the same subject in the cwt_claims protected header.
+A registered Statement may be superseded by a subsequently submitted Signed Statement from the same Issuer, with the same subject in the <code>CWT Claims</code> protected header.
 Other Issuers may make new Statements to reflect new or corrected information.
 Relying Parties may choose to include or exclude Statements from Issuers to determine the accuracy of a collection of Statements.<a href="#section-9.2-1" class="pilcrow">¶</a></p>
 </section>
