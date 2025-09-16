@@ -487,7 +487,6 @@ Any Artifact that may be verified, is subject to scrutiny and auditing by other 
 The Transparency Service provides a history of Statements, which may be made by multiple Issuers, enabling Relying Parties to make informed decisions.
 
 Transparency is implemented by providing a consistent, append-only, cryptographically verifiable, publicly available record of entries.
-A SCITT instance is referred to as a Transparency Service.
 Implementations of Transparency Services may protect their registered sequence of Signed Statements and Verifiable Data Structure using a combination of trusted hardware, consensus protocols, and cryptographic evidence.
 A Receipt is a signature over one or more Verifiable Data Structure Proofs that a Signed Statement is registered in the Verifiable Data Structure.
 It is universally verifiable without online access to the TS.
