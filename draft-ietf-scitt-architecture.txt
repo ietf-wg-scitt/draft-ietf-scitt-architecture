@@ -253,20 +253,21 @@ Table of Contents
 
                   Figure 1: Example SSC Life-Cycle Threats
 
-   DevSecOps often depends on third-party and open-source software.
-   These dependencies can be quite complex throughout the supply chain,
-   so checking provenance and traceability throughout their lifecycle is
-   difficult.  There is a need for manageable auditability and
-   accountability of digital products.  Typically, the range of types of
-   statements about digital products (and their dependencies) is vast,
-   heterogeneous, and can differ between community policy requirements.
-   Taking the type and structure of all statements about digital
-   products into account might not be possible.  Examples of statements
-   may include commit signatures, build environment and parameters,
-   software bill of materials, static and dynamic application security
-   testing results, fuzz testing results, release approvals, deployment
-   records, vulnerability scan results, and patch logs.  In consequence,
-   instead of trying to understand and describe the detailed syntax and
+   DevSecOps, as defined in [NIST.SP.800-204C], often depends on third-
+   party and open-source software.  These dependencies can be quite
+   complex throughout the supply chain, so checking provenance and
+   traceability throughout their lifecycle is difficult.  There is a
+   need for manageable auditability and accountability of digital
+   products.  Typically, the range of types of statements about digital
+   products (and their dependencies) is vast, heterogeneous, and can
+   differ between community policy requirements.  Taking the type and
+   structure of all statements about digital products into account might
+   not be possible.  Examples of statements may include commit
+   signatures, build environment and parameters, software bill of
+   materials, static and dynamic application security testing results,
+   fuzz testing results, release approvals, deployment records,
+   vulnerability scan results, and patch logs.  In consequence, instead
+   of trying to understand and describe the detailed syntax and
    semantics of every type of statement about digital products, the
    SCITT architecture focuses on ensuring statement authenticity,
    visibility/transparency, and intends to provide scalable
@@ -1674,6 +1675,15 @@ Table of Contents
               DOI 10.6028/NIST.SP.1800-19, 20 April 2022,
               <https://nvlpubs.nist.gov/nistpubs/SpecialPublications/
               NIST.SP.1800-19.pdf>.
+
+   [NIST.SP.800-204C]
+              Chandramouli, R. and National Institute of Standards and
+              Technology (U.S.), "Implementation of DevSecOps for a
+              microservices-based application with service mesh", NIST
+              Special Publications (General) 800-204C,
+              DOI 10.6028/NIST.SP.800-204C, 8 March 2022,
+              <https://nvlpubs.nist.gov/nistpubs/SpecialPublications/
+              NIST.SP.800-204C.pdf>.
 
    [NIST_EO14028]
               "Software Supply Chain Security Guidance Under Executive
