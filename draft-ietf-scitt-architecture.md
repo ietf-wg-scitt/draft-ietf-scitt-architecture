@@ -409,7 +409,7 @@ Receipt:
 : a cryptographic proof that a Signed Statement is included in the Verifiable Data Structure.
 See {{-RECEIPTS}} for implementations.
 Receipts are signed proofs of verifiable data-structure properties.
-The types of Receipts MUST support inclusion proofs and MAY support other proof types, such as consistency proofs.
+Receipt Profiles implemented by a Transparency Service MUST support inclusion proofs and MAY support other proof types, such as consistency proofs.
 
 Registration:
 
