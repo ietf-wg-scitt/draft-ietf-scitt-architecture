@@ -109,6 +109,7 @@ normative:
 informative:
 
   NIST.SP.1800-19:
+  NIST.SP.800-204C:
   NIST_EO14028:
     target: https://www.nist.gov/system/files/documents/2022/02/04/software-supply-chain-security-guidance-under-EO-14028-section-4e.pdf
     title: Software Supply Chain Security Guidance Under Executive Order (EO) 14028 Section 4e
@@ -116,7 +117,6 @@ informative:
   RFC4949: Glossary
   RFC8725:
   RFC9162: CT
-  RFC9334: RATS
 
   CoSWID: RFC9393
 
@@ -256,11 +256,11 @@ As illustrated in {{lifecycle-threats}}, a software supply chain attack may leve
 ~~~
 {: #lifecycle-threats title="Example SSC Life-Cycle Threats"}
 
-DevSecOps often depends on third-party and open-source software.
+DevSecOps, as defined in {{NIST.SP.800-204C}}, often depends on third-party and open-source software.
 These dependencies can be quite complex throughout the supply chain, so checking provenance and traceability throughout their lifecycle is difficult.
 There is a need for manageable auditability and accountability of digital products.
 Typically, the range of types of statements about digital products (and their dependencies) is vast, heterogeneous, and can differ between community policy requirements.
-Taking the type and structure of all statements about digital and products into account might not be possible.
+Taking the type and structure of all statements about digital products into account might not be possible.
 Examples of statements may include commit signatures, build environment and parameters, software bill of materials, static and dynamic application security testing results, fuzz testing results, release approvals, deployment records, vulnerability scan results, and patch logs.
 In consequence, instead of trying to understand and describe the detailed syntax and semantics of every type of statement about digital products, the SCITT architecture focuses on ensuring statement authenticity, visibility/transparency, and intends to provide scalable accessibility.
 Threats and practical issues can also arise from unintended side-effects of using security techniques outside their proper bounds.
@@ -401,7 +401,7 @@ This document uses the terms "Issuer", and "Subject" as described in {{RFC8392}}
 
 Non-equivocation:
 
-: a state where all proofs provided by the Transparency Service to Relying Parties are produced from a Single Verifiable Data Structure describing a unique sequence of Signed Statements and are therefore consistent {{EQUIVOCATION}}.
+: a state where all proofs provided by the Transparency Service to Relying Parties are produced from a single Verifiable Data Structure describing a unique sequence of Signed Statements and are therefore consistent {{EQUIVOCATION}}.
 Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information.
 However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Relying Parties.
 
@@ -452,7 +452,7 @@ Subject:
 
 : an identifier, defined by the Issuer, which represents the organization, device, user, entity, or Artifact about which Statements (and Receipts) are made and by which a logical collection of Statements can be grouped.
 It is possible that there are multiple Statements about the same Artifact.
-In these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim to create a coherent sequence of Signed Statements about the same Artifact and Relying Parties can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific Subject.
+In these cases, distinct Issuers (`iss`) might agree to use the `sub` CWT Claim, defined in {{RFC8392}}, to create a coherent sequence of Signed Statements about the same Artifact and Relying Parties can leverage `sub` to ensure completeness and Non-equivocation across Statements by identifying all Transparent Statements associated to a specific Subject.
 
 Transparency Service:
 
@@ -598,7 +598,7 @@ Transparency Services MUST authenticate Signed Statements as part of a Registrat
 For instance, a trust anchor could be an X.509 root certificate (directly or its thumbprint), a pointer to an OpenID Connect identity provider, or any other COSE-compatible trust anchor.
 
 When using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certification path from an Issuer's certificate to one of the root certificates currently registered as a trust anchor by the Transparency Service.
-The protected header of the COSE_Sign1 Envelope MUST include either the Issuer's certificate as `x5t` or the chain including the Issuer's certificate as `x5chain`.
+The protected header of the COSE_Sign1 Envelope MUST include either the Issuer's certificate as `x5t` or the chain including the Issuer's certificate as `x5chain`, as defined in {{RFC9360}}.
 If `x5t` is included in the protected header, an `x5chain` with a leaf certificate corresponding to the `x5t` value MAY be included in the unprotected header.
 
 Registration Policies and trust anchors MUST be made Transparent and available to all Relying Parties of the Transparency Service by Registering them as Signed Statements on the Verifiable Data Structure.
@@ -1012,7 +1012,7 @@ The Statement (scitt-statement+cose) and Receipt (scitt-receipt+cose) media type
 The payload media type ('content type') is included in the COSE envelope header.
 {{-COSE}} describes the security implications of reliance on this header parameter.
 
-Both media types describe COSE_Sign1 messages, which are normatively signed, and therefore provide integrity protection.
+Both media types describe COSE_Sign1 messages, which include a signature, and therefore provide integrity protection.
 
 ## Cryptographic Agility
 
@@ -1030,7 +1030,7 @@ Different actors may rely on different Transparency Services, each registering a
 Running multiple, independent Transparency Services provides different organizations to represent consistent or divergent opinions.
 It is the role of the relying party to decide which Transparency Services and Issuers they choose to trust for their scenario.
 
-In both cases, the SCITT architecture provides generic, universally-verifiable cryptographic proofs to individually blame Issuers or the Transparency Service.
+In both cases, the SCITT architecture provides generic, universally-verifiable cryptographic proofs to hold Issuers or Transparency Services accountable.
 On one hand, this enables valid actors to detect and disambiguate malicious actors who employ Equivocation with Signed Statements to different entities.
 On the other hand, their liability and the resulting damage to their reputation are application specific, and out of scope of the SCITT architecture.
 
@@ -1043,10 +1043,6 @@ IANA is requested to register:
 
 *  the media type application/scitt-statement+cose in the "Media Types" registry, see below.
 *  the media type application/scitt-receipt+cose in the "Media Types" registry, see below.
-
-## COSE Receipts Header Parameter
-
-394 is requested in {{-RECEIPTS}} and has received an early assignment.
 
 ## Media Type application/scitt-statement+cose Registration
 
