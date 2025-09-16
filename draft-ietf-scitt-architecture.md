@@ -396,7 +396,7 @@ Issuer:
 
 : an identifier representing an organization, device, user, or entity securing Statements about supply chain Artifacts.
 An Issuer may be the owner or author of Artifacts, or an independent third party such as an Auditor, reviewer or an endorser.
-In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE header parameter `15: CWT_Claims` within the protected header of a COSE Envelope.
+In SCITT Statements and Receipts, the `iss` CWT Claim is a member of the COSE header parameter `15: CWT Claims` as defined in {{-CWT_CLAIMS_COSE}} within the protected header of a COSE Envelope.
 This document uses the terms "Issuer", and "Subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
 
 Non-equivocation:
@@ -669,7 +669,7 @@ Once all the Envelope headers are set, an Issuer MUST use a standard COSE implem
 
 Issuers can produce Signed Statements about different Artifacts under the same Identity.
 Issuers and Relying Parties must be able to recognize the Artifact to which the Statements pertain by looking at the Signed Statement.
-The `iss` and `sub` Claims, within the CWT_Claims protected header, are used to identify the Artifact the Statement pertains to.
+The `iss` and `sub` Claims, within the `CWT Claims` protected header, are used to identify the Artifact the Statement pertains to.
 (See Subject under {{terminology}} Terminology.)
 
 Issuers MAY use different signing keys (identified by `kid` in the protected header) for different Artifacts or sign all Signed Statements under the same key.
@@ -974,7 +974,7 @@ Unless advertised in the Transparency Service Registration Policy, the Relying P
 ## Accuracy of Statements
 
 Issuers can make false Statements either intentionally or unintentionally, registering a Statement only proves it was produced by an Issuer.
-A registered Statement may be superseded by a subsequently submitted Signed Statement from the same Issuer, with the same subject in the cwt_claims protected header.
+A registered Statement may be superseded by a subsequently submitted Signed Statement from the same Issuer, with the same subject in the `CWT Claims` protected header.
 Other Issuers may make new Statements to reflect new or corrected information.
 Relying Parties may choose to include or exclude Statements from Issuers to determine the accuracy of a collection of Statements.
 
