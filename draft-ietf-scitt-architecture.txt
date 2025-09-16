@@ -5,12 +5,12 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 6 March 2026                                         C. Fournet
+Expires: 20 March 2026                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                        2 September 2025
+                                                       16 September 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 March 2026.
+   This Internet-Draft will expire on 20 March 2026.
 
 Copyright Notice
 
@@ -112,10 +112,9 @@ Table of Contents
      9.6.  Cryptographic Agility
      9.7.  Threat Model
    10. IANA Considerations
-     10.1.  COSE Receipts Header Parameter
-     10.2.  Media Type application/scitt-statement+cose Registration
-     10.3.  Media Type application/scitt-receipt+cose Registration
-     10.4.  CoAP Content-Format Registrations
+     10.1.  Media Type application/scitt-statement+cose Registration
+     10.2.  Media Type application/scitt-receipt+cose Registration
+     10.3.  CoAP Content-Format Registrations
    11. References
      11.1.  Normative References
      11.2.  Informative References
@@ -1477,12 +1476,7 @@ Table of Contents
    *  the media type application/scitt-receipt+cose in the "Media Types"
       registry, see below.
 
-10.1.  COSE Receipts Header Parameter
-
-   394 is requested in [I-D.draft-ietf-cose-merkle-tree-proofs] and has
-   received an early assignment.
-
-10.2.  Media Type application/scitt-statement+cose Registration
+10.1.  Media Type application/scitt-statement+cose Registration
 
    IANA is requested to add the following Media-Type to the "Media
    Types" registry [IANA.media-types].
@@ -1521,7 +1515,7 @@ Table of Contents
    Restrictions on usage:  none
    Author/Change controller:  IETF
 
-10.3.  Media Type application/scitt-receipt+cose Registration
+10.2.  Media Type application/scitt-receipt+cose Registration
 
    +====================+================================+============+
    | Name               | Template                       | Reference  |
@@ -1558,7 +1552,7 @@ Table of Contents
    Restrictions on usage:  none
    Author/Change controller:  IETF
 
-10.4.  CoAP Content-Format Registrations
+10.3.  CoAP Content-Format Registrations
 
    IANA is requested to register the following Content-Format numbers in
    the "CoAP Content-Formats" sub-registry, within the "Constrained
@@ -1583,10 +1577,11 @@ Table of Contents
 
    [I-D.draft-ietf-cose-merkle-tree-proofs]
               Steele, O., Birkholz, H., Delignat-Lavaud, A., and C.
-              Fournet, "COSE Receipts", Work in Progress, Internet-
-              Draft, draft-ietf-cose-merkle-tree-proofs-15, 7 August
-              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              cose-merkle-tree-proofs-15>.
+              Fournet, "COSE (CBOR Object Signing and Encryption)
+              Receipts", Work in Progress, Internet-Draft, draft-ietf-
+              cose-merkle-tree-proofs-17, 10 September 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-cose-
+              merkle-tree-proofs-17>.
 
    [IANA.core-parameters]
               IANA, "Constrained RESTful Environments (CoRE)
