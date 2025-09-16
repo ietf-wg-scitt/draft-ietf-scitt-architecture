@@ -5,12 +5,12 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 19 March 2026                                        C. Fournet
+Expires: 20 March 2026                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                       15 September 2025
+                                                       16 September 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 March 2026.
+   This Internet-Draft will expire on 20 March 2026.
 
 Copyright Notice
 
@@ -1454,13 +1454,12 @@ Table of Contents
    to trust for their scenario.
 
    In both cases, the SCITT architecture provides generic, universally-
-   verifiable cryptographic proofs to individually attribute Statements
-   to Issuers or the Transparency Service.  On one hand, this enables
-   valid actors to detect and disambiguate malicious actors who employ
-   Equivocation with Signed Statements to different entities.  On the
-   other hand, their liability and the resulting damage to their
-   reputation are application specific, and out of scope of the SCITT
-   architecture.
+   verifiable cryptographic proofs to hold Issuers or Transparency
+   Services accountable.  On one hand, this enables valid actors to
+   detect and disambiguate malicious actors who employ Equivocation with
+   Signed Statements to different entities.  On the other hand, their
+   liability and the resulting damage to their reputation are
+   application specific, and out of scope of the SCITT architecture.
 
    Relying Parties and Auditors need not be trusted by other actors.  So
    long as actors maintain proper control of their signing keys and
