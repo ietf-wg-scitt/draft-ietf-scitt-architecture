@@ -401,7 +401,7 @@ This document uses the terms "Issuer", and "Subject" as described in {{RFC8392}}
 
 Non-equivocation:
 
-: a state where all proofs provided by the Transparency Service to Relying Parties are produced from a Single Verifiable Data Structure describing a unique sequence of Signed Statements and are therefore consistent {{EQUIVOCATION}}.
+: a state where all proofs provided by the Transparency Service to Relying Parties are produced from a single Verifiable Data Structure describing a unique sequence of Signed Statements and are therefore consistent {{EQUIVOCATION}}.
 Over time, an Issuer may register new Signed Statements about an Artifact in a Transparency Service with new information.
 However, the consistency of a collection of Signed Statements about the Artifact can be checked by all Relying Parties.
 
