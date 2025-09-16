@@ -1425,8 +1425,8 @@ Table of Contents
    envelope header.  [STD96] describes the security implications of
    reliance on this header parameter.
 
-   Both media types describe COSE Sign1 messages, which are normatively
-   signed, and therefore provide integrity protection.
+   Both media types describe COSE Sign1 messages, which include a
+   signature, and therefore provide integrity protection.
 
 9.6.  Cryptographic Agility
 
