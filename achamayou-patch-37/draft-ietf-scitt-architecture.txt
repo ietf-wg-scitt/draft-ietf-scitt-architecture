@@ -5,12 +5,12 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 20 March 2026                                        C. Fournet
+Expires: 21 March 2026                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                       16 September 2025
+                                                       17 September 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 March 2026.
+   This Internet-Draft will expire on 21 March 2026.
 
 Copyright Notice
 
@@ -1401,7 +1401,7 @@ Table of Contents
    communicate when keys are compromised, so that Signed Statements can
    be rejected by Transparency Services or Receipts can be ignored by
    Relying Parties.  Transparency Services whose keys have been
-   compromised can roll back their Statement Sequence to its longest
+   compromised can roll back their Statement Sequence to its most recent
    known valid prefix, establish new credentials, and use them to issue
    fresh Receipts going forward.  In cases where Issuer identity remains
    stable across credential rotation, Issuers can produce fresh
