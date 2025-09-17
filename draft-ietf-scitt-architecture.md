@@ -996,7 +996,7 @@ See {{-RECEIPTS}} for the generic security considerations that apply to Verifiab
 ### Key Compromise
 
 It is important for Issuers and Transparency Services to clearly communicate when keys are compromised, so that Signed Statements can be rejected by Transparency Services or Receipts can be ignored by Relying Parties.
-Transparency Services whose keys have been compromised can roll back their Statement Sequence to its most recent known valid prefix, establish new credentials, and use them to issue fresh Receipts going forward.
+Transparency Services whose receipt signing keys have been compromised can roll back their Statement Sequence to a point before compromise, establish new credentials, and use them to issue fresh Receipts going forward.
 In cases where Issuer identity remains stable across credential rotation, Issuers can produce fresh statements for their existing Subjects signed with new credentials, and containing an incremented security version number.
 Issuers can then communicate this new security version number to Relying Parties.
 Revocation strategies for compromised keys are out of scope for this document.
