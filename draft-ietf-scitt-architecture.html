@@ -16,11 +16,11 @@ While verifiable data structures have addressed specific issues, such as equivoc
 This document defines a scalable architecture for single-issuer signed statement transparency applicable to any supply chain.
 It ensures flexibility, interoperability between different transparency services, and compliance with various auditing procedures and regulatory requirements. 
     " name="description">
-<meta content="xml2rfc 3.30.1" name="generator">
+<meta content="xml2rfc 3.30.2" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-scitt-architecture-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.30.1
+  xml2rfc 3.30.2
     Python 3.12.11
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
@@ -1055,7 +1055,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 20 March 2026</td>
+<td class="center">Expires 22 March 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-09-16" class="published">16 September 2025</time>
+<time datetime="2025-09-18" class="published">18 September 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-03-20">20 March 2026</time></dd>
+<dd class="expires"><time datetime="2026-03-22">22 March 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1140,7 +1140,7 @@ It ensures flexibility, interoperability between different transparency services
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 20 March 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 March 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2737,6 +2737,8 @@ See <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I
 <a href="#section-9.4.2" class="section-number selfRef">9.4.2. </a><a href="#name-key-compromise" class="section-name selfRef">Key Compromise</a>
           </h4>
 <p id="section-9.4.2-1">It is important for Issuers and Transparency Services to clearly communicate when keys are compromised, so that Signed Statements can be rejected by Transparency Services or Receipts can be ignored by Relying Parties.
+Transparency Services whose receipt signing keys have been compromised can roll back their Statement Sequence to a point before compromise, establish new credentials, and use them to issue fresh Receipts going forward.
+Issuers are encouraged to follow existing best practices if their credentials are compromised.
 Revocation strategies for compromised keys are out of scope for this document.<a href="#section-9.4.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
