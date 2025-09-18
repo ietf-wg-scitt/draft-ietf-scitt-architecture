@@ -266,7 +266,6 @@ Threats and practical issues can also arise from unintended side-effects of usin
 For instance digital signatures may fail to verify past their expiry date even though the signed item itself remains completely valid.
 Or a signature may verify even though the information it is securing is now found unreliable but fine-grained revocation is too hard.
 
-Lastly, where data exchange underpins serious business decision-making, it is important to hold the producers of those data to a higher standard of accountability.
 The SCITT architecture provides mechanisms and structures for ensuring that the makers of authoritative statements can be held accountable and not hide or shred the evidence when it becomes inconvenient later.
 
 The following use cases illustrate the scope of SCITT and elaborate on the generic problem statement above.
