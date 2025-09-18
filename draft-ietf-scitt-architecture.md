@@ -607,6 +607,7 @@ The Transparency Service MUST apply the Registration Policy that was most recent
 The operator of a Transparency Service MAY update the Registration Policy or the trust anchors of a Transparency Service at any time.
 
 Transparency Services MUST ensure that for any Signed Statement they register, enough information is made available to Auditors to reproduce the Registration checks that were defined by the Registration Policies at the time of Registration.
+At a minimum, this consists of the Signed Statements themselves, any additional collateral data required to perform their authentication, and the applicable Registration Policy at the time of Registration.
 
 ### Initialization and Bootstrapping {#ts-initialization}
 
