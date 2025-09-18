@@ -2165,6 +2165,7 @@ It can also provide the ability to request a fresh Receipt for a given software 
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-signed-statements" class="section-name selfRef">Signed Statements</a>
       </h2>
 <p id="section-6-1">This specification prioritizes conformance to <span>[<a href="#STD96" class="cite xref">STD96</a>]</span> and its required and optional properties.
+Signed Statements produced by Issuers must be COSE_Sign1 messages, as defined by <span>[<a href="#STD96" class="cite xref">STD96</a>]</span>.
 Profiles and implementation specific choices should be used to determine admissibility of conforming messages.
 This specification is left intentionally open to allow implementations to make Registration restrictions that make the most sense for their operational use cases.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">There are many types of Statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Signed Statements.
@@ -2193,34 +2194,33 @@ For a software supply chain, payloads describing the software Artifacts may incl
           <p id="section-6-3.7.1"><span>[<a href="#SWID" class="cite xref">SWID</a>]</span><a href="#section-6-3.7.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-6-4">Once all the Envelope headers are set, an Issuer <span class="bcp14">MUST</span> use a standard COSE implementation to produce an appropriately serialized Signed Statement.<a href="#section-6-4" class="pilcrow">¶</a></p>
-<p id="section-6-5">Issuers can produce Signed Statements about different Artifacts under the same Identity.
+<p id="section-6-4">Issuers can produce Signed Statements about different Artifacts under the same Identity.
 Issuers and Relying Parties must be able to recognize the Artifact to which the Statements pertain by looking at the Signed Statement.
 The <code>iss</code> and <code>sub</code> Claims, within the <code>CWT Claims</code> protected header, are used to identify the Artifact the Statement pertains to.
-(See Subject under <a href="#terminology" class="auto internal xref">Section 3</a> Terminology.)<a href="#section-6-5" class="pilcrow">¶</a></p>
-<p id="section-6-6">Issuers <span class="bcp14">MAY</span> use different signing keys (identified by <code>kid</code> in the protected header) for different Artifacts or sign all Signed Statements under the same key.<a href="#section-6-6" class="pilcrow">¶</a></p>
-<p id="section-6-7">An Issuer can make multiple Statements about the same Artifact.
-For example, an Issuer can make amended Statements about the same Artifact as their view changes over time.<a href="#section-6-7" class="pilcrow">¶</a></p>
-<p id="section-6-8">Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
-Relying Parties can choose which Issuers they trust.<a href="#section-6-8" class="pilcrow">¶</a></p>
-<p id="section-6-9">Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.<a href="#section-6-9" class="pilcrow">¶</a></p>
-<p id="section-6-10">Additionally, <code>x5chain</code> that corresponds to either <code>x5t</code> or <code>kid</code> identifying the leaf certificate in the included certification path <span class="bcp14">MAY</span> be included in the unprotected header of the COSE Envelope.<a href="#section-6-10" class="pilcrow">¶</a></p>
+(See Subject under <a href="#terminology" class="auto internal xref">Section 3</a> Terminology.)<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-5">Issuers <span class="bcp14">MAY</span> use different signing keys (identified by <code>kid</code> in the protected header) for different Artifacts or sign all Signed Statements under the same key.<a href="#section-6-5" class="pilcrow">¶</a></p>
+<p id="section-6-6">An Issuer can make multiple Statements about the same Artifact.
+For example, an Issuer can make amended Statements about the same Artifact as their view changes over time.<a href="#section-6-6" class="pilcrow">¶</a></p>
+<p id="section-6-7">Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
+Relying Parties can choose which Issuers they trust.<a href="#section-6-7" class="pilcrow">¶</a></p>
+<p id="section-6-8">Multiple Issuers can make the same Statement about a single Artifact, affirming multiple Issuers agree.<a href="#section-6-8" class="pilcrow">¶</a></p>
+<p id="section-6-9">Additionally, <code>x5chain</code> that corresponds to either <code>x5t</code> or <code>kid</code> identifying the leaf certificate in the included certification path <span class="bcp14">MAY</span> be included in the unprotected header of the COSE Envelope.<a href="#section-6-9" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6-11.1">
-          <p id="section-6-11.1.1">When using x.509 certificates, support for either <code>x5t</code> or <code>x5chain</code> in the protected header is <span class="bcp14">REQUIRED</span> to implement.<a href="#section-6-11.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6-10.1">
+          <p id="section-6-10.1.1">When using x.509 certificates, support for either <code>x5t</code> or <code>x5chain</code> in the protected header is <span class="bcp14">REQUIRED</span> to implement.<a href="#section-6-10.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-6-11.2">
-          <p id="section-6-11.2.1">Support for <code>kid</code> in the protected header and <code>x5chain</code> in the unprotected header is <span class="bcp14">OPTIONAL</span> to implement.<a href="#section-6-11.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-6-10.2">
+          <p id="section-6-10.2.1">Support for <code>kid</code> in the protected header and <code>x5chain</code> in the unprotected header is <span class="bcp14">OPTIONAL</span> to implement.<a href="#section-6-10.2.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-6-12">When <code>x5t</code> or <code>x5chain</code> is present in the protected header, <code>iss</code> <span class="bcp14">MUST</span> be a string that meets URI requirements defined in <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>.
-The <code>iss</code> value's length <span class="bcp14">MUST</span> be between 1 and 8192 characters in length.<a href="#section-6-12" class="pilcrow">¶</a></p>
-<p id="section-6-13">The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when neither <code>x5t</code> nor <code>x5chain</code> is present in the protected header.
-Key discovery protocols are out-of-scope of this document.<a href="#section-6-13" class="pilcrow">¶</a></p>
-<p id="section-6-14">The protected header of a Signed Statement and a Receipt <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://rfc-editor.org/rfc/rfc9597#section-2" class="relref">Section 2</a> of [<a href="#RFC9597" class="cite xref">RFC9597</a>]</span>.
-The <code>CWT Claims</code> value <span class="bcp14">MUST</span> include the <code>Issuer Claim</code> (Claim label 1) and the <code>Subject Claim</code> (Claim label 2) <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span>.<a href="#section-6-14" class="pilcrow">¶</a></p>
-<p id="section-6-15">A Receipt is a Signed Statement (COSE_Sign1) with additional Claims in its protected header related to verifying the inclusion proof in its unprotected header.
-See <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>.<a href="#section-6-15" class="pilcrow">¶</a></p>
+<p id="section-6-11">When <code>x5t</code> or <code>x5chain</code> is present in the protected header, <code>iss</code> <span class="bcp14">MUST</span> be a string that meets URI requirements defined in <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>.
+The <code>iss</code> value's length <span class="bcp14">MUST</span> be between 1 and 8192 characters in length.<a href="#section-6-11" class="pilcrow">¶</a></p>
+<p id="section-6-12">The <code>kid</code> header parameter <span class="bcp14">MUST</span> be present when neither <code>x5t</code> nor <code>x5chain</code> is present in the protected header.
+Key discovery protocols are out-of-scope of this document.<a href="#section-6-12" class="pilcrow">¶</a></p>
+<p id="section-6-13">The protected header of a Signed Statement and a Receipt <span class="bcp14">MUST</span> include the <code>CWT Claims</code> header parameter as specified in <span><a href="https://rfc-editor.org/rfc/rfc9597#section-2" class="relref">Section 2</a> of [<a href="#RFC9597" class="cite xref">RFC9597</a>]</span>.
+The <code>CWT Claims</code> value <span class="bcp14">MUST</span> include the <code>Issuer Claim</code> (Claim label 1) and the <code>Subject Claim</code> (Claim label 2) <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span>.<a href="#section-6-13" class="pilcrow">¶</a></p>
+<p id="section-6-14">A Receipt is a Signed Statement (COSE_Sign1) with additional Claims in its protected header related to verifying the inclusion proof in its unprotected header.
+See <span>[<a href="#I-D.draft-ietf-cose-merkle-tree-proofs" class="cite xref">I-D.draft-ietf-cose-merkle-tree-proofs</a>]</span>.<a href="#section-6-14" class="pilcrow">¶</a></p>
 <div id="sec-signed-statement-examples">
 <section id="section-6.1">
         <h3 id="name-signed-statement-examples">
