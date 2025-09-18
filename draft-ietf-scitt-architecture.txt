@@ -486,13 +486,14 @@ Table of Contents
       entity securing Statements about supply chain Artifacts.  An
       Issuer may be the owner or author of Artifacts, or an independent
       third party such as an Auditor, reviewer or an endorser.  In SCITT
-      Statements and Receipts, the iss CWT Claim is a member of the COSE
-      header parameter 15: CWT Claims as defined in [RFC9597] within the
-      protected header of a COSE Envelope.  This document uses the terms
-      "Issuer", and "Subject" as described in [RFC8392], however the
-      usage is consistent with the broader interpretation of these terms
-      in both JOSE and COSE, and the guidance in [RFC8725] generally
-      applies the COSE equivalent terms with consistent semantics.
+      Statements and Receipts, the iss CWT (CBOR Web Token) Claim is a
+      member of the COSE header parameter 15: CWT Claims as defined in
+      [RFC9597] within the protected header of a COSE Envelope.  This
+      document uses the terms "Issuer", and "Subject" as described in
+      [RFC8392], however the usage is consistent with the broader
+      interpretation of these terms in both JOSE and COSE, and the
+      guidance in [RFC8725] generally applies the COSE equivalent terms
+      with consistent semantics.
 
    Non-equivocation:  a state where all proofs provided by the
       Transparency Service to Relying Parties are produced from a single
