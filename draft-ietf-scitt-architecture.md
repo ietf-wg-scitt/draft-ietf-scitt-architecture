@@ -187,7 +187,7 @@ The signed statements and receipts are based respectively on the COSE_Sign1 spec
 The application-domain-agnostic nature of COSE_Sign1 and its extensibility through COSE Header Parameters are prerequisites for implementing the interoperable message layer defined in this document.
 
 In summary, this specification supports relying parties obtaining proof that signed statements were recorded and checked for their validity at the time they were registered.
-How these statements are managed or stored is out-of-scope of this document.
+How these statements are managed or stored, how participating entities discover and notify each other of changes is out-of-scope of this document.
 
 ## Requirements Notation
 
