@@ -929,7 +929,7 @@ Table of Contents
    pertains to.  (See Subject under Section 3 Terminology.)
 
    Issuers MAY use different signing keys (identified by kid in the
-   protected header) for different Artifacts or sign all Signed
+   [STD96] protected header) for different Artifacts or sign all Signed
    Statements under the same key.
 
    An Issuer can make multiple Statements about the same Artifact.  For

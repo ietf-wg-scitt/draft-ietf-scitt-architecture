@@ -2199,7 +2199,7 @@ For a software supply chain, payloads describing the software Artifacts may incl
 Issuers and Relying Parties must be able to recognize the Artifact to which the Statements pertain by looking at the Signed Statement.
 The <code>iss</code> and <code>sub</code> Claims, within the <code>CWT Claims</code> protected header, are used to identify the Artifact the Statement pertains to.
 (See Subject under <a href="#terminology" class="auto internal xref">Section 3</a> Terminology.)<a href="#section-6-4" class="pilcrow">¶</a></p>
-<p id="section-6-5">Issuers <span class="bcp14">MAY</span> use different signing keys (identified by <code>kid</code> in the protected header) for different Artifacts or sign all Signed Statements under the same key.<a href="#section-6-5" class="pilcrow">¶</a></p>
+<p id="section-6-5">Issuers <span class="bcp14">MAY</span> use different signing keys (identified by <code>kid</code> in the <span>[<a href="#STD96" class="cite xref">STD96</a>]</span> protected header) for different Artifacts or sign all Signed Statements under the same key.<a href="#section-6-5" class="pilcrow">¶</a></p>
 <p id="section-6-6">An Issuer can make multiple Statements about the same Artifact.
 For example, an Issuer can make amended Statements about the same Artifact as their view changes over time.<a href="#section-6-6" class="pilcrow">¶</a></p>
 <p id="section-6-7">Multiple Issuers can make different, even conflicting Statements, about the same Artifact.
