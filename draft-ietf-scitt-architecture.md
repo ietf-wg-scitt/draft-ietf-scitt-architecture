@@ -647,6 +647,7 @@ It can also provide the ability to request a fresh Receipt for a given software 
 # Signed Statements {#signed-statements}
 
 This specification prioritizes conformance to {{-COSE}} and its required and optional properties.
+Signed Statements produced by Issuers must be COSE_Sign1 messages, as defined by {{-COSE}}.
 Profiles and implementation specific choices should be used to determine admissibility of conforming messages.
 This specification is left intentionally open to allow implementations to make Registration restrictions that make the most sense for their operational use cases.
 
@@ -661,8 +662,6 @@ For a software supply chain, payloads describing the software Artifacts may incl
 - {{SPDX-JSON}}
 - {{SLSA}}
 - {{SWID}}
-
-Once all the Envelope headers are set, an Issuer MUST use a standard COSE implementation to produce an appropriately serialized Signed Statement.
 
 Issuers can produce Signed Statements about different Artifacts under the same Identity.
 Issuers and Relying Parties must be able to recognize the Artifact to which the Statements pertain by looking at the Signed Statement.
