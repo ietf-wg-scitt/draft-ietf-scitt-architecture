@@ -129,21 +129,24 @@ Table of Contents
    enabled by the Supply Chain Integrity, Transparency, and Trust
    (SCITT) architecture is to enhance auditability and accountability
    for single-issuer signed content (statements) that are about supply
-   chain commodities (artifacts).  Registering signed statements with a
-   transparency service is akin to a notarization procedure.
-   Transparency services perform notary operations, confirming a policy
-   is met before recording the statement on the ledger.  The SCITT
-   ledger represents a linear and irrevocable history of statements
-   made.  Once the signed statement is registered, the transparency
-   service issues a receipt, just as a notary stamps the document being
-   notarized.  Similar approaches have been implemented for specific
-   classes of artifacts, such as Certificate Transparency [RFC9162].
-   The SCITT approach follows a more generic paradigm than previous
-   approaches.  This "content-agnostic" approach allows SCITT
-   transparency services to be either integrated in existing solutions
-   or to be an initial part of new emerging systems.  Extensibility is a
-   vital feature of the SCITT architecture, so that requirements from
-   various applications can be accommodated while always ensuring
+   chain commodities (artifacts).
+
+   Registering signed statements with a transparency service is akin to
+   a notarization procedure.  Transparency services perform notary
+   operations, confirming a policy is met before recording the statement
+   on the ledger.  The SCITT ledger represents a linear and irrevocable
+   history of statements made.  Once the signed statement is registered,
+   the transparency service issues a receipt, just as a notary stamps
+   the document being notarized.
+
+   Similar approaches have been implemented for specific classes of
+   artifacts, such as Certificate Transparency [RFC9162].  The SCITT
+   approach follows a more generic paradigm than previous approaches.
+   This "content-agnostic" approach allows SCITT transparency services
+   to be either integrated in existing solutions or to be an initial
+   part of new emerging systems.  Extensibility is a vital feature of
+   the SCITT architecture, so that requirements from various
+   applications can be accommodated while always ensuring
    interoperability with respect to registration procedures and
    corresponding auditability and accountability.  For simplicity, the
    scope of this document is limited to use cases originating from the
