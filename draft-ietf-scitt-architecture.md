@@ -473,7 +473,7 @@ SCITT supports multiple Verifiable Data Structures and Receipt formats as define
 # Definition of Transparency
 
 In this document, the definition of transparency is intended to build over abstract notions of Append-only Logs and Receipts.
-Existing transparency systems such as Certificate Transparency are instances of this definition.
+Existing transparency systems such as Certificate Transparency {{-CT}} are instances of this definition.
 SCITT supports multiple Verifiable Data Structures, as defined in {{-RECEIPTS}}.
 
 A Signed Statement is an identifiable and non-repudiable Statement made by an Issuer.
