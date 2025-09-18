@@ -397,7 +397,7 @@ Issuer:
 
 : an identifier representing an organization, device, user, or entity securing Statements about supply chain Artifacts.
 An Issuer may be the owner or author of Artifacts, or an independent third party such as an Auditor, reviewer or an endorser.
-In SCITT Statements and Receipts, the `iss` CWT (CBOR Web Token) Claim is a member of the COSE header parameter `15: CWT Claims` as defined in {{-CWT_CLAIMS_COSE}} within the protected header of a COSE Envelope.
+In SCITT Statements and Receipts, the `iss` Claim is a member of the COSE header parameter `15: CWT Claims` defined in {{-CWT_CLAIMS_COSE}}, which embeds a CWT Claim Set {{RFC8392}} within the protected header of a COSE Envelope.
 This document uses the terms "Issuer", and "Subject" as described in {{RFC8392}}, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and the guidance in {{RFC8725}} generally applies the COSE equivalent terms with consistent semantics.
 
 Non-equivocation:
