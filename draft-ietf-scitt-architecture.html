@@ -1694,7 +1694,7 @@ In COSE, an Envelope consists of a protected header (included in the Issuer's si
         <dd style="margin-left: 1.5em" id="section-3-6.14">
           <p id="section-3-6.14.1">an identifier representing an organization, device, user, or entity securing Statements about supply chain Artifacts.
 An Issuer may be the owner or author of Artifacts, or an independent third party such as an Auditor, reviewer or an endorser.
-In SCITT Statements and Receipts, the <code>iss</code> CWT (CBOR Web Token) Claim is a member of the COSE header parameter <code>15: CWT Claims</code> as defined in <span>[<a href="#RFC9597" class="cite xref">RFC9597</a>]</span> within the protected header of a COSE Envelope.
+In SCITT Statements and Receipts, the <code>iss</code> Claim is a member of the COSE header parameter <code>15: CWT Claims</code> defined in <span>[<a href="#RFC9597" class="cite xref">RFC9597</a>]</span>, which embeds a CWT Claim Set <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span> within the protected header of a COSE Envelope.
 This document uses the terms "Issuer", and "Subject" as described in <span>[<a href="#RFC8392" class="cite xref">RFC8392</a>]</span>, however the usage is consistent with the broader interpretation of these terms in both JOSE and COSE, and the guidance in <span>[<a href="#RFC8725" class="cite xref">RFC8725</a>]</span> generally applies the COSE equivalent terms with consistent semantics.<a href="#section-3-6.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
