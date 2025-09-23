@@ -658,13 +658,13 @@ There are many types of Statements (such as SBOMs, malware scans, audit reports,
 An Issuer must first decide on a suitable format (`3`: payload type) to serialize the Statement payload.
 For a software supply chain, payloads describing the software Artifacts may include:
 
-- {{CoSWID}}
-- {{CycloneDX}}
-- {{in-toto}}
-- {{SPDX-CBOR}}
-- {{SPDX-JSON}}
-- {{SLSA}}
-- {{SWID}}
+- {{CoSWID}} Concise Software Identification Tags
+- {{CycloneDX}} Bill of Materials standard
+- {{in-toto}} Supply chain description metadata
+- {{SPDX-CBOR}} Software component description format
+- {{SPDX-JSON}} Software component description format
+- {{SLSA}} Supply-chain Levels for Software Artifacts
+- {{SWID}} Software Identification Tag format
 
 Issuers can produce Signed Statements about different Artifacts under the same Identity.
 Issuers and Relying Parties must be able to recognize the Artifact to which the Statements pertain by looking at the Signed Statement.
