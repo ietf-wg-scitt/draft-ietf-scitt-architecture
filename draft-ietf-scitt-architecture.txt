@@ -132,12 +132,11 @@ Table of Contents
    chain commodities (artifacts).
 
    Registering signed statements with a transparency service is akin to
-   a notarization procedure.  Transparency services perform notary
-   operations, confirming a policy is met before recording the statement
-   on the ledger.  The SCITT ledger represents a linear and irrevocable
-   history of statements made.  Once the signed statement is registered,
-   the transparency service issues a receipt, just as a notary stamps
-   the document being notarized.
+   a notarization procedure.  Transparency services confirm a policy is
+   met before recording the statement on the ledger.  The SCITT ledger
+   represents a linear and irrevocable history of statements made.  Once
+   the signed statement is registered, the transparency service issues a
+   receipt.
 
    Similar approaches have been implemented for specific classes of
    artifacts, such as Certificate Transparency [RFC9162].  The SCITT
