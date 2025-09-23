@@ -788,13 +788,13 @@ Table of Contents
 
 5.1.1.1.  Mandatory Registration Checks
 
-   During Registration, a Transparency Service MUST, at a minimum,
-   syntactically check the Issuer of the Signed Statement by
-   cryptographically verifying the COSE signature according to [STD96].
-   The Issuer identity MUST be bound to the Signed Statement by
-   including an identifier in the protected header.  If the protected
-   header includes multiple identifiers, all those that are registered
-   by the Transparency Service MUST be checked.
+   During Registration, a Transparency Service MUST syntactically check
+   the Issuer of the Signed Statement by cryptographically verifying the
+   COSE signature according to [STD96].  The Issuer identity MUST be
+   bound to the Signed Statement by including an identifier in the
+   protected header.  If the protected header includes multiple
+   identifiers, all those that are registered by the Transparency
+   Service MUST be checked.
 
    Transparency Services MUST maintain a list of trust anchors (see
    definition of trust anchor in [RFC4949]) in order to check the

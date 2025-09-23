@@ -2074,7 +2074,7 @@ The presence of an explicit transparent registration policy, even if it allows a
             <h5 id="name-mandatory-registration-chec">
 <a href="#section-5.1.1.1" class="section-number selfRef">5.1.1.1. </a><a href="#name-mandatory-registration-chec" class="section-name selfRef">Mandatory Registration Checks</a>
             </h5>
-<p id="section-5.1.1.1-1">During Registration, a Transparency Service <span class="bcp14">MUST</span>, at a minimum, syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to <span>[<a href="#STD96" class="cite xref">STD96</a>]</span>.
+<p id="section-5.1.1.1-1">During Registration, a Transparency Service <span class="bcp14">MUST</span> syntactically check the Issuer of the Signed Statement by cryptographically verifying the COSE signature according to <span>[<a href="#STD96" class="cite xref">STD96</a>]</span>.
 The Issuer identity <span class="bcp14">MUST</span> be bound to the Signed Statement by including an identifier in the protected header.
 If the protected header includes multiple identifiers, all those that are registered by the Transparency Service <span class="bcp14">MUST</span> be checked.<a href="#section-5.1.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.1.1.1-2">Transparency Services <span class="bcp14">MUST</span> maintain a list of trust anchors (see definition of trust anchor in <span>[<a href="#RFC4949" class="cite xref">RFC4949</a>]</span>) in order to check the signatures of Signed Statements, either separately, or inside Registration Policies.
