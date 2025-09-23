@@ -172,9 +172,9 @@ This document defines an architecture, a base set of extensible message structur
 The goal of the transparency enabled by the Supply Chain Integrity, Transparency, and Trust (SCITT) architecture is to enhance auditability and accountability for single-issuer signed content (statements) that are about supply chain commodities (artifacts).
 
 Registering signed statements with a transparency service is akin to a notarization procedure.
-Transparency services perform notary operations, confirming a policy is met before recording the statement on the ledger.
+Transparency services confirm a policy is met before recording the statement on the ledger.
 The SCITT ledger represents a linear and irrevocable history of statements made.
-Once the signed statement is registered, the transparency service issues a receipt, just as a notary stamps the document being notarized.
+Once the signed statement is registered, the transparency service issues a receipt.
 
 Similar approaches have been implemented for specific classes of artifacts, such as Certificate Transparency {{-CT}}.
 The SCITT approach follows a more generic paradigm than previous approaches.
