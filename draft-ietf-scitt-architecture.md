@@ -659,7 +659,7 @@ An Issuer must first decide on a suitable format (`3`: payload type) to serializ
 For a software supply chain, payloads describing the software Artifacts may include:
 
 - {{CoSWID}} Concise Software Identification Tags format
-- {{CycloneDX}} Bill of Materials standard
+- {{CycloneDX}} Bill of Materials format
 - {{in-toto}} Supply chain description metadata
 - {{SPDX-CBOR}} Software component description format
 - {{SPDX-JSON}} Software component description format
