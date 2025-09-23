@@ -908,19 +908,19 @@ Table of Contents
    (3: payload type) to serialize the Statement payload.  For a software
    supply chain, payloads describing the software Artifacts may include:
 
-   *  [CoSWID]
+   *  [CoSWID] Concise Software Identification Tags format
 
-   *  [CycloneDX]
+   *  [CycloneDX] Bill of Materials format
 
-   *  [in-toto]
+   *  [in-toto] Supply chain description metadata
 
-   *  [SPDX-CBOR]
+   *  [SPDX-CBOR] Software component description format
 
-   *  [SPDX-JSON]
+   *  [SPDX-JSON] Software component description format
 
-   *  [SLSA]
+   *  [SLSA] Supply-chain Levels for Software Artifacts
 
-   *  [SWID]
+   *  [SWID] Software Identification Tag format
 
    Issuers can produce Signed Statements about different Artifacts under
    the same Identity.  Issuers and Relying Parties must be able to
