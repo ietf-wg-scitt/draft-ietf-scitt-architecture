@@ -117,6 +117,7 @@ informative:
   RFC4949: Glossary
   RFC8725:
   RFC9162: CT
+  RFC4949:
 
   CoSWID: RFC9393
 
@@ -143,10 +144,6 @@ informative:
   SWID:
     target: https://csrc.nist.gov/Projects/Software-Identification-SWID/guidelines
     title: SWID Specification
-
-  KEY-MANAGEMENT:
-    target: https://csrc.nist.gov/pubs/sp/800/57/pt2/r1/final
-    title: NIST SP 800-57 Part 2 Rev. 1
 
   EQUIVOCATION:
     target: https://www.read.seas.harvard.edu/~kohler/class/08w-dsi/chun07attested.pdf
@@ -989,7 +986,7 @@ Issuers and Transparency Services MUST:
 
 - carefully protect their private signing keys
 - avoid using keys for more than one purpose
-- rotate their keys in well-defined cryptoperiods, see {{KEY-MANAGEMENT}}
+- rotate their keys in well-defined cryptoperiods (see {{RFC4949}} for a definition)
 
 ### Verifiable Data Structure
 
