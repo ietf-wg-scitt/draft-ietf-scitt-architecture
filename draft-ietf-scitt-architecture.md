@@ -985,7 +985,7 @@ Issuers and Transparency Services MUST:
 
 - carefully protect their private signing keys
 - avoid using keys for more than one purpose
-- rotate their keys in well-defined cryptoperiods (see {{Glossary}} for a definition)
+- rotate their keys at a cryptoperiod (defined in {{-Glossary}}) appropriate for the key algorithm and domain-specific regulations
 
 ### Verifiable Data Structure
 
