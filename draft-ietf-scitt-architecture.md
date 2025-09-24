@@ -117,7 +117,6 @@ informative:
   RFC4949: Glossary
   RFC8725:
   RFC9162: CT
-  RFC4949:
 
   CoSWID: RFC9393
 
@@ -986,7 +985,7 @@ Issuers and Transparency Services MUST:
 
 - carefully protect their private signing keys
 - avoid using keys for more than one purpose
-- rotate their keys in well-defined cryptoperiods (see {{RFC4949}} for a definition)
+- rotate their keys in well-defined cryptoperiods (see {{Glossary}} for a definition)
 
 ### Verifiable Data Structure
 
