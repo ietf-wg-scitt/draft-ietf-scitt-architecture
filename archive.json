@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-21T00:55:59.470372+00:00",
+  "timestamp": "2025-09-25T00:52:09.685700+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -6908,7 +6908,7 @@
       "id": "I_kwDOIvmHss7LuOfg",
       "title": "Review: Erik Kline",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/411",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -6917,8 +6917,8 @@
       ],
       "body": "https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/ballot/#draft-ietf-scitt-architecture_erik-kline\n\n## Section 3\n\n> I can't help but feel that \"Transparency Statement\" is a slightly better\n> term than the somewhat-generic-sounding \"Transparent Statement\", but\n> I'm guessing this is well past the stage at which terminology can be\n> changed.\n> \n> Just an observation.\n\n- [x] Respond in writing: \"Duly noted, this was discussed in the WG, and Transparency Statement was on the table for a while, but rough consensus did not go that way in the end.\"\n\n## Section 9.4.2\n\n> What should an Issuer or Transparency Service do when a key is\n> compromised beyond \"communicate\"?\n> \n> Should it, for example, establish new credentials and replay all\n> signing operations with the new key(s)?\n\n- [x] #431.\n\nKey points:\n  - No replay\n  - Rollback\n  - Endorsement with new key\n  - Communicate\n\n## Section 2.1\n\n> \"Taking the type and structure of all statements about digital and\n> products into account might not be possible.\"\n> \n> s/digital and products/digital products/ I think improves readability.\n\n- [x] #415.\n",
       "createdAt": "2025-09-15T13:06:37Z",
-      "updatedAt": "2025-09-18T12:42:42Z",
-      "closedAt": null,
+      "updatedAt": "2025-09-23T08:18:17Z",
+      "closedAt": "2025-09-23T08:18:17Z",
       "comments": [
         {
           "author": "achamayou",
@@ -6950,15 +6950,15 @@
       "id": "I_kwDOIvmHss7LuaFf",
       "title": "Review: Mike Bishop",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/413",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/ballot/#draft-ietf-scitt-architecture_mike-bishop\n\n> Given the varying functions performed by [notaries in different legal systems](https://edictsandstatutes.com/notaries-in-different-cultures/#The_Role_of_Notaries_in_Diverse_Legal_Systems), the comparison to a notarial stamp might be more confusing than illuminating for a global audience. For example, in the US, a notary certifies the identity of the signer without verifying the accuracy of the document being signed (\"confirm a policy is met before recording the statement\").\n\n- [ ] To be discussed in WG, I brought up this [exact point](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/366#discussion_r2022374434) when we discussed this, but the consensus was that it still had illustrative value on the whole. @henkbirkholz would like to keep notary and will propose a PR.\n\n## Section 2.1\n\n> please expand and/or link to a definition of the term \"DevSecOps\".\n\n- [x] PR needed. #418\n\nPossible references:\n\n[Cloud Security Alliance](https://cloudsecurityalliance.org/artifacts/six-pillars-of-devsecops)\n\n> DevSecOps is the integration of continuous security principles, processes, and technology into DevOps culture, practices, and workflows.\n\n[NIST SP 1800-44 IPD](https://csrc.nist.gov/pubs/sp/1800/44/ipd)\n\n> Development Operations (DevOps) bring together software development and operations to shorten development cycles, allow organizations to be agile and maintain the pace of innovation while taking advantage of cloud-native technology and practices and the increasing industry use of rapidly evolving artificial intelligence (AI) capabilities. Development, Security, Operations (DevSecOps) emphasizes this philosophy by continuously addressing security throughout all phases of the software development lifecycle.\n\n[NIST SP 800-204C in Section 1. Introduction](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-204C.pdf)\n\n> Thus, DevSecOps is the term that denotes a culture and set of \npractices with automation tools to drive increased collaboration, trust, shared responsibility, \ntransparency, autonomy, agility, and automation across the key stakeholders responsible for \ndelivering software, including development, operations, and security organizations.\n\nI think the last one is the best choice here.\n\n> I appreciate the thorough Terminology section. The definition of Non-equivocation uses the capitalized term \"Single Verifiable Data Structure\"; while I see \"Verifiable Data Structure\" defined, there's no definition of the capitalized Single or of SVDS as a term. Should this be \"single Verifiable Data Structure\" or is an additional definition needed?\n\n- [x] PR needed. #419\n\n> In Figure 2, I'm unclear why there's a line from Issuer's \"verify\" to the Transparency Service. Wouldn't that go only into Verify Transparent Statement?\n\n- [x] Consensus in meeting of Sep 16 is to remove the line for clarity #433.\n\n> The claims being used (`iss`, `sub`) are from [RFC8392](https://datatracker.ietf.org/doc/rfc8392/). That's referenced to define the term \"claim\", but isn't given as a reference for these specific claim types. Please expand on that reference so people can follow that thread.\n\n- [x] Actually the first use of `iss` in the definition Issuer, just a bit further down, does [exactly that](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#section-3-6.14.1). #420 does the same in the definition of Subject, where `sub` is first used.\n\n> Similarly, there's no introduction to `x5t`, `x5chain`, or `kid`. From context, I assumed they came from COSE_Sign1 in [RFC 9052](https://datatracker.ietf.org/doc/rfc9052/), but I don't find them there. Can you put pointers as appropriate? If this document is defining them, be clearer about that.\n\n- [x] They actually come from RFC 9360, #421.\n\n> In Section 9.5, what does \"normatively signed\" mean? If it means the media type requires a valid signature, consider \"which include a signature and therefore....\"\n\n- [x] #422.\n\n> In Section 9.7, \"blame\" may be a more loaded word than you want. I think this is trying to make a statement about attribution, not fault.\n\n- [x] To be discussed. Attributing/attribution is probably better indeed. #424.\n\n## Nits\n\n> Section 2.1, \"cyber security-based\" => \"cyber-security-based\"\n> Section 3, \"for implementations\" => \"for implementations.\"\n> Section 5.1.4 ends with a sentence fragment. Should this be part of the previous sentence?\n> Section 6, no commas around the parentheses in the last paragraph\n> Section 7.1, no comma after \"[[STD96](https://datatracker.ietf.org/doc/std96/)]\"\n> Section 9.2, \"unintentionally,\" => \"unintentionally;\"\n> Section 9.5 and multiple Figures, \"COSE Sign1\" => \"COSE_Sign1\"?\n\n- [x] #423.",
+      "body": "https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/ballot/#draft-ietf-scitt-architecture_mike-bishop\n\n> Given the varying functions performed by [notaries in different legal systems](https://edictsandstatutes.com/notaries-in-different-cultures/#The_Role_of_Notaries_in_Diverse_Legal_Systems), the comparison to a notarial stamp might be more confusing than illuminating for a global audience. For example, in the US, a notary certifies the identity of the signer without verifying the accuracy of the document being signed (\"confirm a policy is met before recording the statement\").\n\n- [x] To be discussed in WG, I brought up this [exact point](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/366#discussion_r2022374434) when we discussed this, but the consensus was that it still had illustrative value on the whole. @henkbirkholz would like to keep notary and will propose a PR. I propose #450.\n\n## Section 2.1\n\n> please expand and/or link to a definition of the term \"DevSecOps\".\n\n- [x] PR needed. #418\n\nPossible references:\n\n[Cloud Security Alliance](https://cloudsecurityalliance.org/artifacts/six-pillars-of-devsecops)\n\n> DevSecOps is the integration of continuous security principles, processes, and technology into DevOps culture, practices, and workflows.\n\n[NIST SP 1800-44 IPD](https://csrc.nist.gov/pubs/sp/1800/44/ipd)\n\n> Development Operations (DevOps) bring together software development and operations to shorten development cycles, allow organizations to be agile and maintain the pace of innovation while taking advantage of cloud-native technology and practices and the increasing industry use of rapidly evolving artificial intelligence (AI) capabilities. Development, Security, Operations (DevSecOps) emphasizes this philosophy by continuously addressing security throughout all phases of the software development lifecycle.\n\n[NIST SP 800-204C in Section 1. Introduction](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-204C.pdf)\n\n> Thus, DevSecOps is the term that denotes a culture and set of \npractices with automation tools to drive increased collaboration, trust, shared responsibility, \ntransparency, autonomy, agility, and automation across the key stakeholders responsible for \ndelivering software, including development, operations, and security organizations.\n\nI think the last one is the best choice here.\n\n> I appreciate the thorough Terminology section. The definition of Non-equivocation uses the capitalized term \"Single Verifiable Data Structure\"; while I see \"Verifiable Data Structure\" defined, there's no definition of the capitalized Single or of SVDS as a term. Should this be \"single Verifiable Data Structure\" or is an additional definition needed?\n\n- [x] PR needed. #419\n\n> In Figure 2, I'm unclear why there's a line from Issuer's \"verify\" to the Transparency Service. Wouldn't that go only into Verify Transparent Statement?\n\n- [x] Consensus in meeting of Sep 16 is to remove the line for clarity #433.\n\n> The claims being used (`iss`, `sub`) are from [RFC8392](https://datatracker.ietf.org/doc/rfc8392/). That's referenced to define the term \"claim\", but isn't given as a reference for these specific claim types. Please expand on that reference so people can follow that thread.\n\n- [x] Actually the first use of `iss` in the definition Issuer, just a bit further down, does [exactly that](https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#section-3-6.14.1). #420 does the same in the definition of Subject, where `sub` is first used.\n\n> Similarly, there's no introduction to `x5t`, `x5chain`, or `kid`. From context, I assumed they came from COSE_Sign1 in [RFC 9052](https://datatracker.ietf.org/doc/rfc9052/), but I don't find them there. Can you put pointers as appropriate? If this document is defining them, be clearer about that.\n\n- [x] They actually come from RFC 9360, #421.\n\n> In Section 9.5, what does \"normatively signed\" mean? If it means the media type requires a valid signature, consider \"which include a signature and therefore....\"\n\n- [x] #422.\n\n> In Section 9.7, \"blame\" may be a more loaded word than you want. I think this is trying to make a statement about attribution, not fault.\n\n- [x] To be discussed. Attributing/attribution is probably better indeed. #424.\n\n## Nits\n\n> Section 2.1, \"cyber security-based\" => \"cyber-security-based\"\n> Section 3, \"for implementations\" => \"for implementations.\"\n> Section 5.1.4 ends with a sentence fragment. Should this be part of the previous sentence?\n> Section 6, no commas around the parentheses in the last paragraph\n> Section 7.1, no comma after \"[[STD96](https://datatracker.ietf.org/doc/std96/)]\"\n> Section 9.2, \"unintentionally,\" => \"unintentionally;\"\n> Section 9.5 and multiple Figures, \"COSE Sign1\" => \"COSE_Sign1\"?\n\n- [x] #423.",
       "createdAt": "2025-09-15T13:19:12Z",
-      "updatedAt": "2025-09-18T10:03:45Z",
-      "closedAt": null,
+      "updatedAt": "2025-09-24T10:33:03Z",
+      "closedAt": "2025-09-24T10:33:03Z",
       "comments": []
     },
     {
@@ -6966,17 +6966,17 @@
       "id": "I_kwDOIvmHss7Lupyw",
       "title": "Review: Mohamed Boucadair",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/414",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
         "Needs email response"
       ],
-      "body": "https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/ballot/#draft-ietf-scitt-architecture_mohamed-boucadair\n\n> Many questions popped up when reading the document (e.g., how the various entities know/discover each other, how authentication is done, how bootstrapping is made, what registration actually means, how the receipts are retrieved, how collection is made, how the latest version of a statement on a specific component is made available rather than consuming a stale one, what if a TS is not available anymore, etc.\n>\n> As this is an architecture document (but not only), I was expecting some of these details to be grouped in a single place (even with a statement, these are out of scope).\n\n- [x] #438. Clarify in response that bootstrapping is covered in 5. Architecture Overview, as 5.1.2. Initialization and Bootstrapping and 9. Security Considerations, as 9.4.3. Bootstrapping. Authentication is done with COSE, this is abundantly covered in introduction.\n\n## Abstract\n\n> (1) It is not clear to me how what means \u201cscalable architecture\u201d here. Scalability can be approach from various angles and I\u2019m not sure which aspects is being focused on here. I\u2019d prefer we back any claim here with a discussion on that in the main text.\n\n- [x] #437.\n\n> (2) Likewise, what does flexibility mean in this specific context? For example, there are some constraints imposed on how registration policies may be updated, etc. I think that exercising the architecture and playing with various contexts (complex component dependencies, other uses) would be needed first.\n\n- [x] #437.\n\n> (3) Idem, maybe I\u2019m misreading this but what aspect in the spec you have in mind with \u201cinteroperability between different transparency services\u201d?\n\n- [ ] Response to AD pointing to single data definition for Signed/Transparent/Statements/COSE receipts and ability to embed a collection of receipts in a transparent statement.\n\n> (4) nits\n>\n> * s/proposes/defines\n> * Not easy at this stage to digest what is a \u201ctransparency service\u201d.\n\n- [x] #425.\n\n## Section 1\n\n>    As these messages provide the foundation of\n>    any transparency service implementation for global and cross-domain\n>                                                           ^^^^^^^^^^^^\n>    application interoperability, they are based on complementary COSE\n>    specifications, mainly [I-D.draft-ietf-cose-merkle-tree-proofs].\n>\n> How domain is defined in this specific context?\n\n- [x] #426. Discussion needed, the sentence as it stands does not make a lot of sense. I think the point we are trying to make is that because the goal is to provide transparency for all use cases and application domains, the architecture picks a domain-agnostic receipt format, COSE Receipts.\n\nThe first line in the paragraph is also wrong:\n\n> This document also defines message structures for signed statements and defines a profile for COSE receipts {{-RECEIPTS}}, i.e., signed verifiable data structure proofs).\n\nThe architecture document does not define a profile for COSE receipts. I think we need to improve that paragraph altogether.\n\n## Figure 1\n> These are still possible attacks. I don\u2019t think we sat  that SCITT will nullify those. Right?\n\n- [ ] Response in email. We try to capture existing attack vectors in an appropriate manner.\n\n## Section 2.1\n\n>   DevSecOps often depends on third-party and open-source software. \n> \n> I know what it means, but do we have an authoritative ref to cite for DevSecOps?\n\n- [x] #418, also raised by Mike Bishop in #413.\n\n## Section 3\n\n>       In SCITT\n>       Statements and Receipts, the iss CWT Claim is a member of the COSE\n>       header parameter 15: CWT_Claims within the protected header of a\n>       COSE Envelope.  \n> \n> (1) I don\u2019t find CWT_Claims in the base COSE spec. \n> \n> (2) I guess we meant what is defined in [RFC9597](https://datatracker.ietf.org/doc/rfc9597/). If so, please add a pointer to that RFC.\n> \n> (3) Also, I think this and other occurrences in the document should be \u201cCWT-Claims\u201d to comply with 9597.\n\n- [x] #427. The actual IANA name is `CWT Claims`, with the space, `CWT-Claims` is the CDDL definition name in RFC9597. We already had a reference to that elsewhere, but I have added it at that location too, and make naming consistent throughout the document.\n\n>    Receipt:  a cryptographic proof that a Signed Statement is included\n>       in the Verifiable Data Structure.  See\n>       [I-D.draft-ietf-cose-merkle-tree-proofs] for implementations\n>       Receipts are signed proofs of verifiable data-structure\n>       properties.  The types of Receipts MUST support inclusion proofs\n>       and MAY support other proof types, such as consistency proofs.\n> \n> (1) I don\u2019t parse the second sentence.\n> \n> (2) What is a \u201ctype of receipt\u201d? Failed to find which part of [draft-ietf-cose-merkle-tree-proofs](https://datatracker.ietf.org/doc/draft-ietf-cose-merkle-tree-proofs/) this is referring to.\n> \n> (3) Weird to have the normative requirement in a terminology section.\n\n- [x] #428. Does not address (3), I could not find an obviously better location.\n\n## Section 4\n\n>    A SCITT instance is referred to as a Transparency Service.\n> \n> Isn\u2019t SCITT about the full architecture?\n> \n> Also, I don\u2019t see \u201c SCITT instance\u201d used anywhere in the document.\n\n- [x] #429.\n\n## Figure2\n\n> is mixing state, entities, and so on. Also the direction of arrows is confusing to me. For example, I expect sign and verify to act in distinct directions.\n> \n> No clear to me how to read this diagram.\n\n- [x] No action, the diagram is not perfect, but we do not know how to make it better.\n\n## Section 5.1\n\n>   Transparency Services MUST feature a Verifiable Data Structure.  \n> \n> What does concretely mean?\n\n- [x] #430.\n\n## Section 5.1.1):\n\n>    Transparency Services MUST maintain Registration\n>    Policies.\n> \n> What does this concretely imply?\n\n- [ ] Respond in email. Authorization is necessary.\n\n## Section 5.1.1.2\n\n>    The operator of a Transparency Service MAY update the Registration\n>    Policy or the trust anchors of a Transparency Service at any time.\n> \n> is there any value to notify the change to any other entity in the architecture when such event happens/planned?\n\n- [ ] Respond in email. May be appropriate/envisioned in some contexts but not all.\n\n# Enough information\n\nSection 5.1.1.2\n\n>    Transparency Services MUST ensure that for any Signed Statement they\n>    register, enough information is made available to Auditors to\n>    reproduce the Registration checks that were defined by the\n>    Registration Policies at the time of Registration.\n> \n> Can we list a minimum information to be logged and made available?\n\n- [x] #436.\n\n## Section 6\n\n>    Once all the Envelope headers are set, an Issuer MUST use a standard\n>    COSE implementation to produce an appropriately serialized Signed\n>    Statement.\n> \n> That is?\n\n- [x] #434.",
+      "body": "https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/ballot/#draft-ietf-scitt-architecture_mohamed-boucadair\n\n> Many questions popped up when reading the document (e.g., how the various entities know/discover each other, how authentication is done, how bootstrapping is made, what registration actually means, how the receipts are retrieved, how collection is made, how the latest version of a statement on a specific component is made available rather than consuming a stale one, what if a TS is not available anymore, etc.\n>\n> As this is an architecture document (but not only), I was expecting some of these details to be grouped in a single place (even with a statement, these are out of scope).\n\n- [x] #438. Clarify in response that bootstrapping is covered in 5. Architecture Overview, as 5.1.2. Initialization and Bootstrapping and 9. Security Considerations, as 9.4.3. Bootstrapping. Authentication is done with COSE, this is abundantly covered in introduction.\n\n## Abstract\n\n> (1) It is not clear to me how what means \u201cscalable architecture\u201d here. Scalability can be approach from various angles and I\u2019m not sure which aspects is being focused on here. I\u2019d prefer we back any claim here with a discussion on that in the main text.\n\n- [x] #437.\n\n> (2) Likewise, what does flexibility mean in this specific context? For example, there are some constraints imposed on how registration policies may be updated, etc. I think that exercising the architecture and playing with various contexts (complex component dependencies, other uses) would be needed first.\n\n- [x] #437.\n\n> (3) Idem, maybe I\u2019m misreading this but what aspect in the spec you have in mind with \u201cinteroperability between different transparency services\u201d?\n\n- [x] Response to AD pointing to single data definition for Signed/Transparent/Statements/COSE receipts and ability to embed a collection of receipts in a transparent statement.\n\n> (4) nits\n>\n> * s/proposes/defines\n> * Not easy at this stage to digest what is a \u201ctransparency service\u201d.\n\n- [x] #425.\n\n## Section 1\n\n>    As these messages provide the foundation of\n>    any transparency service implementation for global and cross-domain\n>                                                           ^^^^^^^^^^^^\n>    application interoperability, they are based on complementary COSE\n>    specifications, mainly [I-D.draft-ietf-cose-merkle-tree-proofs].\n>\n> How domain is defined in this specific context?\n\n- [x] #426. Discussion needed, the sentence as it stands does not make a lot of sense. I think the point we are trying to make is that because the goal is to provide transparency for all use cases and application domains, the architecture picks a domain-agnostic receipt format, COSE Receipts.\n\nThe first line in the paragraph is also wrong:\n\n> This document also defines message structures for signed statements and defines a profile for COSE receipts {{-RECEIPTS}}, i.e., signed verifiable data structure proofs).\n\nThe architecture document does not define a profile for COSE receipts. I think we need to improve that paragraph altogether.\n\n## Figure 1\n> These are still possible attacks. I don\u2019t think we sat  that SCITT will nullify those. Right?\n\n- [x] Response in email. We try to capture existing attack vectors in an appropriate manner.\n\n## Section 2.1\n\n>   DevSecOps often depends on third-party and open-source software. \n> \n> I know what it means, but do we have an authoritative ref to cite for DevSecOps?\n\n- [x] #418, also raised by Mike Bishop in #413.\n\n## Section 3\n\n>       In SCITT\n>       Statements and Receipts, the iss CWT Claim is a member of the COSE\n>       header parameter 15: CWT_Claims within the protected header of a\n>       COSE Envelope.  \n> \n> (1) I don\u2019t find CWT_Claims in the base COSE spec. \n> \n> (2) I guess we meant what is defined in [RFC9597](https://datatracker.ietf.org/doc/rfc9597/). If so, please add a pointer to that RFC.\n> \n> (3) Also, I think this and other occurrences in the document should be \u201cCWT-Claims\u201d to comply with 9597.\n\n- [x] #427. The actual IANA name is `CWT Claims`, with the space, `CWT-Claims` is the CDDL definition name in RFC9597. We already had a reference to that elsewhere, but I have added it at that location too, and make naming consistent throughout the document.\n\n>    Receipt:  a cryptographic proof that a Signed Statement is included\n>       in the Verifiable Data Structure.  See\n>       [I-D.draft-ietf-cose-merkle-tree-proofs] for implementations\n>       Receipts are signed proofs of verifiable data-structure\n>       properties.  The types of Receipts MUST support inclusion proofs\n>       and MAY support other proof types, such as consistency proofs.\n> \n> (1) I don\u2019t parse the second sentence.\n> \n> (2) What is a \u201ctype of receipt\u201d? Failed to find which part of [draft-ietf-cose-merkle-tree-proofs](https://datatracker.ietf.org/doc/draft-ietf-cose-merkle-tree-proofs/) this is referring to.\n> \n> (3) Weird to have the normative requirement in a terminology section.\n\n- [x] #428. Does not address (3), I could not find an obviously better location.\n\n## Section 4\n\n>    A SCITT instance is referred to as a Transparency Service.\n> \n> Isn\u2019t SCITT about the full architecture?\n> \n> Also, I don\u2019t see \u201c SCITT instance\u201d used anywhere in the document.\n\n- [x] #429.\n\n## Figure2\n\n> is mixing state, entities, and so on. Also the direction of arrows is confusing to me. For example, I expect sign and verify to act in distinct directions.\n> \n> No clear to me how to read this diagram.\n\n- [x] No action, the diagram is not perfect, but we do not know how to make it better.\n\n## Section 5.1\n\n>   Transparency Services MUST feature a Verifiable Data Structure.  \n> \n> What does concretely mean?\n\n- [x] #430.\n\n## Section 5.1.1):\n\n>    Transparency Services MUST maintain Registration\n>    Policies.\n> \n> What does this concretely imply?\n\n- [x] Respond in email. Authorization is necessary.\n\n## Section 5.1.1.2\n\n>    The operator of a Transparency Service MAY update the Registration\n>    Policy or the trust anchors of a Transparency Service at any time.\n> \n> is there any value to notify the change to any other entity in the architecture when such event happens/planned?\n\n- [x] Respond in email. May be appropriate/envisioned in some contexts but not all.\n\n# Enough information\n\nSection 5.1.1.2\n\n>    Transparency Services MUST ensure that for any Signed Statement they\n>    register, enough information is made available to Auditors to\n>    reproduce the Registration checks that were defined by the\n>    Registration Policies at the time of Registration.\n> \n> Can we list a minimum information to be logged and made available?\n\n- [x] #436.\n\n## Section 6\n\n>    Once all the Envelope headers are set, an Issuer MUST use a standard\n>    COSE implementation to produce an appropriately serialized Signed\n>    Statement.\n> \n> That is?\n\n- [x] #434.",
       "createdAt": "2025-09-15T13:35:13Z",
-      "updatedAt": "2025-09-18T13:51:57Z",
-      "closedAt": null,
+      "updatedAt": "2025-09-24T10:36:12Z",
+      "closedAt": "2025-09-24T10:36:12Z",
       "comments": [
         {
           "author": "achamayou",
@@ -6984,6 +6984,13 @@
           "body": "Proposed response:\n\n```\n> Many questions popped up when reading the document (e.g., how the various entities know/discover each other, how authentication is done, how bootstrapping is made, what registration actually means, how the receipts are retrieved, how collection is made, how the latest version of a statement on a specific component is made available rather than consuming a stale one, what if a TS is not available anymore, etc.\n> \n> As this is an architecture document (but not only), I was expecting some of these details to be grouped in a single place (even with a statement, these are out of scope).\n\nBootstrapping is covered in 5. Architecture Overview, as 5.1.2. Initialization and Bootstrapping and 9. Security Considerations, as 9.4.3. Bootstrapping. Authentication is done with COSE, this is extensively covered in introduction.\nThe end of the introduction has been updated to clarify that discovery and notification are out of scope.\n\nAll your points about the abstracts have been addressed through changes to the text, except:\n\n> (3) Idem, maybe I\u2019m misreading this but what aspect in the spec you have in mind with \u201cinteroperability between different transparency services\u201d?\n\nWe mean the single data definition for Signed/Transparent/Statements/COSE receipts and ability to embed a collection of receipts from multiple Transparent Services in a transparent statement.\n\nYour comment about Section 1 has been addressed in the text.\n\n> Figure 1. These are still possible attacks. I don\u2019t think we sat that SCITT will nullify those. Right?\n\nThis is only trying to capture existing attack vectors exhaustively. Use of SCITT does not nullify them, is orthogonal to some, but can reduce the impact of a package repository compromise for example if consumer check transparent statements for example.\n\nYour comments about Section 2.1, 3, 4 have been addressed in the text.\n\nFigure 2 is not perfect, and has been debated and iterated on at length. We do not know how to make it better.\n\nYour comment on Section 5.1 has been addressed.\n\n> Section 5.1.1. Transparency Services MUST maintain Registration Policies.\n> What does this concretely imply?\n\nAuthorization and data quality checks on signed statements are necessary to produce a usefully auditable history.\n\n> Section 5.1.2. The operator of a Transparency Service MAY update the Registration Policy or the trust anchors of a Transparency Service at any time.\n> is there any value to notify the change to any other entity in the architecture when such event happens/planned?\n\nThere may be in some contexts but not all. In some situations, this may not be practical. The introduction now clarifies this is out of scope.\n\nYour comments on Section 5.1.1.2 and 6 have been addressed in the text.\n\nThank you for the comprehensive review\n```\n\n```",
           "createdAt": "2025-09-18T13:51:56Z",
           "updatedAt": "2025-09-18T13:51:56Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Additional item in response:\n\n> > Section 5.1.1. Transparency Services MUST maintain Registration\n> Policies.\n> > What does this concretely imply?\n>\n> Authorization and data quality checks on signed statements are\n> necessary to produce a usefully auditable history.\n\n- [x] Can you please say so in the spec? #452\n",
+          "createdAt": "2025-09-23T08:26:54Z",
+          "updatedAt": "2025-09-23T14:39:55Z"
         }
       ]
     },
@@ -6992,15 +6999,15 @@
       "id": "I_kwDOIvmHss7MD8CE",
       "title": "Review: Gorry Fairhurst",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/432",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "> I was confused by the text around word \"notary\", but note that I now see that US usage appears to have a different meaning to that with which I am accustomed. Maybe to be kind to others, it might be helpful just to omit the text trying to parallel this with a human notary?\n\n- [ ] This also confused Mike Bishop (#413, first point), as well as [two other members of the WG](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/366#discussion_r2022374434). Perhaps it is not as enlightening as expected? @henkbirkholz\n\n> The text also says: \"such as Certificate Transparency\", could a (cross) reference be added to explain what that is?\n\n- [x] The first mention of CT has a reference, but adding another one is quite easily done. #435.",
+      "body": "> I was confused by the text around word \"notary\", but note that I now see that US usage appears to have a different meaning to that with which I am accustomed. Maybe to be kind to others, it might be helpful just to omit the text trying to parallel this with a human notary?\n\n- [x] This also confused Mike Bishop (#413, first point), as well as [two other members of the WG](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/366#discussion_r2022374434). #450 \n\n> The text also says: \"such as Certificate Transparency\", could a (cross) reference be added to explain what that is?\n\n- [x] The first mention of CT has a reference, but adding another one is quite easily done. #435.",
       "createdAt": "2025-09-16T20:02:06Z",
-      "updatedAt": "2025-09-18T10:19:57Z",
-      "closedAt": null,
+      "updatedAt": "2025-09-24T10:37:34Z",
+      "closedAt": "2025-09-24T10:37:34Z",
       "comments": []
     },
     {
@@ -7034,24 +7041,24 @@
       "id": "I_kwDOIvmHss7MQIbv",
       "title": "Review: \u00c9ric Vyncke",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/440",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
         "Needs email response"
       ],
-      "body": "### Section 1\n\n> Suggest to split the very long paragraph one in 3 parts: problem to be solved, how to solve it, benefits. A graphical representation would also help to understand all the interactions (e.g., a simplified version of the nice Figure 2).\n\n- [x] #445. Given the time and controversy expended on Figure 2, I do not think trying to make a simplified version is a something we want to pursue.\n\n> The reader has often to read a very long paragraph in this document, while perfectly correct, this does not help the reader.\n\n### Section 2.1\n\n> Isn't it weird to have a generic section 2.1 included in a specific 'software-only' section 2 ?\n\n- [x] Response: The S in Generic SSC stands for Software, so it does not seem weird.\n\n> BTW, thanks for using SVG graphics they are so much nicer in HTML rendering.\n\n### Section 2.2.3\n\n> Is this short section about autonomous v\u00e9hicle useful ?\n\n- [x] Also see #443, it's an illustrative example, it will be more useful to some users than others.\n\n### Section 3\n\n> Should \"CWT\" be expanded (and informational reference added) ?\n\n- [x] #446.\n\n### Section 5.1.1.1\n\n> s/ Transparency Service MUST, at a minimum,/ Transparency Service MUST/ ?\n\n- [ ] #447.\n\n> Please add a reference to `x5t` or define it. Same for `kid` used later in the text, especially since \"kid\" is a common English word.\n\n- [ ] #421 for `x5t`, #440 for `kid`.\n\n### Section 5.1.3\n\n> It is unclear (at least to me but perhaps to other implementers) whether [draft-ietf-cose-merkle-tree-proofs](https://datatracker.ietf.org/doc/draft-ietf-cose-merkle-tree-proofs/) is the only way to be implemented.\n\n- [x] #430.\n\n### Section 6\n\n> The list of references to other documents would benefit from adding a few words describing the reference.\n\n- [ ] PR",
+      "body": "### Section 1\n\n> Suggest to split the very long paragraph one in 3 parts: problem to be solved, how to solve it, benefits. A graphical representation would also help to understand all the interactions (e.g., a simplified version of the nice Figure 2).\n\n- [x] #445. Given the time and controversy expended on Figure 2, I do not think trying to make a simplified version is a something we want to pursue.\n\n> The reader has often to read a very long paragraph in this document, while perfectly correct, this does not help the reader.\n\n### Section 2.1\n\n> Isn't it weird to have a generic section 2.1 included in a specific 'software-only' section 2 ?\n\n- [x] Response: The S in Generic SSC stands for Software, so it does not seem weird.\n\n> BTW, thanks for using SVG graphics they are so much nicer in HTML rendering.\n\n### Section 2.2.3\n\n> Is this short section about autonomous v\u00e9hicle useful ?\n\n- [x] Also see #443, it's an illustrative example, it will be more useful to some users than others.\n\n### Section 3\n\n> Should \"CWT\" be expanded (and informational reference added) ?\n\n- [x] #446.\n\n### Section 5.1.1.1\n\n> s/ Transparency Service MUST, at a minimum,/ Transparency Service MUST/ ?\n\n- [x] #447.\n\n> Please add a reference to `x5t` or define it. Same for `kid` used later in the text, especially since \"kid\" is a common English word.\n\n- [x] #421 for `x5t`, #440 for `kid`.\n\n### Section 5.1.3\n\n> It is unclear (at least to me but perhaps to other implementers) whether [draft-ietf-cose-merkle-tree-proofs](https://datatracker.ietf.org/doc/draft-ietf-cose-merkle-tree-proofs/) is the only way to be implemented.\n\n- [x] #430.\n\n### Section 6\n\n> The list of references to other documents would benefit from adding a few words describing the reference.\n\n- [x] #451",
       "createdAt": "2025-09-17T15:24:09Z",
-      "updatedAt": "2025-09-18T14:44:14Z",
-      "closedAt": null,
+      "updatedAt": "2025-09-24T10:42:15Z",
+      "closedAt": "2025-09-24T10:42:15Z",
       "comments": [
         {
           "author": "achamayou",
           "authorAssociation": "COLLABORATOR",
-          "body": "WIP proposed response\n\n```\n> Suggest to split the very long paragraph one in 3 parts: problem to be solved, how to solve it, benefits. A graphical representation would also help to understand all the interactions (e.g., a simplified version of the nice Figure 2).\n\nThe very long paragraph has been broken up along the lines you suggested, thank you for the suggestion, it is more readable. Figure 2 has a long and protracted history, we are unfortunately not able to simplify it meaningfully at this point.\n\n> Isn't it weird to have a generic section 2.1 included in a specific 'software-only' section 2 ?\n\nThe S in \"Generic SSC\" stands for Software, so it seems appropriate, but we are open to suggestions.\n\n> Section 2.2.3. Is this short section about autonomous v\u00e9hicle useful ?\n\nWe included a selection of samples that hopefully speaks to a broad audience to illustrate where SCITT can be useful. This one seemed useful because modern vehicles contain increasing amounts of software.\n\n> Section 3. Should \"CWT\" be expanded (and informational reference added) ?\n\nCWT has been expanded, the reference is there at the end of the sentence.\n\nYour comments on Sections 5.1.1.1 and 5.1.3 have been addressed by changes in the text.\n\n\n```",
+          "body": "Proposed response\n\n```\n> Suggest to split the very long paragraph one in 3 parts: problem to be solved, how to solve it, benefits. A graphical representation would also help to understand all the interactions (e.g., a simplified version of the nice Figure 2).\n\nThe very long paragraph has been broken up along the lines you suggested, thank you for the suggestion, it is more readable. Figure 2 has a long and protracted history, we are unfortunately not able to simplify it meaningfully at this point.\n\n> Isn't it weird to have a generic section 2.1 included in a specific 'software-only' section 2 ?\n\nThe S in \"Generic SSC\" stands for Software, so it seems appropriate, but we are open to suggestions.\n\n> Section 2.2.3. Is this short section about autonomous v\u00e9hicle useful ?\n\nWe included a selection of samples that hopefully speaks to a broad audience to illustrate where SCITT can be useful. This one seemed useful because modern vehicles contain increasing amounts of software.\n\n> Section 3. Should \"CWT\" be expanded (and informational reference added) ?\n\nCWT has been expanded, the reference is there at the end of the sentence.\n\nYour comments on Sections 5.1.1.1, 5.1.3 and 6 have been addressed by changes in the text.\n\n\n```",
           "createdAt": "2025-09-18T14:28:50Z",
-          "updatedAt": "2025-09-18T14:44:14Z"
+          "updatedAt": "2025-09-24T10:40:39Z"
         }
       ]
     },
@@ -7067,9 +7074,9 @@
       "labels": [
         "Needs email response"
       ],
-      "body": "https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/ballot/#draft-ietf-scitt-architecture_roman-danyliw\n\n> ** Idnits reports:\n>   == Unused Reference: '[RFC9334](https://datatracker.ietf.org/doc/rfc9334/)' is defined on line 1699, but no > explicit\n>      reference was found in the text\n\n- [x] #416\n\n> ** Section 2.1\n>    Lastly, where data exchange underpins serious business decision-\n>    making, it is important to hold the producers of those data to a\n>    higher standard of accountability. \n> \n> Defining the degree of accountability for producers is not in-scope for the charter.\n\n- [x] #442.\n\n> ** Section 2.2.3.  What about this use case is unique to an \u201cautonomous vehicle\u201d, as opposed to a \u201cnon-autonomous vehicle\u201d or \u201cany vehicle\u201d? \n\n- [x] #443.\n\n> ** Section 4\n>    Reputable Issuers are thus incentivized to carefully review their\n>    Statements before signing them to produce Signed Statements.\n>    Similarly, reputable Transparency Services are incentivized to secure\n>    their Verifiable Data Structure, as any inconsistency can easily be\n>    pinpointed by any Auditor with read access to the Transparency\n>    Service.\n>\n> What makes an issuer or transparency service \u201creputable\u201d?\n\n- Response, their track record of issuing accurate statements. By making this track record unequivocal, SCITT enables reputation-building, but does not guarantee accuracy. An issuer can produce an unequivocal history of non-sensical statements that relying parties are free to ignore.\nSCITT provides a mechanism to build reputation, but does not assess reputation.\n\n> ** Section 4\n>    The building blocks defined in SCITT are intended to support\n>    applications in any supply chain that produces or relies upon digital\n>    Artifacts, from the build and supply of software and IoT devices to\n>    advanced manufacturing and food supply.\n> \n> This statement is outside the scope of the SCITT charter.\n\n- [x] #444.\n\n> ** Section 5.\n>    The SCITT architecture enables a loose federation of Transparency\n>    Services, by providing a set of common formats and protocols for\n>    issuing and registering Signed Statements and auditing Transparent\n>    Statements.\n> \n> Where is the basis for this \u201cfederation\u201d explained?  What does it mean to be \u201cfederated\u201d?\n\n- [ ] Discuss. That's a good question, we don't explain it anywhere.\n\n> ** Section 5.1.1.1.  What is a \u201cCOSE-compatible trust anchor\u201d?\n\n- [ ] Discuss.\n\n> ** Section 6\n>    Once all the Envelope headers are set, an Issuer MUST use a standard\n>    COSE implementation to produce an appropriately serialized Signed\n>    Statement.\n> \n> What is a \u201cstandard COSE implementation\u201d, as opposed to using COSE?\n\n- [x] #434.\n\n> ** Section 9.4\n>    Issuers and Transparency Services MUST:\n> \u2026\n>    *  rotate their keys in well-defined cryptoperiods, see\n>       [KEY-MANAGEMENT]\n> \n> What makes a \u201ccryptoperiod\u201d well-defined?  How is it interoperable.  I wasn\u2019t able to locate the relevant guidance in [KEY-MANAGEMENT] beyond statements of having a cryptoperiod.  Additionally, since [KEY-MANAGEMENT] is informative, the guidance for it can\u2019t come from this document.\n\n- [ ] Discuss.",
+      "body": "https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/ballot/#draft-ietf-scitt-architecture_roman-danyliw\n\n> ** Idnits reports:\n>   == Unused Reference: '[RFC9334](https://datatracker.ietf.org/doc/rfc9334/)' is defined on line 1699, but no > explicit\n>      reference was found in the text\n\n- [x] #416\n\n> ** Section 2.1\n>    Lastly, where data exchange underpins serious business decision-\n>    making, it is important to hold the producers of those data to a\n>    higher standard of accountability. \n> \n> Defining the degree of accountability for producers is not in-scope for the charter.\n\n- [x] #442.\n\n> ** Section 2.2.3.  What about this use case is unique to an \u201cautonomous vehicle\u201d, as opposed to a \u201cnon-autonomous vehicle\u201d or \u201cany vehicle\u201d? \n\n- [x] #443.\n\n> ** Section 4\n>    Reputable Issuers are thus incentivized to carefully review their\n>    Statements before signing them to produce Signed Statements.\n>    Similarly, reputable Transparency Services are incentivized to secure\n>    their Verifiable Data Structure, as any inconsistency can easily be\n>    pinpointed by any Auditor with read access to the Transparency\n>    Service.\n>\n> What makes an issuer or transparency service \u201creputable\u201d?\n\n- Response, their track record of issuing accurate statements. By making this track record unequivocal, SCITT enables reputation-building, but does not guarantee accuracy. An issuer can produce an unequivocal history of non-sensical statements that relying parties are free to ignore.\nSCITT provides a mechanism to build reputation, but does not assess reputation.\n\n> ** Section 4\n>    The building blocks defined in SCITT are intended to support\n>    applications in any supply chain that produces or relies upon digital\n>    Artifacts, from the build and supply of software and IoT devices to\n>    advanced manufacturing and food supply.\n> \n> This statement is outside the scope of the SCITT charter.\n\n- [x] #444.\n\n> ** Section 5.\n>    The SCITT architecture enables a loose federation of Transparency\n>    Services, by providing a set of common formats and protocols for\n>    issuing and registering Signed Statements and auditing Transparent\n>    Statements.\n> \n> Where is the basis for this \u201cfederation\u201d explained?  What does it mean to be \u201cfederated\u201d?\n\n- [ ] Discussed, #453 attempts to avoid defining federation, but keep the idea that a number of services in the same area probably want to align their guarantees, or at least target a minimum, and SCITT helps with that by providing interop.\n\n> ** Section 5.1.1.1.  What is a \u201cCOSE-compatible trust anchor\u201d?\n\n- [ ] Discussed, #454.\n\n> ** Section 6\n>    Once all the Envelope headers are set, an Issuer MUST use a standard\n>    COSE implementation to produce an appropriately serialized Signed\n>    Statement.\n> \n> What is a \u201cstandard COSE implementation\u201d, as opposed to using COSE?\n\n- [x] #434.\n\n> ** Section 9.4\n>    Issuers and Transparency Services MUST:\n> \u2026\n>    *  rotate their keys in well-defined cryptoperiods, see\n>       [KEY-MANAGEMENT]\n> \n> What makes a \u201ccryptoperiod\u201d well-defined?  How is it interoperable.  I wasn\u2019t able to locate the relevant guidance in [KEY-MANAGEMENT] beyond statements of having a cryptoperiod.  Additionally, since [KEY-MANAGEMENT] is informative, the guidance for it can\u2019t come from this document.\n\n- [ ] #455.",
       "createdAt": "2025-09-18T10:36:40Z",
-      "updatedAt": "2025-09-18T13:38:15Z",
+      "updatedAt": "2025-09-24T12:17:18Z",
       "closedAt": null,
       "comments": []
     }
@@ -58969,26 +58976,94 @@
       "id": "PR_kwDOIvmHss6pT2uj",
       "title": "Remove \"at a minimum\" follow MUST",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/447",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Towards #440",
       "createdAt": "2025-09-18T14:40:14Z",
-      "updatedAt": "2025-09-18T14:40:16Z",
+      "updatedAt": "2025-09-23T14:12:43Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "015e56e6e8204594c65bc09dbbf2826d6cf5af35",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "achamayou-patch-49",
       "headRefOid": "996a2abb80e0f484488c6e39bd0207a670171c08",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-09-23T14:12:43Z",
+      "mergedAt": "2025-09-23T14:12:43Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "5be1aa4bf7d14f60deb4848426fbc12199f7fddd"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss7CJh_N",
+          "commit": {
+            "abbreviatedOid": "996a2ab"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-09-23T10:29:36Z",
+          "updatedAt": "2025-09-23T10:29:36Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CJkYO",
+          "commit": {
+            "abbreviatedOid": "996a2ab"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2025-09-23T10:32:22Z",
+          "updatedAt": "2025-09-23T10:32:22Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CMmE5",
+          "commit": {
+            "abbreviatedOid": "996a2ab"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-09-23T13:37:45Z",
+          "updatedAt": "2025-09-23T13:37:45Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CM9b7",
+          "commit": {
+            "abbreviatedOid": "996a2ab"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-23T13:59:17Z",
+          "updatedAt": "2025-09-23T13:59:17Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CNKVb",
+          "commit": {
+            "abbreviatedOid": "996a2ab"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-23T14:12:02Z",
+          "updatedAt": "2025-09-23T14:12:02Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 448,
@@ -59037,26 +59112,1025 @@
       "id": "PR_kwDOIvmHss6pT-7m",
       "title": "Another stab at CWT clarity",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/449",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Follow up to #446, and https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/446#discussion_r2359660841 in particular.",
       "createdAt": "2025-09-18T14:48:58Z",
-      "updatedAt": "2025-09-18T14:49:00Z",
+      "updatedAt": "2025-09-23T14:15:36Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "015e56e6e8204594c65bc09dbbf2826d6cf5af35",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "achamayou-patch-51",
       "headRefOid": "335ec83f113a10e1ba2dc4dd75997903d9db7ca5",
+      "closedAt": "2025-09-23T14:14:02Z",
+      "mergedAt": "2025-09-23T14:14:02Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "e572c8c8a41e838bf6cfdcf4b870b09c9de2baff"
+      },
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@SteveLasker it's meant to fix [\"bit awk though\"](https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/446#discussion_r2359660841), it's hopefully less awk now, but not intended to make a huge difference :)",
+          "createdAt": "2025-09-23T13:48:04Z",
+          "updatedAt": "2025-09-23T13:48:04Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss7CJiej",
+          "commit": {
+            "abbreviatedOid": "335ec83"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-09-23T10:30:09Z",
+          "updatedAt": "2025-09-23T10:30:09Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CMoHV",
+          "commit": {
+            "abbreviatedOid": "335ec83"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Not seeing a huge difference, but LGTM to move it forward.\r\nLGTM",
+          "createdAt": "2025-09-23T13:39:06Z",
+          "updatedAt": "2025-09-23T13:39:06Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CM85k",
+          "commit": {
+            "abbreviatedOid": "335ec83"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-23T13:58:46Z",
+          "updatedAt": "2025-09-23T13:58:46Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CNN0H",
+          "commit": {
+            "abbreviatedOid": "335ec83"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-23T14:15:36Z",
+          "updatedAt": "2025-09-23T14:15:36Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 450,
+      "id": "PR_kwDOIvmHss6qB9hX",
+      "title": "Avoid jurisdictional ambiguity associated with 'notary'",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/450",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Towards #432 and #413, this was also flagged in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/366#discussion_r2022374434.\r\n\r\nIn total, two members of the WG and two reviewers have pointed out that a direct comparison to notaries is confusing because the scope of what notaries do varies per jurisdiction. This PR retains \"akin to a notarization procedure\", which is softer and leaves room for variation.",
+      "createdAt": "2025-09-23T09:45:01Z",
+      "updatedAt": "2025-09-23T14:18:00Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "a44f03ba47980b6bf4ce6bd1617612a84b0e75c0",
+      "headRepository": "achamayou/draft-ietf-scitt-architecture",
+      "headRefName": "avoid_jurisdictional_ambiguity",
+      "headRefOid": "84474c0b1f6c483cc4414a444cbd3ea2716c959c",
+      "closedAt": "2025-09-23T14:18:00Z",
+      "mergedAt": "2025-09-23T14:18:00Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "5a13338e68802c880e566709cf1d1b834b72cd76"
+      },
+      "comments": [
+        {
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I don't see \"the akin\" reference. ",
+          "createdAt": "2025-09-23T13:42:34Z",
+          "updatedAt": "2025-09-23T13:42:34Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@SteveLasker it's line 174, just above the edit: `Registering signed statements with a transparency service is akin to a notarization procedure.`",
+          "createdAt": "2025-09-23T13:46:19Z",
+          "updatedAt": "2025-09-23T13:46:19Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss7CJeI6",
+          "commit": {
+            "abbreviatedOid": "84474c0"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Makes it better IMO",
+          "createdAt": "2025-09-23T10:25:04Z",
+          "updatedAt": "2025-09-23T10:25:04Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CM8N-",
+          "commit": {
+            "abbreviatedOid": "84474c0"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-23T13:58:12Z",
+          "updatedAt": "2025-09-23T13:58:12Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CNPqq",
+          "commit": {
+            "abbreviatedOid": "84474c0"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-23T14:17:26Z",
+          "updatedAt": "2025-09-23T14:17:26Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 451,
+      "id": "PR_kwDOIvmHss6qCMLA",
+      "title": "Add short payload format descriptions",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/451",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Towards #440",
+      "createdAt": "2025-09-23T10:02:33Z",
+      "updatedAt": "2025-09-23T16:28:34Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "a44f03ba47980b6bf4ce6bd1617612a84b0e75c0",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-52",
+      "headRefOid": "9f57b2cb982f9afcb260610bb06ac640ee5e2349",
+      "closedAt": "2025-09-23T14:20:48Z",
+      "mergedAt": "2025-09-23T14:20:48Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "09041d7281bda83904cca34b2e594cf9c8797444"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss7CJhW7",
+          "commit": {
+            "abbreviatedOid": "72a9d4a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2025-09-23T10:28:49Z",
+          "updatedAt": "2025-09-23T10:28:49Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CMqBJ",
+          "commit": {
+            "abbreviatedOid": "72a9d4a"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-09-23T13:40:50Z",
+          "updatedAt": "2025-09-23T13:40:50Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CM7bS",
+          "commit": {
+            "abbreviatedOid": "72a9d4a"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-23T13:57:36Z",
+          "updatedAt": "2025-09-23T13:57:36Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CNRlN",
+          "commit": {
+            "abbreviatedOid": "72a9d4a"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T14:19:24Z",
+          "updatedAt": "2025-09-23T14:19:24Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\n- {{CoSWID}} Concise Software Identification Tags format\r\n```",
+              "createdAt": "2025-09-23T14:19:24Z",
+              "updatedAt": "2025-09-23T14:19:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CNR_a",
+          "commit": {
+            "abbreviatedOid": "64fe965"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T14:19:49Z",
+          "updatedAt": "2025-09-23T14:19:50Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\n- {{CycloneDX}} Bill of Materials format\r\n```",
+              "createdAt": "2025-09-23T14:19:49Z",
+              "updatedAt": "2025-09-23T14:19:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CNbLZ",
+          "commit": {
+            "abbreviatedOid": "9f57b2c"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T14:28:50Z",
+          "updatedAt": "2025-09-23T14:28:50Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "Some SBOM's can be quite large. It can be more compact by providing a link to a file that lists all of the required artifacts for a SCRM risk assessment, like the VRF file we used during the hackathon example following US FDA requirements (which are no final). [Here is an example of a VRF payload for an open source product](https://raw.githubusercontent.com/rjb4standards/CISASAGReader/refs/heads/main/CISASAGReader-VRF.json)\n\nIt may be sufficient to register a link to the VRF file alone, which should be digitally signed and verifiable.",
+              "createdAt": "2025-09-23T14:28:50Z",
+              "updatedAt": "2025-09-23T14:34:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CO30G",
+          "commit": {
+            "abbreviatedOid": "9f57b2c"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T15:53:40Z",
+          "updatedAt": "2025-09-23T15:53:40Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "@rjb4standards the COSE WG has for that purpose defined COSE Hash Envelope (https://datatracker.ietf.org/doc/draft-ietf-cose-hash-envelope/), but you are right that other formats can be used as payload to achieve the same purpose.",
+              "createdAt": "2025-09-23T15:53:40Z",
+              "updatedAt": "2025-09-23T15:53:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CPVcm",
+          "commit": {
+            "abbreviatedOid": "9f57b2c"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T16:28:34Z",
+          "updatedAt": "2025-09-23T16:28:34Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "@achamayou thanks for the insights. I see where a URL for a VRF payload could be placed into the COSE header envelope that provides links to all the other artifacts needed for a SCRM product risk assessment: \r\n&(payload_location: 260) => tstr\r\n\r\nSimple and elegant solution. I like it.",
+              "createdAt": "2025-09-23T16:28:34Z",
+              "updatedAt": "2025-09-23T16:28:34Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 452,
+      "id": "PR_kwDOIvmHss6qCTKd",
+      "title": "Clarify importance of authorization in Registration Policies",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/452",
+      "state": "MERGED",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Towards #414",
+      "createdAt": "2025-09-23T10:10:08Z",
+      "updatedAt": "2025-09-24T18:04:30Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "a44f03ba47980b6bf4ce6bd1617612a84b0e75c0",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-53",
+      "headRefOid": "d293673d9c5307228eae01fa490a88c943df5315",
+      "closedAt": "2025-09-23T14:10:57Z",
+      "mergedAt": "2025-09-23T14:10:57Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "0855d61d50d03afe0f69b7d94e02ba58ea94c9c4"
+      },
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@JAG-UK I agree, and I can see how the wording is arguably too strong. Would changing `necessary` to `important` be enough to convey the right intention? Or we could keep the sentence as-is, and prefix with `In most situations, ...`.",
+          "createdAt": "2025-09-23T10:36:03Z",
+          "updatedAt": "2025-09-23T10:36:03Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@JAG-UK @robinbryce @rjb4standards I have had another go with https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/452/files#r2372114253, this does not introduce normative requirements, and emphasizes a different reason why having _a policy_, whatever it is, is a MUST.",
+          "createdAt": "2025-09-23T12:14:36Z",
+          "updatedAt": "2025-09-23T12:14:36Z"
+        },
+        {
+          "author": "melbesnard85",
+          "authorAssociation": "NONE",
+          "body": "LGTM",
+          "createdAt": "2025-09-24T18:04:30Z",
+          "updatedAt": "2025-09-24T18:04:30Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss7CJhK5",
+          "commit": {
+            "abbreviatedOid": "a4da402"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "I think this is over-reaching a little. The philosophy of SCITT is to create an immutable record of statements about artifacts that relying parties can reason about. While I generally agree with the principles of \"no writes without ID&A\" and \"ensure enough of the fields are filled\", It's perfectly reasonable for some use cases for anonymous or pseudonymous statements to be considered, and it's up to the relying paerty to decide whether they want to include them in their processing.",
+          "createdAt": "2025-09-23T10:28:37Z",
+          "updatedAt": "2025-09-23T10:28:37Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CJnkY",
+          "commit": {
+            "abbreviatedOid": "a4da402"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T10:36:28Z",
+          "updatedAt": "2025-09-23T10:36:28Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\nIn most situations, authorization and data quality checks on signed statements are necessary to produce a usefully auditable history.\r\nExplicit registration policies are important even where they are very permissive, because their existence enables unambiguous audit across potential future changes.\r\n```",
+              "createdAt": "2025-09-23T10:36:28Z",
+              "updatedAt": "2025-09-23T10:46:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CJsHl",
+          "commit": {
+            "abbreviatedOid": "a4da402"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T10:41:10Z",
+          "updatedAt": "2025-09-23T10:41:10Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\nIn most situations, authorization and data quality checks on signed statements SHOULD be applied in order to produce an efficiently auditable history.\r\n```",
+              "createdAt": "2025-09-23T10:41:10Z",
+              "updatedAt": "2025-09-23T10:41:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CJspv",
+          "commit": {
+            "abbreviatedOid": "a4da402"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T10:41:51Z",
+          "updatedAt": "2025-09-23T10:41:51Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Alternative suggestion to see if we can asymptotically arrive at a resolution.",
+              "createdAt": "2025-09-23T10:41:51Z",
+              "updatedAt": "2025-09-23T10:41:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CJ0jG",
+          "commit": {
+            "abbreviatedOid": "a4da402"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T10:50:14Z",
+          "updatedAt": "2025-09-23T10:50:14Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "The change looks good to me, but I am unsure to what extent it is acceptable to introduce normative language at this stage of the process. It also feels a bit strange because it seems strictly weaker than the line above (\"you MUST have a policy... it SHOULD do something\")?\r\n\r\nHaving said that, if @henkbirkholz and @OR13 are ok with this, I support it too.",
+              "createdAt": "2025-09-23T10:50:14Z",
+              "updatedAt": "2025-09-23T10:50:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CKo3t",
+          "commit": {
+            "abbreviatedOid": "a4da402"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T11:45:32Z",
+          "updatedAt": "2025-09-23T11:45:32Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Sorry, hit the wrong button... Here is my suggestion: \r\nAuthorization and data quality checks on signed statements MUST be applied in accordance with Registration Policies in order to produce an efficiently auditable history.\r\n",
+              "createdAt": "2025-09-23T11:45:32Z",
+              "updatedAt": "2025-09-23T11:47:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CKuSP",
+          "commit": {
+            "abbreviatedOid": "a4da402"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T11:52:04Z",
+          "updatedAt": "2025-09-23T11:52:04Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "As long as it is ok for a registration policy to specifically allow anonymous and un-athenticated registration then I would be fine with that. But we should make that specifically clear in the text. \r\n\r\nI am also not particularly keen on the implication that efficiently auditable requires authorization and data quality checks. It really is over reach imo.\r\n\r\nBetter leave it to the regisration policies  of particular TS implementations",
+              "createdAt": "2025-09-23T11:52:04Z",
+              "updatedAt": "2025-09-23T11:52:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CKvOY",
+          "commit": {
+            "abbreviatedOid": "a4da402"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T11:52:48Z",
+          "updatedAt": "2025-09-23T11:52:49Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "I would actually prefer, quite  a lot, that the original addition was removed altogether",
+              "createdAt": "2025-09-23T11:52:48Z",
+              "updatedAt": "2025-09-23T11:52:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CKzf-",
+          "commit": {
+            "abbreviatedOid": "a4da402"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T11:57:38Z",
+          "updatedAt": "2025-09-23T11:57:38Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "@robinbryce Auditability with respect to Registration Policies are required in order to ensure confidence in the process, which may be required under an SOC audit and reported in a audit finding.",
+              "createdAt": "2025-09-23T11:57:38Z",
+              "updatedAt": "2025-09-23T11:57:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CLDKw",
+          "commit": {
+            "abbreviatedOid": "a4da402"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T12:11:33Z",
+          "updatedAt": "2025-09-23T12:11:33Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "@rjb4standards @robinbryce the intention of the clarification is to explain _why_ there MUST be an explicit registration policy. What the sentence was trying to say was \"at least to make sure the payloads have consistent, authenticated fields\". Trying to audit a history where every document has a different protected header, and where the issuer field is never checked against anything, for example, is going to be very difficult.\r\n\r\nEven very open-ended registration policies probably want to specify at least some set of roots of trust to authenticate the signed statements they receive. And even if they don't, having an explicit transparent document that says \"for this TS, from this sequence number onwards, the policy is allow all\" is valuable for audit and future evolution.\r\n\r\nWe can tell the reviewer that we don't want to clarify why we mandate an explicit registration policy, but I think it's worth having another stab at consensus here.",
+              "createdAt": "2025-09-23T12:11:33Z",
+              "updatedAt": "2025-09-23T12:11:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CLGxi",
+          "commit": {
+            "abbreviatedOid": "d015ba4"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T12:13:28Z",
+          "updatedAt": "2025-09-23T12:13:29Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\nThe presence of an explicit transparent registration policy, even if it allows all authenticated submissions, facilitates service audit, and enables potential future changes to that policy.\r\n```",
+              "createdAt": "2025-09-23T12:13:29Z",
+              "updatedAt": "2025-09-23T12:29:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CLQUH",
+          "commit": {
+            "abbreviatedOid": "a4da402"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T12:22:49Z",
+          "updatedAt": "2025-09-23T12:22:49Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "@achamayou  Auditability relies on registration policies to define proper behavior, which must be verifiable using the policies and data maintained by the audited party (Transparency Service).",
+              "createdAt": "2025-09-23T12:22:49Z",
+              "updatedAt": "2025-09-23T12:23:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CLYSk",
+          "commit": {
+            "abbreviatedOid": "a4da402"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T12:29:01Z",
+          "updatedAt": "2025-09-23T12:29:01Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "I understand, that's what the original clarification amounted to. Jon and Robin's point, as I understand it, is that some Transparency Services may want to operate with minimal, if any policy, something along the lines of \"Signed Statements must be authenticated\" (that is normative, and not up to re-discussion now, as per https://ietf-wg-scitt.github.io/draft-ietf-scitt-architecture/draft-ietf-scitt-architecture.html#section-5.1.1.1), but nothing more.\r\n\r\nSo I am proposing 1. an explicit mention that allowing all submissions is a possible policy, 2. justification for why a TS MUST have a policy, even in those circumstances.",
+              "createdAt": "2025-09-23T12:29:01Z",
+              "updatedAt": "2025-09-23T12:29:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CLbiy",
+          "commit": {
+            "abbreviatedOid": "a4da402"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T12:32:41Z",
+          "updatedAt": "2025-09-23T12:32:42Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "I agree a TS MUST have a registration policy, even if that policy only states \"No applicable policies\" as its only content. There MUST be a Registration Policy in order for a TS to be auditable and verifiable as  trustworthy. Our Registration Policies require the Trust Registry Gatekeeper to require certain checks including authorization to add a Trust Declaration (Trust Statement) to the Trust Registry.",
+              "createdAt": "2025-09-23T12:32:42Z",
+              "updatedAt": "2025-09-23T12:35:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CLzWJ",
+          "commit": {
+            "abbreviatedOid": "a4da402"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T12:55:02Z",
+          "updatedAt": "2025-09-23T12:55:02Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "@rjb4standards yes that's what the normative line above says, and this is not open to discussion at this stage of the life of the draft - all that's being discussed is the exact wording of the explanation as to why we have this normative requirement here, which was requested by Mohamed in review.",
+              "createdAt": "2025-09-23T12:55:02Z",
+              "updatedAt": "2025-09-23T12:55:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CL4oZ",
+          "commit": {
+            "abbreviatedOid": "d293673"
+          },
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T12:59:40Z",
+          "updatedAt": "2025-09-23T12:59:40Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "LGTM",
+              "createdAt": "2025-09-23T12:59:40Z",
+              "updatedAt": "2025-09-23T12:59:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CL5Is",
+          "commit": {
+            "abbreviatedOid": "d293673"
+          },
+          "author": "robinbryce",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Nice needle threading!",
+          "createdAt": "2025-09-23T13:00:12Z",
+          "updatedAt": "2025-09-23T13:00:12Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CMZHy",
+          "commit": {
+            "abbreviatedOid": "d293673"
+          },
+          "author": "SteveLasker",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-09-23T13:27:16Z",
+          "updatedAt": "2025-09-23T13:27:16Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CM5j9",
+          "commit": {
+            "abbreviatedOid": "d293673"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-23T13:56:05Z",
+          "updatedAt": "2025-09-23T13:56:11Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Non-blocking: The addition is fine, just a slight grammar improvement, but I know either work.\r\n\r\n```suggestion\r\nThe presence of an explicitly transparent registration policy, even if it allows all authenticated submissions, facilitates service audit, and enables potential future changes to that policy.\r\n```",
+              "createdAt": "2025-09-23T13:56:05Z",
+              "updatedAt": "2025-09-23T13:56:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CNHqN",
+          "commit": {
+            "abbreviatedOid": "d293673"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-23T14:09:23Z",
+          "updatedAt": "2025-09-23T14:09:23Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CNISW",
+          "commit": {
+            "abbreviatedOid": "d293673"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-23T14:10:01Z",
+          "updatedAt": "2025-09-23T14:10:02Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "It's the policy that's explicit(ly defined), not its transparency, which is mandated in another part of the doc.",
+              "createdAt": "2025-09-23T14:10:01Z",
+              "updatedAt": "2025-09-23T14:10:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CNIVz",
+          "commit": {
+            "abbreviatedOid": "d293673"
+          },
+          "author": "JAG-UK",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Good now. Nice work team!",
+          "createdAt": "2025-09-23T14:10:04Z",
+          "updatedAt": "2025-09-23T14:10:04Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 453,
+      "id": "PR_kwDOIvmHss6qQiGa",
+      "title": "Replace \"federation\" with \"collective baseline\"",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/453",
+      "state": "OPEN",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Towards #441\r\n\r\nThis is implicitly a transparency and auditability baseline, but it seemed heavy to repeat it.",
+      "createdAt": "2025-09-24T10:54:52Z",
+      "updatedAt": "2025-09-24T18:42:10Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "09041d7281bda83904cca34b2e594cf9c8797444",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-54",
+      "headRefOid": "e822d3db9daf459d03b64d6906e0f933f2bae950",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "If this isn't satisfactory, I propose we go straight to:\r\n\r\n```\r\nThe SCITT architecture enables Transparency Services to interoperate, by providing a set of common formats and protocols for issuing and registering Signed Statements and auditing Transparent Statements.\r\n```",
+          "createdAt": "2025-09-24T10:57:31Z",
+          "updatedAt": "2025-09-24T10:57:31Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss7Cikth",
+          "commit": {
+            "abbreviatedOid": "e822d3d"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-24T17:05:47Z",
+          "updatedAt": "2025-09-24T17:05:47Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CkATU",
+          "commit": {
+            "abbreviatedOid": "e822d3d"
+          },
+          "author": "nikcal",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "I appreciate the change from federation to collective baseline as it is more precise language. LGTM,",
+          "createdAt": "2025-09-24T18:42:10Z",
+          "updatedAt": "2025-09-24T18:42:10Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 454,
+      "id": "PR_kwDOIvmHss6qQlcr",
+      "title": "Update trust anchor description for COSE compatibility",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/454",
+      "state": "OPEN",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Towards #441",
+      "createdAt": "2025-09-24T10:58:55Z",
+      "updatedAt": "2025-09-24T18:43:38Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "09041d7281bda83904cca34b2e594cf9c8797444",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-55",
+      "headRefOid": "fa98721108da82d9e40b180626842db340e77c90",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss7Cik9U",
+          "commit": {
+            "abbreviatedOid": "fa98721"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-24T17:06:00Z",
+          "updatedAt": "2025-09-24T17:06:00Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CkBQg",
+          "commit": {
+            "abbreviatedOid": "fa98721"
+          },
+          "author": "nikcal",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "More precise language, lgtm. ",
+          "createdAt": "2025-09-24T18:43:38Z",
+          "updatedAt": "2025-09-24T18:43:38Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 455,
+      "id": "PR_kwDOIvmHss6qRm5r",
+      "title": "Add key management reference",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/455",
+      "state": "OPEN",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Towards the last item in #441, RFC4949 offers the following definition:\r\n\r\n>    $ cryptoperiod\r\n>       (I) The time span during which a particular key value is\r\n>       authorized to be used in a cryptographic system. (See: key\r\n>       management.)\r\n> \r\n>       Usage: This term is long-established in COMPUSEC usage. In the\r\n>       context of certificates and public keys, \"key lifetime\" and\r\n>       \"validity period\" are often used instead.\r\n> \r\n>       Tutorial: A cryptoperiod is usually stated in terms of calendar or\r\n>       clock time, but sometimes is stated in terms of the maximum amount\r\n>       of data permitted to be processed by a cryptographic algorithm\r\n>       using the key. Specifying a cryptoperiod involves a tradeoff\r\n>       between the cost of rekeying and the risk of successful\r\n>       cryptoanalysis.\r\n",
+      "createdAt": "2025-09-24T12:16:10Z",
+      "updatedAt": "2025-09-24T18:44:34Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "09041d7281bda83904cca34b2e594cf9c8797444",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-56",
+      "headRefOid": "e1630db4b428cb9652daaed05934d50a2c8c7a4c",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Expired keys must remain accessible for decryption and verification activities.",
+          "createdAt": "2025-09-24T12:27:08Z",
+          "updatedAt": "2025-09-24T12:27:08Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Expired keys must remain accessible for decryption and verification activities.\r\n\r\nThe SCITT architecture does not makes use of encryption, the TS keys are only ever used to sign receipts. When the TS rotates, i.e. switches to a fresh public key to sign receipts, it is definitely a good thing to destroy the old _private_ key without delay.\r\n\r\nHistorical _public_ keys obviously do need to remain available.",
+          "createdAt": "2025-09-24T12:48:23Z",
+          "updatedAt": "2025-09-24T12:48:23Z"
+        },
+        {
+          "author": "rjb4standards",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Perhaps a nit, but digital signature processing uses decryption to expose the hash value, so indirectly SCITT will use decryption and public keys during signature verification. But, I agree that SCITT does not explicitly require decryption, but decryption is occurring in an SSL session and digital signature verification, which requires access to expired public keys. Destroying the secret key may also be a good practice.",
+          "createdAt": "2025-09-24T13:36:57Z",
+          "updatedAt": "2025-09-24T13:36:57Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss7Cd389",
+          "commit": {
+            "abbreviatedOid": "cbc45aa"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-24T12:16:29Z",
+          "updatedAt": "2025-09-24T12:16:29Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\n- rotate their keys at a cryptoperiod (defined in {{RFC4949}}) appropriate for the key algorithm and domain-specific regulations\r\n```",
+              "createdAt": "2025-09-24T12:16:29Z",
+              "updatedAt": "2025-09-24T12:16:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7Cd6Al",
+          "commit": {
+            "abbreviatedOid": "8302458"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-24T12:19:02Z",
+          "updatedAt": "2025-09-24T12:19:03Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\n- rotate their keys at a cryptoperiod (defined in {{-Glossary}}) appropriate for the key algorithm and domain-specific regulations\r\n```",
+              "createdAt": "2025-09-24T12:19:02Z",
+              "updatedAt": "2025-09-24T12:19:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CilVI",
+          "commit": {
+            "abbreviatedOid": "e1630db"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-24T17:06:15Z",
+          "updatedAt": "2025-09-24T17:06:15Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7CkB5R",
+          "commit": {
+            "abbreviatedOid": "e1630db"
+          },
+          "author": "nikcal",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "LGTM.",
+          "createdAt": "2025-09-24T18:44:34Z",
+          "updatedAt": "2025-09-24T18:44:34Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
