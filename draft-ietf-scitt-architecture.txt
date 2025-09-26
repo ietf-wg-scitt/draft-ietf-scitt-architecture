@@ -5,12 +5,12 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 27 March 2026                                        C. Fournet
+Expires: 30 March 2026                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                       23 September 2025
+                                                       26 September 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 March 2026.
+   This Internet-Draft will expire on 30 March 2026.
 
 Copyright Notice
 
@@ -673,10 +673,10 @@ Table of Contents
 
 5.  Architecture Overview
 
-   The SCITT architecture enables a loose federation of Transparency
-   Services, by providing a set of common formats and protocols for
-   issuing and registering Signed Statements and auditing Transparent
-   Statements.
+   The SCITT architecture enables Transparency Services in a given
+   application domain to implement a collective baseline, by providing a
+   set of common formats and protocols for issuing and registering
+   Signed Statements and auditing Transparent Statements.
 
    In order to accommodate as many Transparency Service implementations
    as possible, this document only specifies the format of Signed
