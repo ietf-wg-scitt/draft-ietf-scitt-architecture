@@ -1392,8 +1392,8 @@ Table of Contents
 
    *  avoid using keys for more than one purpose
 
-   *  rotate their keys in well-defined cryptoperiods, see
-      [KEY-MANAGEMENT]
+   *  rotate their keys at a cryptoperiod (defined in [RFC4949])
+      appropriate for the key algorithm and domain-specific regulations
 
 9.4.1.  Verifiable Data Structure
 
@@ -1666,10 +1666,6 @@ Table of Contents
               chun07attested.pdf>.
 
    [in-toto]  "in-toto", n.d., <https://in-toto.io/>.
-
-   [KEY-MANAGEMENT]
-              "NIST SP 800-57 Part 2 Rev. 1", n.d.,
-              <https://csrc.nist.gov/pubs/sp/800/57/pt2/r1/final>.
 
    [NIST.SP.1800-19]
               Bartock, M., Dodson, D., Souppaya, M., Carroll, D.,
