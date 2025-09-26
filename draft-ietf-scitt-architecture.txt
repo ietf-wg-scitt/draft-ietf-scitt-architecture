@@ -802,7 +802,7 @@ Table of Contents
    Signed Statements as part of a Registration Policy.  For instance, a
    trust anchor could be an X.509 root certificate (directly or its
    thumbprint), a pointer to an OpenID Connect identity provider, or any
-   other COSE-compatible trust anchor.
+   other trust anchor that can be referenced in a COSE header parameter.
 
    When using X.509 Signed Statements, the Transparency Service MUST
    build and validate a complete certification path from an Issuer's
