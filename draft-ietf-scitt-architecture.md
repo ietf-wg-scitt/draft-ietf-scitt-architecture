@@ -144,10 +144,6 @@ informative:
     target: https://csrc.nist.gov/Projects/Software-Identification-SWID/guidelines
     title: SWID Specification
 
-  KEY-MANAGEMENT:
-    target: https://csrc.nist.gov/pubs/sp/800/57/pt2/r1/final
-    title: NIST SP 800-57 Part 2 Rev. 1
-
   EQUIVOCATION:
     target: https://www.read.seas.harvard.edu/~kohler/class/08w-dsi/chun07attested.pdf
     title: "Attested Append-Only Memory: Making Adversaries Stick to their Word"
@@ -989,7 +985,7 @@ Issuers and Transparency Services MUST:
 
 - carefully protect their private signing keys
 - avoid using keys for more than one purpose
-- rotate their keys in well-defined cryptoperiods, see {{KEY-MANAGEMENT}}
+- rotate their keys at a cryptoperiod (defined in {{-Glossary}}) appropriate for the key algorithm and domain-specific regulations
 
 ### Verifiable Data Structure
 
