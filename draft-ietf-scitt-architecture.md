@@ -595,7 +595,7 @@ If the protected header includes multiple identifiers, all those that are regist
 
 Transparency Services MUST maintain a list of trust anchors (see definition of trust anchor in {{-Glossary}}) in order to check the signatures of Signed Statements, either separately, or inside Registration Policies.
 Transparency Services MUST authenticate Signed Statements as part of a Registration Policy.
-For instance, a trust anchor could be an X.509 root certificate (directly or its thumbprint), a pointer to an OpenID Connect identity provider, or any other COSE-compatible trust anchor.
+For instance, a trust anchor could be an X.509 root certificate (directly or its thumbprint), a pointer to an OpenID Connect identity provider, or any other trust anchor that can be referenced in a COSE header parameter.
 
 When using X.509 Signed Statements, the Transparency Service MUST build and validate a complete certification path from an Issuer's certificate to one of the root certificates currently registered as a trust anchor by the Transparency Service.
 The protected header of the COSE_Sign1 Envelope MUST include either the Issuer's certificate as `x5t` or the chain including the Issuer's certificate as `x5chain`, as defined in {{RFC9360}}.
