@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-25T00:52:09.685700+00:00",
+  "timestamp": "2025-09-28T00:56:55.200062+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -6912,12 +6912,10 @@
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [
-        "Needs email response"
-      ],
+      "labels": [],
       "body": "https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/ballot/#draft-ietf-scitt-architecture_erik-kline\n\n## Section 3\n\n> I can't help but feel that \"Transparency Statement\" is a slightly better\n> term than the somewhat-generic-sounding \"Transparent Statement\", but\n> I'm guessing this is well past the stage at which terminology can be\n> changed.\n> \n> Just an observation.\n\n- [x] Respond in writing: \"Duly noted, this was discussed in the WG, and Transparency Statement was on the table for a while, but rough consensus did not go that way in the end.\"\n\n## Section 9.4.2\n\n> What should an Issuer or Transparency Service do when a key is\n> compromised beyond \"communicate\"?\n> \n> Should it, for example, establish new credentials and replay all\n> signing operations with the new key(s)?\n\n- [x] #431.\n\nKey points:\n  - No replay\n  - Rollback\n  - Endorsement with new key\n  - Communicate\n\n## Section 2.1\n\n> \"Taking the type and structure of all statements about digital and\n> products into account might not be possible.\"\n> \n> s/digital and products/digital products/ I think improves readability.\n\n- [x] #415.\n",
       "createdAt": "2025-09-15T13:06:37Z",
-      "updatedAt": "2025-09-23T08:18:17Z",
+      "updatedAt": "2025-09-26T14:54:22Z",
       "closedAt": "2025-09-23T08:18:17Z",
       "comments": [
         {
@@ -6970,12 +6968,10 @@
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [
-        "Needs email response"
-      ],
+      "labels": [],
       "body": "https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/ballot/#draft-ietf-scitt-architecture_mohamed-boucadair\n\n> Many questions popped up when reading the document (e.g., how the various entities know/discover each other, how authentication is done, how bootstrapping is made, what registration actually means, how the receipts are retrieved, how collection is made, how the latest version of a statement on a specific component is made available rather than consuming a stale one, what if a TS is not available anymore, etc.\n>\n> As this is an architecture document (but not only), I was expecting some of these details to be grouped in a single place (even with a statement, these are out of scope).\n\n- [x] #438. Clarify in response that bootstrapping is covered in 5. Architecture Overview, as 5.1.2. Initialization and Bootstrapping and 9. Security Considerations, as 9.4.3. Bootstrapping. Authentication is done with COSE, this is abundantly covered in introduction.\n\n## Abstract\n\n> (1) It is not clear to me how what means \u201cscalable architecture\u201d here. Scalability can be approach from various angles and I\u2019m not sure which aspects is being focused on here. I\u2019d prefer we back any claim here with a discussion on that in the main text.\n\n- [x] #437.\n\n> (2) Likewise, what does flexibility mean in this specific context? For example, there are some constraints imposed on how registration policies may be updated, etc. I think that exercising the architecture and playing with various contexts (complex component dependencies, other uses) would be needed first.\n\n- [x] #437.\n\n> (3) Idem, maybe I\u2019m misreading this but what aspect in the spec you have in mind with \u201cinteroperability between different transparency services\u201d?\n\n- [x] Response to AD pointing to single data definition for Signed/Transparent/Statements/COSE receipts and ability to embed a collection of receipts in a transparent statement.\n\n> (4) nits\n>\n> * s/proposes/defines\n> * Not easy at this stage to digest what is a \u201ctransparency service\u201d.\n\n- [x] #425.\n\n## Section 1\n\n>    As these messages provide the foundation of\n>    any transparency service implementation for global and cross-domain\n>                                                           ^^^^^^^^^^^^\n>    application interoperability, they are based on complementary COSE\n>    specifications, mainly [I-D.draft-ietf-cose-merkle-tree-proofs].\n>\n> How domain is defined in this specific context?\n\n- [x] #426. Discussion needed, the sentence as it stands does not make a lot of sense. I think the point we are trying to make is that because the goal is to provide transparency for all use cases and application domains, the architecture picks a domain-agnostic receipt format, COSE Receipts.\n\nThe first line in the paragraph is also wrong:\n\n> This document also defines message structures for signed statements and defines a profile for COSE receipts {{-RECEIPTS}}, i.e., signed verifiable data structure proofs).\n\nThe architecture document does not define a profile for COSE receipts. I think we need to improve that paragraph altogether.\n\n## Figure 1\n> These are still possible attacks. I don\u2019t think we sat  that SCITT will nullify those. Right?\n\n- [x] Response in email. We try to capture existing attack vectors in an appropriate manner.\n\n## Section 2.1\n\n>   DevSecOps often depends on third-party and open-source software. \n> \n> I know what it means, but do we have an authoritative ref to cite for DevSecOps?\n\n- [x] #418, also raised by Mike Bishop in #413.\n\n## Section 3\n\n>       In SCITT\n>       Statements and Receipts, the iss CWT Claim is a member of the COSE\n>       header parameter 15: CWT_Claims within the protected header of a\n>       COSE Envelope.  \n> \n> (1) I don\u2019t find CWT_Claims in the base COSE spec. \n> \n> (2) I guess we meant what is defined in [RFC9597](https://datatracker.ietf.org/doc/rfc9597/). If so, please add a pointer to that RFC.\n> \n> (3) Also, I think this and other occurrences in the document should be \u201cCWT-Claims\u201d to comply with 9597.\n\n- [x] #427. The actual IANA name is `CWT Claims`, with the space, `CWT-Claims` is the CDDL definition name in RFC9597. We already had a reference to that elsewhere, but I have added it at that location too, and make naming consistent throughout the document.\n\n>    Receipt:  a cryptographic proof that a Signed Statement is included\n>       in the Verifiable Data Structure.  See\n>       [I-D.draft-ietf-cose-merkle-tree-proofs] for implementations\n>       Receipts are signed proofs of verifiable data-structure\n>       properties.  The types of Receipts MUST support inclusion proofs\n>       and MAY support other proof types, such as consistency proofs.\n> \n> (1) I don\u2019t parse the second sentence.\n> \n> (2) What is a \u201ctype of receipt\u201d? Failed to find which part of [draft-ietf-cose-merkle-tree-proofs](https://datatracker.ietf.org/doc/draft-ietf-cose-merkle-tree-proofs/) this is referring to.\n> \n> (3) Weird to have the normative requirement in a terminology section.\n\n- [x] #428. Does not address (3), I could not find an obviously better location.\n\n## Section 4\n\n>    A SCITT instance is referred to as a Transparency Service.\n> \n> Isn\u2019t SCITT about the full architecture?\n> \n> Also, I don\u2019t see \u201c SCITT instance\u201d used anywhere in the document.\n\n- [x] #429.\n\n## Figure2\n\n> is mixing state, entities, and so on. Also the direction of arrows is confusing to me. For example, I expect sign and verify to act in distinct directions.\n> \n> No clear to me how to read this diagram.\n\n- [x] No action, the diagram is not perfect, but we do not know how to make it better.\n\n## Section 5.1\n\n>   Transparency Services MUST feature a Verifiable Data Structure.  \n> \n> What does concretely mean?\n\n- [x] #430.\n\n## Section 5.1.1):\n\n>    Transparency Services MUST maintain Registration\n>    Policies.\n> \n> What does this concretely imply?\n\n- [x] Respond in email. Authorization is necessary.\n\n## Section 5.1.1.2\n\n>    The operator of a Transparency Service MAY update the Registration\n>    Policy or the trust anchors of a Transparency Service at any time.\n> \n> is there any value to notify the change to any other entity in the architecture when such event happens/planned?\n\n- [x] Respond in email. May be appropriate/envisioned in some contexts but not all.\n\n# Enough information\n\nSection 5.1.1.2\n\n>    Transparency Services MUST ensure that for any Signed Statement they\n>    register, enough information is made available to Auditors to\n>    reproduce the Registration checks that were defined by the\n>    Registration Policies at the time of Registration.\n> \n> Can we list a minimum information to be logged and made available?\n\n- [x] #436.\n\n## Section 6\n\n>    Once all the Envelope headers are set, an Issuer MUST use a standard\n>    COSE implementation to produce an appropriately serialized Signed\n>    Statement.\n> \n> That is?\n\n- [x] #434.",
       "createdAt": "2025-09-15T13:35:13Z",
-      "updatedAt": "2025-09-24T10:36:12Z",
+      "updatedAt": "2025-09-26T14:54:23Z",
       "closedAt": "2025-09-24T10:36:12Z",
       "comments": [
         {
@@ -7019,12 +7015,10 @@
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [
-        "Needs email response"
-      ],
+      "labels": [],
       "body": "> I really like the idea of having a unified \u00d2label\u00d3 of sorts that can account\n> for all facets of software supply chain. It also accounts for \u00d2add-on services\u00d3\n> depending on the software and the use case. However, it has the same problems\n> as having an IoT label, like information overload, inaccurate data, and lack of\n> interest in implementation without a push from a regulator.\n\n> Nit: I am not sure which fields are deemed required versus voluntary.\n\n- [x] This is covered in the CDDL schemas, respond in email.\n\n> Minor Observation: The document assumes that the software producer has enough\n> resources to immediately fix a vulnerability so that it does not show up on the\n> transparency chain. Most small scale software providers will likely not change\n> anything in their process due to the transparency from SCITT due to other\n> release considerations.\u00ca\n\n- [x] SCITT cannot and does not make guarantees about vulnerabilities, perhaps we need to clarify this. Instead it is about maintaining an authentic, non-equivocal history of statements. No imposition is made on the software producers with regards to the quality of the code.\n\n> Minor Observation / Possible Nit: What are the security measures to mitigate\n> security vulnerabilities in the SCITT schema itself? Beyond saying that\n> sensitive information should be hashed locally before sending to the\n> transparency service, there are no additional security considerations (the\n> document mentions these are out of scope though and should follow standard\n> security practices recommended by IETF). The only privacy consideration is that\n> SCITT issuers must check that providers don\u00d5t have PII (which historically\n> doesn\u00d5t work in practice well). If I was an attacker, I can go ahead and modify\n> the output of this schema to include false provenance and security statements.\n\n- [x] Needs discussion. Unless the attacker has access to Issuer or Transparency Service credentials, they will not be able to produce convincing signatures, and so I do not understand the concern. Ask for clarification.",
       "createdAt": "2025-09-17T14:06:09Z",
-      "updatedAt": "2025-09-18T14:04:18Z",
+      "updatedAt": "2025-09-26T14:55:03Z",
       "closedAt": null,
       "comments": [
         {
@@ -7033,6 +7027,13 @@
           "body": "Proposed email\n\n```\n> However, it has the same problems as having an IoT label, like information overload, inaccurate data, and lack of interest in implementation without a push from a regulator.\n\nThis is true, and we are open to suggestions on addressing these difficult items.\n\n> I am not sure which fields are deemed required versus voluntary.\n\nThis is covered in detail by the CDDL schemas in Sections 6.1 and 7.\n\n> Minor Observation: The document assumes that the software producer has enough\n> resources to immediately fix a vulnerability so that it does not show up on the\n> transparency chain. Most small scale software providers will likely not change\n> anything in their process due to the transparency from SCITT due to other\n> release considerations\n\nCould you tell us which section in the document is giving this impression? That is very much not the intention.\n\nSCITT does define methods to prevent authenticated supply chain issuers from making false claims, as per its charter (Non-Goals). It establishes a mechanism to produce an authentic, non-equivocal history of statements, which is expected include statements about vulnerable software.\n\n> Minor Observation / Possible Nit: What are the security measures to mitigate\n> security vulnerabilities in the SCITT schema itself? Beyond saying that\n> sensitive information should be hashed locally before sending to the\n> transparency service, there are no additional security considerations (the\n> document mentions these are out of scope though and should follow standard\n> security practices recommended by IETF). The only privacy consideration is that\n> SCITT issuers must check that providers don\u00d5t have PII (which historically\n> doesn\u00d5t work in practice well). If I was an attacker, I can go ahead and modify\n> the output of this schema to include false provenance and security statements.\n\nCould you clarify what you mean by vulnerabilities in the schema itself?\n\nSCITT relies on COSE, which is a well established format with a mechanism for agility, it does not seek to address vulnerabilities in digital signatures. An attacker would need to obtain either Issuer or Transparency Service credentials to produce valid statements, they are not able to simply make changes that Relying Parties would blindly accept.\n\nWe are open to improving the privacy consideration section, do you have suggestions for further improvements?\n```",
           "createdAt": "2025-09-18T14:03:44Z",
           "updatedAt": "2025-09-18T14:04:04Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Email sent, will update this issue with follow-ups.",
+          "createdAt": "2025-09-26T14:55:03Z",
+          "updatedAt": "2025-09-26T14:55:03Z"
         }
       ]
     },
@@ -7045,12 +7046,10 @@
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [
-        "Needs email response"
-      ],
+      "labels": [],
       "body": "### Section 1\n\n> Suggest to split the very long paragraph one in 3 parts: problem to be solved, how to solve it, benefits. A graphical representation would also help to understand all the interactions (e.g., a simplified version of the nice Figure 2).\n\n- [x] #445. Given the time and controversy expended on Figure 2, I do not think trying to make a simplified version is a something we want to pursue.\n\n> The reader has often to read a very long paragraph in this document, while perfectly correct, this does not help the reader.\n\n### Section 2.1\n\n> Isn't it weird to have a generic section 2.1 included in a specific 'software-only' section 2 ?\n\n- [x] Response: The S in Generic SSC stands for Software, so it does not seem weird.\n\n> BTW, thanks for using SVG graphics they are so much nicer in HTML rendering.\n\n### Section 2.2.3\n\n> Is this short section about autonomous v\u00e9hicle useful ?\n\n- [x] Also see #443, it's an illustrative example, it will be more useful to some users than others.\n\n### Section 3\n\n> Should \"CWT\" be expanded (and informational reference added) ?\n\n- [x] #446.\n\n### Section 5.1.1.1\n\n> s/ Transparency Service MUST, at a minimum,/ Transparency Service MUST/ ?\n\n- [x] #447.\n\n> Please add a reference to `x5t` or define it. Same for `kid` used later in the text, especially since \"kid\" is a common English word.\n\n- [x] #421 for `x5t`, #440 for `kid`.\n\n### Section 5.1.3\n\n> It is unclear (at least to me but perhaps to other implementers) whether [draft-ietf-cose-merkle-tree-proofs](https://datatracker.ietf.org/doc/draft-ietf-cose-merkle-tree-proofs/) is the only way to be implemented.\n\n- [x] #430.\n\n### Section 6\n\n> The list of references to other documents would benefit from adding a few words describing the reference.\n\n- [x] #451",
       "createdAt": "2025-09-17T15:24:09Z",
-      "updatedAt": "2025-09-24T10:42:15Z",
+      "updatedAt": "2025-09-26T14:54:23Z",
       "closedAt": "2025-09-24T10:42:15Z",
       "comments": [
         {
@@ -7067,18 +7066,24 @@
       "id": "I_kwDOIvmHss7Mba5C",
       "title": "Review: Roman Danyliw",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/441",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [
-        "Needs email response"
-      ],
-      "body": "https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/ballot/#draft-ietf-scitt-architecture_roman-danyliw\n\n> ** Idnits reports:\n>   == Unused Reference: '[RFC9334](https://datatracker.ietf.org/doc/rfc9334/)' is defined on line 1699, but no > explicit\n>      reference was found in the text\n\n- [x] #416\n\n> ** Section 2.1\n>    Lastly, where data exchange underpins serious business decision-\n>    making, it is important to hold the producers of those data to a\n>    higher standard of accountability. \n> \n> Defining the degree of accountability for producers is not in-scope for the charter.\n\n- [x] #442.\n\n> ** Section 2.2.3.  What about this use case is unique to an \u201cautonomous vehicle\u201d, as opposed to a \u201cnon-autonomous vehicle\u201d or \u201cany vehicle\u201d? \n\n- [x] #443.\n\n> ** Section 4\n>    Reputable Issuers are thus incentivized to carefully review their\n>    Statements before signing them to produce Signed Statements.\n>    Similarly, reputable Transparency Services are incentivized to secure\n>    their Verifiable Data Structure, as any inconsistency can easily be\n>    pinpointed by any Auditor with read access to the Transparency\n>    Service.\n>\n> What makes an issuer or transparency service \u201creputable\u201d?\n\n- Response, their track record of issuing accurate statements. By making this track record unequivocal, SCITT enables reputation-building, but does not guarantee accuracy. An issuer can produce an unequivocal history of non-sensical statements that relying parties are free to ignore.\nSCITT provides a mechanism to build reputation, but does not assess reputation.\n\n> ** Section 4\n>    The building blocks defined in SCITT are intended to support\n>    applications in any supply chain that produces or relies upon digital\n>    Artifacts, from the build and supply of software and IoT devices to\n>    advanced manufacturing and food supply.\n> \n> This statement is outside the scope of the SCITT charter.\n\n- [x] #444.\n\n> ** Section 5.\n>    The SCITT architecture enables a loose federation of Transparency\n>    Services, by providing a set of common formats and protocols for\n>    issuing and registering Signed Statements and auditing Transparent\n>    Statements.\n> \n> Where is the basis for this \u201cfederation\u201d explained?  What does it mean to be \u201cfederated\u201d?\n\n- [ ] Discussed, #453 attempts to avoid defining federation, but keep the idea that a number of services in the same area probably want to align their guarantees, or at least target a minimum, and SCITT helps with that by providing interop.\n\n> ** Section 5.1.1.1.  What is a \u201cCOSE-compatible trust anchor\u201d?\n\n- [ ] Discussed, #454.\n\n> ** Section 6\n>    Once all the Envelope headers are set, an Issuer MUST use a standard\n>    COSE implementation to produce an appropriately serialized Signed\n>    Statement.\n> \n> What is a \u201cstandard COSE implementation\u201d, as opposed to using COSE?\n\n- [x] #434.\n\n> ** Section 9.4\n>    Issuers and Transparency Services MUST:\n> \u2026\n>    *  rotate their keys in well-defined cryptoperiods, see\n>       [KEY-MANAGEMENT]\n> \n> What makes a \u201ccryptoperiod\u201d well-defined?  How is it interoperable.  I wasn\u2019t able to locate the relevant guidance in [KEY-MANAGEMENT] beyond statements of having a cryptoperiod.  Additionally, since [KEY-MANAGEMENT] is informative, the guidance for it can\u2019t come from this document.\n\n- [ ] #455.",
+      "labels": [],
+      "body": "https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/ballot/#draft-ietf-scitt-architecture_roman-danyliw\n\n> ** Idnits reports:\n>   == Unused Reference: '[RFC9334](https://datatracker.ietf.org/doc/rfc9334/)' is defined on line 1699, but no > explicit\n>      reference was found in the text\n\n- [x] #416\n\n> ** Section 2.1\n>    Lastly, where data exchange underpins serious business decision-\n>    making, it is important to hold the producers of those data to a\n>    higher standard of accountability. \n> \n> Defining the degree of accountability for producers is not in-scope for the charter.\n\n- [x] #442.\n\n> ** Section 2.2.3.  What about this use case is unique to an \u201cautonomous vehicle\u201d, as opposed to a \u201cnon-autonomous vehicle\u201d or \u201cany vehicle\u201d? \n\n- [x] #443.\n\n> ** Section 4\n>    Reputable Issuers are thus incentivized to carefully review their\n>    Statements before signing them to produce Signed Statements.\n>    Similarly, reputable Transparency Services are incentivized to secure\n>    their Verifiable Data Structure, as any inconsistency can easily be\n>    pinpointed by any Auditor with read access to the Transparency\n>    Service.\n>\n> What makes an issuer or transparency service \u201creputable\u201d?\n\n- Response, their track record of issuing accurate statements. By making this track record unequivocal, SCITT enables reputation-building, but does not guarantee accuracy. An issuer can produce an unequivocal history of non-sensical statements that relying parties are free to ignore.\nSCITT provides a mechanism to build reputation, but does not assess reputation.\n\n> ** Section 4\n>    The building blocks defined in SCITT are intended to support\n>    applications in any supply chain that produces or relies upon digital\n>    Artifacts, from the build and supply of software and IoT devices to\n>    advanced manufacturing and food supply.\n> \n> This statement is outside the scope of the SCITT charter.\n\n- [x] #444.\n\n> ** Section 5.\n>    The SCITT architecture enables a loose federation of Transparency\n>    Services, by providing a set of common formats and protocols for\n>    issuing and registering Signed Statements and auditing Transparent\n>    Statements.\n> \n> Where is the basis for this \u201cfederation\u201d explained?  What does it mean to be \u201cfederated\u201d?\n\n- [x] Discussed, #453 attempts to avoid defining federation, but keep the idea that a number of services in the same area probably want to align their guarantees, or at least target a minimum, and SCITT helps with that by providing interop.\n\n> ** Section 5.1.1.1.  What is a \u201cCOSE-compatible trust anchor\u201d?\n\n- [x] Discussed, #454.\n\n> ** Section 6\n>    Once all the Envelope headers are set, an Issuer MUST use a standard\n>    COSE implementation to produce an appropriately serialized Signed\n>    Statement.\n> \n> What is a \u201cstandard COSE implementation\u201d, as opposed to using COSE?\n\n- [x] #434.\n\n> ** Section 9.4\n>    Issuers and Transparency Services MUST:\n> \u2026\n>    *  rotate their keys in well-defined cryptoperiods, see\n>       [KEY-MANAGEMENT]\n> \n> What makes a \u201ccryptoperiod\u201d well-defined?  How is it interoperable.  I wasn\u2019t able to locate the relevant guidance in [KEY-MANAGEMENT] beyond statements of having a cryptoperiod.  Additionally, since [KEY-MANAGEMENT] is informative, the guidance for it can\u2019t come from this document.\n\n- [x] #455.",
       "createdAt": "2025-09-18T10:36:40Z",
-      "updatedAt": "2025-09-24T12:17:18Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2025-09-26T14:54:24Z",
+      "closedAt": "2025-09-26T14:53:52Z",
+      "comments": [
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Proposed response:\n\n```\nThank you for the detailed review, we have addressed all your comments by making changes to the text. Full details are available at https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/441.\n\n> ** Section 4\n> Reputable Issuers are thus incentivized to carefully review their\n> Statements before signing them to produce Signed Statements.\n> Similarly, reputable Transparency Services are incentivized to secure\n> their Verifiable Data Structure, as any inconsistency can easily be\n> pinpointed by any Auditor with read access to the Transparency\n> Service.\n\n> What makes an issuer or transparency service \u201creputable\u201d?\n\nWhat makes an issuer reputable is its track record of issuing accurate statements. By making this track record unequivocal, SCITT enables reputation-building, but does not guarantee accuracy. An issuer can produce an unequivocal history of non-sensical statements that relying parties are free to ignore.\nSCITT provides a mechanism to build reputation, but does not assess reputation itself.\n```",
+          "createdAt": "2025-09-26T12:55:27Z",
+          "updatedAt": "2025-09-26T12:55:27Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -59908,24 +59913,26 @@
       "id": "PR_kwDOIvmHss6qQiGa",
       "title": "Replace \"federation\" with \"collective baseline\"",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/453",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Towards #441\r\n\r\nThis is implicitly a transparency and auditability baseline, but it seemed heavy to repeat it.",
       "createdAt": "2025-09-24T10:54:52Z",
-      "updatedAt": "2025-09-24T18:42:10Z",
+      "updatedAt": "2025-09-26T12:49:19Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "09041d7281bda83904cca34b2e594cf9c8797444",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "achamayou-patch-54",
       "headRefOid": "e822d3db9daf459d03b64d6906e0f933f2bae950",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-09-26T12:49:19Z",
+      "mergedAt": "2025-09-26T12:49:19Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "e579f7af5965d4ba304b3c5395689c14b5ab5804"
+      },
       "comments": [
         {
           "author": "achamayou",
@@ -59961,6 +59968,19 @@
           "createdAt": "2025-09-24T18:42:10Z",
           "updatedAt": "2025-09-24T18:42:10Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7DCDze",
+          "commit": {
+            "abbreviatedOid": "e822d3d"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": ":ship: it",
+          "createdAt": "2025-09-26T12:44:44Z",
+          "updatedAt": "2025-09-26T12:44:44Z",
+          "comments": []
         }
       ]
     },
@@ -59969,24 +59989,26 @@
       "id": "PR_kwDOIvmHss6qQlcr",
       "title": "Update trust anchor description for COSE compatibility",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/454",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Towards #441",
       "createdAt": "2025-09-24T10:58:55Z",
-      "updatedAt": "2025-09-24T18:43:38Z",
+      "updatedAt": "2025-09-26T12:50:52Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "09041d7281bda83904cca34b2e594cf9c8797444",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "achamayou-patch-55",
       "headRefOid": "fa98721108da82d9e40b180626842db340e77c90",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-09-26T12:50:52Z",
+      "mergedAt": "2025-09-26T12:50:52Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "c050878dc240399edd28dd04461110ca9f2c6c67"
+      },
       "comments": [],
       "reviews": [
         {
@@ -60014,6 +60036,19 @@
           "createdAt": "2025-09-24T18:43:38Z",
           "updatedAt": "2025-09-24T18:43:38Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7DCEoL",
+          "commit": {
+            "abbreviatedOid": "fa98721"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "that should do the trick",
+          "createdAt": "2025-09-26T12:45:26Z",
+          "updatedAt": "2025-09-26T12:45:26Z",
+          "comments": []
         }
       ]
     },
@@ -60022,24 +60057,26 @@
       "id": "PR_kwDOIvmHss6qRm5r",
       "title": "Add key management reference",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/455",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Towards the last item in #441, RFC4949 offers the following definition:\r\n\r\n>    $ cryptoperiod\r\n>       (I) The time span during which a particular key value is\r\n>       authorized to be used in a cryptographic system. (See: key\r\n>       management.)\r\n> \r\n>       Usage: This term is long-established in COMPUSEC usage. In the\r\n>       context of certificates and public keys, \"key lifetime\" and\r\n>       \"validity period\" are often used instead.\r\n> \r\n>       Tutorial: A cryptoperiod is usually stated in terms of calendar or\r\n>       clock time, but sometimes is stated in terms of the maximum amount\r\n>       of data permitted to be processed by a cryptographic algorithm\r\n>       using the key. Specifying a cryptoperiod involves a tradeoff\r\n>       between the cost of rekeying and the risk of successful\r\n>       cryptoanalysis.\r\n",
       "createdAt": "2025-09-24T12:16:10Z",
-      "updatedAt": "2025-09-24T18:44:34Z",
+      "updatedAt": "2025-09-26T12:51:24Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "09041d7281bda83904cca34b2e594cf9c8797444",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "achamayou-patch-56",
       "headRefOid": "e1630db4b428cb9652daaed05934d50a2c8c7a4c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-09-26T12:51:24Z",
+      "mergedAt": "2025-09-26T12:51:23Z",
+      "mergedBy": "achamayou",
+      "mergeCommit": {
+        "oid": "75c8d3035d5ad4009b1b02b06f6f994cb72dd49e"
+      },
       "comments": [
         {
           "author": "rjb4standards",
@@ -60128,6 +60165,19 @@
           "body": "LGTM.",
           "createdAt": "2025-09-24T18:44:34Z",
           "updatedAt": "2025-09-24T18:44:34Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7DCGj1",
+          "commit": {
+            "abbreviatedOid": "e1630db"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "+:100: for bringing up the RFC4949 reference. We talked about that once and I dropped all balls about that.",
+          "createdAt": "2025-09-26T12:47:01Z",
+          "updatedAt": "2025-09-26T12:47:01Z",
           "comments": []
         }
       ]
