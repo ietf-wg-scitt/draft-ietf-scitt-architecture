@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-28T00:56:55.200062+00:00",
+  "timestamp": "2025-10-05T00:56:10.792223+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -7011,15 +7011,15 @@
       "id": "I_kwDOIvmHss7MO8a9",
       "title": "Review: Jason Livingood",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/439",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "> I really like the idea of having a unified \u00d2label\u00d3 of sorts that can account\n> for all facets of software supply chain. It also accounts for \u00d2add-on services\u00d3\n> depending on the software and the use case. However, it has the same problems\n> as having an IoT label, like information overload, inaccurate data, and lack of\n> interest in implementation without a push from a regulator.\n\n> Nit: I am not sure which fields are deemed required versus voluntary.\n\n- [x] This is covered in the CDDL schemas, respond in email.\n\n> Minor Observation: The document assumes that the software producer has enough\n> resources to immediately fix a vulnerability so that it does not show up on the\n> transparency chain. Most small scale software providers will likely not change\n> anything in their process due to the transparency from SCITT due to other\n> release considerations.\u00ca\n\n- [x] SCITT cannot and does not make guarantees about vulnerabilities, perhaps we need to clarify this. Instead it is about maintaining an authentic, non-equivocal history of statements. No imposition is made on the software producers with regards to the quality of the code.\n\n> Minor Observation / Possible Nit: What are the security measures to mitigate\n> security vulnerabilities in the SCITT schema itself? Beyond saying that\n> sensitive information should be hashed locally before sending to the\n> transparency service, there are no additional security considerations (the\n> document mentions these are out of scope though and should follow standard\n> security practices recommended by IETF). The only privacy consideration is that\n> SCITT issuers must check that providers don\u00d5t have PII (which historically\n> doesn\u00d5t work in practice well). If I was an attacker, I can go ahead and modify\n> the output of this schema to include false provenance and security statements.\n\n- [x] Needs discussion. Unless the attacker has access to Issuer or Transparency Service credentials, they will not be able to produce convincing signatures, and so I do not understand the concern. Ask for clarification.",
       "createdAt": "2025-09-17T14:06:09Z",
-      "updatedAt": "2025-09-26T14:55:03Z",
-      "closedAt": null,
+      "updatedAt": "2025-10-02T08:42:15Z",
+      "closedAt": "2025-10-02T08:42:15Z",
       "comments": [
         {
           "author": "achamayou",
@@ -7034,6 +7034,13 @@
           "body": "Email sent, will update this issue with follow-ups.",
           "createdAt": "2025-09-26T14:55:03Z",
           "updatedAt": "2025-09-26T14:55:03Z"
+        },
+        {
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Reviewer clarified that no specific action was needed on this draft https://mailarchive.ietf.org/arch/msg/scitt/OHsds0mFwK_lT2-CJf3WKY-XLqU.",
+          "createdAt": "2025-10-02T08:42:15Z",
+          "updatedAt": "2025-10-02T08:42:15Z"
         }
       ]
     },
