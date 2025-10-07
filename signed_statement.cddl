@@ -15,17 +15,19 @@ Protected_Header = {
   ? &(kid: 4) => bstr
   ? &(x5t: 34) => COSE_CertHash
   ? &(x5chain: 33) => COSE_X509
-  * int => any
+  * label => any
 }
 
 CWT_Claims = {
   &(iss: 1) => tstr
   &(sub: 2) => tstr
-  * int => any
+  * label => any
 }
 
 Unprotected_Header = {
   ? &(x5chain: 33) => COSE_X509
   ? &(receipts: 394)  => [+ Receipt]
-  * int => any
+  * label => any
 }
+
+label = int / tstr
