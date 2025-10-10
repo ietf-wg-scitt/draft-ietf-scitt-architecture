@@ -32,7 +32,7 @@ It ensures extensibility, interoperability between different transparency servic
     PyYAML 6.0.2
     requests 2.32.5
     setuptools 80.9.0
-    wcwidth 0.2.13
+    wcwidth 0.2.14
 -->
 <link href="draft-ietf-scitt-architecture.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1051,11 +1051,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SCITT Architecture</td>
-<td class="right">September 2025</td>
+<td class="right">October 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 30 March 2026</td>
+<td class="center">Expires 13 April 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-09-26" class="published">26 September 2025</time>
+<time datetime="2025-10-10" class="published">10 October 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-03-30">30 March 2026</time></dd>
+<dd class="expires"><time datetime="2026-04-13">13 April 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1140,7 +1140,7 @@ It ensures extensibility, interoperability between different transparency servic
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 30 March 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 13 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2252,20 +2252,22 @@ Protected_Header = {
   ? &amp;(kid: 4) =&gt; bstr
   ? &amp;(x5t: 34) =&gt; COSE_CertHash
   ? &amp;(x5chain: 33) =&gt; COSE_X509
-  * int =&gt; any
+  * label =&gt; any
 }
 
 CWT_Claims = {
   &amp;(iss: 1) =&gt; tstr
   &amp;(sub: 2) =&gt; tstr
-  * int =&gt; any
+  * label =&gt; any
 }
 
 Unprotected_Header = {
   ? &amp;(x5chain: 33) =&gt; COSE_X509
   ? &amp;(receipts: 394)  =&gt; [+ Receipt]
-  * int =&gt; any
+  * label =&gt; any
 }
+
+label = int / tstr
 </pre>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
