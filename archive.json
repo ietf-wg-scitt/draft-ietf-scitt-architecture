@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-09T00:51:44.778508+00:00",
+  "timestamp": "2025-10-12T00:53:57.626496+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -60194,26 +60194,55 @@
       "id": "PR_kwDOIvmHss6siGZ6",
       "title": "Proposed correction for what looks like an accidental narrowing of COSE/RFC9052",
       "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/456",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "achamayou",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "The schema for signed statements narrows what COSE allows in [RFC 9052](https://www.rfc-editor.org/rfc/rfc9052.html#name-header-parameters), which defines labels as `int / tstr`.\r\n\r\nQuoting Section 1.5 of RFC 9052:\r\n\r\n> In COSE, we use text strings, negative integers, and unsigned integers as map keys. The integers are used for compactness of encoding and easy comparison. The inclusion of text strings allows for an additional range of short encoded values to be used as well.\r\n\r\nAs far as I can tell, the authors did not intend for this restriction to be there, and it seems to have happened accidentally.\r\n\r\nCWT Claims gained its extra `* int` here: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/commit/72ccf8a1a81e52079a49ad57c72f1afaa20e864e, specifically after @OR13 noticed extra properties were disallowed: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/163#discussion_r1457510308\r\n\r\nThere is no mention of deliberately excluding `tstr` or specifically enabling `int` only.\r\n\r\nThat line moved around a fair bit later, but was not edited again.\r\n\r\nThe unprotected header was aligned with the protected header here: https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/220, but again there is no mention of the restriction, and no further edits.\r\n\r\nFinally, the initial setting of the protected header happened in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/179. I have expanded the 100 comments it contains to find something relevant to the setting of `int` rather than `label` but was unable to find anything. Can I ask @OR13 if he remembers restricting the protected header that way on purpose, or if this was an accident?\r\n\r\nThe fact that this narrowing is not there in Receipts, neither as proposed by Orie in https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/109, nor in the current https://www.ietf.org/archive/id/draft-ietf-cose-merkle-tree-proofs-17.html#name-receipt-of-inclusion adds to my impression that this was an accident.",
       "createdAt": "2025-10-07T16:35:45Z",
-      "updatedAt": "2025-10-07T16:35:46Z",
+      "updatedAt": "2025-10-10T07:30:32Z",
       "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "75c8d3035d5ad4009b1b02b06f6f994cb72dd49e",
       "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
       "headRefName": "achamayou-patch-57",
       "headRefOid": "4c0d79f592ff1136b530953adbeb5584911174eb",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-10-10T07:30:32Z",
+      "mergedAt": "2025-10-10T07:30:32Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "e9b536ef761a66144e9e46cb63b943292de3c623"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss7F4H4J",
+          "commit": {
+            "abbreviatedOid": "4c0d79f"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-09T16:50:03Z",
+          "updatedAt": "2025-10-09T16:50:03Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7F_T-I",
+          "commit": {
+            "abbreviatedOid": "4c0d79f"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "RPC was asking for the updated version (as a submission)",
+          "createdAt": "2025-10-10T07:24:30Z",
+          "updatedAt": "2025-10-10T07:24:30Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
