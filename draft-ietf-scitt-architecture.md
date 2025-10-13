@@ -720,7 +720,7 @@ Detached payloads support large Statements, and ensure Signed Statements can int
     ]
 )
 ~~~
-{: #fig-signed-statement-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement" sourcecode-name="sample-signed-statement.cbor"}
+{: #fig-signed-statement-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement" sourcecode-name="sample-signed-statement.cbor-diag"}
 
 {{fig-signed-statement-protected-header-edn}} illustrates the decoded protected header of the Signed Statement in {{fig-signed-statement-edn}}.
 It indicates the Signed Statement is securing a JSON content type, and identifying the content with the `sub` Claim "vendor.product.example".
@@ -736,7 +736,7 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
   }
 }
 ~~~
-{: #fig-signed-statement-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement's Protected Header" sourcecode-name="sample-signed-statement-phdr.cbor"}
+{: #fig-signed-statement-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement's Protected Header" sourcecode-name="sample-signed-statement-phdr.cbor-diag"}
 
 ## Signing Large or Sensitive Statements
 
@@ -859,7 +859,7 @@ The type of label 394 `receipts` in the unprotected header is a CBOR array that 
     ]
 )
 ~~~
-{: #fig-transparent-statement-edn title="CBOR Extended Diagnostic Notation example of a Transparent Statement" sourcecode-name="sample-transparent-statement.cbor"}
+{: #fig-transparent-statement-edn title="CBOR Extended Diagnostic Notation example of a Transparent Statement" sourcecode-name="sample-transparent-statement.cbor-diag"}
 
 {{fig-receipt-edn}} one of the decoded Receipt from {{fig-transparent-statement-edn}}.
 The Receipt contains inclusion proofs for verifiable data structures.
@@ -884,7 +884,7 @@ Labels identify inclusion proofs (`-1`) and consistency proofs (`-2`).
     ]
 )
 ~~~
-{: #fig-receipt-edn title="CBOR Extended Diagnostic Notation example of a Receipt" sourcecode-name="sample-receipt.cbor"}
+{: #fig-receipt-edn title="CBOR Extended Diagnostic Notation example of a Receipt" sourcecode-name="sample-receipt.cbor-diag"}
 
 {{fig-receipt-protected-header-edn}} illustrates the decoded protected header of the Transparent Statement in {{fig-transparent-statement-edn}}.
 The verifiable data structure (`-111`) uses `1` from (RFC9162_SHA256).
@@ -900,7 +900,7 @@ The verifiable data structure (`-111`) uses `1` from (RFC9162_SHA256).
   }
 }
 ~~~
-{: #fig-receipt-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Protected Header" sourcecode-name="sample-receipt-phdr.cbor"}
+{: #fig-receipt-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Protected Header" sourcecode-name="sample-receipt-phdr.cbor-diag"}
 
 {{fig-receipt-inclusion-proof-edn}} illustrates the decoded inclusion proof from {{fig-receipt-edn}}.
 This inclusion proof indicates that the size of the Verifiable Data Structure was `8` at the time the Receipt was issued.
@@ -917,7 +917,7 @@ The structure of this inclusion proof is specific to the verifiable data structu
   ]
 ]
 ~~~
-{: #fig-receipt-inclusion-proof-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Inclusion Proof" sourcecode-name="sample-receipt-proof.cbor"}
+{: #fig-receipt-inclusion-proof-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Inclusion Proof" sourcecode-name="sample-receipt-proof.cbor-diag"}
 
 ## Validation {#validation}
 
