@@ -251,7 +251,7 @@ As illustrated in {{lifecycle-threats}}, a software supply chain attack may leve
      |           |
      +-----------+
 ~~~
-{: #lifecycle-threats title="Example SSC Life-Cycle Threats" sourcecode-name="lifecycle-threats.svg"}
+{: #lifecycle-threats title="Example SSC Life-Cycle Threats" sourcecode-name="lifecycle-threats.ascii-art"}
 
 DevSecOps, as defined in {{NIST.SP.800-204C}}, often depends on third-party and open-source software.
 These dependencies can be quite complex throughout the supply chain, so checking provenance and traceability throughout their lifecycle is difficult.
@@ -561,7 +561,7 @@ The arrows indicate the flow of information.
    +---------------+      | Relying Party |    +---------------+
                           +---------------+
 ~~~
-{: #fig-concept-relationship title="Relationship of Concepts in SCITT" sourcecode-name="concepts-relationship.svg"}
+{: #fig-concept-relationship title="Relationship of Concepts in SCITT" sourcecode-name="concepts-relationship.ascii-art"}
 
 The subsequent sections describe the main concepts, namely Transparency Service, Signed Statements, Registration, and Transparent Statements in more detail.
 
@@ -789,7 +789,7 @@ In these cases a Statement can be made over the hash of a payload, rather than t
 | COSE_Sign1   |
  '------------'
 ~~~
-{: #fig-signing-large-statements title="Signing Large or Sensitive Statements" sourcecode-name="signing-large-statements.svg"}
+{: #fig-signing-large-statements title="Signing Large or Sensitive Statements" sourcecode-name="signing-large-statements.ascii-art"}
 
 ## Registration of Signed Statements
 
