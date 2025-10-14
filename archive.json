@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-12T00:53:57.626496+00:00",
+  "timestamp": "2025-10-14T00:51:41.371958+00:00",
   "repo": "ietf-wg-scitt/draft-ietf-scitt-architecture",
   "labels": [
     {
@@ -60240,6 +60240,119 @@
           "body": "RPC was asking for the updated version (as a submission)",
           "createdAt": "2025-10-10T07:24:30Z",
           "updatedAt": "2025-10-10T07:24:30Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 457,
+      "id": "PR_kwDOIvmHss6teTMq",
+      "title": "Editorial: update titles and sourcecode names in markdown",
+      "url": "https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/457",
+      "state": "OPEN",
+      "author": "achamayou",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As recommended by https://github.com/cabo/kramdown-rfc/issues/264#issuecomment-3397461140\r\n\r\nThis will make it easier for readers to extract files from the document using `kramdown-rfc-extract-sourcecode`.",
+      "createdAt": "2025-10-13T14:12:06Z",
+      "updatedAt": "2025-10-13T15:53:17Z",
+      "baseRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "e9b536ef761a66144e9e46cb63b943292de3c623",
+      "headRepository": "ietf-wg-scitt/draft-ietf-scitt-architecture",
+      "headRefName": "achamayou-patch-58",
+      "headRefOid": "b7d558b195d5edaf3fb5a6f34172b8d905b73f86",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIvmHss7Gl3pR",
+          "commit": {
+            "abbreviatedOid": "afbd236"
+          },
+          "author": "OR13",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-13T14:13:48Z",
+          "updatedAt": "2025-10-13T14:13:48Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIvmHss7Gl72J",
+          "commit": {
+            "abbreviatedOid": "afbd236"
+          },
+          "author": "cabo",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-13T14:18:47Z",
+          "updatedAt": "2025-10-13T14:18:47Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "https://www.ietf.org/archive/id/draft-ietf-cbor-edn-literals-18.html#section-1-7.1",
+              "createdAt": "2025-10-13T14:18:47Z",
+              "updatedAt": "2025-10-13T14:18:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7Gl_sw",
+          "commit": {
+            "abbreviatedOid": "afbd236"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-13T14:23:15Z",
+          "updatedAt": "2025-10-13T14:23:16Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "@cabo does the tool support svg? It seems to create ascii-art names in practice, but they are not listed above.",
+              "createdAt": "2025-10-13T14:23:15Z",
+              "updatedAt": "2025-10-13T14:23:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7GmFu5",
+          "commit": {
+            "abbreviatedOid": "afbd236"
+          },
+          "author": "achamayou",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-13T14:30:13Z",
+          "updatedAt": "2025-10-13T14:30:13Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "The answer is no, what's extractible is ascii-art. I've renamed the files accordingly.",
+              "createdAt": "2025-10-13T14:30:13Z",
+              "updatedAt": "2025-10-13T14:30:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIvmHss7GnNiG",
+          "commit": {
+            "abbreviatedOid": "b7d558b"
+          },
+          "author": "aj-stein",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-13T15:53:17Z",
+          "updatedAt": "2025-10-13T15:53:17Z",
           "comments": []
         }
       ]
