@@ -251,7 +251,7 @@ As illustrated in {{lifecycle-threats}}, a software supply chain attack may leve
      |           |
      +-----------+
 ~~~
-{: #lifecycle-threats title="Example SSC Life-Cycle Threats"}
+{: #lifecycle-threats title="Example SSC Life-Cycle Threats" sourcecode-name="lifecycle-threats.ascii-art"}
 
 DevSecOps, as defined in {{NIST.SP.800-204C}}, often depends on third-party and open-source software.
 These dependencies can be quite complex throughout the supply chain, so checking provenance and traceability throughout their lifecycle is difficult.
@@ -561,7 +561,7 @@ The arrows indicate the flow of information.
    +---------------+      | Relying Party |    +---------------+
                           +---------------+
 ~~~
-{: #fig-concept-relationship title="Relationship of Concepts in SCITT"}
+{: #fig-concept-relationship title="Relationship of Concepts in SCITT" sourcecode-name="concepts-relationship.ascii-art"}
 
 The subsequent sections describe the main concepts, namely Transparency Service, Signed Statements, Registration, and Transparent Statements in more detail.
 
@@ -705,7 +705,7 @@ Implementation-specific Registration Policies may define additional mandatory la
 ~~~ cddl
 {::include signed_statement.cddl}
 ~~~
-{: #fig-signed-statement-cddl title="CDDL definition for Signed Statements and Receipts"}
+{: #fig-signed-statement-cddl title="CDDL definition for Signed Statements" sourcecode-name="signed-statement.cddl"}
 
 {{fig-signed-statement-edn}} illustrates an instance of a Signed Statement in Extended Diagnostic Notation (EDN), with a payload that is detached.
 Detached payloads support large Statements, and ensure Signed Statements can integrate with existing storage systems.
@@ -720,7 +720,7 @@ Detached payloads support large Statements, and ensure Signed Statements can int
     ]
 )
 ~~~
-{: #fig-signed-statement-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement"}
+{: #fig-signed-statement-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement" sourcecode-name="sample-signed-statement.cbor-diag"}
 
 {{fig-signed-statement-protected-header-edn}} illustrates the decoded protected header of the Signed Statement in {{fig-signed-statement-edn}}.
 It indicates the Signed Statement is securing a JSON content type, and identifying the content with the `sub` Claim "vendor.product.example".
@@ -736,7 +736,7 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
   }
 }
 ~~~
-{: #fig-signed-statement-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement's Protected Header"}
+{: #fig-signed-statement-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Signed Statement's Protected Header" sourcecode-name="sample-signed-statement-phdr.cbor-diag"}
 
 ## Signing Large or Sensitive Statements
 
@@ -789,6 +789,7 @@ In these cases a Statement can be made over the hash of a payload, rather than t
 | COSE_Sign1   |
  '------------'
 ~~~
+{: #fig-signing-large-statements title="Signing Large or Sensitive Statements" sourcecode-name="signing-large-statements.ascii-art"}
 
 ## Registration of Signed Statements
 
@@ -838,7 +839,7 @@ See {{fig-signed-statement-cddl}} for the CDDL rule that defines 'COSE_Sign1' as
 ~~~ cddl
 {::include transparent_statement.cddl}
 ~~~
-{: #fig-transparent-statement-cddl title="CDDL definition for a Transparent Statement"}
+{: #fig-transparent-statement-cddl title="CDDL definition for a Transparent Statement" sourcecode-name="transparent-statement.cddl"}
 
 {{fig-transparent-statement-edn}} illustrates a Transparent Statement with a detached payload, and two Receipts in its unprotected header.
 The type of label 394 `receipts` in the unprotected header is a CBOR array that can contain one or more Receipts (each entry encoded as a .cbor encoded Receipts).
@@ -858,7 +859,7 @@ The type of label 394 `receipts` in the unprotected header is a CBOR array that 
     ]
 )
 ~~~
-{: #fig-transparent-statement-edn title="CBOR Extended Diagnostic Notation example of a Transparent Statement"}
+{: #fig-transparent-statement-edn title="CBOR Extended Diagnostic Notation example of a Transparent Statement" sourcecode-name="sample-transparent-statement.cbor-diag"}
 
 {{fig-receipt-edn}} one of the decoded Receipt from {{fig-transparent-statement-edn}}.
 The Receipt contains inclusion proofs for verifiable data structures.
@@ -883,7 +884,7 @@ Labels identify inclusion proofs (`-1`) and consistency proofs (`-2`).
     ]
 )
 ~~~
-{: #fig-receipt-edn title="CBOR Extended Diagnostic Notation example of a Receipt"}
+{: #fig-receipt-edn title="CBOR Extended Diagnostic Notation example of a Receipt" sourcecode-name="sample-receipt.cbor-diag"}
 
 {{fig-receipt-protected-header-edn}} illustrates the decoded protected header of the Transparent Statement in {{fig-transparent-statement-edn}}.
 The verifiable data structure (`-111`) uses `1` from (RFC9162_SHA256).
@@ -899,7 +900,7 @@ The verifiable data structure (`-111`) uses `1` from (RFC9162_SHA256).
   }
 }
 ~~~
-{: #fig-receipt-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Protected Header"}
+{: #fig-receipt-protected-header-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Protected Header" sourcecode-name="sample-receipt-phdr.cbor-diag"}
 
 {{fig-receipt-inclusion-proof-edn}} illustrates the decoded inclusion proof from {{fig-receipt-edn}}.
 This inclusion proof indicates that the size of the Verifiable Data Structure was `8` at the time the Receipt was issued.
@@ -916,7 +917,7 @@ The structure of this inclusion proof is specific to the verifiable data structu
   ]
 ]
 ~~~
-{: #fig-receipt-inclusion-proof-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Inclusion Proof"}
+{: #fig-receipt-inclusion-proof-edn title="CBOR Extended Diagnostic Notation example of a Receipt's Inclusion Proof" sourcecode-name="sample-receipt-proof.cbor-diag"}
 
 ## Validation {#validation}
 
