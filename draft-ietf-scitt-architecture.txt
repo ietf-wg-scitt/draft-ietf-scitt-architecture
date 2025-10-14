@@ -5,12 +5,12 @@
 SCITT                                                        H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Standards Track                      A. Delignat-Lavaud
-Expires: 13 April 2026                                        C. Fournet
+Expires: 17 April 2026                                        C. Fournet
                                                       Microsoft Research
                                                             Y. Deshpande
                                                                      ARM
                                                                S. Lasker
-                                                         10 October 2025
+                                                         14 October 2025
 
 
  An Architecture for Trustworthy and Transparent Digital Supply Chains
@@ -57,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 April 2026.
+   This Internet-Draft will expire on 17 April 2026.
 
 Copyright Notice
 
@@ -1016,7 +1016,7 @@ Table of Contents
 
    label = int / tstr
 
-        Figure 3: CDDL definition for Signed Statements and Receipts
+              Figure 3: CDDL definition for Signed Statements
 
    Figure 4 illustrates an instance of a Signed Statement in Extended
    Diagnostic Notation (EDN), with a payload that is detached.  Detached
@@ -1104,6 +1104,8 @@ Table of Contents
    | COSE_Sign1   |
     '------------'
 
+              Figure 6: Signing Large or Sensitive Statements
+
 6.3.  Registration of Signed Statements
 
    To register a Signed Statement, the Transparency Service performs the
@@ -1184,7 +1186,7 @@ Table of Contents
    Transparency Service added the Signed Statement to its Verifiable
    Data Structure.
 
-   Figure 6 illustrates a normative CDDL definition of Transparent
+   Figure 7 illustrates a normative CDDL definition of Transparent
    Statements.  See Figure 3 for the CDDL rule that defines 'COSE_Sign1'
    as specified in Section 4.2 of [STD96]
 
@@ -1194,9 +1196,9 @@ Table of Contents
      &(receipts: 394)  => [+ Receipt]
    }
 
-           Figure 6: CDDL definition for a Transparent Statement
+           Figure 7: CDDL definition for a Transparent Statement
 
-   Figure 7 illustrates a Transparent Statement with a detached payload,
+   Figure 8 illustrates a Transparent Statement with a detached payload,
    and two Receipts in its unprotected header.  The type of label 394
    receipts in the unprotected header is a CBOR array that can contain
    one or more Receipts (each entry encoded as a .cbor encoded
@@ -1216,10 +1218,10 @@ Table of Contents
        ]
    )
 
-          Figure 7: CBOR Extended Diagnostic Notation example of a
+          Figure 8: CBOR Extended Diagnostic Notation example of a
                            Transparent Statement
 
-   Figure 8 one of the decoded Receipt from Figure 7.  The Receipt
+   Figure 9 one of the decoded Receipt from Figure 8.  The Receipt
    contains inclusion proofs for verifiable data structures.  The
    unprotected header contains verifiable data structure proofs.  See
    the protected header for details regarding the specific verifiable
@@ -1244,10 +1246,10 @@ Table of Contents
        ]
    )
 
-      Figure 8: CBOR Extended Diagnostic Notation example of a Receipt
+      Figure 9: CBOR Extended Diagnostic Notation example of a Receipt
 
-   Figure 9 illustrates the decoded protected header of the Transparent
-   Statement in Figure 7.  The verifiable data structure (-111) uses 1
+   Figure 10 illustrates the decoded protected header of the Transparent
+   Statement in Figure 8.  The verifiable data structure (-111) uses 1
    from (RFC9162_SHA256).
 
    {                                   / Protected                 /
@@ -1260,10 +1262,10 @@ Table of Contents
      }
    }
 
-          Figure 9: CBOR Extended Diagnostic Notation example of a
+         Figure 10: CBOR Extended Diagnostic Notation example of a
                          Receipt's Protected Header
 
-   Figure 10 illustrates the decoded inclusion proof from Figure 8.
+   Figure 11 illustrates the decoded inclusion proof from Figure 9.
    This inclusion proof indicates that the size of the Verifiable Data
    Structure was 8 at the time the Receipt was issued.  The structure of
    this inclusion proof is specific to the verifiable data structure
@@ -1279,7 +1281,7 @@ Table of Contents
      ]
    ]
 
-         Figure 10: CBOR Extended Diagnostic Notation example of a
+         Figure 11: CBOR Extended Diagnostic Notation example of a
                          Receipt's Inclusion Proof
 
 7.1.  Validation
