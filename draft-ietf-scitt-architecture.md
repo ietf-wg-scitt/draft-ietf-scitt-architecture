@@ -715,7 +715,7 @@ Detached payloads support large Statements, and ensure Signed Statements can int
     [
       h'a4012603...6d706c65',       / Protected        /
       {},                           / Unprotected      /
-      nil,                          / Detached payload /
+      null,                         / Detached payload /
       h'79ada558...3a28bae4'        / Signature        /
     ]
 )
@@ -728,11 +728,11 @@ It indicates the Signed Statement is securing a JSON content type, and identifyi
 ~~~ cbor-diag
 {                                   / Protected        /
   1: -7,                            / Algorithm        /
-  3: application/example+json,      / Content type     /
+  3: "application/example+json",    / Content type     /
   4: h'50685f55...50523255',        / Key identifier   /
   15: {                             / CWT Claims       /
-    1: software.vendor.example,     / Issuer           /
-    2: vendor.product.example,      / Subject          /
+    1: "software.vendor.example",   / Issuer           /
+    2: "vendor.product.example",    / Subject          /
   }
 }
 ~~~
@@ -854,7 +854,7 @@ The type of label 394 `receipts` in the unprotected header is a CBOR array that 
           h'c624586c...8f4af97e'    / Receipt 2                 /
         ]
       },
-      nil,                          / Detached payload          /
+      null,                         / Detached payload          /
       h'79ada558...3a28bae4'        / Signature                 /
     ]
 )
@@ -879,7 +879,7 @@ Labels identify inclusion proofs (`-1`) and consistency proofs (`-2`).
           ]
         },
       },
-      nil,                          / Detached payload          /
+      null,                         / Detached payload          /
       h'10f6b12a...4191f9d2'        / Signature                 /
     ]
 )
@@ -895,8 +895,8 @@ The verifiable data structure (`-111`) uses `1` from (RFC9162_SHA256).
   4: h'50685f55...50523255',        / Key identifier            /
   -111: 1,                          / Verifiable Data Structure /
   15: {                             / CWT Claims                /
-    1: transparency.vendor.example, / Issuer                    /
-    2: vendor.product.example,      / Subject                   /
+    1: "transparency.vendor.example", / Issuer                    /
+    2: "vendor.product.example",      / Subject                   /
   }
 }
 ~~~
