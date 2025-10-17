@@ -1027,7 +1027,7 @@ Table of Contents
        [
          h'a4012603...6d706c65',       / Protected        /
          {},                           / Unprotected      /
-         nil,                          / Detached payload /
+         null,                         / Detached payload /
          h'79ada558...3a28bae4'        / Signature        /
        ]
    )
@@ -1042,11 +1042,11 @@ Table of Contents
 
    {                                   / Protected        /
      1: -7,                            / Algorithm        /
-     3: application/example+json,      / Content type     /
+     3: "application/example+json",    / Content type     /
      4: h'50685f55...50523255',        / Key identifier   /
      15: {                             / CWT Claims       /
-       1: software.vendor.example,     / Issuer           /
-       2: vendor.product.example,      / Subject          /
+       1: "software.vendor.example",   / Issuer           /
+       2: "vendor.product.example",    / Subject          /
      }
    }
 
@@ -1213,7 +1213,7 @@ Table of Contents
              h'c624586c...8f4af97e'    / Receipt 2                 /
            ]
          },
-         nil,                          / Detached payload          /
+         null,                         / Detached payload          /
          h'79ada558...3a28bae4'        / Signature                 /
        ]
    )
@@ -1241,7 +1241,7 @@ Table of Contents
              ]
            },
          },
-         nil,                          / Detached payload          /
+         null,                         / Detached payload          /
          h'10f6b12a...4191f9d2'        / Signature                 /
        ]
    )
@@ -1257,8 +1257,8 @@ Table of Contents
      4: h'50685f55...50523255',        / Key identifier            /
      -111: 1,                          / Verifiable Data Structure /
      15: {                             / CWT Claims                /
-       1: transparency.vendor.example, / Issuer                    /
-       2: vendor.product.example,      / Subject                   /
+       1: "transparency.vendor.example", / Issuer                    /
+       2: "vendor.product.example",      / Subject                   /
      }
    }
 
