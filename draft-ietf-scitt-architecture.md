@@ -972,7 +972,7 @@ It is to be removed by the RFC Editor before publication.
 
 Organization: TKCollective.
 Name: tanilo-receipt-verify 0.1.1, pinned at commit 97e09e7.
-Description: returns a policy-refusal result for an unresolved key and carries the distinction in a reason accompanying the result.
+Description: reports indeterminate for an unresolved key under the default incomplete-trust setting; a key absent from an explicitly declared-complete trust list is reported as invalid with a policy-refusal reason.
 Maturity: prototype.
 Coverage: the third verification result.
 The invalid-plus-reason mapping is reference behaviour, not an implementation of the separate disposition rule required above.
@@ -986,21 +986,15 @@ Last updated: 2026-09-30.
 ## ActaSeal (Xavier Goshi)
 
 Organization: ActaSeal.
-Name: actaseal-verify, conformance vectors pinned at tag v0.1.0 (a6dbca0).
+Name: actaseal-verify, conformance vectors pinned at tag v0.2.1 (cfc2a7c7).
 Description: standalone offline verifier for signed decision receipts.
-Emits a structured result carrying a verification result, a relying-party disposition and a trust-material completeness input as one atomic object.
 Maturity: prototype.
-Coverage: the verdict, disposition, and trust-material completeness input, emitted together in one structured result.
-The verdict takes one of three values: CRYPTOGRAPHICALLY_VALID, CRYPTOGRAPHICALLY_INVALID, or NOT_EVALUATED.
-A policy refusal never appears as a verdict value.
-Completeness defaults to incomplete, and its absence never resolves to complete.
-Not implemented: the consumption-side obligation, which does not apply to an emitter, and the requirement that any integrity protection applied to the emitted result cover both, because no integrity protection is applied to the emitted result.
+Coverage: verify_receipt.py --emit-result emits one object (actaseal-verify-result.v1) carrying verdict, policy disposition and trust-material completeness together; verdict takes exactly CRYPTOGRAPHICALLY_VALID | CRYPTOGRAPHICALLY_INVALID | NOT_EVALUATED and a policy refusal never appears in it; --trust-material-complete defaults to false and the field is always emitted; an unresolvable key gives NOT_EVALUATED under both declarations with only the disposition moving; an empty declared-complete trust list gives NOT_EVALUATED + REFUSED_BY_POLICY, not invalid; a checked-and-failed signature stays CRYPTOGRAPHICALLY_INVALID under both; outcome, exit_code and failed_checks are required members so no single field reads as the whole picture; paired vectors mirroring the four tests pinned at 97e09e7 are published with sha256s in conformance/vectors.sha256.
+Not implemented: no integrity protection is applied to the emitted result at all (standalone offline checker, no separately trusted verifier identity); the consumption-side obligation does not apply to an emitter; there is no multi-key trust-list structure, so "empty declared-complete trust list" is realised as "no key supplied under a completeness declaration" rather than an empty JWKS-shaped key set; verify.py and the pinned offline_verifier.py are unchanged.
 Version compatibility: tracks this section as discussed in issue #462.
 Licensing: Apache License 2.0.
-Implementation experience: attempting to sign the emitted result is what surfaced that a requirement for the distinction to be "covered by the same integrity protection as the verification result" is vacuous where the verification result itself carries no cryptographic protection.
-Separately, nine tests in the implementation were found to be exercising a different storage backend from the one used at runtime, which is why coverage above is stated per requirement rather than as a pass rate.
 Contact: via issue #462.
-Last updated: 2026-09-30.
+Last updated: 2026-10-05.
 
 # Privacy Considerations
 
