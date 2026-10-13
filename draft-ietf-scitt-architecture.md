@@ -935,6 +935,67 @@ Relying Parties MAY be configured to re-verify the Issuer's Signed Statement loc
 In addition, Relying Parties MAY apply arbitrary validation policies after the Transparent Statement has been verified and validated.
 Such policies may use as input all information in the Envelope, the Receipt, and the Statement payload, as well as any local state.
 
+## Receipt Profile Requirements for Verification Results {#receipt-profile-verification}
+
+A profile MUST define a third verification result, distinct from valid and invalid, and MUST require that result be returned before any comparison the profile cannot perform is attempted, so that the third result is reachable from a position where neither of the other two has been computed.
+
+A profile MUST pin one behaviour per condition.
+It MUST NOT define a fallback of the form "this path or, failing that, some other path", because a fallback returns one of the other two results for the very condition the third was defined to cover.
+
+For each comparison a profile makes normative, the profile MUST require that at least one side is derivable by the relying party independently of the party being checked.
+Where a comparison has no such side, the profile MUST name it, and its result MUST be the third value, declared rather than computed.
+As one case of this requirement: where a payload references a conclusion whose content is external to the payload, the profile MUST require a cryptographic hash of that content to be bound within the signed payload, so that a relying party that obtains the referenced content can independently recompute its digest and compare it with the hash bound in the signed payload.
+
+Where a profile's handling of an unresolved verification key depends on whether the trust material supplied by the relying party is complete, the profile MUST define an explicit relying-party completeness input and its default.
+Omission of that input MUST NOT be read as a declaration of completeness.
+The profile MUST distinguish inability to complete a check for lack of trust material from refusal under a declared-complete trust policy, and MUST identify the latter as a relying-party disposition rather than a failure of a cryptographic check that did not run.
+Refusal and failed verification MUST NOT share a verification result value.
+Where lack of trust material prevents completing the check, the profile returns the third verification result required by MUST 1.
+Refusal under a declared-complete trust policy remains a relying-party disposition, not a failed cryptographic check.
+This does not introduce a fourth verification result value.
+A profile MUST emit the verification result and any associated policy disposition together in one structured result.
+Consumers forwarding or aggregating that result MUST preserve the distinction and MUST NOT reclassify policy refusal as failed cryptographic verification.
+Any integrity protection applied to the emitted result MUST cover both.
+Where a disposition is required by the profile, its absence makes the result incomplete; it MUST NOT be interpreted as evidence that a cryptographic check failed.
+Where the profile signs an emitted result, the disposition MUST be within what is signed.
+A verification result value alone MUST NOT be relied on to carry the distinction.
+
+Under a declared duplicate-last construction, where differently sized lists must be disambiguated, the profile MUST bind the number of elements within what is signed or hashed.
+Membership and append-only history remain separate proof obligations that authenticated count binding alone does not satisfy.
+
+# Implementation Status
+
+This section records implementation experience for {{receipt-profile-verification}}, per {{?BCP205=RFC7942}}.
+It is to be removed by the RFC Editor before publication.
+
+## TKCollective verifier
+
+Organization: TKCollective.
+Name: tanilo-receipt-verify 0.1.1, pinned at commit 97e09e7.
+Description: reports indeterminate for an unresolved key under the default incomplete-trust setting; a key absent from an explicitly declared-complete trust list is reported as invalid with a policy-refusal reason.
+Maturity: prototype.
+Coverage: the third verification result.
+The invalid-plus-reason mapping is reference behaviour, not an implementation of the separate disposition rule required above.
+Version 0.1.2 changed only one diagnostic reason string; this mapping is unchanged in 0.1.2.
+Version compatibility: tracks this section as discussed in issue #462.
+Licensing: per the implementation's own repository.
+Implementation experience: the four pinned reference tests are held at a fixed commit so that a paired implementation has a stable target.
+Contact: via issue #462.
+Last updated: 2026-09-30.
+
+## ActaSeal (Xavier Goshi)
+
+Organization: ActaSeal.
+Name: actaseal-verify, conformance vectors pinned at tag v0.2.1 (cfc2a7c7).
+Description: standalone offline verifier for signed decision receipts.
+Maturity: prototype.
+Coverage: verify_receipt.py --emit-result emits one object (actaseal-verify-result.v1) carrying verdict, policy disposition and trust-material completeness together; verdict takes exactly CRYPTOGRAPHICALLY_VALID | CRYPTOGRAPHICALLY_INVALID | NOT_EVALUATED and a policy refusal never appears in it; --trust-material-complete defaults to false and the field is always emitted; an unresolvable key gives NOT_EVALUATED under both declarations with only the disposition moving; an empty declared-complete trust list gives NOT_EVALUATED + REFUSED_BY_POLICY, not invalid; a checked-and-failed signature stays CRYPTOGRAPHICALLY_INVALID under both; outcome, exit_code and failed_checks are required members so no single field reads as the whole picture; paired vectors mirroring the four tests pinned at 97e09e7 are published with sha256s in conformance/vectors.sha256.
+Not implemented: no integrity protection is applied to the emitted result at all (standalone offline checker, no separately trusted verifier identity); the consumption-side obligation does not apply to an emitter; there is no multi-key trust-list structure, so "empty declared-complete trust list" is realised as "no key supplied under a completeness declaration" rather than an empty JWKS-shaped key set; verify.py is unchanged.
+Version compatibility: tracks this section as discussed in issue #462.
+Licensing: Apache License 2.0.
+Contact: via issue #462.
+Last updated: 2026-10-05.
+
 # Privacy Considerations
 
 Interactions with Transparency Services are expected to use appropriately strong encryption and authorization technologies.
